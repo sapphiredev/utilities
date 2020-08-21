@@ -416,7 +416,7 @@ export const config = {
 		'@typescript-eslint/array-type': 'off',
 		'@typescript-eslint/await-thenable': 'off',
 		'@typescript-eslint/explicit-member-accessibility': 'error',
-		'@typescript-eslint/indent': ['error', 'tab'],
+		'@typescript-eslint/indent': 'off',
 		'@typescript-eslint/member-ordering': [
 			'error',
 			{
