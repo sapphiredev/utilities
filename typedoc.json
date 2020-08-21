@@ -1,13 +1,10 @@
 {
-	"inputFiles": [
-		"./packages"
-	],
 	"out": "./docs/",
 	"readme": "./README.md",
-	"theme": "default",
 	"name": "Sapphire Utilities",
 	"exclude": [
 		"**/node_modules/**",
+		"**/*.test.ts",
 		"tests/**",
 		"**/*.js",
 		"**/rollup.config.ts"
