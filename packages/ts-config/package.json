@@ -4,8 +4,8 @@
 	"description": "Shareable TypeScript configuration for all Sapphire Projects repositories",
 	"author": "@favware",
 	"license": "MIT",
-	"main": "dist/tsconfig.json",
-	"homepage": "https://favware.tech",
+	"main": "tsconfig.json",
+	"homepage": "https://github.com/sapphire-project/utilities/tree/main/packages/ts-config",
 	"scripts": {
 		"test": "jest",
 		"lint": "eslint tests scripts --ext mjs,ts --fix -c ../../.eslintrc",

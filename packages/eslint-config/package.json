@@ -6,8 +6,7 @@
 	"license": "MIT",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
-	"private": false,
-	"homepage": "https://github.com/favware/node-packages/tree/main/packages/eslint-config#readme",
+	"homepage": "https://github.com/sapphire-project/utilities/tree/main/packages/eslint-config",
 	"scripts": {
 		"test": "jest",
 		"prelint": "yarn test && yarn build",

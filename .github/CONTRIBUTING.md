@@ -13,7 +13,7 @@ in your text editor or IDE of your choice to ensure builds from GitHub Actions d
 5. Commit your changes, and push them.
 6. Submit a Pull Request [here]!
 
-## @sapphire/framework Concept Guidelines
+## @sapphire/utilities Concept Guidelines
 
 There are a number of guidelines considered when reviewing Pull Requests to be merged. _This is by no means an exhaustive list, but here are some things to consider before/while submitting your ideas._
 

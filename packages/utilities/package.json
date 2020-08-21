@@ -9,7 +9,7 @@
 	"browser": "dist/index.umd.js",
 	"unpkg": "dist/index.umd.js",
 	"types": "dist/index.d.ts",
-	"homepage": "https://github.com/favware/node-packages/tree/main/packages/querystring#readme",
+	"homepage": "https://github.com/sapphire-project/utilities/tree/main/packages/utilities",
 	"scripts": {
 		"test": "jest",
 		"lint": "eslint src tests --ext ts --fix -c ../../.eslintrc",
