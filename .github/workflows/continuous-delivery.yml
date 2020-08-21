@@ -46,7 +46,7 @@ jobs:
                   cd packages/eslint-config
 
                   echo -e "\n# Checkout the repo in the target branch"
-                  TARGET_BRANCH="build-eslint"
+                  TARGET_BRANCH="build-eslint-config"
                   git clone $REPO out -b $TARGET_BRANCH
 
                   echo -e "\n# Remove any old files in the dist folder"
@@ -54,8 +54,8 @@ jobs:
 
                   echo -e "\n# Move the generated docs to the newly-checked-out repo, to be committed and pushed"
                   rsync -vaI package.json out/
-                  rsync -vaI .all-contributorsrc out/
-                  rsync -vaI LICENSE.md out/
+                  rsync -vaI ../../.all-contributorsrc out/
+                  rsync -vaI ../../LICENSE.md out/
                   rsync -vaI README.md out/
                   rsync -vaI dist/ out/dist
 
@@ -107,8 +107,8 @@ jobs:
 
                   echo -e "\n# Move the generated docs to the newly-checked-out repo, to be committed and pushed"
                   rsync -vaI package.json out/
-                  rsync -vaI .all-contributorsrc out/
-                  rsync -vaI LICENSE.md out/
+                  rsync -vaI ../../.all-contributorsrc out/
+                  rsync -vaI ../../LICENSE.md out/
                   rsync -vaI README.md out/
                   rsync -vaI src/tsconfig.json out/
 
