@@ -60,10 +60,7 @@ Object {
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/explicit-member-accessibility": "error",
     "@typescript-eslint/explicit-module-boundary-types": "off",
-    "@typescript-eslint/indent": Array [
-      "error",
-      "tab",
-    ],
+    "@typescript-eslint/indent": "off",
     "@typescript-eslint/init-declarations": "error",
     "@typescript-eslint/keyword-spacing": Array [
       "error",
