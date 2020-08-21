@@ -25,8 +25,12 @@ jobs:
                   key: ${{ runner.os }}-12-${{ hashFiles('**/yarn.lock') }}
             - name: Install Dependencies
               run: yarn --ignore-scripts --frozen-lockfile
+            - name: Build ESLint config
+              run: yarn tsc -b packages/eslint-config
             - name: Run ESLint
               uses: icrawl/action-eslint@v1
+              with:
+                custom-glob: packages
 
     Formatting:
         name: Prettier Formatting
@@ -93,10 +97,11 @@ jobs:
                   key: ${{ runner.os }}-12-${{ hashFiles('**/yarn.lock') }}
             - name: Install Dependencies
               run: yarn --ignore-scripts --frozen-lockfile
-            - name: Build Code
-              uses: icrawl/action-tsc@v1
-              with:
-                  build: src
+            - name: Compile Projects
+              run: |
+                yarn tsc -b packages/eslint-config packages/ts-config
+                yarn --cwd packages/snowflake rollup -c ./rollup.config.ts
+                yarn --cwd packages/utilities rollup -c ./rollup.config.ts
 
     Upload_Coverage_Report:
         name: Upload coverage report to coveralls

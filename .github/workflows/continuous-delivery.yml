@@ -110,7 +110,7 @@ jobs:
                   rsync -vaI .all-contributorsrc out/
                   rsync -vaI LICENSE.md out/
                   rsync -vaI README.md out/
-                  rsync -vaI tsconfig.json out/
+                  rsync -vaI src/tsconfig.json out/
 
                   echo -e "\n# Commit and push"
                   cd out
