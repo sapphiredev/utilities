@@ -1,32 +1,33 @@
 {
-	"packages": ["packages/*"],
+	"packages": [
+		"packages/*"
+	],
 	"version": "independent",
 	"npmClient": "yarn",
 	"useWorkspaces": true,
 	"command": {
-	  "publish": {
-		"conventionalCommits": true,
-		"push": true
-	  },
-	  "version": {
-		"allowBranch": "main",
-		"conventionalCommits": true,
-		"push": true,
-		"message": "chore(release): publish"
-	  },
-	  "create": {
-		"license": "MIT",
-		"keywords": [
-			"@sapphire/utilities",
-			"bot",
-			"typescript",
-			"ts",
-			"yarn",
-			"discord",
-			"sapphire",
-			"standalone"
-		]
-	  }
+		"publish": {
+			"conventionalCommits": true,
+			"push": true
+		},
+		"version": {
+			"allowBranch": "main",
+			"conventionalCommits": true,
+			"push": true,
+			"message": "chore(release): publish"
+		},
+		"create": {
+			"license": "MIT",
+			"keywords": [
+				"@sapphire/utilities",
+				"bot",
+				"typescript",
+				"ts",
+				"yarn",
+				"discord",
+				"sapphire",
+				"standalone"
+			]
+		}
 	}
-  }
-  
+}

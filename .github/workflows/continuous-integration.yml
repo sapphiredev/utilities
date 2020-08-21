@@ -30,7 +30,7 @@ jobs:
             - name: Run ESLint
               uses: icrawl/action-eslint@v1
               with:
-                custom-glob: packages
+                  custom-glob: packages
 
     Formatting:
         name: Prettier Formatting
@@ -99,9 +99,9 @@ jobs:
               run: yarn --ignore-scripts --frozen-lockfile
             - name: Compile Projects
               run: |
-                yarn tsc -b packages/eslint-config packages/ts-config
-                yarn --cwd packages/snowflake rollup -c ./rollup.config.ts
-                yarn --cwd packages/utilities rollup -c ./rollup.config.ts
+                  yarn tsc -b packages/eslint-config packages/ts-config
+                  yarn --cwd packages/snowflake rollup -c ./rollup.config.ts
+                  yarn --cwd packages/utilities rollup -c ./rollup.config.ts
 
     Upload_Coverage_Report:
         name: Upload coverage report to coveralls

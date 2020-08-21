@@ -1,5 +1,7 @@
 {
-	"inputFiles": ["./packages"],
+	"inputFiles": [
+		"./packages"
+	],
 	"out": "./docs/",
 	"readme": "./README.md",
 	"theme": "default",

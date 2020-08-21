@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-import { dirname, resolve, join } from 'path';
-import { fileURLToPath } from 'url';
 import fsExtra from 'fs-extra';
+import { dirname, join, resolve } from 'path';
+import { fileURLToPath } from 'url';
 
 const { copy, mkdirp } = fsExtra;
 const __filename = fileURLToPath(import.meta.url);
