@@ -3,24 +3,42 @@ node_modules/
 .vs/
 .idea/
 *.iml
-coverage/
-docs/
 
-# Ignore tsc dist folder
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Build Artifacts
 dist/
+build/
+docs/
+test_out/
+*.tsbuildinfo
+*.zip
+*.tar
+*.tar.xz
+*.tar.gz
+*.7z
+*.rar
 
 # Ignore JavaScript files
 **/*.js
 **/*.mjs
 **/*.js.map
 **/*.d.ts
-!src/**/*.d.ts
 **/*.tsbuildinfo
+!src/**/*.d.ts
 !jest.config.js
+!**/scripts/*.mjs
 
 # Ignore heapsnapshot and log files
 *.heapsnapshot
 *.log
+coverage/
+docs/
 
 # Ignore package locks
 package-lock.json

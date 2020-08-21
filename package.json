@@ -1,78 +1,61 @@
 {
-	"name": "@sapphire/template",
-	"version": "0.0.1",
-	"description": "template",
-	"main": "dist/index.js",
-	"types": "dist/index.d.ts",
-	"author": "@sapphire",
-	"license": "MIT",
-	"private": false,
+	"name": "root",
+	"private": true,
+	"workspaces": [
+		"packages/*"
+	],
 	"scripts": {
-		"prepublishOnly": "yarn build",
-		"lint": "eslint src tests --ext ts --fix",
-		"format": "prettier --write {src,tests}/**/*.ts",
-		"format:check": "prettier --check {src,tests}/**/*.ts",
-		"docs": "typedoc",
+		"clean": "rimraf packages/**/dist",
+		"lint": "eslint packages --ext ts --fix",
+		"format": "prettier --write packages/**/{src,tests}/**/*.ts",
+		"format:check": "prettier --check packages/**/{src,tests}/**/*.ts",
 		"test": "jest",
 		"test:watch": "jest --watch",
-		"update": "yarn upgrade-interactive --latest",
-		"build": "tsc -b src",
-		"clean": "tsc -b src --clean",
-		"watch": "tsc -b src -w",
-		"sversion": "standard-version",
+		"build": "lerna run build --parallel",
+		"docs": "typedoc",
 		"commit": "git-cz",
-		"cz": "git-cz"
+		"cz": "git-cz",
+		"update": "yarn upgrade-interactive --latest"
 	},
 	"dependencies": {},
 	"devDependencies": {
 		"@commitlint/cli": "^9.1.1",
 		"@commitlint/config-conventional": "^9.1.1",
 		"@skyra/eslint-config": "^5.3.0",
+		"@types/fs-extra": "^9.0.1",
 		"@types/jest": "^26.0.9",
 		"@types/node": "^14.0.26",
 		"@typescript-eslint/eslint-plugin": "^3.8.0",
 		"@typescript-eslint/parser": "^3.8.0",
 		"cz-conventional-changelog": "^3.2.0",
-		"eslint": "^7.6.0",
 		"eslint-config-prettier": "^6.11.0",
 		"eslint-plugin-prettier": "^3.1.4",
+		"eslint": "^7.6.0",
+		"fs-extra": "^9.0.1",
 		"husky": "^4.2.5",
-		"jest": "^26.1.0",
 		"jest-circus": "^26.1.0",
+		"jest": "^26.1.0",
 		"lint-staged": "^10.2.11",
 		"prettier": "^2.0.5",
+		"rollup-plugin-cleaner": "^1.0.0",
+		"rollup-plugin-terser": "^6.1.0",
+		"rollup-plugin-typescript2": "^0.27.2",
+		"rollup": "^2.23.1",
 		"standard-version": "^8.0.2",
 		"ts-jest": "^26.1.1",
-		"typedoc": "^0.17.8",
-		"typescript": "^3.9.6"
+		"ts-node": "^8.10.2",
+		"typedoc-plugin-lerna-packages": "^0.3.1",
+		"typedoc": "~0.16",
+		"typescript": "^4.0.0"
 	},
 	"peerDependencies": {},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/sapphire-project/template.git"
+		"url": "git+https://github.com/sapphire-project/utilities.git"
 	},
-	"files": [
-		"dist",
-		"!dist/tsconfig.tsbuildinfo"
-	],
 	"engines": {
-		"node": ">=12",
-		"npm": ">=6"
+		"node": ">=12"
 	},
-	"keywords": [
-		"@sapphire/template",
-		"bot",
-		"typescript",
-		"ts",
-		"yarn",
-		"discord",
-		"sapphire",
-		"standalone"
-	],
-	"bugs": {
-		"url": "https://github.com/sapphire-project/template/issues"
-	},
-	"homepage": "https://sapphire-project.github.io/template",
 	"husky": {
 		"hooks": {
 			"commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
@@ -94,9 +77,6 @@
 		"commitizen": {
 			"path": "./node_modules/cz-conventional-changelog"
 		}
-	},
-	"publishConfig": {
-		"access": "public"
 	},
 	"resolutions": {
 		"acorn": "^7.3.1",

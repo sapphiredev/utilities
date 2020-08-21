@@ -4,14 +4,54 @@
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/sapphire-project/utilities.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/sapphire-project/utilities/alerts/)
 [![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/sapphire-project/utilities.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/sapphire-project/utilities/context:javascript)
 [![Coverage Status](https://coveralls.io/repos/github/sapphire-project/utilities/badge.svg?branch=main)](https://coveralls.io/github/sapphire-project/utilities?branch=main)
+[![npm bundle size](https://img.shields.io/bundlephobia/min/@sapphire/eslint-config?logo=webpack&style=flat-square)](https://bundlephobia.com/result?p=@sapphire/eslint-config)
+[![npm](https://img.shields.io/npm/v/@sapphire/eslint-config?color=crimson&logo=npm&style=flat-square)](https://www.npmjs.com/package/@sapphire/eslint-config)
 [![Depfu](https://badges.depfu.com/badges/utilities/count.svg)](https://depfu.com/github/sapphire-project/utilities?project_id=utilities)
 
-**Packages**
+## Installation
 
-[![npm](https://img.shields.io/npm/v/@sapphire/eslint-config?color=crimson&logo=npm&style=flat-square)](https://www.npmjs.com/package/@sapphire/eslint-config)
-[![npm](https://img.shields.io/npm/v/@sapphire/snowflake?color=crimson&logo=npm&style=flat-square)](https://www.npmjs.com/package/@sapphire/snowflake)
-[![npm](https://img.shields.io/npm/v/@sapphire/ts-config?color=crimson&logo=npm&style=flat-square)](https://www.npmjs.com/package/@sapphire/ts-config)
-[![npm](https://img.shields.io/npm/v/@sapphire/utilities?color=crimson&logo=npm&style=flat-square)](https://www.npmjs.com/package/@sapphire/utilities)
+**First install the Peer Dependencies**
+```sh
+yarn add -D typescript
+```
+
+**Then install `@sapphire/eslint-config`**
+```sh
+yarn add -D @sapphire/eslint-config
+```
+
+---
+
+## Usage
+
+Add the ESLint config to your `package.json`:
+
+```jsonc
+{
+	"name": "my-project",
+	// ...
+	"eslintConfig": {
+		"extends": "@sapphire"
+	}
+}
+```
+
+Or to `eslintrc.js` / `eslintrc.json`:
+
+```json
+{
+	"extends": "@sapphire"
+}
+```
+
+Create `tsconfig.eslint.json` next to the eslint config file, for example with content:
+
+```json
+{
+	"extends": "./tsconfig.json",
+	"include": ["src", "test"]
+}
+```
 
 ## API Documentation
 

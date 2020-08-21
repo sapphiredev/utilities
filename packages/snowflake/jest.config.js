@@ -3,10 +3,10 @@ module.exports = {
 	preset: 'ts-jest',
 	testEnvironment: 'node',
 	testRunner: 'jest-circus/runner',
-	testMatch: ['<rootDir>/packages/**/tests/*.test.ts', '<rootDir>/packages/**/tests/*.test.js'],
+	testMatch: ['<rootDir>/tests/**/*.test.ts'],
 	globals: {
 		'ts-jest': {
-			tsConfig: '<rootDir>/tsconfig.base.json'
+			tsConfig: '<rootDir>/tests/tsconfig.json'
 		}
 	}
 };

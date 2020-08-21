@@ -5,5 +5,5 @@
 	"editor.insertSpaces": false,
 	"editor.detectIndentation": false,
 	"files.eol": "\n",
-	"deno.enable": false
+	"typescript.tsdk": "node_modules\\typescript\\lib"
 }

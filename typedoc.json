@@ -1,12 +1,15 @@
 {
+	"inputFiles": ["./packages/**/src"],
 	"out": "./docs/",
 	"readme": "./README.md",
-	"name": "@sapphire/template",
+	"name": "Sapphire Utilities",
 	"exclude": [
 		"**/node_modules/**",
-		"tests/**"
+		"tests/**",
+		"**/*.js",
+		"**/rollup.config.ts"
 	],
-	"mode": "file",
+	"mode": "modules",
 	"excludeExternals": true,
 	"excludeNotExported": true,
 	"tsconfig": "./tsconfig.base.json"

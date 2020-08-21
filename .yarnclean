@@ -1,0 +1,128 @@
+# Self Added Entries
+## TypeScript Extra Files
+diagnosticMessages.generated.json
+*.lcl
+
+## configs
+.prettierrc
+.eslintignore
+.gitignore
+.all-contributorsrc
+jest.config.js
+.nycrc.json
+typedoc.json
+bower.json
+
+## IDE / Git configs
+.vscode/
+.github/
+.idea/
+
+## C++ / C files
+*.cc
+*.c
+*.cpp
+*.h
+*.gyp
+*.sln
+*.gypi
+
+## CoreJS unnecessary polyfills
+core-js/client/
+core-js/es5/
+core-js/es6/
+core-js/es7/
+core-js/fn/
+core-js/stage/
+core-js/build/
+
+## Misc
+scripts/
+**/spec/
+*.markdown
+.babelrc
+.eslintrc.json
+.eslintrc.yaml
+.eslintrc.yml
+.gitignore~
+.istanbul.yml
+.npmrc
+*.flow
+*.patch
+*.txt
+**/man/
+Changelog
+component.json
+gulpfile*
+jsdoc.json
+LICENCE
+LICENSE
+LICENSE-MIT
+LICENSE.BSD
+LICENSE.closure-compiler
+LICENSE.docs
+LICENSE.esprima
+LICENSE.APACHE2
+LICENSE.MIT
+npm
+npm-shrinkwrap.json
+package-lock.json
+PATENTS
+README.md~
+rollup.config.js
+rollup.config.ts
+tslint.json
+webpack.config.js
+yarn.lock
+AUTHORS
+*.bnf
+.prettierrc.yml
+build-info.json
+*.gif
+*.json5
+
+# Yarn Auto Added
+## test directories
+__tests__
+test
+tests
+powered-test
+
+## asset directories
+docs
+doc
+website
+images
+
+## examples
+example
+examples
+
+## code coverage directories
+coverage
+.nyc_output
+
+## build scripts
+Makefile
+Gulpfile.js
+Gruntfile.js
+
+## configs
+appveyor.yml
+circle.yml
+codeship-services.yml
+codeship-steps.yml
+wercker.yml
+.tern-project
+.gitattributes
+.editorconfig
+.*ignore
+.eslintrc
+.jshintrc
+.flowconfig
+.documentup.json
+.yarn-metadata.json
+.travis.yml
+
+## misc
+*.md
