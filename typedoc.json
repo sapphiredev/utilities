@@ -1,7 +1,8 @@
 {
-	"inputFiles": ["./packages/**/src"],
+	"inputFiles": ["./packages"],
 	"out": "./docs/",
 	"readme": "./README.md",
+	"theme": "default",
 	"name": "Sapphire Utilities",
 	"exclude": [
 		"**/node_modules/**",
