@@ -1,3 +1,11 @@
 {
-	"extends": ["./packages/eslint-config/dist/index.js", "plugin:prettier/recommended"]
+	"extends": ["./packages/eslint-config/dist/index.js", "plugin:prettier/recommended"],
+	"overrides": [
+		{
+			"files":["packages/utilities/tests/*.test.ts"],
+			"rules": {
+				"@typescript-eslint/no-extraneous-class": 0
+			}
+		}
+	]
 }

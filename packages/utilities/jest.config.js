@@ -8,5 +8,8 @@ module.exports = {
 		'ts-jest': {
 			tsConfig: '<rootDir>/tests/tsconfig.json'
 		}
-	}
+	},
+	coveragePathIgnorePatterns: [
+		'<rootDir>/tests/util/common.ts'
+	]
 };
