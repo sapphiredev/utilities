@@ -7,7 +7,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/sapphire-project/utilities/badge.svg?branch=main)](https://coveralls.io/github/sapphire-project/utilities?branch=main)
 [![npm bundle size](https://img.shields.io/bundlephobia/min/@sapphire/snowflake?logo=webpack&style=flat-square)](https://bundlephobia.com/result?p=@sapphire/snowflake)
 [![npm](https://img.shields.io/npm/v/@sapphire/snowflake?color=crimson&logo=npm&style=flat-square)](https://www.npmjs.com/package/@sapphire/snowflake)
-[![Depfu](https://badges.depfu.com/badges/utilities/count.svg)](https://depfu.com/github/sapphire-project/utilities?project_id=utilities)
+[![Depfu](https://badges.depfu.com/badges/34035e3cf4ced0737443671ebefa2f47/count.svg)](https://depfu.com/github/sapphire-project/utilities?project_id=15202)
 
 ## Installation
 

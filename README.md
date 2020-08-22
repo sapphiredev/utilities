@@ -4,7 +4,7 @@
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/sapphire-project/utilities.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/sapphire-project/utilities/alerts/)
 [![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/sapphire-project/utilities.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/sapphire-project/utilities/context:javascript)
 [![Coverage Status](https://coveralls.io/repos/github/sapphire-project/utilities/badge.svg?branch=main)](https://coveralls.io/github/sapphire-project/utilities?branch=main)
-[![Depfu](https://badges.depfu.com/badges/utilities/count.svg)](https://depfu.com/github/sapphire-project/utilities?project_id=utilities)
+[![Depfu](https://badges.depfu.com/badges/4535c5e8bb20f1a7ac41fd4cefcf6383/count.svg)](https://depfu.com/github/sapphire-project/utilities?project_id=15194)
 
 **Packages**
 
