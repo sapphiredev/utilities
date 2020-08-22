@@ -1,15 +1,16 @@
+/* eslint-disable @typescript-eslint/ban-types */
 import { isFunction } from './isFunction';
 
 export interface Thenable {
-	then: (...args: unknown[]) => unknown;
-	catch: (...args: unknown[]) => unknown;
+	then: Function;
+	catch: Function;
 }
 
-function hasThen(input: { then?: (...args: unknown[]) => unknown }): boolean {
+function hasThen(input: { then?: Function }): boolean {
 	return Reflect.has(input, 'then') && isFunction(input.then);
 }
 
-function hasCatch(input: { catch?: (...args: unknown[]) => unknown }): boolean {
+function hasCatch(input: { catch?: Function }): boolean {
 	return Reflect.has(input, 'catch') && isFunction(input.catch);
 }
 
