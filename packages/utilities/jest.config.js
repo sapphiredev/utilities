@@ -9,7 +9,5 @@ module.exports = {
 			tsConfig: '<rootDir>/tests/tsconfig.json'
 		}
 	},
-	coveragePathIgnorePatterns: [
-		'<rootDir>/tests/util/common.ts'
-	]
+	coveragePathIgnorePatterns: ['<rootDir>/tests/util/common.ts']
 };
