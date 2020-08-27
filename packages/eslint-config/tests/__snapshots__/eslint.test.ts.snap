@@ -133,7 +133,7 @@ Object {
       },
       Object {
         "format": Array [
-          "PascalCase",
+          "camelCase",
         ],
         "modifiers": Array [
           "readonly",
