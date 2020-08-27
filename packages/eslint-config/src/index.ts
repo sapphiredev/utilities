@@ -402,7 +402,7 @@ export const config = {
 			{
 				selector: 'property',
 				modifiers: ['readonly'],
-				format: ['PascalCase']
+				format: ['camelCase']
 			},
 			{ selector: 'enumMember', format: ['PascalCase'] },
 			{ selector: 'typeLike', format: ['PascalCase'] }
