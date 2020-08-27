@@ -36,6 +36,7 @@
 		"jest-circus": "^26.4.2",
 		"lint-staged": "^10.2.13",
 		"prettier": "^2.1.1",
+		"pretty-quick": "^3.0.0",
 		"rollup": "^2.26.6",
 		"rollup-plugin-cleaner": "^1.0.0",
 		"rollup-plugin-terser": "^7.0.0",
@@ -58,7 +59,7 @@
 	"husky": {
 		"hooks": {
 			"commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-			"pre-commit": "yarn lint-staged"
+			"pre-commit": "yarn pretty-quick --staged && yarn lint-staged"
 		}
 	},
 	"commitlint": {
@@ -67,10 +68,7 @@
 		]
 	},
 	"lint-staged": {
-		"*.ts": [
-			"prettier --write",
-			"eslint --fix --ext ts"
-		]
+		"*.{mjs,js,ts}": "eslint --fix --ext mjs,js,ts"
 	},
 	"config": {
 		"commitizen": {
