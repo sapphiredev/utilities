@@ -219,13 +219,7 @@ Object {
       "error",
       "as-needed",
     ],
-    "arrow-parens": Array [
-      "error",
-      "as-needed",
-      Object {
-        "requireForBlockBody": false,
-      },
-    ],
+    "arrow-parens": "off",
     "arrow-spacing": Array [
       "error",
       Object {
@@ -301,10 +295,7 @@ Object {
       "as-needed",
     ],
     "func-style": "off",
-    "function-paren-newline": Array [
-      "error",
-      "consistent",
-    ],
+    "function-paren-newline": "off",
     "generator-star-spacing": Array [
       "error",
       "before",
@@ -547,16 +538,7 @@ Object {
       "error",
       "always",
     ],
-    "operator-linebreak": Array [
-      "error",
-      "before",
-      Object {
-        "overrides": Object {
-          "+": "after",
-          "-": "after",
-        },
-      },
-    ],
+    "operator-linebreak": "off",
     "padded-blocks": "off",
     "padding-line-between-statements": "off",
     "prefer-arrow-callback": "error",

@@ -187,7 +187,7 @@ export const config = {
 		'func-name-matching': ['warn', 'always'],
 		'func-names': ['warn', 'as-needed'],
 		'func-style': 'off',
-		'function-paren-newline': ['error', 'consistent'],
+		'function-paren-newline': 'off',
 		'id-blacklist': 'off',
 		'id-length': 'off',
 		'id-match': 'off',
@@ -244,16 +244,7 @@ export const config = {
 		'one-var': ['error', 'never'],
 		'one-var-declaration-per-line': 'off',
 		'operator-assignment': ['error', 'always'],
-		'operator-linebreak': [
-			'error',
-			'before',
-			{
-				overrides: {
-					'+': 'after',
-					'-': 'after'
-				}
-			}
-		],
+		'operator-linebreak': 'off',
 		'padded-blocks': 'off',
 		'padding-line-between-statements': 'off',
 		'quote-props': [
@@ -315,7 +306,7 @@ export const config = {
 		'unicode-bom': ['error', 'never'],
 		'wrap-regex': 'off',
 		'arrow-body-style': ['error', 'as-needed'],
-		'arrow-parens': ['error', 'as-needed', { requireForBlockBody: false }],
+		'arrow-parens': 'off',
 		'arrow-spacing': [
 			'error',
 			{
