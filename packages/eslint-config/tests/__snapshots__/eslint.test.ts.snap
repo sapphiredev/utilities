@@ -672,10 +672,7 @@ Object {
       "inside",
     ],
     "wrap-regex": "off",
-    "yield-star-spacing": Array [
-      "error",
-      "before",
-    ],
+    "yield-star-spacing": "off",
     "yoda": "error",
   },
 }
