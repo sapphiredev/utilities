@@ -557,12 +557,7 @@ Object {
         },
       },
     ],
-    "padded-blocks": Array [
-      "error",
-      Object {
-        "classes": "always",
-      },
-    ],
+    "padded-blocks": "off",
     "padding-line-between-statements": "off",
     "prefer-arrow-callback": "error",
     "prefer-const": Array [
