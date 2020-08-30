@@ -43,6 +43,26 @@ export type ArgumentTypes<F extends (...args: any[]) => unknown> = F extends (..
 export type Arr = readonly any[];
 
 /**
- * A generic constructor.
+ * A generic constructor with parameters
  */
 export type Ctor<A extends Arr = readonly any[], R = any> = new (...args: A) => R;
+
+/**
+ * A generic constructor without parameters
+ */
+export type Constructor<T> = new (...args: any[]) => T;
+
+/**
+ * Gets the first argument of any given function
+ */
+export type FirstArgument<T> = T extends (arg1: infer U, ...args: unknown[]) => unknown ? U : unknown;
+
+/**
+ * Gets the second argument of any given function
+ */
+export type SecondArgument<T> = T extends (arg1: unknown, arg2: infer U, ...args: unknown[]) => unknown ? U : unknown;
+
+/**
+ * ReturnType for a function that can return either a value or a `Promise` with that value
+ */
+export type Awaited<T> = PromiseLike<T> | T;

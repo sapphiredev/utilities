@@ -1,0 +1,64 @@
+{
+	"name": "@sapphire/decorators",
+	"version": "0.0.1",
+	"description": "Useful TypeScript decorators for Sapphire Framework Discord bots",
+	"author": "@sapphire",
+	"license": "MIT",
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"homepage": "https://github.com/sapphire-project/utilities/tree/main/packages/eslint-config",
+	"scripts": {
+		"test": "jest",
+		"prelint": "yarn test && yarn build",
+		"lint": "eslint src tests --ext ts --fix -c dist/index.js",
+		"build": "tsc -b src"
+	},
+	"dependencies": {
+		"@typescript-eslint/eslint-plugin": "^3.10.1",
+		"@typescript-eslint/parser": "^3.10.1",
+		"eslint": "^7.7.0",
+		"eslint-config-prettier": "^6.11.0",
+		"eslint-plugin-prettier": "^3.1.4",
+		"prettier": "^2.1.1"
+	},
+	"devDependencies": {
+		"typescript": "^3.x || ^4.x"
+	},
+	"peerDependencies": {
+		"@sapphire/framework": "github:sapphire-project/framework#build",
+		"@sapphire/pieces": "github:sapphire-project/pieces#build",
+		"@sapphire/utilities": "github:sapphire-project/utilities#build-utilities",
+		"@types/ws": "latest",
+		"discord.js": "12.x",
+		"typescript": "^4.0.2"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/sapphire-project/utilities.git",
+		"directory": "packages/eslint-config"
+	},
+	"files": [
+		"dist",
+		"!dist/tsconfig.tsbuildinfo"
+	],
+	"engines": {
+		"node": ">=12",
+		"npm": ">=6"
+	},
+	"keywords": [
+		"sapphire-project",
+		"bot",
+		"typescript",
+		"ts",
+		"yarn",
+		"discord",
+		"sapphire",
+		"standalone"
+	],
+	"bugs": {
+		"url": "https://github.com/sapphire-project/utilities/issues"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
+}
