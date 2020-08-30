@@ -4,12 +4,11 @@ module.exports = {
 	testEnvironment: 'node',
 	testRunner: 'jest-circus/runner',
 	testMatch: ['<rootDir>/packages/**/tests/*.test.ts', '<rootDir>/packages/**/tests/*.test.js'],
+	setupFilesAfterEnv: ['<rootDir>/packages/decorators/tests/jest.setup.ts'],
 	globals: {
 		'ts-jest': {
 			tsConfig: '<rootDir>/tsconfig.base.json'
 		}
 	},
-	coveragePathIgnorePatterns: [
-		'<rootDir>/packages/utilities/tests/util/common.ts'
-	]
+	coveragePathIgnorePatterns: ['<rootDir>/packages/utilities/tests/util/common.ts', '<rootDir>/packages/decorators/tests/mocks']
 };
