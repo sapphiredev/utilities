@@ -18,36 +18,6 @@ npm install @sapphire/decorators
 
 ---
 
-## Usage
-
-Add the ESLint config to your `package.json`:
-
-```json
-{
-	"name": "my-project",
-	"eslintConfig": {
-		"extends": "@sapphire"
-	}
-}
-```
-
-Or to `eslintrc.js` / `eslintrc.json`:
-
-```json
-{
-	"extends": "@sapphire"
-}
-```
-
-Create `tsconfig.eslint.json` next to the eslint config file, for example with content:
-
-```json
-{
-	"extends": "./tsconfig.json",
-	"include": ["src", "test"]
-}
-```
-
 ## API Documentation
 
 For the full API documentation please refer to [the TypeDoc generated documentation](https://sapphire-project.github.io/utilities/modules/_sapphire_eslint_config.html)
