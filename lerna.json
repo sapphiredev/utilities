@@ -19,7 +19,7 @@
 		"create": {
 			"license": "MIT",
 			"keywords": [
-				"@sapphire/utilities",
+				"sapphire-project",
 				"bot",
 				"typescript",
 				"ts",
