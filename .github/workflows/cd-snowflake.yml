@@ -9,7 +9,7 @@ on:
             - .all-contributorsrc
             - LICENSE.md
             - package.json
-            - .github/workflows/continuous-delivery/snowflake.yml
+            - .github/workflows/cd-snowflake.yml
 jobs:
     BuildSnowflake:
         name: Publish Snowflake

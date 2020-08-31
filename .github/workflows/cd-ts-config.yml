@@ -9,7 +9,7 @@ on:
             - .all-contributorsrc
             - LICENSE.md
             - package.json
-            - .github/workflows/continuous-delivery/ts-config.yml
+            - .github/workflows/cd-ts-config.yml
 jobs:
     BuildTSConfig:
         name: Publish TS config

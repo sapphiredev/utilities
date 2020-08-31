@@ -9,7 +9,7 @@ on:
             - .all-contributorsrc
             - LICENSE.md
             - package.json
-            - .github/workflows/continuous-delivery/utilities.yml
+            - .github/workflows/cd-utilities.yml
 
 jobs:
     BuildUtilities:

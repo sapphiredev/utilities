@@ -9,7 +9,7 @@ on:
             - .all-contributorsrc
             - README.md
             - package.json
-            - .github/workflows/continuous-delivery/docgen.yml
+            - .github/workflows/cd-docgen.yml
 
 jobs:
     Docgen:

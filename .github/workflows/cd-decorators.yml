@@ -9,7 +9,7 @@ on:
             - .all-contributorsrc
             - LICENSE.md
             - package.json
-            - .github/workflows/continuous-delivery/decorators.yml
+            - .github/workflows/cd-decorators.yml
 
 jobs:
     BuildDecorators:
