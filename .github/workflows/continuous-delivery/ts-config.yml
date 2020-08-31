@@ -1,39 +1,23 @@
-name: Continuous Delivery - decorators
+name: Continuous Delivery - ts-config
 
 on:
     push:
         branches:
             - main
         paths:
-            - packages/decorators/**
+            - packages/ts-config/**
             - .all-contributorsrc
             - LICENSE.md
             - package.json
-            - .github/workflows/continuous-delivery/decorators.yml
-
+            - .github/workflows/continuous-delivery/ts-config.yml
 jobs:
-    BuildDecorators:
-        name: Publish Decorators
+    BuildTSConfig:
+        name: Publish TS config
         runs-on: ubuntu-latest
         if: "!contains(github.event.head_commit.message, '[skip ci]')"
         steps:
             - name: Checkout Project
               uses: actions/checkout@v2
-            - name: Use Node.js 12
-              uses: actions/setup-node@v1
-              with:
-                  node-version: 12
-            - name: Restore CI Cache
-              uses: actions/cache@v1
-              with:
-                  path: node_modules
-                  key: ${{ runner.os }}-12-${{ hashFiles('**/yarn.lock') }}
-            - name: Install Dependencies
-              run: yarn --ignore-scripts --frozen-lockfile
-            - name: Build Code
-              uses: icrawl/action-tsc@v1
-              with:
-                  build: packages/decorators
             - name: Push new code
               if: github.event_name == 'push' && github.ref == 'refs/heads/main'
               run: |
@@ -48,33 +32,29 @@ jobs:
                     SOURCE_TYPE="tag"
                   fi
 
-                  echo -e "\n# Move to the decorators directory"
-                  cd packages/decorators
+                  echo -e "\n# Move to the tsconfig directory"
+                  cd packages/ts-config
 
                   echo -e "\n# Checkout the repo in the target branch"
-                  TARGET_BRANCH="build-decorators"
+                  TARGET_BRANCH="build-tsconfig"
                   git clone $REPO out -b $TARGET_BRANCH
 
                   echo -e "\n# Remove any old files in the dist folder"
-                  rm -rfv out/dist/*
+                  rm -rfv out/tsconfig.json
 
                   echo -e "\n# Move the generated code to the newly-checked-out repo, to be committed and pushed"
                   rsync -vaI package.json out/
                   rsync -vaI ../../.all-contributorsrc out/
                   rsync -vaI ../../LICENSE.md out/
                   rsync -vaI README.md out/
-                  rsync -vaI package.json out/
-                  rsync -vaI dist/ out/dist
-
-                  echo -e "\n# Removing TSC incremental file"
-                  rm -rfv **/*.tsbuildinfo
+                  rsync -vaI src/tsconfig.json out/
 
                   echo -e "\n# Commit and push"
                   cd out
                   git add --all .
                   git config user.name "${GITHUB_ACTOR}"
                   git config user.email "${GITHUB_EMAIL}"
-                  git commit -m "build: decorators build for ${GITHUB_SHA}" || true
+                  git commit -m "build: ts-config build for ${GITHUB_SHA}" || true
                   git push origin $TARGET_BRANCH
               env:
                   GITHUB_TOKEN: ${{ secrets.SKYRA_TOKEN }}

@@ -1,19 +1,19 @@
-name: Continuous Delivery - decorators
+name: Continuous Delivery - utilities
 
 on:
     push:
         branches:
             - main
         paths:
-            - packages/decorators/**
+            - packages/utilities/**
             - .all-contributorsrc
             - LICENSE.md
             - package.json
-            - .github/workflows/continuous-delivery/decorators.yml
+            - .github/workflows/continuous-delivery/utilities.yml
 
 jobs:
-    BuildDecorators:
-        name: Publish Decorators
+    BuildUtilities:
+        name: Publish Utilities
         runs-on: ubuntu-latest
         if: "!contains(github.event.head_commit.message, '[skip ci]')"
         steps:
@@ -31,9 +31,7 @@ jobs:
             - name: Install Dependencies
               run: yarn --ignore-scripts --frozen-lockfile
             - name: Build Code
-              uses: icrawl/action-tsc@v1
-              with:
-                  build: packages/decorators
+              run: yarn workspace @sapphire/utilities build
             - name: Push new code
               if: github.event_name == 'push' && github.ref == 'refs/heads/main'
               run: |
@@ -48,11 +46,11 @@ jobs:
                     SOURCE_TYPE="tag"
                   fi
 
-                  echo -e "\n# Move to the decorators directory"
-                  cd packages/decorators
+                  echo -e "\n# Move to the utilities directory"
+                  cd packages/utilities
 
                   echo -e "\n# Checkout the repo in the target branch"
-                  TARGET_BRANCH="build-decorators"
+                  TARGET_BRANCH="build-utilities"
                   git clone $REPO out -b $TARGET_BRANCH
 
                   echo -e "\n# Remove any old files in the dist folder"
@@ -63,18 +61,14 @@ jobs:
                   rsync -vaI ../../.all-contributorsrc out/
                   rsync -vaI ../../LICENSE.md out/
                   rsync -vaI README.md out/
-                  rsync -vaI package.json out/
                   rsync -vaI dist/ out/dist
-
-                  echo -e "\n# Removing TSC incremental file"
-                  rm -rfv **/*.tsbuildinfo
 
                   echo -e "\n# Commit and push"
                   cd out
                   git add --all .
                   git config user.name "${GITHUB_ACTOR}"
                   git config user.email "${GITHUB_EMAIL}"
-                  git commit -m "build: decorators build for ${GITHUB_SHA}" || true
+                  git commit -m "build: utilities build for ${GITHUB_SHA}" || true
                   git push origin $TARGET_BRANCH
               env:
                   GITHUB_TOKEN: ${{ secrets.SKYRA_TOKEN }}

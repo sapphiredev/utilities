@@ -1,9 +1,15 @@
-name: Continuous Delivery
+name: Continuous Delivery - docgen
 
 on:
     push:
         branches:
             - main
+        paths:
+            - packages/**
+            - .all-contributorsrc
+            - README.md
+            - package.json
+            - .github/workflows/continuous-delivery/docgen.yml
 
 jobs:
     Docgen:
