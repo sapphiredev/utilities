@@ -27,3 +27,25 @@ export function ApplyOptions<T extends PieceOptions>(optionsOrFn: T | ((client: 
 		})
 	);
 }
+
+/**
+ * @enumerable decorator that sets the enumerable property of a class field to false.
+ * @param value Whether the property should be enumerable or not
+ */
+export function enumerable(value: boolean) {
+	return (target: unknown, key: string) => {
+		// eslint-disable-next-line @typescript-eslint/ban-types
+		Reflect.defineProperty(target as object, key, {
+			enumerable: value,
+			set(this: unknown, val: unknown) {
+				// eslint-disable-next-line @typescript-eslint/ban-types
+				Reflect.defineProperty(this as object, key, {
+					configurable: true,
+					enumerable: value,
+					value: val,
+					writable: true
+				});
+			}
+		});
+	};
+}

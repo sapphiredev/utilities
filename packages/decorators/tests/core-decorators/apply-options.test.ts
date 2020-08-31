@@ -18,12 +18,12 @@ describe('ApplyOptions', () => {
 			}
 		}
 
+		// @ts-expect-error Access to the constructor should be bypassed
 		const instance = new TestPiece(
 			{
 				name: 'something',
 				path: __filename,
 				extras: {},
-				// @ts-expect-error store should be assigned normally
 				store: new CommandStore(client)
 			},
 			{ name: 'test' }
