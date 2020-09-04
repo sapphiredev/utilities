@@ -21,11 +21,8 @@
 		"eslint-plugin-prettier": "^3.1.4",
 		"prettier": "^2.1.1"
 	},
-	"devDependencies": {
-		"typescript": "^3.x || ^4.x"
-	},
 	"peerDependencies": {
-		"typescript": "^4.0.2"
+		"typescript": "3.x || 4.x"
 	},
 	"repository": {
 		"type": "git",

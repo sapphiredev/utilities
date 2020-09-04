@@ -21,21 +21,18 @@
 		"eslint-plugin-prettier": "^3.1.4",
 		"prettier": "^2.1.1"
 	},
-	"devDependencies": {
-		"typescript": "^3.x || ^4.x"
-	},
 	"peerDependencies": {
 		"@sapphire/framework": "github:sapphire-project/framework#build",
 		"@sapphire/pieces": "github:sapphire-project/pieces#build",
-		"@sapphire/utilities": "github:sapphire-project/utilities#build-utilities",
-		"@types/ws": "latest",
+		"@sapphire/utilities": "1.x",
+		"@types/ws": ">=7",
 		"discord.js": "12.x",
-		"typescript": "^4.0.2"
+		"typescript": "3.x || 4.x"
 	},
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/sapphire-project/utilities.git",
-		"directory": "packages/eslint-config"
+		"directory": "packages/decorators"
 	},
 	"files": [
 		"dist",
