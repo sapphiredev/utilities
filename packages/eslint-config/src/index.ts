@@ -165,7 +165,7 @@ export const config = {
 		'@typescript-eslint/no-unsafe-call': 'off',
 		'@typescript-eslint/no-unsafe-member-access': 'off',
 		'@typescript-eslint/no-unsafe-return': 'off',
-		'@typescript-eslint/no-unused-vars': 'error',
+		'@typescript-eslint/no-unused-vars': 'off',
 		'@typescript-eslint/no-use-before-define': [
 			'error',
 			{
@@ -394,7 +394,7 @@ export const config = {
 		'no-process-exit': 'off',
 		'no-proto': 'off',
 		'no-prototype-builtins': 'off',
-		'no-redeclare': 'error',
+		'no-redeclare': 'off',
 		'no-regex-spaces': 'warn',
 		'no-restricted-globals': 'off',
 		'no-restricted-imports': 'off',
