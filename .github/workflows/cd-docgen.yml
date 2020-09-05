@@ -30,6 +30,8 @@ jobs:
                   key: ${{ runner.os }}-12-${{ hashFiles('**/yarn.lock') }}
             - name: Install Dependencies
               run: yarn --ignore-scripts --frozen-lockfile
+            - name: Build Utilities
+              run: yarn workspace @sapphire/utilities build
             - name: Build documentation
               run: yarn docs
             - name: Publish Docs
