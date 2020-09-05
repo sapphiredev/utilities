@@ -4,7 +4,7 @@
 
 # @sapphire/eslint-config
 
-ESLint configuration for all Sapphire Project repositories.</h4>
+*iESLint configuration for all Sapphire Project repositories.**
 
 [![GitHub](https://img.shields.io/github/license/sapphire-project/utilities)](https://github.com/sapphire-project/utilities/blob/main/LICENSE.md)
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/sapphire-project/utilities.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/sapphire-project/utilities/alerts/)
