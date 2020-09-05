@@ -1,6 +1,6 @@
 /**
  * Properly rounds up or down a number.
- * Also supports strinsgs using an exponent to indicate large or small numbers.
+ * Also supports strings using an exponent to indicate large or small numbers.
  * @param num The number to round off
  * @param scale The amount of decimals to retain
  */

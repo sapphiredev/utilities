@@ -1,3 +1,3 @@
-export const main = () => 'this builds and pushes';
-
-export default main;
+export * from './lib/DiscordSnowflake';
+export * from './lib/Snowflake';
+export * from './lib/TwitterSnowflake';
