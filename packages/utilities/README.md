@@ -4,7 +4,7 @@
 
 # @sapphire/utilities
 
-Common JavaScript utilities for Sapphire Projects</h4>
+Common JavaScript utilities for Sapphire Projects.</h4>
 
 [![GitHub](https://img.shields.io/github/license/sapphire-project/utilities)](https://github.com/sapphire-project/utilities/blob/main/LICENSE.md)
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/sapphire-project/utilities.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/sapphire-project/utilities/alerts/)
@@ -18,7 +18,7 @@ Common JavaScript utilities for Sapphire Projects</h4>
 
 ## Description
 
-In our day-to-day life we often have a need for some function or type augmentation and having to include that function in every repo is a huge drag. To solve this problem there are dozens upon dozens of packages on NPM, but we cannot maintain those in case of issues and a lot of them are written poorly or not optimized. So instead our solution is to provide @sapphire/utilities, which is the single package that should you need to cover a lot of needs for the day-to-day life.
+We often have a need for a function or type augmentation and having to include it in every repo is a huge drag. To solve this problem there are dozens upon dozens of packages on NPM, but we cannot maintain those in case of issues and a lot of them are poorly written or under-optimised. Our solution is to provide @sapphire/utilities, which is the only package you'll likely need to cover your day-to-day needs.
 
 ## Features
 

@@ -4,7 +4,7 @@
 
 # @sapphire/snowflake
 
-Deconstructs and generates snowflake IDs using BigInts</h4>
+Deconstruct and generate snowflake IDs using BigInts.</h4>
 
 [![GitHub](https://img.shields.io/github/license/sapphire-project/utilities)](https://github.com/sapphire-project/utilities/blob/main/LICENSE.md)
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/sapphire-project/utilities.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/sapphire-project/utilities/alerts/)
@@ -36,7 +36,7 @@ Deconstructs and generates snowflake IDs using BigInts</h4>
 
 ## Description
 
-There is often a need to get a unique ID for some entry, be that for Discord messages / channels / servers etc. or just keys in a database or many other similar examples. There are many ways to get such a unique ID, and one of those is using a so-called "snowflake". You can read more about Snowflake IDs in [this medium article](https://medium.com/better-programming/uuid-generation-snowflake-identifiers-unique-2aed8b1771bc)
+There is often a need to get a unique ID for entities, be that for Discord messages/channels/servers, keys in a database or many other similar examples. There are many ways to get such a unique ID, and one of those is using a so-called "snowflake". You can read more about snowflake IDs in [this Medium article].(https://medium.com/better-programming/uuid-generation-snowflake-identifiers-unique-2aed8b1771bc)
 
 ## Features
 
