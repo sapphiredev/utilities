@@ -3,7 +3,7 @@
  *
  * ```ts
  * // Enumerable function
- *	function enumerable(value: boolean) {
+ *	function enumerableMethod(value: boolean) {
  *		return createMethodDecorator((_target, _propertyKey, descriptor) => {
  *			descriptor.enumerable = value;
  *		});
