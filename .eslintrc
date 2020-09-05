@@ -2,7 +2,7 @@
 	"extends": ["./packages/eslint-config/dist/index.js", "plugin:prettier/recommended"],
 	"overrides": [
 		{
-			"files":["packages/utilities/tests/*.test.ts"],
+			"files": ["packages/utilities/tests/*.test.ts"],
 			"rules": {
 				"@typescript-eslint/no-extraneous-class": 0
 			}
@@ -46,6 +46,12 @@
 						"format": ["PascalCase", "camelCase"]
 					}
 				]
+			}
+		},
+		{
+			"files": ["packages/snowflake/**/*.ts"],
+			"rules": {
+				"@typescript-eslint/naming-convention": 0
 			}
 		}
 	]

@@ -1,0 +1,6 @@
+{
+	"extends": "./packages/ts-config/src/tsconfig.json",
+	"compilerOptions": {
+		"target": "ES2020"
+	}
+}

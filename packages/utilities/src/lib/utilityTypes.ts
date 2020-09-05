@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 export type Primitive = string | number | boolean | bigint | symbol | undefined | null;
 // eslint-disable-next-line @typescript-eslint/ban-types
 export type Builtin = Primitive | Function | Date | Error | RegExp;
