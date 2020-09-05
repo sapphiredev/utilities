@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.1](https://github.com/sapphire-project/utilities/compare/@sapphire/eslint-config@1.0.0...@sapphire/eslint-config@1.0.1) (2020-09-05)
+
+### Bug Fixes
+
+-   **eslint-config:** fixed 2 rule conflicts ([7321d06](https://github.com/sapphire-project/utilities/commit/7321d06dc40cddd48b1a2abb83afce3c45ae2647))
+
 # 1.0.0 (2020-09-05)
 
 ### Bug Fixes
