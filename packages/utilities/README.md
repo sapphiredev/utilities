@@ -1,5 +1,10 @@
-<div style="text-align:center;"><h1>@sapphire/utilities</h1>
-<h3>Common JavaScript utilities for Sapphire Projects</h3></div>
+<div align="center">
+
+![Sapphire Logo](https://cdn.skyra.pw/gh-assets/sapphire.png)
+
+# @sapphire/utilities
+
+Common JavaScript utilities for Sapphire Projects</h4>
 
 [![GitHub](https://img.shields.io/github/license/sapphire-project/utilities)](https://github.com/sapphire-project/utilities/blob/main/LICENSE.md)
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/sapphire-project/utilities.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/sapphire-project/utilities/alerts/)
@@ -9,9 +14,20 @@
 [![npm](https://img.shields.io/npm/v/@sapphire/utilities?color=crimson&logo=npm&style=flat-square)](https://www.npmjs.com/package/@sapphire/utilities)
 [![Depfu](https://badges.depfu.com/badges/4a8bc579d3807f58b04ed647f20c3db0/count.svg)](https://depfu.com/github/sapphire-project/utilities?project_id=15204)
 
-## Installation
+</div>
 
-**Then install `@sapphire/utilities`**
+## Description
+
+In our day-to-day life we often have a need for some function or type augmentation and having to include that function in every repo is a huge drag. To solve this problem there are dozens upon dozens of packages on NPM, but we cannot maintain those in case of issues and a lot of them are written poorly or not optimized. So instead our solution is to provide @sapphire/utilities, which is the single package that should you need to cover a lot of needs for the day-to-day life.
+
+## Features
+
+-   Written in TypeScript
+-   Bundled with Rollup so it can be used in NodeJS and browsers
+-   Offers CommonJS, ESM and UMD bundles
+-   Fully tested
+
+## Installation
 
 ```sh
 yarn add @sapphire/utilities
@@ -21,12 +37,11 @@ yarn add @sapphire/utilities
 
 ## API Documentation
 
-For the full API documentation please refer to [the TypeDoc generated documentation](https://sapphire-project.github.io/utilities/modules/_sapphire_utilities.html)
+For the full API documentation please refer to the TypeDoc generated [documentation](https://sapphire-project.github.io/utilities/modules/_sapphire_utilities.html).
 
 ## Buy us some doughnuts
 
-Sapphire Project is open source and always will be, even if we don't get donations. That said, we know there are amazing people who
-may still want to donate just to show their appreciation. Thanks you very much in advance!
+Sapphire Project is and always will be open source, even if we don't get donations. That being said, we know there are amazing people who may still want to donate just to show their appreciation. Thanks you very much in advance!
 
 We accept donations through Open Collective, Ko-fi, Paypal, Patreon and GitHub Sponsorships. You can use the buttons below to donate through your method of choice.
 

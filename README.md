@@ -1,4 +1,10 @@
-<div style="text-align:center;"><h3>Common NodeJS packages for Sapphire Repositories</h3></div>
+<div align="center">
+
+![Sapphire Logo](https://cdn.skyra.pw/gh-assets/sapphire.png)
+
+# Sapphire Utilities
+
+Common NodeJS packages for Sapphire Repositories and others</h4>
 
 [![GitHub](https://img.shields.io/github/license/sapphire-project/utilities)](https://github.com/sapphire-project/utilities/blob/main/LICENSE.md)
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/sapphire-project/utilities.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/sapphire-project/utilities/alerts/)
@@ -14,14 +20,15 @@
 [![npm](https://img.shields.io/npm/v/@sapphire/utilities?color=crimson&logo=npm&style=flat-square)](https://www.npmjs.com/package/@sapphire/utilities)
 [![npm](https://img.shields.io/npm/v/@sapphire/decorators?color=crimson&logo=npm&style=flat-square)](https://www.npmjs.com/package/@sapphire/decorators)
 
+</div>
+
 ## API Documentation
 
-For the full API documentation please refer to [the TypeDoc generated documentation](https://sapphire-project.github.io/utilities/)
+For the full API documentation please refer to the TypeDoc generated [documentation](https://sapphire-project.github.io/utilities/).
 
 ## Buy us some doughnuts
 
-Sapphire Project is open source and always will be, even if we don't get donations. That said, we know there are amazing people who
-may still want to donate just to show their appreciation. Thanks you very much in advance!
+Sapphire Project is and always will be open source, even if we don't get donations. That being said, we know there are amazing people who may still want to donate just to show their appreciation. Thanks you very much in advance!
 
 We accept donations through Open Collective, Ko-fi, Paypal, Patreon and GitHub Sponsorships. You can use the buttons below to donate through your method of choice.
 

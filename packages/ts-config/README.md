@@ -1,5 +1,10 @@
-<div style="text-align:center;"><h1>@sapphire/ts-config</h1>
-<h3>Shareable TypeScript configuration for all Sapphire Projects repositories</h3></div>
+<div align="center">
+
+![Sapphire Logo](https://cdn.skyra.pw/gh-assets/sapphire.png)
+
+# @sapphire/ts-config
+
+Shareable TypeScript configuration for all Sapphire Projects repositories</h4>
 
 [![GitHub](https://img.shields.io/github/license/sapphire-project/utilities)](https://github.com/sapphire-project/utilities/blob/main/LICENSE.md)
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/sapphire-project/utilities.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/sapphire-project/utilities/alerts/)
@@ -8,6 +13,8 @@
 [![npm bundle size](https://img.shields.io/bundlephobia/min/@sapphire/ts-config?logo=webpack&style=flat-square)](https://bundlephobia.com/result?p=@sapphire/ts-config)
 [![npm](https://img.shields.io/npm/v/@sapphire/ts-config?color=crimson&logo=npm&style=flat-square)](https://www.npmjs.com/package/@sapphire/ts-config)
 [![Depfu](https://badges.depfu.com/badges/24e91f7ec18de6eba982520fbf75ec18/count.svg)](https://depfu.com/github/sapphire-project/utilities?project_id=15203)
+
+</div>
 
 ## Installation
 
@@ -41,12 +48,11 @@ configuration options as well.
 
 ## API Documentation
 
-For the full API documentation please refer to [the TypeDoc generated documentation](https://sapphire-project.github.io/utilities/modules/_sapphire_ts_config.html)
+For the full API documentation please refer to the TypeDoc generated [documentation](https://sapphire-project.github.io/utilities/modules/_sapphire_ts_config.html).
 
 ## Buy us some doughnuts
 
-Sapphire Project is open source and always will be, even if we don't get donations. That said, we know there are amazing people who
-may still want to donate just to show their appreciation. Thanks you very much in advance!
+Sapphire Project is and always will be open source, even if we don't get donations. That being said, we know there are amazing people who may still want to donate just to show their appreciation. Thanks you very much in advance!
 
 We accept donations through Open Collective, Ko-fi, Paypal, Patreon and GitHub Sponsorships. You can use the buttons below to donate through your method of choice.
 
