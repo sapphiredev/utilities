@@ -48,4 +48,14 @@ describe('codeBlock', () => {
 			\`const sapphireProjectIsCool = true\`
 		\`\`\``);
 	});
+
+	test('GIVEN expression of non-string type THEN returns wrapped expression', () => {
+		expect(codeBlock('md', 123456789)).toStrictEqual(`\`\`\`md
+123456789\`\`\``);
+	});
+
+	test('GIVEN expression of falsey type THEN returns wrapped expression', () => {
+		expect(codeBlock('md', false)).toStrictEqual(`\`\`\`md
+${zeroWidthSpace}\`\`\``);
+	});
 });
