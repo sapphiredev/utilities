@@ -1,6 +1,6 @@
 {
 	"name": "@sapphire/utilities",
-	"version": "0.0.1",
+	"version": "1.0.0",
 	"description": "Common JavaScript utilities for Sapphire Projects",
 	"author": "@sapphire",
 	"license": "MIT",
@@ -16,9 +16,6 @@
 		"build": "rollup -c rollup.config.ts",
 		"start": "yarn build -w"
 	},
-	"dependencies": {},
-	"devDependencies": {},
-	"peerDependencies": {},
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/sapphire-project/utilities.git",
