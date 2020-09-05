@@ -1,7 +1,7 @@
 import type { SapphireClient } from '@sapphire/framework';
 import type { Piece, PieceOptions } from '@sapphire/pieces';
 import type { Ctor } from '@sapphire/utilities';
-import { createClassDecorator, createProxy } from './utils';
+import { createClassDecorator, createMethodDecorator, createProxy } from './utils';
 
 /**
  * Decorator function that applies given options to any Klasa piece
@@ -29,7 +29,7 @@ export function ApplyOptions<T extends PieceOptions>(optionsOrFn: T | ((client: 
 }
 
 /**
- * @enumerable decorator that sets the enumerable property of a class field to false.
+ * Decorator that sets the enumerable property of a class field to the desired value.
  * @param value Whether the property should be enumerable or not
  */
 export function enumerable(value: boolean) {
@@ -48,4 +48,14 @@ export function enumerable(value: boolean) {
 			}
 		});
 	};
+}
+
+/**
+ * Decorator that sets the enumerable property of a class method to the desired value.
+ * @param value Whether the metthod should be enumerable or not
+ */
+export function enumerableMethod(value: boolean) {
+	return createMethodDecorator((_target, _propertyKey, descriptor) => {
+		descriptor.enumerable = value;
+	});
 }
