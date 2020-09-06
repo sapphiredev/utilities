@@ -1,7 +1,10 @@
-<div style="text-align:center;">
-	<h1>@sapphire/snowflake</h1>
-	<h3>Deconstructs and generates snowflake IDs using BigInts</h3>
-</div>
+<div align="center">
+
+![Sapphire Logo](https://cdn.skyra.pw/gh-assets/sapphire.png)
+
+# @sapphire/snowflake
+
+**Deconstruct and generate snowflake IDs using BigInts.*i
 
 [![GitHub](https://img.shields.io/github/license/sapphire-project/utilities)](https://github.com/sapphire-project/utilities/blob/main/LICENSE.md)
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/sapphire-project/utilities.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/sapphire-project/utilities/alerts/)
@@ -11,8 +14,12 @@
 [![npm](https://img.shields.io/npm/v/@sapphire/snowflake?color=crimson&logo=npm&style=flat-square)](https://www.npmjs.com/package/@sapphire/snowflake)
 [![Depfu](https://badges.depfu.com/badges/34035e3cf4ced0737443671ebefa2f47/count.svg)](https://depfu.com/github/sapphire-project/utilities?project_id=15202)
 
+</div>
+
 **Table of Contents**
 
+-   [Description](#description)
+-   [Features](#features)
 -   [Installation](#installation)
 -   [Usage](#usage)
     -   [Constructing snowflakes](#constructing-snowflakes)
@@ -27,11 +34,23 @@
 -   [Buy us some doughnuts](#buy-us-some-doughnuts)
 -   [Contributors ✨](#contributors-%E2%9C%A8)
 
+## Description
+
+There is often a need to get a unique ID for entities, be that for Discord messages/channels/servers, keys in a database or many other similar examples. There are many ways to get such a unique ID, and one of those is using a so-called "snowflake". You can read more about snowflake IDs in [this Medium article](https://medium.com/better-programming/uuid-generation-snowflake-identifiers-unique-2aed8b1771bc).
+
+## Features
+
+-   Written in TypeScript
+-   Bundled with Rollup so it can be used in NodeJS and browsers
+-   Offers CommonJS, ESM and UMD bundles
+-   Offers predefined epochs for Discord and Twitter
+-   Fully tested
+
 ## Installation
 
 ```sh
-npm install @sapphire/snowflake
 yarn add @sapphire/snowflake
+# npm install @sapphire/snowflake
 ```
 
 ## Usage
@@ -142,12 +161,11 @@ const uniqueId = TwitterSnowflake.deconstruct('3971046231244935168');
 
 ## API Documentation
 
-For the full API documentation please refer to [the TypeDoc generated documentation](https://sapphire-project.github.io/utilities/modules/_sapphire_snowflake.html)
+For the full API documentation please refer to the TypeDoc generated [documentation](https://sapphire-project.github.io/utilities/modules/_sapphire_snowflake.html).
 
 ## Buy us some doughnuts
 
-Sapphire Project is open source and always will be, even if we don't get donations. That said, we know there are amazing people who
-may still want to donate just to show their appreciation. Thanks you very much in advance!
+Sapphire Project is and always will be open source, even if we don't get donations. That being said, we know there are amazing people who may still want to donate just to show their appreciation. Thank you very much in advance!
 
 We accept donations through Open Collective, Ko-fi, PayPal, Patreon and GitHub Sponsorships. You can use the buttons below to donate through your method of choice.
 

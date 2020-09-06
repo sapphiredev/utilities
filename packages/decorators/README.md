@@ -1,5 +1,10 @@
-<div style="text-align:center;"><h1>@sapphire/decorators</h1>
-<h3>Useful TypeScript decorators for Sapphire Framework Discord bots</h3></div>
+<div align="center">
+
+![Sapphire Logo](https://cdn.skyra.pw/gh-assets/sapphire.png)
+
+# @sapphire/decorators
+
+**Useful TypeScript decorators for Sapphire Framework bots.**
 
 [![GitHub](https://img.shields.io/github/license/sapphire-project/utilities)](https://github.com/sapphire-project/utilities/blob/main/LICENSE.md)
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/sapphire-project/utilities.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/sapphire-project/utilities/alerts/)
@@ -8,6 +13,12 @@
 [![npm bundle size](https://img.shields.io/bundlephobia/min/@sapphire/decorators?logo=webpack&style=flat-square)](https://bundlephobia.com/result?p=@sapphire/decorators)
 [![npm](https://img.shields.io/npm/v/@sapphire/decorators?color=crimson&logo=npm&style=flat-square)](https://www.npmjs.com/package/@sapphire/decorators)
 [![Depfu](https://badges.depfu.com/badges/11bbf7392987e6fd51fc6559e1d42dfc/count.svg)](https://depfu.com/github/sapphire-project/utilities?project_id=15201)
+
+</div>
+
+## Description
+
+Decorators can add a lot of functionality with very minimal code. This package provides some common decorators that can be used with projects using the [Sapphire Framework][].
 
 ## Installation
 
@@ -20,12 +31,11 @@ yarn add @sapphire/decorators
 
 ## API Documentation
 
-For the full API documentation please refer to [the TypeDoc generated documentation](https://sapphire-project.github.io/utilities/modules/_sapphire_eslint_config.html)
+For the full API documentation please refer to the TypeDoc generated [documentation](https://sapphire-project.github.io/utilities/modules/_sapphire_eslint_config.html).
 
 ## Buy us some doughnuts
 
-Sapphire Project is open source and always will be, even if we don't get donations. That said, we know there are amazing people who
-may still want to donate just to show their appreciation. Thanks you very much in advance!
+Sapphire Project is and always will be open source, even if we don't get donations. That being said, we know there are amazing people who may still want to donate just to show their appreciation. Thank you very much in advance!
 
 We accept donations through Open Collective, Ko-fi, Paypal, Patreon and GitHub Sponsorships. You can use the buttons below to donate through your method of choice.
 
@@ -58,3 +68,5 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
+
+[sapphire framework]: https://github.com/sapphire-project/framework
