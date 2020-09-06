@@ -50,6 +50,8 @@ jobs:
                   key: ${{ runner.os }}-12-${{ hashFiles('**/yarn.lock') }}
             - name: Install Dependencies
               run: yarn --frozen-lockfile
+            - name: Build Utilities
+              run: yarn workspace @sapphire/utilities build
             - name: Run tests
               run: yarn test --coverage
             - name: Store code coverage report
