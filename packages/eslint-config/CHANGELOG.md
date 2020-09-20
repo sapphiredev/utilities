@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.2](https://github.com/sapphire-project/utilities/compare/@sapphire/eslint-config@1.0.1...@sapphire/eslint-config@1.0.2) (2020-09-20)
+
+### Bug Fixes
+
+-   **eslint-config:** move dependencies to peer section ([43602e6](https://github.com/sapphire-project/utilities/commit/43602e6215fe1196218bad3499ece01e206abedc))
+
 ## [1.0.1](https://github.com/sapphire-project/utilities/compare/@sapphire/eslint-config@1.0.0...@sapphire/eslint-config@1.0.1) (2020-09-05)
 
 ### Bug Fixes
