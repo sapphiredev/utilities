@@ -9,6 +9,7 @@
 		"**/*.js",
 		"**/rollup.config.ts",
 		"packages/decorators/src/index.ts",
+		"packages/ratelimits/src/index.ts",
 		"packages/snowflake/src/index.ts",
 		"packages/utilities/src/index.ts"
 	],

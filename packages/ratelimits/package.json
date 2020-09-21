@@ -1,0 +1,48 @@
+{
+	"name": "@sapphire/ratelimits",
+	"version": "1.0.1",
+	"description": "Deconstructs and generates snoflake IDs using BigInts",
+	"author": "@sapphire",
+	"license": "MIT",
+	"main": "dist/index.js",
+	"module": "dist/index.es.js",
+	"browser": "dist/index.umd.js",
+	"unpkg": "dist/index.umd.js",
+	"types": "dist/index.d.ts",
+	"homepage": "https://github.com/sapphire-project/utilities/tree/main/packages/ratelimits",
+	"scripts": {
+		"test": "jest",
+		"lint": "eslint src tests --ext ts --fix -c ../../.eslintrc",
+		"build": "rollup -c rollup.config.ts",
+		"start": "yarn build -w"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/sapphire-project/utilities.git",
+		"directory": "packages/ratelimits"
+	},
+	"files": [
+		"dist",
+		"!dist/tsconfig.tsbuildinfo"
+	],
+	"engines": {
+		"node": ">=12",
+		"npm": ">=6"
+	},
+	"keywords": [
+		"@sapphire/ratelimits",
+		"bot",
+		"typescript",
+		"ts",
+		"yarn",
+		"discord",
+		"sapphire",
+		"standalone"
+	],
+	"bugs": {
+		"url": "https://github.com/sapphire-project/utilities/issues"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
+}
