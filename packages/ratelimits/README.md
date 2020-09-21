@@ -22,14 +22,6 @@
 -   [Features](#features)
 -   [Installation](#installation)
 -   [Usage](#usage)
-    -   [Constructing snowflakes](#constructing-snowflakes)
-        -   [Snowflakes with custom epoch](#snowflakes-with-custom-epoch)
-        -   [Snowflake with Discord epoch constant](#snowflake-with-discord-epoch-constant)
-        -   [Snowflake with Twitter epoch constant](#snowflake-with-twitter-epoch-constant)
-    -   [Deconstructing snowflakes](#deconstructing-snowflakes)
-        -   [Snowflakes with custom epoch](#snowflakes-with-custom-epoch-1)
-        -   [Snowflake with Discord epoch constant](#snowflake-with-discord-epoch-constant-1)
-        -   [Snowflake with Twitter epoch constant](#snowflake-with-twitter-epoch-constant-1)
 -   [API Documentation](#api-documentation)
 -   [Buy us some doughnuts](#buy-us-some-doughnuts)
 -   [Contributors ✨](#contributors-%E2%9C%A8)
@@ -55,106 +47,22 @@ yarn add @sapphire/ratelimits
 
 ## Usage
 
-**Note:** While this section uses `require`, the imports match 1:1 with ESM imports. For example `const { Snowflake } = require('@sapphire/ratelimits')` equals `import { Snowflake } from '@sapphire/ratelimits'`.
-
-### Constructing snowflakes
-
-#### Snowflakes with custom epoch
+**Note:** While this section uses `require`, the imports match 1:1 with ESM imports. For example `const { Bucket } = require('@sapphire/ratelimits')` equals `import { Bucket } from '@sapphire/ratelimits'`.
 
 ```ts
 // Import the Snowflake class
-const { Snowflake } = require('@sapphire/ratelimits');
+const { Bucket } = require('@sapphire/ratelimits');
 
-// Define a custom epoch
-const epoch = new Date('2000-01-01T00:00:00.000Z');
+// Define a bucket with 1 usage every 5 seconds
+const bucket = new Bucket().setDelay(5000);
 
-// Create an instance of Snowflake
-const snowflake = new Snowflake(epoch);
+// Run the bucket
+const a = bucket.take(420);
+console.log(a); // -> 0
 
-// Generate a snowflake with the given epoch
-const uniqueId = snowflake.generate();
-```
-
-#### Snowflake with Discord epoch constant
-
-```ts
-// Import the Snowflake class
-const { DiscordSnowflake } = require('@sapphire/ratelimits');
-
-// Create an instance of Snowflake
-const discordSnowflake = new DiscordSnowflake();
-
-// Generate a snowflake with Discord's epoch
-const uniqueId = discordSnowflake.generate();
-
-// Alternatively, you can use the method directly
-const uniqueId = DiscordSnowflake.generate();
-```
-
-#### Snowflake with Twitter epoch constant
-
-```ts
-// Import the Snowflake class
-const { TwitterSnowflake } = require('@sapphire/ratelimits');
-
-// Create an instance of Snowflake
-const twitterSnowflake = new TwitterSnowflake();
-
-// Generate a snowflake with Twitter's epoch
-const uniqueId = twitterSnowflake.generate();
-
-// Alternatively, you can use the method directly
-const uniqueId = TwitterSnowflake.generate();
-```
-
-### Deconstructing snowflakes
-
-#### Snowflakes with custom epoch
-
-```ts
-// Import the Snowflake class
-const { Snowflake } = require('@sapphire/ratelimits');
-
-// Define a custom epoch
-const epoch = new Date('2000-01-01T00:00:00.000Z');
-
-// Create an instance of Snowflake
-const snowflake = new Snowflake(epoch);
-
-// Deconstruct a snowflake with the given epoch
-const uniqueId = snowflake.deconstruct('3971046231244935168');
-```
-
-#### Snowflake with Discord epoch constant
-
-```ts
-// Import the Snowflake class
-const { DiscordSnowflake } = require('@sapphire/ratelimits');
-
-// Create an instance of Snowflake
-const discordSnowflake = new DiscordSnowflake();
-
-// Deconstruct a snowflake with Discord's epoch
-const uniqueId = discordSnowflake.deconstruct('3971046231244935168');
-
-// Alternatively, you can use the method directly
-const uniqueId = DiscordSnowflake.deconstruct('3971046231244935168');
-```
-
-#### Snowflake with Twitter epoch constant
-
-```ts
-// Import the Snowflake class
-const { TwitterSnowflake } = require('@sapphire/ratelimits');
-
-// Create an instance of Snowflake
-const twitterSnowflake = new TwitterSnowflake();
-
-// Deconstruct a snowflake with Twitter's epoch
-const uniqueId = twitterSnowflake.deconstruct('3971046231244935168');
-
-// Alternatively, you can use the method directly
-const uniqueId = TwitterSnowflake.deconstruct('3971046231244935168');
+// Run the bucket again
+const b = bucket.take(420);
+console.log(b); // 5000
 ```
 
 ---

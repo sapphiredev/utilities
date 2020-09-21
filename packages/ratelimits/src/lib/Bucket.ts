@@ -3,23 +3,76 @@
 // The Serenity Contributors licenses this file to you under the ISC license.
 // https://github.com/serenity-rs/serenity/blob/current/src/framework/standard/structures/buckets.rs
 
+/**
+ * An entry in the bucket.
+ */
 export interface BucketEntry {
 	lastTime: number;
 	setTime: number;
 	tickets: number;
 }
 
-export class Bucket<T> {
-	public delay = 0;
-	public limit: [timespan: number, limit: number] | null = null;
-	public entries = new Map<T, BucketEntry>();
+/**
+ * The bucket limits.
+ */
+export interface BucketLimit {
+	/**
+	 * The time between tickets.
+	 *
+	 * If timespan is zero, there will be no spacing between usages, this means
+	 * that a 5/5s bucket ({@link BucketLimit#limit Limit} of 5 in 5 seconds
+	 * {@link Bucket#delay delay}) will accept 5 requests, then will wait for
+	 * the remaining time.
+	 *
+	 * However, if in the previous example, this is set to 1 second, this will
+	 * then space the requests evenly to 1 request per second until the bucket
+	 * is consumed.
+	 */
+	timespan: number;
 
+	/**
+	 * The maximum amount of tickets.
+	 *
+	 * This limits the amount of requests that can be made within the
+	 * {@link Bucket}'s {@link Bucket#delay delay}.
+	 */
+	limit: number;
+}
+
+/**
+ * The Bucket that handles ratelimits.
+ */
+export class Bucket<T> {
+	/**
+	 * The amount of milliseconds entries last.
+	 */
+	public delay = 0;
+
+	/**
+	 * The bucket limits. If set to null, the requests will be limited to one
+	 * request per {@link delay} milliseconds.
+	 */
+	public limit: BucketLimit | null = null;
+
+	/**
+	 * The bucket entries for the instance.
+	 */
+	private entries = new Map<T, BucketEntry>();
+
+	/**
+	 * Sets the delay for the bucket.
+	 * @param delay The delay to be set.
+	 */
 	public setDelay(delay: number): this {
 		this.delay = delay;
 		return this;
 	}
 
-	public setLimit(limit: [timespan: number, limit: number] | null): this {
+	/**
+	 * Sets the limit for the bucket.
+	 * @param limit The limit to be set.
+	 */
+	public setLimit(limit: BucketLimit | null): this {
 		this.limit = limit;
 		return this;
 	}
@@ -35,7 +88,7 @@ export class Bucket<T> {
 
 		// If there is a limit:
 		if (this.limit) {
-			const [timespan, limit] = this.limit;
+			const { timespan, limit } = this.limit;
 			// Then check whether tickets reach said limit:
 			if (entry.tickets + 1 > limit) {
 				// If the entry is new, setTime is initialized as 0, but also,
@@ -65,6 +118,16 @@ export class Bucket<T> {
 
 		// The entry wasn't either limited nor has an applicable delay, return 0.
 		return 0;
+	}
+
+	/**
+	 * Cleans the bucket's unlocked requests.
+	 */
+	public clean(): void {
+		const minimum = Date.now() - this.delay;
+		for (const [key, value] of this.entries.entries()) {
+			if (value.lastTime >= minimum) this.entries.delete(key);
+		}
 	}
 
 	private getEntry(id: T): BucketEntry {
