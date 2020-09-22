@@ -20,13 +20,8 @@ describe('Bucket', () => {
 		expect(bucket.limit.maximum).toBe(1);
 		expect(bucket.limit.timespan).toBe(0);
 
-		// Run the bucket
 		run(now, () => expect(bucket.take(420)).toBe(0));
-
-		// Run the bucket again
 		run(now, () => expect(bucket.take(420)).toBe(5000));
-
-		// Run the bucket again with another key
 		run(now, () => expect(bucket.take(42)).toBe(0));
 	});
 
