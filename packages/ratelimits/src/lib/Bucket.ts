@@ -120,16 +120,6 @@ export class Bucket<T> {
 		return 0;
 	}
 
-	/**
-	 * Cleans the bucket's unlocked requests.
-	 */
-	public clean(): void {
-		const minimum = Date.now() - this.delay;
-		for (const [key, value] of this.entries.entries()) {
-			if (value.lastTime >= minimum) this.entries.delete(key);
-		}
-	}
-
 	private getEntry(id: T): BucketEntry {
 		const entry = this.entries.get(id);
 		if (entry) return entry;
