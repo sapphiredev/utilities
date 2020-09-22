@@ -22,8 +22,7 @@
 -   [Features](#features)
 -   [Installation](#installation)
 -   [Usage](#usage)
-    -   [Token Bucket without limit](#token-bucket-without-limit)
-    -   [Token Bucket with limit](#token-bucket-with-limit)
+    -   [Token Bucket](#token-bucket)
     -   [Leaky Bucket](#leaky-bucket)
 -   [API Documentation](#api-documentation)
 -   [Buy us some doughnuts](#buy-us-some-doughnuts)
@@ -51,7 +50,7 @@ yarn add @sapphire/ratelimits
 
 **Note:** While this section uses `require`, the imports match 1:1 with ESM imports. For example `const { Bucket } = require('@sapphire/ratelimits')` equals `import { Bucket } from '@sapphire/ratelimits'`.
 
-### Token Bucket without limit
+### Token Bucket
 
 ```ts
 // Import the Bucket class
@@ -60,35 +59,8 @@ const { Bucket } = require('@sapphire/ratelimits');
 // Define a bucket with 1 usage every 5 seconds
 const bucket = new Bucket().setDelay(5000);
 
-// Run the bucket
-const a = bucket.take(420);
-console.log(a); // -> 0
-
-// Run the bucket again
-const b = bucket.take(420);
-console.log(b); // -> 5000
-```
-
-### Token Bucket with limit
-
-```ts
-// Import the Bucket class
-const { Bucket } = require('@sapphire/ratelimits');
-
-// Define a bucket with 2 usages every 5 seconds
-const bucket = new Bucket().setDelay(5000).setLimit({ maximum: 2 });
-
-// Run the bucket
-const a = bucket.take(420);
-console.log(a); // -> 0
-
-// Run the bucket again
-const b = bucket.take(420);
-console.log(b); // -> 0
-
-// Run the bucket again
-const c = bucket.take(420);
-console.log(c); // -> 5000
+console.log(bucket.take(420)); // -> 0
+console.log(bucket.take(420)); // -> 5000
 ```
 
 ### Leaky Bucket
@@ -98,15 +70,11 @@ console.log(c); // -> 5000
 const { Bucket } = require('@sapphire/ratelimits');
 
 // Define a bucket with 2 usages every 5 seconds
-const bucket = new Bucket().setDelay(5000).setLimit({ timespan: 250, maximum: 2 });
+const bucket = new Bucket().setLimit({ timespan: 5000, maximum: 2 });
 
-// Run the bucket
-const a = bucket.take(420);
-console.log(a); // -> 0
-
-// Run the bucket again
-const b = bucket.take(420);
-console.log(b); // -> 250
+console.log(bucket.take(420)); // -> 0
+console.log(bucket.take(420)); // -> 0
+console.log(bucket.take(420)); // -> 5000
 ```
 
 ---
