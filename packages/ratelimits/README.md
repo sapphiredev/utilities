@@ -22,20 +22,22 @@
 -   [Features](#features)
 -   [Installation](#installation)
 -   [Usage](#usage)
+    -   [Token Bucket without limit](#token-bucket-without-limit)
+    -   [Token Bucket with limit](#token-bucket-with-limit)
+    -   [Leaky Bucket](#leaky-bucket)
 -   [API Documentation](#api-documentation)
 -   [Buy us some doughnuts](#buy-us-some-doughnuts)
 -   [Contributors ✨](#contributors-%E2%9C%A8)
 
 ## Description
 
-There is often a need to get a unique ID for entities, be that for Discord messages/channels/servers, keys in a database or many other similar examples. There are many ways to get such a unique ID, and one of those is using a so-called "snowflake". You can read more about snowflake IDs in [this Medium article](https://medium.com/better-programming/uuid-generation-snowflake-identifiers-unique-2aed8b1771bc).
+There is often a need to apply ratelimits to protect a network from excessive traffic levels on connections routed through it. This package offers two different techniques in the same implementation: the simple [Token Bucket](https://en.wikipedia.org/wiki/Token_bucket), and the more complex [Leaky Bucket](https://en.wikipedia.org/wiki/Leaky_bucket).
 
 ## Features
 
 -   Written in TypeScript
 -   Bundled with Rollup so it can be used in NodeJS and browsers
 -   Offers CommonJS, ESM and UMD bundles
--   Offers predefined epochs for Discord and Twitter
 -   Fully tested
 
 ## Installation
@@ -49,8 +51,10 @@ yarn add @sapphire/ratelimits
 
 **Note:** While this section uses `require`, the imports match 1:1 with ESM imports. For example `const { Bucket } = require('@sapphire/ratelimits')` equals `import { Bucket } from '@sapphire/ratelimits'`.
 
+### Token Bucket without limit
+
 ```ts
-// Import the Snowflake class
+// Import the Bucket class
 const { Bucket } = require('@sapphire/ratelimits');
 
 // Define a bucket with 1 usage every 5 seconds
@@ -62,7 +66,47 @@ console.log(a); // -> 0
 
 // Run the bucket again
 const b = bucket.take(420);
-console.log(b); // 5000
+console.log(b); // -> 5000
+```
+
+### Token Bucket with limit
+
+```ts
+// Import the Bucket class
+const { Bucket } = require('@sapphire/ratelimits');
+
+// Define a bucket with 2 usages every 5 seconds
+const bucket = new Bucket().setDelay(5000).setLimit({ maximum: 2 });
+
+// Run the bucket
+const a = bucket.take(420);
+console.log(a); // -> 0
+
+// Run the bucket again
+const b = bucket.take(420);
+console.log(b); // -> 0
+
+// Run the bucket again
+const c = bucket.take(420);
+console.log(c); // -> 5000
+```
+
+### Leaky Bucket
+
+```ts
+// Import the Bucket class
+const { Bucket } = require('@sapphire/ratelimits');
+
+// Define a bucket with 2 usages every 5 seconds
+const bucket = new Bucket().setDelay(5000).setLimit({ timespan: 250, maximum: 2 });
+
+// Run the bucket
+const a = bucket.take(420);
+console.log(a); // -> 0
+
+// Run the bucket again
+const b = bucket.take(420);
+console.log(b); // -> 250
 ```
 
 ---

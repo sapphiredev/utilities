@@ -27,6 +27,7 @@ export interface BucketLimit {
 	 * However, if in the previous example, this is set to 1 second, this will
 	 * then space the requests evenly to 1 request per second until the bucket
 	 * is consumed.
+	 * @default 0
 	 */
 	timespan: number;
 
@@ -35,8 +36,9 @@ export interface BucketLimit {
 	 *
 	 * This limits the amount of requests that can be made within the
 	 * {@link Bucket}'s {@link Bucket#delay delay}.
+	 * @default 1
 	 */
-	limit: number;
+	maximum: number;
 }
 
 /**
@@ -52,7 +54,7 @@ export class Bucket<T> {
 	 * The bucket limits. If set to null, the requests will be limited to one
 	 * request per {@link delay} milliseconds.
 	 */
-	public limit: BucketLimit | null = null;
+	public limit: BucketLimit = { timespan: 0, maximum: 1 };
 
 	/**
 	 * The bucket entries for the instance.
@@ -72,8 +74,8 @@ export class Bucket<T> {
 	 * Sets the limit for the bucket.
 	 * @param limit The limit to be set.
 	 */
-	public setLimit(limit: BucketLimit | null): this {
-		this.limit = limit;
+	public setLimit({ maximum: limit = 1, timespan = 0 }: BucketLimit): this {
+		this.limit = { maximum: limit, timespan };
 		return this;
 	}
 
@@ -87,10 +89,10 @@ export class Bucket<T> {
 		const entry = this.getEntry(id);
 
 		// If there is a limit:
-		if (this.limit) {
-			const { timespan, limit } = this.limit;
+		if (this.limit.maximum > 1) {
+			const { timespan, maximum } = this.limit;
 			// Then check whether tickets reach said limit:
-			if (entry.tickets + 1 > limit) {
+			if (entry.tickets + 1 > maximum) {
 				// If the entry is new, setTime is initialized as 0, but also,
 				// if the duration yields a negative number (expired limit),
 				// then it must fall-back to setting tickets as 0, setTime as
