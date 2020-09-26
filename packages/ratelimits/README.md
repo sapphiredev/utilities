@@ -2,16 +2,16 @@
 
 ![Sapphire Logo](https://cdn.skyra.pw/gh-assets/sapphire.png)
 
-# @sapphire/snowflake
+# @sapphire/ratelimits
 
-**Deconstruct and generate snowflake IDs using BigInts.**
+**Bucket implementation for Ratelimits.**
 
 [![GitHub](https://img.shields.io/github/license/sapphire-project/utilities)](https://github.com/sapphire-project/utilities/blob/main/LICENSE.md)
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/sapphire-project/utilities.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/sapphire-project/utilities/alerts/)
 [![Language grade: JavaScript/TypeScript](https://img.shields.io/lgtm/grade/javascript/g/sapphire-project/utilities.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/sapphire-project/utilities/context:javascript)
 [![Coverage Status](https://coveralls.io/repos/github/sapphire-project/utilities/badge.svg?branch=main)](https://coveralls.io/github/sapphire-project/utilities?branch=main)
-[![npm bundle size](https://img.shields.io/bundlephobia/min/@sapphire/snowflake?logo=webpack&style=flat-square)](https://bundlephobia.com/result?p=@sapphire/snowflake)
-[![npm](https://img.shields.io/npm/v/@sapphire/snowflake?color=crimson&logo=npm&style=flat-square)](https://www.npmjs.com/package/@sapphire/snowflake)
+[![npm bundle size](https://img.shields.io/bundlephobia/min/@sapphire/ratelimits?logo=webpack&style=flat-square)](https://bundlephobia.com/result?p=@sapphire/ratelimits)
+[![npm](https://img.shields.io/npm/v/@sapphire/ratelimits?color=crimson&logo=npm&style=flat-square)](https://www.npmjs.com/package/@sapphire/ratelimits)
 [![Depfu](https://badges.depfu.com/badges/34035e3cf4ced0737443671ebefa2f47/count.svg)](https://depfu.com/github/sapphire-project/utilities?project_id=15202)
 
 </div>
@@ -22,146 +22,66 @@
 -   [Features](#features)
 -   [Installation](#installation)
 -   [Usage](#usage)
-    -   [Constructing snowflakes](#constructing-snowflakes)
-        -   [Snowflakes with custom epoch](#snowflakes-with-custom-epoch)
-        -   [Snowflake with Discord epoch constant](#snowflake-with-discord-epoch-constant)
-        -   [Snowflake with Twitter epoch constant](#snowflake-with-twitter-epoch-constant)
-    -   [Deconstructing snowflakes](#deconstructing-snowflakes)
-        -   [Snowflakes with custom epoch](#snowflakes-with-custom-epoch-1)
-        -   [Snowflake with Discord epoch constant](#snowflake-with-discord-epoch-constant-1)
-        -   [Snowflake with Twitter epoch constant](#snowflake-with-twitter-epoch-constant-1)
+    -   [Token Bucket](#token-bucket)
+    -   [Leaky Bucket](#leaky-bucket)
 -   [API Documentation](#api-documentation)
 -   [Buy us some doughnuts](#buy-us-some-doughnuts)
 -   [Contributors ✨](#contributors-%E2%9C%A8)
 
 ## Description
 
-There is often a need to get a unique ID for entities, be that for Discord messages/channels/servers, keys in a database or many other similar examples. There are many ways to get such a unique ID, and one of those is using a so-called "snowflake". You can read more about snowflake IDs in [this Medium article](https://medium.com/better-programming/uuid-generation-snowflake-identifiers-unique-2aed8b1771bc).
+There is often a need to apply ratelimits to protect a network from excessive traffic levels on connections routed through it. This package offers two different techniques in the same implementation: the simple [Token Bucket](https://en.wikipedia.org/wiki/Token_bucket), and the more complex [Leaky Bucket](https://en.wikipedia.org/wiki/Leaky_bucket).
 
 ## Features
 
 -   Written in TypeScript
 -   Bundled with Rollup so it can be used in NodeJS and browsers
 -   Offers CommonJS, ESM and UMD bundles
--   Offers predefined epochs for Discord and Twitter
 -   Fully tested
 
 ## Installation
 
 ```sh
-yarn add @sapphire/snowflake
-# npm install @sapphire/snowflake
+yarn add @sapphire/ratelimits
+# npm install @sapphire/ratelimits
 ```
 
 ## Usage
 
-**Note:** While this section uses `require`, the imports match 1:1 with ESM imports. For example `const { Snowflake } = require('@sapphire/snowflake')` equals `import { Snowflake } from '@sapphire/snowflake'`.
+**Note:** While this section uses `require`, the imports match 1:1 with ESM imports. For example `const { Bucket } = require('@sapphire/ratelimits')` equals `import { Bucket } from '@sapphire/ratelimits'`.
 
-### Constructing snowflakes
-
-#### Snowflakes with custom epoch
+### Token Bucket
 
 ```ts
-// Import the Snowflake class
-const { Snowflake } = require('@sapphire/snowflake');
+// Import the Bucket class
+const { Bucket } = require('@sapphire/ratelimits');
 
-// Define a custom epoch
-const epoch = new Date('2000-01-01T00:00:00.000Z');
+// Define a bucket with 1 usage every 5 seconds
+const bucket = new Bucket().setDelay(5000);
 
-// Create an instance of Snowflake
-const snowflake = new Snowflake(epoch);
-
-// Generate a snowflake with the given epoch
-const uniqueId = snowflake.generate();
+console.log(bucket.take(420)); // -> 0
+console.log(bucket.take(420)); // -> 5000
 ```
 
-#### Snowflake with Discord epoch constant
+### Leaky Bucket
 
 ```ts
-// Import the Snowflake class
-const { DiscordSnowflake } = require('@sapphire/snowflake');
+// Import the Bucket class
+const { Bucket } = require('@sapphire/ratelimits');
 
-// Create an instance of Snowflake
-const discordSnowflake = new DiscordSnowflake();
+// Define a bucket with 2 usages every 5 seconds
+const bucket = new Bucket().setLimit({ timespan: 5000, maximum: 2 });
 
-// Generate a snowflake with Discord's epoch
-const uniqueId = discordSnowflake.generate();
-
-// Alternatively, you can use the method directly
-const uniqueId = DiscordSnowflake.generate();
-```
-
-#### Snowflake with Twitter epoch constant
-
-```ts
-// Import the Snowflake class
-const { TwitterSnowflake } = require('@sapphire/snowflake');
-
-// Create an instance of Snowflake
-const twitterSnowflake = new TwitterSnowflake();
-
-// Generate a snowflake with Twitter's epoch
-const uniqueId = twitterSnowflake.generate();
-
-// Alternatively, you can use the method directly
-const uniqueId = TwitterSnowflake.generate();
-```
-
-### Deconstructing snowflakes
-
-#### Snowflakes with custom epoch
-
-```ts
-// Import the Snowflake class
-const { Snowflake } = require('@sapphire/snowflake');
-
-// Define a custom epoch
-const epoch = new Date('2000-01-01T00:00:00.000Z');
-
-// Create an instance of Snowflake
-const snowflake = new Snowflake(epoch);
-
-// Deconstruct a snowflake with the given epoch
-const uniqueId = snowflake.deconstruct('3971046231244935168');
-```
-
-#### Snowflake with Discord epoch constant
-
-```ts
-// Import the Snowflake class
-const { DiscordSnowflake } = require('@sapphire/snowflake');
-
-// Create an instance of Snowflake
-const discordSnowflake = new DiscordSnowflake();
-
-// Deconstruct a snowflake with Discord's epoch
-const uniqueId = discordSnowflake.deconstruct('3971046231244935168');
-
-// Alternatively, you can use the method directly
-const uniqueId = DiscordSnowflake.deconstruct('3971046231244935168');
-```
-
-#### Snowflake with Twitter epoch constant
-
-```ts
-// Import the Snowflake class
-const { TwitterSnowflake } = require('@sapphire/snowflake');
-
-// Create an instance of Snowflake
-const twitterSnowflake = new TwitterSnowflake();
-
-// Deconstruct a snowflake with Twitter's epoch
-const uniqueId = twitterSnowflake.deconstruct('3971046231244935168');
-
-// Alternatively, you can use the method directly
-const uniqueId = TwitterSnowflake.deconstruct('3971046231244935168');
+console.log(bucket.take(420)); // -> 0
+console.log(bucket.take(420)); // -> 0
+console.log(bucket.take(420)); // -> 5000
 ```
 
 ---
 
 ## API Documentation
 
-For the full API documentation please refer to the TypeDoc generated [documentation](https://sapphire-project.github.io/utilities/modules/_sapphire_snowflake.html).
+For the full API documentation please refer to the TypeDoc generated [documentation](https://sapphire-project.github.io/utilities/modules/_sapphire_ratelimits.html).
 
 ## Buy us some doughnuts
 
