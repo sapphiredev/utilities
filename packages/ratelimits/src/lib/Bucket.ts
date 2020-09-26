@@ -20,7 +20,7 @@ export interface BucketLimit {
 	 * The time between tickets.
 	 *
 	 * If timespan is zero, there will be no spacing between usages, this means
-	 * that a 5/5s bucket ({@link BucketLimit#limit Limit} of 5 in 5 seconds
+	 * that a 5/5s bucket ({@link BucketLimit#limit limit} of 5 in 5 seconds
 	 * {@link Bucket#delay delay}) will accept 5 requests, then will wait for
 	 * the remaining time.
 	 *
