@@ -5,7 +5,7 @@ import { createClassDecorator, createMethodDecorator, createProxy } from './util
 
 /**
  * Decorator function that applies given options to any Klasa piece
- *
+ * @example
  * ```ts
  *	ApplyOptions<CommandOptions>({
  *		name: 'test',

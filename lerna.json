@@ -1,7 +1,5 @@
 {
-	"packages": [
-		"packages/*"
-	],
+	"packages": ["packages/*"],
 	"version": "independent",
 	"npmClient": "yarn",
 	"useWorkspaces": true,
@@ -18,16 +16,7 @@
 		},
 		"create": {
 			"license": "MIT",
-			"keywords": [
-				"sapphire-project",
-				"bot",
-				"typescript",
-				"ts",
-				"yarn",
-				"discord",
-				"sapphire",
-				"standalone"
-			]
+			"keywords": ["sapphire-project", "bot", "typescript", "ts", "yarn", "discord", "sapphire", "standalone"]
 		}
 	}
 }

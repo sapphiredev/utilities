@@ -1,5 +1,5 @@
-import { PeopleEmitter, people, sleep } from './lib/MockEmitter';
 import { EventIterator } from '../src';
+import { people, PeopleEmitter, sleep } from './lib/MockEmitter';
 import type { Person } from './lib/Person';
 
 describe('EventIterator', () => {
