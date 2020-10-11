@@ -55,7 +55,7 @@ yarn add @sapphire/type
 // Import the Type class
 const { Type } = require('@sapphire/type');
 
-// Define an event iterator with a limit of 2 entries
+// Define a Type with an array of two numbers
 const type = new Type([1, 2]);
 
 console.log(type.toString());
