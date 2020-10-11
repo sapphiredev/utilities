@@ -14,7 +14,7 @@ export class Type {
 	/**
 	 * The value to generate a deep Type of
 	 */
-	public value: unknown;
+	public readonly value: unknown;
 
 	/**
 	 * The shallow type of this
@@ -24,17 +24,17 @@ export class Type {
 	/**
 	 * The parent of this Type
 	 */
-	private parent: Type | null;
+	private readonly parent: Type | null;
 
 	/**
 	 * The child keys of this Type
 	 */
-	private childKeys: Map<string, Type>;
+	private readonly childKeys = new Map<string, Type>();
 
 	/**
 	 * The child values of this Type
 	 */
-	private childValues: Map<string, Type>;
+	private readonly childValues = new Map<string, Type>();
 
 	/**
 	 * @param value The value to generate a deep Type of
@@ -44,8 +44,6 @@ export class Type {
 		this.value = value;
 		this.is = Type.resolve(value);
 		this.parent = parent;
-		this.childKeys = new Map();
-		this.childValues = new Map();
 	}
 
 	/**
