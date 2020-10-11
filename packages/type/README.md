@@ -12,7 +12,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/sapphire-project/utilities/badge.svg?branch=main)](https://coveralls.io/github/sapphire-project/utilities?branch=main)
 [![npm bundle size](https://img.shields.io/bundlephobia/min/@sapphire/type?logo=webpack&style=flat-square)](https://bundlephobia.com/result?p=@sapphire/type)
 [![npm](https://img.shields.io/npm/v/@sapphire/type?color=crimson&logo=npm&style=flat-square)](https://www.npmjs.com/package/@sapphire/type)
-[![Depfu](https://badges.depfu.com/badges/34035e3cf4ced0737443671ebefa2f47/count.svg)](https://depfu.com/github/sapphire-project/utilities?project_id=15202)
+[![Depfu](https://badges.depfu.com/badges/ec42ff3d6bae55eee1de4749960852b3/count.svg)](https://depfu.com/github/sapphire-project/utilities?project_id=15195)
 
 </div>
 
