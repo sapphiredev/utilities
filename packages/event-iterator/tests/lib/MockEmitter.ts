@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/explicit-member-accessibility */
 import { EventEmitter } from 'events';
+import { promisify } from 'util';
 import { EventIterator, EventIteratorOptions } from '../../src';
 import { Person } from './Person';
-import { promisify } from 'util';
 
 export class PeopleIterator extends EventIterator<[Person]> {}
 
