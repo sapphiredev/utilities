@@ -75,7 +75,7 @@ for await (const message of iterator) {
 
 ## API Documentation
 
-For the full API documentation please refer to the TypeDoc generated [documentation](https://sapphire-project.github.io/utilities/modules/_sapphire_event-iterator.html).
+For the full API documentation please refer to the TypeDoc generated [documentation](https://sapphire-project.github.io/utilities/modules/_sapphire_event_iterator.html).
 
 ## Buy us some doughnuts
 
