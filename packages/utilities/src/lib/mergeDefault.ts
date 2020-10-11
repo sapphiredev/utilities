@@ -48,12 +48,13 @@ export function mergeDefault<A extends NonNullObject, B extends Partial<A>>(base
 	// If no overwrites are specified then deep clone the base
 	if (!overwrites) return deepClone(base) as DeepRequired<A & B>;
 
-	for (const [key, value] of Object.entries(base)) {
-		const givenValue = Reflect.get(overwrites, key);
-		if (typeof givenValue === 'undefined') {
-			Reflect.set(overwrites, key, deepClone(value));
-		} else if (isObject(givenValue)) {
-			Reflect.set(overwrites, key, mergeDefault((value ?? {}) as NonNullObject, givenValue));
+	for (const [baseKey, baseValue] of Object.entries(base)) {
+		const overwritesValueAtBaseKey = Reflect.get(overwrites, baseKey);
+
+		if (typeof overwritesValueAtBaseKey === 'undefined') {
+			Reflect.set(overwrites, baseKey, deepClone(baseValue));
+		} else if (isObject(overwritesValueAtBaseKey)) {
+			Reflect.set(overwrites, baseKey, mergeDefault((baseValue ?? {}) as NonNullObject, overwritesValueAtBaseKey));
 		}
 	}
 
