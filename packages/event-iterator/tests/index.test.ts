@@ -59,7 +59,7 @@ describe('EventIterator', () => {
 		const iter = new PeopleEmitter().createPeopleIterator({ idle: 500 });
 
 		// eslint-disable-next-line @typescript-eslint/no-unused-vars
-		for await (const __ of iter) {
+		for await (const {} of iter) {
 			// Give always false expectation to make this always throw
 			expect(false).toBe(true);
 		}
@@ -107,7 +107,7 @@ describe('EventIterator', () => {
 		const iter = emitter.createPeopleIterator();
 		expect(emitter.getMaxListeners()).toBe(2);
 
-		for await (const __ of iter) {
+		for await (const {} of iter) {
 			break;
 		}
 
@@ -122,7 +122,7 @@ describe('EventIterator', () => {
 		expect(emitter.getMaxListeners()).toBe(2);
 
 		try {
-			for await (const __ of iter) {
+			for await (const {} of iter) {
 				throw new Error('Ahhhhhhhhh');
 			}
 		} catch {
@@ -162,7 +162,7 @@ describe('EventIterator', () => {
 		expect(iter.ended).toBe(false);
 
 		await sleep(3000);
-		for await (const __ of iter) break;
+		for await (const {} of iter) break;
 		expect(iter.ended).toBe(true);
 
 		const next = await iter.next();

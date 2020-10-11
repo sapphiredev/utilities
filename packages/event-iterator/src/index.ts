@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-member-accessibility */
 import type { EventEmitter } from 'events';
 
 /**
@@ -13,10 +14,12 @@ export interface EventIteratorOptions<V> {
 	 * The filter.
 	 */
 	filter?: EventIteratorFilter<V>;
+
 	/**
 	 * The timeout in ms before ending the EventIterator.
 	 */
 	idle?: number;
+
 	/**
 	 * The limit of events that pass the filter to iterate.
 	 */
@@ -32,6 +35,9 @@ export class EventIterator<V extends unknown[]> implements AsyncIterableIterator
 	 */
 	public readonly emitter: EventEmitter;
 
+	/**
+	 * The event the event iterator is listening for to receive values from.
+	 */
 	public readonly event: string;
 
 	/**
@@ -75,7 +81,7 @@ export class EventIterator<V extends unknown[]> implements AsyncIterableIterator
 	#push: (this: EventIterator<V>, ...value: V) => void;
 
 	/**
-	 * @param emitter The EventEmitter to listen to.
+	 * @param emitter The event emitter to listen to.
 	 * @param event The event we're listening for to receives values from.
 	 * @param limit The amount of values to receive before ending the iterator.
 	 * @param options Any extra options.
@@ -124,6 +130,7 @@ export class EventIterator<V extends unknown[]> implements AsyncIterableIterator
 	 * The next value that's received from the EventEmitter.
 	 */
 	public async next(): Promise<IteratorResult<V>> {
+		// If there are elements in the queue, return an undone response:
 		if (this.#queue.length) {
 			const value = this.#queue.shift()!;
 			if (!this.filter(value)) return this.next();
@@ -131,22 +138,29 @@ export class EventIterator<V extends unknown[]> implements AsyncIterableIterator
 			if (this.#idleTimer) this.#idleTimer.refresh();
 			return { done: false, value };
 		}
+
+		// If the iterator ended, clean-up timer and return a done response:
 		if (this.#ended) {
 			if (this.#idleTimer) clearTimeout(this.#idleTimer);
 			return { done: true, value: undefined as never };
 		}
-		return new Promise<IteratorResult<V>>((resolve): void => {
-			let idleTimer: NodeJS.Timer;
 
+		// Listen for a new element from the emitter:
+		return new Promise<IteratorResult<V>>((resolve) => {
+			let idleTimer: NodeJS.Timer | null = null;
+
+			// If there is an idle time set, we will create a temporary timer,
+			// which will cause the iterator to end if no new elements are received:
 			if (this.#idle) {
-				// This timer is to idle out on lack of any responses
 				idleTimer = setTimeout(() => {
 					this.end();
 					resolve(this.next());
 				}, this.#idle);
 			}
 
-			this.emitter.once(this.event, (): void => {
+			// Once it has received at least one value, we will clear the timer (if defined),
+			// and resolve with the new value:
+			this.emitter.once(this.event, () => {
 				if (idleTimer) clearTimeout(idleTimer);
 				resolve(this.next());
 			});
@@ -156,17 +170,17 @@ export class EventIterator<V extends unknown[]> implements AsyncIterableIterator
 	/**
 	 * Handles what happens when you break or return from a loop.
 	 */
-	public async return(): Promise<IteratorResult<V>> {
+	public return(): Promise<IteratorResult<V>> {
 		this.end();
-		return { done: true, value: undefined as never };
+		return Promise.resolve({ done: true, value: undefined as never });
 	}
 
 	/**
 	 * Handles what happens when you encounter an error in a loop.
 	 */
-	public async throw(): Promise<IteratorResult<V>> {
+	public throw(): Promise<IteratorResult<V>> {
 		this.end();
-		return { done: true, value: undefined as never };
+		return Promise.resolve({ done: true, value: undefined as never });
 	}
 
 	/**

@@ -52,10 +52,10 @@ yarn add @sapphire/event-iterator
 ### Basic Usage
 
 ```ts
-// Import the Bucket class
+// Import the EventIterator class
 const { EventIterator } = require('@sapphire/event-iterator');
 
-// Define a bucket with 1 usage every 5 seconds
+// Define an event iterator with a limit of 2 entries
 const iterator = new EventIterator(emitter, 'message', { limit: 2 });
 
 emitter.emit('message', { id: 'foo' });
@@ -68,7 +68,7 @@ for await (const message of iterator) {
 	// Logs: { id: 'bar' }
 }
 
-// The iterator ended at second item, { id: 'baz' } is not collected.
+// The iterator ended at second item, { id: 'baz' } is not collected due to the specified limit.
 ```
 
 ---
