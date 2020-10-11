@@ -67,4 +67,15 @@ describe('mergeDefault', () => {
 
 		expect(mergeDefault(base, overwrites)).toStrictEqual({ a: { b: 5 } });
 	});
+
+	test('GIVEN defined base and provided overwrites THEN returns overwrites values', () => {
+		interface Sample {
+			a: number | { b: boolean };
+		}
+
+		const base: Sample = { a: 1 };
+		const overwrites: Sample = { a: { b: true } };
+
+		expect(mergeDefault(base, overwrites)).toStrictEqual({ a: { b: true } });
+	});
 });
