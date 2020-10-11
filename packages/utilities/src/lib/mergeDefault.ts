@@ -10,7 +10,6 @@ type NonNullObject = {};
  * @remark `overwrites` is also mutated!
  * @remark If the value of a key in `overwrites` is `undefined` then the value of that same key in `base` is used instead!
  * @remark This is essentially `{ ...base, ...overwrites }` but recursively
- * @since 1.0.0
  * @param base Base object
  * @param overwrites Overwrites to apply
  * @example

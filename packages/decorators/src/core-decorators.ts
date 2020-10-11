@@ -13,7 +13,6 @@ import { createClassDecorator, createMethodDecorator, createProxy } from './util
  *	})
  *	export default class extends Command {}
  * ```
- * @since 1.0.0
  * @param options The options to pass to the piece constructor
  */
 export function ApplyOptions<T extends PieceOptions>(optionsOrFn: T | ((client: SapphireClient) => T)): ClassDecorator {
