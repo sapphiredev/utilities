@@ -1,19 +1,18 @@
-name: Continuous Delivery - utilities
+name: Continuous Delivery - event-iterator
 
 on:
     push:
         branches:
             - main
         paths:
-            - packages/utilities/**
+            - packages/event-iterator/**
             - .all-contributorsrc
             - LICENSE.md
             - package.json
-            - .github/workflows/cd-utilities.yml
-
+            - .github/workflows/cd-event-iterator.yml
 jobs:
-    BuildUtilities:
-        name: Publish Utilities
+    BuildEventIterator:
+        name: Publish EventIterator
         runs-on: ubuntu-latest
         if: "!contains(github.event.head_commit.message, '[skip ci]')"
         steps:
@@ -31,7 +30,7 @@ jobs:
             - name: Install Dependencies
               run: yarn --ignore-scripts --frozen-lockfile
             - name: Build Code
-              run: yarn workspace @sapphire/utilities build
+              run: yarn workspace @sapphire/event-iterator build
             - name: Push new code
               if: github.event_name == 'push' && github.ref == 'refs/heads/main'
               run: |
@@ -46,11 +45,11 @@ jobs:
                     SOURCE_TYPE="tag"
                   fi
 
-                  echo -e "\n# Move to the utilities directory"
-                  cd packages/utilities
+                  echo -e "\n# Move to the event-iterator directory"
+                  cd packages/event-iterator
 
                   echo -e "\n# Checkout the repo in the target branch"
-                  TARGET_BRANCH="build-utilities"
+                  TARGET_BRANCH="build-event-iterator"
                   git clone $REPO out -b $TARGET_BRANCH
 
                   echo -e "\n# Remove any old files in the dist folder"
@@ -68,7 +67,7 @@ jobs:
                   git add --all .
                   git config user.name "${GITHUB_ACTOR}"
                   git config user.email "${GITHUB_EMAIL}"
-                  git commit -m "build: utilities build for ${GITHUB_SHA}" || true
+                  git commit -m "build: event-iterator build for ${GITHUB_SHA}" || true
                   git push origin $TARGET_BRANCH
               env:
                   GITHUB_TOKEN: ${{ secrets.SKYRA_TOKEN }}
