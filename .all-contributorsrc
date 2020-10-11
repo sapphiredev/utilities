@@ -11,6 +11,7 @@
     "packages/ratelimits/README.md",
     "packages/snowflake/README.md",
     "packages/ts-config/README.md",
+	"packages/type/README.md",
     "packages/utilities/README.md"
   ],
   "imageSize": 100,

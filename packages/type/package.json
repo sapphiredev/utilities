@@ -1,0 +1,48 @@
+{
+	"name": "@sapphire/type",
+	"version": "0.0.1",
+	"description": "A type detection utility for JavaScript.",
+	"author": "@sapphire",
+	"license": "MIT",
+	"main": "dist/index.js",
+	"module": "dist/index.mjs",
+	"browser": "dist/index.umd.js",
+	"unpkg": "dist/index.umd.js",
+	"types": "dist/index.d.ts",
+	"homepage": "https://github.com/sapphire-project/utilities/tree/main/packages/type",
+	"scripts": {
+		"test": "jest",
+		"lint": "eslint src tests --ext ts --fix -c ../../.eslintrc",
+		"build": "rollup -c rollup.config.ts",
+		"start": "yarn build -w"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/sapphire-project/utilities.git",
+		"directory": "packages/type"
+	},
+	"files": [
+		"dist",
+		"!dist/tsconfig.tsbuildinfo"
+	],
+	"engines": {
+		"node": ">=12",
+		"npm": ">=6"
+	},
+	"keywords": [
+		"@sapphire/type",
+		"bot",
+		"typescript",
+		"ts",
+		"yarn",
+		"discord",
+		"sapphire",
+		"standalone"
+	],
+	"bugs": {
+		"url": "https://github.com/sapphire-project/utilities/issues"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
+}
