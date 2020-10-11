@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.2](https://github.com/sapphire-project/utilities/compare/@sapphire/utilities@1.0.1...@sapphire/utilities@1.0.2) (2020-10-11)
+
+### Bug Fixes
+
+-   **ratelimits,snowflake,utilities:** fixed esm output target ([9fdab3f](https://github.com/sapphire-project/utilities/commit/9fdab3fca283c8c0b47cc32661c5cf8e0a5e583c))
+-   **utilities:** fixed up mergeDefault ([#21](https://github.com/sapphire-project/utilities/issues/21)) ([76561db](https://github.com/sapphire-project/utilities/commit/76561dbf339ebf2dff1a712e448407e6a1b36070))
+
 ## [1.0.1](https://github.com/sapphire-project/utilities/compare/@sapphire/utilities@1.0.0...@sapphire/utilities@1.0.1) (2020-09-20)
 
 **Note:** Version bump only for package @sapphire/utilities
