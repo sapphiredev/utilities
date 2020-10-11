@@ -31,7 +31,7 @@ yarn add @sapphire/decorators
 
 ## API Documentation
 
-For the full API documentation please refer to the TypeDoc generated [documentation](https://sapphire-project.github.io/utilities/modules/_sapphire_eslint_config.html).
+For the full API documentation please refer to the TypeDoc generated [documentation](https://sapphire-project.github.io/utilities/modules/_sapphire_decorators.html).
 
 ## Buy us some doughnuts
 
