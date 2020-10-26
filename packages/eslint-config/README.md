@@ -45,7 +45,7 @@ Add the ESLint config to your `package.json`:
 }
 ```
 
-Or to `eslintrc.js` / `eslintrc.json`:
+Or to `eslintrc.js` / `.eslintrc.json`:
 
 ```json
 {
