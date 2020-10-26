@@ -31,7 +31,7 @@ test_out/
 **/*.d.ts
 **/*.tsbuildinfo
 !packages/**/src/**/*.d.ts
-!jest.config.js
+!jest.config.ts
 !**/scripts/*.mjs
 
 # Ignore heapsnapshot and log files

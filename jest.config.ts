@@ -1,4 +1,7 @@
-module.exports = {
+import type { Config } from '@jest/types';
+
+// eslint-disable-next-line @typescript-eslint/require-await
+export default async (): Promise<Config.InitialOptions> => ({
 	displayName: 'unit test',
 	preset: 'ts-jest',
 	testEnvironment: 'node',
@@ -7,8 +10,8 @@ module.exports = {
 	setupFilesAfterEnv: ['<rootDir>/packages/decorators/tests/jest.setup.ts', '<rootDir>/packages/snowflake/tests/jest.setup.ts'],
 	globals: {
 		'ts-jest': {
-			tsConfig: '<rootDir>/tsconfig.dev.json'
+			tsconfig: '<rootDir>/tsconfig.dev.json'
 		}
 	},
 	coveragePathIgnorePatterns: ['<rootDir>/packages/utilities/tests/util/common.ts', '<rootDir>/packages/decorators/tests/mocks']
-};
+});
