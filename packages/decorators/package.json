@@ -6,6 +6,10 @@
 	"license": "MIT",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
+	"exports": {
+		"import": "./dist/index.js",
+		"require": "./dist/index.js"
+	},
 	"homepage": "https://github.com/sapphire-project/utilities/tree/main/packages/eslint-config",
 	"scripts": {
 		"test": "jest",
