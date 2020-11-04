@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.4](https://github.com/sapphire-project/utilities/compare/@sapphire/eslint-config@1.0.3...@sapphire/eslint-config@1.0.4) (2020-11-04)
+
+### Bug Fixes
+
+-   **eslint-config:** don't overwrite rules that get disabled by prettier ([641b8d7](https://github.com/sapphire-project/utilities/commit/641b8d7f31782c55e52ab998c33bb876c01bf87f))
+-   **eslint-config:** properly specify ESM and CommonJS exports ([ece2203](https://github.com/sapphire-project/utilities/commit/ece2203cf31a159b3904d830b157ae67b4353dc6))
+
 ## [1.0.3](https://github.com/sapphire-project/utilities/compare/@sapphire/eslint-config@1.0.2...@sapphire/eslint-config@1.0.3) (2020-10-11)
 
 **Note:** Version bump only for package @sapphire/eslint-config

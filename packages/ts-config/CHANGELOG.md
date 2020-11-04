@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.3](https://github.com/sapphire-project/utilities/compare/@sapphire/ts-config@1.0.2...@sapphire/ts-config@1.0.3) (2020-11-04)
+
+### Bug Fixes
+
+-   **ts-config:** properly specify ESM and CommonJS exports ([d03ab50](https://github.com/sapphire-project/utilities/commit/d03ab50a1c0f4d1ce48415be7779901d50e6cbd1))
+
 ## [1.0.2](https://github.com/sapphire-project/utilities/compare/@sapphire/ts-config@1.0.1...@sapphire/ts-config@1.0.2) (2020-10-11)
 
 **Note:** Version bump only for package @sapphire/ts-config

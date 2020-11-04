@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.1](https://github.com/sapphire-project/utilities/compare/@sapphire/ratelimits@1.0.0...@sapphire/ratelimits@1.0.1) (2020-11-04)
+
+### Bug Fixes
+
+-   **ratelimits:** properly specify ESM and CommonJS exports ([6355d3e](https://github.com/sapphire-project/utilities/commit/6355d3e5876cf64e3c71e89f213e66c8990778ae))
+
 # 1.0.0 (2020-10-11)
 
 ### Bug Fixes

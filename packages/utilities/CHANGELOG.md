@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.3](https://github.com/sapphire-project/utilities/compare/@sapphire/utilities@1.0.2...@sapphire/utilities@1.0.3) (2020-11-04)
+
+### Bug Fixes
+
+-   **utilities:** properly specify ESM and CommonJS exports ([11f4f9b](https://github.com/sapphire-project/utilities/commit/11f4f9b32f8c2a6c8be2f4568e2e1e0fac47b39e))
+
 ## [1.0.2](https://github.com/sapphire-project/utilities/compare/@sapphire/utilities@1.0.1...@sapphire/utilities@1.0.2) (2020-10-11)
 
 ### Bug Fixes

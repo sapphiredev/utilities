@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.3](https://github.com/sapphire-project/utilities/compare/@sapphire/decorators@1.0.2...@sapphire/decorators@1.0.3) (2020-11-04)
+
+### Bug Fixes
+
+-   **decorators:** properly specify ESM and CommonJS exports ([8bf3ec7](https://github.com/sapphire-project/utilities/commit/8bf3ec7a025574244e232fae93f31e67b1689cf9))
+
 ## [1.0.2](https://github.com/sapphire-project/utilities/compare/@sapphire/decorators@1.0.1...@sapphire/decorators@1.0.2) (2020-10-11)
 
 **Note:** Version bump only for package @sapphire/decorators
