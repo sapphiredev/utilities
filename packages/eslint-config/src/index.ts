@@ -33,11 +33,11 @@ export const config = {
 		'@typescript-eslint/ban-ts-comment': [
 			'error',
 			{
+				minimumDescriptionLength: 3,
+				'ts-check': true,
 				'ts-expect-error': 'allow-with-description',
 				'ts-ignore': 'allow-with-description',
-				'ts-nocheck': true,
-				'ts-check': true,
-				minimumDescriptionLength: 3
+				'ts-nocheck': true
 			}
 		],
 		'@typescript-eslint/class-literal-property-style': 'error',
@@ -86,32 +86,32 @@ export const config = {
 		'@typescript-eslint/naming-convention': [
 			'error',
 			{
-				selector: 'default',
+				filter: {
+					match: false,
+					regex: '^(?:VariableDeclarator|AssignmentExpression)$'
+				},
 				format: ['camelCase'],
 				leadingUnderscore: 'forbid',
-				trailingUnderscore: 'forbid',
-				filter: {
-					regex: '^(?:VariableDeclarator|AssignmentExpression)$',
-					match: false
-				}
+				selector: 'default',
+				trailingUnderscore: 'forbid'
 			},
 			{
-				selector: 'parameter',
 				format: ['camelCase'],
-				leadingUnderscore: 'allow'
+				leadingUnderscore: 'allow',
+				selector: 'parameter'
 			},
 			{
-				selector: 'property',
+				format: ['camelCase'],
 				modifiers: ['readonly'],
-				format: ['camelCase']
+				selector: 'property'
 			},
 			{
-				selector: 'enumMember',
-				format: ['PascalCase']
+				format: ['PascalCase'],
+				selector: 'enumMember'
 			},
 			{
-				selector: 'typeLike',
-				format: ['PascalCase']
+				format: ['PascalCase'],
+				selector: 'typeLike'
 			}
 		],
 		'@typescript-eslint/no-base-to-string': 'error',
@@ -139,8 +139,8 @@ export const config = {
 		'@typescript-eslint/no-use-before-define': [
 			'error',
 			{
-				typedefs: false,
-				functions: false
+				functions: false,
+				typedefs: false
 			}
 		],
 		'@typescript-eslint/no-useless-constructor': 'error',
@@ -255,9 +255,9 @@ export const config = {
 		'no-irregular-whitespace': [
 			'error',
 			{
-				skipStrings: true,
 				skipComments: true,
 				skipRegExps: true,
+				skipStrings: true,
 				skipTemplates: true
 			}
 		],
@@ -347,13 +347,13 @@ export const config = {
 		'prefer-destructuring': [
 			'error',
 			{
-				VariableDeclarator: {
-					array: false,
-					object: true
-				},
 				AssignmentExpression: {
 					array: true,
 					object: false
+				},
+				VariableDeclarator: {
+					array: false,
+					object: true
 				}
 			}
 		],
