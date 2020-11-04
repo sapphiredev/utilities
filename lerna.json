@@ -12,6 +12,7 @@
 			"allowBranch": "main",
 			"conventionalCommits": true,
 			"push": true,
+			"createRelease": "github",
 			"message": "chore(release): publish"
 		},
 		"create": {
