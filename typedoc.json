@@ -8,6 +8,7 @@
 		"packages/**/tests/**",
 		"**/*.js",
 		"**/rollup.config.ts",
+		"**/jest.config.ts",
 		"packages/decorators/src/index.ts",
 		"packages/ratelimits/src/index.ts",
 		"packages/snowflake/src/index.ts",
