@@ -2,13 +2,13 @@
  * The supported time types
  */
 export const enum TimeTypes {
-	Second = 'SECOND',
-	Minute = 'MINUTE',
-	Hour = 'HOUR',
-	Day = 'DAY',
-	Week = 'WEEK',
-	Month = 'MONTH',
-	Year = 'YEAR'
+	Second = 'second',
+	Minute = 'minute',
+	Hour = 'hour',
+	Day = 'day',
+	Week = 'week',
+	Month = 'month',
+	Year = 'year'
 }
 
 /**
@@ -30,25 +30,29 @@ const kTimeDurations: readonly [TimeTypes, number][] = [
  * @param duration The duration in milliseconds to parse and display
  * @param assets The language assets
  */
-export const friendlyDuration = (duration: number, assets: DurationFormatAssetsTime, precision = 7) => {
-	const output: string[] = [];
-	const negative = duration < 0;
-	if (negative) duration *= -1;
+export class DurationFormatter {
+	public constructor(public units: DurationFormatAssetsTime) {}
 
-	for (const [type, timeDuration] of kTimeDurations) {
-		const substraction = duration / timeDuration;
-		if (substraction < 1) continue;
+	public format(duration: number, precision = 7) {
+		const output: string[] = [];
+		const negative = duration < 0;
+		if (negative) duration *= -1;
 
-		const floored = Math.floor(substraction);
-		duration -= floored * timeDuration;
-		output.push(addUnit(floored, assets[type]));
+		for (const [type, timeDuration] of kTimeDurations) {
+			const substraction = duration / timeDuration;
+			if (substraction < 1) continue;
 
-		// If the output has enough precision, break
-		if (output.length >= precision) break;
+			const floored = Math.floor(substraction);
+			duration -= floored * timeDuration;
+			output.push(addUnit(floored, this.units[type]));
+
+			// If the output has enough precision, break
+			if (output.length >= precision) break;
+		}
+
+		return `${negative ? '-' : ''}${output.join(' ') || addUnit(0, this.units.second)}`;
 	}
-
-	return `${negative ? '-' : ''}${output.join(' ') || addUnit(0, assets.SECOND)}`;
-};
+}
 
 /**
  * Adds an unit, if non zero
@@ -56,7 +60,7 @@ export const friendlyDuration = (duration: number, assets: DurationFormatAssetsT
  * @param unit The unit language assets
  */
 function addUnit(time: number, unit: DurationFormatAssetsUnit) {
-	if (time in unit) return `${time} ${unit[time]}`;
+	if (Reflect.has(unit, time)) return `${time} ${Reflect.get(unit, time)}`;
 	return `${time} ${unit.DEFAULT}`;
 }
 

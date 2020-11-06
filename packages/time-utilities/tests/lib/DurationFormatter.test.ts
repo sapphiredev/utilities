@@ -1,15 +1,5 @@
 /* eslint-disable @typescript-eslint/restrict-plus-operands, @typescript-eslint/naming-convention */
-import { friendlyDuration, DurationFormatAssetsTime, TimeTypes } from '../../src';
-
-const enum Time {
-	Millisecond = 1,
-	Second = 1000,
-	Minute = 1000 * 60,
-	Hour = 1000 * 60 * 60,
-	Day = 1000 * 60 * 60 * 24,
-	Month = 1000 * 60 * 60 * 24 * (365 / 12),
-	Year = 1000 * 60 * 60 * 24 * 365
-}
+import { DurationFormatAssetsTime, DurationFormatter, Time, TimeTypes } from '../../src';
 
 const TIMES: DurationFormatAssetsTime = {
 	[TimeTypes.Year]: {
@@ -42,8 +32,10 @@ const TIMES: DurationFormatAssetsTime = {
 	}
 };
 
+const formatter = new DurationFormatter(TIMES);
+
 function durationImpl(time: number, precision?: number) {
-	return friendlyDuration(time, TIMES, precision);
+	return formatter.format(time, precision);
 }
 
 describe('FriendlyDuration', () => {

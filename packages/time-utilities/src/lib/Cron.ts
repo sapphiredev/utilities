@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/restrict-plus-operands */
-import { Time, partRegex, wildcardRegex, allowedNum, predefined, cronTokens, tokensRegex } from './constants';
+import { range } from '@sapphire/utilities';
+import { allowedNum, cronTokens, partRegex, predefined, Time, tokensRegex, wildcardRegex } from './constants';
 
 /**
  * Handles Cron strings and generates dates based on the cron string provided.
@@ -52,7 +53,7 @@ export class Cron {
 	 * @param cron The pattern to normalize
 	 */
 	private static normalize(cron: string): string {
-		if (cron in predefined) return predefined[cron];
+		if (Reflect.has(predefined, cron)) return Reflect.get(predefined, cron);
 		const now = new Date();
 		cron = cron
 			.split(' ')
@@ -79,7 +80,7 @@ export class Cron {
 				})
 			)
 			.join(' ');
-		return cron.replace(tokensRegex, (match) => String(cronTokens[match]));
+		return cron.replace(tokensRegex, (match) => String(Reflect.get(cronTokens, match)));
 	}
 
 	/**
@@ -105,7 +106,7 @@ export class Cron {
 		}
 
 		// eslint-disable-next-line prefer-const
-		const [, wild, minStr, maxStr, step] = partRegex.exec(cronPart) as RegExpExecArray;
+		const [, wild, minStr, maxStr, step] = partRegex.exec(cronPart)!;
 		let [min, max] = [parseInt(minStr, 10), parseInt(maxStr, 10)];
 
 		// If '*', set min and max as the minimum and maximum allowed numbers:
@@ -123,16 +124,6 @@ export class Cron {
 		[min, max] = [min, max || allowedNum[id][1]].sort((a, b) => a - b);
 
 		// Generate a range
-		return Cron.range(min, max, parseInt(step, 10) || 1);
-	}
-
-	/**
-	 * Get an array of numbers with the selected range
-	 * @param min The minimum value
-	 * @param max The maximum value
-	 * @param step The step value
-	 */
-	private static range(min: number, max: number, step: number): number[] {
-		return new Array(Math.floor((max - min) / step) + 1).fill(0).map((_val, i) => min + i * step);
+		return range(min, max, parseInt(step, 10) || 1);
 	}
 }

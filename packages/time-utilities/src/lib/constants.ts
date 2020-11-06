@@ -9,6 +9,7 @@ export const enum Time {
 }
 
 export const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
 export const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
 export const tokens = new Map<string, number>([
@@ -34,7 +35,9 @@ export const tokens = new Map<string, number>([
 ]);
 
 export const partRegex = /^(?:(\*)|(\d+)(?:-(\d+))?)(?:\/(\d+))?$/;
+
 export const wildcardRegex = /\bh\b|\B\?\B/g;
+
 export const allowedNum = [
 	[0, 59],
 	[0, 23],
@@ -42,15 +45,17 @@ export const allowedNum = [
 	[1, 12],
 	[0, 6]
 ];
-export const predefined: Record<string, string> = {
+
+export const predefined = {
 	'@annually': '0 0 1 1 *',
 	'@yearly': '0 0 1 1 *',
 	'@monthly': '0 0 1 * *',
 	'@weekly': '0 0 * * 0',
 	'@daily': '0 0 * * *',
 	'@hourly': '0 * * * *'
-};
-export const cronTokens: Record<string, number> = {
+} as const;
+
+export const cronTokens = {
 	jan: 1,
 	feb: 2,
 	mar: 3,
@@ -70,5 +75,6 @@ export const cronTokens: Record<string, number> = {
 	thu: 4,
 	fri: 5,
 	sat: 6
-};
+} as const;
+
 export const tokensRegex = new RegExp(Object.keys(cronTokens).join('|'), 'g');

@@ -39,6 +39,7 @@ const tokens = new Map([
 	['month', 1000 * 60 * 60 * 24 * (365.25 / 12)],
 	['months', 1000 * 60 * 60 * 24 * (365.25 / 12)],
 	['b', 1000 * 60 * 60 * 24 * (365.25 / 12)],
+	['mo', 1000 * 60 * 60 * 24 * (365.25 / 12)],
 
 	['year', 1000 * 60 * 60 * 24 * 365.25],
 	['years', 1000 * 60 * 60 * 24 * 365.25],
@@ -82,51 +83,17 @@ export class Duration {
 	/**
 	 * The RegExp used for the pattern parsing
 	 */
-	private static regex = /(-?\d*\.?\d+(?:e[-+]?\d+)?)\s*([a-zμ]*)/gi;
+	private static readonly kPatternRegex = /(-?\d*\.?\d+(?:e[-+]?\d+)?)\s*([a-zμ]*)/gi;
 
 	/**
 	 * The RegExp used for removing commas
 	 */
-	private static commas = /,/g;
+	private static readonly kCommaRegex = /,/g;
 
 	/**
 	 * The RegExp used for replacing a/an with 1
 	 */
-	private static aan = /\ban?\b/gi;
-
-	/**
-	 * Shows the user friendly duration of time between a period and now.
-	 * @param earlier The time to compare
-	 * @param showIn Whether the output should be prefixed
-	 */
-	public static toNow(earlier: Date | number | string, showIn = false): string {
-		if (!(earlier instanceof Date)) earlier = new Date(earlier);
-		const returnString = showIn ? 'in ' : '';
-		let duration = Math.abs((Date.now() - earlier.valueOf()) / 1000);
-
-		// Compare the duration in seconds
-		if (duration < 45) return `${returnString}seconds`;
-		else if (duration < 90) return `${returnString}a minute`;
-
-		// Compare the duration in minutes
-		duration /= 60;
-		if (duration < 45) return `${returnString + Math.round(duration)} minutes`;
-		else if (duration < 90) return `${returnString}an hour`;
-
-		// Compare the duration in hours
-		duration /= 60;
-		if (duration < 22) return `${returnString + Math.round(duration)} hours`;
-		else if (duration < 36) return `${returnString}a day`;
-
-		// Compare the duration in days
-		duration /= 24;
-		if (duration < 26) return `${returnString + Math.round(duration)} days`;
-		else if (duration < 46) return `${returnString}a month`;
-		else if (duration < 320) return `${returnString + Math.round(duration / 30)} months`;
-		else if (duration < 548) return `${returnString}a year`;
-
-		return `${returnString + Math.round(duration / 365)} years`;
-	}
+	private static readonly kAanRegex = /\ban?\b/gi;
 
 	/**
 	 * Parse the pattern
@@ -137,12 +104,12 @@ export class Duration {
 
 		pattern
 			// ignore commas
-			.replace(this.commas, '')
+			.replace(Duration.kCommaRegex, '')
 			// a / an = 1
-			.replace(this.aan, '1')
+			.replace(Duration.kAanRegex, '1')
 			// do math
-			.replace(this.regex, (_, i, units) => {
-				units = tokens.get(units) || 0;
+			.replace(Duration.kPatternRegex, (_, i, units) => {
+				units = tokens.get(units) ?? 0;
 				result += Number(i) * units;
 				return '';
 			});
