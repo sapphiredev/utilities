@@ -367,9 +367,4 @@ describe('Timestamp - Display UTC', () => {
 		const localDate = new Date();
 		expect(timestamp.toString()).toBe(`${localDate.getHours()}:${localDate.getMinutes()}`);
 	});
-
-	test("GIVEN arbitrary 'H:m' casted to string THEN returns 'hours:minutes'", () => {
-		const timestamp = new Timestamp('H:m').displayUTC(date);
-		expect(timestamp).toBe(`${date.getHours() - 1}:${date.getMinutes()}`);
-	});
 });
