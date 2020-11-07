@@ -3,7 +3,7 @@ import { Timestamp } from '../../../src';
 // Saturday 9th March 2019, at 0:00:00:000
 const date = new Date(2019, 2, 9, 0, 0, 0, 0);
 
-describe('display-zeroes', () => {
+describe('Timestamp - Display Zeroes', () => {
 	test("GIVEN 'H' THEN returns '0'", () => {
 		const timestamp = new Timestamp('H');
 		const formatted = timestamp.display(date);
