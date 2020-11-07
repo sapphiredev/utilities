@@ -13,5 +13,9 @@ export default async (): Promise<Config.InitialOptions> => ({
 			tsconfig: '<rootDir>/tsconfig.dev.json'
 		}
 	},
-	coveragePathIgnorePatterns: ['<rootDir>/packages/utilities/tests/util/common.ts', '<rootDir>/packages/decorators/tests/mocks']
+	coveragePathIgnorePatterns: [
+		'<rootDir>/packages/utilities/tests/util/common.ts',
+		'<rootDir>/packages/decorators/tests/mocks',
+		'<rootDir>/packages/utilities/dist/index.js'
+	]
 });

@@ -18,6 +18,7 @@ export * from './lib/mergeObjects';
 export * from './lib/noop';
 export * from './lib/objectToTuples';
 export * from './lib/parseUrl';
+export * from './lib/range';
 export * from './lib/regExpEsc';
 export * from './lib/roundNumber';
 export * from './lib/splitText';
