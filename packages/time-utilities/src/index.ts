@@ -3,3 +3,4 @@ export * from './lib/Cron';
 export * from './lib/Duration';
 export * from './lib/DurationFormatter';
 export * from './lib/Timestamp';
+export * from './lib/TimerManager';
