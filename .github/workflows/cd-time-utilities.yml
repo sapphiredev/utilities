@@ -30,7 +30,9 @@ jobs:
             - name: Install Dependencies
               run: yarn --ignore-scripts --frozen-lockfile
             - name: Build Code
-              run: yarn workspace @sapphire/time-utilities build
+              run: |
+                  yarn workspace @sapphire/utilities build
+                  yarn workspace @sapphire/time-utilities build
             - name: Push new code
               if: github.event_name == 'push' && github.ref == 'refs/heads/main'
               run: |
