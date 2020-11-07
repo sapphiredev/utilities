@@ -2,16 +2,16 @@
 
 ![Sapphire Logo](https://cdn.skyra.pw/gh-assets/sapphire.png)
 
-# @sapphire/event-iterator
+# @sapphire/time-utilities
 
-**Turns event emitter events into async iterators.**
+**Time utilities for JavaScript.**
 
 [![GitHub](https://img.shields.io/github/license/sapphire-project/utilities)](https://github.com/sapphire-project/utilities/blob/main/LICENSE.md)
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/sapphire-project/utilities.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/sapphire-project/utilities/alerts/)
 [![Language grade: JavaScript/TypeScript](https://img.shields.io/lgtm/grade/javascript/g/sapphire-project/utilities.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/sapphire-project/utilities/context:javascript)
 [![Coverage Status](https://coveralls.io/repos/github/sapphire-project/utilities/badge.svg?branch=main)](https://coveralls.io/github/sapphire-project/utilities?branch=main)
-[![npm bundle size](https://img.shields.io/bundlephobia/min/@sapphire/event-iterator?logo=webpack&style=flat-square)](https://bundlephobia.com/result?p=@sapphire/event-iterator)
-[![npm](https://img.shields.io/npm/v/@sapphire/event-iterator?color=crimson&logo=npm&style=flat-square)](https://www.npmjs.com/package/@sapphire/event-iterator)
+[![npm bundle size](https://img.shields.io/bundlephobia/min/@sapphire/time-utilities?logo=webpack&style=flat-square)](https://bundlephobia.com/result?p=@sapphire/time-utilities)
+[![npm](https://img.shields.io/npm/v/@sapphire/time-utilities?color=crimson&logo=npm&style=flat-square)](https://www.npmjs.com/package/@sapphire/time-utilities)
 [![Depfu](https://badges.depfu.com/badges/ec42ff3d6bae55eee1de4749960852b3/count.svg)](https://depfu.com/github/sapphire-project/utilities?project_id=15195)
 
 </div>
@@ -29,7 +29,7 @@
 
 ## Description
 
-There is often a need to have async iterators with fine control, timeouts, limits, filter, and so on, this package exists to satisfy those needs. By implementing an [async iterator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/asyncIterator) which can be used with [`for await...of`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for-await...of) loops.
+Working with Time and Duration can be a huge chore in any programming language. There are various time parsing libraries on the NPM registry but we are of the opinion that none of them meet the code quality that we desire to use. For this reason we have decided to make this package.
 
 ## Features
 
@@ -41,41 +41,13 @@ There is often a need to have async iterators with fine control, timeouts, limit
 ## Installation
 
 ```sh
-yarn add @sapphire/event-iterator
-# npm install @sapphire/event-iterator
+yarn add @sapphire/time-utilities
+# npm install @sapphire/time-utilities
 ```
-
-## Usage
-
-**Note:** While this section uses `require`, the imports match 1:1 with ESM imports. For example `const { EventIterator } = require('@sapphire/event-iterator')` equals `import { EventIterator } from '@sapphire/event-iterator'`.
-
-### Basic Usage
-
-```ts
-// Import the EventIterator class
-const { EventIterator } = require('@sapphire/event-iterator');
-
-// Define an event iterator with a limit of 2 entries
-const iterator = new EventIterator(emitter, 'message', { limit: 2 });
-
-emitter.emit('message', { id: 'foo' });
-emitter.emit('message', { id: 'bar' });
-emitter.emit('message', { id: 'baz' });
-
-for await (const message of iterator) {
-	console.log(message);
-	// Logs: { id: 'foo' }
-	// Logs: { id: 'bar' }
-}
-
-// The iterator ended at second item, { id: 'baz' } is not collected due to the specified limit.
-```
-
----
 
 ## API Documentation
 
-For the full API documentation please refer to the TypeDoc generated [documentation](https://sapphire-project.github.io/utilities/modules/_sapphire_event_iterator.html).
+For the full API documentation please refer to the TypeDoc generated [documentation](https://sapphire-project.github.io/utilities/modules/_sapphire_time-utilities.html).
 
 ## Buy us some doughnuts
 
