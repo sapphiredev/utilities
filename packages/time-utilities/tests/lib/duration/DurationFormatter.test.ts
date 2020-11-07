@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/restrict-plus-operands, @typescript-eslint/naming-convention */
-import { DurationFormatAssetsTime, DurationFormatter, Time, TimeTypes } from '../../src';
+import { DurationFormatAssetsTime, DurationFormatter, Time, TimeTypes } from '../../../src';
 
 const TIMES: DurationFormatAssetsTime = {
 	[TimeTypes.Year]: {

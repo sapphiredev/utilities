@@ -3,7 +3,7 @@ import { Timestamp } from '../../../src';
 // Saturday 9th March 2019, at 4:20:35:500
 const date = new Date(2019, 2, 9, 4, 20, 35, 1);
 
-describe('display-morning', () => {
+describe('Timestamp - Display Morning', () => {
 	test("GIVEN 'H' THEN returns '4'", () => {
 		const timestamp = new Timestamp('H');
 		const formatted = timestamp.display(date);

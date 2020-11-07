@@ -1,4 +1,4 @@
-import { Duration } from '../../src';
+import { Duration } from '../../../src';
 
 describe('Duration', () => {
 	test('GIVEN duration with an offset of 1s, THEN shows 1000ms', () => {
