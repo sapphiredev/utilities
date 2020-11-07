@@ -3,17 +3,17 @@
  */
 export class TimerManager extends null {
 	/**
-	 * A collection of timeouts to clear on destroy
+	 * A set of timeouts to clear on destroy
 	 */
-	private static storedTimeouts: Set<NodeJS.Timeout> = new Set();
+	private static storedTimeouts = new Set<NodeJS.Timeout>();
 
 	/**
-	 * A collection of intervals to clear on destroy
+	 * A set of intervals to clear on destroy
 	 */
-	private static storedIntervals: Set<NodeJS.Timeout> = new Set();
+	private static storedIntervals = new Set<NodeJS.Timeout>();
 
 	/**
-	 * Set a timeout that Project Blue can clear when destroyed
+	 * Creates a timeout gets cleared when destroyed
 	 * @param fn callback function
 	 * @param delay amount of time before running the callback
 	 * @param args additional arguments to pass back to the callback
@@ -28,7 +28,7 @@ export class TimerManager extends null {
 	}
 
 	/**
-	 * Clears a timeout set via Project Blue
+	 * Clears a timeout created through this class
 	 * @param timeout The timeout to clear
 	 */
 	public static clearTimeout(timeout: NodeJS.Timeout): void {
@@ -37,7 +37,7 @@ export class TimerManager extends null {
 	}
 
 	/**
-	 * Set an interval that Project Blue can clear when destroyed
+	 * Creates an interval gets cleared when destroyed
 	 * @param fn callback function
 	 * @param delay amount of time before running the callback
 	 * @param args additional arguments to pass back to the callback
@@ -49,7 +49,7 @@ export class TimerManager extends null {
 	}
 
 	/**
-	 * Clears an interval set via Project Blue
+	 * Clears an internal created through this class
 	 * @param interval The interval to clear
 	 */
 	public static clearInterval(interval: NodeJS.Timeout): void {
@@ -58,7 +58,7 @@ export class TimerManager extends null {
 	}
 
 	/**
-	 * Clears running timeouts and intervals created in Project Blue so node can gracefully exit
+	 * Clears running timeouts and intervals created through this class so NodeJS can gracefully exit
 	 */
 	public static destroy(): void {
 		for (const i of this.storedTimeouts) clearTimeout(i);
