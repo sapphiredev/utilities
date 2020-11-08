@@ -3,7 +3,7 @@
 /packages/event-iterator @kyranet
 /packages/ratelimits @kyranet @vladfrangu
 /packages/snowflake @favna @vladfrangu
-/packages/time-utilities @favna @Soumil07
+/packages/time-utilities @favna @Soumil07 @kyranet
 /packages/ts-config @favna
 /packages/type @kyranet
 /packages/utilities @favna @kyranet @vladfrangu
