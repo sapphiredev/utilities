@@ -1,2 +1,9 @@
-/src/ @kyranet @favna
-/tests/ @kyranet @favna
+/packages/decorators @kyranet @favna
+/packages/eslint-config @favna
+/packages/event-iterator @kyranet
+/packages/ratelimits @kyranet @vladfrangu
+/packages/snowflake @favna @vladfrangu
+/packages/time-utilities @favna @Soumil07
+/packages/ts-config @favna
+/packages/type @kyranet
+/packages/utilities @favna @kyranet @vladfrangu
