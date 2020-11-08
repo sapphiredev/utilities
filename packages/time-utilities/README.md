@@ -47,7 +47,7 @@ yarn add @sapphire/time-utilities
 
 ## API Documentation
 
-For the full API documentation please refer to the TypeDoc generated [documentation](https://sapphire-project.github.io/utilities/modules/_sapphire_time-utilities.html).
+For the full API documentation please refer to the TypeDoc generated [documentation](https://sapphire-project.github.io/utilities/modules/_sapphire_time_utilities.html).
 
 ## Buy us some doughnuts
 
