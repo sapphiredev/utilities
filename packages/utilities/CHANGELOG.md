@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1](https://github.com/sapphire-project/utilities/compare/@sapphire/utilities@1.1.0...@sapphire/utilities@1.1.1) (2020-11-15)
+
+### Bug Fixes
+
+-   **utilities:** add alias of isNullish to isNullOrUndefined ([eadf28f](https://github.com/sapphire-project/utilities/commit/eadf28ff024d887d83ade252e4567317593ca529)), closes [#30](https://github.com/sapphire-project/utilities/issues/30)
+-   **utilities:** pass keep_classnames to terser ([9425c82](https://github.com/sapphire-project/utilities/commit/9425c82765b2fda461d08ab1d5ed4a302d327281))
+-   **utilities:** pass keep_fnames to terser ([4b8fde2](https://github.com/sapphire-project/utilities/commit/4b8fde225fc7fb8da26dd51bc1ab97b6d45f6af5))
+
 # [1.1.0](https://github.com/sapphire-project/utilities/compare/@sapphire/utilities@1.0.3...@sapphire/utilities@1.1.0) (2020-11-07)
 
 ### Features

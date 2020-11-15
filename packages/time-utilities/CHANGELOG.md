@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1](https://github.com/sapphire-project/utilities/compare/@sapphire/time-utilities@1.1.0...@sapphire/time-utilities@1.1.1) (2020-11-15)
+
+### Bug Fixes
+
+-   **time-utilities:** pass keep_classnames to terser ([3e50b0d](https://github.com/sapphire-project/utilities/commit/3e50b0dff857d5ea6b2c577b5fe6582b7d4eeea1))
+-   **time-utilities:** pass keep_fnames to terser ([5ff2250](https://github.com/sapphire-project/utilities/commit/5ff22508ffff131d850bc63b12d8cdcd7ebafcb6))
+
 # [1.1.0](https://github.com/sapphire-project/utilities/compare/@sapphire/time-utilities@1.0.1...@sapphire/time-utilities@1.1.0) (2020-11-07)
 
 ### Features

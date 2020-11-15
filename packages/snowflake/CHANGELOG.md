@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/sapphire-project/utilities/compare/@sapphire/snowflake@1.1.0...@sapphire/snowflake@1.2.0) (2020-11-15)
+
+### Bug Fixes
+
+-   **snowflake:** pass keep_classnames to terser ([76ea062](https://github.com/sapphire-project/utilities/commit/76ea062d07000b169d9781f1a199b85ad3db0ba6))
+-   **snowflake:** pass keep_fnames to terser ([b52aa76](https://github.com/sapphire-project/utilities/commit/b52aa764d8b02535496e0ceea3204a37552ce3d1))
+
+### Features
+
+-   added time-utilities package ([#26](https://github.com/sapphire-project/utilities/issues/26)) ([f17a333](https://github.com/sapphire-project/utilities/commit/f17a3339667a452e8745fad7884272176e5d65e8))
+
 # [1.1.0](https://github.com/sapphire-project/utilities/compare/@sapphire/snowflake@1.0.1...@sapphire/snowflake@1.1.0) (2020-11-04)
 
 ### Bug Fixes

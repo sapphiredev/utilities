@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/sapphire-project/utilities/compare/@sapphire/event-iterator@1.0.1...@sapphire/event-iterator@1.1.0) (2020-11-15)
+
+### Bug Fixes
+
+-   **event-iterator:** pass keep_classnames to terser ([d903fe6](https://github.com/sapphire-project/utilities/commit/d903fe60d6ea3705b88e39c3dd9e7d0f60fea8a0))
+-   **event-iterator:** pass keep_fnames to terser ([d1398cd](https://github.com/sapphire-project/utilities/commit/d1398cd7c1f5c0445e141551dc3fe8ba4800cbad))
+
+### Features
+
+-   added time-utilities package ([#26](https://github.com/sapphire-project/utilities/issues/26)) ([f17a333](https://github.com/sapphire-project/utilities/commit/f17a3339667a452e8745fad7884272176e5d65e8))
+
 ## [1.0.1](https://github.com/sapphire-project/utilities/compare/@sapphire/event-iterator@1.0.0...@sapphire/event-iterator@1.0.1) (2020-11-04)
 
 ### Bug Fixes
