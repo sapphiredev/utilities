@@ -7,7 +7,7 @@ export * from './lib/deepClone';
 export * from './lib/inlineCodeBlock';
 export * from './lib/isClass';
 export * from './lib/isFunction';
-export * from './lib/isNullOrUndefined';
+export { isNullOrUndefined as isNullish, isNullOrUndefined } from './lib/isNullOrUndefined';
 export * from './lib/isNumber';
 export * from './lib/isObject';
 export * from './lib/isPrimitive';
