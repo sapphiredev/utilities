@@ -49,7 +49,7 @@
 			}
 		},
 		{
-			"files": ["packages/snowflake/**/*.ts"],
+			"files": ["packages/snowflake/**/*.ts", "packages/**/rollup.config.ts"],
 			"rules": {
 				"@typescript-eslint/naming-convention": 0
 			}
