@@ -39,7 +39,9 @@ export default {
 			// This will ensure that whenever Rollup is in watch (dev) mode, console logs will not be removed
 			// eslint-disable-next-line @typescript-eslint/naming-convention
 			compress: { drop_console: !Reflect.has(process.env, 'ROLLUP_WATCH') },
-			format: { comments: false }
+			format: { comments: false },
+			// eslint-disable-next-line @typescript-eslint/naming-convention
+			keep_classnames: true
 		})
 	]
 };
