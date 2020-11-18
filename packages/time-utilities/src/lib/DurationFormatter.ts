@@ -1,3 +1,5 @@
+import { DEFAULT_UNITS } from './constants';
+
 /**
  * The supported time types
  */
@@ -31,7 +33,7 @@ const kTimeDurations: readonly [TimeTypes, number][] = [
  * @param assets The language assets
  */
 export class DurationFormatter {
-	public constructor(public units: DurationFormatAssetsTime) {}
+	public constructor(public units: DurationFormatAssetsTime = DEFAULT_UNITS) {}
 
 	public format(duration: number, precision = 7) {
 		const output: string[] = [];
