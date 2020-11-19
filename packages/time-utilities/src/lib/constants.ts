@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-import { DurationFormatAssetsTime, TimeTypes } from '..';
+import { DurationFormatAssetsTime, TimeTypes } from './DurationFormatter';
 
 export const enum Time {
 	Millisecond = 1,
