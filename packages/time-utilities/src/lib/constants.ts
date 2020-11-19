@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/naming-convention */
+import { DurationFormatAssetsTime, TimeTypes } from './DurationFormatter';
+
 export const enum Time {
 	Millisecond = 1,
 	Second = 1000,
@@ -78,3 +81,34 @@ export const cronTokens = {
 } as const;
 
 export const tokensRegex = new RegExp(Object.keys(cronTokens).join('|'), 'g');
+
+export const DEFAULT_UNITS: DurationFormatAssetsTime = {
+	[TimeTypes.Year]: {
+		1: 'year',
+		DEFAULT: 'years'
+	},
+	[TimeTypes.Month]: {
+		1: 'month',
+		DEFAULT: 'months'
+	},
+	[TimeTypes.Week]: {
+		1: 'week',
+		DEFAULT: 'weeks'
+	},
+	[TimeTypes.Day]: {
+		1: 'day',
+		DEFAULT: 'days'
+	},
+	[TimeTypes.Hour]: {
+		1: 'hour',
+		DEFAULT: 'hours'
+	},
+	[TimeTypes.Minute]: {
+		1: 'minute',
+		DEFAULT: 'minutes'
+	},
+	[TimeTypes.Second]: {
+		1: 'second',
+		DEFAULT: 'seconds'
+	}
+};
