@@ -1,17 +1,4 @@
-import { DEFAULT_UNITS } from './constants';
-
-/**
- * The supported time types
- */
-export const enum TimeTypes {
-	Second = 'second',
-	Minute = 'minute',
-	Hour = 'hour',
-	Day = 'day',
-	Week = 'week',
-	Month = 'month',
-	Year = 'year'
-}
+import { DEFAULT_UNITS, TimeTypes } from './constants';
 
 /**
  * The duration of each time type in milliseconds

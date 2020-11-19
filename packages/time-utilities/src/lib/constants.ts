@@ -1,5 +1,18 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-import { DurationFormatAssetsTime, TimeTypes } from './DurationFormatter';
+import type { DurationFormatAssetsTime } from './DurationFormatter';
+
+/**
+ * The supported time types
+ */
+export const enum TimeTypes {
+	Second = 'second',
+	Minute = 'minute',
+	Hour = 'hour',
+	Day = 'day',
+	Week = 'week',
+	Month = 'month',
+	Year = 'year'
+}
 
 export const enum Time {
 	Millisecond = 1,
