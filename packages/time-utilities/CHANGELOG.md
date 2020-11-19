@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/sapphire-project/utilities/compare/@sapphire/time-utilities@1.1.1...@sapphire/time-utilities@1.2.0) (2020-11-19)
+
+### Features
+
+-   **time-utilities:** add defaults for DurationFormatter ([#35](https://github.com/sapphire-project/utilities/issues/35)) ([42900d9](https://github.com/sapphire-project/utilities/commit/42900d9fee40ad416a1810675c389e53207cff7f))
+
 ## [1.1.1](https://github.com/sapphire-project/utilities/compare/@sapphire/time-utilities@1.1.0...@sapphire/time-utilities@1.1.1) (2020-11-15)
 
 ### Bug Fixes
