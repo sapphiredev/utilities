@@ -3,6 +3,7 @@ export * from './lib/chunk';
 export * from './lib/classExtends';
 export * from './lib/codeBlock';
 export * from './lib/cutText';
+export * from './lib/debounce';
 export * from './lib/deepClone';
 export * from './lib/inlineCodeBlock';
 export * from './lib/isClass';
