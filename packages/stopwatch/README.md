@@ -29,7 +29,7 @@
 
 ## Description
 
-There is often a need to have async iterators with fine control, timeouts, limits, filter, and so on, this package exists to satisfy those needs. By implementing an [async iterator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/asyncIterator) which can be used with [`for await...of`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for-await...of) loops.
+TBD
 
 ## Features
 
