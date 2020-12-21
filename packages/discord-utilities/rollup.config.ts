@@ -1,6 +1,3 @@
-// import commonjs from '@rollup/plugin-commonjs';
-// import resolve from '@rollup/plugin-node-resolve';
-// import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import { resolve as resolveDir } from 'path';
 import cleaner from 'rollup-plugin-cleaner';
 import { terser } from 'rollup-plugin-terser';
@@ -32,9 +29,6 @@ export default {
 		cleaner({
 			targets: ['./dist/']
 		}),
-		// peerDepsExternal(),
-		// resolve(),
-		// commonjs(),
 		typescript({ tsconfig: resolveDir(__dirname, 'src', 'tsconfig.json') }),
 		terser({
 			ecma: 2019,

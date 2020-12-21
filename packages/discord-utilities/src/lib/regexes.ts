@@ -10,7 +10,7 @@ export const ChannelMentionRegex = /^(?:<#)?(?<id>\d{17,19})>?$/;
  * @raw `/^(?:\w+\.)?(?:discordapp.com|discord.gg|discord.com)$/i`
  * @remark The regex is case insensitive
  */
-export const DiscordHostnameRegex = /^(?:\w+\.)?(?:discordapp\.com|discord\.gg|discord\.com)$/i;
+export const DiscordHostnameRegex = /(?:\w+\.)?(?:(?:discordapp|discord)\.com|discord\.gg)/i;
 
 /**
  * Regex that can can capture the code of Discord invite links
@@ -52,12 +52,12 @@ export const HttpUrlRegex = /^https?:\/\//;
 
 /**
  * Regex that can capture the Guild, Channel, and Message ID based on a shareable Discord message link.
- * @raw `/^(?:https:\/\/)?(?:ptb\.|canary\.)?discord(?:app)?\.com\/channels\/(?<guildId>\d{17,19})\/(?<channelId>\d{17,19})\/(?<messageId>\d{17,19})$/`
+ * @raw `/^(?:https:\/\/)?(?:ptb\.|canary\.)?discord(?:app)?\.com\/channels\/(?<guildId>(?:\d{17,19}|@me))\/(?<channelId>\d{17,19})\/(?<messageId>\d{17,19})$/`
  * @remark Capture group 1 is the ID of the guild the message was sent in. It is named `guildId`.
  * @remark Capture group 2 is the ID of the channel in that guild the message was sent in. It is named `channelId`.
  * @remark Capture group 3 is the ID of the message itself. It is named `messageId`.
  */
-export const MessageLinkRegex = /^(?:https:\/\/)?(?:ptb\.|canary\.)?discord(?:app)?\.com\/channels\/(?<guildId>\d{17,19})\/(?<channelId>\d{17,19})\/(?<messageId>\d{17,19})$/;
+export const MessageLinkRegex = /^(?:https:\/\/)?(?:ptb\.|canary\.)?discord(?:app)?\.com\/channels\/(?<guildId>(?:\d{17,19}|@me))\/(?<channelId>\d{17,19})\/(?<messageId>\d{17,19})$/;
 
 /**
  * Regex that matches any animated or non-animated custom Discord emoji *without the wrapping `<...>` symbols.
