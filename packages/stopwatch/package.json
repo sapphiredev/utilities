@@ -17,7 +17,7 @@
 	"scripts": {
 		"test": "jest",
 		"lint": "eslint src tests --ext ts --fix -c ../../.eslintrc",
-		"build": "tsc -p src",
+		"build": "tsc -p .",
 		"start": "yarn build -w"
 	},
 	"repository": {
