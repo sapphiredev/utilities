@@ -10,8 +10,10 @@
 		"**/rollup.config.ts",
 		"**/jest.config.ts",
 		"packages/decorators/src/index.ts",
+		"packages/discord-utilities/src/index.ts",
 		"packages/ratelimits/src/index.ts",
 		"packages/snowflake/src/index.ts",
+		"packages/time-utilities/src/index.ts",
 		"packages/utilities/src/index.ts"
 	],
 	"mode": "modules",
