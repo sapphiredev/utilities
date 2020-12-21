@@ -28,7 +28,7 @@ describe('Chainables', () => {
 		expect(stopwatch.duration === 0).toBe(true);
 	});
 
-	test('start stopped stopwatch)', async () => {
+	test('starting a previously stopped stopwatch', async () => {
 		const stopwatch = new Stopwatch();
 
 		await sleep(1000);
@@ -43,7 +43,7 @@ describe('Chainables', () => {
 		expect(stopwatch.duration >= 1990 && stopwatch.duration <= 2200).toBe(true);
 	});
 
-	test('stopping(twice)', async () => {
+	test('stopping the same stopwatch twice', async () => {
 		const stopwatch = new Stopwatch();
 
 		await sleep(1000);
