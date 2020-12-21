@@ -28,7 +28,7 @@ describe('Chainables', () => {
 		expect(stopwatch.duration === 0).toBe(true);
 	});
 
-	test('start(stopped stopwatch)', async () => {
+	test('start stopped stopwatch)', async () => {
 		const stopwatch = new Stopwatch();
 
 		await sleep(1000);
