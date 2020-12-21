@@ -1,19 +1,21 @@
 import { Stopwatch } from '../src';
 
-test('stopped', () => {
-	const stopwatch = new Stopwatch().stop();
+describe('Running', () => {
+	test('stopped', () => {
+		const stopwatch = new Stopwatch().stop();
 
-	expect(stopwatch.running).toBe(false);
-});
+		expect(stopwatch.running).toBe(false);
+	});
 
-test('running(constructor)', () => {
-	const stopwatch = new Stopwatch();
+	test('running(constructor)', () => {
+		const stopwatch = new Stopwatch();
 
-	expect(stopwatch.running).toBe(true);
-});
+		expect(stopwatch.running).toBe(true);
+	});
 
-test('running(method)', () => {
-	const stopwatch = new Stopwatch().start();
+	test('running(method)', () => {
+		const stopwatch = new Stopwatch().start();
 
-	expect(stopwatch.running).toBe(true);
+		expect(stopwatch.running).toBe(true);
+	});
 });

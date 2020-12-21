@@ -1,23 +1,22 @@
 {
 	"name": "@sapphire/stopwatch",
-	"version": "1.0.0",
-	"description": "A simple Stopwatch class for JavaScript.",
+	"version": "0.0.0",
+	"description": "Accurately measure passing time.",
 	"author": "@sapphire",
 	"license": "MIT",
 	"main": "dist/index.js",
 	"module": "dist/index.mjs",
-	"browser": "dist/index.umd.js",
-	"unpkg": "dist/index.umd.js",
 	"types": "dist/index.d.ts",
 	"exports": {
 		"import": "./dist/index.mjs",
 		"require": "./dist/index.js"
 	},
-	"homepage": "https://github.com/sapphire-project/utilities/tree/main/packages/stopwatcj",
+	"homepage": "https://github.com/sapphire-project/utilities/tree/main/packages/stopwatch",
 	"scripts": {
 		"test": "jest",
 		"lint": "eslint src tests --ext ts --fix -c ../../.eslintrc",
-		"build": "tsc -p .",
+		"build": "tsc -p src",
+		"postbuild": "gen-esm-wrapper dist/index.js dist/index.mjs",
 		"start": "yarn build -w"
 	},
 	"repository": {
