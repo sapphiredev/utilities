@@ -4,7 +4,7 @@
 
 # @sapphire/stopwatch
 
-**A simple Stopwatch class for timing code**
+**Accurately measure passing time**
 
 [![GitHub](https://img.shields.io/github/license/sapphire-project/utilities)](https://github.com/sapphire-project/utilities/blob/main/LICENSE.md)
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/sapphire-project/utilities.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/sapphire-project/utilities/alerts/)
@@ -29,7 +29,7 @@
 
 ## Description
 
-TBD
+Provides a set of methods and properties that you can use to accurately measure elapsed time.
 
 ## Features
 
