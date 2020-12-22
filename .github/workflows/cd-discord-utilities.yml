@@ -1,18 +1,19 @@
-name: Continuous Delivery - time-utilities
+name: Continuous Delivery - discord-utilities
 
 on:
     push:
         branches:
             - main
         paths:
-            - packages/time-utilities/**
+            - packages/discord-utilities/**
             - .all-contributorsrc
             - LICENSE.md
             - package.json
-            - .github/workflows/cd-time-utilities.yml
+            - .github/workflows/cd-discord-utilities.yml
+
 jobs:
-    BuildTimeUtilities:
-        name: Publish Time Utilities
+    BuildDiscordUtilities:
+        name: Publish Discord Utilities
         runs-on: ubuntu-latest
         if: "!contains(github.event.head_commit.message, '[skip ci]')"
         steps:
@@ -30,9 +31,7 @@ jobs:
             - name: Install Dependencies
               run: yarn --ignore-scripts --frozen-lockfile
             - name: Build Code
-              run: |
-                  yarn workspace @sapphire/utilities build
-                  yarn workspace @sapphire/time-utilities build
+              run: yarn workspace @sapphire/discord-utilities build
             - name: Push new code
               if: github.event_name == 'push' && github.ref == 'refs/heads/main'
               run: |
@@ -47,11 +46,11 @@ jobs:
                     SOURCE_TYPE="tag"
                   fi
 
-                  echo -e "\n# Move to the time-utilities directory"
-                  cd packages/time-utilities
+                  echo -e "\n# Move to the discord-utilities directory"
+                  cd packages/discord-utilities
 
                   echo -e "\n# Checkout the repo in the target branch"
-                  TARGET_BRANCH="build-time-utilities"
+                  TARGET_BRANCH="build-discord-utilities"
                   git clone $REPO out -b $TARGET_BRANCH
 
                   echo -e "\n# Remove any old files in the dist folder"
@@ -69,7 +68,7 @@ jobs:
                   git add --all .
                   git config user.name "${GITHUB_ACTOR}"
                   git config user.email "${GITHUB_EMAIL}"
-                  git commit -m "build: time-utilities build for ${GITHUB_SHA}" || true
+                  git commit -m "build: discord-utilities build for ${GITHUB_SHA}" || true
                   git push origin $TARGET_BRANCH
               env:
                   GITHUB_TOKEN: ${{ secrets.SKYRA_TOKEN }}
