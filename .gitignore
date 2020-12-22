@@ -32,6 +32,7 @@ test_out/
 **/*.tsbuildinfo
 !packages/**/src/**/*.d.ts
 !jest.config.ts
+!.prettierrc.js
 !**/scripts/*.mjs
 
 # Ignore heapsnapshot and log files

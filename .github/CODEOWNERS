@@ -1,8 +1,11 @@
 /packages/decorators @kyranet @favna
+/packages/discord-utilities @favna
 /packages/eslint-config @favna
 /packages/event-iterator @kyranet
+/packages/prettier-config @favna
 /packages/ratelimits @kyranet @vladfrangu
 /packages/snowflake @favna @vladfrangu
+/packages/stopwatch @Soumil07 @kyranet @vladfrangu
 /packages/time-utilities @favna @Soumil07 @kyranet
 /packages/ts-config @favna
 /packages/type @kyranet
