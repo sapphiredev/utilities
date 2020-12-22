@@ -9,10 +9,13 @@ export const ChannelMentionRegex = /^(?:<#)?(?<id>\d{17,19})>?$/;
 
 /**
  * Regex that matches links on the known Discord host names
- * @raw `/^(?:\w+\.)?(?:discordapp.com|discord.gg|discord.com)$/i`
+ * @raw `/(?<prefix>\w+\.)?(?<hostname>dis(?:cord)?(?:app|merch|status)?)\.(?<tld>com|g(?:d|g|ift)|(?:de(?:sign|v))|media|new|store|net)/i`
  * @remark The regex is case insensitive
+ * @remark Capture group 1 is whatever is in the URL *before* the Discord hostname, such as `https://` and subdomains. It is named `prefix`.
+ * @remark Capture group 2 is the hostname for this URL, primarily `discord` but can also be `discordmerch`, `discordstatus`, `dis`, and `discordapp`. It is named `hostname`.
+ * @remark Capture group 3 is the Top-Level Domain *without* `.`. It is named `tld`.
  */
-export const DiscordHostnameRegex = /(?:\w+\.)?(?:(?:discordapp|discord)\.com|discord\.gg)/i;
+export const DiscordHostnameRegex = /(?<prefix>\w+\.)?(?<hostname>dis(?:cord)?(?:app|merch|status)?)\.(?<tld>com|g(?:d|g|ift)|(?:de(?:sign|v))|media|new|store|net)/i;
 
 /**
  * Regex that can can capture the code of Discord invite links
