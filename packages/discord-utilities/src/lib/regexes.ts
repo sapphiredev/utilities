@@ -2,10 +2,10 @@ import twemojiRegex from 'twemoji-parser/dist/lib/regex';
 
 /**
  * Regex that can capture the ID in Discord Channel mentions
- * @raw `/^<#(?<id>\d{17,19})>?$/`
+ * @raw `/^<#(?<id>\d{17,19})>$/`
  * @remark Capture group 1 is the ID of the channel. It is named `id`.
  */
-export const ChannelMentionRegex = /^<#(?<id>\d{17,19})>?$/;
+export const ChannelMentionRegex = /^<#(?<id>\d{17,19})>$/;
 
 /**
  * Regex that matches links on the known Discord host names
@@ -107,10 +107,10 @@ export const TwemojiRegex = twemojiRegex;
 
 /**
  * Regex that can capture the ID of a user in Discord user mentions
- * @raw `/^<@!?(?<id>\d{17,19})>?$/`
+ * @raw `/^<@!?(?<id>\d{17,19})>$/`
  * @remark Capture group 1 is the ID of the user. It is named `id`.
  */
-export const UserOrMemberMentionRegex = /^<@!?(?<id>\d{17,19})>?$/;
+export const UserOrMemberMentionRegex = /^<@!?(?<id>\d{17,19})>$/;
 
 /**
  * Regex that matches any WebSocket URL starting with `ws` or `wss`
