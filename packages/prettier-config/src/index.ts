@@ -8,7 +8,7 @@ import type { PrettierSchema } from './schema';
  * }
  * ```
  */
-export const config: PrettierSchema = {
+export const prettierConfig: PrettierSchema = {
 	$schema: 'http://json.schemastore.org/prettierrc',
 	endOfLine: 'lf',
 	printWidth: 150,
@@ -28,5 +28,5 @@ export const config: PrettierSchema = {
 	]
 };
 
-module.exports = config;
-export default config;
+module.exports = prettierConfig;
+export default prettierConfig;
