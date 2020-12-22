@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1](https://github.com/sapphire-project/utilities/compare/@sapphire/ratelimits@1.1.0...@sapphire/ratelimits@1.1.1) (2020-12-22)
+
+**Note:** Version bump only for package @sapphire/ratelimits
+
 # [1.1.0](https://github.com/sapphire-project/utilities/compare/@sapphire/ratelimits@1.0.1...@sapphire/ratelimits@1.1.0) (2020-11-15)
 
 ### Bug Fixes

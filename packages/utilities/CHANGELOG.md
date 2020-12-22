@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/sapphire-project/utilities/compare/@sapphire/utilities@1.1.1...@sapphire/utilities@1.2.0) (2020-12-22)
+
+### Features
+
+-   **utilities:** add debounce ([#45](https://github.com/sapphire-project/utilities/issues/45)) ([4762ebf](https://github.com/sapphire-project/utilities/commit/4762ebfac1724308330a61d2c8b3d71eadbd24f0))
+
 ## [1.1.1](https://github.com/sapphire-project/utilities/compare/@sapphire/utilities@1.1.0...@sapphire/utilities@1.1.1) (2020-11-15)
 
 ### Bug Fixes
