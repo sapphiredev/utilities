@@ -25,8 +25,8 @@ jobs:
                   key: ${{ runner.os }}-14-${{ hashFiles('**/yarn.lock') }}
             - name: Install Dependencies
               run: yarn --ignore-scripts --frozen-lockfile
-            - name: Build ESLint config
-              run: yarn tsc -b packages/eslint-config
+            - name: Build ESLint and Prettier configs
+              run: yarn tsc -b packages/eslint-config packages/prettier-config
             - name: Run ESLint
               uses: icrawl/action-eslint@v1
               with:
