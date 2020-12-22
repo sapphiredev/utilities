@@ -48,7 +48,7 @@ export const FormattedCustomEmoji = /<a?:\w{2,32}:\d{17,18}>/;
  * @remark Capture group 2 is the name of the emoji as it is typed in a message. It is named `name`.
  * @remark Capture group 2 is the ID of the emoji. It is named `id`.
  */
-export const FormattedCustomEmojiWithGroups = /^(?<animated>a?):(?<name>[^:]+):(?<id>\d{17,21})$/;
+export const FormattedCustomEmojiWithGroups = /^(?<animated>a?):(?<name>[^:]+):(?<id>\d{17,19})$/;
 
 /**
  * Regex that matches any URL starting with `http` or `https`
