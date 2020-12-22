@@ -24,6 +24,13 @@ export const prettierConfig: PrettierSchema = {
 			options: {
 				parser: 'json'
 			}
+		},
+		{
+			files: '*.yml',
+			options: {
+				tabWidth: 2,
+				useTabs: false
+			}
 		}
 	]
 };
