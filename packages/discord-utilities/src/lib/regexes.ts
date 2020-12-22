@@ -2,7 +2,7 @@ import twemojiRegex from 'twemoji-parser/dist/lib/regex';
 
 /**
  * Regex that can capture the ID in Discord Channel mentions
- * @raw `/^(?:<#)?(\d{17,19})>?$/`
+ * @raw `/^<#(?<id>\d{17,19})>?$/`
  * @remark Capture group 1 is the ID of the channel. It is named `id`.
  */
 export const ChannelMentionRegex = /^<#(?<id>\d{17,19})>?$/;
@@ -11,25 +11,27 @@ export const ChannelMentionRegex = /^<#(?<id>\d{17,19})>?$/;
  * Regex that matches links on the known Discord host names
  * @raw `/(?<prefix>\w+\.)?(?<hostname>dis(?:cord)?(?:app|merch|status)?)\.(?<tld>com|g(?:d|g|ift)|(?:de(?:sign|v))|media|new|store|net)/i`
  * @remark The regex is case insensitive
- * @remark Capture group 1 is whatever is in the URL *before* the Discord hostname, such as `https://` and subdomains. It is named `prefix`.
+ * @remark Capture group 1 is the subdomain for this URL. It is named `subdomain`.
  * @remark Capture group 2 is the hostname for this URL, primarily `discord` but can also be `discordmerch`, `discordstatus`, `dis`, and `discordapp`. It is named `hostname`.
  * @remark Capture group 3 is the Top-Level Domain *without* `.`. It is named `tld`.
  */
-export const DiscordHostnameRegex = /(?<prefix>\w+\.)?(?<hostname>dis(?:cord)?(?:app|merch|status)?)\.(?<tld>com|g(?:d|g|ift)|(?:de(?:sign|v))|media|new|store|net)/i;
+export const DiscordHostnameRegex = /(?<subdomain>\w+)\.?(?<hostname>dis(?:cord)?(?:app|merch|status)?)\.(?<tld>com|g(?:d|g|ift)|(?:de(?:sign|v))|media|new|store|net)/i;
 
 /**
  * Regex that can can capture the code of Discord invite links
- * @raw `^(?:https?:\/\/)?(?:www.)?(?:discord\.gg\/|discordapp\.com\/invite\/)?(?<code>[\w\d-]{2,})$`
+ * @raw `/^(?:https?:\/\/)?(?:www\.)?(?:discord\.gg\/|discord(?:app)?\.com\/invite\/)?(?<code>[\w\d-]{2,})$/i`
  * @remark Capture group 1 is the invite URL's unique code. It is named `code`.
  */
 export const DiscordInviteLinkRegex = /^(?:https?:\/\/)?(?:www\.)?(?:discord\.gg\/|discord(?:app)?\.com\/invite\/)?(?<code>[\w\d-]{2,})$/i;
 
 /**
  * Regex that can capture the ID of any animated or non-animated custom Discord emoji
- * @raw `/^(?:<a?:\w{2,32}:)?(\d{17,21})>?$/`
- * @remark Capture group 1 is the ID of the emoji. It is named `id`.
+ * @raw `/^(?:<(?<animated>a)?:(?<name>\w{2,32}):)?(?<id>\d{17,21})>?$/`
+ * @remark Capture group 1 can be used to determine whether the emoji is animated or not. It is named `animated`.
+ * @remark Capture group 2 is the name of the emoji as it is typed in a message. It is named `name`.
+ * @remark Capture group 2 is the ID of the emoji. It is named `id`.
  */
-export const EmojiRegex = /^(?:<a?:\w{2,32}:)?(?<id>\d{17,21})>?$/;
+export const EmojiRegex = /^(?:<(?<animated>a)?:(?<name>\w{2,32}):)?(?<id>\d{17,21})>?$/;
 
 /**
  * Regex that matches any animated or non-animated custom Discord emoji.
@@ -41,12 +43,12 @@ export const FormattedCustomEmoji = /<a?:\w{2,32}:\d{17,18}>/;
 /**
  * Regex that can capture any animated or non-animated custom Discord emoji.
  * Similar to [[FormattedCustomEmoji]] and unlike [[EmojiRegex]] can also be a substring of a larger string.
- * @raw `/^(a?):([^:]+):(\d{17,19})$/`
+ * @raw `/^(?<animated>a?):(?<name>[^:]+):(?<id>\d{17,19})$/`
  * @remark Capture group 1 can be used to determine whether the emoji is animated or not. It is named `animated`.
  * @remark Capture group 2 is the name of the emoji as it is typed in a message. It is named `name`.
  * @remark Capture group 2 is the ID of the emoji. It is named `id`.
  */
-export const FormattedCustomEmojiWithGroups = /^(?<animated>a?):(?<name>[^:]+):(?<id>\d{17,19})$/;
+export const FormattedCustomEmojiWithGroups = /^(?<animated>a?):(?<name>[^:]+):(?<id>\d{17,21})$/;
 
 /**
  * Regex that matches any URL starting with `http` or `https`
@@ -85,14 +87,14 @@ export const ParsedCustomEmojiWithGroups = /^(?<animated>a?):(?<name>[^:]+):(?<i
 
 /**
  * Regex that can capture the ID in Discord Role mentions
- * @raw `/^(?:<@&)?(?<id>\d{17,19})>?$/`
+ * @raw `/^<@&(?<id>\d{17,19})>$/`
  * @remark Capture group 1 is the ID of the role. It is named `id`.
  */
 export const RoleMentionRegex = /^<@&(?<id>\d{17,19})>$/;
 
 /**
  * Regex that can capture any Discord Snowflake ID
- * @raw `/^(?<snowflake>\d{17,19})$/`
+ * @raw `/^(?<id>\d{17,19})$/`
  * @remark Capture group 1 is the Snowflake. It is named `id`.
  */
 export const SnowflakeRegex = /^(?<id>\d{17,19})$/;
@@ -105,7 +107,7 @@ export const TwemojiRegex = twemojiRegex;
 
 /**
  * Regex that can capture the ID of a user in Discord user mentions
- * @raw `^(?:<@!?)?(?<id>\d{17,19})>?$`
+ * @raw `/^<@!?(?<id>\d{17,19})>?$/`
  * @remark Capture group 1 is the ID of the user. It is named `id`.
  */
 export const UserOrMemberMentionRegex = /^<@!?(?<id>\d{17,19})>?$/;
@@ -115,4 +117,4 @@ export const UserOrMemberMentionRegex = /^<@!?(?<id>\d{17,19})>?$/;
  * @raw `/^wss?:\/\//`
  * @remark for regular HTTP URLs see [[HttpUrlRegex]]
  */
-export const WebsocketUrlRegex = /^wss?:\/\//;
+export const WebSocketUrlRegex = /^wss?:\/\//;
