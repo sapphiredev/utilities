@@ -5,7 +5,7 @@ import twemojiRegex from 'twemoji-parser/dist/lib/regex';
  * @raw `/^(?:<#)?(\d{17,19})>?$/`
  * @remark Capture group 1 is the ID of the channel. It is named `id`.
  */
-export const ChannelMentionRegex = /^(?:<#)?(?<id>\d{17,19})>?$/;
+export const ChannelMentionRegex = /^<#(?<id>\d{17,19})>?$/;
 
 /**
  * Regex that matches links on the known Discord host names
@@ -22,7 +22,7 @@ export const DiscordHostnameRegex = /(?<prefix>\w+\.)?(?<hostname>dis(?:cord)?(?
  * @raw `^(?:https?:\/\/)?(?:www.)?(?:discord\.gg\/|discordapp\.com\/invite\/)?(?<code>[\w\d-]{2,})$`
  * @remark Capture group 1 is the invite URL's unique code. It is named `code`.
  */
-export const DiscordInviteLinkRegex = /^(?:https?:\/\/)?(?:www\.)?(?:discord\.gg\/|discordapp\.com\/invite\/)?(?<code>[\w\d-]{2,})$/i;
+export const DiscordInviteLinkRegex = /^(?:https?:\/\/)?(?:www\.)?(?:discord\.gg\/|discord(?:app)?\.com\/invite\/)?(?<code>[\w\d-]{2,})$/i;
 
 /**
  * Regex that can capture the ID of any animated or non-animated custom Discord emoji
@@ -88,14 +88,14 @@ export const ParsedCustomEmojiWithGroups = /^(?<animated>a?):(?<name>[^:]+):(?<i
  * @raw `/^(?:<@&)?(?<id>\d{17,19})>?$/`
  * @remark Capture group 1 is the ID of the role. It is named `id`.
  */
-export const RoleMentionRegex = /^(?:<@&)?(?<id>\d{17,19})>?$/;
+export const RoleMentionRegex = /^<@&(?<id>\d{17,19})>$/;
 
 /**
  * Regex that can capture any Discord Snowflake ID
  * @raw `/^(?<snowflake>\d{17,19})$/`
- * @remark Capture group 1 is the Snowflake. It is named `snowflake`.
+ * @remark Capture group 1 is the Snowflake. It is named `id`.
  */
-export const SnowflakeRegex = /^(?<snowflake>\d{17,19})$/;
+export const SnowflakeRegex = /^(?<id>\d{17,19})$/;
 
 /**
  * Regex that can capture a Twemoji (Twitter Emoji)
@@ -108,7 +108,7 @@ export const TwemojiRegex = twemojiRegex;
  * @raw `^(?:<@!?)?(?<id>\d{17,19})>?$`
  * @remark Capture group 1 is the ID of the user. It is named `id`.
  */
-export const UserOrMemberMentionRegex = /^(?:<@!?)?(?<id>\d{17,19})>?$/;
+export const UserOrMemberMentionRegex = /^<@!?(?<id>\d{17,19})>?$/;
 
 /**
  * Regex that matches any WebSocket URL starting with `ws` or `wss`
