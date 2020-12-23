@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.3](https://github.com/sapphire-project/utilities/compare/@sapphire/prettier-config@1.0.2...@sapphire/prettier-config@1.0.3) (2020-12-23)
+
+### Bug Fixes
+
+-   **discord-utilities:** mention regexes to strictly match their raw formats ([#48](https://github.com/sapphire-project/utilities/issues/48)) ([51c54d1](https://github.com/sapphire-project/utilities/commit/51c54d122f5484aafa58f96e17e75dca635b8b8b))
+
 ## [1.0.2](https://github.com/sapphire-project/utilities/compare/@sapphire/prettier-config@1.0.1...@sapphire/prettier-config@1.0.2) (2020-12-22)
 
 ### Bug Fixes
