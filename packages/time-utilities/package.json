@@ -50,6 +50,6 @@
 		"access": "public"
 	},
 	"dependencies": {
-		"@sapphire/utilities": "^1.2.0"
+		"@sapphire/utilities": "1.x"
 	}
 }
