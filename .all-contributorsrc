@@ -77,6 +77,13 @@
 			"avatar_url": "https://avatars1.githubusercontent.com/u/22531310?v=4",
 			"profile": "https://github.com/Nytelife26",
 			"contributions": ["doc"]
+		},
+		{
+			"login": "Alcremie",
+			"name": "Ivan Lieder",
+			"avatar_url": "https://avatars0.githubusercontent.com/u/54785334?v=4",
+			"profile": "https://github.com/Alcremie",
+			"contributions": ["code", "bug"]
 		}
 	],
 	"contributorsPerLine": 7,
