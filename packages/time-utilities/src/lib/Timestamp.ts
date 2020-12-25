@@ -158,7 +158,7 @@ export class Timestamp {
 	 * @since 1.0.0
 	 * @param time The time to display in utc
 	 */
-	public displayUTC(time: TimeResolvable): string {
+	public displayUTC(time?: TimeResolvable): string {
 		return Timestamp.display(this.template, Timestamp.utc(time));
 	}
 
