@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/sapphire-project/utilities/compare/@sapphire/utilities@1.2.0...@sapphire/utilities@1.3.0) (2020-12-26)
+
+### Features
+
+-   **decorators:** add createFunctionPrecondition, fixed build ([#51](https://github.com/sapphire-project/utilities/issues/51)) ([c87d5db](https://github.com/sapphire-project/utilities/commit/c87d5db8e29bbfcf96a29e34e4e4186426bac304))
+
 # [1.2.0](https://github.com/sapphire-project/utilities/compare/@sapphire/utilities@1.1.1...@sapphire/utilities@1.2.0) (2020-12-22)
 
 ### Features

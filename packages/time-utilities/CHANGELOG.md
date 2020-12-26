@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.2](https://github.com/sapphire-project/utilities/compare/@sapphire/time-utilities@1.2.1...@sapphire/time-utilities@1.2.2) (2020-12-26)
+
+### Bug Fixes
+
+-   **time-utilities:** make displayUTC's time argument optional ([#50](https://github.com/sapphire-project/utilities/issues/50)) ([9fd2349](https://github.com/sapphire-project/utilities/commit/9fd234946f5e1cf040295894f1608fb490623d8e))
+-   **utilities,time-utilities:** set published versions of dependencies in peerDependencies ([adee6fc](https://github.com/sapphire-project/utilities/commit/adee6fcbd1f7d85e5abee2630aeaa3a192e2a29f))
+
 ## [1.2.1](https://github.com/sapphire-project/utilities/compare/@sapphire/time-utilities@1.2.0...@sapphire/time-utilities@1.2.1) (2020-12-22)
 
 **Note:** Version bump only for package @sapphire/time-utilities
