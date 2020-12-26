@@ -1,5 +1,5 @@
 /**
- * The inhibitor interface.
+ * The function precondition interface.
  */
 export interface FunctionPrecondition {
 	/**
@@ -9,7 +9,7 @@ export interface FunctionPrecondition {
 }
 
 /**
- * The fallback interface, this is called when the inhibitor returns or resolves with a falsy value.
+ * The fallback interface, this is called when the function precondition returns or resolves with a falsy value.
  */
 export interface FunctionFallback {
 	/**
@@ -45,36 +45,39 @@ export function createClassDecorator<TFunction extends (...args: any[]) => void>
 }
 
 /**
- * Utility to make function inhibitors.
+ * Utility to make function preconditions.
  *
  * ```ts
- *	// No fallback (returns undefined)
- *	function requiresPermission(value: number) {
- *		return createFunctionInhibitor((message: KlasaMessage) =>
- *			message.hasAtLeastPermissionLevel(value));
- *	}
+ * // No fallback (returns undefined)
+ * function requireGuild(value: number) {
+ *   return createFunctionPrecondition((message: Message) =>
+ *     message.guild !== null
+ *   );
+ * }
  *
- *	// With fallback
- *	function requiresPermission(
- *		value: number,
- *		fallback: () => unknown = () => undefined
- *	) {
- *		return createFunctionInhibitor((message: KlasaMessage) =>
- *			message.hasAtLeastPermissionLevel(value), fallback);
- *	}
+ * // With fallback
+ * function requireGuild(
+ *   value: number,
+ *   fallback: () => unknown = () => undefined
+ * ) {
+ *   return createFunctionPrecondition(
+ *     (message: Message) => message.guild !== null,
+ *     fallback
+ *   );
+ * }
  * ```
  * @since 1.0.0
- * @param inhibitor The function that defines whether or not the function should be run, returning the returned value from fallback
- * @param fallback The fallback value that defines what the method should return in case the inhibitor fails
+ * @param precondition The function that defines whether or not the function should be run, returning the returned value from fallback
+ * @param fallback The fallback value that defines what the method should return in case the precondition fails
  */
-export function createFunctionPrecondition(inhibitor: FunctionPrecondition, fallback: FunctionFallback = (): void => undefined): MethodDecorator {
+export function createFunctionPrecondition(precondition: FunctionPrecondition, fallback: FunctionFallback = (): void => undefined): MethodDecorator {
 	return createMethodDecorator((_target, _propertyKey, descriptor) => {
 		const method = descriptor.value;
-		if (!method) throw new Error('Function inhibitors require a [[value]].');
-		if (typeof method !== 'function') throw new Error('Function inhibitors can only be applied to functions.');
+		if (!method) throw new Error('Function preconditions require a [[value]].');
+		if (typeof method !== 'function') throw new Error('Function preconditions can only be applied to functions.');
 
 		descriptor.value = (async function descriptorValue(this: (...args: any[]) => any, ...args: any[]) {
-			const canRun = await inhibitor(...args);
+			const canRun = await precondition(...args);
 			return canRun ? method.call(this, ...args) : fallback.call(this, ...args);
 		} as unknown) as undefined;
 	});

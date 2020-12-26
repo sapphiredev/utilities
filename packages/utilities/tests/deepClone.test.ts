@@ -27,7 +27,7 @@ describe('deepClone', () => {
 	});
 
 	test('GIVEN Symbol THEN returns same', () => {
-		const source = Symbol('klasa');
+		const source = Symbol('sapphire');
 		expect(deepClone(source)).toBe(source);
 	});
 

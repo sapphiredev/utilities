@@ -4,7 +4,7 @@ import type { Ctor } from '@sapphire/utilities';
 import { createClassDecorator, createMethodDecorator, createProxy } from './utils';
 
 /**
- * Decorator function that applies given options to any Klasa piece
+ * Decorator function that applies given options to any Sapphire piece
  * @example
  * ```ts
  *	ApplyOptions<CommandOptions>({
