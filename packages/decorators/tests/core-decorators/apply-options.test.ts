@@ -1,6 +1,5 @@
 import { Command, CommandOptions, CommandStore } from '@sapphire/framework';
 import { ApplyOptions } from '../../src/core-decorators';
-import { client } from '../mocks/MockInstances';
 
 describe('ApplyOptions', () => {
 	test('GIVEN options object THEN sets options', () => {
@@ -24,7 +23,7 @@ describe('ApplyOptions', () => {
 				name: 'something',
 				path: __filename,
 				extras: {},
-				store: new CommandStore(client)
+				store: new CommandStore()
 			},
 			{ name: 'test' }
 		);
@@ -54,7 +53,7 @@ describe('ApplyOptions', () => {
 			name: 'something',
 			path: __filename,
 			extras: {},
-			store: new CommandStore(client)
+			store: new CommandStore()
 		});
 
 		expect(instance.name).toBe('test');
@@ -64,7 +63,7 @@ describe('ApplyOptions', () => {
 
 	test('GIVEN options as function THEN sets options', () => {
 		@ApplyOptions<CommandOptions>(() => ({
-			name: client.id!,
+			name: '123456789',
 			description: 'test description'
 		}))
 		class TestPiece extends Command {
@@ -83,7 +82,7 @@ describe('ApplyOptions', () => {
 				name: 'something',
 				path: __filename,
 				extras: {},
-				store: new CommandStore(client)
+				store: new CommandStore()
 			},
 			{ name: 'test' }
 		);
