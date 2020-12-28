@@ -4,6 +4,7 @@
 	"name": "Sapphire Utilities",
 	"exclude": [
 		"**/node_modules/**",
+		"**/dist/**",
 		"**/*.test.ts",
 		"packages/**/tests/**",
 		"**/*.js",
