@@ -1580,20 +1580,21 @@
     estree-walker "^1.0.1"
     picomatch "^2.2.2"
 
-"@sapphire/framework@1.0.0-alpha.0":
-  version "1.0.0-alpha.0"
-  resolved "https://registry.yarnpkg.com/@sapphire/framework/-/framework-1.0.0-alpha.0.tgz#4cea3ed3bd19cb9ef3f98be4b0f6122943f78274"
-  integrity sha512-x54Q165V9DnK+iUJNAoPKcaILhOV8aJmXfI6L3vfY9u2wdl5BkcsTOq+yKtyAniK/sGkOwNAF0l6xFq/MBjmdw==
+"@sapphire/framework@1.0.0-alpha.1":
+  version "1.0.0-alpha.1"
+  resolved "https://registry.yarnpkg.com/@sapphire/framework/-/framework-1.0.0-alpha.1.tgz#c6f85860151e0999f700cf58095c7c5efcd3783e"
+  integrity sha512-sI8x51qyxqLwEINeGWwg53/dZsGV63SQfr8aImgwnTfu7doZavrLUrrLSTfkDkk7EVvZLdhczRJLQ/Fs+ZztZw==
   dependencies:
-    "@sapphire/pieces" "^1.0.0"
-    "@sapphire/ratelimits" "^1.1.1"
-    "@sapphire/utilities" "^1.2.0"
+    "@sapphire/discord-utilities" "^1.0.3"
+    "@sapphire/pieces" "^1.0.1"
+    "@sapphire/ratelimits" "^1.1.2"
+    "@sapphire/utilities" "^1.3.0"
     lexure "^0.17.0"
 
-"@sapphire/pieces@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@sapphire/pieces/-/pieces-1.0.0.tgz#b3c775f33f524f07d7275ea250b11a09ad3cc459"
-  integrity sha512-zsdLFLbuUbcT2Qz1HMkbQLbuRsXXFfQmf2U/SLtw7wmwhn+dC9z3/sPzwG2tRBwALNydFCFF3hBrlk2gW9g52w==
+"@sapphire/pieces@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@sapphire/pieces/-/pieces-1.0.1.tgz#eecf8d881379fc8fb7401e36afc590070f81afa2"
+  integrity sha512-/WqpEfDElUk9wZQw87PhrnocRIhKGvcIlTC420Q8LuBsUHZ60qz6AS6APVYib1FxDgFcBNiszdwV22W4IhdaFQ==
   dependencies:
     "@discordjs/collection" "^0.1.6"
 
