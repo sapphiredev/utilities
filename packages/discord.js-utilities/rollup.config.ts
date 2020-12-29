@@ -1,5 +1,3 @@
-import commonjs from '@rollup/plugin-commonjs';
-import resolve from '@rollup/plugin-node-resolve';
 import { resolve as resolveDir } from 'path';
 import cleaner from 'rollup-plugin-cleaner';
 import { terser } from 'rollup-plugin-terser';
@@ -23,16 +21,18 @@ export default {
 		{
 			file: './dist/index.umd.js',
 			format: 'umd',
-			name: 'SapphireUtilities',
-			sourcemap: true
+			name: 'SapphireDiscordJsUtilities',
+			sourcemap: true,
+			globals: {
+				'@sapphire/discord-utilities': 'SapphireDiscordUtilities'
+			}
 		}
 	],
+	external: ['@sapphire/discord-utilities'],
 	plugins: [
 		cleaner({
 			targets: ['./dist/']
 		}),
-		resolve(),
-		commonjs(),
 		typescript({ tsconfig: resolveDir(__dirname, 'src', 'tsconfig.json') }),
 		terser({
 			ecma: 2019,
