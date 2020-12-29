@@ -6,8 +6,6 @@
 	"license": "MIT",
 	"main": "dist/index.js",
 	"module": "dist/index.mjs",
-	"browser": "dist/index.umd.js",
-	"unpkg": "dist/index.umd.js",
 	"types": "dist/index.d.ts",
 	"exports": {
 		"import": "./dist/index.mjs",

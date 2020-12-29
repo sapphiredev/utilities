@@ -17,15 +17,6 @@ export default {
 			format: 'es',
 			exports: 'named',
 			sourcemap: true
-		},
-		{
-			file: './dist/index.umd.js',
-			format: 'umd',
-			name: 'SapphireDiscordJsUtilities',
-			sourcemap: true,
-			globals: {
-				'@sapphire/discord-utilities': 'SapphireDiscordUtilities'
-			}
 		}
 	],
 	external: ['@sapphire/discord-utilities'],
