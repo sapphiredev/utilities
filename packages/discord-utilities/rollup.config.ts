@@ -23,7 +23,7 @@ export default {
 		{
 			file: './dist/index.umd.js',
 			format: 'umd',
-			name: 'SapphireUtilities',
+			name: 'SapphireDiscordUtilities',
 			sourcemap: true
 		}
 	],
