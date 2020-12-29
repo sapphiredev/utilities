@@ -21,7 +21,7 @@
 		"@typescript-eslint/eslint-plugin": "4.x",
 		"@typescript-eslint/parser": "4.x",
 		"eslint": "7.x",
-		"eslint-config-prettier": "6.x",
+		"eslint-config-prettier": "7.x",
 		"eslint-plugin-prettier": "3.x",
 		"prettier": "2.x",
 		"typescript": "3.x || 4.x"
