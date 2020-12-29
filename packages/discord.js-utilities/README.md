@@ -2,23 +2,23 @@
 
 ![Sapphire Logo](https://cdn.skyra.pw/gh-assets/sapphire.png)
 
-# @sapphire/discord-utilities
+# @sapphire/discord.js-utilities
 
-**Discord specific utilities for your JavaScript/TypeScript bots.**
+**Discord.js specific utilities for your JavaScript/TypeScript bots.**
 
 [![GitHub](https://img.shields.io/github/license/sapphire-project/utilities)](https://github.com/sapphire-project/utilities/blob/main/LICENSE.md)
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/sapphire-project/utilities.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/sapphire-project/utilities/alerts/)
 [![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/sapphire-project/utilities.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/sapphire-project/utilities/context:javascript)
 [![Coverage Status](https://coveralls.io/repos/github/sapphire-project/utilities/badge.svg?branch=main)](https://coveralls.io/github/sapphire-project/utilities?branch=main)
-[![npm bundle size](https://img.shields.io/bundlephobia/min/@sapphire/discord-utilities?logo=webpack&style=flat-square)](https://bundlephobia.com/result?p=@sapphire/discord-utilities)
-[![npm](https://img.shields.io/npm/v/@sapphire/discord-utilities?color=crimson&logo=npm&style=flat-square)](https://www.npmjs.com/package/@sapphire/discord-utilities)
+[![npm bundle size](https://img.shields.io/bundlephobia/min/@sapphire/discord.js-utilities?logo=webpack&style=flat-square)](https://bundlephobia.com/result?p=@sapphire/discord.js-utilities)
+[![npm](https://img.shields.io/npm/v/@sapphire/discord.js-utilities?color=crimson&logo=npm&style=flat-square)](https://www.npmjs.com/package/@sapphire/discord.js-utilities)
 [![Depfu](https://badges.depfu.com/badges/ec42ff3d6bae55eee1de4749960852b3/count.svg)](https://depfu.com/github/sapphire-project/utilities?project_id=15195)
 
 </div>
 
 ## Description
 
-When developing Discord bots or frameworks for Discord bots we often run into certain constants such as regex's, channel type resolutions and other common functions that would be really nice to get from 1 centralized place. That's where @sapphire/discord-utilities come in. This package provides common Discord specific utilities for your Discord bots.
+When developing Discord bots or frameworks for Discord bots we often run into certain constants such as regex's, channel type resolutions and other common functions that would be really nice to get from 1 centralized place. That's where @sapphire/discord.js-utilities come in. This package provides common Discord specific utilities for your Discord bots.
 
 ## Features
 
@@ -30,7 +30,7 @@ When developing Discord bots or frameworks for Discord bots we often run into ce
 ## Installation
 
 ```sh
-yarn add @sapphire/discord-utilities
+yarn add @sapphire/discord.js-utilities
 ```
 
 ---
