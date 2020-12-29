@@ -1,4 +1,4 @@
-import type { APIMessage, User, TextChannel, NewsChannel, Message, MessageReaction, ReactionCollector } from "discord.js";
+import type { APIMessage, User, TextChannel, NewsChannel, Message, MessageReaction, ReactionCollector } from 'discord.js';
 
 export class PaginatedMessage {
 	public pages: MessagePage[];
@@ -13,7 +13,7 @@ export class PaginatedMessage {
 	public constructor({ pages, actions = PaginatedMessage.defaultActions }: PaginatedMessageOptions = {}) {
 		this.pages = pages ?? [];
 
-		for (const page of this.pages) this.messages.push(typeof page === "function" ? null : page);
+		for (const page of this.pages) this.messages.push(typeof page === 'function' ? null : page);
 		for (const action of actions) this.actions.set(action.id, action);
 	}
 
@@ -60,8 +60,8 @@ export class PaginatedMessage {
 	public async run(author: User, channel: TextChannel | NewsChannel) {
 		await this.resolvePagesOnRun();
 
-		if (!this.messages.length) throw "There are no messages.";
-		if (!this.actions.size) throw "There are no actions.";
+		if (!this.messages.length) throw 'There are no messages.';
+		if (!this.actions.size) throw 'There are no actions.';
 
 		const firstPage = this.messages[this.index]!;
 
@@ -75,7 +75,7 @@ export class PaginatedMessage {
 					(this.actions.has(reaction.emoji.identifier) || this.actions.has(reaction.emoji.name)) && user.id === author.id,
 				{ idle: this.idle }
 			)
-			.on("collect", async (reaction, user) => {
+			.on('collect', async (reaction, user) => {
 				await reaction.users.remove(user);
 
 				const action = (this.actions.get(reaction.emoji.identifier) ?? this.actions.get(reaction.emoji.name))!;
@@ -92,7 +92,7 @@ export class PaginatedMessage {
 
 				await response.edit(page!);
 			})
-			.on("end", async () => await response.reactions.removeAll());
+			.on('end', () => response.reactions.removeAll());
 
 		return this;
 	}
@@ -116,9 +116,9 @@ export class PaginatedMessage {
 
 	public static defaultActions: IPaginatedMessageAction[] = [
 		{
-			id: "🔢",
+			id: '🔢',
 			run: async ({ handler, author, channel }) => {
-				const questionMessage = await channel.send("What would you like to jump to?");
+				const questionMessage = await channel.send('What would you like to jump to?');
 				const collected = await channel
 					.awaitMessages((message: Message) => message.author.id === author.id, { max: 1, idle: 15 * 1000 })
 					.catch(() => null);
@@ -138,27 +138,27 @@ export class PaginatedMessage {
 			}
 		},
 		{
-			id: "⏪",
+			id: '⏪',
 			run: ({ handler }) => (handler.index = 0)
 		},
 		{
-			id: "◀️",
+			id: '◀️',
 			run: ({ handler }) => {
 				if (handler.index !== 0) --handler.index;
 			}
 		},
 		{
-			id: "▶️",
+			id: '▶️',
 			run: ({ handler }) => {
 				if (handler.index !== handler.pages.length - 1) ++handler.index;
 			}
 		},
 		{
-			id: "⏩",
+			id: '⏩',
 			run: ({ handler }) => (handler.index = handler.pages.length - 1)
 		},
 		{
-			id: "⏹️",
+			id: '⏹️',
 			run: async ({ response, collector }) => {
 				await response!.reactions.removeAll();
 				collector!.stop();

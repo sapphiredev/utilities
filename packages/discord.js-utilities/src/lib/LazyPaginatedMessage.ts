@@ -1,4 +1,4 @@
-import { PaginatedMessage } from "./PaginatedMessage";
+import { PaginatedMessage } from './PaginatedMessage';
 
 export class LazyPaginatedMessage extends PaginatedMessage {
 	public async resolvePagesOnStart() {
