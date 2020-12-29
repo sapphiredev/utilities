@@ -60,8 +60,8 @@ export class PaginatedMessage {
 	public async run(author: User, channel: TextChannel | NewsChannel) {
 		await this.resolvePagesOnRun();
 
-		if (!this.messages.length) throw 'There are no messages.';
-		if (!this.actions.size) throw 'There are no actions.';
+		if (!this.messages.length) throw new Error('There are no messages.');
+		if (!this.actions.size) throw new Error('There are no messages.');
 
 		const firstPage = this.messages[this.index]!;
 
