@@ -18,7 +18,7 @@
 
 ## Description
 
-There many functions that are always extremely useful to have when developing bots with [Discord.JS]. Such as channel type guards, paged messages and more. For this purpose we provide @sapphire/discord.js-utilities. This is also an extension of sorts on our package [@sapphire/discord-utilities], which is agnostic to the API library you're using for your bot. That is to say, @sapphire/discord.js-utilities re-exports all functions from [@sapphire/discord-utilities]
+There many functions that are always extremely useful to have when developing bots with [Discord.js]. Such as channel type guards, paged messages and more. For this purpose we provide @sapphire/discord.js-utilities. This is also an extension of sorts on our package [@sapphire/discord-utilities], which is agnostic to the API library you're using for your bot. That is to say, @sapphire/discord.js-utilities re-exports all functions from [@sapphire/discord-utilities]
 
 ## Features
 
