@@ -118,7 +118,7 @@ export class PaginatedMessage {
 		{
 			id: '🔢',
 			run: async ({ handler, author, channel }) => {
-				const questionMessage = await channel.send('What would you like to jump to?');
+				const questionMessage = await channel.send('What page would you like to jump to?');
 				const collected = await channel
 					.awaitMessages((message: Message) => message.author.id === author.id, { max: 1, idle: 15 * 1000 })
 					.catch(() => null);
