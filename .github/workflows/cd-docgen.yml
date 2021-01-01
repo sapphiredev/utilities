@@ -30,8 +30,8 @@ jobs:
           key: ${{ runner.os }}-14-${{ hashFiles('**/yarn.lock') }}
       - name: Install Dependencies
         run: yarn --ignore-scripts --frozen-lockfile
-      - name: Build Utilities
-        run: yarn workspace @sapphire/utilities build
+      - name: Build Dependencies
+        run: yarn lerna run build --parallel --scope=@sapphire/utilities --scope=@sapphire/discord-utilities
       - name: Build documentation
         run: yarn docs
       - name: Publish Docs
