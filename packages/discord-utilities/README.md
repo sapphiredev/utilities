@@ -20,12 +20,15 @@
 
 When developing Discord bots or frameworks for Discord bots we often run into certain constants such as regex's, channel type resolutions and other common functions that would be really nice to get from 1 centralized place. That's where @sapphire/discord-utilities come in. This package provides common Discord specific utilities for your Discord bots.
 
+**Important**: If you're looking for [Discord.js] specific utilities then install [@sapphire/discord.js-utilities] instead. [@sapphire/discord.js-utilities] re-exports this package at the root level and peer-depends on this package.
+
 ## Features
 
 -   Written in TypeScript
 -   Bundled with Rollup so it can be used in NodeJS and browsers
 -   Offers CommonJS, ESM and UMD bundles
 -   Fully tested
+-   Discord library agnostic
 
 ## Installation
 
@@ -82,3 +85,6 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
+
+[@sapphire/discord.js-utilities]: https://www.npmjs.com/package/@sapphire/discord.js-utilities
+[discord.js]: https://discord.js.org

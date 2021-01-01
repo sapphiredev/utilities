@@ -30,7 +30,7 @@ There many functions that are always extremely useful to have when developing bo
 ## Installation
 
 ```sh
-yarn add @sapphire/discord.js-utilities
+yarn add @sapphire/discord-utilities @sapphire/discord.js-utilities
 ```
 
 ---
@@ -81,3 +81,6 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
+
+[@sapphire/discord-utilities]: https://www.npmjs.com/package/@sapphire/discord-utilities
+[discord.js]: https://discord.js.org
