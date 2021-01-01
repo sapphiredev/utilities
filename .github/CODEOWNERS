@@ -1,5 +1,6 @@
 /packages/decorators @kyranet @favna
 /packages/discord-utilities @favna
+packages/discord.js-utilities/src/lib/*PaginatedMessage* @kyranet @realshadownova
 /packages/eslint-config @favna
 /packages/event-iterator @kyranet
 /packages/prettier-config @favna
