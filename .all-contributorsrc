@@ -84,6 +84,13 @@
 			"avatar_url": "https://avatars0.githubusercontent.com/u/54785334?v=4",
 			"profile": "https://github.com/Alcremie",
 			"contributions": ["code", "bug"]
+		},
+		{
+			"login": "RealShadowNova",
+			"name": "Hezekiah Hendry",
+			"avatar_url": "https://avatars3.githubusercontent.com/u/46537907?v=4",
+			"profile": "https://github.com/RealShadowNova",
+			"contributions": ["code"]
 		}
 	],
 	"contributorsPerLine": 7,
