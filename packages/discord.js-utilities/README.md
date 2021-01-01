@@ -23,9 +23,8 @@ There many functions that are always extremely useful to have when developing bo
 ## Features
 
 -   Written in TypeScript
--   Bundled with Rollup so it can be used in NodeJS and browsers
--   Offers CommonJS, ESM and UMD bundles
--   Fully tested
+-   Bundled with Rollup to provide size-optimal bundles
+-   Offers CommonJS and ESM bundles
 
 ## Installation
 
@@ -37,7 +36,7 @@ yarn add @sapphire/discord-utilities @sapphire/discord.js-utilities
 
 ## API Documentation
 
-For the full API documentation please refer to the TypeDoc generated [documentation](https://sapphire-project.github.io/utilities/modules/_sapphire_discord_utilities.html).
+For the full API documentation please refer to the TypeDoc generated [documentation](https://sapphire-project.github.io/utilities/modules/_sapphire_discord_js_utilities.html).
 
 ## Buy us some doughnuts
 
