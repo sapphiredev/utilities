@@ -56,7 +56,7 @@ export class PaginatedMessage {
 
 	public addPage(page: MessagePage) {
 		this.pages.push(page);
-		this.messages.push(typeof page === "function" ? null : page);
+		this.messages.push(typeof page === 'function' ? null : page);
 		return this;
 	}
 
