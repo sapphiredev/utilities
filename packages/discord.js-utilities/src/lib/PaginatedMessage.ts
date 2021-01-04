@@ -43,17 +43,20 @@ export class PaginatedMessage {
 	}
 
 	public setPages(pages: MessagePage[]) {
-		this.pages = pages;
+		this.pages = [];
+		this.messages = [];
+		this.addPages(pages);
 		return this;
 	}
 
 	public addPages(pages: MessagePage[]) {
-		this.pages.push(...pages);
+		for (const page of pages) this.addPage(page);
 		return this;
 	}
 
 	public addPage(page: MessagePage) {
 		this.pages.push(page);
+		this.messages.push(typeof page === 'function' ? null : page);
 		return this;
 	}
 
