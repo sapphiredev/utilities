@@ -23,7 +23,7 @@
 		"@sapphire/utilities": "1.x",
 		"@types/ws": ">=7",
 		"discord.js": "12.x",
-		"typescript": "3.x || 4.x"
+		"typescript": "4.x"
 	},
 	"repository": {
 		"type": "git",
