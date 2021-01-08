@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.1](https://github.com/sapphire-project/utilities/compare/@sapphire/discord.js-utilities@1.0.0...@sapphire/discord.js-utilities@1.0.1) (2021-01-08)
+
+### Bug Fixes
+
+-   **djs:** modifying pages and messages outside of constructor ([#55](https://github.com/sapphire-project/utilities/issues/55)) ([6e22cae](https://github.com/sapphire-project/utilities/commit/6e22cae7cc6d12242742b399ca584989931550ef))
+
 # 1.0.0 (2021-01-01)
 
 ### Bug Fixes

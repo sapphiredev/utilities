@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/sapphire-project/utilities/compare/@sapphire/eslint-config@1.1.2...@sapphire/eslint-config@2.0.0) (2021-01-08)
+
+### Features
+
+-   **{ts,eslint}-config,decorators:** remove TypeScript v3 from peer dependencies ([a211f0b](https://github.com/sapphire-project/utilities/commit/a211f0b1d07c634cf80701a6685537c14e35586e))
+
+### BREAKING CHANGES
+
+-   **{ts,eslint}-config,decorators:** TypeScript v3 removed from peer dependencies, it may still work, however we
+    strongly recommend updating.
+
 ## [1.1.2](https://github.com/sapphire-project/utilities/compare/@sapphire/eslint-config@1.1.1...@sapphire/eslint-config@1.1.2) (2021-01-01)
 
 ### Bug Fixes
