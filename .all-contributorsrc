@@ -5,6 +5,7 @@
 	"repoHost": "https://github.com",
 	"files": [
 		"README.md",
+		"packages/async-queue/README.md",
 		"packages/decorators/README.md",
 		"packages/discord-utilities/README.md",
 		"packages/eslint-config/README.md",
