@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1](https://github.com/sapphire-project/utilities/compare/@sapphire/decorators@2.0.0...@sapphire/decorators@2.0.1) (2021-01-09)
+
+### Bug Fixes
+
+-   **decorators:** assign proper homepage url in package ([495fffc](https://github.com/sapphire-project/utilities/commit/495fffc3424335bd481ba684c29b2193194f2545))
+
 # [2.0.0](https://github.com/sapphire-project/utilities/compare/@sapphire/decorators@1.2.1...@sapphire/decorators@2.0.0) (2021-01-08)
 
 ### Features
