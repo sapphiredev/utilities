@@ -42,7 +42,6 @@ export class AsyncQueue {
 		});
 
 		this.promises.push({
-			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 			resolve: resolve!,
 			promise
 		});
