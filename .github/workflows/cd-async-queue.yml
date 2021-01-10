@@ -1,19 +1,19 @@
-name: Continuous Delivery - decorators
+name: Continuous Delivery - async-queue
 
 on:
   push:
     branches:
       - main
     paths:
-      - packages/decorators/**
+      - packages/async-queue/**
       - .all-contributorsrc
       - LICENSE.md
       - package.json
-      - .github/workflows/cd-decorators.yml
+      - .github/workflows/cd-async-queue.yml
 
 jobs:
-  BuildDecorators:
-    name: Publish Decorators
+  BuildAsyncQueue:
+    name: Publish Async Queue
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, '[skip ci]')"
     steps:
@@ -30,10 +30,8 @@ jobs:
           key: ${{ runner.os }}-14-${{ hashFiles('**/yarn.lock') }}
       - name: Install Dependencies
         run: yarn --ignore-scripts --frozen-lockfile
-      - name: Build Utilities
-        run: yarn workspace @sapphire/utilities build
       - name: Build Code
-        run: yarn workspace @sapphire/decorators build
+        run: yarn workspace @sapphire/async-queue build
       - name: Push new code
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
@@ -48,11 +46,11 @@ jobs:
             SOURCE_TYPE="tag"
           fi
 
-          echo -e "\n# Move to the decorators directory"
-          cd packages/decorators
+          echo -e "\n# Move to the async-queue directory"
+          cd packages/async-queue
 
           echo -e "\n# Checkout the repo in the target branch"
-          TARGET_BRANCH="build-decorators"
+          TARGET_BRANCH="build-async-queue"
           git clone $REPO out -b $TARGET_BRANCH
 
           echo -e "\n# Remove any old files in the dist folder"
@@ -74,7 +72,7 @@ jobs:
           git add --all .
           git config user.name "${GITHUB_ACTOR}"
           git config user.email "${GITHUB_EMAIL}"
-          git commit -m "build: decorators build for ${GITHUB_SHA}" || true
+          git commit -m "build: async-queue build for ${GITHUB_SHA}" || true
           git push origin $TARGET_BRANCH
         env:
           GITHUB_TOKEN: ${{ secrets.SKYRA_TOKEN }}
