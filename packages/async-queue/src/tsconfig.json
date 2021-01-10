@@ -1,0 +1,11 @@
+{
+	"extends": "../tsconfig.json",
+	"compilerOptions": {
+		"target": "ES2020",
+		"rootDir": "./",
+		"outDir": "../dist",
+		"tsBuildInfoFile": "../dist/.tsbuildinfo",
+		"composite": true
+	},
+	"include": ["."]
+}

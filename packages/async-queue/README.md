@@ -2,44 +2,49 @@
 
 ![Sapphire Logo](https://cdn.skyra.pw/gh-assets/sapphire.png)
 
-# Sapphire Utilities
+# @sapphire/async-queue
 
-**Common NodeJS packages for Sapphire Repositories and others.**
+**Sequential asynchronous lock-based queue for promises.**
 
 [![GitHub](https://img.shields.io/github/license/sapphire-project/utilities)](https://github.com/sapphire-project/utilities/blob/main/LICENSE.md)
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/sapphire-project/utilities.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/sapphire-project/utilities/alerts/)
-[![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/sapphire-project/utilities.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/sapphire-project/utilities/context:javascript)
+[![Language grade: JavaScript/TypeScript](https://img.shields.io/lgtm/grade/javascript/g/sapphire-project/utilities.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/sapphire-project/utilities/context:javascript)
 [![Coverage Status](https://coveralls.io/repos/github/sapphire-project/utilities/badge.svg?branch=main)](https://coveralls.io/github/sapphire-project/utilities?branch=main)
+[![npm bundle size](https://img.shields.io/bundlephobia/min/@sapphire/async-queue?logo=webpack&style=flat-square)](https://bundlephobia.com/result?p=@sapphire/async-queue)
+[![npm](https://img.shields.io/npm/v/@sapphire/async-queue?color=crimson&logo=npm&style=flat-square)](https://www.npmjs.com/package/@sapphire/async-queue)
 [![Depfu](https://badges.depfu.com/badges/ec42ff3d6bae55eee1de4749960852b3/count.svg)](https://depfu.com/github/sapphire-project/utilities?project_id=15195)
-
-**Packages**
-
-[![npm](https://img.shields.io/npm/v/@sapphire/async-queue?color=crimson&logo=npm&style=flat-square&label=@sapphire/async-queue)](https://www.npmjs.com/package/@sapphire/async-queue)
-[![npm](https://img.shields.io/npm/v/@sapphire/decorators?color=crimson&logo=npm&style=flat-square&label=@sapphire/decorators)](https://www.npmjs.com/package/@sapphire/decorators)
-[![npm](https://img.shields.io/npm/v/@sapphire/discord-utilities?color=crimson&logo=npm&style=flat-square&label=@sapphire/discord-utilities)](https://www.npmjs.com/package/@sapphire/discord-utilities)
-[![npm](https://img.shields.io/npm/v/@sapphire/discord.js-utilities?color=crimson&logo=npm&style=flat-square&label=@sapphire/discord.js-utilities)](https://www.npmjs.com/package/@sapphire/discord.js-utilities)
-[![npm](https://img.shields.io/npm/v/@sapphire/eslint-config?color=crimson&logo=npm&style=flat-square&label=@sapphire/eslint-config)](https://www.npmjs.com/package/@sapphire/eslint-config)
-[![npm](https://img.shields.io/npm/v/@sapphire/event-iterator?color=crimson&logo=npm&style=flat-square&label=@sapphire/event-iterator)](https://www.npmjs.com/package/@sapphire/event-iterator)
-[![npm](https://img.shields.io/npm/v/@sapphire/prettier-config?color=crimson&logo=npm&style=flat-square&label=@sapphire/prettier-config)](https://www.npmjs.com/package/@sapphire/prettier-config)
-[![npm](https://img.shields.io/npm/v/@sapphire/ratelimits?color=crimson&logo=npm&style=flat-square&label=@sapphire/ratelimits)](https://www.npmjs.com/package/@sapphire/ratelimits)
-[![npm](https://img.shields.io/npm/v/@sapphire/ratelimits?color=crimson&logo=npm&style=flat-square&label=@sapphire/stopwatch)](https://www.npmjs.com/package/@sapphire/stopwatch)
-[![npm](https://img.shields.io/npm/v/@sapphire/snowflake?color=crimson&logo=npm&style=flat-square&label=@sapphire/snowflake)](https://www.npmjs.com/package/@sapphire/snowflake)
-[![npm](https://img.shields.io/npm/v/@sapphire/time-utilities?color=crimson&logo=npm&style=flat-square&label=@sapphire/time-utilities)](https://www.npmjs.com/package/@sapphire/time-utilities)
-[![npm](https://img.shields.io/npm/v/@sapphire/ts-config?color=crimson&logo=npm&style=flat-square&label=@sapphire/ts-config)](https://www.npmjs.com/package/@sapphire/ts-config)
-[![npm](https://img.shields.io/npm/v/@sapphire/type?color=crimson&logo=npm&style=flat-square&label=@sapphire/type)](https://www.npmjs.com/package/@sapphire/type)
-[![npm](https://img.shields.io/npm/v/@sapphire/utilities?color=crimson&logo=npm&style=flat-square&label=@sapphire/utilities)](https://www.npmjs.com/package/@sapphire/utilities)
 
 </div>
 
+## Description
+
+Ever needed a queue for a set of promises? This is the package for you.
+
+## Features
+
+-   Written in TypeScript
+-   Bundled with Rollup so it can be used in NodeJS and browsers
+-   Offers CommonJS, ESM and UMD bundles
+-   Fully tested
+
+## Installation
+
+```sh
+yarn add @sapphire/async-queue
+# npm install @sapphire/async-queue
+```
+
+---
+
 ## API Documentation
 
-For the full API documentation please refer to the TypeDoc generated [documentation](https://sapphire-project.github.io/utilities/).
+For the full API documentation please refer to the TypeDoc generated [documentation](https://sapphire-project.github.io/utilities/modules/_sapphire_async_queue.html).
 
 ## Buy us some doughnuts
 
 Sapphire Project is and always will be open source, even if we don't get donations. That being said, we know there are amazing people who may still want to donate just to show their appreciation. Thank you very much in advance!
 
-We accept donations through Open Collective, Ko-fi, Paypal, Patreon and GitHub Sponsorships. You can use the buttons below to donate through your method of choice.
+We accept donations through Open Collective, Ko-fi, PayPal, Patreon and GitHub Sponsorships. You can use the buttons below to donate through your method of choice.
 
 |   Donate With   |                                             Address                                              |
 | :-------------: | :----------------------------------------------------------------------------------------------: |
