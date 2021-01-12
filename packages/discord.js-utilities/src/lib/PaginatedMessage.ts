@@ -93,7 +93,7 @@ export class PaginatedMessage {
 
 				const page = await this.resolvePage();
 
-				await response.edit(page!);
+				if (!action.disabledResponseEdit) await response.edit(page!);
 			})
 			.on('end', () => response.reactions.removeAll());
 
@@ -135,7 +135,7 @@ export class PaginatedMessage {
 
 						const i = Number(responseMessage.content) - 1;
 
-						if (!Number.isNaN(i) && handler.pages[i]) handler.index = i;
+						if (!isNaN(i) && handler.pages[i]) handler.index = i;
 					}
 				}
 			}
@@ -162,6 +162,7 @@ export class PaginatedMessage {
 		},
 		{
 			id: '⏹️',
+			disabledResponseEdit: true,
 			run: async ({ response, collector }) => {
 				await response!.reactions.removeAll();
 				collector!.stop();
@@ -172,6 +173,7 @@ export class PaginatedMessage {
 
 export interface IPaginatedMessageAction {
 	id: string;
+	disabledResponseEdit?: boolean;
 	run(context: PaginatedMessageActionContext): Awaited<unknown>;
 }
 
