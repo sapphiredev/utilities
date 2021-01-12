@@ -179,6 +179,7 @@ export class PaginatedMessage {
 				await reaction.users.remove(user);
 
 				const action = (this.actions.get(reaction.emoji.identifier) ?? this.actions.get(reaction.emoji.name))!;
+				const previousIndex = this.index;
 
 				await action.run({
 					handler: this,
@@ -188,9 +189,11 @@ export class PaginatedMessage {
 					collector
 				});
 
-				const page = await this.resolvePage();
+				if (previousIndex !== this.index) {
+					const page = await this.resolvePage();
 
-				if (!action.disabledResponseEdit) await response.edit(page!);
+					await response.edit(page!);
+				}
 			})
 			.on('end', () => response.reactions.removeAll());
 
@@ -272,7 +275,6 @@ export class PaginatedMessage {
 		},
 		{
 			id: '⏹️',
-			disabledResponseEdit: true,
 			run: async ({ response, collector }) => {
 				await response!.reactions.removeAll();
 				collector!.stop();
@@ -307,7 +309,6 @@ export class PaginatedMessage {
  */
 export interface IPaginatedMessageAction {
 	id: string;
-	disabledResponseEdit?: boolean;
 	run(context: PaginatedMessageActionContext): Awaited<unknown>;
 }
 
