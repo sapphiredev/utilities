@@ -1,4 +1,4 @@
-import { PaginatedMessage } from './PaginatedMessage.js';
+import { PaginatedMessage } from './PaginatedMessage';
 
 /**
  * This is a LazyPaginatedMessage. Instead of resolving all pages that are functions on [[PaginatedMessage.run]] will resolve when requested.
