@@ -1,23 +1,23 @@
 import type { APIMessage, User, TextChannel, NewsChannel, Message, MessageReaction, ReactionCollector } from 'discord.js';
 
 /**
- * This is a PaginatedMessage, a very powerful tool to paginate messages (usually embeds).
- * The developer must either use this class directly or extend it.
+ * This is a [[PaginatedMessage]], a utility to paginate messages (usually embeds).
+ * You must either use this class directly or extend it.
  *
- * PaginatedMessage uses actions, these are essentially reaction emojis, when triggered run the said action.
- * The developer can utilize their own actions or can use the [[PaginatedMessage.defaultActions]].
+ * [[PaginatedMessage]] uses actions, these are essentially reaction emojis, when triggered run the said action.
+ * You can utilize your own actions, or you can use the [[PaginatedMessage.defaultActions]].
  * [[PaginatedMessage.defaultActions]] is also static so you can modify these directly.
  *
- * PaginatedMessage also uses pages, these are simply an {@link https://discord.js.org/#/docs/main/stable/class/APIMessage APIMessage}.
+ * [[PaginatedMessage]] also uses pages, these are simply {@link https://discord.js.org/#/docs/main/stable/class/APIMessage APIMessages}.
  *
  * @example
  * ```typescript
  * const handler = new PaginatedMessage();
- * ````
+ * ```
  *
  * @example
  * ```typescript
- * // To utilize actions you can use the [[IPaginatedMessageAction]] by implementing it into a class.
+ * // To utilize actions you can use the IPaginatedMessageAction by implementing it into a class.
  *
  * class ForwardAction implements IPaginatedMessageAction {
  *   public id = '▶️';
@@ -41,7 +41,7 @@ import type { APIMessage, User, TextChannel, NewsChannel, Message, MessageReacti
  */
 export class PaginatedMessage {
 	/**
-	 * The pages to be later converted to [[PaginatedMessage.messages]]
+	 * The pages to be converted to [[PaginatedMessage.messages]]
 	 */
 	public pages: MessagePage[];
 
@@ -65,6 +65,10 @@ export class PaginatedMessage {
 	 */
 	public idle = 20 * 1000;
 
+	/**
+	 * Constructor for the [[PaginatedMessage]] class
+	 * @param __namedParameters The [[PaginatedMessageOptions]] for this instance of the [[PaginatedMessage]] class
+	 */
 	public constructor({ pages, actions = PaginatedMessage.defaultActions }: PaginatedMessageOptions = {}) {
 		this.pages = pages ?? [];
 
@@ -148,7 +152,7 @@ export class PaginatedMessage {
 	}
 
 	/**
-	 * This executes the PaginatedMessage and sends the pages corresponding with [[PaginatedMessage.index]].
+	 * This executes the [[PaginatedMessage]] and sends the pages corresponding with [[PaginatedMessage.index]].
 	 * The handler will start collecting reactions and running actions once all actions have been reacted to the message.
 	 * @param author The author to validate.
 	 * @param channel The channel to use.
