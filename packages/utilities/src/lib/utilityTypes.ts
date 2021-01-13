@@ -67,3 +67,8 @@ export type SecondArgument<T> = T extends (arg1: unknown, arg2: infer U, ...args
  * ReturnType for a function that can return either a value or a `Promise` with that value
  */
 export type Awaited<T> = PromiseLike<T> | T;
+
+/**
+ * Type union for the full 2 billion dollar mistake in the JavaScript ecosystem
+ */
+export type Nullish = null | undefined;
