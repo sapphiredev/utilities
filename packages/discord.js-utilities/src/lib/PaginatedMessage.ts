@@ -18,7 +18,7 @@ import type { APIMessage, User, TextChannel, NewsChannel, Message, MessageReacti
  * @example
  * ```typescript
  * // To utilize actions you can use the IPaginatedMessageAction by implementing it into a class.
- * // [[PaginatedMessage]] requires you to have the class initalized.
+ * // [[PaginatedMessage]] requires you to have the class initialized using `new`.
  *
  * class ForwardAction implements IPaginatedMessageAction {
  *   public id = '▶️';
