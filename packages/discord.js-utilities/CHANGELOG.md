@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/sapphire-project/utilities/compare/@sapphire/discord.js-utilities@1.0.1...@sapphire/discord.js-utilities@1.1.0) (2021-01-13)
+
+### Features
+
+-   **discord.js-utilities:** add checking index changes and documentation ([#57](https://github.com/sapphire-project/utilities/issues/57)) ([8d99797](https://github.com/sapphire-project/utilities/commit/8d99797968af72fa02958d80eebcfc92a1cb3c2d))
+
 ## [1.0.1](https://github.com/sapphire-project/utilities/compare/@sapphire/discord.js-utilities@1.0.0...@sapphire/discord.js-utilities@1.0.1) (2021-01-08)
 
 ### Bug Fixes
