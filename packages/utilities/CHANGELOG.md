@@ -3,17 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [1.4.1](https://github.com/sapphire-project/utilities/compare/@sapphire/utilities@1.4.0...@sapphire/utilities@1.4.1) (2021-01-14)
-
+## [1.4.2](https://github.com/sapphire-project/utilities/compare/@sapphire/utilities@1.4.1...@sapphire/utilities@1.4.2) (2021-01-14)
 
 ### Bug Fixes
 
-* **utilities:** fixed return type for parseURL ([718065a](https://github.com/sapphire-project/utilities/commit/718065a34b5ee225503f8b2197784f1fd1b15f19))
-* **utilities:** properly type parseUrl ([dcf800f](https://github.com/sapphire-project/utilities/commit/dcf800f6e1435cd6151f510da36b9e99166df9e4))
+-   **utilities:** fix parseUrl not working in v1.4.1 ([c1fe990](https://github.com/sapphire-project/utilities/commit/c1fe990d443b20791d268a2ca2bdd645500ed436))
 
+## [1.4.1](https://github.com/sapphire-project/utilities/compare/@sapphire/utilities@1.4.0...@sapphire/utilities@1.4.1) (2021-01-14)
 
+### Bug Fixes
 
-
+-   **utilities:** fixed return type for parseURL ([718065a](https://github.com/sapphire-project/utilities/commit/718065a34b5ee225503f8b2197784f1fd1b15f19))
+-   **utilities:** properly type parseUrl ([dcf800f](https://github.com/sapphire-project/utilities/commit/dcf800f6e1435cd6151f510da36b9e99166df9e4))
 
 # [1.4.0](https://github.com/sapphire-project/utilities/compare/@sapphire/utilities@1.3.1...@sapphire/utilities@1.4.0) (2021-01-13)
 
