@@ -2,6 +2,7 @@ import { resolve as resolveDir } from 'path';
 import cleaner from 'rollup-plugin-cleaner';
 import { terser } from 'rollup-plugin-terser';
 import typescript from 'rollup-plugin-typescript2';
+import nodePolyfills from '@sapphire/rollup-plugin-node-polyfills';
 
 export default {
 	input: 'src/index.ts',
@@ -29,6 +30,7 @@ export default {
 		cleaner({
 			targets: ['./dist/']
 		}),
+		nodePolyfills({ include: ['url'] }),
 		typescript({ tsconfig: resolveDir(__dirname, 'src', 'tsconfig.json') }),
 		terser({
 			ecma: 2019,
