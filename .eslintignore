@@ -1,5 +1,5 @@
 node_modules/
-**/dist/**/*.js
-**/docs/**/*.js
-**/build/**/*.js
+**/dist/
+**/docs/
+**/build/
 **/*.d.ts
