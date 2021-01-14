@@ -1,4 +1,4 @@
-import { URL } from 'url';
+import type { URL } from 'url';
 
 /**
  * Parses an URL, returns null if invalid.
@@ -6,6 +6,7 @@ import { URL } from 'url';
  */
 export function parseURL(url: string): URL | null {
 	try {
+		// @ts-expect-error URL is global on NodeJS
 		return new URL(url);
 	} catch {
 		return null;

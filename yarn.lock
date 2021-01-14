@@ -1559,15 +1559,6 @@
     magic-string "^0.25.7"
     resolve "^1.17.0"
 
-"@rollup/plugin-inject@^4.0.2":
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/@rollup/plugin-inject/-/plugin-inject-4.0.2.tgz#55b21bb244a07675f7fdde577db929c82fc17395"
-  integrity sha512-TSLMA8waJ7Dmgmoc8JfPnwUwVZgLjjIAM6MqeIFqPO2ODK36JqE0Cf2F54UTgCUuW8da93Mvoj75a6KAVWgylw==
-  dependencies:
-    "@rollup/pluginutils" "^3.0.4"
-    estree-walker "^1.0.1"
-    magic-string "^0.25.5"
-
 "@rollup/plugin-node-resolve@^11.0.1":
   version "11.0.1"
   resolved "https://registry.yarnpkg.com/@rollup/plugin-node-resolve/-/plugin-node-resolve-11.0.1.tgz#d3765eec4bccf960801439a999382aed2dca959b"
@@ -1580,7 +1571,7 @@
     is-module "^1.0.0"
     resolve "^1.19.0"
 
-"@rollup/pluginutils@^3.0.4", "@rollup/pluginutils@^3.1.0":
+"@rollup/pluginutils@^3.1.0":
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/@rollup/pluginutils/-/pluginutils-3.1.0.tgz#706b4524ee6dc8b103b3c995533e5ad680c02b9b"
   integrity sha512-GksZ6pr6TpIjHm8h9lSQ8pi8BE9VeubNT0OMJ3B5uZJ8pz73NPiqOtCog/x2/QzM1ENChPKxMDhiQuRHsqc+lg==
@@ -1613,13 +1604,6 @@
   integrity sha512-/XmIkHGHi4ycit/+dvY5ZwWLY/z10k5aXxRT8WbHtqDpc5yyhG7zR1U6fqKD9VNU8Ii1hqB2eEzWNeAvlTnwyw==
   dependencies:
     "@discordjs/collection" "^0.1.6"
-
-"@sapphire/rollup-plugin-node-polyfills@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@sapphire/rollup-plugin-node-polyfills/-/rollup-plugin-node-polyfills-1.0.1.tgz#4a8b6fd3ca4c74b768deebfd7b2218a840c31e94"
-  integrity sha512-jfiFsEcdOSxbnJ3TOwkW5ln4DtStMkJy0Ceg7SQBqrAJ9VDWAr5mPH9S6qNYekrjrUtWd8I2OKYKdqm6hpeJOQ==
-  dependencies:
-    "@rollup/plugin-inject" "^4.0.2"
 
 "@sinonjs/commons@^1.7.0":
   version "1.8.2"
@@ -1743,9 +1727,9 @@
   integrity sha512-fZQQafSREFyuZcdWFAExYjBiCL7AUCdgsk80iO0q4yihYYdcIiH28CcuPTGFgLOCC8RlW49GSQxdHwZP+I7CNg==
 
 "@types/node@*", "@types/node@>= 8", "@types/node@^14.14.20":
-  version "14.14.20"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.14.20.tgz#f7974863edd21d1f8a494a73e8e2b3658615c340"
-  integrity sha512-Y93R97Ouif9JEOWPIUyU+eyIdyRqQR0I8Ez1dzku4hDx34NWh4HbtIc3WNzwB1Y9ULvNGeu5B8h8bVL5cAk4/A==
+  version "14.14.21"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.14.21.tgz#d934aacc22424fe9622ebf6857370c052eae464e"
+  integrity sha512-cHYfKsnwllYhjOzuC5q1VpguABBeecUp24yFluHpn/BQaVxB1CuQ1FSRZCzrPxrkIfWISXV2LbeoBthLWg0+0A==
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.0"
@@ -5590,7 +5574,7 @@ macos-release@^2.2.0:
   resolved "https://registry.yarnpkg.com/macos-release/-/macos-release-2.4.1.tgz#64033d0ec6a5e6375155a74b1a1eba8e509820ac"
   integrity sha512-H/QHeBIN1fIGJX517pvK8IEK53yQOW7YcEI55oYtgjDdoCQQz7eJS94qt5kNrscReEyuD/JcdFCm2XBEcGOITg==
 
-magic-string@^0.25.5, magic-string@^0.25.7:
+magic-string@^0.25.7:
   version "0.25.7"
   resolved "https://registry.yarnpkg.com/magic-string/-/magic-string-0.25.7.tgz#3f497d6fd34c669c6798dcb821f2ef31f5445051"
   integrity sha512-4CrMT5DOHTDk4HYDlzmwu4FVCcIYI8gauveasrdCu2IKIFOJ3f0v/8MDGJCDL9oD2ppz/Av1b0Nj345H9M+XIA==
