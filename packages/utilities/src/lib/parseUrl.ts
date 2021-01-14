@@ -6,7 +6,7 @@ import type { URL } from 'url';
  */
 export function parseURL(url: string): URL | null {
 	try {
-		// @ts-expect-error URL is global on NodeJS
+		// @ts-expect-error URL is global in NodeJS and evergreen Browsers
 		return new URL(url);
 	} catch {
 		return null;
