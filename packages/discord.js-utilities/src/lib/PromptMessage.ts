@@ -82,7 +82,7 @@ export class PromptMessage {
 		await this.sentMessage.react(confirm);
 		await this.sentMessage.react(cancel);
 
-		const collector = await this.sentMessage.awaitReactions(this._createPromptFilter(confirm, cancel, author), {
+		const collector = await this.sentMessage.awaitReactions(this.createPromptFilter(confirm, cancel, author), {
 			max: 1,
 			time: timeout,
 			errors: ['time']
@@ -106,7 +106,7 @@ export class PromptMessage {
 	 * Creates a filter for the collector to filter on
 	 * @return The filter for awaitReactions function
 	 */
-	private _createPromptFilter(
+	private createPromptFilter(
 		confirm?: string | EmojiIdentifierResolvable,
 		cancel?: string | EmojiIdentifierResolvable,
 		author?: User
