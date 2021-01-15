@@ -74,9 +74,9 @@ export class PromptMessage {
 	public async run(channel: TextChannel | NewsChannel | DMChannel, author: User): Promise<IPromptMessageExplicitReturn | boolean> {
 		const { confirm, cancel, timeout, explicitReturn } = this.options;
 
-		if (!channel) throw new Error('There is no channel provided.');
-		if (!author) throw new Error('There is no author provided.');
-		if (!this.message) throw new Error('There is no messages.');
+		if (!channel) throw new SyntaxError('There is no channel provided.');
+		if (!author) throw new SyntaxError('There is no author provided.');
+		if (!this.message) throw new SyntaxError('There is no messages.');
 
 		this.sentMessage = await channel.send(this.message);
 		await this.sentMessage.react(confirm);
