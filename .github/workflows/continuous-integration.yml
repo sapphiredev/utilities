@@ -53,8 +53,6 @@ jobs:
         run: yarn tsc -b packages/eslint-config packages/prettier-config
       - name: Run ESLint
         run: yarn lint --fix=false
-        with:
-          custom-glob: packages
 
   Testing:
     name: Unit Tests
