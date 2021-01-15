@@ -29,8 +29,8 @@ import type {
  * @example
  * ```typescript
  * const handler = new PromptMessage('Are you happy or sad?', {
- * 		confirm: '�',
- *		cancel: '�'
+ * 		confirm: '🙂',
+ *		cancel: '🙁'
  * });
  * const confirmed = handler.run();
  * ```
