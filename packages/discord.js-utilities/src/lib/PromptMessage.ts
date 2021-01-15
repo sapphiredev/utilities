@@ -23,7 +23,7 @@ import type {
  * @example
  * ```typescript
  * const handler = new PromptMessage('Are you sure you want to continue?');
- * const confirmed = handler.run();
+ * const confirmed = handler.run(channel, author);
  * ```
  *
  * @example
@@ -32,7 +32,7 @@ import type {
  * 		confirm: '🙂',
  *		cancel: '🙁'
  * });
- * const confirmed = handler.run();
+ * const confirmed = handler.run(channel, author);
  * ```
  *
  */
@@ -89,7 +89,7 @@ export class PromptMessage {
 		});
 
 		const reaction = collector.first();
-		const confirmed = reaction?.emoji?.id === confirm || reaction?.emoji?.name === confirm;
+		const confirmed = (reaction?.emoji?.id ?? reaction?.emoji?.name) === confirm;
 
 		return explicitReturn
 			? {
@@ -107,12 +107,12 @@ export class PromptMessage {
 	 * @return The filter for awaitReactions function
 	 */
 	private createPromptFilter(
-		confirm?: string | EmojiIdentifierResolvable,
-		cancel?: string | EmojiIdentifierResolvable,
-		author?: User
+		confirm: string | EmojiIdentifierResolvable,
+		cancel: string | EmojiIdentifierResolvable,
+		author: User
 	): CollectorFilter {
 		return (reaction: MessageReaction, user: User) =>
-			[confirm, cancel].includes(reaction.emoji.id ?? reaction.emoji.name) && user.id === author?.id && !user.bot;
+			[confirm, cancel].includes(reaction.emoji.id ?? reaction.emoji.name) && user.id === author.id && !user.bot;
 	}
 
 	/**
