@@ -221,7 +221,7 @@ export class PaginatedMessage {
 		return clone;
 	}
 
-	private async handleCollect(author: User, channel: TextChannel | NewsChannel, reaction: MessageReaction, user: User) {
+	protected async handleCollect(author: User, channel: TextChannel | NewsChannel, reaction: MessageReaction, user: User) {
 		await reaction.users.remove(user);
 
 		const action = (this.actions.get(reaction.emoji.identifier) ?? this.actions.get(reaction.emoji.name))!;
@@ -240,7 +240,7 @@ export class PaginatedMessage {
 		}
 	}
 
-	private async handleEnd(reason: string) {
+	protected async handleEnd(reason: string) {
 		// Remove all listeners from the collector:
 		if (this.collector) {
 			this.collector.removeAllListeners();
