@@ -39,7 +39,7 @@ export class MessagePrompter {
 	/**
 	 * The message that will been sent in [[MessagePrompter.run]]
 	 */
-	public message: IMessagePrompter | null = null;
+	public message: IMessagePrompterMessage | null = null;
 
 	/**
 	 * The message that has been sent in [[MessagePrompter.run]]
@@ -56,7 +56,7 @@ export class MessagePrompter {
 	 * @param message The message to send.
 	 * @param options Overrideable options if needed.
 	 */
-	public constructor(message: IMessagePrompter, options?: Partial<IMessagePrompterOptions>) {
+	public constructor(message: IMessagePrompterMessage, options?: Partial<IMessagePrompterOptions>) {
 		this.message = message;
 		this.options = {
 			...MessagePrompter.defaultOptions,
@@ -128,14 +128,14 @@ export class MessagePrompter {
 /**
  * A type to extend multiple discord types and simplify usage in [[MessagePrompter]]
  */
-export type IMessagePrompter = APIMessageContentResolvable | (MessageOptions & { split?: false }) | MessageAdditions;
+export type IMessagePrompterMessage = APIMessageContentResolvable | (MessageOptions & { split?: false }) | MessageAdditions;
 
 export interface IMessagePrompterExplicitReturn {
 	reaction?: MessageReaction;
 	confirmed: boolean;
 	options: IMessagePrompterOptions;
 	sentMessage: Message;
-	message: IMessagePrompter;
+	message: IMessagePrompterMessage;
 }
 
 /**
