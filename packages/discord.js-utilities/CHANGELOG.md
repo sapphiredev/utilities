@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/sapphire-project/utilities/compare/@sapphire/discord.js-utilities@1.1.0...@sapphire/discord.js-utilities@1.2.0) (2021-01-16)
+
+### Features
+
+-   **paginated-message:** expose response, collector, handleEnd and handleCollect ([#60](https://github.com/sapphire-project/utilities/issues/60)) ([43cc490](https://github.com/sapphire-project/utilities/commit/43cc49030efe3fde5c55a4b7dbd98927c3721687))
+
 # [1.1.0](https://github.com/sapphire-project/utilities/compare/@sapphire/discord.js-utilities@1.0.1...@sapphire/discord.js-utilities@1.1.0) (2021-01-13)
 
 ### Features
