@@ -13,70 +13,69 @@ import type {
 } from 'discord.js';
 
 /**
- * This is a [[PromptMessage]], a utility to send a message with Yes/No promt.
+ * This is a [[MessagePrompter]], a utility to send a message with Yes/No promt.
  * You must either use this class directly or extend it.
  *
- * [[PromptMessage]] uses actions, these are essentially reaction emojis, when triggered run the said action.
- * You can utilize your own actions, or you can use the [[PromptMessage.defaultPrompts]].
- * [[PromptMessage.defaultPrompts]] is also static so you can modify these directly.
+ * [[MessagePrompter]] uses reactions to prompt for a yes/no answer and returns it.
+ * You can modify the confirm and cancel reaction used for each message, or use the [[MessagePrompter.defaultPrompts]].
+ * [[MessagePrompter.defaultPrompts]] is also static so you can modify these directly.
  *
  * @example
  * ```typescript
- * const handler = new PromptMessage('Are you sure you want to continue?');
- * const confirmed = handler.run(channel, author);
+ * const handler = new MessagePrompter('Are you sure you want to continue?');
+ * const confirmed = await handler.run(channel, author);
  * ```
  *
  * @example
  * ```typescript
- * const handler = new PromptMessage('Are you happy or sad?', {
+ * const handler = new MessagePrompter('Are you happy or sad?', {
  * 		confirm: '🙂',
  *		cancel: '🙁'
  * });
- * const confirmed = handler.run(channel, author);
+ * const confirmed = await handler.run(channel, author);
  * ```
- *
  */
-export class PromptMessage {
+export class MessagePrompter {
 	/**
-	 * The message that has been sent in [[PromptMessage.run]]
+	 * The message that will been sent in [[MessagePrompter.run]]
 	 */
-	public message: IPromptMessage | null = null;
+	public message: IMessagePrompter | null = null;
 
 	/**
-	 * The message that has been sent in [[PromptMessage.run]]
+	 * The message that has been sent in [[MessagePrompter.run]]
 	 */
 	public sentMessage: Message | null = null;
 
 	/**
-	 * The used options for this instance of [[PromptMessage]]
+	 * The used options for this instance of [[MessagePrompter]]
 	 */
-	public options: IPromptMessageOptions;
+	public options: IMessagePrompterOptions;
 
 	/**
-	 * Constructor for the [[PromptMessage]] class
+	 * Constructor for the [[MessagePrompter]] class
 	 * @param message The message to send.
 	 * @param options Overrideable options if needed.
 	 */
-	public constructor(message: IPromptMessage, options?: Partial<IPromptMessageOptions>) {
+	public constructor(message: IMessagePrompter, options?: Partial<IMessagePrompterOptions>) {
 		this.message = message;
 		this.options = {
-			...PromptMessage.defaultOptions,
+			...MessagePrompter.defaultOptions,
 			...(options ?? {})
 		};
 	}
 
 	/**
-	 * This executes the [[PromptMessage]] and sends the message.
+	 * This executes the [[MessagePrompter]] and sends the message.
 	 * The handler will start collecting 1 reaction and return a boolean corresponding the prompt.
 	 * @param channel The channel to use.
 	 * @param author The author to validate.
 	 */
-	public async run(channel: TextChannel | NewsChannel | DMChannel, author: User): Promise<IPromptMessageExplicitReturn | boolean> {
+	public async run(channel: TextChannel | NewsChannel | DMChannel, author: User): Promise<IMessagePrompterExplicitReturn | boolean> {
 		const { confirm, cancel, timeout, explicitReturn } = this.options;
 
 		if (!channel) throw new SyntaxError('There is no channel provided.');
 		if (!author) throw new SyntaxError('There is no author provided.');
-		if (!this.message) throw new SyntaxError('There is no messages.');
+		if (!this.message) throw new SyntaxError('There is no messages provided.');
 
 		this.sentMessage = await channel.send(this.message);
 		await this.sentMessage.react(confirm);
@@ -118,7 +117,7 @@ export class PromptMessage {
 	/**
 	 * The default options of this handler.
 	 */
-	public static defaultOptions: IPromptMessageOptions = {
+	public static defaultOptions: IMessagePrompterOptions = {
 		confirm: '🇾',
 		cancel: '🇳',
 		timeout: 20 * 1000,
@@ -127,22 +126,22 @@ export class PromptMessage {
 }
 
 /**
- * A type to extend multiple discord types and simplify usage in [[PromptMessage]]
+ * A type to extend multiple discord types and simplify usage in [[MessagePrompter]]
  */
-export type IPromptMessage = APIMessageContentResolvable | (MessageOptions & { split?: false }) | MessageAdditions;
+export type IMessagePrompter = APIMessageContentResolvable | (MessageOptions & { split?: false }) | MessageAdditions;
 
-export interface IPromptMessageExplicitReturn {
-	reaction: MessageReaction | undefined;
+export interface IMessagePrompterExplicitReturn {
+	reaction?: MessageReaction;
 	confirmed: boolean;
-	options: IPromptMessageOptions;
+	options: IMessagePrompterOptions;
 	sentMessage: Message;
-	message: IPromptMessage;
+	message: IMessagePrompter;
 }
 
 /**
- * The options received by [[PromptMessage.defaultOptions]] or [[PromptMessage.constructor]]
+ * The options received by [[MessagePrompter.defaultOptions]] or [[MessagePrompter.constructor]]
  */
-export interface IPromptMessageOptions {
+export interface IMessagePrompterOptions {
 	confirm: string | EmojiIdentifierResolvable;
 	cancel: string | EmojiIdentifierResolvable;
 	timeout: number;
