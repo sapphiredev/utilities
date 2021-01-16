@@ -1,4 +1,4 @@
-import type { APIMessage, User, TextChannel, NewsChannel, Message, MessageReaction, ReactionCollector } from 'discord.js';
+import type { APIMessage, Message, MessageReaction, NewsChannel, ReactionCollector, TextChannel, User } from 'discord.js';
 
 /**
  * This is a [[PaginatedMessage]], a utility to paginate messages (usually embeds).
@@ -45,6 +45,16 @@ export class PaginatedMessage {
 	 * The pages to be converted to [[PaginatedMessage.messages]]
 	 */
 	public pages: MessagePage[];
+
+	/**
+	 * The response message used to edit on page changes.
+	 */
+	public response: Message | null = null;
+
+	/**
+	 * The collector used for handling reactions.
+	 */
+	public collector: ReactionCollector | null = null;
 
 	/**
 	 * The pages which were converted from [[PaginatedMessage.pages]]
@@ -166,37 +176,18 @@ export class PaginatedMessage {
 
 		const firstPage = this.messages[this.index]!;
 
-		const response = (await channel.send(firstPage)) as Message;
+		this.response ??= (await channel.send(firstPage)) as Message;
 
-		for (const id of this.actions.keys()) await response.react(id);
+		for (const id of this.actions.keys()) await this.response.react(id);
 
-		const collector = response
+		this.collector ??= this.response
 			.createReactionCollector(
 				(reaction: MessageReaction, user: User) =>
 					(this.actions.has(reaction.emoji.identifier) || this.actions.has(reaction.emoji.name)) && user.id === author.id,
 				{ idle: this.idle }
 			)
-			.on('collect', async (reaction, user) => {
-				await reaction.users.remove(user);
-
-				const action = (this.actions.get(reaction.emoji.identifier) ?? this.actions.get(reaction.emoji.name))!;
-				const previousIndex = this.index;
-
-				await action.run({
-					handler: this,
-					author,
-					channel,
-					response,
-					collector
-				});
-
-				if (previousIndex !== this.index) {
-					const page = await this.resolvePage();
-
-					await response.edit(page!);
-				}
-			})
-			.on('end', () => response.reactions.removeAll());
+			.on('collect', this.handleCollect.bind(this, author, channel))
+			.on('end', this.handleEnd.bind(this));
 
 		return this;
 	}
@@ -225,7 +216,41 @@ export class PaginatedMessage {
 	public clone() {
 		const clone = new PaginatedMessage({ pages: this.pages, actions: [] }).setIndex(this.index).setIdle(this.idle);
 		clone.actions = this.actions;
+		clone.response = this.response;
+		clone.collector = this.collector;
 		return clone;
+	}
+
+	private async handleCollect(author: User, channel: TextChannel | NewsChannel, reaction: MessageReaction, user: User) {
+		await reaction.users.remove(user);
+
+		const action = (this.actions.get(reaction.emoji.identifier) ?? this.actions.get(reaction.emoji.name))!;
+		const previousIndex = this.index;
+
+		await action.run({
+			handler: this,
+			author,
+			channel,
+			response: this.response!,
+			collector: this.collector!
+		});
+
+		if (previousIndex !== this.index) {
+			await this.response?.edit((await this.resolvePage())!);
+		}
+	}
+
+	private async handleEnd(reason: string) {
+		// Remove all listeners from the collector:
+		if (this.collector) {
+			this.collector.removeAllListeners();
+			this.collector = null;
+		}
+
+		// Do not remove reactions if the message, channel, or guild, was deleted:
+		if (this.response && !PaginatedMessage.deletionStopReasons.includes(reason)) {
+			await this.response.reactions.removeAll();
+		}
 	}
 
 	/**
@@ -277,11 +302,17 @@ export class PaginatedMessage {
 		{
 			id: '⏹️',
 			run: async ({ response, collector }) => {
-				await response!.reactions.removeAll();
-				collector!.stop();
+				await response.reactions.removeAll();
+				collector.stop();
 			}
 		}
 	];
+
+	/**
+	 * The reasons sent by {@link https://discord.js.org/#/docs/main/stable/class/ReactionCollector?scrollTo=e-end ReactionCollector#end}
+	 * event when the message (or its owner) has been deleted.
+	 */
+	public static deletionStopReasons = ['messageDelete', 'channelDelete', 'guildDelete'];
 }
 
 /**
