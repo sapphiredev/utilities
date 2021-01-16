@@ -18,7 +18,8 @@
 		"test": "jest",
 		"lint": "eslint src tests --ext ts --fix -c ../../.eslintrc",
 		"build": "rollup -c rollup.config.ts",
-		"start": "yarn build -w"
+		"start": "yarn build -w",
+		"prepublishOnly": "yarn build"
 	},
 	"repository": {
 		"type": "git",
