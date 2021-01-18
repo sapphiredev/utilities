@@ -114,34 +114,37 @@ export class MessagePrompter {
 	/**
 	 * This executes the [[MessagePrompter]] and sends the message.
 	 * @param channel The channel to use.
-	 * @param author The author to validate.
+	 * @param authorOrFilter The author to validate.
 	 */
-	public run(channel: TextChannel | NewsChannel | DMChannel, author: User): Promise<IMessagePrompterReturn> {
-		const { type } = this.options;
-		switch (type) {
+	public run(channel: TextChannel | NewsChannel | DMChannel, authorOrFilter: User | CollectorFilter): Promise<IMessagePrompterReturn> {
+		switch (this.options.type) {
 			case 'confirm':
-				return this.runConfirm(channel, author);
+				return this.runConfirm(channel, authorOrFilter);
 			case 'number':
-				return this.runNumber(channel, author);
+				return this.runNumber(channel, authorOrFilter);
 			case 'reaction':
-				return this.runReaction(channel, author);
+				return this.runReaction(channel, authorOrFilter);
 			case 'message':
-				return this.runMessage(channel, author);
+				return this.runMessage(channel, authorOrFilter);
 		}
 	}
 
 	/**
 	 * This executes the [[MessagePrompter]] and sends the message if [[IMessagePrompterOptions.type]] equals confirm.
-	 * The handler will start collecting 1 reaction and return a boolean corresponding the prompt.
+	 * The handler will wait for one (1) reaction.
 	 * @param channel The channel to use.
-	 * @param author The author to validate.
+	 * @param authorOrFilter The author to validate.
+	 * @returns A promise that resolves to a boolean denoting the truth value of the input (`true` for yes, `false` for no).
 	 */
-	public async runConfirm(channel: TextChannel | NewsChannel | DMChannel, author: User): Promise<IMessagePrompterExplicitReturn | boolean> {
+	public async runConfirm(
+		channel: TextChannel | NewsChannel | DMChannel,
+		authorOrFilter: User | CollectorFilter
+	): Promise<IMessagePrompterExplicitReturn | boolean> {
 		const { reactions, timeout, explicitReturn } = this.options;
 		const { confirm, cancel } = reactions as IMessagePrompterOptionsConfirm;
 
 		const confirmReactions: string[] | EmojiIdentifierResolvable[] = [confirm, cancel];
-		const response = await this.collectReactions(channel, author, confirmReactions, timeout);
+		const response = await this.collectReactions(channel, authorOrFilter, confirmReactions, timeout);
 
 		const confirmed = (response?.emoji?.id ?? response?.emoji?.name) === confirm;
 
@@ -155,11 +158,15 @@ export class MessagePrompter {
 
 	/**
 	 * This executes the [[MessagePrompter]] and sends the message if [[IMessagePrompterOptions.type]] equals number.
-	 * The handler will start collecting 1 reaction and return a number corresponding the prompt.
+	 * The handler will wait for one (1) reaction.
 	 * @param channel The channel to use.
-	 * @param author The author to validate.
+	 * @param authorOrFilter The author to validate.
+	 * @returns A promise that resolves to the selected number within the range.
 	 */
-	public async runNumber(channel: TextChannel | NewsChannel | DMChannel, author: User): Promise<IMessagePrompterExplicitReturn | number> {
+	public async runNumber(
+		channel: TextChannel | NewsChannel | DMChannel,
+		authorOrFilter: User | CollectorFilter
+	): Promise<IMessagePrompterExplicitReturn | number> {
 		const { reactions, timeout, explicitReturn } = this.options;
 		const { start, end } = reactions as IMessagePrompterOptionsNumber;
 
@@ -171,7 +178,7 @@ export class MessagePrompter {
 
 		const numbers = Array.from({ length: end - start + 1 }, (_, n: number) => n + start);
 		const emojis = numbers.map((number) => numberEmojis[number]);
-		const response = await this.collectReactions(channel, author, emojis, timeout);
+		const response = await this.collectReactions(channel, authorOrFilter, emojis, timeout);
 
 		const emojiIndex = emojis.findIndex((emoji) => (response?.emoji?.id ?? response?.emoji?.name) === emoji);
 		const number = numbers[emojiIndex];
@@ -185,36 +192,41 @@ export class MessagePrompter {
 	}
 
 	/**
-	 * This executes the [[MessagePrompter]] and sends the message if [[IMessagePrompterOptions.type]] equals number.
-	 * The handler will start collecting 1 reaction and return a number corresponding the prompt.
+	 * This executes the [[MessagePrompter]] and sends the message if [[IMessagePrompterOptions.type]] equals reaction.
+	 * The handler will wait for one (1) reaction.
 	 * @param channel The channel to use.
-	 * @param author The author to validate.
+	 * @param authorOrFilter The author to validate.
+	 * @returns A promise that resolves to the reaction object.
 	 */
 	public async runReaction(
 		channel: TextChannel | NewsChannel | DMChannel,
-		author: User
+		authorOrFilter: User | CollectorFilter
 	): Promise<IMessagePrompterExplicitReturn | string | EmojiResolvable> {
 		const { timeout, explicitReturn } = this.options;
 		const reactions = this.options.reactions as IMessagePrompterOptionsReaction;
 
 		if (!reactions?.length) throw new TypeError('There are no reactions provided.');
 
-		const response = await this.collectReactions(channel, author, reactions, timeout);
+		const response = await this.collectReactions(channel, authorOrFilter, reactions, timeout);
 
 		return explicitReturn ? response : response.reaction ?? response;
 	}
 
 	/**
 	 * This executes the [[MessagePrompter]] and sends the message if [[IMessagePrompterOptions.type]] equals message.
-	 * The handler will start collecting 1 message and return that message.
+	 * The handler will wait for one (1) message.
 	 * @param channel The channel to use.
-	 * @param author The author to validate.
+	 * @param authorOrFilter The author to validate.
+	 * @returns A promise that resolves to the message object received.
 	 */
-	public async runMessage(channel: TextChannel | NewsChannel | DMChannel, author: User): Promise<IMessagePrompterExplicitReturn | Message> {
+	public async runMessage(
+		channel: TextChannel | NewsChannel | DMChannel,
+		authorOrFilter: User | CollectorFilter
+	): Promise<IMessagePrompterExplicitReturn | Message> {
 		const { timeout, explicitReturn } = this.options;
 		this.appliedMessage = await channel.send(this.message);
 
-		const collector = await channel.awaitMessages((message: Message) => message.author.id === author.id && !message.author.bot, {
+		const collector = await channel.awaitMessages(this.createMessagePromptFilter(authorOrFilter), {
 			max: 1,
 			time: timeout,
 			errors: ['time']
@@ -237,13 +249,13 @@ export class MessagePrompter {
 
 	private async collectReactions(
 		channel: TextChannel | NewsChannel | DMChannel,
-		author: User,
+		authorOrFilter: User | CollectorFilter,
 		reactions: string[] | EmojiIdentifierResolvable[],
 		timeout: number
 	): Promise<IMessagePrompterExplicitReturn> {
 		this.appliedMessage = await channel.send(this.message);
 
-		const collector = this.appliedMessage.createReactionCollector(this.createPromptFilter(reactions, author), {
+		const collector = this.appliedMessage.createReactionCollector(this.createReactionPromptFilter(reactions, authorOrFilter), {
 			max: 1,
 			time: timeout
 		});
@@ -281,9 +293,20 @@ export class MessagePrompter {
 	 * Creates a filter for the collector to filter on
 	 * @return The filter for awaitReactions function
 	 */
-	private createPromptFilter(reactions: string[] | EmojiIdentifierResolvable[], author: User): CollectorFilter {
-		return (reaction: MessageReaction, user: User) =>
-			reactions.includes(reaction.emoji.id ?? reaction.emoji.name) && user.id === author.id && !user.bot;
+	private createReactionPromptFilter(reactions: string[] | EmojiIdentifierResolvable[], authorOrFilter: User | CollectorFilter): CollectorFilter {
+		return async (reaction: MessageReaction, user: User) =>
+			reactions.includes(reaction.emoji.id ?? reaction.emoji.name) &&
+			(typeof authorOrFilter === 'function' ? await authorOrFilter(reaction, user) : user.id === authorOrFilter.id) &&
+			!user.bot;
+	}
+
+	/**
+	 * Creates a filter for the collector to filter on
+	 * @return The filter for awaitMessages function
+	 */
+	private createMessagePromptFilter(authorOrFilter: User | CollectorFilter): CollectorFilter {
+		return async (message: Message) =>
+			(typeof authorOrFilter === 'function' ? await authorOrFilter(message) : message.author.id === authorOrFilter.id) && !message.author.bot;
 	}
 
 	/**
