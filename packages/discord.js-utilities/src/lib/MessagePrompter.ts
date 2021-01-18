@@ -65,7 +65,7 @@ export class MessagePrompter {
 	/**
 	 * The message that has been sent in [[MessagePrompter.run]]
 	 */
-	public response: Message | null = null;
+	public appliedMessage: Message | null = null;
 
 	/**
 	 * The used options for this instance of [[MessagePrompter]]
@@ -96,7 +96,7 @@ export class MessagePrompter {
 
 		this.options = {
 			...this.defaultOptions,
-			...(MessagePrompter.defaultOptions[type] ?? {}),
+			...(MessagePrompter.defaultOptions.get(type) ?? {}),
 			...((typeof options !== 'string' && options) ?? {})
 		};
 	}
@@ -135,7 +135,7 @@ export class MessagePrompter {
 		const { confirm, cancel } = reactions as IMessagePrompterOptionsConfirm;
 
 		const confirmReactions: string[] | EmojiIdentifierResolvable[] = [confirm, cancel];
-		const response = await this.collecReactions(channel, author, confirmReactions, timeout);
+		const response = await this.collectReactions(channel, author, confirmReactions, timeout);
 
 		const confirmed = (response?.emoji?.id ?? response?.emoji?.name) === confirm;
 
@@ -165,7 +165,7 @@ export class MessagePrompter {
 
 		const numbers = Array.from({ length: end - start + 1 }, (_, n: number) => n + start);
 		const emojis = numbers.map((number) => numberEmojis[number]);
-		const response = await this.collecReactions(channel, author, emojis, timeout);
+		const response = await this.collectReactions(channel, author, emojis, timeout);
 
 		const emojiIndex = emojis.findIndex((emoji) => (response?.emoji?.id ?? response?.emoji?.name) === emoji);
 		const number = numbers[emojiIndex];
@@ -193,7 +193,7 @@ export class MessagePrompter {
 
 		if (!reactions?.length) throw new TypeError('There are no reactions provided.');
 
-		const response = await this.collecReactions(channel, author, reactions, timeout);
+		const response = await this.collectReactions(channel, author, reactions, timeout);
 
 		return explicitReturn ? response : response.reaction ?? response;
 	}
@@ -206,38 +206,38 @@ export class MessagePrompter {
 	 */
 	public async runMessage(channel: TextChannel | NewsChannel | DMChannel, author: User): Promise<IMessagePrompterExplicitReturn | Message> {
 		const { timeout, explicitReturn } = this.options;
-		this.response = await channel.send(this.message);
+		this.appliedMessage = await channel.send(this.message);
 
 		const collector = await channel.awaitMessages((message: Message) => message.author.id === author.id && !message.author.bot, {
 			max: 1,
 			time: timeout,
 			errors: ['time']
 		});
-		const reply = collector.first();
+		const response = collector.first();
 
-		if (reply === undefined || reply === null) {
+		if (!response) {
 			throw new Error('No messages received');
 		}
 
 		return explicitReturn
 			? {
-					reply,
+					response,
 					options: this.options,
-					response: this.response,
+					appliedMessage: this.appliedMessage,
 					message: this.message
 			  }
-			: reply;
+			: response;
 	}
 
-	private async collecReactions(
+	private async collectReactions(
 		channel: TextChannel | NewsChannel | DMChannel,
 		author: User,
 		reactions: string[] | EmojiIdentifierResolvable[],
 		timeout: number
 	): Promise<IMessagePrompterExplicitReturn> {
-		this.response = await channel.send(this.message);
+		this.appliedMessage = await channel.send(this.message);
 
-		const collector = this.response.createReactionCollector(this.createPromptFilter(reactions, author), {
+		const collector = this.appliedMessage.createReactionCollector(this.createPromptFilter(reactions, author), {
 			max: 1,
 			time: timeout
 		});
@@ -254,7 +254,7 @@ export class MessagePrompter {
 		for (const reaction of reactions) {
 			if (resolved) break;
 
-			await this.response.react(reaction);
+			await this.appliedMessage.react(reaction);
 		}
 
 		const firstReaction = await collected;
@@ -266,7 +266,7 @@ export class MessagePrompter {
 			emoji,
 			reaction,
 			options: this.options,
-			response: this.response,
+			appliedMessage: this.appliedMessage,
 			message: this.message
 		};
 	}
@@ -284,30 +284,40 @@ export class MessagePrompter {
 	 * The default options of this handler per type.
 	 * Default is always used, and overriden later.
 	 */
-	public static defaultOptions: {
-		[type in IMessagePrompterOptionsType]: Partial<IMessagePrompterOptions>;
-	} = {
-		confirm: {
-			type: 'confirm',
-			reactions: {
-				confirm: '🇾',
-				cancel: '🇳'
+	public static defaultOptions: Map<IMessagePrompterOptionsType, Partial<IMessagePrompterOptions>> = new Map([
+		[
+			'confirm',
+			{
+				type: 'confirm',
+				reactions: {
+					confirm: '🇾',
+					cancel: '🇳'
+				}
 			}
-		},
-		number: {
-			type: 'number',
-			reactions: {
-				start: 0,
-				end: 10
+		],
+		[
+			'number',
+			{
+				type: 'number',
+				reactions: {
+					start: 0,
+					end: 10
+				}
 			}
-		},
-		reaction: {
-			type: 'reaction'
-		},
-		message: {
-			type: 'message'
-		}
-	};
+		],
+		[
+			'reaction',
+			{
+				type: 'reaction'
+			}
+		],
+		[
+			'message',
+			{
+				type: 'message'
+			}
+		]
+	]);
 }
 
 /**
@@ -327,10 +337,10 @@ export interface IMessagePrompterExplicitReturn {
 	confirmed?: boolean;
 	number?: number;
 	reaction?: string | EmojiResolvable;
-	reply?: Message;
+	response?: Message;
 	emoji?: GuildEmoji | ReactionEmoji;
 	options: IMessagePrompterOptions;
-	response: Message;
+	appliedMessage: Message;
 	message: IMessagePrompterMessage;
 }
 
