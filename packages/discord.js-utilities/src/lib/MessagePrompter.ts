@@ -237,17 +237,27 @@ export class MessagePrompter {
 	): Promise<IMessagePrompterExplicitReturn> {
 		this.response = await channel.send(this.message);
 
+		const collector = this.response.createReactionCollector(this.createPromptFilter(reactions, author), {
+			max: 1,
+			time: timeout
+		});
+
+		let resolved = false;
+		const collected: Promise<MessageReaction> = new Promise((resolve) =>
+			collector.on('collect', (r) => {
+				resolve(r);
+				resolved = true;
+				collector.stop();
+			})
+		);
+
 		for (const reaction of reactions) {
+			if (resolved) break;
+
 			await this.response.react(reaction);
 		}
 
-		const collector = await this.response.awaitReactions(this.createPromptFilter(reactions, author), {
-			max: 1,
-			time: timeout,
-			errors: ['time']
-		});
-
-		const firstReaction = collector.first();
+		const firstReaction = await collected;
 		const emoji = firstReaction?.emoji;
 
 		const reaction = reactions.find((r) => (firstReaction?.emoji?.id ?? firstReaction?.emoji?.name) === r);
