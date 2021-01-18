@@ -14,7 +14,7 @@ import { createClassDecorator, createMethodDecorator, createProxy } from './util
  * ```
  * @param options The options to pass to the piece constructor
  */
-export function ApplyOptions<T extends PieceOptions>(optionsOrFn: T): ClassDecorator {
+export function ApplyOptions<T extends PieceOptions>(optionsOrFn: T | (() => T)): ClassDecorator {
 	return createClassDecorator((target: Ctor<ConstructorParameters<typeof Piece>, Piece>) =>
 		createProxy(target, {
 			construct: (ctor, [context, baseOptions = {}]) =>
