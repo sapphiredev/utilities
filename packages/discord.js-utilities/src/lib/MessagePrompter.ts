@@ -16,7 +16,17 @@ import type {
 } from 'discord.js';
 
 /**
- * This is a [[MessagePrompter]], a utility to send a message with Yes/No promt.
+ * This is a [[MessagePrompter]], a utility that sends a prompt message that can resolve any kind of input.
+ * There are several specifiable types to prompt for user input, and they are as follows:
+ * - Confirm
+ *   This will send a simple Yes/No prompt, using reactions.
+ * - Number
+ *   This will prompt for an integer. You can specify a range, however by default it will use 0 - 10.
+ * - Reactions
+ *   This can be any kind of reaction emoji Discord supports and as many as you want. This type will return that reaction instead of a boolean.
+ * - Message
+ *   This will prompt the user and require a response in the form of a message. This can be helpful if you require a user to upload an image for example, or give text input.
+ *
  * You must either use this class directly or extend it.
  *
  * [[MessagePrompter]] uses reactions to prompt for a yes/no answer and returns it.
