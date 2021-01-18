@@ -117,10 +117,6 @@ export class MessagePrompter {
 	 * @param author The author to validate.
 	 */
 	public run(channel: TextChannel | NewsChannel | DMChannel, author: User): Promise<IMessagePrompterReturn> {
-		if (!channel) throw new TypeError('There is no channel provided.');
-		if (!author) throw new TypeError('There is no author provided.');
-		if (!this.message) throw new TypeError('There is no messages provided.');
-
 		const { type } = this.options;
 		switch (type) {
 			case 'confirm':
