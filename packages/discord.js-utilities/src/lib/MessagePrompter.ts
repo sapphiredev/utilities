@@ -278,7 +278,7 @@ export class MessagePrompter {
 		const firstReaction = await collected;
 		const emoji = firstReaction?.emoji;
 
-		const reaction = reactions.find((r) => (firstReaction?.emoji?.id ?? firstReaction?.emoji?.name) === r);
+		const reaction = reactions.find((r) => (emoji?.id ?? emoji?.name) === r);
 
 		return {
 			emoji,
