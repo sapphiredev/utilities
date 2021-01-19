@@ -1,6 +1,6 @@
 {
 	"name": "@sapphire/async-queue",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Sequential asynchronous lock-based queue for promises",
 	"author": "@sapphire",
 	"license": "MIT",
@@ -18,7 +18,8 @@
 		"test": "jest",
 		"lint": "eslint src tests --ext ts --fix -c ../../.eslintrc",
 		"build": "rollup -c rollup.config.ts",
-		"start": "yarn build -w"
+		"start": "yarn build -w",
+		"prepublishOnly": "yarn build"
 	},
 	"repository": {
 		"type": "git",

@@ -1,6 +1,6 @@
 {
 	"name": "@sapphire/eslint-config",
-	"version": "2.0.0",
+	"version": "2.1.0",
 	"description": "Standard ESLint config for Sapphire projects written in TypeScript",
 	"author": "@sapphire",
 	"license": "MIT",
@@ -15,7 +15,8 @@
 		"test": "jest",
 		"prelint": "yarn test && yarn build",
 		"lint": "eslint src tests --ext ts --fix -c dist/index.js",
-		"build": "tsc -b src"
+		"build": "tsc -b src",
+		"prepublishOnly": "yarn build"
 	},
 	"peerDependencies": {
 		"@typescript-eslint/eslint-plugin": "4.x",

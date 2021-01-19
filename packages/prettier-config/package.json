@@ -1,6 +1,6 @@
 {
 	"name": "@sapphire/prettier-config",
-	"version": "1.0.5",
+	"version": "1.0.6",
 	"description": "Standard Prettier config for Sapphire projects",
 	"author": "@sapphire",
 	"license": "MIT",
@@ -15,7 +15,8 @@
 		"test": "jest",
 		"prelint": "yarn test && yarn build",
 		"lint": "eslint src tests --ext ts --fix -c dist/index.js",
-		"build": "tsc -b src"
+		"build": "tsc -b src",
+		"prepublishOnly": "yarn build"
 	},
 	"peerDependencies": {
 		"prettier": "2.x"

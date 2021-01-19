@@ -1,5 +1,4 @@
-import type { SapphireClient } from '@sapphire/framework';
-import type { Piece, PieceOptions } from '@sapphire/pieces';
+import type { Piece, PieceContext, PieceOptions } from '@sapphire/pieces';
 import type { Ctor } from '@sapphire/utilities';
 import { createClassDecorator, createMethodDecorator, createProxy } from './utils';
 
@@ -15,13 +14,13 @@ import { createClassDecorator, createMethodDecorator, createProxy } from './util
  * ```
  * @param options The options to pass to the piece constructor
  */
-export function ApplyOptions<T extends PieceOptions>(optionsOrFn: T | ((client: SapphireClient) => T)): ClassDecorator {
+export function ApplyOptions<T extends PieceOptions>(optionsOrFn: T | ((context: PieceContext) => T)): ClassDecorator {
 	return createClassDecorator((target: Ctor<ConstructorParameters<typeof Piece>, Piece>) =>
 		createProxy(target, {
 			construct: (ctor, [context, baseOptions = {}]) =>
 				new ctor(context, {
 					...baseOptions,
-					...(typeof optionsOrFn === 'function' ? optionsOrFn(context.client) : optionsOrFn)
+					...(typeof optionsOrFn === 'function' ? optionsOrFn(context) : optionsOrFn)
 				})
 		})
 	);

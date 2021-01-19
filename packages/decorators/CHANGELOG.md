@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.3](https://github.com/sapphire-project/utilities/compare/@sapphire/decorators@2.0.2...@sapphire/decorators@2.0.3) (2021-01-18)
+
+### Bug Fixes
+
+-   **decorators:** change `ApplyOptions`'s callback parameter from Client to PieceContext ([#61](https://github.com/sapphire-project/utilities/issues/61)) ([d8b916b](https://github.com/sapphire-project/utilities/commit/d8b916bb0f90b40499f7d6315bfec3cfd6642968))
+
+## [2.0.2](https://github.com/sapphire-project/utilities/compare/@sapphire/decorators@2.0.1...@sapphire/decorators@2.0.2) (2021-01-16)
+
+**Note:** Version bump only for package @sapphire/decorators
+
 ## [2.0.1](https://github.com/sapphire-project/utilities/compare/@sapphire/decorators@2.0.0...@sapphire/decorators@2.0.1) (2021-01-09)
 
 ### Bug Fixes

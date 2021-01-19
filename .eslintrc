@@ -6,67 +6,6 @@
 			"rules": {
 				"@typescript-eslint/no-extraneous-class": 0
 			}
-		},
-		{
-			"files": ["packages/decorators/**/*.ts"],
-			"rules": {
-				"@typescript-eslint/naming-convention": [
-					"error",
-					{
-						"selector": "default",
-						"format": ["camelCase"],
-						"leadingUnderscore": "forbid",
-						"trailingUnderscore": "forbid",
-						"filter": {
-							"regex": "^(?:VariableDeclarator|AssignmentExpression)$",
-							"match": false
-						}
-					},
-					{
-						"selector": "parameter",
-						"format": ["camelCase"],
-						"leadingUnderscore": "allow"
-					},
-					{
-						"selector": "property",
-						"modifiers": ["readonly"],
-						"prefix": ["k"],
-						"format": ["PascalCase"]
-					},
-					{
-						"selector": "enumMember",
-						"format": ["PascalCase"]
-					},
-					{
-						"selector": "typeLike",
-						"format": ["PascalCase"]
-					},
-					{
-						"selector": "function",
-						"format": ["PascalCase", "camelCase"]
-					}
-				]
-			}
-		},
-		{
-			"files": ["packages/discord-utilities/src/lib/regexes.ts"],
-			"rules": {
-				"@typescript-eslint/naming-convention": [
-					"error",
-					{
-						"selector": "default",
-						"format": ["PascalCase"],
-						"leadingUnderscore": "forbid",
-						"trailingUnderscore": "forbid"
-					}
-				]
-			}
-		},
-		{
-			"files": ["packages/snowflake/**/*.ts", "packages/**/rollup.config.ts"],
-			"rules": {
-				"@typescript-eslint/naming-convention": 0
-			}
 		}
 	]
 }

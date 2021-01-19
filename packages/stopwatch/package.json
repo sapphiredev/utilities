@@ -1,6 +1,6 @@
 {
 	"name": "@sapphire/stopwatch",
-	"version": "1.0.3",
+	"version": "1.0.4",
 	"description": "Accurately measure passing time.",
 	"author": "@sapphire",
 	"license": "MIT",
@@ -17,7 +17,8 @@
 		"lint": "eslint src tests --ext ts --fix -c ../../.eslintrc",
 		"build": "tsc -b src",
 		"postbuild": "gen-esm-wrapper dist/index.js dist/index.mjs",
-		"start": "yarn build -w"
+		"start": "yarn build -w",
+		"prepublishOnly": "yarn build"
 	},
 	"repository": {
 		"type": "git",
