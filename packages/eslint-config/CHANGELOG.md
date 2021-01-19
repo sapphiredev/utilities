@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/sapphire-project/utilities/compare/@sapphire/eslint-config@2.0.1...@sapphire/eslint-config@2.1.0) (2021-01-19)
+
+### Features
+
+-   **eslint-config:** disable several rules ([61ea4db](https://github.com/sapphire-project/utilities/commit/61ea4dbbd97b99198284777c2566f2d47967d0d6))
+
 ## [2.0.1](https://github.com/sapphire-project/utilities/compare/@sapphire/eslint-config@2.0.0...@sapphire/eslint-config@2.0.1) (2021-01-16)
 
 **Note:** Version bump only for package @sapphire/eslint-config
