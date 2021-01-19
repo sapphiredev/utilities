@@ -133,7 +133,7 @@ export class MessagePrompter {
 	 * This executes the [[MessagePrompter]] and sends the message if [[IMessagePrompterOptions.type]] equals confirm.
 	 * The handler will wait for one (1) reaction.
 	 * @param channel The channel to use.
-	 * @param authorOrFilter The author to validate.
+	 * @param authorOrFilter An author object to validate or a [CollectorFilter](https://discord.js.org/#/docs/main/stable/typedef/CollectorFilter) predicate callback.
 	 * @returns A promise that resolves to a boolean denoting the truth value of the input (`true` for yes, `false` for no).
 	 */
 	public async runConfirm(
