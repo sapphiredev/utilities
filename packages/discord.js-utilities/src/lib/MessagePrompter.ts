@@ -42,14 +42,14 @@ export abstract class MessagePrompterBaseStrategy {
 	/**
 	 * The message that will been sent in [[MessagePrompter.run]]
 	 */
-	public message: IMessagePrompterMessage;
+	public message: MessagePrompterMessage;
 
 	/**
 	 * Constructor for the [[MessagePrompterBaseStrategy]] class
 	 * @param messagePrompter The used instance of [[MessagePrompter]]
 	 * @param options Overrideable options if needed.
 	 */
-	public constructor(type: string, options: IMessagePrompterStrategyOptions, message: IMessagePrompterMessage) {
+	public constructor(type: string, options: IMessagePrompterStrategyOptions, message: MessagePrompterMessage) {
 		this.type = type;
 		this.timeout = options?.timeout ?? MessagePrompter.defaultStrategyOptions.timeout;
 		this.explicitReturn = options?.explicitReturn ?? MessagePrompter.defaultStrategyOptions.explicitReturn;
@@ -132,7 +132,7 @@ export class MessagePrompterConfirmStrategy extends MessagePrompterBaseStrategy 
 	 * @param message The message to be sent [[MessagePrompter]]
 	 * @param options Overrideable options if needed.
 	 */
-	public constructor(message: IMessagePrompterMessage, options: IMessagePrompterConfirmStrategyOptions) {
+	public constructor(message: MessagePrompterMessage, options: IMessagePrompterConfirmStrategyOptions) {
 		super('confirm', options, message);
 
 		this.confirmEmoji = options?.confirmEmoji ?? MessagePrompterConfirmStrategy.confirmEmoji;
@@ -188,7 +188,7 @@ export class MessagePrompterNumberStrategy extends MessagePrompterBaseStrategy {
 	 * @param messagePrompter The used instance of [[MessagePrompter]]
 	 * @param options Overrideable options if needed.
 	 */
-	public constructor(message: IMessagePrompterMessage, options: IMessagePrompterNumberStrategyOptions) {
+	public constructor(message: MessagePrompterMessage, options: IMessagePrompterNumberStrategyOptions) {
 		super('number', options, message);
 
 		this.numberEmojis = options?.numberEmojis ?? MessagePrompterNumberStrategy.numberEmojis;
@@ -239,7 +239,7 @@ export class MessagePrompterReactionStrategy extends MessagePrompterBaseStrategy
 	 * @param messagePrompter The used instance of [[MessagePrompter]]
 	 * @param options Overrideable options if needed.
 	 */
-	public constructor(message: IMessagePrompterMessage, options: IMessagePrompterReactionStrategyOptions) {
+	public constructor(message: MessagePrompterMessage, options: IMessagePrompterReactionStrategyOptions) {
 		super('reactions', options, message);
 
 		this.reactions = options?.reactions;
@@ -275,7 +275,7 @@ export class MessagePrompterMessageStrategy extends MessagePrompterBaseStrategy 
 	 * @param messagePrompter The used instance of [[MessagePrompter]]
 	 * @param options Overrideable options if needed.
 	 */
-	public constructor(message: IMessagePrompterMessage, options: IMessagePrompterReactionStrategyOptions) {
+	public constructor(message: MessagePrompterMessage, options: IMessagePrompterReactionStrategyOptions) {
 		super('message', options, message);
 
 		this.reactions = options?.reactions;
@@ -384,7 +384,7 @@ export class MessagePrompter {
 	 * @param strategy The strategy name or Instance to use
 	 * @param strategyOptions The options that are passed to the strategy
 	 */
-	public constructor(message: IMessagePrompterMessage | MessagePrompterBaseStrategy, strategy?: string, strategyOptions?: Record<string, unknown>) {
+	public constructor(message: MessagePrompterMessage | MessagePrompterBaseStrategy, strategy?: string, strategyOptions?: Record<string, unknown>) {
 		let strategyToRun: MessagePrompterBaseStrategy | undefined = undefined;
 
 		if (message instanceof MessagePrompterBaseStrategy) {
@@ -440,7 +440,7 @@ export class MessagePrompter {
 /**
  * A type to extend multiple discord types and simplify usage in [[MessagePrompter]]
  */
-export type IMessagePrompterMessage = APIMessageContentResolvable | (MessageOptions & { split?: false }) | MessageAdditions;
+export type MessagePrompterMessage = APIMessageContentResolvable | (MessageOptions & { split?: false }) | MessageAdditions;
 
 // strategy options
 export interface IMessagePrompterStrategyOptions {
@@ -469,7 +469,7 @@ export interface IMessagePrompterExplicitReturnBase {
 	reaction?: string | EmojiIdentifierResolvable;
 	strategy: MessagePrompterBaseStrategy;
 	appliedMessage: Message;
-	message: IMessagePrompterMessage;
+	message: MessagePrompterMessage;
 }
 
 export interface IMessagePrompterExplicitConfirmReturn extends IMessagePrompterExplicitReturnBase {
