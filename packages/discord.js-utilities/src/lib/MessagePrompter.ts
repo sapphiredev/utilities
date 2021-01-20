@@ -148,12 +148,8 @@ export class MessagePrompter {
 
 		const confirmed = (response?.emoji?.id ?? response?.emoji?.name) === confirm;
 
-		return explicitReturn
-			? {
-					...response,
-					confirmed
-			  }
-			: confirmed;
+		// prettier-ignore
+		return explicitReturn ? { ...response, confirmed } : confirmed;
 	}
 
 	/**
@@ -183,12 +179,8 @@ export class MessagePrompter {
 		const emojiIndex = emojis.findIndex((emoji) => (response?.emoji?.id ?? response?.emoji?.name) === emoji);
 		const number = numbers[emojiIndex];
 
-		return explicitReturn
-			? {
-					...response,
-					number
-			  }
-			: number;
+		// prettier-ignore
+		return explicitReturn ? { ...response, number } : number;
 	}
 
 	/**
