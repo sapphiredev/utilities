@@ -346,7 +346,7 @@ export class MessagePrompterMessageStrategy extends MessagePrompterBaseStrategy 
  * @example
  * ```typescript
  * const handler = new MessagePrompter('Are you sure you want to continue?');
- * const confirmed = await handler.run(channel, author);
+ * const result = await handler.run(channel, author);
  * ```
  *
  * @example
@@ -355,7 +355,7 @@ export class MessagePrompterMessageStrategy extends MessagePrompterBaseStrategy 
  * 		start: 5,
  * 		end: 10
  * });
- * const confirmed = await handler.run(channel, author);
+ * const result = await handler.run(channel, author);
  * ```
  *
  * @example
@@ -363,13 +363,13 @@ export class MessagePrompterMessageStrategy extends MessagePrompterBaseStrategy 
  * const handler = new MessagePrompter('Are you happy or sad?', 'reaction', {
  * 		reactions: ['🙂', '🙁']
  * });
- * const confirmed = await handler.run(channel, author);
+ * const result = await handler.run(channel, author);
  * ```
  *
  * @example
  * ```typescript
  * const handler = new MessagePrompter('Do you love me?', 'message');
- * const confirmed = await handler.run(channel, author);
+ * const result = await handler.run(channel, author);
  * ```
  */
 export class MessagePrompter {
