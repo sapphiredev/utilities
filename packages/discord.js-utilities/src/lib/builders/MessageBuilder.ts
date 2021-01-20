@@ -61,14 +61,14 @@ export class MessageBuilder implements MessageOptions {
 	public split?: MessageBuilderSplitResolvable;
 
 	public constructor(options?: MessageBuilderResolvable) {
-		this.tts = options?.tts;
-		this.nonce = options?.nonce;
-		this.content = options?.content;
-		this.embed = options?.embed;
-		this.allowedMentions = options?.allowedMentions;
-		this.files = options?.files;
-		this.code = options?.code;
-		this.split = options?.split;
+		this.tts = options?.tts ?? MessageBuilder.defaults.tts;
+		this.nonce = options?.nonce ?? MessageBuilder.defaults.nonce;
+		this.content = options?.content ?? MessageBuilder.defaults.content;
+		this.embed = options?.embed ?? MessageBuilder.defaults.embed;
+		this.allowedMentions = options?.allowedMentions ?? MessageBuilder.defaults.allowedMentions;
+		this.files = options?.files ?? MessageBuilder.defaults.files;
+		this.code = options?.code ?? MessageBuilder.defaults.code;
+		this.split = options?.split ?? MessageBuilder.defaults.split;
 	}
 
 	/**
@@ -165,4 +165,9 @@ export class MessageBuilder implements MessageOptions {
 		this.split = split;
 		return this;
 	}
+
+	/**
+	 * The default values for all MessageBuilder instances.
+	 */
+	public static defaults: MessageBuilderResolvable = {};
 }
