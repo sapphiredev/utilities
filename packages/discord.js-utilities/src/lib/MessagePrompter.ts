@@ -15,6 +15,316 @@ import type {
 	ReactionEmoji
 } from 'discord.js';
 
+type Constructor<T> = new (...args: any[]) => T;
+type Awaited<T> = PromiseLike<T> | T;
+
+export abstract class MessagePrompterBaseStrategy {
+	/**
+	 * The type of strategy used
+	 */
+	public type: string;
+
+	/**
+	 * The timeout used in the collector
+	 */
+	public timeout: number;
+
+	/**
+	 * Wether to return an explicit object with data or the strategies default
+	 */
+	public explicitReturn: boolean;
+
+	/**
+	 * The message that has been sent in [[MessagePrompter.run]]
+	 */
+	public appliedMessage: Message | null = null;
+
+	/**
+	 * The message that will been sent in [[MessagePrompter.run]]
+	 */
+	public message: IMessagePrompterMessage;
+
+	/**
+	 * Constructor for the [[MessagePrompterBaseStrategy]] class
+	 * @param messagePrompter The used instance of [[MessagePrompter]]
+	 * @param options Overrideable options if needed.
+	 */
+	public constructor(type: string, options: IMessagePrompterStrategyOptions, message: IMessagePrompterMessage) {
+		this.type = type;
+		this.timeout = options?.timeout ?? MessagePrompter.defaultStrategyOptions.timeout;
+		this.explicitReturn = options?.explicitReturn ?? MessagePrompter.defaultStrategyOptions.explicitReturn;
+		this.message = message;
+	}
+
+	public abstract run(channel: TextChannel | NewsChannel | DMChannel, authorOrFilter: User | CollectorFilter): Awaited<unknown>;
+
+	protected async collectReactions(
+		channel: TextChannel | NewsChannel | DMChannel,
+		authorOrFilter: User | CollectorFilter,
+		reactions: string[] | EmojiIdentifierResolvable[]
+	): Promise<IMessagePrompterExplicitReturnBase> {
+		this.appliedMessage = await channel.send(this.message);
+
+		const collector = this.appliedMessage.createReactionCollector(this.createReactionPromptFilter(reactions, authorOrFilter), {
+			max: 1,
+			time: this.timeout
+		});
+
+		let resolved = false;
+		const collected: Promise<MessageReaction> = new Promise<MessageReaction>((resolve, reject) => {
+			collector.on('collect', (r) => {
+				resolve(r);
+				resolved = true;
+				collector.stop();
+			});
+
+			collector.on('end', (collected) => {
+				resolved = true;
+				if (!collected.size) reject(new Error('Collector has ended'));
+			});
+		});
+
+		for (const reaction of reactions) {
+			if (resolved) break;
+
+			await this.appliedMessage.react(reaction);
+		}
+
+		const firstReaction = await collected;
+		const emoji = firstReaction?.emoji;
+
+		const reaction = reactions.find((r) => (emoji?.id ?? emoji?.name) === r);
+
+		return {
+			emoji,
+			reaction,
+			strategy: this,
+			appliedMessage: this.appliedMessage,
+			message: this.message
+		};
+	}
+
+	/**
+	 * Creates a filter for the collector to filter on
+	 * @return The filter for awaitReactions function
+	 */
+	protected createReactionPromptFilter(reactions: string[] | EmojiIdentifierResolvable[], authorOrFilter: User | CollectorFilter): CollectorFilter {
+		return async (reaction: MessageReaction, user: User) =>
+			reactions.includes(reaction.emoji.id ?? reaction.emoji.name) &&
+			(typeof authorOrFilter === 'function' ? await authorOrFilter(reaction, user) : user.id === authorOrFilter.id) &&
+			!user.bot;
+	}
+}
+
+export class MessagePrompterConfirmStrategy extends MessagePrompterBaseStrategy {
+	/**
+	 * The cancel emoji used
+	 */
+	public confirmEmoji: string | EmojiResolvable;
+
+	/**
+	 * The confirm emoji used
+	 */
+	public cancelEmoji: string | EmojiResolvable;
+
+	/**
+	 * Constructor for the [[MessagePrompterBaseStrategy]] class
+	 * @param message The message to be sent [[MessagePrompter]]
+	 * @param options Overrideable options if needed.
+	 */
+	public constructor(message: IMessagePrompterMessage, options: IMessagePrompterConfirmStrategyOptions) {
+		super('confirm', options, message);
+
+		this.confirmEmoji = options?.confirmEmoji ?? MessagePrompterConfirmStrategy.confirmEmoji;
+		this.cancelEmoji = options?.cancelEmoji ?? MessagePrompterConfirmStrategy.cancelEmoji;
+	}
+
+	/**
+	 * This executes the [[MessagePrompter]] and sends the message if [[IMessagePrompterOptions.type]] equals confirm.
+	 * The handler will wait for one (1) reaction.
+	 * @param channel The channel to use.
+	 * @param authorOrFilter An author object to validate or a {@link https://discord.js.org/#/docs/main/stable/typedef/CollectorFilter CollectorFilter} predicate callback.
+	 * @returns A promise that resolves to a boolean denoting the truth value of the input (`true` for yes, `false` for no).
+	 */
+	public async run(
+		channel: TextChannel | NewsChannel | DMChannel,
+		authorOrFilter: User | CollectorFilter
+	): Promise<IMessagePrompterExplicitConfirmReturn | boolean> {
+		const response = await this.collectReactions(channel, authorOrFilter, [this.confirmEmoji, this.cancelEmoji]);
+
+		const confirmed = (response?.emoji?.id ?? response?.emoji?.name) === MessagePrompterConfirmStrategy.confirmEmoji;
+
+		// prettier-ignore
+		return this.explicitReturn ? { ...response, confirmed } : confirmed;
+	}
+
+	/**
+	 * The default confirm emoji used for [[MessagePrompterConfirmStrategy]]
+	 */
+	public static confirmEmoji: string | EmojiResolvable = '🇾';
+
+	/**
+	 * The default cancel emoji used for [[MessagePrompterConfirmStrategy]]
+	 */
+	public static cancelEmoji: string | EmojiResolvable = '🇳';
+}
+
+export class MessagePrompterNumberStrategy extends MessagePrompterBaseStrategy {
+	/**
+	 * The available number emojis
+	 */
+	public numberEmojis: string[] | EmojiResolvable[];
+	/**
+	 * The available number emojis
+	 */
+	public start: number;
+	/**
+	 * The available number emojis
+	 */
+	public end: number;
+
+	/**
+	 * Constructor for the [[MessagePrompterBaseStrategy]] class
+	 * @param messagePrompter The used instance of [[MessagePrompter]]
+	 * @param options Overrideable options if needed.
+	 */
+	public constructor(message: IMessagePrompterMessage, options: IMessagePrompterNumberStrategyOptions) {
+		super('number', options, message);
+
+		this.numberEmojis = options?.numberEmojis ?? MessagePrompterNumberStrategy.numberEmojis;
+		this.start = options?.start ?? 0;
+		this.end = options?.end ?? 10;
+	}
+
+	/**
+	 * This executes the [[MessagePrompter]] and sends the message if [[IMessagePrompterOptions.type]] equals number.
+	 * The handler will wait for one (1) reaction.
+	 * @param channel The channel to use.
+	 * @param authorOrFilter An author object to validate or a {@link https://discord.js.org/#/docs/main/stable/typedef/CollectorFilter CollectorFilter} predicate callback.
+	 * @returns A promise that resolves to the selected number within the range.
+	 */
+	public async run(
+		channel: TextChannel | NewsChannel | DMChannel,
+		authorOrFilter: User | CollectorFilter
+	): Promise<IMessagePrompterExplicitNumberReturn | number> {
+		// 0 and 10 are the maximum available emojis as a number
+		if (this.start < 0) throw new TypeError('Starting number cannot be less than 0.');
+		if (this.end > 10) throw new TypeError('Ending number cannot be more than 10.');
+
+		const numbers = Array.from({ length: this.end - this.start + 1 }, (_, n: number) => n + this.start);
+		const emojis = this.numberEmojis.slice(this.start, this.end);
+		const response = await this.collectReactions(channel, authorOrFilter, emojis);
+
+		const emojiIndex = emojis.findIndex((emoji) => (response?.emoji?.id ?? response?.emoji?.name) === emoji);
+		const number = numbers[emojiIndex];
+
+		// prettier-ignore
+		return this.explicitReturn ? { ...response, number } : number;
+	}
+
+	/**
+	 * The default  available number emojis
+	 */
+	public static numberEmojis = ['0️⃣', '1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '7️⃣', '8️⃣', '9️⃣', '🔟'];
+}
+
+export class MessagePrompterReactionStrategy extends MessagePrompterBaseStrategy {
+	/**
+	 * The emojis used
+	 */
+	public reactions: string[] | EmojiResolvable[];
+
+	/**
+	 * Constructor for the [[MessagePrompterReactionStrategy]] class
+	 * @param messagePrompter The used instance of [[MessagePrompter]]
+	 * @param options Overrideable options if needed.
+	 */
+	public constructor(message: IMessagePrompterMessage, options: IMessagePrompterReactionStrategyOptions) {
+		super('reactions', options, message);
+
+		this.reactions = options?.reactions;
+	}
+
+	/**
+	 * This executes the [[MessagePrompterReactionStrategy]] and sends the message.
+	 * The handler will wait for one (1) reaction.
+	 * @param channel The channel to use.
+	 * @param authorOrFilter An author object to validate or a {@link https://discord.js.org/#/docs/main/stable/typedef/CollectorFilter CollectorFilter} predicate callback.
+	 * @returns A promise that resolves to the reaction object.
+	 */
+	public async run(
+		channel: TextChannel | NewsChannel | DMChannel,
+		authorOrFilter: User | CollectorFilter
+	): Promise<IMessagePrompterExplicitReturnBase | string | EmojiResolvable> {
+		if (!this.reactions?.length) throw new TypeError('There are no reactions provided.');
+
+		const response = await this.collectReactions(channel, authorOrFilter, this.reactions);
+
+		return this.explicitReturn ? response : response.reaction ?? response;
+	}
+}
+
+export class MessagePrompterMessageStrategy extends MessagePrompterBaseStrategy {
+	/**
+	 * The emojis used
+	 */
+	public reactions: string[] | EmojiResolvable[];
+
+	/**
+	 * Constructor for the [[MessagePrompterBaseStrategy]] class
+	 * @param messagePrompter The used instance of [[MessagePrompter]]
+	 * @param options Overrideable options if needed.
+	 */
+	public constructor(message: IMessagePrompterMessage, options: IMessagePrompterReactionStrategyOptions) {
+		super('message', options, message);
+
+		this.reactions = options?.reactions;
+	}
+
+	/**
+	 * This executes the [[MessagePrompter]] and sends the message if [[IMessagePrompterOptions.type]] equals message.
+	 * The handler will wait for one (1) message.
+	 * @param channel The channel to use.
+	 * @param authorOrFilter An author object to validate or a {@link https://discord.js.org/#/docs/main/stable/typedef/CollectorFilter CollectorFilter} predicate callback.
+	 * @returns A promise that resolves to the message object received.
+	 */
+	public async run(
+		channel: TextChannel | NewsChannel | DMChannel,
+		authorOrFilter: User | CollectorFilter
+	): Promise<IMessagePrompterExplicitMessageReturn | Message> {
+		this.appliedMessage = await channel.send(this.message);
+
+		const collector = await channel.awaitMessages(this.createMessagePromptFilter(authorOrFilter), {
+			max: 1,
+			time: this.timeout,
+			errors: ['time']
+		});
+		const response = collector.first();
+
+		if (!response) {
+			throw new Error('No messages received');
+		}
+
+		return this.explicitReturn
+			? {
+					response,
+					strategy: this as MessagePrompterBaseStrategy,
+					appliedMessage: this.appliedMessage,
+					message: this.message
+			  }
+			: response;
+	}
+
+	/**
+	 * Creates a filter for the collector to filter on
+	 * @return The filter for awaitMessages function
+	 */
+	private createMessagePromptFilter(authorOrFilter: User | CollectorFilter): CollectorFilter {
+		return async (message: Message) =>
+			(typeof authorOrFilter === 'function' ? await authorOrFilter(message) : message.author.id === authorOrFilter.id) && !message.author.bot;
+	}
+}
+
 /**
  * This is a [[MessagePrompter]], a utility that sends a prompt message that can resolve any kind of input.
  * There are several specifiable types to prompt for user input, and they are as follows:
@@ -41,20 +351,16 @@ import type {
  *
  * @example
  * ```typescript
- * const handler = new MessagePrompter('Choose a number between 5 and 10?', {
- * 		type: 'number',
- * 		reactions: {
- * 			start: 5,
- * 			end: 10
- * 		}
+ * const handler = new MessagePrompter('Choose a number between 5 and 10?', 'number', {
+ * 		start: 5,
+ * 		end: 10
  * });
  * const confirmed = await handler.run(channel, author);
  * ```
  *
  * @example
  * ```typescript
- * const handler = new MessagePrompter('Are you happy or sad?', {
- * 		type: 'reaction',
+ * const handler = new MessagePrompter('Are you happy or sad?', 'reaction', {
  * 		reactions: ['🙂', '🙁']
  * });
  * const confirmed = await handler.run(channel, author);
@@ -68,277 +374,67 @@ import type {
  */
 export class MessagePrompter {
 	/**
-	 * The message that will been sent in [[MessagePrompter.run]]
+	 * The strategy used in [[MessagePrompter.run]]
 	 */
-	public message: IMessagePrompterMessage;
-
-	/**
-	 * The message that has been sent in [[MessagePrompter.run]]
-	 */
-	public appliedMessage: Message | null = null;
-
-	/**
-	 * The used options for this instance of [[MessagePrompter]]
-	 */
-	public options: IMessagePrompterOptions;
-
-	/**
-	 * The default options used if there is no type supplied.
-	 */
-	private defaultOptions: IMessagePrompterOptions = {
-		type: 'confirm',
-		reactions: {
-			confirm: '🇾',
-			cancel: '🇳'
-		},
-		timeout: 20 * 1000,
-		explicitReturn: false
-	};
+	public strategy: MessagePrompterBaseStrategy;
 
 	/**
 	 * Constructor for the [[MessagePrompter]] class
 	 * @param message The message to send.
-	 * @param options Overrideable options if needed.
+	 * @param strategy The strategy name or Instance to use
+	 * @param strategyOptions The options that are passed to the strategy
 	 */
-	public constructor(message: IMessagePrompterMessage, options?: Partial<IMessagePrompterOptions> | IMessagePrompterOptionsType) {
-		this.message = message;
-		const type: IMessagePrompterOptionsType = typeof options === 'string' ? options : options?.type ?? 'confirm';
+	public constructor(message: IMessagePrompterMessage | MessagePrompterBaseStrategy, strategy?: string, strategyOptions?: Record<string, unknown>) {
+		let strategyToRun: MessagePrompterBaseStrategy | undefined = undefined;
 
-		this.options = {
-			...this.defaultOptions,
-			...(MessagePrompter.defaultOptions.get(type) ?? {}),
-			...((typeof options !== 'string' && options) ?? {})
-		};
+		if (message instanceof MessagePrompterBaseStrategy) {
+			strategyToRun = message as MessagePrompterBaseStrategy;
+		} else {
+			const mapStrategy = MessagePrompter.strategies.get(strategy ?? MessagePrompter.defaultStrategy);
+
+			if (!mapStrategy) {
+				throw new Error('No strategy provided');
+			}
+
+			strategyToRun = new mapStrategy(message, strategyOptions);
+		}
+
+		this.strategy = strategyToRun;
 	}
 
 	/**
 	 * This executes the [[MessagePrompter]] and sends the message.
 	 * @param channel The channel to use.
-	 * @param authorOrFilter The author to validate.
+	 * @param authorOrFilter An author object to validate or a {@link https://discord.js.org/#/docs/main/stable/typedef/CollectorFilter CollectorFilter} predicate callback.
+	 * @param explicitReturn Wheter or not you wan't an explicit return object
 	 */
-	public run(channel: TextChannel | NewsChannel | DMChannel, authorOrFilter: User | CollectorFilter): Promise<IMessagePrompterReturn> {
-		switch (this.options.type) {
-			case 'confirm':
-				return this.runConfirm(channel, authorOrFilter);
-			case 'number':
-				return this.runNumber(channel, authorOrFilter);
-			case 'reaction':
-				return this.runReaction(channel, authorOrFilter);
-			case 'message':
-				return this.runMessage(channel, authorOrFilter);
-		}
+	public run(channel: TextChannel | NewsChannel | DMChannel, authorOrFilter: User | CollectorFilter) {
+		return this.strategy.run(channel, authorOrFilter);
 	}
 
 	/**
-	 * This executes the [[MessagePrompter]] and sends the message if [[IMessagePrompterOptions.type]] equals confirm.
-	 * The handler will wait for one (1) reaction.
-	 * @param channel The channel to use.
-	 * @param authorOrFilter An author object to validate or a [CollectorFilter](https://discord.js.org/#/docs/main/stable/typedef/CollectorFilter) predicate callback.
-	 * @returns A promise that resolves to a boolean denoting the truth value of the input (`true` for yes, `false` for no).
+	 * The available strategies
 	 */
-	public async runConfirm(
-		channel: TextChannel | NewsChannel | DMChannel,
-		authorOrFilter: User | CollectorFilter
-	): Promise<IMessagePrompterExplicitReturn | boolean> {
-		const { reactions, timeout, explicitReturn } = this.options;
-		const { confirm, cancel } = reactions as IMessagePrompterOptionsConfirm;
-
-		const confirmReactions: string[] | EmojiIdentifierResolvable[] = [confirm, cancel];
-		const response = await this.collectReactions(channel, authorOrFilter, confirmReactions, timeout);
-
-		const confirmed = (response?.emoji?.id ?? response?.emoji?.name) === confirm;
-
-		// prettier-ignore
-		return explicitReturn ? { ...response, confirmed } : confirmed;
-	}
-
-	/**
-	 * This executes the [[MessagePrompter]] and sends the message if [[IMessagePrompterOptions.type]] equals number.
-	 * The handler will wait for one (1) reaction.
-	 * @param channel The channel to use.
-	 * @param authorOrFilter The author to validate.
-	 * @returns A promise that resolves to the selected number within the range.
-	 */
-	public async runNumber(
-		channel: TextChannel | NewsChannel | DMChannel,
-		authorOrFilter: User | CollectorFilter
-	): Promise<IMessagePrompterExplicitReturn | number> {
-		const { reactions, timeout, explicitReturn } = this.options;
-		const { start, end } = reactions as IMessagePrompterOptionsNumber;
-
-		// 0 and 10 are the maximum available emojis as a number
-		if (start < 0) throw new TypeError('Starting number cannot be less than 0.');
-		if (end > 10) throw new TypeError('Ending number cannot be more than 10.');
-
-		const numberEmojis = ['0️⃣', '1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '7️⃣', '8️⃣', '9️⃣', '🔟'];
-
-		const numbers = Array.from({ length: end - start + 1 }, (_, n: number) => n + start);
-		const emojis = numbers.map((number) => numberEmojis[number]);
-		const response = await this.collectReactions(channel, authorOrFilter, emojis, timeout);
-
-		const emojiIndex = emojis.findIndex((emoji) => (response?.emoji?.id ?? response?.emoji?.name) === emoji);
-		const number = numbers[emojiIndex];
-
-		// prettier-ignore
-		return explicitReturn ? { ...response, number } : number;
-	}
-
-	/**
-	 * This executes the [[MessagePrompter]] and sends the message if [[IMessagePrompterOptions.type]] equals reaction.
-	 * The handler will wait for one (1) reaction.
-	 * @param channel The channel to use.
-	 * @param authorOrFilter The author to validate.
-	 * @returns A promise that resolves to the reaction object.
-	 */
-	public async runReaction(
-		channel: TextChannel | NewsChannel | DMChannel,
-		authorOrFilter: User | CollectorFilter
-	): Promise<IMessagePrompterExplicitReturn | string | EmojiResolvable> {
-		const { timeout, explicitReturn } = this.options;
-		const reactions = this.options.reactions as IMessagePrompterOptionsReaction;
-
-		if (!reactions?.length) throw new TypeError('There are no reactions provided.');
-
-		const response = await this.collectReactions(channel, authorOrFilter, reactions, timeout);
-
-		return explicitReturn ? response : response.reaction ?? response;
-	}
-
-	/**
-	 * This executes the [[MessagePrompter]] and sends the message if [[IMessagePrompterOptions.type]] equals message.
-	 * The handler will wait for one (1) message.
-	 * @param channel The channel to use.
-	 * @param authorOrFilter The author to validate.
-	 * @returns A promise that resolves to the message object received.
-	 */
-	public async runMessage(
-		channel: TextChannel | NewsChannel | DMChannel,
-		authorOrFilter: User | CollectorFilter
-	): Promise<IMessagePrompterExplicitReturn | Message> {
-		const { timeout, explicitReturn } = this.options;
-		this.appliedMessage = await channel.send(this.message);
-
-		const collector = await channel.awaitMessages(this.createMessagePromptFilter(authorOrFilter), {
-			max: 1,
-			time: timeout,
-			errors: ['time']
-		});
-		const response = collector.first();
-
-		if (!response) {
-			throw new Error('No messages received');
-		}
-
-		return explicitReturn
-			? {
-					response,
-					options: this.options,
-					appliedMessage: this.appliedMessage,
-					message: this.message
-			  }
-			: response;
-	}
-
-	private async collectReactions(
-		channel: TextChannel | NewsChannel | DMChannel,
-		authorOrFilter: User | CollectorFilter,
-		reactions: string[] | EmojiIdentifierResolvable[],
-		timeout: number
-	): Promise<IMessagePrompterExplicitReturn> {
-		this.appliedMessage = await channel.send(this.message);
-
-		const collector = this.appliedMessage.createReactionCollector(this.createReactionPromptFilter(reactions, authorOrFilter), {
-			max: 1,
-			time: timeout
-		});
-
-		let resolved = false;
-		const collected: Promise<MessageReaction> = new Promise((resolve) =>
-			collector.on('collect', (r) => {
-				resolve(r);
-				resolved = true;
-				collector.stop();
-			})
-		);
-
-		for (const reaction of reactions) {
-			if (resolved) break;
-
-			await this.appliedMessage.react(reaction);
-		}
-
-		const firstReaction = await collected;
-		const emoji = firstReaction?.emoji;
-
-		const reaction = reactions.find((r) => (emoji?.id ?? emoji?.name) === r);
-
-		return {
-			emoji,
-			reaction,
-			options: this.options,
-			appliedMessage: this.appliedMessage,
-			message: this.message
-		};
-	}
-
-	/**
-	 * Creates a filter for the collector to filter on
-	 * @return The filter for awaitReactions function
-	 */
-	private createReactionPromptFilter(reactions: string[] | EmojiIdentifierResolvable[], authorOrFilter: User | CollectorFilter): CollectorFilter {
-		return async (reaction: MessageReaction, user: User) =>
-			reactions.includes(reaction.emoji.id ?? reaction.emoji.name) &&
-			(typeof authorOrFilter === 'function' ? await authorOrFilter(reaction, user) : user.id === authorOrFilter.id) &&
-			!user.bot;
-	}
-
-	/**
-	 * Creates a filter for the collector to filter on
-	 * @return The filter for awaitMessages function
-	 */
-	private createMessagePromptFilter(authorOrFilter: User | CollectorFilter): CollectorFilter {
-		return async (message: Message) =>
-			(typeof authorOrFilter === 'function' ? await authorOrFilter(message) : message.author.id === authorOrFilter.id) && !message.author.bot;
-	}
-
-	/**
-	 * The default options of this handler per type.
-	 * Default is always used, and overriden later.
-	 */
-	public static defaultOptions: Map<IMessagePrompterOptionsType, Partial<IMessagePrompterOptions>> = new Map([
-		[
-			'confirm',
-			{
-				type: 'confirm',
-				reactions: {
-					confirm: '🇾',
-					cancel: '🇳'
-				}
-			}
-		],
-		[
-			'number',
-			{
-				type: 'number',
-				reactions: {
-					start: 0,
-					end: 10
-				}
-			}
-		],
-		[
-			'reaction',
-			{
-				type: 'reaction'
-			}
-		],
-		[
-			'message',
-			{
-				type: 'message'
-			}
-		]
+	// @ts-expect-error 2322
+	public static strategies: Map<string, Constructor<MessagePrompterBaseStrategy>> = new Map([
+		['confirm', MessagePrompterConfirmStrategy],
+		['number', MessagePrompterNumberStrategy],
+		['reaction', MessagePrompterReactionStrategy],
+		['message', MessagePrompterMessageStrategy]
 	]);
+
+	/**
+	 * The default strategy to use
+	 */
+	public static defaultStrategy = 'confirm';
+
+	/**
+	 * The default strategy options
+	 */
+	public static defaultStrategyOptions: IMessagePrompterStrategyOptions = {
+		timeout: 10 * 1000,
+		explicitReturn: false
+	};
 }
 
 /**
@@ -346,57 +442,44 @@ export class MessagePrompter {
  */
 export type IMessagePrompterMessage = APIMessageContentResolvable | (MessageOptions & { split?: false }) | MessageAdditions;
 
-/**
- * A type to extend multiple types and simplify the return in [[MessagePrompter.run]]
- */
-export type IMessagePrompterReturn = IMessagePrompterExplicitReturn | boolean | number | string | EmojiResolvable | Message;
+// strategy options
+export interface IMessagePrompterStrategyOptions {
+	timeout: number;
+	explicitReturn: boolean;
+}
 
-/**
- * The return object of [[MessagePrompter.run]] if [[IMessagePrompterOptions.explicitReturn]] equals true
- */
-export interface IMessagePrompterExplicitReturn {
-	confirmed?: boolean;
-	number?: number;
-	reaction?: string | EmojiResolvable;
-	response?: Message;
+export interface IMessagePrompterConfirmStrategyOptions extends IMessagePrompterStrategyOptions {
+	confirmEmoji?: string | EmojiIdentifierResolvable;
+	cancelEmoji?: string | EmojiIdentifierResolvable;
+}
+
+export interface IMessagePrompterNumberStrategyOptions extends IMessagePrompterStrategyOptions {
+	start?: number;
+	end?: number;
+	numberEmojis?: string[] | EmojiIdentifierResolvable[];
+}
+
+export interface IMessagePrompterReactionStrategyOptions extends IMessagePrompterStrategyOptions {
+	reactions: string[] | EmojiIdentifierResolvable[];
+}
+
+// explcit returns
+export interface IMessagePrompterExplicitReturnBase {
 	emoji?: GuildEmoji | ReactionEmoji;
-	options: IMessagePrompterOptions;
+	reaction?: string | EmojiIdentifierResolvable;
+	strategy: MessagePrompterBaseStrategy;
 	appliedMessage: Message;
 	message: IMessagePrompterMessage;
 }
 
-/**
- * The type options for [[IMessagePrompterOptions]]
- */
-export type IMessagePrompterOptionsType = 'confirm' | 'number' | 'reaction' | 'message';
-
-/**
- * The reaction options if [[IMessagePrompterOptions.type]] equals confirm
- */
-export interface IMessagePrompterOptionsConfirm {
-	confirm: string | EmojiIdentifierResolvable;
-	cancel: string | EmojiIdentifierResolvable;
+export interface IMessagePrompterExplicitConfirmReturn extends IMessagePrompterExplicitReturnBase {
+	confirmed: boolean;
 }
 
-/**
- * The reaction options if [[IMessagePrompterOptions.type]] equals number
- */
-export interface IMessagePrompterOptionsNumber {
-	start: number;
-	end: number;
+export interface IMessagePrompterExplicitNumberReturn extends IMessagePrompterExplicitReturnBase {
+	number: number;
 }
 
-/**
- * The reaction options if [[IMessagePrompterOptions.type]] equals reaction
- */
-type IMessagePrompterOptionsReaction = string[] | EmojiIdentifierResolvable[];
-
-/**
- * The options received by [[MessagePrompter.defaultOptions]] or [[MessagePrompter.constructor]]
- */
-export interface IMessagePrompterOptions {
-	type: IMessagePrompterOptionsType;
-	reactions: IMessagePrompterOptionsConfirm | IMessagePrompterOptionsNumber | IMessagePrompterOptionsReaction;
-	timeout: number;
-	explicitReturn: boolean;
+export interface IMessagePrompterExplicitMessageReturn extends IMessagePrompterExplicitReturnBase {
+	response?: Message;
 }
