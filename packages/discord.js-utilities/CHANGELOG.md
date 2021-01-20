@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/sapphire-project/utilities/compare/@sapphire/discord.js-utilities@1.2.0...@sapphire/discord.js-utilities@1.3.0) (2021-01-20)
+
+### Features
+
+-   added MessageOptions, make PM and LPM work stateless ([#62](https://github.com/sapphire-project/utilities/issues/62)) ([733eab8](https://github.com/sapphire-project/utilities/commit/733eab81e5db4aaf7e70aa48b31ae87a3370cc56))
+
 # [1.2.0](https://github.com/sapphire-project/utilities/compare/@sapphire/discord.js-utilities@1.1.0...@sapphire/discord.js-utilities@1.2.0) (2021-01-16)
 
 ### Features
