@@ -158,7 +158,7 @@ export class PaginatedMessage {
 	 */
 	public addPage(page: MessagePage) {
 		this.pages.push(page);
-		this.messages.push(null);
+		this.messages.push(page instanceof APIMessage ? page : null);
 		return this;
 	}
 
