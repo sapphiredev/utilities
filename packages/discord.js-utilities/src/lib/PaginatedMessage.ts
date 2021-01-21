@@ -224,7 +224,7 @@ export class PaginatedMessage {
 	/**
 	 * Sets up the message.
 	 * @param channel The channel the handler is running at.
-	 * @param author The author the haandler is for.
+	 * @param author The author the handler is for.
 	 */
 	protected async setUpMessage(channel: TextChannel | NewsChannel, author: User): Promise<void>;
 	protected async setUpMessage(channel: TextChannel | NewsChannel): Promise<void> {
@@ -236,7 +236,7 @@ export class PaginatedMessage {
 	/**
 	 * Sets up the message's reactions and the collector.
 	 * @param channel The channel the handler is running at.
-	 * @param author The author the haandler is for.
+	 * @param author The author the handler is for.
 	 */
 	protected async setUpReactions(channel: TextChannel | NewsChannel, author: User): Promise<void> {
 		this.collector = this.response!.createReactionCollector(
