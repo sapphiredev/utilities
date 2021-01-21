@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.1](https://github.com/sapphire-project/utilities/compare/@sapphire/discord.js-utilities@1.3.0...@sapphire/discord.js-utilities@1.3.1) (2021-01-21)
+
+### Bug Fixes
+
+-   **pm,lpm:** resolved a couple of bugs, make PM more extensible ([#63](https://github.com/sapphire-project/utilities/issues/63)) ([6dc004e](https://github.com/sapphire-project/utilities/commit/6dc004ef22cc069ee831e09293bc560646bf21ec))
+
 # [1.3.0](https://github.com/sapphire-project/utilities/compare/@sapphire/discord.js-utilities@1.2.0...@sapphire/discord.js-utilities@1.3.0) (2021-01-20)
 
 ### Features
