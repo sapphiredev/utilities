@@ -35,7 +35,6 @@ export class AsyncQueue {
 	 */
 	public wait(): Promise<void> {
 		const next = this.promises.length ? this.promises[this.promises.length - 1].promise : Promise.resolve();
-		// eslint-disable-next-line @typescript-eslint/init-declarations
 		let resolve: () => void;
 		const promise = new Promise<void>((res) => {
 			resolve = res;

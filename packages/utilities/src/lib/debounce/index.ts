@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/init-declarations */
 /**
  * lodash (Custom Build) <https://lodash.com/>
  * Build: `lodash modularize exports="npm" -o ./`
