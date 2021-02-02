@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/sapphire-project/utilities/compare/@sapphire/discord.js-utilities@1.3.1...@sapphire/discord.js-utilities@1.4.0) (2021-02-02)
+
+### Features
+
+-   **discord.js-utilities/pm:** minor changes to static defaultActions ([#67](https://github.com/sapphire-project/utilities/issues/67)) ([9451815](https://github.com/sapphire-project/utilities/commit/94518157b4e7ea2f7b35836f0bfe219d4900cb54))
+
 ## [1.3.1](https://github.com/sapphire-project/utilities/compare/@sapphire/discord.js-utilities@1.3.0...@sapphire/discord.js-utilities@1.3.1) (2021-01-21)
 
 ### Bug Fixes
