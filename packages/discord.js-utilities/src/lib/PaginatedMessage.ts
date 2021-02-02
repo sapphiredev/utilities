@@ -337,13 +337,15 @@ export class PaginatedMessage {
 		{
 			id: '◀️',
 			run: ({ handler }) => {
-				if (handler.index !== 0) --handler.index;
+				if (handler.index === 0) handler.index = handler.pages.length - 1;
+				else --handler.index;
 			}
 		},
 		{
 			id: '▶️',
 			run: ({ handler }) => {
-				if (handler.index !== handler.pages.length - 1) ++handler.index;
+				if (handler.index === handler.pages.length - 1) handler.index = 0;
+				else ++handler.index;
 			}
 		},
 		{
