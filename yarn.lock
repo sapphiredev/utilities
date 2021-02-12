@@ -1580,22 +1580,22 @@
     estree-walker "^1.0.1"
     picomatch "^2.2.2"
 
-"@sapphire/framework@1.0.0-alpha.9":
-  version "1.0.0-alpha.9"
-  resolved "https://registry.yarnpkg.com/@sapphire/framework/-/framework-1.0.0-alpha.9.tgz#168ec3c6e0c9b092bceb576934f634adbe6594fa"
-  integrity sha512-jJYM7/AFai6Nsx4YQTPc450Y80Ks81FQPowcsMBCnoOsYALGynmWtpAcRH5gcn8DXYOThJWGioDRjWkTX9BvlQ==
+"@sapphire/framework@1.0.0-alpha.10":
+  version "1.0.0-alpha.10"
+  resolved "https://registry.yarnpkg.com/@sapphire/framework/-/framework-1.0.0-alpha.10.tgz#468cfb5f935209512e68e7b09bd69d570e468fc6"
+  integrity sha512-93lj4RWa5xjlB9GiJHV+KuHBsXLgZvH1sU2U6Whg5GVtD4tI5qze/i2YoewW9epNrQB4JVlfLFa9DFWIPTHEQQ==
   dependencies:
     "@sapphire/discord-utilities" "^2.0.1"
     "@sapphire/discord.js-utilities" "^1.4.0"
-    "@sapphire/pieces" "^1.2.1"
+    "@sapphire/pieces" "^1.2.2"
     "@sapphire/ratelimits" "^1.1.4"
     "@sapphire/utilities" "^1.4.4"
     lexure "^0.17.0"
 
-"@sapphire/pieces@^1.2.1":
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/@sapphire/pieces/-/pieces-1.2.1.tgz#ea43fae1e9377a9edca828411c3556d469f8e995"
-  integrity sha512-oObMXb8qHGDI8o+Ab1WbA1oN+ejbj9dHXGAZZ6HQ1QXU6XVyA2qRDDjz+F4YAZZuDNtb679FVuLL49bIz0YGiw==
+"@sapphire/pieces@^1.2.2":
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/@sapphire/pieces/-/pieces-1.2.2.tgz#d84c11348db21e717b3a5878f48258bb6a284ea9"
+  integrity sha512-DoY+kzTJiaeQDk5qmxaY2uOl6lLYHIFn6JUmHdTnsdhpkiDmE83AXB/ZEY/KRHpLq6kIw28TPnvtDIrW1U1Kzg==
   dependencies:
     "@discordjs/collection" "^0.1.6"
 

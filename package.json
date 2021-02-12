@@ -29,7 +29,7 @@
 		"@discordjs/collection": "^0.1.6",
 		"@rollup/plugin-commonjs": "^17.1.0",
 		"@rollup/plugin-node-resolve": "^11.1.1",
-		"@sapphire/framework": "1.0.0-alpha.9",
+		"@sapphire/framework": "1.0.0-alpha.10",
 		"@types/fs-extra": "^9.0.6",
 		"@types/jest": "^26.0.20",
 		"@types/node": "^14.14.25",
