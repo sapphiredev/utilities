@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.2](https://github.com/sapphire-project/utilities/compare/@sapphire/discord-utilities@2.0.1...@sapphire/discord-utilities@2.0.2) (2021-02-13)
+
+### Bug Fixes
+
+-   **discord-utilities:** `TwemojiRegex` is a RegExp, not a string ([#72](https://github.com/sapphire-project/utilities/issues/72)) ([5dbdf84](https://github.com/sapphire-project/utilities/commit/5dbdf8439f5602f4c363d2768c43d398715f8773))
+
 ## [2.0.1](https://github.com/sapphire-project/utilities/compare/@sapphire/discord-utilities@2.0.0...@sapphire/discord-utilities@2.0.1) (2021-01-16)
 
 **Note:** Version bump only for package @sapphire/discord-utilities
