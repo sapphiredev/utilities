@@ -106,6 +106,13 @@
 			"avatar_url": "https://avatars.githubusercontent.com/u/31412314?v=4",
 			"profile": "https://github.com/Vetlix",
 			"contributions": ["code"]
+		},
+		{
+			"login": "ethamitc",
+			"name": "Ethan Mitchell",
+			"avatar_url": "https://avatars.githubusercontent.com/u/27776796?v=4",
+			"profile": "https://github.com/ethamitc",
+			"contributions": ["doc"]
 		}
 	],
 	"contributorsPerLine": 7,
