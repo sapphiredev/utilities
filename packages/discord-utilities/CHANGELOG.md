@@ -5,7 +5,9 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [2.0.3](https://github.com/sapphire-project/utilities/compare/@sapphire/discord-utilities@2.0.2...@sapphire/discord-utilities@2.0.3) (2021-02-13)
 
-**Note:** Version bump only for package @sapphire/discord-utilities
+### Features
+
+-   **discord-utilities:** add discord webhook regex ([#70](https://github.com/sapphire-project/utilities/issues/70)) ([8d56522](https://github.com/sapphire-project/utilities/commit/8d565228f0edf8b38846e1394056c2db122eb6cf))
 
 ## [2.0.2](https://github.com/sapphire-project/utilities/compare/@sapphire/discord-utilities@2.0.1...@sapphire/discord-utilities@2.0.2) (2021-02-13)
 
