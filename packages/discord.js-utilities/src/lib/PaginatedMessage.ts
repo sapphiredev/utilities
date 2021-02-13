@@ -30,7 +30,7 @@ import { APIMessage, Message, MessageOptions, MessageReaction, NewsChannel, Reac
  *
  * // You can also give the object directly.
  *
- * const StopAction: IPaginatedMessageAction {
+ * const StopAction: IPaginatedMessageAction = {
  *   id: '⏹️',
  *   disableResponseEdit: true,
  *   run: ({ response, collector }) => {
