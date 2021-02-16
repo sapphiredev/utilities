@@ -9,7 +9,7 @@ export const ChannelMentionRegex = /^<#(?<id>\d{17,19})>$/;
 
 /**
  * Regex that matches links on the known Discord host names
- * @raw `/(?<prefix>\w+\.)?(?<hostname>dis(?:cord)?(?:app|merch|status)?)\.(?<tld>com|g(?:d|g|ift)|(?:de(?:sign|v))|media|new|store|net)/i`
+ * @raw `/(?<subdomain>\w+)\.?(?<hostname>dis(?:cord)?(?:app|merch|status)?)\.(?<tld>com|g(?:d|g|ift)|(?:de(?:sign|v))|media|new|store|net)/i`
  * @remark The regex is case insensitive
  * @remark Capture group 1 is the subdomain for this URL. It is named `subdomain`.
  * @remark Capture group 2 is the hostname for this URL, primarily `discord` but can also be `discordmerch`, `discordstatus`, `dis`, and `discordapp`. It is named `hostname`.
@@ -43,12 +43,12 @@ export const FormattedCustomEmoji = /<a?:\w{2,32}:\d{17,18}>/;
 /**
  * Regex that can capture any animated or non-animated custom Discord emoji.
  * Similar to [[FormattedCustomEmoji]] and unlike [[EmojiRegex]] can also be a substring of a larger string.
- * @raw `/^(?<animated>a?):(?<name>[^:]+):(?<id>\d{17,19})$/`
+ * @raw `/(?<animated>a?):(?<name>[^:]+):(?<id>\d{17,19})/`
  * @remark Capture group 1 can be used to determine whether the emoji is animated or not. It is named `animated`.
  * @remark Capture group 2 is the name of the emoji as it is typed in a message. It is named `name`.
- * @remark Capture group 2 is the ID of the emoji. It is named `id`.
+ * @remark Capture group 3 is the ID of the emoji. It is named `id`.
  */
-export const FormattedCustomEmojiWithGroups = /^(?<animated>a?):(?<name>[^:]+):(?<id>\d{17,19})$/;
+export const FormattedCustomEmojiWithGroups = /(?<animated>a?):(?<name>[^:]+):(?<id>\d{17,19})/;
 
 /**
  * Regex that matches any URL starting with `http` or `https`
@@ -78,12 +78,12 @@ export const ParsedCustomEmoji = /a?:\w{2,32}:\d{17,18}/;
  * Regex that matches any animated or non-animated custom Discord emoji *without the wrapping `<...>` symbols.
  * This means that a string that matches this regex can directly be send inside a Discord message.
  * Other than this difference it is similar to [[FormattedCustomEmojiWithGroups]].
- * @raw `/^(?<animated>a?):(?<name>[^:]+):(?<id>\d{17,19})$/`
+ * @raw `/(?<animated>a?):(?<name>[^:]+):(?<id>\d{17,19})/`
  * @remark Capture group 1 can be used to determine whether the emoji is animated or not. It is named `animated`.
  * @remark Capture group 2 is the name of the emoji as it is typed in a message. It is named `name`.
- * @remark Capture group 2 is the ID of the emoji. It is named `id`.
+ * @remark Capture group 3 is the ID of the emoji. It is named `id`.
  */
-export const ParsedCustomEmojiWithGroups = /^(?<animated>a?):(?<name>[^:]+):(?<id>\d{17,19})$/;
+export const ParsedCustomEmojiWithGroups = /(?<animated>a?):(?<name>[^:]+):(?<id>\d{17,19})/;
 
 /**
  * Regex that can capture the ID in Discord Role mentions
@@ -121,7 +121,7 @@ export const WebSocketUrlRegex = /^wss?:\/\//;
 
 /**
  * Regex that captures the Webhook ID and token from a Discord Webhook URL.
- * @raw `/(?<url>^https:\/\/(?:(?:canary|ptb).)?discordapp.com\/api\/webhooks)\/(?<id>\d+)\/(?<token>[\w-]+)\/?$/`
+ * @raw `/(?<url>^https:\/\/(?:(?:canary|ptb).)?discordapp.com\/api\/webhooks\/(?<id>\d+)\/(?<token>[\w-]+)\/?$)/`
  * @remark Capture group 1 is the full URL of the Discord Webhook. It is named `url`.
  * @remark Capture group 2 is the ID of the Discord Webhook. It is named `id`.
  * @remark Capture group 3 is the token of the Discord Webhook. It is named `token`.
