@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.4](https://github.com/sapphire-project/utilities/compare/@sapphire/discord-utilities@2.0.3...@sapphire/discord-utilities@2.0.4) (2021-02-16)
+
+### Bug Fixes
+
+-   **discord-utils:** fix typo in TSDocs ([#74](https://github.com/sapphire-project/utilities/issues/74)) ([686f7ed](https://github.com/sapphire-project/utilities/commit/686f7ed28859d9d8a7987e4601604bdf0b10d5bf))
+
 ## [2.0.3](https://github.com/sapphire-project/utilities/compare/@sapphire/discord-utilities@2.0.2...@sapphire/discord-utilities@2.0.3) (2021-02-13)
 
 ### Features
