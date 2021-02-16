@@ -46,7 +46,7 @@ export const FormattedCustomEmoji = /<a?:\w{2,32}:\d{17,18}>/;
  * @raw `/^(?<animated>a?):(?<name>[^:]+):(?<id>\d{17,19})$/`
  * @remark Capture group 1 can be used to determine whether the emoji is animated or not. It is named `animated`.
  * @remark Capture group 2 is the name of the emoji as it is typed in a message. It is named `name`.
- * @remark Capture group 2 is the ID of the emoji. It is named `id`.
+ * @remark Capture group 3 is the ID of the emoji. It is named `id`.
  */
 export const FormattedCustomEmojiWithGroups = /(?<animated>a?):(?<name>[^:]+):(?<id>\d{17,19})/;
 
@@ -81,7 +81,7 @@ export const ParsedCustomEmoji = /a?:\w{2,32}:\d{17,18}/;
  * @raw `/^(?<animated>a?):(?<name>[^:]+):(?<id>\d{17,19})$/`
  * @remark Capture group 1 can be used to determine whether the emoji is animated or not. It is named `animated`.
  * @remark Capture group 2 is the name of the emoji as it is typed in a message. It is named `name`.
- * @remark Capture group 2 is the ID of the emoji. It is named `id`.
+ * @remark Capture group 3 is the ID of the emoji. It is named `id`.
  */
 export const ParsedCustomEmojiWithGroups = /(?<animated>a?):(?<name>[^:]+):(?<id>\d{17,19})/;
 
