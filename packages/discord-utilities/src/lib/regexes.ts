@@ -29,7 +29,7 @@ export const DiscordInviteLinkRegex = /^(?:https?:\/\/)?(?:www\.)?(?:discord\.gg
  * @raw `/^(?:<(?<animated>a)?:(?<name>\w{2,32}):)?(?<id>\d{17,21})>?$/`
  * @remark Capture group 1 can be used to determine whether the emoji is animated or not. It is named `animated`.
  * @remark Capture group 2 is the name of the emoji as it is typed in a message. It is named `name`.
- * @remark Capture group 2 is the ID of the emoji. It is named `id`.
+ * @remark Capture group 3 is the ID of the emoji. It is named `id`.
  */
 export const EmojiRegex = /^(?:<(?<animated>a)?:(?<name>\w{2,32}):)?(?<id>\d{17,21})>?$/;
 
