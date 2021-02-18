@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.5](https://github.com/sapphire-project/utilities/compare/@sapphire/discord-utilities@2.0.4...@sapphire/discord-utilities@2.0.5) (2021-02-18)
+
+### Bug Fixes
+
+-   **discord-utilities:** ensure `FormattedCustomEmojiWithGroups` and `ParsedCustomEmojiWithGroups` can be used as substring extraction ([#75](https://github.com/sapphire-project/utilities/issues/75)) ([f62e8d3](https://github.com/sapphire-project/utilities/commit/f62e8d37714353397bdbe48676f43f180adb660f))
+
 ## [2.0.4](https://github.com/sapphire-project/utilities/compare/@sapphire/discord-utilities@2.0.3...@sapphire/discord-utilities@2.0.4) (2021-02-16)
 
 ### Bug Fixes
