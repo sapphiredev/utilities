@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/sapphire-project/utilities/compare/@sapphire/discord.js-utilities@1.4.4...@sapphire/discord.js-utilities@1.5.0) (2021-02-22)
+
+### Features
+
+-   **discord.js-utilities:** add MessagePrompter ([#59](https://github.com/sapphire-project/utilities/issues/59)) ([d120d95](https://github.com/sapphire-project/utilities/commit/d120d950869b8a712e54221efe28d783443bd194))
+
 ## [1.4.4](https://github.com/sapphire-project/utilities/compare/@sapphire/discord.js-utilities@1.4.3...@sapphire/discord.js-utilities@1.4.4) (2021-02-18)
 
 **Note:** Version bump only for package @sapphire/discord.js-utilities
