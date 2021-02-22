@@ -1,24 +1,17 @@
 import type { CollectorFilter, DMChannel, EmojiResolvable, Message, NewsChannel, TextChannel, User } from 'discord.js';
 import type { MessagePrompterMessage } from '../constants';
 import type { IMessagePrompterExplicitMessageReturn } from '../explicitReturns';
-import type { IMessagePrompterReactionStrategyOptions } from '../strategyOptions';
+import type { IMessagePrompterStrategyOptions } from '../strategyOptions';
 import { MessagePrompterBaseStrategy } from './MessagePrompterBaseStrategy';
 
-export class MessagePrompterMessageStrategy extends MessagePrompterBaseStrategy implements IMessagePrompterReactionStrategyOptions {
-	/**
-	 * The emojis used
-	 */
-	public reactions: string[] | EmojiResolvable[];
-
+export class MessagePrompterMessageStrategy extends MessagePrompterBaseStrategy implements IMessagePrompterStrategyOptions {
 	/**
 	 * Constructor for the [[MessagePrompterBaseStrategy]] class
 	 * @param messagePrompter The used instance of [[MessagePrompter]]
 	 * @param options Overrideable options if needed.
 	 */
-	public constructor(message: MessagePrompterMessage, options: IMessagePrompterReactionStrategyOptions) {
+	public constructor(message: MessagePrompterMessage, options: IMessagePrompterStrategyOptions) {
 		super('message', message, options);
-
-		this.reactions = options?.reactions;
 	}
 
 	/**

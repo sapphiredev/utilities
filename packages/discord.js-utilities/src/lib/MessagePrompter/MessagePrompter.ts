@@ -8,7 +8,8 @@ import { MessagePrompterReactionStrategy } from './strategies/MessagePrompterRea
 import type {
 	IMessagePrompterConfirmStrategyOptions,
 	IMessagePrompterNumberStrategyOptions,
-	IMessagePrompterReactionStrategyOptions
+	IMessagePrompterReactionStrategyOptions,
+	IMessagePrompterStrategyOptions
 } from './strategyOptions';
 
 /**
@@ -74,9 +75,9 @@ export class MessagePrompter {
 		message: MessagePrompterMessage | MessagePrompterBaseStrategy,
 		strategy?: MessagePrompterStrategies,
 		strategyOptions?:
+			| IMessagePrompterStrategyOptions
 			| IMessagePrompterConfirmStrategyOptions
 			| IMessagePrompterNumberStrategyOptions
-			| MessagePrompterReactionStrategy
 			| IMessagePrompterReactionStrategyOptions
 	) {
 		let strategyToRun: MessagePrompterBaseStrategy | undefined = undefined;
