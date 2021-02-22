@@ -20,17 +20,17 @@ type Awaited<T> = PromiseLike<T> | T;
 
 export abstract class MessagePrompterBaseStrategy {
 	/**
-	 * The type of strategy used
+	 * The type of strategy that was used
 	 */
 	public type: string;
 
 	/**
-	 * The timeout used in the collector
+	 * The timeout that was used in the collector
 	 */
 	public timeout: number;
 
 	/**
-	 * Wether to return an explicit object with data or the strategies default
+	 * Wether to return an explicit object with data, or the strategies' default
 	 */
 	public explicitReturn: boolean;
 
@@ -40,7 +40,7 @@ export abstract class MessagePrompterBaseStrategy {
 	public appliedMessage: Message | null = null;
 
 	/**
-	 * The message that will been sent in [[MessagePrompter.run]]
+	 * The message that will be sent in [[MessagePrompter.run]]
 	 */
 	public message: MessagePrompterMessage;
 
@@ -144,7 +144,7 @@ export class MessagePrompterConfirmStrategy extends MessagePrompterBaseStrategy 
 	 * The handler will wait for one (1) reaction.
 	 * @param channel The channel to use.
 	 * @param authorOrFilter An author object to validate or a {@link https://discord.js.org/#/docs/main/stable/typedef/CollectorFilter CollectorFilter} predicate callback.
-	 * @returns A promise that resolves to a boolean denoting the truth value of the input (`true` for yes, `false` for no).
+	 * @returns A promise that resolves to a boolean denoting the value of the input (`true` for yes, `false` for no).
 	 */
 	public async run(
 		channel: TextChannel | NewsChannel | DMChannel,
@@ -169,7 +169,7 @@ export class MessagePrompterConfirmStrategy extends MessagePrompterBaseStrategy 
 	public static cancelEmoji: string | EmojiResolvable = '🇳';
 }
 
-export class MessagePrompterNumberStrategy extends MessagePrompterBaseStrategy {
+export class MessagePrompterNumberStrategy extends MessagePrompterBaseStrategy implements IMessagePrompterNumberStrategyOptions {
 	/**
 	 * The available number emojis
 	 */
@@ -326,14 +326,14 @@ export class MessagePrompterMessageStrategy extends MessagePrompterBaseStrategy 
 }
 
 /**
- * This is a [[MessagePrompter]], a utility that sends a prompt message that can resolve any kind of input.
+ * This is a [[MessagePrompter]], a utility that sends a message, prompting for user input. The promot can resolve to any kind of input.
  * There are several specifiable types to prompt for user input, and they are as follows:
  * - Confirm
  *   This will send a simple Yes/No prompt, using reactions.
  * - Number
- *   This will prompt for an integer. You can specify a range, however by default it will use 0 - 10.
+ *   This will prompt for an integer. By default it will be a number between 0 and 10 (inclusive), however you can also specify your own custom range (inclusive).
  * - Reactions
- *   This can be any kind of reaction emoji Discord supports and as many as you want. This type will return that reaction instead of a boolean.
+ *   This can be any kind of reaction emoji that Discord supports, and as many as you want. This type will return that reaction instead of a boolean.
  * - Message
  *   This will prompt the user and require a response in the form of a message. This can be helpful if you require a user to upload an image for example, or give text input.
  *
@@ -406,7 +406,6 @@ export class MessagePrompter {
 	 * This executes the [[MessagePrompter]] and sends the message.
 	 * @param channel The channel to use.
 	 * @param authorOrFilter An author object to validate or a {@link https://discord.js.org/#/docs/main/stable/typedef/CollectorFilter CollectorFilter} predicate callback.
-	 * @param explicitReturn Wheter or not you wan't an explicit return object
 	 */
 	public run(channel: TextChannel | NewsChannel | DMChannel, authorOrFilter: User | CollectorFilter) {
 		return this.strategy.run(channel, authorOrFilter);
@@ -442,7 +441,7 @@ export class MessagePrompter {
  */
 export type MessagePrompterMessage = APIMessageContentResolvable | (MessageOptions & { split?: false }) | MessageAdditions;
 
-// strategy options
+// #region strategy options
 export interface IMessagePrompterStrategyOptions {
 	timeout: number;
 	explicitReturn: boolean;
@@ -462,8 +461,9 @@ export interface IMessagePrompterNumberStrategyOptions extends IMessagePrompterS
 export interface IMessagePrompterReactionStrategyOptions extends IMessagePrompterStrategyOptions {
 	reactions: string[] | EmojiIdentifierResolvable[];
 }
+// #endregion
 
-// explcit returns
+// #region explicit returns
 export interface IMessagePrompterExplicitReturnBase {
 	emoji?: GuildEmoji | ReactionEmoji;
 	reaction?: string | EmojiIdentifierResolvable;
@@ -483,3 +483,4 @@ export interface IMessagePrompterExplicitNumberReturn extends IMessagePrompterEx
 export interface IMessagePrompterExplicitMessageReturn extends IMessagePrompterExplicitReturnBase {
 	response?: Message;
 }
+// #endregion
