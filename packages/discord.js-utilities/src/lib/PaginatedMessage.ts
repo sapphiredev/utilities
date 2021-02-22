@@ -1,4 +1,4 @@
-import type { APIMessage, Message, MessageReaction, NewsChannel, ReactionCollector, TextChannel, User } from 'discord.js';
+import { APIMessage, Message, MessageOptions, MessageReaction, NewsChannel, ReactionCollector, TextChannel, User } from 'discord.js';
 
 /**
  * This is a [[PaginatedMessage]], a utility to paginate messages (usually embeds).
@@ -30,11 +30,11 @@ import type { APIMessage, Message, MessageReaction, NewsChannel, ReactionCollect
  *
  * // You can also give the object directly.
  *
- * const StopAction: IPaginatedMessageAction {
+ * const StopAction: IPaginatedMessageAction = {
  *   id: '⏹️',
  *   disableResponseEdit: true,
  *   run: ({ response, collector }) => {
- *     await response!.reactions.removeAll();
+ *     await response.reactions.removeAll();
  *     collector!.stop();
  *   }
  * }```
@@ -80,18 +80,18 @@ export class PaginatedMessage {
 	 * Constructor for the [[PaginatedMessage]] class
 	 * @param __namedParameters The [[PaginatedMessageOptions]] for this instance of the [[PaginatedMessage]] class
 	 */
-	public constructor({ pages, actions = PaginatedMessage.defaultActions }: PaginatedMessageOptions = {}) {
+	public constructor({ pages, actions }: PaginatedMessageOptions = {}) {
 		this.pages = pages ?? [];
 
-		for (const page of this.pages) this.messages.push(typeof page === 'function' ? null : page);
-		for (const action of actions) this.actions.set(action.id, action);
+		for (const page of this.pages) this.messages.push(page instanceof APIMessage ? page : null);
+		for (const action of actions ?? this.constructor.defaultActions) this.actions.set(action.id, action);
 	}
 
 	/**
 	 * Sets the handler's current page/message index.
 	 * @param index The number to set the index to.
 	 */
-	public setIndex(index: number) {
+	public setIndex(index: number): this {
 		this.index = index;
 		return this;
 	}
@@ -100,7 +100,7 @@ export class PaginatedMessage {
 	 * Sets the amount of time to idle before the paginator is closed.
 	 * @param idle The number to set the idle to.
 	 */
-	public setIdle(idle: number) {
+	public setIdle(idle: number): this {
 		this.idle = idle;
 		return this;
 	}
@@ -109,7 +109,7 @@ export class PaginatedMessage {
 	 * Clears all current actions and sets them. The order given is the order they will be used.
 	 * @param actions The actions to set.
 	 */
-	public setActions(actions: IPaginatedMessageAction[]) {
+	public setActions(actions: IPaginatedMessageAction[]): this {
 		this.actions.clear();
 		return this.addActions(actions);
 	}
@@ -118,7 +118,7 @@ export class PaginatedMessage {
 	 * Adds actions to the existing ones. The order given is the order they will be used.
 	 * @param actions The actions to add.
 	 */
-	public addActions(actions: IPaginatedMessageAction[]) {
+	public addActions(actions: IPaginatedMessageAction[]): this {
 		for (const action of actions) this.addAction(action);
 		return this;
 	}
@@ -127,9 +127,17 @@ export class PaginatedMessage {
 	 * Adds an action to the existing ones. This will be added as the last action.
 	 * @param action The action to add.
 	 */
-	public addAction(action: IPaginatedMessageAction) {
+	public addAction(action: IPaginatedMessageAction): this {
 		this.actions.set(action.id, action);
 		return this;
+	}
+
+	/**
+	 * Checks whether or not the handler has a specific page.
+	 * @param index The index to check.
+	 */
+	public hasPage(index: number): boolean {
+		return index >= 0 && index < this.pages.length;
 	}
 
 	/**
@@ -144,84 +152,126 @@ export class PaginatedMessage {
 	}
 
 	/**
+	 * Adds a page to the existing ones. This will be added as the last page.
+	 * @param page The page to add.
+	 */
+	public addPage(page: MessagePage): this {
+		this.pages.push(page);
+		this.messages.push(page instanceof APIMessage ? page : null);
+		return this;
+	}
+
+	/**
 	 * Add pages to the existing ones. The order given is the order they will be used.
 	 * @param pages The pages to add.
 	 */
-	public addPages(pages: MessagePage[]) {
+	public addPages(pages: MessagePage[]): this {
 		for (const page of pages) this.addPage(page);
 		return this;
 	}
 
 	/**
-	 * Adds a page to the existing ones. This will be added as the last page.
-	 * @param page The page to add.
-	 */
-	public addPage(page: MessagePage) {
-		this.pages.push(page);
-		this.messages.push(typeof page === 'function' ? null : page);
-		return this;
-	}
-
-	/**
-	 * This executes the [[PaginatedMessage]] and sends the pages corresponding with [[PaginatedMessage.index]].
+	 * Executes the [[PaginatedMessage]] and sends the pages corresponding with [[PaginatedMessage.index]].
 	 * The handler will start collecting reactions and running actions once all actions have been reacted to the message.
 	 * @param author The author to validate.
 	 * @param channel The channel to use.
 	 */
-	public async run(author: User, channel: TextChannel | NewsChannel) {
-		await this.resolvePagesOnRun();
+	public async run(author: User, channel: TextChannel | NewsChannel): Promise<this> {
+		await this.resolvePagesOnRun(channel);
 
+		// Sanity checks to handle
 		if (!this.messages.length) throw new Error('There are no messages.');
 		if (!this.actions.size) throw new Error('There are no messages.');
 
-		const firstPage = this.messages[this.index]!;
-
-		this.response ??= (await channel.send(firstPage)) as Message;
-
-		for (const id of this.actions.keys()) await this.response.react(id);
-
-		this.collector ??= this.response
-			.createReactionCollector(
-				(reaction: MessageReaction, user: User) =>
-					(this.actions.has(reaction.emoji.identifier) || this.actions.has(reaction.emoji.name)) && user.id === author.id,
-				{ idle: this.idle }
-			)
-			.on('collect', this.handleCollect.bind(this, author, channel))
-			.on('end', this.handleEnd.bind(this));
-
+		await this.setUpMessage(channel, author);
+		await this.setUpReactions(channel, author);
 		return this;
 	}
 
 	/**
-	 * This function is executed on [[PaginatedMessage.run]]. This is an extendable method.
+	 * Executed whenever [[PaginatedMessage.run]] is called.
 	 */
-	public async resolvePagesOnRun() {
-		for (let i = 0; i < this.pages.length; i++) await this.resolvePage(i);
+	public async resolvePagesOnRun(channel: TextChannel | NewsChannel): Promise<void> {
+		for (let i = 0; i < this.pages.length; i++) await this.resolvePage(channel, i);
 	}
 
 	/**
-	 * This function is executed whenever an action is triggered and resolved.
+	 * Executed whenever an action is triggered and resolved.
 	 * @param index The index to resolve.
 	 */
-	public async resolvePage(index: number = this.index) {
-		const page = this.pages[index];
-		// @ts-expect-error 2349
-		if (page) this.messages[index] ??= await this.pages[index](index, this.pages, this);
-		return this.messages[index];
+	public async resolvePage(channel: TextChannel | NewsChannel, index: number): Promise<APIMessage> {
+		// If the message was already processed, do not load it again:
+		const message = this.messages[index];
+		if (message !== null) return message;
+
+		// Load the page and return it:
+		const resolved = await this.handlePageLoad(this.pages[index], channel, index);
+		this.messages[index] = resolved;
+
+		return resolved;
 	}
 
 	/**
-	 * This clones the current handler into a new instance.
+	 * Clones the current handler into a new instance.
 	 */
-	public clone() {
-		const clone = new PaginatedMessage({ pages: this.pages, actions: [] }).setIndex(this.index).setIdle(this.idle);
+	public clone(): PaginatedMessage {
+		const clone = new this.constructor({ pages: this.pages, actions: [] }).setIndex(this.index).setIdle(this.idle);
 		clone.actions = this.actions;
 		clone.response = this.response;
-		clone.collector = this.collector;
 		return clone;
 	}
 
-	protected async handleCollect(author: User, channel: TextChannel | NewsChannel, reaction: MessageReaction, user: User) {
+	/**
+	 * Sets up the message.
+	 * @param channel The channel the handler is running at.
+	 * @param author The author the handler is for.
+	 */
+	protected async setUpMessage(channel: TextChannel | NewsChannel, author: User): Promise<void>;
+	protected async setUpMessage(channel: TextChannel | NewsChannel): Promise<void> {
+		const firstPage = this.messages[this.index]!;
+		if (this.response) await this.response.edit(firstPage);
+		else this.response = (await channel.send(firstPage)) as Message;
+	}
+
+	/**
+	 * Sets up the message's reactions and the collector.
+	 * @param channel The channel the handler is running at.
+	 * @param author The author the handler is for.
+	 */
+	protected async setUpReactions(channel: TextChannel | NewsChannel, author: User): Promise<void> {
+		this.collector = this.response!.createReactionCollector(
+			(reaction: MessageReaction, user: User) =>
+				user.id === author.id && (this.actions.has(reaction.emoji.identifier) || this.actions.has(reaction.emoji.name)),
+			{ idle: this.idle }
+		)
+			.on('collect', this.handleCollect.bind(this, author, channel))
+			.on('end', this.handleEnd.bind(this));
+
+		for (const id of this.actions.keys()) {
+			if (this.collector.ended) break;
+			await this.response!.react(id);
+		}
+	}
+
+	/**
+	 * Handles the load of a page.
+	 * @param page The page to be loaded.
+	 * @param channel The channel the paginated message runs at.
+	 * @param index The index of the current page.
+	 */
+	protected async handlePageLoad(page: MessagePage, channel: TextChannel | NewsChannel, index: number): Promise<APIMessage> {
+		const options = typeof page === 'function' ? await page(index, this.pages, this) : page;
+		return (options instanceof APIMessage ? options : new APIMessage(channel, options)).resolveData();
+	}
+
+	/**
+	 * Handles the `collect` event from the collector.
+	 * @param author The the handler is for.
+	 * @param channel The channel the handler is running at.
+	 * @param reaction The reaction that was received.
+	 * @param user The user that reacted to the message.
+	 */
+	protected async handleCollect(author: User, channel: TextChannel | NewsChannel, reaction: MessageReaction, user: User): Promise<void> {
 		await reaction.users.remove(user);
 
 		const action = (this.actions.get(reaction.emoji.identifier) ?? this.actions.get(reaction.emoji.name))!;
@@ -236,16 +286,17 @@ export class PaginatedMessage {
 		});
 
 		if (previousIndex !== this.index) {
-			await this.response?.edit((await this.resolvePage())!);
+			await this.response?.edit(await this.resolvePage(channel, this.index));
 		}
 	}
 
-	protected async handleEnd(reason: string) {
+	/**
+	 * Handles the `end` event from the collector.
+	 * @param reason The reason for which the collector was ended.
+	 */
+	protected async handleEnd(reason: string): Promise<void> {
 		// Remove all listeners from the collector:
-		if (this.collector) {
-			this.collector.removeAllListeners();
-			this.collector = null;
-		}
+		this.collector?.removeAllListeners();
 
 		// Do not remove reactions if the message, channel, or guild, was deleted:
 		if (this.response && !PaginatedMessage.deletionStopReasons.includes(reason)) {
@@ -274,7 +325,7 @@ export class PaginatedMessage {
 
 						const i = Number(responseMessage.content) - 1;
 
-						if (!isNaN(i) && handler.pages[i]) handler.index = i;
+						if (!Number.isNaN(i) && handler.hasPage(i)) handler.index = i;
 					}
 				}
 			}
@@ -286,13 +337,15 @@ export class PaginatedMessage {
 		{
 			id: '◀️',
 			run: ({ handler }) => {
-				if (handler.index !== 0) --handler.index;
+				if (handler.index === 0) handler.index = handler.pages.length - 1;
+				else --handler.index;
 			}
 		},
 		{
 			id: '▶️',
 			run: ({ handler }) => {
-				if (handler.index !== handler.pages.length - 1) ++handler.index;
+				if (handler.index === handler.pages.length - 1) handler.index = 0;
+				else ++handler.index;
 			}
 		},
 		{
@@ -315,6 +368,10 @@ export class PaginatedMessage {
 	public static deletionStopReasons = ['messageDelete', 'channelDelete', 'guildDelete'];
 }
 
+export interface PaginatedMessage {
+	constructor: typeof PaginatedMessage;
+}
+
 /**
  * @example
  * ```typescript
@@ -334,7 +391,7 @@ export class PaginatedMessage {
  *   id: '⏹️',
  *   disableResponseEdit: true,
  *   run: ({ response, collector }) => {
- *     await response!.reactions.removeAll();
+ *     await response.reactions.removeAll();
  *     collector!.stop();
  *   }
  * }```
@@ -366,22 +423,46 @@ export interface PaginatedMessageOptions {
  * Pages can be either an {@link https://discord.js.org/#/docs/main/stable/class/APIMessage APIMessage} directly,
  * or an awaited function which returns an {@link https://discord.js.org/#/docs/main/stable/class/APIMessage APIMessage}.
  *
+ * Furthermore, {@link https://discord.js.org/#/docs/main/stable/typedef/MessageOptions MessageOptions} can be used to
+ * construct the pages without state, this library also provides [[MessageBuilder]], which can be used as a chainable
+ * alternative to raw objects, similar to how {@link https://discord.js.org/#/docs/main/stable/class/MessageEmbed MessageEmbed}
+ * works.
+ *
+ * @example
+ * ```typescript
+ * // Direct usage as a MessageBuilder
+ * new MessageBuilder().setContent('Test content!');
+ * ```
+ *
+ * @example
+ * ```typescript
+ * // An awaited function. This function also passes index, pages, and handler.
+ * (index, pages) =>
+ *   new MessageBuilder().setEmbed(
+ *     new MessageEmbed().setFooter(`Page ${index + 1} / ${pages.length}`)
+ *   );
+ * ```
+ *
  * @example
  * ```typescript
  * // Direct usage as an APIMessage
- *
  * new APIMessage(message.channel, {
- *   context: 'Test content!',
+ *   content: 'Test content!',
  * });
+ * ```
  *
+ * @example
+ * ```typescript
  * // An awaited function. This function also passes index, pages, and handler.
- *
  * (index, pages) =>
  *   new APIMessage(message.channel, {
  *     embed: new MessageEmbed().setFooter(`Page ${index + 1} / ${pages.length}`)
  *   });
  * ```
  */
-export type MessagePage = ((index: number, pages: MessagePage[], handler: PaginatedMessage) => Awaited<APIMessage>) | APIMessage;
+export type MessagePage =
+	| ((index: number, pages: MessagePage[], handler: PaginatedMessage) => Awaited<APIMessage | MessageOptions>)
+	| APIMessage
+	| MessageOptions;
 
 type Awaited<T> = PromiseLike<T> | T;

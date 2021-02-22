@@ -26,7 +26,7 @@ There are a number of guidelines considered when reviewing Pull Requests to be m
 
 <!-- Link Dump -->
 
-[discord server]: https://join.skyra.pw/sapphire
+[discord server]: https://website.sapphire-project.vercel.app/discord
 [here]: https://github.com/sapphire-project/utilities/pulls
 [eslint]: https://eslint.org/
 [node.js]: https://nodejs.org/en/download/

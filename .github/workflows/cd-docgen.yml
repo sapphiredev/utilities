@@ -20,12 +20,11 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 2
-      - name: "[Push] Get commit message"
+      - name: '[Push] Get commit message'
         if: github.event_name == 'push'
         id: push_get_commit_message
-        run:
-          echo ::set-output name=push_commit_message::$(git log --format=%B -n 1 HEAD)
-      - name: "[Pull Request] Get commit message"
+        run: echo ::set-output name=push_commit_message::$(git log --format=%B -n 1 HEAD)
+      - name: '[Pull Request] Get commit message'
         if: github.event_name == 'pull_request'
         id: pr_get_commit_message
         run: echo ::set-output name=pr_commit_message::$(git log --format=%B -n 1 HEAD^2)
@@ -45,7 +44,7 @@ jobs:
       - name: Checkout Project
         uses: actions/checkout@v2
       - name: Use Node.js 14
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v2
         with:
           node-version: 14
       - name: Restore CI Cache
@@ -62,16 +61,7 @@ jobs:
       - name: Publish Docs
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
-          echo -e "\n# Initialize some useful variables"
           REPO="https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
-          BRANCH_OR_TAG=`awk -F/ '{print $2}' <<< $GITHUB_REF`
-          CURRENT_BRANCH=`awk -F/ '{print $NF}' <<< $GITHUB_REF`
-
-          if [ "$BRANCH_OR_TAG" == "heads" ]; then
-            SOURCE_TYPE="branch"
-          else
-            SOURCE_TYPE="tag"
-          fi
 
           echo -e "\n# Checkout the repo in the target branch"
           TARGET_BRANCH="gh-pages"

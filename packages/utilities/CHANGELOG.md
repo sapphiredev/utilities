@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.5](https://github.com/sapphire-project/utilities/compare/@sapphire/utilities@1.4.4...@sapphire/utilities@1.4.5) (2021-02-16)
+
+**Note:** Version bump only for package @sapphire/utilities
+
+## [1.4.4](https://github.com/sapphire-project/utilities/compare/@sapphire/utilities@1.4.3...@sapphire/utilities@1.4.4) (2021-01-25)
+
+**Note:** Version bump only for package @sapphire/utilities
+
 ## [1.4.3](https://github.com/sapphire-project/utilities/compare/@sapphire/utilities@1.4.2...@sapphire/utilities@1.4.3) (2021-01-16)
 
 **Note:** Version bump only for package @sapphire/utilities

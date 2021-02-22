@@ -92,6 +92,27 @@
 			"avatar_url": "https://avatars3.githubusercontent.com/u/46537907?v=4",
 			"profile": "https://github.com/RealShadowNova",
 			"contributions": ["code"]
+		},
+		{
+			"login": "Stitch07",
+			"name": "Stitch07",
+			"avatar_url": "https://avatars.githubusercontent.com/u/29275227?v=4",
+			"profile": "https://github.com/Stitch07",
+			"contributions": ["code"]
+		},
+		{
+			"login": "Vetlix",
+			"name": "Vetlix",
+			"avatar_url": "https://avatars.githubusercontent.com/u/31412314?v=4",
+			"profile": "https://github.com/Vetlix",
+			"contributions": ["code"]
+		},
+		{
+			"login": "ethamitc",
+			"name": "Ethan Mitchell",
+			"avatar_url": "https://avatars.githubusercontent.com/u/27776796?v=4",
+			"profile": "https://github.com/ethamitc",
+			"contributions": ["doc"]
 		}
 	],
 	"contributorsPerLine": 7,

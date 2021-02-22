@@ -19,7 +19,7 @@ export default {
 			sourcemap: true
 		}
 	],
-	external: ['@sapphire/discord-utilities'],
+	external: ['@sapphire/discord-utilities', 'discord.js'],
 	plugins: [
 		cleaner({
 			targets: ['./dist/']
