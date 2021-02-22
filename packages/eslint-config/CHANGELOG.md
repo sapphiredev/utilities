@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/sapphire-project/utilities/compare/@sapphire/eslint-config@2.1.2...@sapphire/eslint-config@3.0.0) (2021-02-22)
+
+### Features
+
+-   **eslint-config:** upgrade eslint-config-prettier ([d282edb](https://github.com/sapphire-project/utilities/commit/d282edb9b3be46ad3781d12f8dd1c4bab90e6e2c))
+
+### BREAKING CHANGES
+
+-   **eslint-config:** Peer dependency of eslint-config-prettier is now 8.x Please upgrade your own
+    dependencies. No further changes are required.
+
 ## [2.1.2](https://github.com/sapphire-project/utilities/compare/@sapphire/eslint-config@2.1.1...@sapphire/eslint-config@2.1.2) (2021-02-16)
 
 **Note:** Version bump only for package @sapphire/eslint-config

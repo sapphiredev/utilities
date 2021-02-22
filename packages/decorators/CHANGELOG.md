@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.5](https://github.com/sapphire-project/utilities/compare/@sapphire/decorators@2.0.4...@sapphire/decorators@2.0.5) (2021-02-22)
+
+### Bug Fixes
+
+-   **decorators:** clean up required peer dependencies ([b29e8a7](https://github.com/sapphire-project/utilities/commit/b29e8a7c2adb7c6beff392291fd5f2bc8587271c))
+
 ## [2.0.4](https://github.com/sapphire-project/utilities/compare/@sapphire/decorators@2.0.3...@sapphire/decorators@2.0.4) (2021-02-16)
 
 **Note:** Version bump only for package @sapphire/decorators
