@@ -1,6 +1,6 @@
 import type { CollectorFilter, DMChannel, EmojiResolvable, NewsChannel, TextChannel, User } from 'discord.js';
 import type { MessagePrompterMessage } from '../constants';
-import type { IMessagePrompterExplicitConfirmReturn } from '../explicitReturns';
+import type { IMessagePrompterExplicitConfirmReturn } from '../ExplicitReturnTypes';
 import type { IMessagePrompterConfirmStrategyOptions } from '../strategyOptions';
 import { MessagePrompterBaseStrategy } from './MessagePrompterBaseStrategy';
 

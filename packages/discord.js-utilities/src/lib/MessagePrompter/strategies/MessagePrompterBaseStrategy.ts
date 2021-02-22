@@ -1,6 +1,6 @@
 import type { CollectorFilter, DMChannel, EmojiIdentifierResolvable, Message, MessageReaction, NewsChannel, TextChannel, User } from 'discord.js';
 import type { Awaited, MessagePrompterMessage } from '../constants';
-import type { IMessagePrompterExplicitReturnBase } from '../explicitReturns';
+import type { IMessagePrompterExplicitReturnBase } from '../ExplicitReturnTypes';
 import type { IMessagePrompterStrategyOptions } from '../strategyOptions';
 
 export abstract class MessagePrompterBaseStrategy {
