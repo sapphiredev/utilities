@@ -19,12 +19,7 @@
 		"prepublishOnly": "yarn build"
 	},
 	"peerDependencies": {
-		"@sapphire/framework": "1.x",
-		"@sapphire/pieces": "1.x",
-		"@sapphire/utilities": "1.x",
-		"@types/ws": ">=7",
-		"discord.js": "12.x",
-		"typescript": "4.x"
+		"@sapphire/framework": "1.x"
 	},
 	"repository": {
 		"type": "git",

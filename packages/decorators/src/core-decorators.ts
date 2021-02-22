@@ -1,6 +1,8 @@
-import type { Piece, PieceContext, PieceOptions } from '@sapphire/pieces';
-import type { Ctor } from '@sapphire/utilities';
+import type { Piece, PieceContext, PieceOptions } from '@sapphire/framework';
 import { createClassDecorator, createMethodDecorator, createProxy } from './utils';
+
+type Arr = readonly any[];
+type Ctor<A extends Arr = readonly any[], R = any> = new (...args: A) => R;
 
 /**
  * Decorator function that applies given options to any Sapphire piece
