@@ -16,7 +16,7 @@ export const eslintConfig = {
 		sourceType: 'module',
 		ecmaVersion: 2020
 	},
-	extends: ['plugin:@typescript-eslint/recommended', 'plugin:prettier/recommended', 'prettier/@typescript-eslint'],
+	extends: ['plugin:@typescript-eslint/recommended', 'plugin:prettier/recommended'],
 	env: {
 		node: true,
 		es6: true,
