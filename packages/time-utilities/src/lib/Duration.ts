@@ -101,6 +101,7 @@ export class Duration {
 	 */
 	private static parse(pattern: string): number {
 		let result = 0;
+		let valid = false;
 
 		pattern
 			// ignore commas
@@ -109,11 +110,14 @@ export class Duration {
 			.replace(Duration.kAanRegex, '1')
 			// do math
 			.replace(Duration.kPatternRegex, (_, i, units) => {
-				units = tokens.get(units) ?? 0;
-				result += Number(i) * units;
+				const token = tokens.get(units);
+				if (token !== undefined) {
+					result += Number(i) * token;
+					valid = true;
+				}
 				return '';
 			});
 
-		return result;
+		return valid ? result : NaN;
 	}
 }
