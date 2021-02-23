@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.10](https://github.com/sapphire-project/utilities/compare/@sapphire/time-utilities@1.2.9...@sapphire/time-utilities@1.2.10) (2021-02-23)
+
+### Bug Fixes
+
+-   **duration:** make invalid input return NaN ([#77](https://github.com/sapphire-project/utilities/issues/77)) ([267be44](https://github.com/sapphire-project/utilities/commit/267be44e6ed898d1fe59f44b4dba8f4a75ed0bcc))
+
 ## [1.2.9](https://github.com/sapphire-project/utilities/compare/@sapphire/time-utilities@1.2.8...@sapphire/time-utilities@1.2.9) (2021-02-16)
 
 **Note:** Version bump only for package @sapphire/time-utilities
