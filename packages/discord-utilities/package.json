@@ -17,7 +17,7 @@
 	"scripts": {
 		"test": "echo \"\"",
 		"lint": "eslint src tests --ext ts --fix -c ../../.eslintrc",
-		"build": "rollup -c rollup.config.ts",
+		"build": "rollup -c",
 		"start": "yarn build -w",
 		"prepublishOnly": "yarn build"
 	},
