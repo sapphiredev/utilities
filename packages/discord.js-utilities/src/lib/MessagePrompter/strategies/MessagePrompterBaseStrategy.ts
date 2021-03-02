@@ -103,7 +103,7 @@ export abstract class MessagePrompterBaseStrategy {
 	/**
 	 * The default strategy options
 	 */
-	public static defaultStrategyOptions: IMessagePrompterStrategyOptions = {
+	public static defaultStrategyOptions: Required<IMessagePrompterStrategyOptions> = {
 		timeout: 10 * 1000,
 		explicitReturn: false
 	};
