@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.1](https://github.com/sapphire-project/utilities/compare/@sapphire/discord.js-utilities@1.5.0...@sapphire/discord.js-utilities@1.5.1) (2021-03-02)
+
+### Bug Fixes
+
+-   **discord.js-utilities:** fixed IMessagePrompterStrategyOptions not being optional ([1876355](https://github.com/sapphire-project/utilities/commit/1876355f51177fee64281c052bdca51228073566))
+
 # [1.5.0](https://github.com/sapphire-project/utilities/compare/@sapphire/discord.js-utilities@1.4.4...@sapphire/discord.js-utilities@1.5.0) (2021-02-22)
 
 ### Features
