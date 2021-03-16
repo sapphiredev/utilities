@@ -18,7 +18,7 @@
 		"build": "tsc -b src",
 		"prepublishOnly": "yarn build"
 	},
-	"peerDependencies": {
+	"dependencies": {
 		"prettier": "2.x"
 	},
 	"repository": {
