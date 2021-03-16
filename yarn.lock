@@ -1641,24 +1641,26 @@
     estree-walker "^2.0.1"
     picomatch "^2.2.2"
 
-"@sapphire/framework@1.0.0-alpha.11":
-  version "1.0.0-alpha.11"
-  resolved "https://registry.yarnpkg.com/@sapphire/framework/-/framework-1.0.0-alpha.11.tgz#5e19e523c8d05e4f1c553c3d1f79a3bf32974598"
-  integrity sha512-dFcWdndN827GfRnWk/2rkOUxwi8ULj/M47uvoZ4jREnUTWDHl7sa5sixCwVZCu0tMBbUOuEMFjm4Dj8SvKIb3A==
+"@sapphire/framework@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@sapphire/framework/-/framework-1.0.0.tgz#14c48ba6a665697a0a6e2f448fd8149de62f9232"
+  integrity sha512-JhcxQM4OTiWubNbvrwYuXiAU80JPoZeboopU3x9dOP9K+6humGxLeREtvHqHlg1i3EIXnWXfjUNc57WOpP8iNQ==
   dependencies:
-    "@sapphire/discord-utilities" "^2.0.4"
-    "@sapphire/discord.js-utilities" "^1.4.3"
-    "@sapphire/pieces" "^1.2.2"
-    "@sapphire/ratelimits" "^1.1.5"
-    "@sapphire/utilities" "^1.4.5"
+    "@sapphire/discord-utilities" "^2.0.6"
+    "@sapphire/discord.js-utilities" "^1.5.2"
+    "@sapphire/pieces" "^1.2.3"
+    "@sapphire/ratelimits" "^1.1.6"
+    "@sapphire/utilities" "^1.4.6"
     lexure "^0.17.0"
+    tslib "^2.1.0"
 
-"@sapphire/pieces@^1.2.2":
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/@sapphire/pieces/-/pieces-1.2.2.tgz#d84c11348db21e717b3a5878f48258bb6a284ea9"
-  integrity sha512-DoY+kzTJiaeQDk5qmxaY2uOl6lLYHIFn6JUmHdTnsdhpkiDmE83AXB/ZEY/KRHpLq6kIw28TPnvtDIrW1U1Kzg==
+"@sapphire/pieces@^1.2.3":
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/@sapphire/pieces/-/pieces-1.2.3.tgz#bd11f67e41c7a43e292a89be8d3126ce84e7b0ef"
+  integrity sha512-p92zy9rmgGAXOb4Mi5/E+nDJT6Nny1B+rbd+4h8JuS5SVsjfd+6gdilKw/daWGnJy2UsjQlC3qqOd0wpgCEImQ==
   dependencies:
     "@discordjs/collection" "^0.1.6"
+    tslib "^2.1.0"
 
 "@sinonjs/commons@^1.7.0":
   version "1.8.2"
