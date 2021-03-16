@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.6](https://github.com/sapphire-project/utilities/compare/@sapphire/stopwatch@1.0.5...@sapphire/stopwatch@1.0.6) (2021-03-16)
+
+### Bug Fixes
+
+-   **stopwatch:** add tslib dependency ([5e7f690](https://github.com/sapphire-project/utilities/commit/5e7f6903475ccfec2147b97f8aa56fb7c037a860))
+
 ## [1.0.5](https://github.com/sapphire-project/utilities/compare/@sapphire/stopwatch@1.0.4...@sapphire/stopwatch@1.0.5) (2021-02-16)
 
 **Note:** Version bump only for package @sapphire/stopwatch

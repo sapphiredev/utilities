@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.7](https://github.com/sapphire-project/utilities/compare/@sapphire/decorators@2.0.6...@sapphire/decorators@2.0.7) (2021-03-16)
+
+### Bug Fixes
+
+-   **decorators:** add tslib dependency ([3085f1d](https://github.com/sapphire-project/utilities/commit/3085f1dadcd84fc8f7aa9c39a7f23333c1d4eb14))
+
 ## [2.0.6](https://github.com/sapphire-project/utilities/compare/@sapphire/decorators@2.0.5...@sapphire/decorators@2.0.6) (2021-03-16)
 
 **Note:** Version bump only for package @sapphire/decorators
