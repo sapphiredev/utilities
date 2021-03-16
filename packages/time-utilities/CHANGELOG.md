@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.11](https://github.com/sapphire-project/utilities/compare/@sapphire/time-utilities@1.2.10...@sapphire/time-utilities@1.2.11) (2021-03-16)
+
+### Bug Fixes
+
+-   remove terser from all packages ([#79](https://github.com/sapphire-project/utilities/issues/79)) ([1cfe4e7](https://github.com/sapphire-project/utilities/commit/1cfe4e7c804e62c142495686d2b83b81d0026c02))
+
 ## [1.2.10](https://github.com/sapphire-project/utilities/compare/@sapphire/time-utilities@1.2.9...@sapphire/time-utilities@1.2.10) (2021-02-23)
 
 ### Bug Fixes

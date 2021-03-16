@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.6](https://github.com/sapphire-project/utilities/compare/@sapphire/discord-utilities@2.0.5...@sapphire/discord-utilities@2.0.6) (2021-03-16)
+
+### Bug Fixes
+
+-   remove terser from all packages ([#79](https://github.com/sapphire-project/utilities/issues/79)) ([1cfe4e7](https://github.com/sapphire-project/utilities/commit/1cfe4e7c804e62c142495686d2b83b81d0026c02))
+
 ## [2.0.5](https://github.com/sapphire-project/utilities/compare/@sapphire/discord-utilities@2.0.4...@sapphire/discord-utilities@2.0.5) (2021-02-18)
 
 ### Bug Fixes

@@ -1,6 +1,6 @@
 {
 	"name": "@sapphire/snowflake",
-	"version": "1.2.5",
+	"version": "1.2.6",
 	"description": "Deconstructs and generates snoflake IDs using BigInts",
 	"author": "@sapphire",
 	"license": "MIT",

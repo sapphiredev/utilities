@@ -1,6 +1,6 @@
 {
 	"name": "@sapphire/time-utilities",
-	"version": "1.2.10",
+	"version": "1.2.11",
 	"description": "A time utility library for JavaScript.",
 	"author": "@sapphire",
 	"license": "MIT",
@@ -51,6 +51,6 @@
 		"access": "public"
 	},
 	"dependencies": {
-		"@sapphire/utilities": "^1.4.5"
+		"@sapphire/utilities": "^1.4.6"
 	}
 }

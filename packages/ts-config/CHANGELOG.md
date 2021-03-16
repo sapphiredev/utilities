@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/sapphire-project/utilities/compare/@sapphire/ts-config@2.0.1...@sapphire/ts-config@2.1.0) (2021-03-16)
+
+### Features
+
+-   **ts-config:** add tslib dependency and configure import helpers ([39c389c](https://github.com/sapphire-project/utilities/commit/39c389c54186a675ff8b7664f15c2d70f8eb3bab))
+
 ## [2.0.1](https://github.com/sapphire-project/utilities/compare/@sapphire/ts-config@2.0.0...@sapphire/ts-config@2.0.1) (2021-02-16)
 
 **Note:** Version bump only for package @sapphire/ts-config

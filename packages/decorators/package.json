@@ -1,6 +1,6 @@
 {
 	"name": "@sapphire/decorators",
-	"version": "2.0.5",
+	"version": "2.0.6",
 	"description": "Useful TypeScript decorators for Sapphire Framework Discord bots",
 	"author": "@sapphire",
 	"license": "MIT",

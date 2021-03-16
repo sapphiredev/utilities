@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.8](https://github.com/sapphire-project/utilities/compare/@sapphire/prettier-config@1.0.7...@sapphire/prettier-config@1.0.8) (2021-03-16)
+
+### Bug Fixes
+
+-   **eslint-config,prettier-config:** change peer dependencies for regular dependencies ([188bdd9](https://github.com/sapphire-project/utilities/commit/188bdd9b45fd71795422e50589b038311a020f00))
+
 ## [1.0.7](https://github.com/sapphire-project/utilities/compare/@sapphire/prettier-config@1.0.6...@sapphire/prettier-config@1.0.7) (2021-02-16)
 
 **Note:** Version bump only for package @sapphire/prettier-config
