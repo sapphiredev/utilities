@@ -18,8 +18,9 @@
 		"prepublishOnly": "node scripts/prepublish.mjs",
 		"postpublish": "node scripts/postpublish.mjs"
 	},
-	"peerDependencies": {
-		"typescript": "4.x"
+	"dependencies": {
+		"typescript": "4.x",
+		"tslib": "2.x"
 	},
 	"files": [
 		"tsconfig.json"

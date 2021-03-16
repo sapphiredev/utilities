@@ -55,6 +55,7 @@
 		"rollup-plugin-typescript2": "^0.30.0",
 		"ts-jest": "^26.5.2",
 		"ts-node": "^9.1.1",
+		"tslib": "^2.1.0",
 		"typedoc": "0.19.2",
 		"typedoc-plugin-lerna-packages": "^0.3.1",
 		"typedoc-plugin-nojekyll": "^1.0.1",
