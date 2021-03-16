@@ -18,6 +18,9 @@
 		"build": "tsc -b src",
 		"prepublishOnly": "yarn build"
 	},
+	"dependencies": {
+		"tslib": "2.x"
+	},
 	"peerDependencies": {
 		"@sapphire/framework": "^1.0.0-alpha.11"
 	},
