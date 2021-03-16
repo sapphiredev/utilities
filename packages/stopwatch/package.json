@@ -20,6 +20,9 @@
 		"start": "yarn build -w",
 		"prepublishOnly": "yarn build"
 	},
+	"dependencies": {
+		"tslib": "2.x"
+	},
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/sapphire-project/utilities.git",
