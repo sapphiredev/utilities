@@ -21,12 +21,6 @@
 **First install the Peer Dependencies**
 
 ```sh
-yarn add -D typescript
-```
-
-**Then install `@sapphire/ts-config`**
-
-```sh
 yarn add -D @sapphire/ts-config
 ```
 
