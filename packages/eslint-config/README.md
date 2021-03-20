@@ -18,14 +18,6 @@
 
 ## Installation
 
-**First install the Peer Dependencies**
-
-```sh
-yarn add -D @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-config-prettier eslint-plugin-prettier eslint prettier typescript
-```
-
-**Then install `@sapphire/eslint-config`**
-
 ```sh
 yarn add -D @sapphire/eslint-config
 ```

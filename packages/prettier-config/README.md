@@ -18,14 +18,6 @@
 
 ## Installation
 
-**First install the Peer Dependencies**
-
-```sh
-yarn add -D prettier
-```
-
-**Then install `@sapphire/prettier-config`**
-
 ```sh
 yarn add -D @sapphire/prettier-config
 ```
