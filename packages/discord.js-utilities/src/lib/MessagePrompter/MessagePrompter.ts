@@ -1,5 +1,6 @@
-import type { CollectorFilter, DMChannel, NewsChannel, TextChannel, User } from 'discord.js';
+import type { CollectorFilter, DMChannel, EmojiResolvable, Message, NewsChannel, TextChannel, User } from 'discord.js';
 import { Constructor, MessagePrompterMessage, MessagePrompterStrategies } from './constants';
+import type { IMessagePrompterExplicitConfirmReturn, IMessagePrompterExplicitMessageReturn, IMessagePrompterExplicitNumberReturn, IMessagePrompterExplicitReturnBase } from './ExplicitReturnTypes';
 import { MessagePrompterBaseStrategy } from './strategies/MessagePrompterBaseStrategy';
 import { MessagePrompterConfirmStrategy } from './strategies/MessagePrompterConfirmStrategy';
 import { MessagePrompterMessageStrategy } from './strategies/MessagePrompterMessageStrategy';
@@ -11,6 +12,19 @@ import type {
 	IMessagePrompterReactionStrategyOptions,
 	IMessagePrompterStrategyOptions
 } from './strategyOptions';
+
+export interface StrategyReturns {
+	[MessagePrompterStrategies.Confirm]: IMessagePrompterExplicitConfirmReturn | boolean;
+	[MessagePrompterStrategies.Message]: IMessagePrompterExplicitMessageReturn | Message;
+	[MessagePrompterStrategies.Number]: IMessagePrompterExplicitNumberReturn | number;
+	[MessagePrompterStrategies.Reaction]: IMessagePrompterExplicitReturnBase | string | EmojiResolvable;
+}
+export interface StrategyOptions {
+	[MessagePrompterStrategies.Confirm]: IMessagePrompterConfirmStrategyOptions;
+	[MessagePrompterStrategies.Message]: IMessagePrompterStrategyOptions;
+	[MessagePrompterStrategies.Number]: IMessagePrompterNumberStrategyOptions;
+	[MessagePrompterStrategies.Reaction]: IMessagePrompterReactionStrategyOptions;
+}
 
 /**
  * This is a [[MessagePrompter]], a utility that sends a message, prompting for user input. The prompt can resolve to any kind of input.
@@ -59,7 +73,7 @@ import type {
  * const result = await handler.run(channel, author);
  * ```
  */
-export class MessagePrompter {
+export class MessagePrompter<S extends MessagePrompterStrategies = MessagePrompterStrategies.Confirm> {
 	/**
 	 * The strategy used in [[MessagePrompter.run]]
 	 */
@@ -73,12 +87,8 @@ export class MessagePrompter {
 	 */
 	public constructor(
 		message: MessagePrompterMessage | MessagePrompterBaseStrategy,
-		strategy?: MessagePrompterStrategies,
-		strategyOptions?:
-			| IMessagePrompterStrategyOptions
-			| IMessagePrompterConfirmStrategyOptions
-			| IMessagePrompterNumberStrategyOptions
-			| IMessagePrompterReactionStrategyOptions
+		strategy?: S,
+		strategyOptions?: S extends keyof StrategyOptions ? StrategyOptions[S] : never
 	) {
 		let strategyToRun: MessagePrompterBaseStrategy | undefined = undefined;
 
@@ -102,8 +112,11 @@ export class MessagePrompter {
 	 * @param channel The channel to use.
 	 * @param authorOrFilter An author object to validate or a {@link https://discord.js.org/#/docs/main/stable/typedef/CollectorFilter CollectorFilter} predicate callback.
 	 */
-	public run(channel: TextChannel | NewsChannel | DMChannel, authorOrFilter: User | CollectorFilter) {
-		return this.strategy.run(channel, authorOrFilter);
+	public run(
+		channel: TextChannel | NewsChannel | DMChannel,
+		authorOrFilter: User | CollectorFilter,
+	): S extends keyof StrategyReturns ? Promise<StrategyReturns[S]> : never {
+		return this.strategy.run(channel, authorOrFilter) as S extends keyof StrategyReturns ? Promise<StrategyReturns[S]> : never;
 	}
 
 	/**
