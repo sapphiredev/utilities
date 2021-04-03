@@ -53,6 +53,6 @@
 		"@sapphire/discord-utilities": "^2.0.6"
 	},
 	"peerDependencies": {
-		"discord.js": "^12.5.1"
+		"discord.js": "^12.5.3"
 	}
 }
