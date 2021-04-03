@@ -6,12 +6,12 @@ import { MessagePrompterBaseStrategy } from './MessagePrompterBaseStrategy';
 
 export class MessagePrompterConfirmStrategy extends MessagePrompterBaseStrategy implements IMessagePrompterConfirmStrategyOptions {
 	/**
-	 * The cancel emoji used
+	 * The confirm emoji used
 	 */
 	public confirmEmoji: string | EmojiResolvable;
 
 	/**
-	 * The confirm emoji used
+	 * The cancel emoji used
 	 */
 	public cancelEmoji: string | EmojiResolvable;
 
@@ -40,7 +40,7 @@ export class MessagePrompterConfirmStrategy extends MessagePrompterBaseStrategy 
 	): Promise<IMessagePrompterExplicitConfirmReturn | boolean> {
 		const response = await this.collectReactions(channel, authorOrFilter, [this.confirmEmoji, this.cancelEmoji]);
 
-		const confirmed = (response?.emoji?.id ?? response?.emoji?.name) === MessagePrompterConfirmStrategy.confirmEmoji;
+		const confirmed = (response?.emoji?.id ?? response?.emoji?.name) === this.confirmEmoji;
 
 		// prettier-ignore
 		return this.explicitReturn ? { ...response, confirmed } : confirmed;
