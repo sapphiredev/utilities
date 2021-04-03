@@ -1,6 +1,11 @@
 import type { CollectorFilter, DMChannel, EmojiResolvable, Message, NewsChannel, TextChannel, User } from 'discord.js';
 import { Constructor, MessagePrompterMessage, MessagePrompterStrategies } from './constants';
-import type { IMessagePrompterExplicitConfirmReturn, IMessagePrompterExplicitMessageReturn, IMessagePrompterExplicitNumberReturn, IMessagePrompterExplicitReturnBase } from './ExplicitReturnTypes';
+import type {
+	IMessagePrompterExplicitConfirmReturn,
+	IMessagePrompterExplicitMessageReturn,
+	IMessagePrompterExplicitNumberReturn,
+	IMessagePrompterExplicitReturnBase
+} from './ExplicitReturnTypes';
 import { MessagePrompterBaseStrategy } from './strategies/MessagePrompterBaseStrategy';
 import { MessagePrompterConfirmStrategy } from './strategies/MessagePrompterConfirmStrategy';
 import { MessagePrompterMessageStrategy } from './strategies/MessagePrompterMessageStrategy';
@@ -114,7 +119,7 @@ export class MessagePrompter<S extends MessagePrompterStrategies = MessagePrompt
 	 */
 	public run(
 		channel: TextChannel | NewsChannel | DMChannel,
-		authorOrFilter: User | CollectorFilter,
+		authorOrFilter: User | CollectorFilter
 	): S extends keyof StrategyReturns ? Promise<StrategyReturns[S]> : never {
 		return this.strategy.run(channel, authorOrFilter) as S extends keyof StrategyReturns ? Promise<StrategyReturns[S]> : never;
 	}
