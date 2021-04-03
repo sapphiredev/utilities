@@ -1,120 +1,171 @@
 {
-	"projectName": "utilities",
-	"projectOwner": "sapphire-project",
-	"repoType": "github",
-	"repoHost": "https://github.com",
-	"files": [
-		"README.md",
-		"packages/async-queue/README.md",
-		"packages/decorators/README.md",
-		"packages/discord-utilities/README.md",
-		"packages/eslint-config/README.md",
-		"packages/event-iterator/README.md",
-		"packages/prettier-config/README.md",
-		"packages/ratelimits/README.md",
-		"packages/snowflake/README.md",
-		"packages/stopwatch/README.md",
-		"packages/time-utilities/README.md",
-		"packages/ts-config/README.md",
-		"packages/type/README.md",
-		"packages/utilities/README.md"
-	],
-	"imageSize": 100,
-	"commit": true,
-	"commitConvention": "angular",
-	"contributors": [
-		{
-			"login": "Favna",
-			"name": "Jeroen Claassens",
-			"avatar_url": "https://avatars3.githubusercontent.com/u/4019718?v=4",
-			"profile": "https://favware.tech/",
-			"contributions": ["code", "infra", "projectManagement", "doc", "test"]
-		},
-		{
-			"login": "kyranet",
-			"name": "Antonio Román",
-			"avatar_url": "https://avatars0.githubusercontent.com/u/24852502?v=4",
-			"profile": "https://github.com/kyranet",
-			"contributions": ["code", "projectManagement", "review", "test"]
-		},
-		{
-			"login": "PyroTechniac",
-			"name": "Gryffon Bellish",
-			"avatar_url": "https://avatars2.githubusercontent.com/u/39341355?v=4",
-			"profile": "https://github.com/PyroTechniac",
-			"contributions": ["code", "review", "test"]
-		},
-		{
-			"login": "vladfrangu",
-			"name": "Vlad Frangu",
-			"avatar_url": "https://avatars3.githubusercontent.com/u/17960496?v=4",
-			"profile": "https://github.com/vladfrangu",
-			"contributions": ["code", "bug", "review", "userTesting", "test"]
-		},
-		{
-			"login": "Soumil07",
-			"name": "Soumil07",
-			"avatar_url": "https://avatars0.githubusercontent.com/u/29275227?v=4",
-			"profile": "https://github.com/Soumil07",
-			"contributions": ["code", "projectManagement", "test"]
-		},
-		{
-			"login": "depfu[bot]",
-			"name": "depfu[bot]",
-			"avatar_url": "https://avatars3.githubusercontent.com/in/715?v=4",
-			"profile": "https://github.com/apps/depfu",
-			"contributions": ["maintenance"]
-		},
-		{
-			"login": "allcontributors[bot]",
-			"name": "allcontributors[bot]",
-			"avatar_url": "https://avatars0.githubusercontent.com/in/23186?v=4",
-			"profile": "https://github.com/apps/allcontributors",
-			"contributions": ["doc"]
-		},
-		{
-			"login": "Nytelife26",
-			"name": "Tyler J Russell",
-			"avatar_url": "https://avatars1.githubusercontent.com/u/22531310?v=4",
-			"profile": "https://github.com/Nytelife26",
-			"contributions": ["doc"]
-		},
-		{
-			"login": "Alcremie",
-			"name": "Ivan Lieder",
-			"avatar_url": "https://avatars0.githubusercontent.com/u/54785334?v=4",
-			"profile": "https://github.com/Alcremie",
-			"contributions": ["code", "bug"]
-		},
-		{
-			"login": "RealShadowNova",
-			"name": "Hezekiah Hendry",
-			"avatar_url": "https://avatars3.githubusercontent.com/u/46537907?v=4",
-			"profile": "https://github.com/RealShadowNova",
-			"contributions": ["code"]
-		},
-		{
-			"login": "Stitch07",
-			"name": "Stitch07",
-			"avatar_url": "https://avatars.githubusercontent.com/u/29275227?v=4",
-			"profile": "https://github.com/Stitch07",
-			"contributions": ["code"]
-		},
-		{
-			"login": "Vetlix",
-			"name": "Vetlix",
-			"avatar_url": "https://avatars.githubusercontent.com/u/31412314?v=4",
-			"profile": "https://github.com/Vetlix",
-			"contributions": ["code"]
-		},
-		{
-			"login": "ethamitc",
-			"name": "Ethan Mitchell",
-			"avatar_url": "https://avatars.githubusercontent.com/u/27776796?v=4",
-			"profile": "https://github.com/ethamitc",
-			"contributions": ["doc"]
-		}
-	],
-	"contributorsPerLine": 7,
-	"skipCi": true
+  "projectName": "utilities",
+  "projectOwner": "sapphire-project",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md",
+    "packages/async-queue/README.md",
+    "packages/decorators/README.md",
+    "packages/discord-utilities/README.md",
+    "packages/eslint-config/README.md",
+    "packages/event-iterator/README.md",
+    "packages/prettier-config/README.md",
+    "packages/ratelimits/README.md",
+    "packages/snowflake/README.md",
+    "packages/stopwatch/README.md",
+    "packages/time-utilities/README.md",
+    "packages/ts-config/README.md",
+    "packages/type/README.md",
+    "packages/utilities/README.md"
+  ],
+  "imageSize": 100,
+  "commit": true,
+  "commitConvention": "angular",
+  "contributors": [
+    {
+      "login": "Favna",
+      "name": "Jeroen Claassens",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/4019718?v=4",
+      "profile": "https://favware.tech/",
+      "contributions": [
+        "code",
+        "infra",
+        "projectManagement",
+        "doc",
+        "test"
+      ]
+    },
+    {
+      "login": "kyranet",
+      "name": "Antonio Román",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/24852502?v=4",
+      "profile": "https://github.com/kyranet",
+      "contributions": [
+        "code",
+        "projectManagement",
+        "review",
+        "test"
+      ]
+    },
+    {
+      "login": "PyroTechniac",
+      "name": "Gryffon Bellish",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/39341355?v=4",
+      "profile": "https://github.com/PyroTechniac",
+      "contributions": [
+        "code",
+        "review",
+        "test"
+      ]
+    },
+    {
+      "login": "vladfrangu",
+      "name": "Vlad Frangu",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/17960496?v=4",
+      "profile": "https://github.com/vladfrangu",
+      "contributions": [
+        "code",
+        "bug",
+        "review",
+        "userTesting",
+        "test"
+      ]
+    },
+    {
+      "login": "Soumil07",
+      "name": "Soumil07",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/29275227?v=4",
+      "profile": "https://github.com/Soumil07",
+      "contributions": [
+        "code",
+        "projectManagement",
+        "test"
+      ]
+    },
+    {
+      "login": "depfu[bot]",
+      "name": "depfu[bot]",
+      "avatar_url": "https://avatars3.githubusercontent.com/in/715?v=4",
+      "profile": "https://github.com/apps/depfu",
+      "contributions": [
+        "maintenance"
+      ]
+    },
+    {
+      "login": "allcontributors[bot]",
+      "name": "allcontributors[bot]",
+      "avatar_url": "https://avatars0.githubusercontent.com/in/23186?v=4",
+      "profile": "https://github.com/apps/allcontributors",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "Nytelife26",
+      "name": "Tyler J Russell",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/22531310?v=4",
+      "profile": "https://github.com/Nytelife26",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "Alcremie",
+      "name": "Ivan Lieder",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/54785334?v=4",
+      "profile": "https://github.com/Alcremie",
+      "contributions": [
+        "code",
+        "bug"
+      ]
+    },
+    {
+      "login": "RealShadowNova",
+      "name": "Hezekiah Hendry",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/46537907?v=4",
+      "profile": "https://github.com/RealShadowNova",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "Stitch07",
+      "name": "Stitch07",
+      "avatar_url": "https://avatars.githubusercontent.com/u/29275227?v=4",
+      "profile": "https://github.com/Stitch07",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "Vetlix",
+      "name": "Vetlix",
+      "avatar_url": "https://avatars.githubusercontent.com/u/31412314?v=4",
+      "profile": "https://github.com/Vetlix",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "ethamitc",
+      "name": "Ethan Mitchell",
+      "avatar_url": "https://avatars.githubusercontent.com/u/27776796?v=4",
+      "profile": "https://github.com/ethamitc",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "noftaly",
+      "name": "Elliot",
+      "avatar_url": "https://avatars.githubusercontent.com/u/34779161?v=4",
+      "profile": "https://github.com/noftaly",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "skipCi": true
 }
