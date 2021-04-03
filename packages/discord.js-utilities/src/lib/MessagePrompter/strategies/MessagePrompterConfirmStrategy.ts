@@ -6,12 +6,12 @@ import { MessagePrompterBaseStrategy } from './MessagePrompterBaseStrategy';
 
 export class MessagePrompterConfirmStrategy extends MessagePrompterBaseStrategy implements IMessagePrompterConfirmStrategyOptions {
 	/**
-	 * The cancel emoji used
+	 * The confirm emoji used
 	 */
 	public confirmEmoji: string | EmojiResolvable;
 
 	/**
-	 * The confirm emoji used
+	 * The cancel emoji used
 	 */
 	public cancelEmoji: string | EmojiResolvable;
 
