@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.4](https://github.com/sapphire-project/utilities/compare/@sapphire/discord.js-utilities@1.5.3...@sapphire/discord.js-utilities@1.5.4) (2021-04-03)
+
+### Bug Fixes
+
+-   **discord.js-utilities:** message prompter confirm strategy ([#96](https://github.com/sapphire-project/utilities/issues/96)) ([c21e428](https://github.com/sapphire-project/utilities/commit/c21e42856f8f32fc1b56771a78b0356a08679086))
+
 ## [1.5.3](https://github.com/sapphire-project/utilities/compare/@sapphire/discord.js-utilities@1.5.2...@sapphire/discord.js-utilities@1.5.3) (2021-04-03)
 
 ### Bug Fixes

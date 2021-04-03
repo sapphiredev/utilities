@@ -1,6 +1,6 @@
 {
 	"name": "@sapphire/discord.js-utilities",
-	"version": "1.5.3",
+	"version": "1.5.4",
 	"description": "Discord.js specific utilities for your JavaScript/TypeScript bots",
 	"author": "@sapphire",
 	"license": "MIT",
