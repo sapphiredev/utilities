@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.3](https://github.com/sapphire-project/utilities/compare/@sapphire/discord.js-utilities@1.5.2...@sapphire/discord.js-utilities@1.5.3) (2021-04-03)
+
+### Bug Fixes
+
+-   **discord.js-utilities:** improve MessagePrompter typings ([#94](https://github.com/sapphire-project/utilities/issues/94)) ([f828e77](https://github.com/sapphire-project/utilities/commit/f828e7721074d182b12c7d302f1720093e7374da))
+
 ## [1.5.2](https://github.com/sapphire-project/utilities/compare/@sapphire/discord.js-utilities@1.5.1...@sapphire/discord.js-utilities@1.5.2) (2021-03-16)
 
 ### Bug Fixes
