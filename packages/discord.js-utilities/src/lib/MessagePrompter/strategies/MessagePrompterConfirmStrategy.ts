@@ -40,7 +40,7 @@ export class MessagePrompterConfirmStrategy extends MessagePrompterBaseStrategy 
 	): Promise<IMessagePrompterExplicitConfirmReturn | boolean> {
 		const response = await this.collectReactions(channel, authorOrFilter, [this.confirmEmoji, this.cancelEmoji]);
 
-		const confirmed = (response?.emoji?.id ?? response?.emoji?.name) === MessagePrompterConfirmStrategy.confirmEmoji;
+		const confirmed = (response?.emoji?.id ?? response?.emoji?.name) === this.confirmEmoji;
 
 		// prettier-ignore
 		return this.explicitReturn ? { ...response, confirmed } : confirmed;
