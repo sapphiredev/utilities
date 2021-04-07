@@ -1,10 +1,10 @@
 import { MessageEmbed, ColorResolvable } from 'discord.js';
 
-const EMBED_TYPES = ['embed', 'title', 'field', 'timestamp', 'footer', 'description', 'url'] as const;
+const EMBED_TYPES = ['embed', 'title', 'field', 'timestamp', 'footer', 'description', 'url', 'image'] as const;
 
-type EmbedInformation = TitleInformation | FieldInformation | TimestampInformation | FooterInformation | DescriptionInformation | UrlInformation;
+type EmbedInformation = TitleInformation | FieldInformation | TimestampInformation | FooterInformation | DescriptionInformation | UrlInformation | ImageInformation;
 
-type EmbedData = TitleData | FieldData | TimestampData | FooterData | DescriptionData | UrlData;
+type EmbedData = TitleData | FieldData | TimestampData | FooterData | DescriptionData | UrlData | ImageData;
 
 const enum TsxTypes {
 	Title,
@@ -12,7 +12,8 @@ const enum TsxTypes {
 	Url,
 	Field,
 	Timestamp,
-	Footer
+	Footer,
+	Image,
 }
 
 // Received types
@@ -23,6 +24,7 @@ type FieldInformation = [{ title?: string; inline?: boolean }, string];
 type TimestampInformation = [null, number | string | Date | null];
 type FooterInformation = [null | { iconURL?: string }, string];
 type EmbedInitialInformation = [{ color: ColorResolvable }, ...EmbedData[]];
+type ImageInformation = [{url: string}, null];
 
 // Returned types
 type TitleData = [TsxTypes.Title, string];
@@ -31,6 +33,7 @@ type UrlData = [TsxTypes.Url, string];
 type FieldData = [TsxTypes.Field, string, string, boolean];
 type TimestampData = [TsxTypes.Timestamp, Date];
 type FooterData = [TsxTypes.Footer, string, string?];
+type ImageData = [TsxTypes.Image, string];
 
 // eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace EmbedJsx {
@@ -70,6 +73,10 @@ export namespace EmbedJsx {
 				const info = data as UrlInformation;
 				return [TsxTypes.Url, info[1]];
 			}
+			case 'image': {
+				const info = data as ImageInformation;
+				return [TsxTypes.Image, info[0].url];
+			}
 		}
 	}
 
@@ -92,6 +99,9 @@ export namespace EmbedJsx {
 			}
 			case TsxTypes.Url: {
 				return embed.setURL(data[1]);
+			}
+			case TsxTypes.Image: {
+				return embed.setImage(data[1]);
 			}
 		}
 	}
