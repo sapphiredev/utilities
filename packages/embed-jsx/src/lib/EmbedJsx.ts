@@ -35,6 +35,7 @@ type FooterData = [TsxTypes.Footer, string, string?];
 // eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace EmbedJsx {
 	export function make(type: typeof EMBED_TYPES[number], ...data: EmbedInformation | EmbedInitialInformation): EmbedData | MessageEmbed {
+		type = type.toLowerCase() as typeof EMBED_TYPES[number];
 		if (!EMBED_TYPES.includes(type)) throw new TypeError(`Invalid type passed, expected one of ${EMBED_TYPES.join(', ')}, got: ${type}`);
 		switch (type) {
 			case 'embed': {
