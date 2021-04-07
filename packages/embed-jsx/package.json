@@ -30,9 +30,13 @@
 		"url": "git+https://github.com/sapphire-project/embed-jsx.git"
 	},
 	"scripts": {
-		"test": "echo \"Error: run tests from root\" && exit 1"
+		"test": "echo \"Error: run tests from root\" && exit 1",
+		"build": "tsc -p ./src"
 	},
 	"bugs": {
 		"url": "https://github.com/sapphire-project/embed-jsx/issues"
+	},
+	"peerDependencies": {
+		"discord.js": "^12.5.3"
 	}
 }
