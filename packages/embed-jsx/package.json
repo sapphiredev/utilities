@@ -1,0 +1,57 @@
+{
+	"name": "@sapphire/embed-jsx",
+	"version": "0.0.1",
+	"description": "An easy way to use JSX to create discord embeds with discord.js",
+	"author": "@sapphire",
+	"license": "MIT",
+	"main": "dist/index.js",
+	"module": "dist/index.mjs",
+	"types": "dist/index.d.ts",
+	"exports": {
+		"import": "./dist/index.mjs",
+		"require": "./dist/index.js"
+	},
+	"homepage": "https://github.com/sapphire-project/utilities/tree/main/packages/embed-jsx",
+	"scripts": {
+		"test": "jest",
+		"lint": "eslint src tests --ext ts,tsx --fix -c ../../.eslintrc",
+		"build": "tsc -b src",
+		"postbuild": "gen-esm-wrapper dist/index.js dist/index.mjs",
+		"prepublishOnly": "yarn build"
+	},
+	"dependencies": {
+		"tslib": "2.x"
+	},
+	"peerDependencies": {
+		"discord.js": "^12.5.3"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/sapphire-project/utilities.git",
+		"directory": "packages/embed-jsx"
+	},
+	"files": [
+		"dist",
+		"!dist/.tsbuildinfo"
+	],
+	"engines": {
+		"node": ">=12",
+		"npm": ">=6"
+	},
+	"keywords": [
+		"@sapphire/embed-jsx",
+		"embed",
+		"discord",
+		"bot",
+		"typescript",
+		"ts",
+		"yarn",
+		"sapphire"
+	],
+	"bugs": {
+		"url": "https://github.com/sapphire-project/embed-jsx/issues"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
+}
