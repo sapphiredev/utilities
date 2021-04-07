@@ -2,7 +2,14 @@ import { MessageEmbed, ColorResolvable } from 'discord.js';
 
 const EMBED_TYPES = ['embed', 'title', 'field', 'timestamp', 'footer', 'description', 'url', 'image'] as const;
 
-type EmbedInformation = TitleInformation | FieldInformation | TimestampInformation | FooterInformation | DescriptionInformation | UrlInformation | ImageInformation;
+type EmbedInformation =
+	| TitleInformation
+	| FieldInformation
+	| TimestampInformation
+	| FooterInformation
+	| DescriptionInformation
+	| UrlInformation
+	| ImageInformation;
 
 type EmbedData = TitleData | FieldData | TimestampData | FooterData | DescriptionData | UrlData | ImageData;
 
@@ -13,7 +20,7 @@ const enum TsxTypes {
 	Field,
 	Timestamp,
 	Footer,
-	Image,
+	Image
 }
 
 // Received types
@@ -24,7 +31,7 @@ type FieldInformation = [{ title?: string; inline?: boolean }, string];
 type TimestampInformation = [null, number | string | Date | null];
 type FooterInformation = [null | { iconURL?: string }, string];
 type EmbedInitialInformation = [{ color: ColorResolvable }, ...EmbedData[]];
-type ImageInformation = [{url: string}, null];
+type ImageInformation = [{ url: string }, null];
 
 // Returned types
 type TitleData = [TsxTypes.Title, string];
