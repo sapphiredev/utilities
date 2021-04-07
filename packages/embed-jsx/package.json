@@ -1,6 +1,6 @@
 {
 	"name": "@sapphire/embed-jsx",
-	"version": "1.0.0",
+	"version": "0.0.1",
 	"description": "An easy way to use JSX to create discord embeds with discord.js",
 	"keywords": [
 		"embed",
@@ -11,7 +11,7 @@
 		"yarn",
 		"sapphire"
 	],
-	"author": "Gryffon Bellish <owenbellish@gmail.com>",
+	"author": "@sapphire",
 	"homepage": "https://github.com/sapphire-project/utilities/tree/main/packages/embed-jsx",
 	"license": "MIT",
 	"main": "dist/index.js",
@@ -20,17 +20,15 @@
 		"test": "__tests__"
 	},
 	"files": [
-		"lib"
+		"dist",
+		"!dist/.tsbuildinfo"
 	],
-	"publishConfig": {
-		"registry": "https://registry.yarnpkg.com"
-	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/sapphire-project/embed-jsx.git"
+		"url": "git+https://github.com/sapphire-project/utilities.git",
+		"directory": "packages/embed-jsx"
 	},
 	"scripts": {
-		"test": "echo \"Error: run tests from root\" && exit 1",
 		"build": "tsc -p ./src"
 	},
 	"bugs": {

@@ -87,7 +87,7 @@ export namespace EmbedJsx {
 		}
 	}
 
-	function resolveData(data: EmbedData, embed: MessageEmbed) {
+	function resolveData(data: EmbedData, embed: MessageEmbed): MessageEmbed {
 		switch (data[0]) {
 			case TsxTypes.Title: {
 				return embed.setTitle(data[1]);
