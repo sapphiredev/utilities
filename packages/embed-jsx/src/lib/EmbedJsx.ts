@@ -42,8 +42,25 @@ type TimestampData = [TsxTypes.Timestamp, Date];
 type FooterData = [TsxTypes.Footer, string, string?];
 type ImageData = [TsxTypes.Image, string];
 
+/**
+ * The namespace to import for embed-jsx
+ *
+ * @example ```ts
+ * import { EmbedJsx } from '@sapphire/embed-jsx';
+ *
+ * const embed = <embed color="RED">
+ * 	<title>New Embed</title>
+ * 	<description>Hello!</description>
+ * </embed>
+ */
 // eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace EmbedJsx {
+	/**
+	 * The behind the scenes function that TS uses to turn JSX into proper JS
+	 * @param type The embed type being created
+	 * @param data The data emitted along with
+	 * @returns The embed defined with jsx
+	 */
 	export function make(type: typeof EMBED_TYPES[number], ...data: EmbedInformation | EmbedInitialInformation): EmbedData | MessageEmbed {
 		type = type.toLowerCase() as typeof EMBED_TYPES[number];
 		if (!EMBED_TYPES.includes(type)) throw new TypeError(`Invalid type passed, expected one of ${EMBED_TYPES.join(', ')}, got: ${type}`);
