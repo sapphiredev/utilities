@@ -8,6 +8,7 @@
     "packages/async-queue/README.md",
     "packages/decorators/README.md",
     "packages/discord-utilities/README.md",
+	"packages/embed-jsx/README.md",
     "packages/eslint-config/README.md",
     "packages/event-iterator/README.md",
     "packages/prettier-config/README.md",
