@@ -20,7 +20,7 @@ describe('codeBlock', () => {
 				`
 			# Header
 			\`\`\`js
-				if (sapphireProjectIsCool) return 'awesome!';
+				if (sapphireCommunityIsCool) return 'awesome!';
 			\`\`\`
 		`
 			)
@@ -28,7 +28,7 @@ describe('codeBlock', () => {
 
 			# Header
 			\`​\`\`js
-				if (sapphireProjectIsCool) return 'awesome!';
+				if (sapphireCommunityIsCool) return 'awesome!';
 			\`\`\`
 		\`\`\``);
 	});
@@ -39,13 +39,13 @@ describe('codeBlock', () => {
 				'md',
 				`
 			# Header
-			\`const sapphireProjectIsCool = true\`
+			\`const sapphireCommunityIsCool = true\`
 		`
 			)
 		).toStrictEqual(`\`\`\`md
 
 			# Header
-			\`const sapphireProjectIsCool = true\`
+			\`const sapphireCommunityIsCool = true\`
 		\`\`\``);
 	});
 
