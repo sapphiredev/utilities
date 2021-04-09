@@ -19,7 +19,7 @@
 		"postpublish": "node scripts/postpublish.mjs"
 	},
 	"dependencies": {
-		"tslib": "2.1.0",
+		"tslib": "2.2.0",
 		"typescript": "4.2.4"
 	},
 	"files": [
