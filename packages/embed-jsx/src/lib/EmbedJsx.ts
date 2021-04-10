@@ -71,7 +71,6 @@ export namespace EmbedJsx {
 				const info = data as EmbedInitialInformation;
 				let embed = new MessageEmbed(info[0] ?? {});
 				for (const value of info.splice(0)) {
-					console.log(value);
 					embed = resolveData(value as EmbedData ?? [TsxTypes.Empty], embed);
 				}
 				return embed;
