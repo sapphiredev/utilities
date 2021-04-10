@@ -15,3 +15,35 @@ Object {
   "url": null,
 }
 `;
+
+exports[`returns a basic embed 1`] = `
+Object {
+  "author": null,
+  "color": null,
+  "description": null,
+  "fields": Array [],
+  "footer": null,
+  "image": null,
+  "thumbnail": null,
+  "timestamp": null,
+  "title": null,
+  "type": "rich",
+  "url": null,
+}
+`;
+
+exports[`returns an embed with options 1`] = `
+Object {
+  "author": null,
+  "color": 15158332,
+  "description": null,
+  "fields": Array [],
+  "footer": null,
+  "image": null,
+  "thumbnail": null,
+  "timestamp": null,
+  "title": null,
+  "type": "rich",
+  "url": null,
+}
+`;

@@ -70,7 +70,8 @@ export namespace EmbedJsx {
 			case 'embed': {
 				const info = data as EmbedInitialInformation;
 				let embed = new MessageEmbed(info[0] ?? {});
-				for (const value of info.splice(0)) {
+				info.shift();
+				for (const value of info) {
 					embed = resolveData(value as EmbedData ?? [TsxTypes.Empty], embed);
 				}
 				return embed;
