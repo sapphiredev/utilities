@@ -47,6 +47,12 @@ and in any tsx file, import the EmbedJsx namespace as you would if you were usin
 import { EmbedJsx } from '@sapphire/embed-jsx';
 ```
 
+Note: as of now the package is currently not fully typed, so to get around any compiler errors you may have to add
+```json
+"noImplicitAny": false
+```
+to your tsconfig.json
+
 ## API Documentation
 
 For the full API documentation please refer to the TypeDoc generated [documentation](https://sapphire-project.github.io/utilities/modules/_sapphire_embed_jsx.html)

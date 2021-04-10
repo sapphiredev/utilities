@@ -11,7 +11,7 @@ type EmbedInformation =
 	| UrlInformation
 	| ImageInformation;
 
-type EmbedData = TitleData | FieldData | TimestampData | FooterData | DescriptionData | UrlData | ImageData;
+type EmbedData = TitleData | FieldData | TimestampData | FooterData | DescriptionData | UrlData | ImageData | EmptyData;
 
 const enum TsxTypes {
 	Title,
@@ -20,7 +20,8 @@ const enum TsxTypes {
 	Field,
 	Timestamp,
 	Footer,
-	Image
+	Image,
+	Empty
 }
 
 // Received types
@@ -30,7 +31,7 @@ type UrlInformation = [null, string];
 type FieldInformation = [{ title?: string; inline?: boolean }, string];
 type TimestampInformation = [null, number | string | Date | null];
 type FooterInformation = [null | { iconURL?: string }, string];
-type EmbedInitialInformation = [{ color: ColorResolvable }, ...EmbedData[]];
+type EmbedInitialInformation = [{ color: ColorResolvable } | null, ...EmbedData[]];
 type ImageInformation = [{ url: string }, null];
 
 // Returned types
@@ -41,6 +42,7 @@ type FieldData = [TsxTypes.Field, string, string, boolean];
 type TimestampData = [TsxTypes.Timestamp, Date];
 type FooterData = [TsxTypes.Footer, string, string?];
 type ImageData = [TsxTypes.Image, string];
+type EmptyData = [TsxTypes.Empty];
 
 /**
  * The namespace to import for embed-jsx
@@ -67,9 +69,10 @@ export namespace EmbedJsx {
 		switch (type) {
 			case 'embed': {
 				const info = data as EmbedInitialInformation;
-				let embed = new MessageEmbed(info[0]);
+				let embed = new MessageEmbed(info[0] ?? {});
 				for (const value of info.splice(0)) {
-					embed = resolveData(value as EmbedData, embed);
+					console.log(value);
+					embed = resolveData(value as EmbedData ?? [TsxTypes.Empty], embed);
 				}
 				return embed;
 			}
@@ -126,6 +129,9 @@ export namespace EmbedJsx {
 			}
 			case TsxTypes.Image: {
 				return embed.setImage(data[1]);
+			}
+			case TsxTypes.Empty: {
+				return embed;
 			}
 		}
 	}

@@ -15,10 +15,6 @@
 	"homepage": "https://github.com/sapphire-project/utilities/tree/main/packages/embed-jsx",
 	"license": "MIT",
 	"main": "dist/index.js",
-	"directories": {
-		"lib": "lib",
-		"test": "__tests__"
-	},
 	"files": [
 		"dist",
 		"!dist/.tsbuildinfo"
@@ -33,7 +29,9 @@
 		"directory": "packages/embed-jsx"
 	},
 	"scripts": {
-		"build": "tsc -p ./src"
+		"build": "tsc -p ./src",
+		"lint": "eslint src tests --ext ts --fix -c ../../.eslintrc",
+		"test": "jest"
 	},
 	"bugs": {
 		"url": "https://github.com/sapphire-project/embed-jsx/issues"
