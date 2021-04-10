@@ -30,7 +30,7 @@
 	},
 	"scripts": {
 		"build": "tsc -p ./src",
-		"lint": "eslint src tests --ext ts --fix -c ../../.eslintrc",
+		"lint": "eslint src tests --ext ts,tsx --fix -c ../../.eslintrc",
 		"test": "jest"
 	},
 	"bugs": {

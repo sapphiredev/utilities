@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`basic test returns a basic embed 1`] = `
+exports[`return an embed with a title 1`] = `
 Object {
   "author": null,
   "color": null,
@@ -10,7 +10,7 @@ Object {
   "image": null,
   "thumbnail": null,
   "timestamp": null,
-  "title": null,
+  "title": "This is the title",
   "type": "rich",
   "url": null,
 }
