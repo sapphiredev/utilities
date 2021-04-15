@@ -1,7 +1,7 @@
 {
 	"name": "@sapphire/eslint-config",
 	"version": "3.0.3",
-	"description": "Standard ESLint config for Sapphire projects written in TypeScript",
+	"description": "Standard ESLint config for Sapphire Communitys written in TypeScript",
 	"author": "@sapphire",
 	"license": "MIT",
 	"main": "dist/index.js",
@@ -10,7 +10,7 @@
 		"import": "./dist/index.js",
 		"require": "./dist/index.js"
 	},
-	"homepage": "https://github.com/sapphire-project/utilities/tree/main/packages/eslint-config",
+	"homepage": "https://github.com/sapphire-community/utilities/tree/main/packages/eslint-config",
 	"scripts": {
 		"test": "jest",
 		"prelint": "yarn test && yarn build",
@@ -29,7 +29,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/sapphire-project/utilities.git",
+		"url": "git+https://github.com/sapphire-community/utilities.git",
 		"directory": "packages/eslint-config"
 	},
 	"files": [
@@ -41,7 +41,7 @@
 		"npm": ">=6"
 	},
 	"keywords": [
-		"sapphire-project",
+		"sapphire-community",
 		"bot",
 		"typescript",
 		"ts",
@@ -51,7 +51,7 @@
 		"standalone"
 	],
 	"bugs": {
-		"url": "https://github.com/sapphire-project/utilities/issues"
+		"url": "https://github.com/sapphire-community/utilities/issues"
 	},
 	"publishConfig": {
 		"access": "public"

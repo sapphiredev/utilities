@@ -1,7 +1,7 @@
 {
 	"name": "@sapphire/prettier-config",
 	"version": "1.0.9",
-	"description": "Standard Prettier config for Sapphire projects",
+	"description": "Standard Prettier config for Sapphire Communitys",
 	"author": "@sapphire",
 	"license": "MIT",
 	"main": "dist/index.js",
@@ -10,7 +10,7 @@
 		"import": "./dist/index.js",
 		"require": "./dist/index.js"
 	},
-	"homepage": "https://github.com/sapphire-project/utilities/tree/main/packages/prettier-config",
+	"homepage": "https://github.com/sapphire-community/utilities/tree/main/packages/prettier-config",
 	"scripts": {
 		"test": "jest",
 		"prelint": "yarn test && yarn build",
@@ -23,7 +23,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/sapphire-project/utilities.git",
+		"url": "git+https://github.com/sapphire-community/utilities.git",
 		"directory": "packages/prettier-config"
 	},
 	"files": [
@@ -35,7 +35,7 @@
 		"npm": ">=6"
 	},
 	"keywords": [
-		"sapphire-project",
+		"sapphire-community",
 		"bot",
 		"typescript",
 		"ts",
@@ -45,7 +45,7 @@
 		"standalone"
 	],
 	"bugs": {
-		"url": "https://github.com/sapphire-project/utilities/issues"
+		"url": "https://github.com/sapphire-community/utilities/issues"
 	},
 	"publishConfig": {
 		"access": "public"

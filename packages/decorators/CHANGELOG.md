@@ -3,94 +3,94 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [2.0.9](https://github.com/sapphire-project/utilities/compare/@sapphire/decorators@2.0.8...@sapphire/decorators@2.0.9) (2021-04-03)
+## [2.0.9](https://github.com/sapphire-community/utilities/compare/@sapphire/decorators@2.0.8...@sapphire/decorators@2.0.9) (2021-04-03)
 
 **Note:** Version bump only for package @sapphire/decorators
 
-## [2.0.8](https://github.com/sapphire-project/utilities/compare/@sapphire/decorators@2.0.7...@sapphire/decorators@2.0.8) (2021-03-16)
+## [2.0.8](https://github.com/sapphire-community/utilities/compare/@sapphire/decorators@2.0.7...@sapphire/decorators@2.0.8) (2021-03-16)
 
 ### Bug Fixes
 
--   **decorators:** bump framework dependency to v1.0.0 ([33dc61d](https://github.com/sapphire-project/utilities/commit/33dc61d9d0455cbe2f1385728fb8a2dd425dcc2a))
+-   **decorators:** bump framework dependency to v1.0.0 ([33dc61d](https://github.com/sapphire-community/utilities/commit/33dc61d9d0455cbe2f1385728fb8a2dd425dcc2a))
 
-## [2.0.7](https://github.com/sapphire-project/utilities/compare/@sapphire/decorators@2.0.6...@sapphire/decorators@2.0.7) (2021-03-16)
+## [2.0.7](https://github.com/sapphire-community/utilities/compare/@sapphire/decorators@2.0.6...@sapphire/decorators@2.0.7) (2021-03-16)
 
 ### Bug Fixes
 
--   **decorators:** add tslib dependency ([3085f1d](https://github.com/sapphire-project/utilities/commit/3085f1dadcd84fc8f7aa9c39a7f23333c1d4eb14))
+-   **decorators:** add tslib dependency ([3085f1d](https://github.com/sapphire-community/utilities/commit/3085f1dadcd84fc8f7aa9c39a7f23333c1d4eb14))
 
-## [2.0.6](https://github.com/sapphire-project/utilities/compare/@sapphire/decorators@2.0.5...@sapphire/decorators@2.0.6) (2021-03-16)
+## [2.0.6](https://github.com/sapphire-community/utilities/compare/@sapphire/decorators@2.0.5...@sapphire/decorators@2.0.6) (2021-03-16)
 
 **Note:** Version bump only for package @sapphire/decorators
 
-## [2.0.5](https://github.com/sapphire-project/utilities/compare/@sapphire/decorators@2.0.4...@sapphire/decorators@2.0.5) (2021-02-22)
+## [2.0.5](https://github.com/sapphire-community/utilities/compare/@sapphire/decorators@2.0.4...@sapphire/decorators@2.0.5) (2021-02-22)
 
 ### Bug Fixes
 
--   **decorators:** clean up required peer dependencies ([b29e8a7](https://github.com/sapphire-project/utilities/commit/b29e8a7c2adb7c6beff392291fd5f2bc8587271c))
+-   **decorators:** clean up required peer dependencies ([b29e8a7](https://github.com/sapphire-community/utilities/commit/b29e8a7c2adb7c6beff392291fd5f2bc8587271c))
 
-## [2.0.4](https://github.com/sapphire-project/utilities/compare/@sapphire/decorators@2.0.3...@sapphire/decorators@2.0.4) (2021-02-16)
+## [2.0.4](https://github.com/sapphire-community/utilities/compare/@sapphire/decorators@2.0.3...@sapphire/decorators@2.0.4) (2021-02-16)
 
 **Note:** Version bump only for package @sapphire/decorators
 
-## [2.0.3](https://github.com/sapphire-project/utilities/compare/@sapphire/decorators@2.0.2...@sapphire/decorators@2.0.3) (2021-01-18)
+## [2.0.3](https://github.com/sapphire-community/utilities/compare/@sapphire/decorators@2.0.2...@sapphire/decorators@2.0.3) (2021-01-18)
 
 ### Bug Fixes
 
--   **decorators:** change `ApplyOptions`'s callback parameter from Client to PieceContext ([#61](https://github.com/sapphire-project/utilities/issues/61)) ([d8b916b](https://github.com/sapphire-project/utilities/commit/d8b916bb0f90b40499f7d6315bfec3cfd6642968))
+-   **decorators:** change `ApplyOptions`'s callback parameter from Client to PieceContext ([#61](https://github.com/sapphire-community/utilities/issues/61)) ([d8b916b](https://github.com/sapphire-community/utilities/commit/d8b916bb0f90b40499f7d6315bfec3cfd6642968))
 
-## [2.0.2](https://github.com/sapphire-project/utilities/compare/@sapphire/decorators@2.0.1...@sapphire/decorators@2.0.2) (2021-01-16)
+## [2.0.2](https://github.com/sapphire-community/utilities/compare/@sapphire/decorators@2.0.1...@sapphire/decorators@2.0.2) (2021-01-16)
 
 **Note:** Version bump only for package @sapphire/decorators
 
-## [2.0.1](https://github.com/sapphire-project/utilities/compare/@sapphire/decorators@2.0.0...@sapphire/decorators@2.0.1) (2021-01-09)
+## [2.0.1](https://github.com/sapphire-community/utilities/compare/@sapphire/decorators@2.0.0...@sapphire/decorators@2.0.1) (2021-01-09)
 
 ### Bug Fixes
 
--   **decorators:** assign proper homepage url in package ([495fffc](https://github.com/sapphire-project/utilities/commit/495fffc3424335bd481ba684c29b2193194f2545))
+-   **decorators:** assign proper homepage url in package ([495fffc](https://github.com/sapphire-community/utilities/commit/495fffc3424335bd481ba684c29b2193194f2545))
 
-# [2.0.0](https://github.com/sapphire-project/utilities/compare/@sapphire/decorators@1.2.1...@sapphire/decorators@2.0.0) (2021-01-08)
+# [2.0.0](https://github.com/sapphire-community/utilities/compare/@sapphire/decorators@1.2.1...@sapphire/decorators@2.0.0) (2021-01-08)
 
 ### Features
 
--   **{ts,eslint}-config,decorators:** remove TypeScript v3 from peer dependencies ([a211f0b](https://github.com/sapphire-project/utilities/commit/a211f0b1d07c634cf80701a6685537c14e35586e))
+-   **{ts,eslint}-config,decorators:** remove TypeScript v3 from peer dependencies ([a211f0b](https://github.com/sapphire-community/utilities/commit/a211f0b1d07c634cf80701a6685537c14e35586e))
 
 ### BREAKING CHANGES
 
 -   **{ts,eslint}-config,decorators:** TypeScript v3 removed from peer dependencies, it may still work, however we
     strongly recommend updating.
 
-## [1.2.1](https://github.com/sapphire-project/utilities/compare/@sapphire/decorators@1.2.0...@sapphire/decorators@1.2.1) (2021-01-01)
+## [1.2.1](https://github.com/sapphire-community/utilities/compare/@sapphire/decorators@1.2.0...@sapphire/decorators@1.2.1) (2021-01-01)
 
 **Note:** Version bump only for package @sapphire/decorators
 
-# [1.2.0](https://github.com/sapphire-project/utilities/compare/@sapphire/decorators@1.1.0...@sapphire/decorators@1.2.0) (2020-12-26)
+# [1.2.0](https://github.com/sapphire-community/utilities/compare/@sapphire/decorators@1.1.0...@sapphire/decorators@1.2.0) (2020-12-26)
 
 ### Bug Fixes
 
--   **utilities,time-utilities:** set published versions of dependencies in peerDependencies ([adee6fc](https://github.com/sapphire-project/utilities/commit/adee6fcbd1f7d85e5abee2630aeaa3a192e2a29f))
+-   **utilities,time-utilities:** set published versions of dependencies in peerDependencies ([adee6fc](https://github.com/sapphire-community/utilities/commit/adee6fcbd1f7d85e5abee2630aeaa3a192e2a29f))
 
 ### Features
 
--   **decorators:** add createFunctionPrecondition, fixed build ([#51](https://github.com/sapphire-project/utilities/issues/51)) ([c87d5db](https://github.com/sapphire-project/utilities/commit/c87d5db8e29bbfcf96a29e34e4e4186426bac304))
+-   **decorators:** add createFunctionPrecondition, fixed build ([#51](https://github.com/sapphire-community/utilities/issues/51)) ([c87d5db](https://github.com/sapphire-community/utilities/commit/c87d5db8e29bbfcf96a29e34e4e4186426bac304))
 
-# [1.1.0](https://github.com/sapphire-project/utilities/compare/@sapphire/decorators@1.0.3...@sapphire/decorators@1.1.0) (2020-12-22)
+# [1.1.0](https://github.com/sapphire-community/utilities/compare/@sapphire/decorators@1.0.3...@sapphire/decorators@1.1.0) (2020-12-22)
 
 ### Features
 
--   added time-utilities package ([#26](https://github.com/sapphire-project/utilities/issues/26)) ([f17a333](https://github.com/sapphire-project/utilities/commit/f17a3339667a452e8745fad7884272176e5d65e8))
+-   added time-utilities package ([#26](https://github.com/sapphire-community/utilities/issues/26)) ([f17a333](https://github.com/sapphire-community/utilities/commit/f17a3339667a452e8745fad7884272176e5d65e8))
 
-## [1.0.3](https://github.com/sapphire-project/utilities/compare/@sapphire/decorators@1.0.2...@sapphire/decorators@1.0.3) (2020-11-04)
+## [1.0.3](https://github.com/sapphire-community/utilities/compare/@sapphire/decorators@1.0.2...@sapphire/decorators@1.0.3) (2020-11-04)
 
 ### Bug Fixes
 
--   **decorators:** properly specify ESM and CommonJS exports ([8bf3ec7](https://github.com/sapphire-project/utilities/commit/8bf3ec7a025574244e232fae93f31e67b1689cf9))
+-   **decorators:** properly specify ESM and CommonJS exports ([8bf3ec7](https://github.com/sapphire-community/utilities/commit/8bf3ec7a025574244e232fae93f31e67b1689cf9))
 
-## [1.0.2](https://github.com/sapphire-project/utilities/compare/@sapphire/decorators@1.0.1...@sapphire/decorators@1.0.2) (2020-10-11)
+## [1.0.2](https://github.com/sapphire-community/utilities/compare/@sapphire/decorators@1.0.1...@sapphire/decorators@1.0.2) (2020-10-11)
 
 **Note:** Version bump only for package @sapphire/decorators
 
-## [1.0.1](https://github.com/sapphire-project/utilities/compare/@sapphire/decorators@1.0.0...@sapphire/decorators@1.0.1) (2020-09-20)
+## [1.0.1](https://github.com/sapphire-community/utilities/compare/@sapphire/decorators@1.0.0...@sapphire/decorators@1.0.1) (2020-09-20)
 
 **Note:** Version bump only for package @sapphire/decorators
 
@@ -98,10 +98,10 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
--   **decorators:** add enumerableMethod decorator ([aa60625](https://github.com/sapphire-project/utilities/commit/aa606251336eb983e7a37e10bc69bb2ba232683a))
--   implement snowflake ([5ba4e2d](https://github.com/sapphire-project/utilities/commit/5ba4e2d82557dd4ff60ffe891a7b46e46373bea2))
--   **decorators:** add decorators package ([#4](https://github.com/sapphire-project/utilities/issues/4)) ([677b3e5](https://github.com/sapphire-project/utilities/commit/677b3e59d5c6160cbe6fb410821cadd7c0f00e3c))
--   **decorators:** add enumerable decorator ([cbdd445](https://github.com/sapphire-project/utilities/commit/cbdd445dbe9341691ed706357bbcdd8636078a1b))
+-   **decorators:** add enumerableMethod decorator ([aa60625](https://github.com/sapphire-community/utilities/commit/aa606251336eb983e7a37e10bc69bb2ba232683a))
+-   implement snowflake ([5ba4e2d](https://github.com/sapphire-community/utilities/commit/5ba4e2d82557dd4ff60ffe891a7b46e46373bea2))
+-   **decorators:** add decorators package ([#4](https://github.com/sapphire-community/utilities/issues/4)) ([677b3e5](https://github.com/sapphire-community/utilities/commit/677b3e59d5c6160cbe6fb410821cadd7c0f00e3c))
+-   **decorators:** add enumerable decorator ([cbdd445](https://github.com/sapphire-community/utilities/commit/cbdd445dbe9341691ed706357bbcdd8636078a1b))
 
 # Changelog
 

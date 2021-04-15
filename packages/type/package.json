@@ -13,7 +13,7 @@
 		"import": "./dist/index.mjs",
 		"require": "./dist/index.js"
 	},
-	"homepage": "https://github.com/sapphire-project/utilities/tree/main/packages/type",
+	"homepage": "https://github.com/sapphire-community/utilities/tree/main/packages/type",
 	"scripts": {
 		"test": "jest",
 		"lint": "eslint src tests --ext ts --fix -c ../../.eslintrc",
@@ -23,7 +23,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/sapphire-project/utilities.git",
+		"url": "git+https://github.com/sapphire-community/utilities.git",
 		"directory": "packages/type"
 	},
 	"files": [
@@ -45,7 +45,7 @@
 		"standalone"
 	],
 	"bugs": {
-		"url": "https://github.com/sapphire-project/utilities/issues"
+		"url": "https://github.com/sapphire-community/utilities/issues"
 	},
 	"publishConfig": {
 		"access": "public"
