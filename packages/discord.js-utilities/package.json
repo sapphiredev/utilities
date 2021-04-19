@@ -11,7 +11,7 @@
 		"import": "./dist/index.mjs",
 		"require": "./dist/index.js"
 	},
-	"homepage": "https://github.com/sapphire-project/utilities/tree/main/packages/discord.js-utilities",
+	"homepage": "https://github.com/sapphire-community/utilities/tree/main/packages/discord.js-utilities",
 	"scripts": {
 		"test": "echo \"\"",
 		"lint": "eslint src tests --ext ts --fix -c ../../.eslintrc",
@@ -21,7 +21,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/sapphire-project/utilities.git",
+		"url": "git+https://github.com/sapphire-community/utilities.git",
 		"directory": "packages/discord.js-utilities"
 	},
 	"files": [
@@ -44,7 +44,7 @@
 		"discord.js"
 	],
 	"bugs": {
-		"url": "https://github.com/sapphire-project/utilities/issues"
+		"url": "https://github.com/sapphire-community/utilities/issues"
 	},
 	"publishConfig": {
 		"access": "public"

@@ -17,7 +17,7 @@
 		},
 		"create": {
 			"license": "MIT",
-			"keywords": ["sapphire-project", "bot", "typescript", "ts", "yarn", "discord", "sapphire", "standalone"]
+			"keywords": ["sapphire-community", "bot", "typescript", "ts", "yarn", "discord", "sapphire", "standalone"]
 		}
 	}
 }

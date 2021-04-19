@@ -1,7 +1,7 @@
 {
 	"name": "@sapphire/utilities",
 	"version": "1.4.7",
-	"description": "Common JavaScript utilities for Sapphire Projects",
+	"description": "Common JavaScript utilities for Sapphire Communitys",
 	"author": "@sapphire",
 	"license": "MIT",
 	"main": "dist/index.js",
@@ -13,7 +13,7 @@
 		"import": "./dist/index.mjs",
 		"require": "./dist/index.js"
 	},
-	"homepage": "https://github.com/sapphire-project/utilities/tree/main/packages/utilities",
+	"homepage": "https://github.com/sapphire-community/utilities/tree/main/packages/utilities",
 	"scripts": {
 		"test": "jest",
 		"lint": "eslint src tests --ext ts --fix -c ../../.eslintrc",
@@ -23,7 +23,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/sapphire-project/utilities.git",
+		"url": "git+https://github.com/sapphire-community/utilities.git",
 		"directory": "packages/utilities"
 	},
 	"files": [
@@ -45,7 +45,7 @@
 		"standalone"
 	],
 	"bugs": {
-		"url": "https://github.com/sapphire-project/utilities/issues"
+		"url": "https://github.com/sapphire-community/utilities/issues"
 	},
 	"publishConfig": {
 		"access": "public"

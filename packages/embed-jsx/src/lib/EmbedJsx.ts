@@ -47,13 +47,17 @@ type EmptyData = [TsxTypes.Empty];
 /**
  * The namespace to import for embed-jsx
  *
- * @example ```ts
+ * @example
+ * ```tsx
  * import { EmbedJsx } from '@sapphire/embed-jsx';
  *
- * const embed = <embed color="RED">
- * 	<title>New Embed</title>
- * 	<description>Hello!</description>
- * </embed>
+ * const embed = (
+ *   <embed color="RED">
+ * 	   <title>New Embed</title>
+ * 	   <description>Hello!</description>
+ *   </embed>
+ * )
+ * ```
  */
 // eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace EmbedJsx {
