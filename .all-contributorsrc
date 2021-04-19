@@ -8,6 +8,7 @@
 		"packages/async-queue/README.md",
 		"packages/decorators/README.md",
 		"packages/discord-utilities/README.md",
+		"packages/embed-jsx/README.md",
 		"packages/eslint-config/README.md",
 		"packages/event-iterator/README.md",
 		"packages/prettier-config/README.md",
@@ -98,7 +99,7 @@
 			"name": "Stitch07",
 			"avatar_url": "https://avatars.githubusercontent.com/u/29275227?v=4",
 			"profile": "https://github.com/Stitch07",
-			"contributions": ["code"]
+			"contributions": ["code", "test"]
 		},
 		{
 			"login": "Vetlix",
@@ -127,6 +128,20 @@
 			"avatar_url": "https://avatars.githubusercontent.com/u/5418114?v=4",
 			"profile": "https://jurien.dev",
 			"contributions": ["code"]
+		},
+		{
+			"login": "cfanoulis",
+			"name": "Charalampos Fanoulis",
+			"avatar_url": "https://avatars.githubusercontent.com/u/38255093?v=4",
+			"profile": "https://fanoulis.dev/",
+			"contributions": ["doc"]
+		},
+		{
+			"login": "dependabot[bot]",
+			"name": "dependabot[bot]",
+			"avatar_url": "https://avatars.githubusercontent.com/in/29110?v=4",
+			"profile": "https://github.com/apps/dependabot",
+			"contributions": ["maintenance"]
 		}
 	],
 	"contributorsPerLine": 7,

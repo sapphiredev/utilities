@@ -1,0 +1,188 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`return an embed with a description 1`] = `
+Object {
+  "author": null,
+  "color": null,
+  "description": "Hello!",
+  "fields": Array [],
+  "footer": null,
+  "image": null,
+  "thumbnail": null,
+  "timestamp": null,
+  "title": null,
+  "type": "rich",
+  "url": null,
+}
+`;
+
+exports[`return an embed with a footer 1`] = `
+Object {
+  "author": null,
+  "color": null,
+  "description": null,
+  "fields": Array [],
+  "footer": Object {
+    "icon_url": undefined,
+    "text": "Hey there",
+  },
+  "image": null,
+  "thumbnail": null,
+  "timestamp": null,
+  "title": null,
+  "type": "rich",
+  "url": null,
+}
+`;
+
+exports[`return an embed with a thumbnail 1`] = `
+Object {
+  "author": null,
+  "color": null,
+  "description": null,
+  "fields": Array [],
+  "footer": null,
+  "image": null,
+  "thumbnail": Object {
+    "url": "https://www.google.com/",
+  },
+  "timestamp": null,
+  "title": null,
+  "type": "rich",
+  "url": null,
+}
+`;
+
+exports[`return an embed with a timestamp 1`] = `
+Object {
+  "author": null,
+  "color": null,
+  "description": null,
+  "fields": Array [],
+  "footer": null,
+  "image": null,
+  "thumbnail": null,
+  "timestamp": 1970-01-01T00:00:00.010Z,
+  "title": null,
+  "type": "rich",
+  "url": null,
+}
+`;
+
+exports[`return an embed with a title 1`] = `
+Object {
+  "author": null,
+  "color": null,
+  "description": null,
+  "fields": Array [],
+  "footer": null,
+  "image": null,
+  "thumbnail": null,
+  "timestamp": null,
+  "title": "This is the title",
+  "type": "rich",
+  "url": null,
+}
+`;
+
+exports[`return an embed with an author 1`] = `
+Object {
+  "author": Object {
+    "icon_url": undefined,
+    "name": "Hi mom!",
+    "url": undefined,
+  },
+  "color": null,
+  "description": null,
+  "fields": Array [],
+  "footer": null,
+  "image": null,
+  "thumbnail": null,
+  "timestamp": null,
+  "title": null,
+  "type": "rich",
+  "url": null,
+}
+`;
+
+exports[`return an embed with an image 1`] = `
+Object {
+  "author": null,
+  "color": null,
+  "description": null,
+  "fields": Array [],
+  "footer": null,
+  "image": Object {
+    "url": "https://www.google.com/",
+  },
+  "thumbnail": null,
+  "timestamp": null,
+  "title": null,
+  "type": "rich",
+  "url": null,
+}
+`;
+
+exports[`return an embed with fields 1`] = `
+Object {
+  "author": null,
+  "color": null,
+  "description": null,
+  "fields": Array [
+    Object {
+      "inline": false,
+      "name": "​",
+      "value": "Hey",
+    },
+    Object {
+      "inline": false,
+      "name": "Title",
+      "value": "Hello",
+    },
+    Object {
+      "inline": true,
+      "name": "Inline",
+      "value": "Hey there",
+    },
+  ],
+  "footer": null,
+  "image": null,
+  "thumbnail": null,
+  "timestamp": null,
+  "title": null,
+  "type": "rich",
+  "url": null,
+}
+`;
+
+exports[`returns a basic embed 1`] = `
+Object {
+  "author": null,
+  "color": null,
+  "description": null,
+  "fields": Array [],
+  "footer": null,
+  "image": null,
+  "thumbnail": null,
+  "timestamp": null,
+  "title": null,
+  "type": "rich",
+  "url": null,
+}
+`;
+
+exports[`returns an embed with options 1`] = `
+Object {
+  "author": null,
+  "color": 15158332,
+  "description": null,
+  "fields": Array [],
+  "footer": null,
+  "image": null,
+  "thumbnail": null,
+  "timestamp": null,
+  "title": null,
+  "type": "rich",
+  "url": null,
+}
+`;

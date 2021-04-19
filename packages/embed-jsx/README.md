@@ -2,49 +2,76 @@
 
 ![Sapphire Logo](https://cdn.skyra.pw/gh-assets/sapphire-banner.png)
 
-# @sapphire/decorators
+# @sapphire/embed-jsx
 
-**Useful TypeScript decorators for Sapphire Framework bots.**
-
-[![GitHub](https://img.shields.io/github/license/sapphire-community/utilities)](https://github.com/sapphire-community/utilities/blob/main/LICENSE.md)
-[![Total alerts](https://img.shields.io/lgtm/alerts/g/sapphire-community/utilities.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/sapphire-community/utilities/alerts/)
-[![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/sapphire-community/utilities.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/sapphire-community/utilities/context:javascript)
-[![Coverage Status](https://coveralls.io/repos/github/sapphire-community/utilities/badge.svg?branch=main)](https://coveralls.io/github/sapphire-community/utilities?branch=main)
-[![npm bundle size](https://img.shields.io/bundlephobia/min/@sapphire/decorators?logo=webpack&style=flat-square)](https://bundlephobia.com/result?p=@sapphire/decorators)
-[![npm](https://img.shields.io/npm/v/@sapphire/decorators?color=crimson&logo=npm&style=flat-square)](https://www.npmjs.com/package/@sapphire/decorators)
-[![Depfu](https://badges.depfu.com/badges/ec42ff3d6bae55eee1de4749960852b3/count.svg)](https://depfu.com/github/sapphire-community/utilities?project_id=15195)
+[![GitHub](https://img.shields.io/github/license/sapphire-project/utilities)](https://github.com/sapphire-project/utilities/blob/main/LICENSE.md)
+[![Total alerts](https://img.shields.io/lgtm/alerts/g/sapphire-project/utilities.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/sapphire-project/utilities/alerts/)
+[![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/sapphire-project/utilities.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/sapphire-project/utilities/context:javascript)
+[![Coverage Status](https://coveralls.io/repos/github/sapphire-project/utilities/badge.svg?branch=main)](https://coveralls.io/github/sapphire-project/utilities?branch=main)
+[![npm bundle size](https://img.shields.io/bundlephobia/min/@sapphire/embed-jsx?logo=webpack&style=flat-square)](https://bundlephobia.com/result?p=@sapphire/embed-jsx)
+[![npm](https://img.shields.io/npm/v/@sapphire/embed-jsx?color=crimson&logo=npm&style=flat-square)](https://www.npmjs.com/package/@sapphire/embed-jsx)
+[![Depfu](https://badges.depfu.com/badges/ec42ff3d6bae55eee1de4749960852b3/count.svg)](https://depfu.com/github/sapphire-project/utilities?project_id=15195)
 
 </div>
 
 ## Description
 
-Decorators can add a lot of functionality with very minimal code. This package provides some common decorators that can be used with projects using the [Sapphire Framework][].
+Discord embeds have a structure that translates very nicely to JSX syntax, making it a very interesting way to define embed structures in this variant of regular JavaScript. To translate the JSX code to DiscordJS compatible `MessageEmbed` data there is this library.
+
+## Features
+
+-   Written in TypeScript
+-   Offers CommonJS and ESM variants
+-   Fully tested
 
 ## Installation
 
 ```sh
-yarn add @sapphire/decorators
-# npm install @sapphire/decorators
+yarn add @sapphire/embed-jsx
 ```
 
----
+## Usage
+
+In your tsconfig.json, add
+
+```json
+{
+	"compilerOptions": {
+		"jsx": "react",
+		"jsxFactory": "EmbedJsx.make"
+	}
+}
+```
+and in any tsx file, import the EmbedJsx namespace as you would if you were using React
+
+```ts
+import { EmbedJsx } from '@sapphire/embed-jsx';
+```
+
+Note: as of now the package is currently not fully typed, so to get around any compiler errors you may have to add
+
+```json
+"noImplicitAny": false
+```
+
+to your tsconfig.json
 
 ## API Documentation
 
-For the full API documentation please refer to the TypeDoc generated [documentation](https://sapphire-community.github.io/utilities/modules/_sapphire_decorators.html).
+For the full API documentation please refer to the TypeDoc generated [documentation](https://sapphire-project.github.io/utilities/modules/_sapphire_embed_jsx.html)
 
 ## Buy us some doughnuts
 
-Sapphire Community is and always will be open source, even if we don't get donations. That being said, we know there are amazing people who may still want to donate just to show their appreciation. Thank you very much in advance!
+Sapphire Project is and always will be open source, even if we don't get donations. That being said, we know there are amazing people who may still want to donate just to show their appreciation. Thank you very much in advance!
 
 We accept donations through Open Collective, Ko-fi, Paypal, Patreon and GitHub Sponsorships. You can use the buttons below to donate through your method of choice.
 
-|   Donate With   |                       Address                       |
-| :-------------: | :-------------------------------------------------: |
-| Open Collective | [Click Here](https://sapphirejs.com/opencollective) |
-|      Ko-fi      |      [Click Here](https://sapphirejs.com/kofi)      |
-|     Patreon     |    [Click Here](https://sapphirejs.com/patreon)     |
-|     PayPal      |     [Click Here](https://sapphirejs.com/paypal)     |
+|   Donate With   |                                             Address                                              |
+| :-------------: | :----------------------------------------------------------------------------------------------: |
+| Open Collective |                    [Click Here](https://opencollective.com/sapphire-project)                     |
+|      Ko-fi      |                         [Click Here](https://ko-fi.com/sapphireproject)                          |
+|     Patreon     |                      [Click Here](https://www.patreon.com/sapphire_project)                      |
+|     PayPal      | [Click Here](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SP738BQTQQYZY) |
 
 ## Contributors ✨
 
@@ -85,5 +112,3 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
-
-[sapphire framework]: https://github.com/sapphire-community/framework

@@ -100,7 +100,7 @@ export class Cron {
 	 */
 	private static parsePart(cronPart: string, id: number): number[] {
 		if (cronPart.includes(',')) {
-			const res = [];
+			const res: number[] = [];
 			for (const part of cronPart.split(',')) res.push(...Cron.parsePart(part, id));
 			return [...new Set(res)].sort((a, b) => a - b);
 		}
