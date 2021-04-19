@@ -1,6 +1,6 @@
 import { MessageEmbed, ColorResolvable, MessageEmbedOptions } from 'discord.js';
 
-const EMBED_TYPES = ['embed', 'title', 'field', 'timestamp', 'footer', 'description', 'image'] as const;
+const EMBED_TYPES = ['embed', 'title', 'field', 'timestamp', 'footer', 'description', 'image', 'thumbnail', 'author'] as const;
 
 type EmbedInformation =
 	| TitleInformation
@@ -8,19 +8,22 @@ type EmbedInformation =
 	| TimestampInformation
 	| FooterInformation
 	| DescriptionInformation
-	| ImageInformation;
+	| ThumbnailInformation
+	| ImageInformation
+	| AuthorInformation;
 
-type EmbedData = TitleData | FieldData | TimestampData | FooterData | DescriptionData | ImageData | EmptyData;
+type EmbedData = TitleData | FieldData | TimestampData | FooterData | DescriptionData | ImageData | EmptyData | ThumbnailData | AuthorData;
 
 const enum TsxTypes {
 	Title,
 	Description,
-	Url,
+	Thumbnail,
 	Field,
 	Timestamp,
 	Footer,
 	Image,
-	Empty
+	Empty,
+	Author
 }
 
 // Received types
@@ -31,6 +34,8 @@ type TimestampInformation = [null, number | string | Date | null];
 type FooterInformation = [null | { iconURL?: string }, string];
 type EmbedInitialInformation = [{ color: ColorResolvable } | null, ...EmbedData[]];
 type ImageInformation = [{ url: string }, null];
+type ThumbnailInformation = [{ url: string }, null];
+type AuthorInformation = [{ url?: string, iconURL?: string } | null, string];
 
 // Returned types
 type TitleData = [TsxTypes.Title, string, string?];
@@ -39,7 +44,9 @@ type FieldData = [TsxTypes.Field, string, string, boolean];
 type TimestampData = [TsxTypes.Timestamp, Date];
 type FooterData = [TsxTypes.Footer, string, string?];
 type ImageData = [TsxTypes.Image, string];
+type ThumbnailData = [TsxTypes.Thumbnail, string];
 type EmptyData = [TsxTypes.Empty];
+type AuthorData = [TsxTypes.Author, string, string?, string?];
 
 /**
  * The namespace to import for embed-jsx
@@ -100,6 +107,14 @@ export namespace EmbedJsx {
 				const info = data as ImageInformation;
 				return [TsxTypes.Image, info[0].url];
 			}
+			case 'thumbnail': {
+				const info = data as ThumbnailInformation;
+				return [TsxTypes.Thumbnail, info[0].url];
+			}
+			case 'author': {
+				const info = data as AuthorInformation;
+				return [TsxTypes.Author, info[1], info[0]?.iconURL, info[0]?.url];
+			}
 		}
 	}
 
@@ -124,6 +139,12 @@ export namespace EmbedJsx {
 			}
 			case TsxTypes.Image: {
 				return embed.setImage(data[1]);
+			}
+			case TsxTypes.Thumbnail: {
+				return embed.setThumbnail(data[1]);
+			}
+			case TsxTypes.Author: {
+				return embed.setAuthor(data[1], data[2], data[3]);
 			}
 			case TsxTypes.Empty: {
 				return embed;
