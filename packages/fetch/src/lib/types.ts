@@ -34,42 +34,42 @@ export const enum FetchMethods {
 	Get = 'GET',
 	/**
 	 * The `HEAD` method asks for a response identical to that of a {@link FetchMethods.Get `GET`} request, but without the response body.
-	 * @see [MDN / Web / HTTP / Methods / GET](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/HEAD)
+	 * @see [MDN / Web / HTTP / Methods / HEAD](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/HEAD)
 	 */
 	Head = 'HEAD',
 	/**
 	 * The `POST` method is used to submit an entity to the specified resource, often causing a change in state or side effects on the server.
-	 * @see [MDN / Web / HTTP / Methods / GET](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST)
+	 * @see [MDN / Web / HTTP / Methods / POST](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST)
 	 */
 	Post = 'POST',
 	/**
 	 * The `PUT` method replaces all current representations of the target resource with the request payload.
-	 * @see [MDN / Web / HTTP / Methods / GET](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PUT)
+	 * @see [MDN / Web / HTTP / Methods / PUT](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PUT)
 	 */
 	Put = 'PUT',
 	/**
 	 * The `DELETE` method deletes the specified resource.
-	 * @see [MDN / Web / HTTP / Methods / GET](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/DELETE)
+	 * @see [MDN / Web / HTTP / Methods / DELETE](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/DELETE)
 	 */
 	Delete = 'DELETE',
 	/**
 	 *  The `CONNECT` method establishes a tunnel to the server identified by the target resource
-	 * @see [MDN / Web / HTTP / Methods / GET](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/CONNECT)
+	 * @see [MDN / Web / HTTP / Methods / CONNECT](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/CONNECT)
 	 */
 	Connect = 'CONNECT',
 	/**
 	 * The `OPTIONS` method is used to describe the communication options for the target resource.
-	 * @see [MDN / Web / HTTP / Methods / GET](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/OPTIONS)
+	 * @see [MDN / Web / HTTP / Methods / OPTIONS](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/OPTIONS)
 	 */
 	Options = 'OPTIONS',
 	/**
 	 * The `TRACE` method performs a message loop-back test along the path to the target resource.
-	 * @see [MDN / Web / HTTP / Methods / GET](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/TRACE)
+	 * @see [MDN / Web / HTTP / Methods / TRACE](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/TRACE)
 	 */
 	Trace = 'TRACE',
 	/**
 	 * The `PATCH` method is used to apply partial modifications to a resource.
-	 * @see [MDN / Web / HTTP / Methods / GET](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PATCH)
+	 * @see [MDN / Web / HTTP / Methods / PATCH](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PATCH)
 	 */
 	Patch = 'PATCH'
 }
