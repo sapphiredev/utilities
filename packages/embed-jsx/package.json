@@ -38,24 +38,6 @@
 		"node": ">=12",
 		"npm": ">=6"
 	},
-<<<<<<< HEAD
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/sapphire-project/utilities.git",
-		"directory": "packages/embed-jsx"
-	},
-	"scripts": {
-		"build": "tsc -p ./src",
-		"lint": "eslint src tests --ext ts,tsx --fix -c ../../.eslintrc",
-		"test": "jest"
-	},
-	"bugs": {
-		"url": "https://github.com/sapphire-project/embed-jsx/issues"
-	},
-	"peerDependencies": {
-		"discord.js": "^12.5.3"
-	},
-=======
 	"keywords": [
 		"@sapphire/embed-jsx",
 		"embed",
@@ -69,7 +51,6 @@
 	"bugs": {
 		"url": "https://github.com/sapphire-project/embed-jsx/issues"
 	},
->>>>>>> cfe4cef943f629da71b963dc8982dacd52d06404
 	"publishConfig": {
 		"access": "public"
 	}
