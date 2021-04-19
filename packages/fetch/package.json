@@ -1,0 +1,56 @@
+{
+	"name": "@sapphire/fetch",
+	"version": "0.0.1",
+	"description": "Tiny wrapper around node-fetch for improved TypeScript and data type support",
+	"author": "@sapphire",
+	"license": "MIT",
+	"main": "dist/index.js",
+	"module": "dist/index.mjs",
+	"types": "dist/index.d.ts",
+	"exports": {
+		"import": "./dist/index.mjs",
+		"require": "./dist/index.js"
+	},
+	"homepage": "https://github.com/sapphire-community/utilities/tree/main/packages/fetch",
+	"scripts": {
+		"test": "jest",
+		"lint": "eslint src tests --ext ts --fix -c ../../.eslintrc",
+		"build": "tsc -b src",
+		"postbuild": "gen-esm-wrapper dist/index.js dist/index.mjs",
+		"start": "yarn build -w",
+		"prepublishOnly": "yarn build"
+	},
+	"dependencies": {
+		"node-fetch": "^2.6.1",
+		"tslib": "2.x"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/sapphire-community/utilities.git",
+		"directory": "packages/fetch"
+	},
+	"files": [
+		"dist",
+		"!dist/*.tsbuildinfo"
+	],
+	"engines": {
+		"node": ">=12",
+		"npm": ">=6"
+	},
+	"keywords": [
+		"@sapphire/fetch",
+		"bot",
+		"typescript",
+		"ts",
+		"yarn",
+		"discord",
+		"sapphire",
+		"standalone"
+	],
+	"bugs": {
+		"url": "https://github.com/sapphire-community/utilities/issues"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
+}
