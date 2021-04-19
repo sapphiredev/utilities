@@ -94,7 +94,6 @@ describe('fetch', () => {
 				expect(error.code).toBe(HttpCodes.NotFound);
 				expect(error.url).toBe(url);
 				expect(error.toJSON()).toStrictEqual({ success: false });
-				expect(error.response).toMatchSnapshot();
 			}
 		});
 
@@ -112,7 +111,6 @@ describe('fetch', () => {
 				expect(error.code).toBe(HttpCodes.NotFound);
 				expect(error.url).toBe(url.href);
 				expect(error.toJSON()).toStrictEqual({ success: false });
-				expect(error.response).toMatchSnapshot();
 			}
 		});
 
