@@ -1,6 +1,6 @@
 {
 	"name": "@sapphire/async-queue",
-	"version": "1.0.6",
+	"version": "1.0.7",
 	"description": "Sequential asynchronous lock-based queue for promises",
 	"author": "@sapphire",
 	"license": "MIT",
