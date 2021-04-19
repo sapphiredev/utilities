@@ -1,6 +1,6 @@
-import { MessageEmbed, ColorResolvable } from 'discord.js';
+import { MessageEmbed, ColorResolvable, MessageEmbedOptions } from 'discord.js';
 
-const EMBED_TYPES = ['embed', 'title', 'field', 'timestamp', 'footer', 'description', 'url', 'image'] as const;
+const EMBED_TYPES = ['embed', 'title', 'field', 'timestamp', 'footer', 'description', 'image'] as const;
 
 type EmbedInformation =
 	| TitleInformation
@@ -8,10 +8,9 @@ type EmbedInformation =
 	| TimestampInformation
 	| FooterInformation
 	| DescriptionInformation
-	| UrlInformation
 	| ImageInformation;
 
-type EmbedData = TitleData | FieldData | TimestampData | FooterData | DescriptionData | UrlData | ImageData | EmptyData;
+type EmbedData = TitleData | FieldData | TimestampData | FooterData | DescriptionData | ImageData | EmptyData;
 
 const enum TsxTypes {
 	Title,
@@ -25,9 +24,8 @@ const enum TsxTypes {
 }
 
 // Received types
-type TitleInformation = [null, string];
+type TitleInformation = [{ url: string } | null, string];
 type DescriptionInformation = [null, string];
-type UrlInformation = [null, string];
 type FieldInformation = [{ title?: string; inline?: boolean }, string];
 type TimestampInformation = [null, number | string | Date | null];
 type FooterInformation = [null | { iconURL?: string }, string];
@@ -35,9 +33,8 @@ type EmbedInitialInformation = [{ color: ColorResolvable } | null, ...EmbedData[
 type ImageInformation = [{ url: string }, null];
 
 // Returned types
-type TitleData = [TsxTypes.Title, string];
+type TitleData = [TsxTypes.Title, string, string?];
 type DescriptionData = [TsxTypes.Description, string];
-type UrlData = [TsxTypes.Url, string];
 type FieldData = [TsxTypes.Field, string, string, boolean];
 type TimestampData = [TsxTypes.Timestamp, Date];
 type FooterData = [TsxTypes.Footer, string, string?];
@@ -73,8 +70,7 @@ export namespace EmbedJsx {
 		switch (type) {
 			case 'embed': {
 				const info = data as EmbedInitialInformation;
-				let embed = new MessageEmbed(info[0] ?? {});
-				info.shift();
+				let embed = new MessageEmbed((info.shift() as MessageEmbedOptions) ?? {});
 				for (const value of info) {
 					embed = resolveData((value as EmbedData) ?? [TsxTypes.Empty], embed);
 				}
@@ -82,7 +78,7 @@ export namespace EmbedJsx {
 			}
 			case 'title': {
 				const info = data as TitleInformation;
-				return [TsxTypes.Title, info[1]];
+				return [TsxTypes.Title, info[1], info[0]?.url];
 			}
 			case 'field': {
 				const info = data as FieldInformation;
@@ -100,10 +96,6 @@ export namespace EmbedJsx {
 				const info = data as DescriptionInformation;
 				return [TsxTypes.Description, info[1]];
 			}
-			case 'url': {
-				const info = data as UrlInformation;
-				return [TsxTypes.Url, info[1]];
-			}
 			case 'image': {
 				const info = data as ImageInformation;
 				return [TsxTypes.Image, info[0].url];
@@ -114,7 +106,9 @@ export namespace EmbedJsx {
 	function resolveData(data: EmbedData, embed: MessageEmbed): MessageEmbed {
 		switch (data[0]) {
 			case TsxTypes.Title: {
-				return embed.setTitle(data[1]);
+				embed.setTitle(data[1]);
+				if (typeof data[2] !== 'undefined') embed.setURL(data[2]);
+				return embed;
 			}
 			case TsxTypes.Description: {
 				return embed.setDescription(data[1]);
@@ -127,9 +121,6 @@ export namespace EmbedJsx {
 			}
 			case TsxTypes.Timestamp: {
 				return embed.setTimestamp(data[1]);
-			}
-			case TsxTypes.Url: {
-				return embed.setURL(data[1]);
 			}
 			case TsxTypes.Image: {
 				return embed.setImage(data[1]);
