@@ -29,13 +29,13 @@ const enum TsxTypes {
 // Received types
 type TitleInformation = [{ url: string } | null, string];
 type DescriptionInformation = [null, string];
-type FieldInformation = [{ title?: string; inline?: boolean }, string];
+type FieldInformation = [{ name?: string; inline?: boolean } | null, string];
 type TimestampInformation = [null, number | string | Date | null];
 type FooterInformation = [null | { iconURL?: string }, string];
 type EmbedInitialInformation = [{ color: ColorResolvable } | null, ...EmbedData[]];
 type ImageInformation = [{ url: string }, null];
 type ThumbnailInformation = [{ url: string }, null];
-type AuthorInformation = [{ url?: string, iconURL?: string } | null, string];
+type AuthorInformation = [{ url?: string; iconURL?: string } | null, string];
 
 // Returned types
 type TitleData = [TsxTypes.Title, string, string?];
@@ -73,7 +73,7 @@ export namespace EmbedJsx {
 	 */
 	export function make(type: typeof EMBED_TYPES[number], ...data: EmbedInformation | EmbedInitialInformation): EmbedData | MessageEmbed {
 		type = type.toLowerCase() as typeof EMBED_TYPES[number];
-		if (!EMBED_TYPES.includes(type)) throw new TypeError(`Invalid type passed, expected one of ${EMBED_TYPES.join(', ')}, got: ${type}`);
+		if (!EMBED_TYPES.includes(type)) throw new TypeError(`Invalid type passed, expected one of ${EMBED_TYPES.join(', ')}; got: ${type}`);
 		switch (type) {
 			case 'embed': {
 				const info = data as EmbedInitialInformation;
@@ -89,7 +89,7 @@ export namespace EmbedJsx {
 			}
 			case 'field': {
 				const info = data as FieldInformation;
-				return [TsxTypes.Field, info[0].title ?? '\u200B', info[1], info[0].inline ?? false];
+				return [TsxTypes.Field, info[0]?.name ?? '\u200B', info[1], info[0]?.inline ?? false];
 			}
 			case 'footer': {
 				const info = data as FooterInformation;
