@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.2](https://github.com/sapphire-community/utilities/compare/@sapphire/ts-config@2.1.1...@sapphire/ts-config@2.1.2) (2021-04-19)
+
+### Bug Fixes
+
+-   change all Sapphire URLs from "project"->"community" & use our domain where applicable 👨‍🌾🚜 ([#102](https://github.com/sapphire-community/utilities/issues/102)) ([835b408](https://github.com/sapphire-community/utilities/commit/835b408e8e57130c3787aca2e32613346ff23e4d))
+
 ## [2.1.1](https://github.com/sapphire-community/utilities/compare/@sapphire/ts-config@2.1.0...@sapphire/ts-config@2.1.1) (2021-04-03)
 
 **Note:** Version bump only for package @sapphire/ts-config

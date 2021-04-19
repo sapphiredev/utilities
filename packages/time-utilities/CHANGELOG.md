@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.13](https://github.com/sapphire-community/utilities/compare/@sapphire/time-utilities@1.2.12...@sapphire/time-utilities@1.2.13) (2021-04-19)
+
+### Bug Fixes
+
+-   change all Sapphire URLs from "project"->"community" & use our domain where applicable 👨‍🌾🚜 ([#102](https://github.com/sapphire-community/utilities/issues/102)) ([835b408](https://github.com/sapphire-community/utilities/commit/835b408e8e57130c3787aca2e32613346ff23e4d))
+
 ## [1.2.12](https://github.com/sapphire-community/utilities/compare/@sapphire/time-utilities@1.2.11...@sapphire/time-utilities@1.2.12) (2021-04-03)
 
 **Note:** Version bump only for package @sapphire/time-utilities

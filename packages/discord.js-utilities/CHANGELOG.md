@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.5](https://github.com/sapphire-community/utilities/compare/@sapphire/discord.js-utilities@1.5.4...@sapphire/discord.js-utilities@1.5.5) (2021-04-19)
+
+### Bug Fixes
+
+-   change all Sapphire URLs from "project"->"community" & use our domain where applicable 👨‍🌾🚜 ([#102](https://github.com/sapphire-community/utilities/issues/102)) ([835b408](https://github.com/sapphire-community/utilities/commit/835b408e8e57130c3787aca2e32613346ff23e4d))
+
 ## [1.5.4](https://github.com/sapphire-community/utilities/compare/@sapphire/discord.js-utilities@1.5.3...@sapphire/discord.js-utilities@1.5.4) (2021-04-03)
 
 ### Bug Fixes

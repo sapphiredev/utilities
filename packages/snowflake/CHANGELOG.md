@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.8](https://github.com/sapphire-community/utilities/compare/@sapphire/snowflake@1.2.7...@sapphire/snowflake@1.2.8) (2021-04-19)
+
+### Bug Fixes
+
+-   change all Sapphire URLs from "project"->"community" & use our domain where applicable 👨‍🌾🚜 ([#102](https://github.com/sapphire-community/utilities/issues/102)) ([835b408](https://github.com/sapphire-community/utilities/commit/835b408e8e57130c3787aca2e32613346ff23e4d))
+
 ## [1.2.7](https://github.com/sapphire-community/utilities/compare/@sapphire/snowflake@1.2.6...@sapphire/snowflake@1.2.7) (2021-04-03)
 
 **Note:** Version bump only for package @sapphire/snowflake
