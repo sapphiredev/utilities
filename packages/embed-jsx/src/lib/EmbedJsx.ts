@@ -1,5 +1,13 @@
 import { MessageEmbed, ColorResolvable, MessageEmbedOptions } from 'discord.js';
-import { validateTitleData } from './utils';
+import {
+	validateAuthorData,
+	validateDescriptionData,
+	validateFieldData,
+	validateFooterData,
+	validateImageData,
+	validateTimestampData,
+	validateTitleData
+} from './utils';
 
 const EMBED_TYPES = ['embed', 'title', 'field', 'timestamp', 'footer', 'description', 'image', 'thumbnail', 'author'] as const;
 
@@ -89,32 +97,32 @@ export namespace EmbedJsx {
 				return [TsxTypes.Title, data[1], data[0]?.url];
 			}
 			case 'field': {
-				const info = data as FieldInformation;
-				return [TsxTypes.Field, info[0]?.name ?? '\u200B', info[1], info[0]?.inline ?? false];
+				validateFieldData(data);
+				return [TsxTypes.Field, data[0]?.name ?? '\u200B', data[1], data[0]?.inline ?? false];
 			}
 			case 'footer': {
-				const info = data as FooterInformation;
-				return [TsxTypes.Footer, info[1], info[0]?.iconURL];
+				validateFooterData(data);
+				return [TsxTypes.Footer, data[1], data[0]?.iconURL];
 			}
 			case 'timestamp': {
-				const info = data as TimestampInformation;
-				return [TsxTypes.Timestamp, new Date(info[1] ?? Date.now())];
+				validateTimestampData(data);
+				return [TsxTypes.Timestamp, new Date(data[1] ?? Date.now())];
 			}
 			case 'description': {
-				const info = data as DescriptionInformation;
-				return [TsxTypes.Description, info[1]];
+				validateDescriptionData(data);
+				return [TsxTypes.Description, data[1]];
 			}
 			case 'image': {
-				const info = data as ImageInformation;
-				return [TsxTypes.Image, info[0].url];
+				validateImageData(data, 'image');
+				return [TsxTypes.Image, data[0].url];
 			}
 			case 'thumbnail': {
-				const info = data as ThumbnailInformation;
-				return [TsxTypes.Thumbnail, info[0].url];
+				validateImageData(data, 'thumbnail');
+				return [TsxTypes.Thumbnail, data[0].url];
 			}
 			case 'author': {
-				const info = data as AuthorInformation;
-				return [TsxTypes.Author, info[1], info[0]?.iconURL, info[0]?.url];
+				validateAuthorData(data);
+				return [TsxTypes.Author, data[1], data[0]?.iconURL, data[0]?.url];
 			}
 		}
 	}
