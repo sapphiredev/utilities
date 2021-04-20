@@ -156,6 +156,7 @@ export namespace EmbedJsx {
 				return embed.setAuthor(data[1], data[2], data[3]);
 			}
 			case TsxTypes.Empty: {
+				/* istanbul ignore next */
 				return embed;
 			}
 		}
