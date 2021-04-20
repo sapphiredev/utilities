@@ -24,6 +24,17 @@ test('return an embed with a title', () => {
 	expect(embed).toMatchSnapshot();
 });
 
+test('return an emebd with a title and url', () => {
+	const embed = (
+		<embed>
+			<title url="https://www.github.com/">GitHub</title>
+		</embed>
+	);
+	const expected = new MessageEmbed().setTitle('GitHub').setURL('https://www.github.com/');
+	expect(embed).toStrictEqual(expected);
+	expect(embed).toMatchSnapshot();
+});
+
 test('return an embed with fields', () => {
 	const embed = (
 		<embed>
@@ -107,17 +118,4 @@ test('return an embed with an author', () => {
 	const expected = new MessageEmbed().setAuthor('Hi mom!');
 	expect(embed).toStrictEqual(expected);
 	expect(embed).toMatchSnapshot();
-});
-
-test('throw an error at invalid options', () => {
-	const embedFn = (): any => (
-		<embed>
-			<wrong />
-		</embed>
-	);
-	expect(embedFn).toThrow(
-		new TypeError(
-			'Invalid type passed, expected one of embed, title, field, timestamp, footer, description, image, thumbnail, author; got: wrong'
-		)
-	);
 });
