@@ -1,4 +1,5 @@
 import { MessageEmbed, ColorResolvable, MessageEmbedOptions } from 'discord.js';
+import { validateTitleData } from './utils';
 
 const EMBED_TYPES = ['embed', 'title', 'field', 'timestamp', 'footer', 'description', 'image', 'thumbnail', 'author'] as const;
 
@@ -27,15 +28,15 @@ const enum TsxTypes {
 }
 
 // Received types
-type TitleInformation = [{ url: string } | null, string];
-type DescriptionInformation = [null, string];
-type FieldInformation = [{ name?: string; inline?: boolean } | null, string];
-type TimestampInformation = [null, number | string | Date | null];
-type FooterInformation = [null | { iconURL?: string }, string];
-type EmbedInitialInformation = [{ color: ColorResolvable } | null, ...EmbedData[]];
-type ImageInformation = [{ url: string }, null];
-type ThumbnailInformation = [{ url: string }, null];
-type AuthorInformation = [{ url?: string; iconURL?: string } | null, string];
+export type TitleInformation = [{ url: string } | null, string];
+export type DescriptionInformation = [null, string];
+export type FieldInformation = [{ name?: string; inline?: boolean } | null, string];
+export type TimestampInformation = [null, number | string | Date | null];
+export type FooterInformation = [null | { iconURL?: string }, string];
+export type EmbedInitialInformation = [{ color: ColorResolvable } | null, ...EmbedData[]];
+export type ImageInformation = [{ url: string }, null];
+export type ThumbnailInformation = [{ url: string }, null];
+export type AuthorInformation = [{ url?: string; iconURL?: string } | null, string];
 
 // Returned types
 type TitleData = [TsxTypes.Title, string, string?];
@@ -84,8 +85,8 @@ export namespace EmbedJsx {
 				return embed;
 			}
 			case 'title': {
-				const info = data as TitleInformation;
-				return [TsxTypes.Title, info[1], info[0]?.url];
+				validateTitleData(data);
+				return [TsxTypes.Title, data[1], data[0]?.url];
 			}
 			case 'field': {
 				const info = data as FieldInformation;
