@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/sapphire-community/utilities/compare/@sapphire/utilities@1.4.8...@sapphire/utilities@1.5.0) (2021-04-21)
+
+### Bug Fixes
+
+-   **utilities:** resolve lgtm error ([eb5f4e6](https://github.com/sapphire-community/utilities/commit/eb5f4e6478d35a6864427fe02849e930b151285c))
+
+### Features
+
+-   add @sapphire/embed-jsx ([#100](https://github.com/sapphire-community/utilities/issues/100)) ([7277a23](https://github.com/sapphire-community/utilities/commit/7277a236015236ed8e81b7882875410facc4ce17))
+
 ## [1.4.8](https://github.com/sapphire-community/utilities/compare/@sapphire/utilities@1.4.7...@sapphire/utilities@1.4.8) (2021-04-19)
 
 ### Bug Fixes

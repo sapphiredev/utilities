@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/sapphire-community/utilities/compare/@sapphire/time-utilities@1.2.13...@sapphire/time-utilities@1.3.0) (2021-04-21)
+
+### Features
+
+-   add @sapphire/embed-jsx ([#100](https://github.com/sapphire-community/utilities/issues/100)) ([7277a23](https://github.com/sapphire-community/utilities/commit/7277a236015236ed8e81b7882875410facc4ce17))
+
 ## [1.2.13](https://github.com/sapphire-community/utilities/compare/@sapphire/time-utilities@1.2.12...@sapphire/time-utilities@1.2.13) (2021-04-19)
 
 ### Bug Fixes

@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.6](https://github.com/sapphire-community/utilities/compare/@sapphire/discord.js-utilities@1.5.5...@sapphire/discord.js-utilities@1.5.6) (2021-04-21)
+
+**Note:** Version bump only for package @sapphire/discord.js-utilities
+
 ## [1.5.5](https://github.com/sapphire-community/utilities/compare/@sapphire/discord.js-utilities@1.5.4...@sapphire/discord.js-utilities@1.5.5) (2021-04-19)
 
 ### Bug Fixes

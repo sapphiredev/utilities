@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/sapphire-community/utilities/compare/@sapphire/ts-config@2.1.2...@sapphire/ts-config@2.2.0) (2021-04-21)
+
+### Features
+
+-   add @sapphire/embed-jsx ([#100](https://github.com/sapphire-community/utilities/issues/100)) ([7277a23](https://github.com/sapphire-community/utilities/commit/7277a236015236ed8e81b7882875410facc4ce17))
+
 ## [2.1.2](https://github.com/sapphire-community/utilities/compare/@sapphire/ts-config@2.1.1...@sapphire/ts-config@2.1.2) (2021-04-19)
 
 ### Bug Fixes
