@@ -1,6 +1,6 @@
 {
 	"name": "@sapphire/fetch",
-	"version": "0.0.1",
+	"version": "1.0.0",
 	"description": "Tiny wrapper around node-fetch for improved TypeScript and data type support",
 	"author": "@sapphire",
 	"license": "MIT",
