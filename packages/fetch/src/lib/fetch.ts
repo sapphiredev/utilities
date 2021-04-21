@@ -36,7 +36,7 @@ export async function fetch(url: URL | string, options?: RequestInit | FetchResu
 	}
 
 	const result: Response = await nodeFetch(url, options);
-	if (!result.ok) throw new QueryError(url, result.status, result, await result.text());
+	if (!result.ok) throw new QueryError(url, result.status, result, await result.clone().text());
 
 	switch (type) {
 		case FetchResultTypes.Result:
