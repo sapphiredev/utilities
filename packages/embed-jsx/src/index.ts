@@ -1,1 +1,1 @@
-export * from './lib/EmbedJsx';
+export { EmbedJsx } from './lib/EmbedJsx';
