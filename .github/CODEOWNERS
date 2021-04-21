@@ -11,3 +11,4 @@ packages/discord.js-utilities/src/lib/*PaginatedMessage* @kyranet @realshadownov
 /packages/ts-config @favna
 /packages/type @kyranet
 /packages/utilities @favna @kyranet @vladfrangu
+/packages/fetch @favna @kyranet

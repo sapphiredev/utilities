@@ -24,7 +24,7 @@ test('return an embed with a title', () => {
 	expect(embed).toMatchSnapshot();
 });
 
-test('return an emebd with a title and url', () => {
+test('return an embed with a title and url', () => {
 	const embed = (
 		<embed>
 			<title url="https://www.github.com/">GitHub</title>

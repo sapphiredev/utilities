@@ -1,6 +1,6 @@
 {
 	"name": "@sapphire/embed-jsx",
-	"version": "0.0.1",
+	"version": "1.0.0",
 	"description": "An easy way to use JSX to create discord embeds with discord.js",
 	"author": "@sapphire",
 	"license": "MIT",

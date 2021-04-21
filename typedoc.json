@@ -16,6 +16,7 @@
 		"packages/discord.js-utilities/src/index.ts",
 		"packages/discord.js-utilities/src/lib/MessagePrompter/index.ts",
 		"packages/embed-jsx/src/index.ts",
+		"packages/fetch/src/index.ts",
 		"packages/ratelimits/src/index.ts",
 		"packages/snowflake/src/index.ts",
 		"packages/time-utilities/src/index.ts",

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.1](https://github.com/sapphire-community/utilities/compare/@sapphire/eslint-config@3.1.0...@sapphire/eslint-config@3.1.1) (2021-04-21)
+
+### Bug Fixes
+
+-   **eslint-config:** bump eslint dependencies and widen semver ranges ([1c49555](https://github.com/sapphire-community/utilities/commit/1c495553ff53e737bb61cc5a88afe48572443bce))
+
+# [3.1.0](https://github.com/sapphire-community/utilities/compare/@sapphire/eslint-config@3.0.4...@sapphire/eslint-config@3.1.0) (2021-04-21)
+
+### Features
+
+-   add @sapphire/embed-jsx ([#100](https://github.com/sapphire-community/utilities/issues/100)) ([7277a23](https://github.com/sapphire-community/utilities/commit/7277a236015236ed8e81b7882875410facc4ce17))
+
 ## [3.0.4](https://github.com/sapphire-community/utilities/compare/@sapphire/eslint-config@3.0.3...@sapphire/eslint-config@3.0.4) (2021-04-19)
 
 ### Bug Fixes
