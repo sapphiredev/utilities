@@ -85,6 +85,22 @@ Object {
 }
 `;
 
+exports[`return an embed with a title and url 1`] = `
+Object {
+  "author": null,
+  "color": null,
+  "description": null,
+  "fields": Array [],
+  "footer": null,
+  "image": null,
+  "thumbnail": null,
+  "timestamp": null,
+  "title": "GitHub",
+  "type": "rich",
+  "url": "https://www.github.com/",
+}
+`;
+
 exports[`return an embed with an author 1`] = `
 Object {
   "author": Object {
@@ -152,22 +168,6 @@ Object {
   "title": null,
   "type": "rich",
   "url": null,
-}
-`;
-
-exports[`return an emebd with a title and url 1`] = `
-Object {
-  "author": null,
-  "color": null,
-  "description": null,
-  "fields": Array [],
-  "footer": null,
-  "image": null,
-  "thumbnail": null,
-  "timestamp": null,
-  "title": "GitHub",
-  "type": "rich",
-  "url": "https://www.github.com/",
 }
 `;
 
