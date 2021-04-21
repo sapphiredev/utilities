@@ -33,14 +33,14 @@
 
 ## Description
 
-[node-fetch] in itself is already a great library for making API calls, but because it focusses on only bringing the [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) to NodeJS it does not provide specific error messages and handling of different return types (JSON, Buffer, plain text, etc). This is where `@sapphire/fetch` comes in. The syntax is a bit more restrictive than [node-fetch], but this also makes it even easier to use in TypeScript.
+[node-fetch] is already a great library for making API calls, but because it focuses solely on bringing the [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) to Node.js, it doesn't provide specific error messages and handling for different return types (JSON, Buffer, plain text, etc). This is where `@sapphire/fetch` comes in. The syntax is more restrictive than that of [node-fetch], but that makes it consistent and easier to use in TypeScript.
 
 ## Features
 
 -   Written in TypeScript
 -   Fully tested
 -   Exported `const enum` for the common return data types.
--   Throws distinct errors when the API returns a "not ok" status code to easily view the error message.
+-   Throws distinctive errors when the API returns a "not ok" status code to make them easier to understand.
 -   Enforces casting the return type when requesting JSON data, to ensure your return data is strictly typed.
 
 ## Installation
@@ -59,15 +59,15 @@ yarn add -D @types/node-fetch
 # npm install -D @types/node-fetch
 ```
 
-Alternatively you can enable the [`skipLibChecks`](https://www.typescriptlang.org/tsconfig/#skipLibCheck) TypeScript compiler option
+Alternatively, you can enable the [`skipLibChecks`](https://www.typescriptlang.org/tsconfig/#skipLibCheck) TypeScript compiler option
 
 ## Usage
 
-**Note:** While this section uses `import`, the require syntax matches 1:1 with CJS imports. For example `import { fetch } from '@sapphire/fetch'` equals `const { fetch } = require('@sapphire/fetch')`.
+**Note:** While this section uses `import`, it maps 1:1 with CommonJS' require syntax. For example, `import { fetch } from '@sapphire/fetch'` is the same as `const { fetch } = require('@sapphire/fetch')`.
 
 **Note**: `fetch` can also be imported as a default import: `import fetch from '@sapphire/fetch'`.
 
-### `GET`-ing JSON data
+### `GET`ting JSON data
 
 ```ts
 // Import the fetch function
@@ -87,7 +87,7 @@ const data = await fetch<JsonPlaceholderResponse>('https://jsonplaceholder.typic
 console.log(data.userId);
 ```
 
-### `GET`-ing Buffer data (images, etc.)
+### `GET`ting Buffer data (images, etc.)
 
 ```ts
 // Import the fetch function
@@ -100,7 +100,7 @@ const sapphireLogo = await fetch('https://github.com/sapphire-community.png', Fe
 console.log(sapphireLogo);
 ```
 
-### `POST`-ing JSON data
+### `POST`ing JSON data
 
 ```ts
 // Import the fetch function
