@@ -2,46 +2,140 @@
 
 ![Sapphire Logo](https://cdn.skyra.pw/gh-assets/sapphire-banner.png)
 
-# Sapphire Utilities
+# @sapphire/fetch
 
-**Common NodeJS packages for Sapphire Repositories and others.**
+**Tiny wrapper around node-fetch for improved TypeScript and data type support**
 
 [![GitHub](https://img.shields.io/github/license/sapphire-community/utilities)](https://github.com/sapphire-community/utilities/blob/main/LICENSE.md)
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/sapphire-community/utilities.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/sapphire-community/utilities/alerts/)
-[![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/sapphire-community/utilities.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/sapphire-community/utilities/context:javascript)
+[![Language grade: JavaScript/TypeScript](https://img.shields.io/lgtm/grade/javascript/g/sapphire-community/utilities.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/sapphire-community/utilities/context:javascript)
 [![Coverage Status](https://coveralls.io/repos/github/sapphire-community/utilities/badge.svg?branch=main)](https://coveralls.io/github/sapphire-community/utilities?branch=main)
+[![npm bundle size](https://img.shields.io/bundlephobia/min/@sapphire/fetch?logo=webpack&style=flat-square)](https://bundlephobia.com/result?p=@sapphire/fetch)
+[![npm](https://img.shields.io/npm/v/@sapphire/fetch?color=crimson&logo=npm&style=flat-square)](https://www.npmjs.com/package/@sapphire/fetch)
 [![Depfu](https://badges.depfu.com/badges/ec42ff3d6bae55eee1de4749960852b3/count.svg)](https://depfu.com/github/sapphire-community/utilities?project_id=15195)
-
-**Packages**
-
-[![npm](https://img.shields.io/npm/v/@sapphire/async-queue?color=crimson&logo=npm&style=flat-square&label=@sapphire/async-queue)](https://www.npmjs.com/package/@sapphire/async-queue)
-[![npm](https://img.shields.io/npm/v/@sapphire/decorators?color=crimson&logo=npm&style=flat-square&label=@sapphire/decorators)](https://www.npmjs.com/package/@sapphire/decorators)
-[![npm](https://img.shields.io/npm/v/@sapphire/discord-utilities?color=crimson&logo=npm&style=flat-square&label=@sapphire/discord-utilities)](https://www.npmjs.com/package/@sapphire/discord-utilities)
-[![npm](https://img.shields.io/npm/v/@sapphire/discord.js-utilities?color=crimson&logo=npm&style=flat-square&label=@sapphire/discord.js-utilities)](https://www.npmjs.com/package/@sapphire/discord.js-utilities)
-[![npm](https://img.shields.io/npm/v/@sapphire/embed-jsx?color=crimson&logo=npm&style=flat-square&label=@sapphire/embed-jsx)](https://www.npmjs.com/package/@sapphire/embed-jsx)
-[![npm](https://img.shields.io/npm/v/@sapphire/eslint-config?color=crimson&logo=npm&style=flat-square&label=@sapphire/eslint-config)](https://www.npmjs.com/package/@sapphire/eslint-config)
-[![npm](https://img.shields.io/npm/v/@sapphire/event-iterator?color=crimson&logo=npm&style=flat-square&label=@sapphire/event-iterator)](https://www.npmjs.com/package/@sapphire/event-iterator)
-[![npm](https://img.shields.io/npm/v/@sapphire/prettier-config?color=crimson&logo=npm&style=flat-square&label=@sapphire/prettier-config)](https://www.npmjs.com/package/@sapphire/prettier-config)
-[![npm](https://img.shields.io/npm/v/@sapphire/ratelimits?color=crimson&logo=npm&style=flat-square&label=@sapphire/fetch)](https://www.npmjs.com/package/@sapphire/fetch)
-[![npm](https://img.shields.io/npm/v/@sapphire/ratelimits?color=crimson&logo=npm&style=flat-square&label=@sapphire/ratelimits)](https://www.npmjs.com/package/@sapphire/ratelimits)
-[![npm](https://img.shields.io/npm/v/@sapphire/ratelimits?color=crimson&logo=npm&style=flat-square&label=@sapphire/stopwatch)](https://www.npmjs.com/package/@sapphire/stopwatch)
-[![npm](https://img.shields.io/npm/v/@sapphire/snowflake?color=crimson&logo=npm&style=flat-square&label=@sapphire/snowflake)](https://www.npmjs.com/package/@sapphire/snowflake)
-[![npm](https://img.shields.io/npm/v/@sapphire/time-utilities?color=crimson&logo=npm&style=flat-square&label=@sapphire/time-utilities)](https://www.npmjs.com/package/@sapphire/time-utilities)
-[![npm](https://img.shields.io/npm/v/@sapphire/ts-config?color=crimson&logo=npm&style=flat-square&label=@sapphire/ts-config)](https://www.npmjs.com/package/@sapphire/ts-config)
-[![npm](https://img.shields.io/npm/v/@sapphire/type?color=crimson&logo=npm&style=flat-square&label=@sapphire/type)](https://www.npmjs.com/package/@sapphire/type)
-[![npm](https://img.shields.io/npm/v/@sapphire/utilities?color=crimson&logo=npm&style=flat-square&label=@sapphire/utilities)](https://www.npmjs.com/package/@sapphire/utilities)
 
 </div>
 
+**Table of Contents**
+
+-   [@sapphire/fetch](#sapphirefetch)
+    -   [Description](#description)
+    -   [Features](#features)
+    -   [Installation](#installation)
+        -   [Node-fetch types](#node-fetch-types)
+    -   [Usage](#usage)
+        -   [`GET`-ing JSON data](#get-ing-json-data)
+        -   [`GET`-ing Buffer data (images, etc.)](#get-ing-buffer-data-images-etc)
+        -   [`POST`-ing JSON data](#post-ing-json-data)
+    -   [API Documentation](#api-documentation)
+    -   [Buy us some doughnuts](#buy-us-some-doughnuts)
+    -   [Contributors ✨](#contributors-%E2%9C%A8)
+
+## Description
+
+[node-fetch] is already a great library for making API calls, but because it focuses solely on bringing the [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) to Node.js, it doesn't provide specific error messages and handling for different return types (JSON, Buffer, plain text, etc). This is where `@sapphire/fetch` comes in. The syntax is more restrictive than that of [node-fetch], but that makes it consistent and easier to use in TypeScript.
+
+## Features
+
+-   Written in TypeScript
+-   Fully tested
+-   Exported `const enum` for the common return data types.
+-   Throws distinctive errors when the API returns a "not ok" status code to make them easier to understand.
+-   Enforces casting the return type when requesting JSON data, to ensure your return data is strictly typed.
+
+## Installation
+
+```sh
+yarn add @sapphire/fetch
+# npm install @sapphire/fetch
+```
+
+### Node-fetch types
+
+TypeScript users should also add `@types/node-fetch`:
+
+```sh
+yarn add -D @types/node-fetch
+# npm install -D @types/node-fetch
+```
+
+Alternatively, you can enable the [`skipLibChecks`](https://www.typescriptlang.org/tsconfig/#skipLibCheck) TypeScript compiler option
+
+## Usage
+
+**Note:** While this section uses `import`, it maps 1:1 with CommonJS' require syntax. For example, `import { fetch } from '@sapphire/fetch'` is the same as `const { fetch } = require('@sapphire/fetch')`.
+
+**Note**: `fetch` can also be imported as a default import: `import fetch from '@sapphire/fetch'`.
+
+### `GET`ting JSON data
+
+```ts
+// Import the fetch function
+import { fetch, FetchResultTypes } from '@sapphire/fetch';
+
+interface JsonPlaceholderResponse {
+	userId: number;
+	id: number;
+	title: string;
+	completed: boolean;
+}
+
+// Fetch the data. No need to call `.json()` after making the request!
+const data = await fetch<JsonPlaceholderResponse>('https://jsonplaceholder.typicode.com/todos/1', FetchResultTypes.JSON);
+
+// Do something with the data
+console.log(data.userId);
+```
+
+### `GET`ting Buffer data (images, etc.)
+
+```ts
+// Import the fetch function
+import { fetch, FetchResultTypes } from '@sapphire/fetch';
+
+// Fetch the data. No need to call `.buffer()` after making the request!
+const sapphireLogo = await fetch('https://github.com/sapphire-community.png', FetchResultTypes.Buffer);
+
+// sapphireLogo is the `Buffer` of the image
+console.log(sapphireLogo);
+```
+
+### `POST`ing JSON data
+
+```ts
+// Import the fetch function
+import { fetch, FetchResultTypes, FetchMethods } from '@sapphire/fetch';
+
+// Fetch the data. No need to call `.json()` after making the request!
+const responseData = await fetch(
+	'https://jsonplaceholder.typicode.com/todos',
+	{
+		method: FetchMethods.Post,
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify({
+			name: 'John Doe'
+		})
+	},
+	FetchResultTypes.JSON
+);
+
+// Do something with the response data
+console.log(responseData);
+```
+
+---
+
 ## API Documentation
 
-For the full API documentation please refer to the TypeDoc generated [documentation](https://sapphire-community.github.io/utilities/).
+For the full API documentation please refer to the TypeDoc generated [documentation](https://sapphire-community.github.io/utilities/modules/_sapphire_fetch.html).
 
 ## Buy us some doughnuts
 
 Sapphire Community is and always will be open source, even if we don't get donations. That being said, we know there are amazing people who may still want to donate just to show their appreciation. Thank you very much in advance!
 
-We accept donations through Open Collective, Ko-fi, Paypal, Patreon and GitHub Sponsorships. You can use the buttons below to donate through your method of choice.
+We accept donations through Open Collective, Ko-fi, PayPal, Patreon and GitHub Sponsorships. You can use the buttons below to donate through your method of choice.
 
 |   Donate With   |                       Address                       |
 | :-------------: | :-------------------------------------------------: |
@@ -71,15 +165,13 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/Nytelife26"><img src="https://avatars1.githubusercontent.com/u/22531310?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Tyler J Russell</b></sub></a><br /><a href="https://github.com/sapphire-community/utilities/commits?author=Nytelife26" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/Alcremie"><img src="https://avatars0.githubusercontent.com/u/54785334?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Ivan Lieder</b></sub></a><br /><a href="https://github.com/sapphire-community/utilities/commits?author=Alcremie" title="Code">💻</a> <a href="https://github.com/sapphire-community/utilities/issues?q=author%3AAlcremie" title="Bug reports">🐛</a></td>
     <td align="center"><a href="https://github.com/RealShadowNova"><img src="https://avatars3.githubusercontent.com/u/46537907?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Hezekiah Hendry</b></sub></a><br /><a href="https://github.com/sapphire-community/utilities/commits?author=RealShadowNova" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/Stitch07"><img src="https://avatars.githubusercontent.com/u/29275227?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Stitch07</b></sub></a><br /><a href="https://github.com/sapphire-community/utilities/commits?author=Stitch07" title="Code">💻</a> <a href="https://github.com/sapphire-community/utilities/commits?author=Stitch07" title="Tests">⚠️</a></td>
+    <td align="center"><a href="https://github.com/Stitch07"><img src="https://avatars.githubusercontent.com/u/29275227?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Stitch07</b></sub></a><br /><a href="https://github.com/sapphire-community/utilities/commits?author=Stitch07" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/Vetlix"><img src="https://avatars.githubusercontent.com/u/31412314?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Vetlix</b></sub></a><br /><a href="https://github.com/sapphire-community/utilities/commits?author=Vetlix" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/ethamitc"><img src="https://avatars.githubusercontent.com/u/27776796?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Ethan Mitchell</b></sub></a><br /><a href="https://github.com/sapphire-community/utilities/commits?author=ethamitc" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/noftaly"><img src="https://avatars.githubusercontent.com/u/34779161?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Elliot</b></sub></a><br /><a href="https://github.com/sapphire-community/utilities/commits?author=noftaly" title="Code">💻</a></td>
   </tr>
   <tr>
     <td align="center"><a href="https://jurien.dev"><img src="https://avatars.githubusercontent.com/u/5418114?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Jurien Hamaker</b></sub></a><br /><a href="https://github.com/sapphire-community/utilities/commits?author=jurienhamaker" title="Code">💻</a></td>
-    <td align="center"><a href="https://fanoulis.dev/"><img src="https://avatars.githubusercontent.com/u/38255093?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Charalampos Fanoulis</b></sub></a><br /><a href="https://github.com/sapphire-community/utilities/commits?author=cfanoulis" title="Documentation">📖</a></td>
-    <td align="center"><a href="https://github.com/apps/dependabot"><img src="https://avatars.githubusercontent.com/in/29110?v=4?s=100" width="100px;" alt=""/><br /><sub><b>dependabot[bot]</b></sub></a><br /><a href="#maintenance-dependabot[bot]" title="Maintenance">🚧</a></td>
   </tr>
 </table>
 
@@ -89,3 +181,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
+
+<!-- LINKS -->
+
+[node-fetch]: https://github.com/node-fetch/node-fetch
