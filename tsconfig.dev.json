@@ -2,8 +2,8 @@
 	"extends": "./packages/ts-config/src/tsconfig.json",
 	"compilerOptions": {
 		"target": "ES2020",
-		"noImplicitAny": false,
 		"jsx": "react",
 		"jsxFactory": "EmbedJsx.make"
-	}
+	},
+	"exclude": ["**/dist/**/*"]
 }
