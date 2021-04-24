@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { EmbedJsx } from '../';
+import { EmbedJsx } from '../src';
 
 test('throw an error at invalid options', () => {
 

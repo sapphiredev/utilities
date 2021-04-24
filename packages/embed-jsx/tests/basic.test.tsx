@@ -1,5 +1,5 @@
 import { MessageEmbed } from 'discord.js';
-import { EmbedJsx } from '../';
+import { EmbedJsx } from '../src';
 
 test('returns a basic embed', () => {
 	const embed = <embed></embed>;
