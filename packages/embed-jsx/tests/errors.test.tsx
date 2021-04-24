@@ -1,6 +1,8 @@
-import { EmbedJsx } from '../src';
+// @ts-nocheck
+import { EmbedJsx } from '../';
 
 test('throw an error at invalid options', () => {
+
 	const embedFn = (): any => (
 		<embed>
 			<wrong />
