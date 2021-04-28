@@ -5,7 +5,7 @@
 		"packages/*"
 	],
 	"scripts": {
-		"clean": "rimraf packages/**/dist packages/**/build packages/**/node_modules/.cache",
+		"clean": "rimraf packages/**/dist packages/**/node_modules/.cache",
 		"lint": "eslint packages --ext mjs,js,ts,tsx --fix",
 		"format": "prettier --write packages/**/{src,tests,scripts}/**/*.{mjs,ts,js}",
 		"test": "jest",
