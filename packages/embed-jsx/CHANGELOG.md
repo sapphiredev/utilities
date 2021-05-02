@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/sapphiredev/utilities/compare/@sapphire/embed-jsx@1.0.0...@sapphire/embed-jsx@1.1.0) (2021-05-02)
+
+### Features
+
+-   **embed-jsx:** type the elements AND return type ([#110](https://github.com/sapphiredev/utilities/issues/110)) ([3a4735e](https://github.com/sapphiredev/utilities/commit/3a4735e58efd22ee253044331d240a3066d971f3))
+
 # 1.0.0 (2021-04-21)
 
 ### Features
