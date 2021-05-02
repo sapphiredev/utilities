@@ -1656,15 +1656,15 @@
     "@discordjs/collection" "^0.1.6"
     tslib "^2.1.0"
 
-"@sapphire/plugin-api@latest":
-  version "2.1.2"
-  resolved "https://registry.yarnpkg.com/@sapphire/plugin-api/-/plugin-api-2.1.2.tgz#83893291347c03e50f8eb1d17309d0881d424c74"
-  integrity sha512-/gd64BPUjlgDjDqZQ2BvJGV2MApuOzrN56WJn4FyUrzVMiYx8qBV1u6vCIxmhmj946IAzNG4Um1Mr74NO9kmCg==
+"@sapphire/plugin-api@^2.1.3":
+  version "2.1.3"
+  resolved "https://registry.yarnpkg.com/@sapphire/plugin-api/-/plugin-api-2.1.3.tgz#aab85ee888ae32ff5c1c63491bef29bf90ef1ff3"
+  integrity sha512-LEt2otK59lZlowJukgbwLI5HJR0FrUK+CRrBMOEXaZlFz4/6I3JgNLHlF3WuRHqwTo/ond2gVbMJHd+O3ljQcg==
   dependencies:
     "@types/psl" "^1.1.0"
     node-fetch "^2.6.1"
     psl "^1.8.0"
-    tslib "^2.1.0"
+    tslib "^2.2.0"
 
 "@sinonjs/commons@^1.7.0":
   version "1.8.3"
