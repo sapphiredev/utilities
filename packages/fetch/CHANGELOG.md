@@ -7,4 +7,4 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
--   add fetch package ([#107](https://github.com/sapphire-community/utilities/issues/107)) ([891034c](https://github.com/sapphire-community/utilities/commit/891034cf5f9e6f2c700999fd39a71e490c5dc766))
+-   add fetch package ([#107](https://github.com/sapphiredev/utilities/issues/107)) ([891034c](https://github.com/sapphiredev/utilities/commit/891034cf5f9e6f2c700999fd39a71e490c5dc766))

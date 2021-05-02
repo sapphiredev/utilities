@@ -65,7 +65,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/sapphire-community/utilities.git"
+		"url": "git+https://github.com/sapphiredev/utilities.git"
 	},
 	"engines": {
 		"node": ">=12"

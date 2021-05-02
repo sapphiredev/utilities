@@ -9,7 +9,7 @@
 		"import": "./dist/index.js",
 		"require": "./dist/index.js"
 	},
-	"homepage": "https://github.com/sapphire-community/utilities/tree/main/packages/ts-config",
+	"homepage": "https://github.com/sapphiredev/utilities/tree/main/packages/ts-config",
 	"scripts": {
 		"test": "jest",
 		"lint": "eslint tests scripts --ext mjs,ts --fix -c ../../.eslintrc",
@@ -31,14 +31,14 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/sapphire-community/utilities.git",
+		"url": "git+https://github.com/sapphiredev/utilities.git",
 		"directory": "packages/ts-config"
 	},
 	"bugs": {
-		"url": "https://github.com/sapphire-community/utilities/issues"
+		"url": "https://github.com/sapphiredev/utilities/issues"
 	},
 	"keywords": [
-		"sapphire-community",
+		"sapphiredev",
 		"bot",
 		"typescript",
 		"ts",

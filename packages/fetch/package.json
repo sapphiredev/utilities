@@ -11,7 +11,7 @@
 		"import": "./dist/index.mjs",
 		"require": "./dist/index.js"
 	},
-	"homepage": "https://github.com/sapphire-community/utilities/tree/main/packages/fetch",
+	"homepage": "https://github.com/sapphiredev/utilities/tree/main/packages/fetch",
 	"scripts": {
 		"test": "jest",
 		"lint": "eslint src tests --ext ts --fix -c ../../.eslintrc",
@@ -26,7 +26,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/sapphire-community/utilities.git",
+		"url": "git+https://github.com/sapphiredev/utilities.git",
 		"directory": "packages/fetch"
 	},
 	"files": [
@@ -48,7 +48,7 @@
 		"standalone"
 	],
 	"bugs": {
-		"url": "https://github.com/sapphire-community/utilities/issues"
+		"url": "https://github.com/sapphiredev/utilities/issues"
 	},
 	"publishConfig": {
 		"access": "public"
