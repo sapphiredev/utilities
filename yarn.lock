@@ -1634,31 +1634,31 @@
     estree-walker "^2.0.1"
     picomatch "^2.2.2"
 
-"@sapphire/framework@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@sapphire/framework/-/framework-1.0.1.tgz#99f9ce830f98666d1edbd717aaf0e01ccd2529b6"
-  integrity sha512-eg6ulKV6Q043yob1JRqcGPOabz9IrOODB6dHBdfscMK6rS+SJQRd6jdYdB4nFKa/9pOLMnkJKvbcl0wGtx+zbg==
+"@sapphire/framework@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@sapphire/framework/-/framework-1.0.2.tgz#50db64c0f7c9e0e87d604033fda0024345d23e74"
+  integrity sha512-B0ATPgcFs6Cz7aa4lQC8ZD6gINXIGR++Y4sRUJF/qbm93iHAKH6ln7zK+eei/UfPQtqnqwfxd0IiW7DOfT+KFQ==
   dependencies:
-    "@sapphire/discord-utilities" "^2.1.0"
-    "@sapphire/discord.js-utilities" "^1.5.6"
-    "@sapphire/pieces" "^1.2.4"
-    "@sapphire/ratelimits" "^1.2.0"
-    "@sapphire/utilities" "^1.5.0"
+    "@sapphire/discord-utilities" "^2.1.1"
+    "@sapphire/discord.js-utilities" "^1.5.7"
+    "@sapphire/pieces" "^1.2.5"
+    "@sapphire/ratelimits" "^1.2.1"
+    "@sapphire/utilities" "^1.5.1"
     lexure "^0.17.0"
     tslib "^2.2.0"
 
-"@sapphire/pieces@^1.2.4":
-  version "1.2.4"
-  resolved "https://registry.yarnpkg.com/@sapphire/pieces/-/pieces-1.2.4.tgz#595488389e187fb0637d083d2b5886a85497f695"
-  integrity sha512-3iEy0Rf/3kbfwmAd9cXtz64uS8ePViCGhG8y38JFSYyueuxlpg9pMdXKMBf1EUm6svJnu7oAkXG4vzL3H+V7vQ==
+"@sapphire/pieces@^1.2.5":
+  version "1.2.5"
+  resolved "https://registry.yarnpkg.com/@sapphire/pieces/-/pieces-1.2.5.tgz#fcde0e596d480077c90aa07e754e0b9d20f72155"
+  integrity sha512-2/kr7fiRgqL5CBcyBxBgM5p0L2SlUtkX/V6KRe20uwdQH1ZUf//GwjYj/KGLb/ymzkTXyhFrSrLmqomSQ+G/1g==
   dependencies:
     "@discordjs/collection" "^0.1.6"
     tslib "^2.2.0"
 
-"@sapphire/plugin-api@^2.1.3":
-  version "2.1.3"
-  resolved "https://registry.yarnpkg.com/@sapphire/plugin-api/-/plugin-api-2.1.3.tgz#aab85ee888ae32ff5c1c63491bef29bf90ef1ff3"
-  integrity sha512-LEt2otK59lZlowJukgbwLI5HJR0FrUK+CRrBMOEXaZlFz4/6I3JgNLHlF3WuRHqwTo/ond2gVbMJHd+O3ljQcg==
+"@sapphire/plugin-api@^2.1.4":
+  version "2.1.4"
+  resolved "https://registry.yarnpkg.com/@sapphire/plugin-api/-/plugin-api-2.1.4.tgz#fefc37e785b35a55161e393b71220bd414e793f6"
+  integrity sha512-/Fu/8p1Qr9QI/ba6I8n95WiydJLYx9bZBFEPlUTeMuM7LatuGFeEl6png3gajMigkBDubF+dg7QyTsC6+JcVxw==
   dependencies:
     "@types/psl" "^1.1.0"
     node-fetch "^2.6.1"
