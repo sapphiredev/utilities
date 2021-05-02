@@ -7,5 +7,5 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
--   **embed-jsx:** add data validation ([#108](https://github.com/sapphire-community/utilities/issues/108)) ([8953fdd](https://github.com/sapphire-community/utilities/commit/8953fdd266785f37cafaf90ab7c79ab9060411ad))
--   add @sapphire/embed-jsx ([#100](https://github.com/sapphire-community/utilities/issues/100)) ([7277a23](https://github.com/sapphire-community/utilities/commit/7277a236015236ed8e81b7882875410facc4ce17))
+-   **embed-jsx:** add data validation ([#108](https://github.com/sapphiredev/utilities/issues/108)) ([8953fdd](https://github.com/sapphiredev/utilities/commit/8953fdd266785f37cafaf90ab7c79ab9060411ad))
+-   add @sapphire/embed-jsx ([#100](https://github.com/sapphiredev/utilities/issues/100)) ([7277a23](https://github.com/sapphiredev/utilities/commit/7277a236015236ed8e81b7882875410facc4ce17))
