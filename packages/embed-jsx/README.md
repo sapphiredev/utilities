@@ -25,7 +25,8 @@ Discord embeds have a structure that translates very nicely to JSX syntax, makin
 ## Installation
 
 ```sh
-yarn add @sapphire/embed-jsx
+npm install @sapphire/embed-jsx
+# yarn add @sapphire/embed-jsx
 ```
 
 ## Usage

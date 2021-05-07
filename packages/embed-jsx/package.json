@@ -17,7 +17,7 @@
 		"lint": "eslint src tests --ext ts,tsx --fix -c ../../.eslintrc",
 		"build": "tsc -b src",
 		"postbuild": "gen-esm-wrapper dist/index.js dist/index.mjs",
-		"prepublishOnly": "yarn build"
+		"prepublishOnly": "npm run build"
 	},
 	"dependencies": {
 		"tslib": "2.x"
@@ -45,7 +45,6 @@
 		"bot",
 		"typescript",
 		"ts",
-		"yarn",
 		"sapphire"
 	],
 	"bugs": {

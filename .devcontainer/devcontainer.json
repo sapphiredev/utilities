@@ -27,13 +27,11 @@
 		"editor.snippetSuggestions": "top",
 		"editor.suggestSelection": "first",
 		"eslint.lintTask.enable": true,
-		"eslint.packageManager": "yarn",
+		"eslint.packageManager": "npm",
 		"extensions.ignoreRecommendations": false,
 		"files.associations": {
 			"*.pipeline": "groovy",
 			".all-contributorsrc": "json",
-			".yarnclean": "ignore",
-			".yarnrc": "shellscript",
 			"CODEOWNERS": "ignore"
 		},
 		"files.autoSave": "afterDelay",
@@ -57,7 +55,6 @@
 		],
 		"indentRainbow.errorColor": "rgba(0,0,0,0.0)",
 		"javascript.updateImportsOnFileMove.enabled": "always",
-		"prettier.packageManager": "yarn",
 		"prettier.requireConfig": true,
 		"prettier.resolveGlobalModules": true,
 		"tabnine.experimentalAutoImports": false,
@@ -102,7 +99,7 @@
 	"forwardPorts": [8080, 8081, 5432, 2333, 8284, 8285, 8287],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "yarn install"
+	"postCreateCommand": "npm install"
 
 	// Uncomment to connect as a non-root user. See https://aka.ms/vscode-remote/containers/non-root.
 	// "remoteUser": "node"

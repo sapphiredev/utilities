@@ -1,9 +1,6 @@
 {
 	"name": "root",
 	"private": true,
-	"workspaces": [
-		"packages/*"
-	],
 	"scripts": {
 		"clean": "rimraf packages/**/dist packages/**/node_modules/.cache",
 		"lint": "eslint packages --ext mjs,js,ts,tsx --fix",
@@ -17,7 +14,7 @@
 		"docs": "typedoc",
 		"commit": "git-cz",
 		"cz": "git-cz",
-		"update": "yarn upgrade-interactive --latest",
+		"update": "npx npm-upgrade",
 		"prepare": "husky install .github/husky"
 	},
 	"devDependencies": {
@@ -87,8 +84,6 @@
 		"acorn": "^8.2.2",
 		"minimist": "^1.2.5",
 		"kind-of": "^6.0.3",
-		"jest-environment-jsdom": "https://registry.yarnpkg.com/@favware/skip-dependency/-/skip-dependency-1.1.1.tgz",
-		"jest-jasmine2": "https://registry.yarnpkg.com/@favware/skip-dependency/-/skip-dependency-1.1.1.tgz",
 		"dot-prop": "^6.0.1",
 		"marked": "^2.0.3"
 	}

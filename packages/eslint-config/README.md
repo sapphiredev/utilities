@@ -17,7 +17,8 @@
 ## Installation
 
 ```sh
-yarn add -D @sapphire/eslint-config
+npm install -D @sapphire/eslint-config
+# yarn add -D @sapphire/eslint-config
 ```
 
 ---

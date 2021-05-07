@@ -44,8 +44,8 @@
 ## Installation
 
 ```sh
-yarn add @sapphire/fetch
-# npm install @sapphire/fetch
+npm install @sapphire/fetch
+# yarn add @sapphire/fetch
 ```
 
 ### Node-fetch types
@@ -53,8 +53,8 @@ yarn add @sapphire/fetch
 TypeScript users should also add `@types/node-fetch`:
 
 ```sh
-yarn add -D @types/node-fetch
-# npm install -D @types/node-fetch
+npm install -D @types/node-fetch
+# yarn add -D @types/node-fetch
 ```
 
 Alternatively, you can enable the [`skipLibChecks`](https://www.typescriptlang.org/tsconfig/#skipLibCheck) TypeScript compiler option

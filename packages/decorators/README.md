@@ -21,8 +21,8 @@ Decorators can add a lot of functionality with very minimal code. This package p
 ## Installation
 
 ```sh
-yarn add @sapphire/decorators
-# npm install @sapphire/decorators
+npm install @sapphire/decorators
+# yarn add @sapphire/decorators
 ```
 
 ---

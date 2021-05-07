@@ -13,10 +13,10 @@
 	"homepage": "https://github.com/sapphiredev/utilities/tree/main/packages/eslint-config",
 	"scripts": {
 		"test": "jest",
-		"prelint": "yarn test && yarn build",
-		"lint": "eslint src tests --ext ts --fix -c dist/index.js",
+		"prelint": "run-s test build",
+		"lint": "eslint src tests --ext ts --fix -c ../../.eslintrc",
 		"build": "tsc -b src",
-		"prepublishOnly": "yarn build"
+		"prepublishOnly": "npm run build"
 	},
 	"dependencies": {
 		"@typescript-eslint/eslint-plugin": "^4.22.0",
@@ -45,7 +45,6 @@
 		"bot",
 		"typescript",
 		"ts",
-		"yarn",
 		"discord",
 		"sapphire",
 		"standalone"

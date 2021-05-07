@@ -16,8 +16,8 @@
 		"test": "echo \"\"",
 		"lint": "eslint src tests --ext ts --fix -c ../../.eslintrc",
 		"build": "rollup -c",
-		"start": "yarn build -w",
-		"prepublishOnly": "yarn build"
+		"start": "rollup -cw",
+		"prepublishOnly": "npm run build"
 	},
 	"repository": {
 		"type": "git",
@@ -37,7 +37,6 @@
 		"bot",
 		"typescript",
 		"ts",
-		"yarn",
 		"discord",
 		"sapphire",
 		"standalone",

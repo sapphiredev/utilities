@@ -40,8 +40,8 @@ There is often a need to apply ratelimits to protect a network from excessive tr
 ## Installation
 
 ```sh
-yarn add @sapphire/ratelimits
-# npm install @sapphire/ratelimits
+npm install @sapphire/ratelimits
+# yarn add @sapphire/ratelimits
 ```
 
 ## Usage

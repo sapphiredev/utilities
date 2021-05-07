@@ -37,8 +37,8 @@ Provides a set of methods and properties that you can use to accurately measure 
 ## Installation
 
 ```sh
-yarn add @sapphire/stopwatch
-# npm install @sapphire/stopwatch
+npm install @sapphire/stopwatch
+# yarn add @sapphire/stopwatch
 ```
 
 ## Usage

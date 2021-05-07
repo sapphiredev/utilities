@@ -31,7 +31,8 @@ When developing Discord bots or frameworks for Discord bots we often run into ce
 ## Installation
 
 ```sh
-yarn add @sapphire/discord-utilities
+npm install @sapphire/discord-utilities
+# yarn add @sapphire/discord-utilities
 ```
 
 ---

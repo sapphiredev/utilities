@@ -47,8 +47,8 @@ There is often a need to get a unique ID for entities, be that for Discord messa
 ## Installation
 
 ```sh
-yarn add @sapphire/snowflake
-# npm install @sapphire/snowflake
+npm install @sapphire/snowflake
+# yarn add @sapphire/snowflake
 ```
 
 ## Usage

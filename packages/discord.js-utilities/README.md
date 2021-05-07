@@ -27,7 +27,8 @@ There many functions that are always extremely useful to have when developing bo
 ## Installation
 
 ```sh
-yarn add @sapphire/discord-utilities @sapphire/discord.js-utilities
+npm install @sapphire/discord-utilities @sapphire/discord.js-utilities
+# yarn add @sapphire/discord-utilities @sapphire/discord.js-utilities
 ```
 
 ---

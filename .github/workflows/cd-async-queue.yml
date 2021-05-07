@@ -49,13 +49,15 @@ jobs:
           node-version: 14
       - name: Restore CI Cache
         uses: actions/cache@v2.1.5
+        id: cache-restore
         with:
           path: node_modules
-          key: ${{ runner.os }}-14-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-14-${{ hashFiles('**/package-lock.json') }}
       - name: Install Dependencies
-        run: yarn --ignore-scripts --frozen-lockfile
+        if: ${{ !steps.cache-restore.outputs.cache-hit }}
+        run: npm ci
       - name: Build Code
-        run: yarn workspace @sapphire/async-queue build
+        run: npx lerna run build --scope=@sapphire/async-queue
       - name: Push new code
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |

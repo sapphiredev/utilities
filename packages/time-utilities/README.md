@@ -39,8 +39,8 @@ Working with Time and Duration can be a huge chore in any programming language. 
 ## Installation
 
 ```sh
-yarn add @sapphire/time-utilities
-# npm install @sapphire/time-utilities
+npm install @sapphire/time-utilities
+# yarn add @sapphire/time-utilities
 ```
 
 ## API Documentation

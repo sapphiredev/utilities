@@ -1,8 +1,7 @@
 {
 	"packages": ["packages/*"],
 	"version": "independent",
-	"npmClient": "yarn",
-	"useWorkspaces": true,
+	"npmClient": "npm",
 	"command": {
 		"publish": {
 			"conventionalCommits": true,
@@ -17,7 +16,10 @@
 		},
 		"create": {
 			"license": "MIT",
-			"keywords": ["sapphiredev", "bot", "typescript", "ts", "yarn", "discord", "sapphire", "standalone"]
+			"keywords": ["sapphiredev", "bot", "typescript", "ts", "discord", "sapphire", "standalone"]
+		},
+		"run": {
+			"stream": true
 		}
 	}
 }

@@ -39,8 +39,8 @@ There is often a need to have async iterators with fine control, timeouts, limit
 ## Installation
 
 ```sh
-yarn add @sapphire/event-iterator
-# npm install @sapphire/event-iterator
+npm install @sapphire/event-iterator
+# yarn add @sapphire/event-iterator
 ```
 
 ## Usage

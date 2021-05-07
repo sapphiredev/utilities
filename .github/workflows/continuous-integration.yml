@@ -44,15 +44,17 @@ jobs:
           node-version: 14
       - name: Restore CI Cache
         uses: actions/cache@v2.1.5
+        id: cache-restore
         with:
           path: node_modules
-          key: ${{ runner.os }}-14-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-14-${{ hashFiles('**/package-lock.json') }}
       - name: Install Dependencies
-        run: yarn --ignore-scripts --frozen-lockfile
+        if: ${{ !steps.cache-restore.outputs.cache-hit }}
+        run: npm ci
       - name: Build ESLint and Prettier configs
-        run: yarn tsc -b packages/eslint-config packages/prettier-config
+        run: npx lerna run build --parallel --scope=@sapphire/eslint-config --scope=@sapphire/prettier-config
       - name: Run ESLint
-        run: yarn lint --fix=false
+        run: npm run lint -- --fix=false
 
   Testing:
     name: Unit Tests
@@ -68,15 +70,17 @@ jobs:
           node-version: 14
       - name: Restore CI Cache
         uses: actions/cache@v2.1.5
+        id: cache-restore
         with:
           path: node_modules
-          key: ${{ runner.os }}-14-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-14-${{ hashFiles('**/package-lock.json') }}
       - name: Install Dependencies
-        run: yarn --frozen-lockfile
+        if: ${{ !steps.cache-restore.outputs.cache-hit }}
+        run: npm ci
       - name: Build Utilities
-        run: yarn workspace @sapphire/utilities build
+        run: npx lerna run build --scope=@sapphire/utilities
       - name: Run tests
-        run: yarn test --coverage
+        run: npm run test -- --coverage
       - name: Store code coverage report
         uses: actions/upload-artifact@v2
         with:
@@ -97,13 +101,15 @@ jobs:
           node-version: 14
       - name: Restore CI Cache
         uses: actions/cache@v2.1.5
+        id: cache-restore
         with:
           path: node_modules
-          key: ${{ runner.os }}-14-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-14-${{ hashFiles('**/package-lock.json') }}
       - name: Install Dependencies
-        run: yarn --ignore-scripts --frozen-lockfile
+        if: ${{ !steps.cache-restore.outputs.cache-hit }}
+        run: npm ci
       - name: Compile Projects
-        run: yarn build
+        run: npm run build
 
   Upload_Coverage_Report:
     name: Upload coverage report to codecov

@@ -28,7 +28,8 @@ We often have a need for a function or type augmentation and having to include i
 ## Installation
 
 ```sh
-yarn add @sapphire/utilities
+npm install @sapphire/utilities
+# yarn add @sapphire/utilities
 ```
 
 ---

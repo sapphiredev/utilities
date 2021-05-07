@@ -28,8 +28,8 @@ Ever needed a queue for a set of promises? This is the package for you.
 ## Installation
 
 ```sh
-yarn add @sapphire/async-queue
-# npm install @sapphire/async-queue
+npm install @sapphire/async-queue
+# yarn add @sapphire/async-queue
 ```
 
 ---

@@ -17,7 +17,8 @@
 ## Installation
 
 ```sh
-yarn add -D @sapphire/prettier-config
+npm install -D @sapphire/prettier-config
+# yarn add -D @sapphire/prettier-config
 ```
 
 ---

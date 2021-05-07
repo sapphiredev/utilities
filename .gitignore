@@ -42,8 +42,8 @@ test_out/
 coverage/
 docs/
 
-# Ignore package locks
-package-lock.json
+# Ignore yarn locks
+yarn.lock
 
 # Ignore the GH cli downloaded by workflows
 gh

@@ -49,15 +49,17 @@ jobs:
           node-version: 14
       - name: Restore CI Cache
         uses: actions/cache@v2.1.5
+        id: cache-restore
         with:
           path: node_modules
-          key: ${{ runner.os }}-14-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-14-${{ hashFiles('**/package-lock.json') }}
       - name: Install Dependencies
-        run: yarn --ignore-scripts --frozen-lockfile
+        if: ${{ !steps.cache-restore.outputs.cache-hit }}
+        run: npm ci
       - name: Build Dependencies
-        run: yarn lerna run build --parallel --scope=@sapphire/utilities --scope=@sapphire/discord-utilities
+        run: npx lerna run build --parallel --scope=@sapphire/utilities --scope=@sapphire/discord-utilities
       - name: Build documentation
-        run: yarn docs
+        run: npm run docs
       - name: Publish Docs
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |

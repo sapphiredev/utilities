@@ -17,8 +17,8 @@
 		"lint": "eslint src tests --ext ts --fix -c ../../.eslintrc",
 		"build": "tsc -b src",
 		"postbuild": "gen-esm-wrapper dist/index.js dist/index.mjs",
-		"start": "yarn build -w",
-		"prepublishOnly": "yarn build"
+		"start": "tsc -b src --watch",
+		"prepublishOnly": "npm run build"
 	},
 	"dependencies": {
 		"node-fetch": "^2.6.1",
@@ -42,7 +42,6 @@
 		"bot",
 		"typescript",
 		"ts",
-		"yarn",
 		"discord",
 		"sapphire",
 		"standalone"

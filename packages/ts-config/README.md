@@ -19,7 +19,8 @@
 **First install the Peer Dependencies**
 
 ```sh
-yarn add -D @sapphire/ts-config
+npm install -D @sapphire/ts-config
+# yarn add -D @sapphire/ts-config
 ```
 
 ---
