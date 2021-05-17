@@ -15,7 +15,8 @@ export const ChannelMentionRegex = /^<#(?<id>\d{17,19})>$/;
  * @remark Capture group 2 is the hostname for this URL, primarily `discord` but can also be `discordmerch`, `discordstatus`, `dis`, and `discordapp`. It is named `hostname`.
  * @remark Capture group 3 is the Top-Level Domain *without* `.`. It is named `tld`.
  */
-export const DiscordHostnameRegex = /(?<subdomain>\w+)\.?(?<hostname>dis(?:cord)?(?:app|merch|status)?)\.(?<tld>com|g(?:d|g|ift)|(?:de(?:sign|v))|media|new|store|net)/i;
+export const DiscordHostnameRegex =
+	/(?<subdomain>\w+)\.?(?<hostname>dis(?:cord)?(?:app|merch|status)?)\.(?<tld>com|g(?:d|g|ift)|(?:de(?:sign|v))|media|new|store|net)/i;
 
 /**
  * Regex that can can capture the code of Discord invite links
@@ -64,7 +65,8 @@ export const HttpUrlRegex = /^https?:\/\//;
  * @remark Capture group 2 is the ID of the channel in that guild the message was sent in. It is named `channelId`.
  * @remark Capture group 3 is the ID of the message itself. It is named `messageId`.
  */
-export const MessageLinkRegex = /^(?:https:\/\/)?(?:ptb\.|canary\.)?discord(?:app)?\.com\/channels\/(?<guildId>(?:\d{17,19}|@me))\/(?<channelId>\d{17,19})\/(?<messageId>\d{17,19})$/;
+export const MessageLinkRegex =
+	/^(?:https:\/\/)?(?:ptb\.|canary\.)?discord(?:app)?\.com\/channels\/(?<guildId>(?:\d{17,19}|@me))\/(?<channelId>\d{17,19})\/(?<messageId>\d{17,19})$/;
 
 /**
  * Regex that matches any animated or non-animated custom Discord emoji *without the wrapping `<...>` symbols.

@@ -76,10 +76,10 @@ export function createFunctionPrecondition(precondition: FunctionPrecondition, f
 		if (!method) throw new Error('Function preconditions require a [[value]].');
 		if (typeof method !== 'function') throw new Error('Function preconditions can only be applied to functions.');
 
-		descriptor.value = (async function descriptorValue(this: (...args: any[]) => any, ...args: any[]) {
+		descriptor.value = async function descriptorValue(this: (...args: any[]) => any, ...args: any[]) {
 			const canRun = await precondition(...args);
 			return canRun ? method.call(this, ...args) : fallback.call(this, ...args);
-		} as unknown) as undefined;
+		} as unknown as undefined;
 	});
 }
 
