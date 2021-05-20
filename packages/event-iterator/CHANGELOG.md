@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.2](https://github.com/sapphiredev/utilities/compare/@sapphire/event-iterator@1.2.1...@sapphire/event-iterator@1.2.2) (2021-05-20)
+
+### Bug Fixes
+
+-   **event-iterator:** mark package as side effect free ([780129d](https://github.com/sapphiredev/utilities/commit/780129d1c8d16bb39f80cb70f70074229106bae7))
+
 ## [1.2.1](https://github.com/sapphiredev/utilities/compare/@sapphire/event-iterator@1.2.0...@sapphire/event-iterator@1.2.1) (2021-05-02)
 
 ### Bug Fixes

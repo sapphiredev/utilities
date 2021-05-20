@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.2](https://github.com/sapphiredev/utilities/compare/@sapphire/time-utilities@1.3.1...@sapphire/time-utilities@1.3.2) (2021-05-20)
+
+### Bug Fixes
+
+-   **time-utilities:** mark package as side effect free ([eaec459](https://github.com/sapphiredev/utilities/commit/eaec45967c06ce4015ab2ecc3e52dc9ac73a8ed7))
+
 ## [1.3.1](https://github.com/sapphiredev/utilities/compare/@sapphire/time-utilities@1.3.0...@sapphire/time-utilities@1.3.1) (2021-05-02)
 
 ### Bug Fixes

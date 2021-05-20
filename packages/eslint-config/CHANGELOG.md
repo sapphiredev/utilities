@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.3](https://github.com/sapphiredev/utilities/compare/@sapphire/eslint-config@3.1.2...@sapphire/eslint-config@3.1.3) (2021-05-20)
+
+### Bug Fixes
+
+-   **eslint-config:** mark package as side effect free ([172c913](https://github.com/sapphiredev/utilities/commit/172c91366f977b08d4aa323a1d43e59f17fc84e8))
+
 ## [3.1.2](https://github.com/sapphiredev/utilities/compare/@sapphire/eslint-config@3.1.1...@sapphire/eslint-config@3.1.2) (2021-05-02)
 
 ### Bug Fixes

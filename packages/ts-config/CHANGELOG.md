@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.2](https://github.com/sapphiredev/utilities/compare/@sapphire/ts-config@2.2.1...@sapphire/ts-config@2.2.2) (2021-05-20)
+
+### Bug Fixes
+
+-   **ts-config:** mark package as side effect free ([c49de49](https://github.com/sapphiredev/utilities/commit/c49de4956aded8ae3e6e498646a0254509a022e7))
+
 ## [2.2.1](https://github.com/sapphiredev/utilities/compare/@sapphire/ts-config@2.2.0...@sapphire/ts-config@2.2.1) (2021-05-02)
 
 ### Bug Fixes

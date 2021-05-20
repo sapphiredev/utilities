@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.2](https://github.com/sapphiredev/utilities/compare/@sapphire/ratelimits@1.2.1...@sapphire/ratelimits@1.2.2) (2021-05-20)
+
+### Bug Fixes
+
+-   **ratelimits:** mark package as side effect free ([22334e1](https://github.com/sapphiredev/utilities/commit/22334e1b1786b29d2b4c90dbdb3fc5e988f90e5b))
+
 ## [1.2.1](https://github.com/sapphiredev/utilities/compare/@sapphire/ratelimits@1.2.0...@sapphire/ratelimits@1.2.1) (2021-05-02)
 
 ### Bug Fixes

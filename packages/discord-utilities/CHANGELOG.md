@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.2](https://github.com/sapphiredev/utilities/compare/@sapphire/discord-utilities@2.1.1...@sapphire/discord-utilities@2.1.2) (2021-05-20)
+
+### Bug Fixes
+
+-   **discord-utilities:** mark package as side effect free ([2c88921](https://github.com/sapphiredev/utilities/commit/2c88921cf4e4a032bbb743f9c6f8933d2d45b404))
+
 ## [2.1.1](https://github.com/sapphiredev/utilities/compare/@sapphire/discord-utilities@2.1.0...@sapphire/discord-utilities@2.1.1) (2021-05-02)
 
 ### Bug Fixes

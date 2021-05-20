@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.2](https://github.com/sapphiredev/utilities/compare/@sapphire/async-queue@1.1.1...@sapphire/async-queue@1.1.2) (2021-05-20)
+
+### Bug Fixes
+
+-   **async-queue:** mark package as side effect free ([1c4b901](https://github.com/sapphiredev/utilities/commit/1c4b901cda3d14bd085c35cc74e160f844567ba7))
+
 ## [1.1.1](https://github.com/sapphiredev/utilities/compare/@sapphire/async-queue@1.1.0...@sapphire/async-queue@1.1.1) (2021-05-02)
 
 ### Bug Fixes

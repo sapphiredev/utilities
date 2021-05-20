@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1](https://github.com/sapphiredev/utilities/compare/@sapphire/embed-jsx@1.1.0...@sapphire/embed-jsx@1.1.1) (2021-05-20)
+
+### Bug Fixes
+
+-   **embed-jsx:** mark package as side effect free ([a5ef679](https://github.com/sapphiredev/utilities/commit/a5ef6793f0f61d269fb5b2e41ec919830ff28870))
+
 # [1.1.0](https://github.com/sapphiredev/utilities/compare/@sapphire/embed-jsx@1.0.0...@sapphire/embed-jsx@1.1.0) (2021-05-02)
 
 ### Features

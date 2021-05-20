@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.2](https://github.com/sapphiredev/utilities/compare/@sapphire/fetch@1.0.1...@sapphire/fetch@1.0.2) (2021-05-20)
+
+### Bug Fixes
+
+-   **fetch:** mark package as side effect free ([8e3e470](https://github.com/sapphiredev/utilities/commit/8e3e470e7803f67593f18d2454cb1f95a8a35f18))
+
 ## [1.0.1](https://github.com/sapphiredev/utilities/compare/@sapphire/fetch@1.0.0...@sapphire/fetch@1.0.1) (2021-05-02)
 
 ### Bug Fixes

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.2](https://github.com/sapphiredev/utilities/compare/@sapphire/utilities@1.5.1...@sapphire/utilities@1.5.2) (2021-05-20)
+
+### Bug Fixes
+
+-   **utilities:** mark package as side effect free ([73cbabd](https://github.com/sapphiredev/utilities/commit/73cbabddc274387d7819d80afe426eb1112f7995))
+
 ## [1.5.1](https://github.com/sapphiredev/utilities/compare/@sapphire/utilities@1.5.0...@sapphire/utilities@1.5.1) (2021-05-02)
 
 ### Bug Fixes

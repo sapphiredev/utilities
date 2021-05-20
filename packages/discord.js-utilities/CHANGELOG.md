@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.8](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@1.5.7...@sapphire/discord.js-utilities@1.5.8) (2021-05-20)
+
+### Bug Fixes
+
+-   **discord.js-utilities:** mark package as side effect free ([9fdf1d0](https://github.com/sapphiredev/utilities/commit/9fdf1d05496a16324ba8515ae90d0b9f661aeb75))
+
 ## [1.5.7](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@1.5.6...@sapphire/discord.js-utilities@1.5.7) (2021-05-02)
 
 ### Bug Fixes

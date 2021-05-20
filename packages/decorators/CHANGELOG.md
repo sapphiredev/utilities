@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.2](https://github.com/sapphiredev/utilities/compare/@sapphire/decorators@2.1.1...@sapphire/decorators@2.1.2) (2021-05-20)
+
+### Bug Fixes
+
+-   **decorators:** mark package as side effect free ([d42dadf](https://github.com/sapphiredev/utilities/commit/d42dadfbc76cf6613479e03f1216d35fc247af30))
+
 ## [2.1.1](https://github.com/sapphiredev/utilities/compare/@sapphire/decorators@2.1.0...@sapphire/decorators@2.1.1) (2021-05-02)
 
 ### Bug Fixes
