@@ -6,9 +6,10 @@
 	"license": "MIT",
 	"main": "tsconfig.json",
 	"exports": {
-		"import": "./dist/index.js",
-		"require": "./dist/index.js"
+		"import": "./tsconfig.json",
+		"require": "./tsconfig.json"
 	},
+	"sideEffects": false,
 	"homepage": "https://github.com/sapphiredev/utilities/tree/main/packages/ts-config",
 	"scripts": {
 		"test": "jest",
