@@ -11,9 +11,9 @@
 		"import": "./dist/index.mjs",
 		"require": "./dist/index.js"
 	},
+	"sideEffects": false,
 	"homepage": "https://github.com/sapphiredev/utilities/tree/main/packages/discord.js-utilities",
 	"scripts": {
-		"test": "echo \"\"",
 		"lint": "eslint src tests --ext ts --fix -c ../../.eslintrc",
 		"build": "rollup -c",
 		"start": "yarn build -w",
