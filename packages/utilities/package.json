@@ -13,6 +13,7 @@
 		"import": "./dist/index.mjs",
 		"require": "./dist/index.js"
 	},
+	"sideEffects": false,
 	"homepage": "https://github.com/sapphiredev/utilities/tree/main/packages/utilities",
 	"scripts": {
 		"test": "jest",
