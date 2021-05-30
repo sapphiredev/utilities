@@ -51,6 +51,6 @@
 		"access": "public"
 	},
 	"dependencies": {
-		"twemoji-parser": "^13.0.0"
+		"twemoji-parser": "^13.1.0"
 	}
 }
