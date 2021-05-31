@@ -1,5 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 export type Primitive = string | number | boolean | bigint | symbol | undefined | null;
+
 // eslint-disable-next-line @typescript-eslint/ban-types
 export type Builtin = Primitive | Function | Date | Error | RegExp;
 
@@ -72,3 +72,86 @@ export type Awaited<T> = PromiseLike<T> | T;
  * Type union for the full 2 billion dollar mistake in the JavaScript ecosystem
  */
 export type Nullish = null | undefined;
+
+/**
+ * Similar to the built in {@link NonNullable}, but properly removes `null` from all keys in the class or interface
+ * This does not recurse deeply, for that use {@link DeepRequired}
+ */
+export type NonNullableProperties<T = unknown> = {
+	[P in keyof T]: NonNullable<T[P]>;
+};
+
+/**
+ * An object that is non nullable, to bypass TypeScript not easily working with {@link Record}<{@link PropertyKey}, unknown> in various instances.
+ */
+export interface NonNullObject {}
+
+/**
+ * Gets all the keys (as a string union) from a type `T` that match value `V`
+ * @example
+ * interface Sample {
+ * 	id: string;
+ * 	name: string | null;
+ * 	middleName?: string;
+ * 	lastName: string;
+ * 	hobbies: readonly string[];
+ * }
+ *
+ * type BB = PickByValue<Sample, string>;
+ * // Expected:
+ * // "id" | "lastName"
+ */
+export type PickByValue<T, V> = {
+	[P in keyof T]: T[P] extends V ? P : never;
+}[keyof T] &
+	keyof T;
+
+/**
+ * Transforms a `readonly` type to be mutable
+ * @example
+ * interface Sample {
+ * 	id: string;
+ * 	hobbies: readonly string[];
+ * }
+ *
+ * type BB = Mutable<Sample>;
+ * // Expected:
+ * // {
+ * //    id: string;
+ * //    hobbies: string[];
+ * // }
+ */
+export type Mutable<T> = {
+	-readonly [P in keyof T]: T[P] extends Array<unknown> | NonNullObject ? Mutable<T[P]> : T[P];
+};
+
+/**
+ * Transforms every key in an object to be strictly required, essentially removing `undefined` and `null` from the type.
+ * @example
+ * interface Sample {
+ * 	id: string;
+ * 	name: string | null;
+ * 	middleName?: string;
+ * }
+ *
+ * type BB = StrictRequired<Sample>;
+ * // Expected:
+ * // {
+ * //    id: string;
+ * //    name: string;
+ * //    middleName: string;
+ * // }
+ */
+export type StrictRequired<T> = {
+	[P in keyof T]-?: NonNullable<T[P]>;
+};
+
+/**
+ * Gets a union type of all the keys that are in an array.
+ * @example
+ * const sample = [1, 2, '3', true];
+ *
+ * type arrayUnion = ArrayElementType<typeof sample>;
+ * // Expected: string | number | boolean
+ */
+export type ArrayElementType<T> = T extends (infer K)[] ? K : T extends readonly (infer RK)[] ? RK : T;
