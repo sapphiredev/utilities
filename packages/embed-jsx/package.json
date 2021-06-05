@@ -23,9 +23,6 @@
 	"dependencies": {
 		"tslib": "2.x"
 	},
-	"peerDependencies": {
-		"discord.js": "^12.5.3"
-	},
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/sapphiredev/utilities.git",

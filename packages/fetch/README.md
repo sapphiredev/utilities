@@ -43,9 +43,10 @@
 
 ## Installation
 
+You can use the following command to install this package, or replace `npm install` with your package manager of choice.
+
 ```sh
-yarn add @sapphire/fetch
-# npm install @sapphire/fetch
+npm install @sapphire/fetch
 ```
 
 ### Node-fetch types
@@ -53,8 +54,7 @@ yarn add @sapphire/fetch
 TypeScript users should also add `@types/node-fetch`:
 
 ```sh
-yarn add -D @types/node-fetch
-# npm install -D @types/node-fetch
+npm install --save-dev @types/node-fetch
 ```
 
 Alternatively, you can enable the [`skipLibChecks`](https://www.typescriptlang.org/tsconfig/#skipLibCheck) TypeScript compiler option

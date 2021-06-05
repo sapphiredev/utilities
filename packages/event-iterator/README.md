@@ -38,9 +38,10 @@ There is often a need to have async iterators with fine control, timeouts, limit
 
 ## Installation
 
+You can use the following command to install this package, or replace `npm install` with your package manager of choice.
+
 ```sh
-yarn add @sapphire/event-iterator
-# npm install @sapphire/event-iterator
+npm install @sapphire/event-iterator
 ```
 
 ## Usage

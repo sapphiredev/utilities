@@ -24,8 +24,14 @@ Discord embeds have a structure that translates very nicely to JSX syntax, makin
 
 ## Installation
 
+`@sapphire/embed-jsx` depends on the following packages. Be sure to install these along with this package!
+
+-   [`discord.js`](https://www.npmjs.com/package/discord.js)
+
+You can use the following command to install this package, or replace `npm install` with your package manager of choice.
+
 ```sh
-yarn add @sapphire/embed-jsx
+npm install @sapphire/embed-jsx discord.js
 ```
 
 ## Usage

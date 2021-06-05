@@ -36,9 +36,10 @@ Provides a set of methods and properties that you can use to accurately measure 
 
 ## Installation
 
+You can use the following command to install this package, or replace `npm install` with your package manager of choice.
+
 ```sh
-yarn add @sapphire/stopwatch
-# npm install @sapphire/stopwatch
+npm install @sapphire/stopwatch
 ```
 
 ## Usage

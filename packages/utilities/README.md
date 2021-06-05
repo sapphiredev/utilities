@@ -27,8 +27,10 @@ We often have a need for a function or type augmentation and having to include i
 
 ## Installation
 
+You can use the following command to install this package, or replace `npm install` with your package manager of choice.
+
 ```sh
-yarn add @sapphire/utilities
+npm install @sapphire/utilities
 ```
 
 ---
