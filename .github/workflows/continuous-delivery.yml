@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - packages/**
+      - .github/workflows/continuous-delivery.yml
 
 jobs:
   pre_ci:
@@ -60,7 +61,7 @@ jobs:
           yarn build
           yarn workspace @sapphire/ts-config prepublishOnly
       - name: Bump Version & Publish
-        run: yarn lerna publish --yes --conventional-prerelease --ignore-scripts --no-git-tag-version --no-push --pre-dist-tag next --preid "next.$(git rev-parse --verify HEAD)"
+        run: yarn lerna publish --yes --conventional-prerelease --ignore-scripts --no-verify-access --no-git-tag-version --no-push --pre-dist-tag next --preid "next.$(git rev-parse --verify HEAD)"
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
 
