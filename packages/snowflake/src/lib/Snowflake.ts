@@ -26,7 +26,7 @@ export class Snowflake {
 	 * @param epoch the epoch to use
 	 */
 	public constructor(epoch: number | bigint | Date) {
-		this.#epoch = BigInt(epoch);
+		this.#epoch = BigInt(epoch instanceof Date ? epoch.getTime() : epoch);
 	}
 
 	/**
@@ -49,7 +49,7 @@ export class Snowflake {
 			processID: 1n
 		}
 	) {
-		if (timestamp instanceof Date) timestamp = BigInt(timestamp);
+		if (timestamp instanceof Date) timestamp = BigInt(timestamp.getTime());
 		if (typeof timestamp === 'number' && !Number.isNaN(timestamp)) timestamp = BigInt(timestamp);
 
 		if (typeof timestamp !== 'bigint') {
