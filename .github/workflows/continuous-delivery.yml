@@ -1,15 +1,12 @@
-name: Continuous Delivery - ratelimits
+name: Continuous Delivery
 
 on:
   push:
     branches:
       - main
     paths:
-      - packages/ratelimits/**
-      - .all-contributorsrc
-      - LICENSE.md
-      - package.json
-      - .github/workflows/cd-ratelimits.yml
+      - packages/**
+
 jobs:
   pre_ci:
     name: Prepare CI environment
@@ -34,8 +31,41 @@ jobs:
     outputs:
       commit_message: $( [ -z "${{ steps.pr_get_commit_message.outputs.pr_commit_message }}" ] && echo "${{ steps.push_get_commit_message.outputs.push_commit_message }}" || echo "${{ steps.pr_get_commit_message.outputs.pr_commit_message }}" )
 
-  BuildRatelimits:
-    name: Publish Ratelimits
+  Publish:
+    name: Publish Next to npm
+    runs-on: ubuntu-latest
+    if: "!contains(needs.pre_ci.outputs.commit_message, '[skip ci]')"
+    needs: pre_ci
+    steps:
+      - name: Checkout Project
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Use Node.js v16
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+          registry-url: https://registry.npmjs.org/
+      - name: Restore CI Cache
+        uses: actions/cache@v2.1.6
+        id: cache-restore
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-16-${{ hashFiles('**/yarn.lock') }}
+      - name: Install Dependencies if Cache Miss
+        if: ${{ !steps.cache-restore.outputs.cache-hit }}
+        run: yarn --frozen-lockfile
+      - name: Build all packages in proper order
+        run: |
+          yarn build
+          yarn workspace @sapphire/ts-config prepublishOnly
+      - name: Bump Version & Publish
+        run: yarn lerna publish --yes --conventional-prerelease --ignore-scripts --no-git-tag-version --no-push --pre-dist-tag next --preid "next.$(git rev-parse --verify HEAD)"
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
+
+  Docgen:
+    name: Docgen
     runs-on: ubuntu-latest
     if: "!contains(needs.pre_ci.outputs.commit_message, '[skip ci]')"
     needs: pre_ci
@@ -55,36 +85,36 @@ jobs:
       - name: Install Dependencies if Cache Miss
         if: ${{ !steps.cache-restore.outputs.cache-hit }}
         run: yarn --frozen-lockfile
-      - name: Build Code
-        run: yarn workspace @sapphire/ratelimits build
-      - name: Push new code
+      - name: Build Dependencies
+        run: yarn lerna run build --parallel --scope=@sapphire/utilities --scope=@sapphire/discord-utilities
+      - name: Build documentation
+        run: yarn docs
+      - name: Publish Docs
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
           REPO="https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
 
-          echo -e "\n# Move to the ratelimits directory"
-          cd packages/ratelimits
-
           echo -e "\n# Checkout the repo in the target branch"
-          TARGET_BRANCH="build-ratelimits"
+          TARGET_BRANCH="gh-pages"
           git clone $REPO out -b $TARGET_BRANCH
 
-          echo -e "\n# Remove any old files in the dist folder"
-          rm -rfv out/dist/*
+          echo -e "\n# Remove any old files in the out folder"
+          rm -rfv out/assets/*
+          rm -rfv out/interfaces/*
+          rm -rfv out/*.html
 
           echo -e "\n# Move the generated code to the newly-checked-out repo, to be committed and pushed"
-          rsync -vaI package.json out/
-          rsync -vaI ../../.all-contributorsrc out/
-          rsync -vaI ../../LICENSE.md out/
+          rsync -vaI .all-contributorsrc out/
+          rsync -vaI LICENSE.md out/
           rsync -vaI README.md out/
-          rsync -vaI dist/ out/dist
+          rsync -vaI docs/ out/
 
           echo -e "\n# Commit and push"
           cd out
           git add --all .
           git config user.name "${GITHUB_ACTOR}"
           git config user.email "${GITHUB_EMAIL}"
-          git commit -m "build: ratelimits build for ${GITHUB_SHA}" || true
+          git commit -m "docs: api docs build for ${GITHUB_SHA}" || true
           git push origin $TARGET_BRANCH
         env:
           GITHUB_TOKEN: ${{ secrets.SKYRA_TOKEN }}
