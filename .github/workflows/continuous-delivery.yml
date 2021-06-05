@@ -6,7 +6,6 @@ on:
       - main
     paths:
       - packages/**
-      - .github/workflows/continuous-delivery.yml
 
 jobs:
   pre_ci:
