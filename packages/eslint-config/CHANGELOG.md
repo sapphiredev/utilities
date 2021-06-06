@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.4](https://github.com/sapphiredev/utilities/compare/@sapphire/eslint-config@3.1.3...@sapphire/eslint-config@3.1.4) (2021-06-06)
+
+### Bug Fixes
+
+-   remove peer deps, update dev deps, update READMEs ([#124](https://github.com/sapphiredev/utilities/issues/124)) ([67256ed](https://github.com/sapphiredev/utilities/commit/67256ed43b915b02a8b5c68230ba82d6210c5032))
+-   **eslint-config:** bump dependencies ([4ea1334](https://github.com/sapphiredev/utilities/commit/4ea133479134a8e487cb539053ca5c1fe951f4f8))
+
 ## [3.1.3](https://github.com/sapphiredev/utilities/compare/@sapphire/eslint-config@3.1.2...@sapphire/eslint-config@3.1.3) (2021-05-20)
 
 ### Bug Fixes

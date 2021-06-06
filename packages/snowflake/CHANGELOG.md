@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.3](https://github.com/sapphiredev/utilities/compare/@sapphire/snowflake@1.3.2...@sapphire/snowflake@1.3.3) (2021-06-06)
+
+### Bug Fixes
+
+-   remove peer deps, update dev deps, update READMEs ([#124](https://github.com/sapphiredev/utilities/issues/124)) ([67256ed](https://github.com/sapphiredev/utilities/commit/67256ed43b915b02a8b5c68230ba82d6210c5032))
+-   **snowflake:** fixed parsing for timestamps as Date objects ([c17a515](https://github.com/sapphiredev/utilities/commit/c17a515b02931cf778ca69913132e8d4558504a1))
+
 ## [1.3.2](https://github.com/sapphiredev/utilities/compare/@sapphire/snowflake@1.3.1...@sapphire/snowflake@1.3.2) (2021-05-20)
 
 ### Bug Fixes
