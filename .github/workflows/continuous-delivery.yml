@@ -60,7 +60,7 @@ jobs:
           yarn build
           yarn workspace @sapphire/ts-config prepublishOnly
       - name: Bump Version & Publish
-        run: yarn lerna publish --yes --conventional-prerelease --ignore-scripts --no-verify-access --no-git-tag-version --no-push --pre-dist-tag next --preid "next.$(git rev-parse --verify HEAD)"
+        run: yarn lerna publish --yes --conventional-prerelease --ignore-scripts --no-verify-access --no-git-tag-version --no-push --pre-dist-tag next --preid "next.$(git rev-parse --verify --short HEAD)"
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
 
