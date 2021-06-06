@@ -38,9 +38,10 @@ Working with Time and Duration can be a huge chore in any programming language. 
 
 ## Installation
 
+You can use the following command to install this package, or replace `npm install` with your package manager of choice.
+
 ```sh
-yarn add @sapphire/time-utilities
-# npm install @sapphire/time-utilities
+npm install @sapphire/time-utilities
 ```
 
 ## API Documentation

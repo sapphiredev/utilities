@@ -30,8 +30,10 @@ When developing Discord bots or frameworks for Discord bots we often run into ce
 
 ## Installation
 
+You can use the following command to install this package, or replace `npm install` with your package manager of choice.
+
 ```sh
-yarn add @sapphire/discord-utilities
+npm install @sapphire/discord-utilities
 ```
 
 ---

@@ -16,8 +16,10 @@
 
 ## Installation
 
+You can use the following command to install this package, or replace `npm install` with your package manager of choice.
+
 ```sh
-yarn add -D @sapphire/eslint-config
+npm install --save-dev @sapphire/eslint-config
 ```
 
 ---

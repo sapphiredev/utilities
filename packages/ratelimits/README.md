@@ -39,9 +39,10 @@ There is often a need to apply ratelimits to protect a network from excessive tr
 
 ## Installation
 
+You can use the following command to install this package, or replace `npm install` with your package manager of choice.
+
 ```sh
-yarn add @sapphire/ratelimits
-# npm install @sapphire/ratelimits
+npm install @sapphire/ratelimits
 ```
 
 ## Usage

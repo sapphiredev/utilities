@@ -20,9 +20,14 @@ Decorators can add a lot of functionality with very minimal code. This package p
 
 ## Installation
 
+`@sapphire/decorators` depends on the following packages. Be sure to install these along with this package!
+
+-   [`@sapphire/framework`](https://www.npmjs.com/package/@sapphire/framework)
+
+You can use the following command to install this package, or replace `npm install` with your package manager of choice.
+
 ```sh
-yarn add @sapphire/decorators
-# npm install @sapphire/decorators
+npm install @sapphire/decorators @sapphire/framework
 ```
 
 ---

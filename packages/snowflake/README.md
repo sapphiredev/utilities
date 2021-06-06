@@ -46,9 +46,10 @@ There is often a need to get a unique ID for entities, be that for Discord messa
 
 ## Installation
 
+You can use the following command to install this package, or replace `npm install` with your package manager of choice.
+
 ```sh
-yarn add @sapphire/snowflake
-# npm install @sapphire/snowflake
+npm install @sapphire/snowflake
 ```
 
 ## Usage

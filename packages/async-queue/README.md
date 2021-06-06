@@ -27,9 +27,10 @@ Ever needed a queue for a set of promises? This is the package for you.
 
 ## Installation
 
+You can use the following command to install this package, or replace `npm install` with your package manager of choice.
+
 ```sh
-yarn add @sapphire/async-queue
-# npm install @sapphire/async-queue
+npm install @sapphire/async-queue
 ```
 
 ---

@@ -51,8 +51,5 @@
 	},
 	"dependencies": {
 		"@sapphire/discord-utilities": "^2.1.2"
-	},
-	"peerDependencies": {
-		"discord.js": "^12.5.3"
 	}
 }
