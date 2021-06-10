@@ -72,7 +72,7 @@ export class MessageBuilder implements MessageOptions {
 	}
 
 	/**
-	 * Sets the value for the [[MessageBuilder.tts]] field.
+	 * Sets the value for the {@link MessageBuilder.tts} field.
 	 * @param tts Whether or not the message should be spoken aloud.
 	 */
 	public setTTS(tts?: boolean): this {
@@ -81,7 +81,7 @@ export class MessageBuilder implements MessageOptions {
 	}
 
 	/**
-	 * Sets the value for the [[MessageBuilder.nonce]] field.
+	 * Sets the value for the {@link MessageBuilder.nonce} field.
 	 * @param nonce The nonce for the message.
 	 */
 	public setNonce(nonce?: string): this {
@@ -90,7 +90,7 @@ export class MessageBuilder implements MessageOptions {
 	}
 
 	/**
-	 * Sets the value for the [[MessageBuilder.content]] field.
+	 * Sets the value for the {@link MessageBuilder.content} field.
 	 * @param content The content for the message. If set to undefined and the builder is used to edit, the content will
 	 * not be replaced.
 	 */
@@ -100,7 +100,7 @@ export class MessageBuilder implements MessageOptions {
 	}
 
 	/**
-	 * Sets the value for the [[MessageBuilder.embed]] field.
+	 * Sets the value for the {@link MessageBuilder.embed} field.
 	 * @param embed An embed for the message. If set to undefined and the builder is used to edit, the embed will not be
 	 * replaced.
 	 */
@@ -110,7 +110,7 @@ export class MessageBuilder implements MessageOptions {
 	}
 
 	/**
-	 * Sets the value for the [[MessageBuilder.allowedMentions]] field.
+	 * Sets the value for the {@link MessageBuilder.allowedMentions} field.
 	 * @param allowedMentions Which mentions should be parsed from the message content.
 	 */
 	public setAllowedMentions(allowedMentions?: MessageMentionOptions): this {
@@ -119,8 +119,8 @@ export class MessageBuilder implements MessageOptions {
 	}
 
 	/**
-	 * Adds a new value for the [[MessageBuilder.files]] field array.
-	 * @param file The file to add to the [[MessageBuilder.files]] field array.
+	 * Adds a new value for the {@link MessageBuilder.files} field array.
+	 * @param file The file to add to the {@link MessageBuilder.files} field array.
 	 */
 	public addFile(file: MessageBuilderFileResolvable): this {
 		this.files = this.files?.concat(file) ?? [file];
@@ -128,7 +128,7 @@ export class MessageBuilder implements MessageOptions {
 	}
 
 	/**
-	 * Sets a single value for the [[MessageBuilder.files]] field array.
+	 * Sets a single value for the {@link MessageBuilder.files} field array.
 	 * @param file The file to send with the message. This should not be set when editing a message, as Discord does not
 	 * support editing file attachments.
 	 */
@@ -138,7 +138,7 @@ export class MessageBuilder implements MessageOptions {
 	}
 
 	/**
-	 * Sets the value for the [[MessageBuilder.files]] field.
+	 * Sets the value for the {@link MessageBuilder.files} field.
 	 * @param files The files to send with the message. This should not be set when editing a message, as Discord does
 	 * not support editing file attachments.
 	 */
@@ -148,7 +148,7 @@ export class MessageBuilder implements MessageOptions {
 	}
 
 	/**
-	 * Sets the value for the [[MessageBuilder.code]] field.
+	 * Sets the value for the {@link MessageBuilder.code} field.
 	 * @param code Language for optional codeblock formatting to apply.
 	 */
 	public setCode(code?: MessageBuilderCodeResolvable): this {
@@ -157,7 +157,7 @@ export class MessageBuilder implements MessageOptions {
 	}
 
 	/**
-	 * Sets the value for the [[MessageBuilder.split]] field.
+	 * Sets the value for the {@link MessageBuilder.split} field.
 	 * @param split Whether or not the message should be split into multiple messages if it exceeds the character limit.
 	 * If an object is provided, these are the options for splitting the message.
 	 */

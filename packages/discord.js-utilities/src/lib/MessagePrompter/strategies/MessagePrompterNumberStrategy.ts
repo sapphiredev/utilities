@@ -19,8 +19,8 @@ export class MessagePrompterNumberStrategy extends MessagePrompterBaseStrategy i
 	public end: number;
 
 	/**
-	 * Constructor for the [[MessagePrompterBaseStrategy]] class
-	 * @param messagePrompter The used instance of [[MessagePrompter]]
+	 * Constructor for the {@link MessagePrompterBaseStrategy} class
+	 * @param messagePrompter The used instance of {@link MessagePrompter}
 	 * @param options Overrideable options if needed.
 	 */
 	public constructor(message: MessagePrompterMessage, options: IMessagePrompterNumberStrategyOptions) {
@@ -32,7 +32,7 @@ export class MessagePrompterNumberStrategy extends MessagePrompterBaseStrategy i
 	}
 
 	/**
-	 * This executes the [[MessagePrompter]] and sends the message if [[IMessagePrompterOptions.type]] equals number.
+	 * This executes the {@link MessagePrompter} and sends the message if {@link IMessagePrompterOptions.type} equals number.
 	 * The handler will wait for one (1) reaction.
 	 * @param channel The channel to use.
 	 * @param authorOrFilter An author object to validate or a {@linkplain https://discord.js.org/#/docs/main/stable/typedef/CollectorFilter CollectorFilter} predicate callback.

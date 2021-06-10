@@ -36,14 +36,14 @@ export const EmojiRegex = /^(?:<(?<animated>a)?:(?<name>\w{2,32}):)?(?<id>\d{17,
 
 /**
  * Regex that matches any animated or non-animated custom Discord emoji.
- * Unlike [[EmojiRegex]] It can be a substring of a larger string.
+ * Unlike {@link EmojiRegex} It can be a substring of a larger string.
  * @raw `/<a?:\w{2,32}:\d{17,18}>/`
  */
 export const FormattedCustomEmoji = /<a?:\w{2,32}:\d{17,18}>/;
 
 /**
  * Regex that can capture any animated or non-animated custom Discord emoji.
- * Similar to [[FormattedCustomEmoji]] and unlike [[EmojiRegex]] can also be a substring of a larger string.
+ * Similar to {@link FormattedCustomEmoji} and unlike {@link EmojiRegex} can also be a substring of a larger string.
  * @raw `/(?<animated>a?):(?<name>[^:]+):(?<id>\d{17,19})/`
  * @remark Capture group 1 can be used to determine whether the emoji is animated or not. It is named `animated`.
  * @remark Capture group 2 is the name of the emoji as it is typed in a message. It is named `name`.
@@ -54,7 +54,7 @@ export const FormattedCustomEmojiWithGroups = /(?<animated>a?):(?<name>[^:]+):(?
 /**
  * Regex that matches any URL starting with `http` or `https`
  * @raw `/^https?:\/\//`
- * @remark for WebSocket URLs see [[WebsocketGenericUrlRegex]]
+ * @remark for WebSocket URLs see {@link WebsocketGenericUrlRegex}
  */
 export const HttpUrlRegex = /^https?:\/\//;
 
@@ -71,7 +71,7 @@ export const MessageLinkRegex =
 /**
  * Regex that matches any animated or non-animated custom Discord emoji *without the wrapping `<...>` symbols.
  * This means that a string that matches this regex can directly be send inside a Discord message.
- * Other than this difference it is similar to [[FormattedCustomEmoji]].
+ * Other than this difference it is similar to {@link FormattedCustomEmoji}.
  * @raw `/a?:\w{2,32}:\d{17,18}/`
  */
 export const ParsedCustomEmoji = /a?:\w{2,32}:\d{17,18}/;
@@ -79,7 +79,7 @@ export const ParsedCustomEmoji = /a?:\w{2,32}:\d{17,18}/;
 /**
  * Regex that matches any animated or non-animated custom Discord emoji *without the wrapping `<...>` symbols.
  * This means that a string that matches this regex can directly be send inside a Discord message.
- * Other than this difference it is similar to [[FormattedCustomEmojiWithGroups]].
+ * Other than this difference it is similar to {@link FormattedCustomEmojiWithGroups}.
  * @raw `/(?<animated>a?):(?<name>[^:]+):(?<id>\d{17,19})/`
  * @remark Capture group 1 can be used to determine whether the emoji is animated or not. It is named `animated`.
  * @remark Capture group 2 is the name of the emoji as it is typed in a message. It is named `name`.
@@ -117,7 +117,7 @@ export const UserOrMemberMentionRegex = /^<@!?(?<id>\d{17,19})>$/;
 /**
  * Regex that matches any WebSocket URL starting with `ws` or `wss`
  * @raw `/^wss?:\/\//`
- * @remark for regular HTTP URLs see [[HttpUrlRegex]]
+ * @remark for regular HTTP URLs see {@link HttpUrlRegex}
  */
 export const WebSocketUrlRegex = /^wss?:\/\//;
 
@@ -127,6 +127,6 @@ export const WebSocketUrlRegex = /^wss?:\/\//;
  * @remark Capture group 1 is the full URL of the Discord Webhook. It is named `url`.
  * @remark Capture group 2 is the ID of the Discord Webhook. It is named `id`.
  * @remark Capture group 3 is the token of the Discord Webhook. It is named `token`.
- * @remark for regular HTTP URLs see [[HttpUrlRegex]]
+ * @remark for regular HTTP URLs see {@link HttpUrlRegex}
  */
 export const WebhookRegex = /(?<url>^https:\/\/(?:(?:canary|ptb).)?discordapp.com\/api\/webhooks\/(?<id>\d+)\/(?<token>[\w-]+)\/?$)/;

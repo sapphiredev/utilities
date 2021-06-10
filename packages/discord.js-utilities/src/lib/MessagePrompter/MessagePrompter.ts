@@ -32,7 +32,7 @@ export interface StrategyOptions {
 }
 
 /**
- * This is a [[MessagePrompter]], a utility that sends a message, prompting for user input. The prompt can resolve to any kind of input.
+ * This is a {@link MessagePrompter}, a utility that sends a message, prompting for user input. The prompt can resolve to any kind of input.
  * There are several specifiable types to prompt for user input, and they are as follows:
  * - Confirm
  *   This will send a simple Yes/No prompt, using reactions.
@@ -45,9 +45,9 @@ export interface StrategyOptions {
  *
  * You must either use this class directly or extend it.
  *
- * [[MessagePrompter]] uses reactions to prompt for a yes/no answer and returns it.
- * You can modify the confirm and cancel reaction used for each message, or use the [[MessagePrompter.defaultPrompts]].
- * [[MessagePrompter.defaultPrompts]] is also static so you can modify these directly.
+ * {@link MessagePrompter} uses reactions to prompt for a yes/no answer and returns it.
+ * You can modify the confirm and cancel reaction used for each message, or use the {@link MessagePrompter.defaultPrompts}.
+ * {@link MessagePrompter.defaultPrompts} is also static so you can modify these directly.
  *
  * @example
  * ```typescript
@@ -80,12 +80,12 @@ export interface StrategyOptions {
  */
 export class MessagePrompter<S extends MessagePrompterStrategies = MessagePrompterStrategies.Confirm> {
 	/**
-	 * The strategy used in [[MessagePrompter.run]]
+	 * The strategy used in {@link MessagePrompter.run}
 	 */
 	public strategy: MessagePrompterBaseStrategy;
 
 	/**
-	 * Constructor for the [[MessagePrompter]] class
+	 * Constructor for the {@link MessagePrompter} class
 	 * @param message The message to send.
 	 * @param strategy The strategy name or Instance to use
 	 * @param strategyOptions The options that are passed to the strategy
@@ -113,7 +113,7 @@ export class MessagePrompter<S extends MessagePrompterStrategies = MessagePrompt
 	}
 
 	/**
-	 * This executes the [[MessagePrompter]] and sends the message.
+	 * This executes the {@link MessagePrompter} and sends the message.
 	 * @param channel The channel to use.
 	 * @param authorOrFilter An author object to validate or a {@linkplain https://discord.js.org/#/docs/main/stable/typedef/CollectorFilter CollectorFilter} predicate callback.
 	 */
