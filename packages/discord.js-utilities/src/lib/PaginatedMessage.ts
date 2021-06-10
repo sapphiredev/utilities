@@ -8,7 +8,7 @@ import { APIMessage, Message, MessageOptions, MessageReaction, NewsChannel, Reac
  * You can utilize your own actions, or you can use the [[PaginatedMessage.defaultActions]].
  * [[PaginatedMessage.defaultActions]] is also static so you can modify these directly.
  *
- * [[PaginatedMessage]] also uses pages, these are simply {@link https://discord.js.org/#/docs/main/stable/class/APIMessage APIMessages}.
+ * [[PaginatedMessage]] also uses pages, these are simply {@linkplain https://discord.js.org/#/docs/main/stable/class/APIMessage APIMessages}.
  *
  * @example
  * ```typescript
@@ -362,7 +362,7 @@ export class PaginatedMessage {
 	];
 
 	/**
-	 * The reasons sent by {@link https://discord.js.org/#/docs/main/stable/class/ReactionCollector?scrollTo=e-end ReactionCollector#end}
+	 * The reasons sent by {@linkplain https://discord.js.org/#/docs/main/stable/class/ReactionCollector?scrollTo=e-end ReactionCollector#end}
 	 * event when the message (or its owner) has been deleted.
 	 */
 	public static deletionStopReasons = ['messageDelete', 'channelDelete', 'guildDelete'];
@@ -420,12 +420,12 @@ export interface PaginatedMessageOptions {
 /**
  * The pages that are used for [[PaginatedMessage.pages]]
  *
- * Pages can be either an {@link https://discord.js.org/#/docs/main/stable/class/APIMessage APIMessage} directly,
- * or an awaited function which returns an {@link https://discord.js.org/#/docs/main/stable/class/APIMessage APIMessage}.
+ * Pages can be either an {@linkplain https://discord.js.org/#/docs/main/stable/class/APIMessage APIMessage} directly,
+ * or an awaited function which returns an {@linkplain https://discord.js.org/#/docs/main/stable/class/APIMessage APIMessage}.
  *
- * Furthermore, {@link https://discord.js.org/#/docs/main/stable/typedef/MessageOptions MessageOptions} can be used to
+ * Furthermore, {@linkplain https://discord.js.org/#/docs/main/stable/typedef/MessageOptions MessageOptions} can be used to
  * construct the pages without state, this library also provides [[MessageBuilder]], which can be used as a chainable
- * alternative to raw objects, similar to how {@link https://discord.js.org/#/docs/main/stable/class/MessageEmbed MessageEmbed}
+ * alternative to raw objects, similar to how {@linkplain https://discord.js.org/#/docs/main/stable/class/MessageEmbed MessageEmbed}
  * works.
  *
  * @example

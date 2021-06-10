@@ -115,7 +115,7 @@ export class MessagePrompter<S extends MessagePrompterStrategies = MessagePrompt
 	/**
 	 * This executes the [[MessagePrompter]] and sends the message.
 	 * @param channel The channel to use.
-	 * @param authorOrFilter An author object to validate or a {@link https://discord.js.org/#/docs/main/stable/typedef/CollectorFilter CollectorFilter} predicate callback.
+	 * @param authorOrFilter An author object to validate or a {@linkplain https://discord.js.org/#/docs/main/stable/typedef/CollectorFilter CollectorFilter} predicate callback.
 	 */
 	public run(
 		channel: TextChannel | NewsChannel | DMChannel,

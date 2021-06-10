@@ -31,7 +31,7 @@ export class MessagePrompterConfirmStrategy extends MessagePrompterBaseStrategy 
 	 * This executes the [[MessagePrompter]] and sends the message if [[IMessagePrompterOptions.type]] equals confirm.
 	 * The handler will wait for one (1) reaction.
 	 * @param channel The channel to use.
-	 * @param authorOrFilter An author object to validate or a {@link https://discord.js.org/#/docs/main/stable/typedef/CollectorFilter CollectorFilter} predicate callback.
+	 * @param authorOrFilter An author object to validate or a {@linkplain https://discord.js.org/#/docs/main/stable/typedef/CollectorFilter CollectorFilter} predicate callback.
 	 * @returns A promise that resolves to a boolean denoting the value of the input (`true` for yes, `false` for no).
 	 */
 	public async run(

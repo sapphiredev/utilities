@@ -3,7 +3,7 @@ import { DeconstructedSnowflake, Snowflake, SnowflakeGenerateOptions } from './S
 /**
  * A class for parsing snowflake ids using Discord's snowflake epoch
  *
- * Which is 2015-01-01 at 00:00:00.000 UTC+0, {@link https://discord.com/developers/docs/reference#snowflakes}
+ * Which is 2015-01-01 at 00:00:00.000 UTC+0, {@linkplain https://discord.com/developers/docs/reference#snowflakes}
  */
 export class DiscordSnowflake extends Snowflake {
 	public constructor() {
@@ -12,7 +12,7 @@ export class DiscordSnowflake extends Snowflake {
 
 	/**
 	 * Discord epoch (`2015-01-01T00:00:00.000Z`)
-	 * @see {@link https://discord.com/developers/docs/reference#snowflakes}
+	 * @see {@linkplain https://discord.com/developers/docs/reference#snowflakes}
 	 */
 	public static readonly Epoch = 1420070400000n;
 

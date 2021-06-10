@@ -103,7 +103,7 @@ export const SnowflakeRegex = /^(?<id>\d{17,19})$/;
 
 /**
  * Regex that can capture a Twemoji (Twitter Emoji)
- * @raw {@link https://github.com/twitter/twemoji-parser/blob/master/src/lib/regex.js See official source code}
+ * @raw {@linkplain https://github.com/twitter/twemoji-parser/blob/master/src/lib/regex.js See official source code}
  */
 export const TwemojiRegex = twemojiRegex;
 

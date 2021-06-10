@@ -11,7 +11,7 @@ import type {
 } from 'discord.js';
 
 /**
- * Checks whether a given channel is a {@link https://discord.js.org/#/docs/main/stable/class/CategoryChannel CategoryChannel}
+ * Checks whether a given channel is a {@linkplain https://discord.js.org/#/docs/main/stable/class/CategoryChannel CategoryChannel}
  * @param channel The channel to check
  */
 export function isCategoryChannel(channel: Channel): channel is CategoryChannel {
@@ -19,7 +19,7 @@ export function isCategoryChannel(channel: Channel): channel is CategoryChannel 
 }
 
 /**
- * Checks whether a given channel is a {@link https://discord.js.org/#/docs/main/stable/class/DMChannel DMChannel}
+ * Checks whether a given channel is a {@linkplain https://discord.js.org/#/docs/main/stable/class/DMChannel DMChannel}
  * @param channel The channel to check
  */
 export function isDMChannel(channel: Channel): channel is DMChannel {
@@ -27,7 +27,7 @@ export function isDMChannel(channel: Channel): channel is DMChannel {
 }
 
 /**
- * Checks whether a given channel is a {@link https://discord.js.org/#/docs/main/stable/class/PartialGroupDMChannel PartialGroupDMChannel}
+ * Checks whether a given channel is a {@linkplain https://discord.js.org/#/docs/main/stable/class/PartialGroupDMChannel PartialGroupDMChannel}
  * @param channel The channel to check
  */
 export function isGroupChannel(channel: Channel): channel is PartialGroupDMChannel {
@@ -35,7 +35,7 @@ export function isGroupChannel(channel: Channel): channel is PartialGroupDMChann
 }
 
 /**
- * Checks whether a given channel is a {@link https://discord.js.org/#/docs/main/stable/class/GuildChannel GuildChannel}
+ * Checks whether a given channel is a {@linkplain https://discord.js.org/#/docs/main/stable/class/GuildChannel GuildChannel}
  * @param channel The channel to check
  */
 export function isGuildBasedChannel(channel: Channel): channel is GuildChannel {
@@ -43,7 +43,7 @@ export function isGuildBasedChannel(channel: Channel): channel is GuildChannel {
 }
 
 /**
- * Checks whether a given channel is a {@link https://discord.js.org/#/docs/main/stable/class/NewsChannel NewsChannel}
+ * Checks whether a given channel is a {@linkplain https://discord.js.org/#/docs/main/stable/class/NewsChannel NewsChannel}
  * @param channel The channel to check
  */
 export function isNewsChannel(channel: Channel): channel is NewsChannel {
@@ -51,7 +51,7 @@ export function isNewsChannel(channel: Channel): channel is NewsChannel {
 }
 
 /**
- * Checks whether a given channel is a {@link https://discord.js.org/#/docs/main/stable/class/StoreChannel StoreChannel}
+ * Checks whether a given channel is a {@linkplain https://discord.js.org/#/docs/main/stable/class/StoreChannel StoreChannel}
  * @param channel The channel to check
  */
 export function isStoreChannel(channel: Channel): channel is StoreChannel {
@@ -59,7 +59,7 @@ export function isStoreChannel(channel: Channel): channel is StoreChannel {
 }
 
 /**
- * Checks whether a given channel is a {@link https://discord.js.org/#/docs/main/stable/class/TextChannel TextChannel}
+ * Checks whether a given channel is a {@linkplain https://discord.js.org/#/docs/main/stable/class/TextChannel TextChannel}
  * @param channel The channel to check
  */
 export function isTextChannel(channel: Channel): channel is TextChannel {
@@ -67,7 +67,7 @@ export function isTextChannel(channel: Channel): channel is TextChannel {
 }
 
 /**
- * Checks whether a given channel is a {@link https://discord.js.org/#/docs/main/stable/class/VoiceChannel VoiceChannel}
+ * Checks whether a given channel is a {@linkplain https://discord.js.org/#/docs/main/stable/class/VoiceChannel VoiceChannel}
  * @param channel The channel to check
  */
 export function isVoiceChannel(channel: Channel): channel is VoiceChannel {

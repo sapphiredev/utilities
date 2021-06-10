@@ -3,7 +3,7 @@ import { DeconstructedSnowflake, Snowflake, SnowflakeGenerateOptions } from './S
 /**
  * A class for parsing snowflake ids using Twitter's snowflake epoch
  *
- * Which is 2006-03-21 at 20:50:14.000 UTC+0, the time and date of the first tweet ever made {@link https://twitter.com/jack/status/20}
+ * Which is 2006-03-21 at 20:50:14.000 UTC+0, the time and date of the first tweet ever made {@linkplain https://twitter.com/jack/status/20}
  */
 export class TwitterSnowflake extends Snowflake {
 	public constructor() {
@@ -12,7 +12,7 @@ export class TwitterSnowflake extends Snowflake {
 
 	/**
 	 * Twitter epoch (`2006-03-21T20:50:14.000Z`)
-	 * @see {@link https://twitter.com/jack/status/20}, first tweet ever made
+	 * @see {@linkplain https://twitter.com/jack/status/20}, first tweet ever made
 	 */
 	public static readonly Epoch = 1142974214000n;
 

@@ -11,7 +11,7 @@ export type MessageBuilderSplitResolvable = Defined<MessageOptions['split']>;
 export type MessageBuilderResolvable = Omit<MessageOptions, 'embed' | 'disableMentions' | 'reply'> & { embed?: MessageEmbed };
 
 /**
- * A message builder class, it implements the {@link https://discord.js.org/#/docs/main/stable/typedef/MessageOptions MessageOptions}
+ * A message builder class, it implements the {@linkplain https://discord.js.org/#/docs/main/stable/typedef/MessageOptions MessageOptions}
  * interface.
  */
 export class MessageBuilder implements MessageOptions {
