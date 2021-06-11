@@ -2,6 +2,10 @@ name: Continuous Delivery
 
 on:
   workflow_dispatch:
+    inputs:
+      prNumber:
+        description: The number of the PR that is being deployed
+        required: true
   push:
     branches:
       - main
@@ -12,8 +16,6 @@ jobs:
   Publish:
     name: Publish Next to npm
     runs-on: ubuntu-latest
-    env:
-      TAG: "${{ github.event_name == 'push' && 'next' || 'dev' }}"
     steps:
       - name: Checkout Project
         uses: actions/checkout@v2
@@ -40,7 +42,12 @@ jobs:
           yarn build
           yarn workspace @sapphire/ts-config prepublishOnly
       - name: Bump Version & Publish
-        run: yarn lerna publish --yes --conventional-prerelease --ignore-scripts --no-verify-access --no-git-tag-version --no-push --pre-dist-tag next --preid "${TAG}.$(git rev-parse --verify --short HEAD)"
+        run: |
+          # Resolve the tag to be used. "next" for push events, "pr-{prNumber}" for dispatch events.
+          TAG=$([[ ${{ github.event_name }} == 'push' ]] && echo 'next' || echo 'pr-${{ github.event.inputs.prNumber }}')
+
+          # Bump and publish
+          yarn lerna publish --yes --conventional-prerelease --ignore-scripts --no-verify-access --no-git-tag-version --no-push --pre-dist-tag next --preid "${TAG}.$(git rev-parse --verify --short HEAD)"
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
 
