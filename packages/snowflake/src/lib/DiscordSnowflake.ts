@@ -43,7 +43,7 @@ export class DiscordSnowflake extends Snowflake {
 
 	/**
 	 * Generates a snowflake given an epoch and optionally a timestamp
-	 * @param options options to pass into the generator, see {@link SnowflakeGenerateOptions}
+	 * @param options {@link SnowflakeGenerateOptions} to pass into the generator
 	 *
 	 * **note** when increment is not provided it defaults to `0n`
 	 * @example

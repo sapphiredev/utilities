@@ -1,14 +1,14 @@
 import { APIMessage, Message, MessageOptions, MessageReaction, NewsChannel, ReactionCollector, TextChannel, User } from 'discord.js';
 
 /**
- * This is a [[PaginatedMessage]], a utility to paginate messages (usually embeds).
+ * This is a {@link PaginatedMessage}, a utility to paginate messages (usually embeds).
  * You must either use this class directly or extend it.
  *
- * [[PaginatedMessage]] uses actions, these are essentially reaction emojis, when triggered run the said action.
- * You can utilize your own actions, or you can use the [[PaginatedMessage.defaultActions]].
- * [[PaginatedMessage.defaultActions]] is also static so you can modify these directly.
+ * {@link PaginatedMessage} uses actions, these are essentially reaction emojis, when triggered run the said action.
+ * You can utilize your own actions, or you can use the {@link PaginatedMessage.defaultActions}.
+ * {@link PaginatedMessage.defaultActions} is also static so you can modify these directly.
  *
- * [[PaginatedMessage]] also uses pages, these are simply {@linkplain https://discord.js.org/#/docs/main/stable/class/APIMessage APIMessages}.
+ * {@link PaginatedMessage} also uses pages, these are simply {@linkplain https://discord.js.org/#/docs/main/stable/class/APIMessage APIMessages}.
  *
  * @example
  * ```typescript
@@ -18,7 +18,7 @@ import { APIMessage, Message, MessageOptions, MessageReaction, NewsChannel, Reac
  * @example
  * ```typescript
  * // To utilize actions you can use the IPaginatedMessageAction by implementing it into a class.
- * // [[PaginatedMessage]] requires you to have the class initialized using `new`.
+ * // PaginatedMessage requires you to have the class initialized using `new`.
  *
  * class ForwardAction implements IPaginatedMessageAction {
  *   public id = '▶️';
@@ -37,12 +37,12 @@ import { APIMessage, Message, MessageOptions, MessageReaction, NewsChannel, Reac
  *     await response.reactions.removeAll();
  *     collector!.stop();
  *   }
- * }```
- *
+ * }
+ * ```
  */
 export class PaginatedMessage {
 	/**
-	 * The pages to be converted to [[PaginatedMessage.messages]]
+	 * The pages to be converted to {@link PaginatedMessage.messages}
 	 */
 	public pages: MessagePage[];
 
@@ -57,7 +57,7 @@ export class PaginatedMessage {
 	public collector: ReactionCollector | null = null;
 
 	/**
-	 * The pages which were converted from [[PaginatedMessage.pages]]
+	 * The pages which were converted from {@link PaginatedMessage.pages}
 	 */
 	public messages: (APIMessage | null)[] = [];
 
@@ -77,8 +77,8 @@ export class PaginatedMessage {
 	public idle = 20 * 1000;
 
 	/**
-	 * Constructor for the [[PaginatedMessage]] class
-	 * @param __namedParameters The [[PaginatedMessageOptions]] for this instance of the [[PaginatedMessage]] class
+	 * Constructor for the {@link PaginatedMessage} class
+	 * @param __namedParameters The {@link PaginatedMessageOptions} for this instance of the {@link PaginatedMessage} class
 	 */
 	public constructor({ pages, actions }: PaginatedMessageOptions = {}) {
 		this.pages = pages ?? [];
@@ -171,7 +171,7 @@ export class PaginatedMessage {
 	}
 
 	/**
-	 * Executes the [[PaginatedMessage]] and sends the pages corresponding with [[PaginatedMessage.index]].
+	 * Executes the {@link PaginatedMessage} and sends the pages corresponding with {@link PaginatedMessage.index}.
 	 * The handler will start collecting reactions and running actions once all actions have been reacted to the message.
 	 * @param author The author to validate.
 	 * @param channel The channel to use.
@@ -189,7 +189,7 @@ export class PaginatedMessage {
 	}
 
 	/**
-	 * Executed whenever [[PaginatedMessage.run]] is called.
+	 * Executed whenever {@link PaginatedMessage.run} is called.
 	 */
 	public async resolvePagesOnRun(channel: TextChannel | NewsChannel): Promise<void> {
 		for (let i = 0; i < this.pages.length; i++) await this.resolvePage(channel, i);
@@ -375,7 +375,7 @@ export interface PaginatedMessage {
 /**
  * @example
  * ```typescript
- * // To utilize actions you can use the [[IPaginatedMessageAction]] by implementing it into a class.
+ * // To utilize actions you can use the {@link IPaginatedMessageAction} by implementing it into a class.
  *
  * class ForwardAction implements IPaginatedMessageAction {
  *   public id = '▶️';
@@ -402,7 +402,7 @@ export interface IPaginatedMessageAction {
 }
 
 /**
- * The context to be used in [[IPaginatedMessageAction]].
+ * The context to be used in {@link IPaginatedMessageAction}.
  */
 export interface PaginatedMessageActionContext {
 	handler: PaginatedMessage;
@@ -418,13 +418,13 @@ export interface PaginatedMessageOptions {
 }
 
 /**
- * The pages that are used for [[PaginatedMessage.pages]]
+ * The pages that are used for {@link PaginatedMessage.pages}
  *
  * Pages can be either an {@linkplain https://discord.js.org/#/docs/main/stable/class/APIMessage APIMessage} directly,
  * or an awaited function which returns an {@linkplain https://discord.js.org/#/docs/main/stable/class/APIMessage APIMessage}.
  *
  * Furthermore, {@linkplain https://discord.js.org/#/docs/main/stable/typedef/MessageOptions MessageOptions} can be used to
- * construct the pages without state, this library also provides [[MessageBuilder]], which can be used as a chainable
+ * construct the pages without state, this library also provides {@link MessageBuilder}, which can be used as a chainable
  * alternative to raw objects, similar to how {@linkplain https://discord.js.org/#/docs/main/stable/class/MessageEmbed MessageEmbed}
  * works.
  *

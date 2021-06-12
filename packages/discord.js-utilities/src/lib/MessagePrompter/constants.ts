@@ -4,7 +4,7 @@ export type Constructor<A extends readonly any[] = readonly any[], R = any> = ne
 export type Awaited<T> = PromiseLike<T> | T;
 
 /**
- * A type to extend multiple discord types and simplify usage in [[MessagePrompter]]
+ * A type to extend multiple discord types and simplify usage in {@link MessagePrompter}
  */
 export type MessagePrompterMessage = APIMessageContentResolvable | (MessageOptions & { split?: false }) | MessageAdditions;
 

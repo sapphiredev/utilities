@@ -20,18 +20,18 @@ export abstract class MessagePrompterBaseStrategy {
 	public explicitReturn: boolean;
 
 	/**
-	 * The message that has been sent in [[MessagePrompter.run]]
+	 * The message that has been sent in {@link MessagePrompter.run}
 	 */
 	public appliedMessage: Message | null = null;
 
 	/**
-	 * The message that will be sent in [[MessagePrompter.run]]
+	 * The message that will be sent in {@link MessagePrompter.run}
 	 */
 	public message: MessagePrompterMessage;
 
 	/**
-	 * Constructor for the [[MessagePrompterBaseStrategy]] class
-	 * @param messagePrompter The used instance of [[MessagePrompter]]
+	 * Constructor for the {@link MessagePrompterBaseStrategy} class
+	 * @param messagePrompter The used instance of {@link MessagePrompter}
 	 * @param options Overrideable options if needed.
 	 */
 	public constructor(type: string, message: MessagePrompterMessage, options?: IMessagePrompterStrategyOptions) {

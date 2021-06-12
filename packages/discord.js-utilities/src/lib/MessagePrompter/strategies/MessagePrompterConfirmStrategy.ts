@@ -16,8 +16,8 @@ export class MessagePrompterConfirmStrategy extends MessagePrompterBaseStrategy 
 	public cancelEmoji: string | EmojiResolvable;
 
 	/**
-	 * Constructor for the [[MessagePrompterBaseStrategy]] class
-	 * @param message The message to be sent [[MessagePrompter]]
+	 * Constructor for the {@link MessagePrompterBaseStrategy} class
+	 * @param message The message to be sent {@link MessagePrompter}
 	 * @param options Overrideable options if needed.
 	 */
 	public constructor(message: MessagePrompterMessage, options?: IMessagePrompterConfirmStrategyOptions) {
@@ -28,7 +28,7 @@ export class MessagePrompterConfirmStrategy extends MessagePrompterBaseStrategy 
 	}
 
 	/**
-	 * This executes the [[MessagePrompter]] and sends the message if [[IMessagePrompterOptions.type]] equals confirm.
+	 * This executes the {@link MessagePrompter} and sends the message if {@link IMessagePrompterOptions.type} equals confirm.
 	 * The handler will wait for one (1) reaction.
 	 * @param channel The channel to use.
 	 * @param authorOrFilter An author object to validate or a {@linkplain https://discord.js.org/#/docs/main/stable/typedef/CollectorFilter CollectorFilter} predicate callback.
@@ -47,12 +47,12 @@ export class MessagePrompterConfirmStrategy extends MessagePrompterBaseStrategy 
 	}
 
 	/**
-	 * The default confirm emoji used for [[MessagePrompterConfirmStrategy]]
+	 * The default confirm emoji used for {@link MessagePrompterConfirmStrategy}
 	 */
 	public static confirmEmoji: string | EmojiResolvable = '🇾';
 
 	/**
-	 * The default cancel emoji used for [[MessagePrompterConfirmStrategy]]
+	 * The default cancel emoji used for {@link MessagePrompterConfirmStrategy}
 	 */
 	public static cancelEmoji: string | EmojiResolvable = '🇳';
 }

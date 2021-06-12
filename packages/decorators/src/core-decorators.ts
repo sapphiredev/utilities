@@ -8,7 +8,7 @@ type Ctor<A extends Arr = readonly any[], R = any> = new (...args: A) => R;
  * Decorator function that applies given options to any Sapphire piece
  * @example
  * ```ts
- *	ApplyOptions<CommandOptions>({
+ *	(at)ApplyOptions<CommandOptions>({
  *		name: 'test',
  *		cooldown: 10
  *	})

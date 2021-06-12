@@ -2,7 +2,7 @@ import type { APIMessage, NewsChannel, TextChannel } from 'discord.js';
 import { PaginatedMessage } from './PaginatedMessage';
 
 /**
- * This is a LazyPaginatedMessage. Instead of resolving all pages that are functions on [[PaginatedMessage.run]] will resolve when requested.
+ * This is a LazyPaginatedMessage. Instead of resolving all pages that are functions on {@link PaginatedMessage.run} will resolve when requested.
  */
 export class LazyPaginatedMessage extends PaginatedMessage {
 	/**
