@@ -17,6 +17,7 @@ export default async (): Promise<Config.InitialOptions> => ({
 		'<rootDir>/packages/utilities/tests/util/common.ts',
 		'<rootDir>/packages/decorators/tests/mocks',
 		'<rootDir>/packages/utilities/dist/index.js',
-		'<rootDir>/packages/utilities/src/index.ts'
+		'<rootDir>/packages/utilities/src/index.ts',
+		'<rootDir>/packages/utilities/src/lib/debounce/index.ts'
 	]
 });
