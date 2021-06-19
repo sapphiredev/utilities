@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.6.0](https://github.com/sapphiredev/utilities/compare/@sapphire/utilities@1.5.3...@sapphire/utilities@1.6.0) (2021-06-19)
+
+### Features
+
+-   **utilities:** update utilities with more stuff ([#122](https://github.com/sapphiredev/utilities/issues/122)) ([5dfb668](https://github.com/sapphiredev/utilities/commit/5dfb6688d27ab361a7c31692465ed613b500cdb1))
+
 ## [1.5.3](https://github.com/sapphiredev/utilities/compare/@sapphire/utilities@1.5.2...@sapphire/utilities@1.5.3) (2021-06-06)
 
 ### Bug Fixes

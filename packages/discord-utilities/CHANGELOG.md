@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.4](https://github.com/sapphiredev/utilities/compare/@sapphire/discord-utilities@2.1.3...@sapphire/discord-utilities@2.1.4) (2021-06-19)
+
+### Bug Fixes
+
+-   **doc:** change `[@link](https://github.com/link)` to `[@linkplain](https://github.com/linkplain)` for support in VSCode IntelliSense ([703d460](https://github.com/sapphiredev/utilities/commit/703d4605b547a8787aff62d6f1054ea26dfd9d1c))
+-   **docs:** update-tsdoc-for-vscode-may-2021 ([#126](https://github.com/sapphiredev/utilities/issues/126)) ([f8581bf](https://github.com/sapphiredev/utilities/commit/f8581bfe97a1b2f8aac3a3d3ed342d8ba92d730b))
+
 ## [2.1.3](https://github.com/sapphiredev/utilities/compare/@sapphire/discord-utilities@2.1.2...@sapphire/discord-utilities@2.1.3) (2021-06-06)
 
 ### Bug Fixes
