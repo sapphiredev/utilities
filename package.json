@@ -24,7 +24,6 @@
 		"@commitlint/cli": "^12.1.4",
 		"@commitlint/config-conventional": "^12.1.4",
 		"@discordjs/collection": "^0.1.6",
-		"@mdx-js/mdx": "^1.6.22",
 		"@rollup/plugin-commonjs": "^19.0.0",
 		"@rollup/plugin-node-resolve": "^13.0.0",
 		"@sapphire/framework": "^1.0.2",
