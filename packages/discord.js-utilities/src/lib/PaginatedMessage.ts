@@ -314,7 +314,7 @@ export class PaginatedMessage {
 
 		// Do not remove reactions if the message, channel, or guild, was deleted:
 		if (this.response && !PaginatedMessage.deletionStopReasons.includes(reason)) {
-			if (isGuildBasedChannel(this.response.channel) && this.response.channel.permissionsFor(this.response.client.user?.id || '')?.has('MANAGE_MESSAGES')) {
+			if (isGuildBasedChannel(this.response.channel) && this.response.client.user && this.response.channel.permissionsFor(this.response.client.user.id)?.has('MANAGE_MESSAGES')) {
 				await this.response.reactions.removeAll();
 			}
 		}
@@ -371,7 +371,7 @@ export class PaginatedMessage {
 		{
 			id: '⏹️',
 			run: async ({ response, collector }) => {
-				if (isGuildBasedChannel(response.channel) && response.channel.permissionsFor(response.client.user?.id || '')?.has('MANAGE_MESSAGES')) {
+				if (isGuildBasedChannel(response.channel) && response.client.user && response.channel.permissionsFor(response.client.user.id)?.has('MANAGE_MESSAGES')) {
 					await response.reactions.removeAll();
 				}
 
