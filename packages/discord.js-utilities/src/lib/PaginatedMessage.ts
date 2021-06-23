@@ -78,7 +78,7 @@ export class PaginatedMessage {
 
 	/**
 	 * Custom prompt message when a user wants to jump to a certain page number.
-	 * @default What page would you like to jump to
+	 * @default "What page would you like to jump to?"
 	 */
 	public static promptMessage = 'What page would you like to jump to?';
 
