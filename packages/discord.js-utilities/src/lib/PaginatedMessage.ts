@@ -283,7 +283,7 @@ export class PaginatedMessage {
 	 * @param user The user that reacted to the message.
 	 */
 	protected async handleCollect(author: User, channel: TextChannel | NewsChannel, reaction: MessageReaction, user: User): Promise<void> {
-		if ((channel as TextChannel).permissionsFor(channel.client.user?.id || '')?.has('MANAGE_MESSAGES')) {
+		if (isGuildBasedChannel(channel) && channel.client.user && channel.permissionsFor(channel.client.user.id).has('MANAGE_MESSAGES')) {
 			await reaction.users.remove(user);
 		}
 
