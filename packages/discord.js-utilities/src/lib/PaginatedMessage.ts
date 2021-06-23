@@ -77,6 +77,12 @@ export class PaginatedMessage {
 	public idle = 20 * 1000;
 
 	/**
+	 * Custom prompt message when a user wants to jump to a certain page number.
+	 * @default What page would you like to jump to
+	 */
+	public static promptMessage = 'What page would you like to jump to?';
+
+	/**
 	 * Constructor for the {@link PaginatedMessage} class
 	 * @param __namedParameters The {@link PaginatedMessageOptions} for this instance of the {@link PaginatedMessage} class
 	 */
@@ -85,6 +91,11 @@ export class PaginatedMessage {
 
 		for (const page of this.pages) this.messages.push(page instanceof APIMessage ? page : null);
 		for (const action of actions ?? this.constructor.defaultActions) this.actions.set(action.id, action);
+	}
+
+	public setPromptMessage(message: string) {
+		PaginatedMessage.promptMessage = message;
+		return this;
 	}
 
 	/**
@@ -315,7 +326,7 @@ export class PaginatedMessage {
 		{
 			id: '🔢',
 			run: async ({ handler, author, channel }) => {
-				const questionMessage = await channel.send('What page would you like to jump to?');
+				const questionMessage = await channel.send(PaginatedMessage.promptMessage);
 				const collected = await channel
 					.awaitMessages((message: Message) => message.author.id === author.id, { max: 1, idle: 15 * 1000 })
 					.catch(() => null);
