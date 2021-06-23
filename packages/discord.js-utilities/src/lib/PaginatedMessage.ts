@@ -272,7 +272,9 @@ export class PaginatedMessage {
 	 * @param user The user that reacted to the message.
 	 */
 	protected async handleCollect(author: User, channel: TextChannel | NewsChannel, reaction: MessageReaction, user: User): Promise<void> {
-		await reaction.users.remove(user);
+		if ((channel as TextChannel).permissionsFor(channel.client.user?.id || '')?.has('MANAGE_MESSAGES')) {
+			await reaction.users.remove(user);
+		}
 
 		const action = (this.actions.get(reaction.emoji.identifier) ?? this.actions.get(reaction.emoji.name))!;
 		const previousIndex = this.index;
@@ -300,7 +302,9 @@ export class PaginatedMessage {
 
 		// Do not remove reactions if the message, channel, or guild, was deleted:
 		if (this.response && !PaginatedMessage.deletionStopReasons.includes(reason)) {
-			await this.response.reactions.removeAll();
+			if ((this.response.channel as TextChannel).permissionsFor(this.response.client.user?.id || '')?.has('MANAGE_MESSAGES')) {
+				await this.response.reactions.removeAll();
+			}
 		}
 	}
 
@@ -355,7 +359,10 @@ export class PaginatedMessage {
 		{
 			id: '⏹️',
 			run: async ({ response, collector }) => {
-				await response.reactions.removeAll();
+				if ((response.channel as TextChannel).permissionsFor(response.client.user?.id || '')?.has('MANAGE_MESSAGES')) {
+					await response.reactions.removeAll();
+				}
+
 				collector.stop();
 			}
 		}
