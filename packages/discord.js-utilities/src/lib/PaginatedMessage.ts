@@ -1,4 +1,5 @@
 import { APIMessage, Message, MessageOptions, MessageReaction, NewsChannel, ReactionCollector, TextChannel, User } from 'discord.js';
+import { isGuildBasedChannel } from './type-guards';
 
 /**
  * This is a {@link PaginatedMessage}, a utility to paginate messages (usually embeds).
@@ -283,7 +284,7 @@ export class PaginatedMessage {
 	 * @param user The user that reacted to the message.
 	 */
 	protected async handleCollect(author: User, channel: TextChannel | NewsChannel, reaction: MessageReaction, user: User): Promise<void> {
-		if (isGuildBasedChannel(channel) && channel.client.user && channel.permissionsFor(channel.client.user.id).has('MANAGE_MESSAGES')) {
+		if (isGuildBasedChannel(channel) && channel.client.user && channel.permissionsFor(channel.client.user.id)) {
 			await reaction.users.remove(user);
 		}
 
@@ -313,7 +314,7 @@ export class PaginatedMessage {
 
 		// Do not remove reactions if the message, channel, or guild, was deleted:
 		if (this.response && !PaginatedMessage.deletionStopReasons.includes(reason)) {
-			if ((this.response.channel as TextChannel).permissionsFor(this.response.client.user?.id || '')?.has('MANAGE_MESSAGES')) {
+			if (isGuildBasedChannel(this.response.channel) && this.response.channel.permissionsFor(this.response.client.user?.id || '')?.has('MANAGE_MESSAGES')) {
 				await this.response.reactions.removeAll();
 			}
 		}
@@ -370,7 +371,7 @@ export class PaginatedMessage {
 		{
 			id: '⏹️',
 			run: async ({ response, collector }) => {
-				if ((response.channel as TextChannel).permissionsFor(response.client.user?.id || '')?.has('MANAGE_MESSAGES')) {
+				if (isGuildBasedChannel(response.channel) && response.channel.permissionsFor(response.client.user?.id || '')?.has('MANAGE_MESSAGES')) {
 					await response.reactions.removeAll();
 				}
 
