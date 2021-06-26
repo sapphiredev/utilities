@@ -1,4 +1,15 @@
-import { APIMessage, Message, MessageOptions, MessageReaction, NewsChannel, ReactionCollector, TextChannel, User } from 'discord.js';
+import {
+	APIMessage,
+	Collection,
+	Message,
+	MessageOptions,
+	MessageReaction,
+	NewsChannel,
+	ReactionCollector,
+	Snowflake,
+	TextChannel,
+	User
+} from 'discord.js';
 
 /**
  * This is a {@link PaginatedMessage}, a utility to paginate messages (usually embeds).
@@ -294,7 +305,7 @@ export class PaginatedMessage {
 	 * Handles the `end` event from the collector.
 	 * @param reason The reason for which the collector was ended.
 	 */
-	protected async handleEnd(reason: string): Promise<void> {
+	protected async handleEnd(_: Collection<Snowflake, MessageReaction>, reason: string): Promise<void> {
 		// Remove all listeners from the collector:
 		this.collector?.removeAllListeners();
 
