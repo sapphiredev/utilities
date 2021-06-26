@@ -150,6 +150,13 @@
 			"avatar_url": "https://avatars.githubusercontent.com/u/56084970?v=4",
 			"profile": "https://kaname.netlify.app/",
 			"contributions": ["code"]
+		},
+		{
+			"login": "nandhagk",
+			"name": "nandhagk",
+			"avatar_url": "https://avatars.githubusercontent.com/u/62976649?v=4",
+			"profile": "https://github.com/nandhagk",
+			"contributions": ["bug"]
 		}
 	],
 	"contributorsPerLine": 7,
