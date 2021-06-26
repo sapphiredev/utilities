@@ -7,6 +7,7 @@
 		"packages/async-queue/README.md",
 		"packages/decorators/README.md",
 		"packages/discord-utilities/README.md",
+		"packages/discord.js-utilities/README.md",
 		"packages/embed-jsx/README.md",
 		"packages/eslint-config/README.md",
 		"packages/event-iterator/README.md",
@@ -17,7 +18,6 @@
 		"packages/stopwatch/README.md",
 		"packages/time-utilities/README.md",
 		"packages/ts-config/README.md",
-		"packages/type/README.md",
 		"packages/utilities/README.md",
 		"README.md"
 	],
