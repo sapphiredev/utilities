@@ -143,6 +143,13 @@
 			"avatar_url": "https://avatars.githubusercontent.com/in/29110?v=4",
 			"profile": "https://github.com/apps/dependabot",
 			"contributions": ["maintenance"]
+		},
+		{
+			"login": "kaname-png",
+			"name": "Kaname",
+			"avatar_url": "https://avatars.githubusercontent.com/u/56084970?v=4",
+			"profile": "https://kaname.netlify.app/",
+			"contributions": ["code"]
 		}
 	],
 	"contributorsPerLine": 7,
