@@ -10,6 +10,7 @@ import {
 	TextChannel,
 	User
 } from 'discord.js';
+import { isGuildBasedChannel } from './type-guards';
 
 /**
  * This is a {@link PaginatedMessage}, a utility to paginate messages (usually embeds).
@@ -96,6 +97,11 @@ export class PaginatedMessage {
 
 		for (const page of this.pages) this.messages.push(page instanceof APIMessage ? page : null);
 		for (const action of actions ?? this.constructor.defaultActions) this.actions.set(action.id, action);
+	}
+
+	public setPromptMessage(message: string) {
+		PaginatedMessage.promptMessage = message;
+		return this;
 	}
 
 	/**
@@ -283,7 +289,9 @@ export class PaginatedMessage {
 	 * @param user The user that reacted to the message.
 	 */
 	protected async handleCollect(author: User, channel: TextChannel | NewsChannel, reaction: MessageReaction, user: User): Promise<void> {
-		await reaction.users.remove(user);
+		if (isGuildBasedChannel(channel) && channel.client.user && channel.permissionsFor(channel.client.user.id)?.has('MANAGE_MESSAGES')) {
+			await reaction.users.remove(user);
+		}
 
 		const action = (this.actions.get(reaction.emoji.identifier) ?? this.actions.get(reaction.emoji.name))!;
 		const previousIndex = this.index;
@@ -311,7 +319,13 @@ export class PaginatedMessage {
 
 		// Do not remove reactions if the message, channel, or guild, was deleted:
 		if (this.response && !PaginatedMessage.deletionStopReasons.includes(reason)) {
-			await this.response.reactions.removeAll();
+			if (
+				isGuildBasedChannel(this.response.channel) &&
+				this.response.client.user &&
+				this.response.channel.permissionsFor(this.response.client.user.id)?.has('MANAGE_MESSAGES')
+			) {
+				await this.response.reactions.removeAll();
+			}
 		}
 	}
 
@@ -322,7 +336,7 @@ export class PaginatedMessage {
 		{
 			id: '🔢',
 			run: async ({ handler, author, channel }) => {
-				const questionMessage = await channel.send('What page would you like to jump to?');
+				const questionMessage = await channel.send(PaginatedMessage.promptMessage);
 				const collected = await channel
 					.awaitMessages((message: Message) => message.author.id === author.id, { max: 1, idle: 15 * 1000 })
 					.catch(() => null);
@@ -366,7 +380,14 @@ export class PaginatedMessage {
 		{
 			id: '⏹️',
 			run: async ({ response, collector }) => {
-				await response.reactions.removeAll();
+				if (
+					isGuildBasedChannel(response.channel) &&
+					response.client.user &&
+					response.channel.permissionsFor(response.client.user.id)?.has('MANAGE_MESSAGES')
+				) {
+					await response.reactions.removeAll();
+				}
+
 				collector.stop();
 			}
 		}
@@ -377,6 +398,12 @@ export class PaginatedMessage {
 	 * event when the message (or its owner) has been deleted.
 	 */
 	public static deletionStopReasons = ['messageDelete', 'channelDelete', 'guildDelete'];
+
+	/**
+	 * Custom prompt message when a user wants to jump to a certain page number.
+	 * @default "What page would you like to jump to?"
+	 */
+	public static promptMessage = 'What page would you like to jump to?';
 }
 
 export interface PaginatedMessage {
