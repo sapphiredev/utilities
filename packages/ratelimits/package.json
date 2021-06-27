@@ -1,6 +1,6 @@
 {
 	"name": "@sapphire/ratelimits",
-	"version": "1.2.3",
+	"version": "1.2.4",
 	"description": "Bucket implementation for Ratelimits.",
 	"author": "@sapphire",
 	"license": "MIT",

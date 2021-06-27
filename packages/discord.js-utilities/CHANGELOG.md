@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.6.0](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@1.5.10...@sapphire/discord.js-utilities@1.6.0) (2021-06-27)
+
+### Bug Fixes
+
+-   **discord.js-utilities:** fixed `PaginatedMessage#handleEnd` ([0c05a6b](https://github.com/sapphiredev/utilities/commit/0c05a6b5d707f0decc7d5d140875b51b99a57b63))
+
+### Features
+
+-   **djs-utilities:** verify channel type before removing reaction & allow page prompt customization ([e4f49b3](https://github.com/sapphiredev/utilities/commit/e4f49b348845dbb92a4a3f3963e7fdc067102ef8)), closes [#128](https://github.com/sapphiredev/utilities/issues/128)
+
 ## [1.5.10](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@1.5.9...@sapphire/discord.js-utilities@1.5.10) (2021-06-19)
 
 ### Bug Fixes

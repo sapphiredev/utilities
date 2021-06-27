@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.5](https://github.com/sapphiredev/utilities/compare/@sapphire/snowflake@1.3.4...@sapphire/snowflake@1.3.5) (2021-06-27)
+
+**Note:** Version bump only for package @sapphire/snowflake
+
 ## [1.3.4](https://github.com/sapphiredev/utilities/compare/@sapphire/snowflake@1.3.3...@sapphire/snowflake@1.3.4) (2021-06-19)
 
 ### Bug Fixes
