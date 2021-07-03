@@ -4,6 +4,15 @@ import { DeconstructedSnowflake, Snowflake } from '../../src';
 const sampleEpoch = 1577836800000n;
 
 describe('Snowflake', () => {
+	beforeAll(() => {
+		jest.useFakeTimers('modern');
+		jest.setSystemTime(new Date('2020-01-01T00:00:00.000+00:00'));
+	});
+
+	afterAll(() => {
+		jest.useRealTimers();
+	});
+
 	describe('Generate', () => {
 		test('GIVEN timestamp as number THEN returns predefined snowflake', () => {
 			const testID = '3971046231244935168';

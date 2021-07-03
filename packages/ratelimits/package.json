@@ -50,5 +50,8 @@
 	},
 	"publishConfig": {
 		"access": "public"
+	},
+	"dependencies": {
+		"@sapphire/time-utilities": "^1.3.5"
 	}
 }

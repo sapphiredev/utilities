@@ -1,1 +1,2 @@
-export * from './lib/Bucket';
+export * from './lib/RateLimit';
+export * from './lib/RateLimitManager';
