@@ -271,7 +271,7 @@ export const eslintConfig = {
 		'no-sync': 'off',
 		'no-template-curly-in-string': 'error',
 		'no-ternary': 'off',
-		'no-this-before-super': 'off',
+		'no-this-before-super': 'error',
 		'no-throw-literal': 'off',
 		'no-undef': 'off',
 		'no-undef-init': 'off',
