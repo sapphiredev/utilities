@@ -14,7 +14,8 @@ export const eslintConfig = {
 		extraFileExtensions: ['.mjs'],
 		project: './tsconfig.eslint.json',
 		sourceType: 'module',
-		ecmaVersion: 2020
+		ecmaVersion: 2020,
+		warnOnUnsupportedTypeScriptVersion: false
 	},
 	extends: ['plugin:@typescript-eslint/recommended', 'plugin:prettier/recommended'],
 	env: {
