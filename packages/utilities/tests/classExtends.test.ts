@@ -10,7 +10,7 @@ describe('classExtends', () => {
 	}
 
 	test('GIVEN class that extends base class THEN returns true', () => {
-		expect(classExtends(ExtendedClass, BaseClass)).toBe(true);
+		expect(classExtends(ExtendedClass, BaseClass)).toBeTrue();
 	});
 
 	test('GIVEN class that does not extend base class THEN returns false', () => {
@@ -18,6 +18,6 @@ describe('classExtends', () => {
 			public name = 'newClass';
 		}
 
-		expect(classExtends(NewClass, BaseClass)).toBe(false);
+		expect(classExtends(NewClass, BaseClass)).toBeFalse();
 	});
 });

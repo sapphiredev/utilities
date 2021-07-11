@@ -83,7 +83,7 @@ describe('deepClone', () => {
 		const source = new Map().set('Hello', 420).set('World', 'Yay!');
 		const cloned = deepClone(source);
 
-		expect(cloned instanceof Map).toBe(true);
+		expect(cloned instanceof Map).toBeTrue();
 		expect(source).not.toBe(cloned);
 		expect(cloned.size).toBe(2);
 		expect(cloned.get('Hello')).toBe(420);
@@ -95,10 +95,10 @@ describe('deepClone', () => {
 		const source = new Set().add('Hello').add('World');
 		const cloned = deepClone(source);
 
-		expect(cloned instanceof Set).toBe(true);
+		expect(cloned instanceof Set).toBeTrue();
 		expect(source).not.toBe(cloned);
 		expect(cloned.size).toBe(2);
-		expect(cloned.has('Hello')).toBe(true);
-		expect(cloned.has('World')).toBe(true);
+		expect(cloned.has('Hello')).toBeTrue();
+		expect(cloned.has('World')).toBeTrue();
 	});
 });
