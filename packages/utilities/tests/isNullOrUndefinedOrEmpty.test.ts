@@ -1,54 +1,54 @@
-import { isNullOrUndefinedOrZero } from '../src';
+import { isNullOrUndefinedOrEmpty } from '../src';
 
-describe('isNullOrUndefinedOrZero', () => {
-	test('GIVEN string THEN returns false', () => {
-		expect(isNullOrUndefinedOrZero('')).toBeFalse();
+describe('isNullOrUndefinedOrEmpty', () => {
+	test('GIVEN empty string THEN returns true', () => {
+		expect(isNullOrUndefinedOrEmpty('')).toBeTrue();
 	});
 
-	test('GIVEN number as 0 THEN returns true', () => {
-		expect(isNullOrUndefinedOrZero(0)).toBeTrue();
+	test('GIVEN string THEN returns false', () => {
+		expect(isNullOrUndefinedOrEmpty('test')).toBeFalse();
 	});
 
 	test('GIVEN number THEN returns false', () => {
-		expect(isNullOrUndefinedOrZero(5)).toBeFalse();
+		expect(isNullOrUndefinedOrEmpty(5)).toBeFalse();
 	});
 
 	test('GIVEN boolean THEN returns false', () => {
-		expect(isNullOrUndefinedOrZero(true)).toBeFalse();
+		expect(isNullOrUndefinedOrEmpty(true)).toBeFalse();
 	});
 
 	test('GIVEN undefined THEN returns true', () => {
-		expect(isNullOrUndefinedOrZero(undefined)).toBeTrue();
+		expect(isNullOrUndefinedOrEmpty(undefined)).toBeTrue();
 	});
 
 	test('GIVEN null THEN returns true', () => {
-		expect(isNullOrUndefinedOrZero(null)).toBeTrue();
+		expect(isNullOrUndefinedOrEmpty(null)).toBeTrue();
 	});
 
 	test('GIVEN object THEN returns false', () => {
-		expect(isNullOrUndefinedOrZero({})).toBeFalse();
+		expect(isNullOrUndefinedOrEmpty({})).toBeFalse();
 	});
 
 	test('GIVEN array THEN returns false', () => {
-		expect(isNullOrUndefinedOrZero([])).toBeFalse();
+		expect(isNullOrUndefinedOrEmpty([])).toBeFalse();
 	});
 
 	test('GIVEN function THEN returns false', () => {
 		const value = function value(): void {
 			/* noop */
 		};
-		expect(isNullOrUndefinedOrZero(value)).toBeFalse();
+		expect(isNullOrUndefinedOrEmpty(value)).toBeFalse();
 	});
 
 	test('GIVEN array function THEN returns false', () => {
 		const value = (): void => {
 			/* noop */
 		};
-		expect(isNullOrUndefinedOrZero(value)).toBeFalse();
+		expect(isNullOrUndefinedOrEmpty(value)).toBeFalse();
 	});
 
 	test('GIVEN class THEN returns false', () => {
 		const value = class A {};
-		expect(isNullOrUndefinedOrZero(value)).toBeFalse();
+		expect(isNullOrUndefinedOrEmpty(value)).toBeFalse();
 	});
 });
