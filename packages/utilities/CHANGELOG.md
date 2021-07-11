@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.7.0](https://github.com/sapphiredev/utilities/compare/@sapphire/utilities@1.6.1...@sapphire/utilities@1.7.0) (2021-07-11)
+
+### Features
+
+-   **utilities:** add 3 new helper methods ([4ebcd43](https://github.com/sapphiredev/utilities/commit/4ebcd431cede7773aed2fe82e58c0d2d66578fea))
+
 ## [1.6.1](https://github.com/sapphiredev/utilities/compare/@sapphire/utilities@1.6.0...@sapphire/utilities@1.6.1) (2021-06-27)
 
 **Note:** Version bump only for package @sapphire/utilities

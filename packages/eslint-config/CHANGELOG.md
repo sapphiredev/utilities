@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.2](https://github.com/sapphiredev/utilities/compare/@sapphire/eslint-config@3.2.1...@sapphire/eslint-config@3.2.2) (2021-07-11)
+
+### Bug Fixes
+
+-   **eslint-config:** disable `warnOnUnsupportedTypeScriptVersion` ([2446724](https://github.com/sapphiredev/utilities/commit/244672404127affddf6423879e281521ffa330a6))
+-   **eslint-config:** enable "no-this-before-super" ([ebc1869](https://github.com/sapphiredev/utilities/commit/ebc18695f3d96fcdcd033654e969ba7a811eb0ec))
+
 ## [3.2.1](https://github.com/sapphiredev/utilities/compare/@sapphire/eslint-config@3.2.0...@sapphire/eslint-config@3.2.1) (2021-06-27)
 
 **Note:** Version bump only for package @sapphire/eslint-config
