@@ -10,6 +10,7 @@
 		"**/*.js",
 		"**/rollup.config.ts",
 		"**/jest.config.ts",
+		"**/jest.setup.ts",
 		"packages/async-queue/src/index.ts",
 		"packages/decorators/src/index.ts",
 		"packages/discord-utilities/src/index.ts",
