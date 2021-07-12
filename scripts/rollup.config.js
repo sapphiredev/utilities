@@ -4,14 +4,15 @@ import typescript from 'rollup-plugin-typescript2';
 
 /**
  * Creates a Rollup configuration
- * @param {{ umdName: string, plugins: array, extraOptions: object }} options The options to pass into the baseConfig
+ * @param {{ umdName: string, umdGlobals: Record<string, string>, plugins: array, extraOptions: object }} options The options to pass into the baseConfig
  */
 const createRollupConfig = (options) => {
 	if (!Reflect.has(options, 'umdName')) options.umdName = '';
 	if (!Reflect.has(options, 'plugins')) options.plugins = [];
 	if (!Reflect.has(options, 'extraOptions')) options.extraOptions = {};
+	if (!Reflect.has(options, 'umdGlobals')) options.umdGlobals = {};
 
-	const { umdName, plugins, extraOptions } = options;
+	const { umdName, plugins, extraOptions, umdGlobals } = options;
 
 	return {
 		input: 'src/index.ts',
@@ -33,7 +34,8 @@ const createRollupConfig = (options) => {
 					file: './dist/index.umd.js',
 					format: 'umd',
 					name: umdName,
-					sourcemap: true
+					sourcemap: true,
+					globals: umdGlobals
 				}
 			])
 		],

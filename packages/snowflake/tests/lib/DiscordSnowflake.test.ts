@@ -1,6 +1,15 @@
 import { DeconstructedSnowflake, DiscordSnowflake } from '../../src';
 
 describe('Discord Snowflakes', () => {
+	beforeAll(() => {
+		jest.useFakeTimers('modern');
+		jest.setSystemTime(new Date('2020-01-01T00:00:00.000+00:00'));
+	});
+
+	afterAll(() => {
+		jest.useRealTimers();
+	});
+
 	describe('Generate', () => {
 		test('GIVEN basic code THEN generates snowflake', () => {
 			const testID = '661720242585735168';
