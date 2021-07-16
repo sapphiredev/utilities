@@ -27,7 +27,7 @@ npm install --save-dev @sapphire/ts-config
 ## Usage
 
 You can use `@sapphire/ts-config`'s
-[`tsconfig.json`](/tsconfig.json) by extending it in yours:
+[`tsconfig.json`](https://github.com/sapphiredev/utilities/blob/main/packages/ts-config/src/tsconfig.json) by extending it in yours:
 
 ```json
 {
@@ -35,8 +35,46 @@ You can use `@sapphire/ts-config`'s
 }
 ```
 
-All of its properties are defaulted for bleeding-edge TypeScript options, you may extend this to include your own
+This TypeScript config is set up in such a way that it will suite nearly all projects, you may extend this to include your own
 configuration options as well.
+
+Following is a copy of this config file for easy viewing:
+
+```json
+{
+	"compileOnSave": true,
+	"compilerOptions": {
+		"allowSyntheticDefaultImports": true,
+		"alwaysStrict": true,
+		"declaration": true,
+		"declarationMap": true,
+		"emitDecoratorMetadata": true,
+		"esModuleInterop": true,
+		"experimentalDecorators": true,
+		"forceConsistentCasingInFileNames": true,
+		"importHelpers": true,
+		"importsNotUsedAsValues": "error",
+		"incremental": true,
+		"lib": ["esnext"],
+		"module": "CommonJS",
+		"moduleResolution": "Node",
+		"newLine": "lf",
+		"noEmitHelpers": true,
+		"noFallthroughCasesInSwitch": true,
+		"noImplicitReturns": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"preserveConstEnums": true,
+		"pretty": true,
+		"removeComments": false,
+		"resolveJsonModule": true,
+		"sourceMap": true,
+		"strict": true,
+		"target": "ES2019",
+		"useDefineForClassFields": true
+	}
+}
+```
 
 ## API Documentation
 
