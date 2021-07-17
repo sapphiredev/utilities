@@ -38,9 +38,7 @@ jobs:
         if: ${{ !steps.cache-restore.outputs.cache-hit }}
         run: yarn --frozen-lockfile
       - name: Build all packages in proper order
-        run: |
-          yarn build
-          yarn workspace @sapphire/ts-config prepublishOnly
+        run: yarn build
       - name: Bump Version & Publish
         run: |
           # Resolve the tag to be used. "next" for push events, "pr-{prNumber}" for dispatch events.
