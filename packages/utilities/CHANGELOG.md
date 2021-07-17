@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/sapphiredev/utilities/compare/@sapphire/utilities@1.7.0...@sapphire/utilities@2.0.0) (2021-07-17)
+
+### Code Refactoring
+
+-   **rateLimits:** rewrite all of it ([#130](https://github.com/sapphiredev/utilities/issues/130)) ([320778c](https://github.com/sapphiredev/utilities/commit/320778ca65cbf3591bd1ce0b1f2eb430693eef9a))
+
+### BREAKING CHANGES
+
+-   **rateLimits:** Removed `Bucket`
+
 # [1.7.0](https://github.com/sapphiredev/utilities/compare/@sapphire/utilities@1.6.1...@sapphire/utilities@1.7.0) (2021-07-11)
 
 ### Features

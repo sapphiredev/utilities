@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/sapphiredev/utilities/compare/@sapphire/snowflake@1.3.6...@sapphire/snowflake@2.0.0) (2021-07-17)
+
+### Code Refactoring
+
+-   **rateLimits:** rewrite all of it ([#130](https://github.com/sapphiredev/utilities/issues/130)) ([320778c](https://github.com/sapphiredev/utilities/commit/320778ca65cbf3591bd1ce0b1f2eb430693eef9a))
+
+### BREAKING CHANGES
+
+-   **rateLimits:** Removed `Bucket`
+
 ## [1.3.6](https://github.com/sapphiredev/utilities/compare/@sapphire/snowflake@1.3.5...@sapphire/snowflake@1.3.6) (2021-07-11)
 
 **Note:** Version bump only for package @sapphire/snowflake
