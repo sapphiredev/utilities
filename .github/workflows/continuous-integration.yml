@@ -28,8 +28,8 @@ jobs:
       - name: Install Dependencies if Cache Miss
         if: ${{ !steps.cache-restore.outputs.cache-hit }}
         run: yarn --frozen-lockfile
-      - name: Build ESLint and Prettier configs
-        run: yarn tsc -b packages/eslint-config packages/prettier-config
+      - name: Build ESLint, Prettier and Utilities
+        run: yarn build:1
       - name: Run ESLint
         run: yarn lint --fix=false
 

@@ -1,16 +1,20 @@
+import { Time } from '@sapphire/time-utilities';
+import { Awaited, isFunction } from '@sapphire/utilities';
+import type { RESTPostAPIChannelMessageJSONBody } from 'discord-api-types/v8';
 import {
 	APIMessage,
 	Collection,
 	Message,
+	MessageEmbed,
+	MessageEmbedOptions,
 	MessageOptions,
 	MessageReaction,
-	NewsChannel,
 	ReactionCollector,
 	Snowflake,
-	TextChannel,
 	User
 } from 'discord.js';
-import { isGuildBasedChannel } from './type-guards';
+import { MessageBuilder } from '../builders/MessageBuilder';
+import { isGuildBasedChannel } from '../type-guards';
 
 /**
  * This is a {@link PaginatedMessage}, a utility to paginate messages (usually embeds).
@@ -84,19 +88,27 @@ export class PaginatedMessage {
 	public index = 0;
 
 	/**
-	 * The amount of time to idle before the paginator is closed. Defaults to `20 * 1000`.
+	 * The amount of milliseconds to idle before the paginator is closed. Defaults to 20 minutes.
 	 */
-	public idle = 20 * 1000;
+	public idle = Time.Minute * 20;
+
+	/**
+	 * The template for this {@link PaginatedMessage}.
+	 * You can use templates to set defaults that will apply to each and every page in the {@link PaginatedMessage}
+	 */
+	public template: MessageOptions;
 
 	/**
 	 * Constructor for the {@link PaginatedMessage} class
 	 * @param __namedParameters The {@link PaginatedMessageOptions} for this instance of the {@link PaginatedMessage} class
 	 */
-	public constructor({ pages, actions }: PaginatedMessageOptions = {}) {
+	public constructor({ pages, actions, template }: PaginatedMessageOptions = {}) {
 		this.pages = pages ?? [];
 
 		for (const page of this.pages) this.messages.push(page instanceof APIMessage ? page : null);
 		for (const action of actions ?? this.constructor.defaultActions) this.actions.set(action.id, action);
+
+		this.template = PaginatedMessage.resolveTemplate(template);
 	}
 
 	public setPromptMessage(message: string) {
@@ -170,12 +182,154 @@ export class PaginatedMessage {
 
 	/**
 	 * Adds a page to the existing ones. This will be added as the last page.
+	 * @remark While you can use this method you should first check out
+	 * {@link PaginatedMessage.addPageBuilder},
+	 * {@link PaginatedMessage.addPageContent} and
+	 * {@link PaginatedMessage.addPageEmbed} as
+	 * these are easier functional methods of adding pages and will likely already suffice for your needs.
+	 *
 	 * @param page The page to add.
 	 */
 	public addPage(page: MessagePage): this {
 		this.pages.push(page);
 		this.messages.push(page instanceof APIMessage ? page : null);
 		return this;
+	}
+
+	/**
+	 * Adds a page to the existing ones using a {@link MessageBuilder}. This will be added as the last page.
+	 * @param builder Either a callback whose first parameter is `new MessageBuilder()`, or an already constructed {@link MessageBuilder}
+	 * @example
+	 * ```typescript
+	 * const { PaginatedMessage } = require('@sapphire/discord.js-utilities');
+	 * const { MessageEmbed } = require('discord.js');
+	 *
+	 * const paginatedMessage = new PaginatedMessage()
+	 * 	.addPageBuilder((builder) => {
+	 * 		const embed = new MessageEmbed()
+	 * 			.setColor('#FF0000')
+	 * 			.setDescription('example description');
+	 *
+	 * 		return builder
+	 * 			.setContent('example content')
+	 * 			.setEmbed(embed);
+	 * });
+	 * ```
+	 * @example
+	 * ```typescript
+	 * const { MessageEmbed } = require('discord.js');
+	 * const { MessageBuilder, PaginatedMessage } = require('@sapphire/discord.js-utilities');
+	 *
+	 * const embed = new MessageEmbed()
+	 * 	.setColor('#FF0000')
+	 * 	.setDescription('example description');
+	 *
+	 * const builder = new MessageBuilder()
+	 * 	.setContent('example content')
+	 * 	.setEmbed(embed);
+	 *
+	 * const paginatedMessage = new PaginatedMessage()
+	 * 	.addPageBuilder(builder);
+	 * ```
+	 */
+	public addPageBuilder(builder: MessageBuilder | ((builder: MessageBuilder) => MessageBuilder)): this {
+		return this.addPage(isFunction(builder) ? builder(new MessageBuilder()) : builder);
+	}
+
+	/**
+	 * Adds a page to the existing ones asynchronously using a {@link MessageBuilder}. This wil be added as the last page.
+	 * @param builder Either a callback whose first parameter is `new MessageBuilder()`, or an already constructed {@link MessageBuilder}
+	 * @example
+	 * ```typescript
+	 * const { PaginatedMessage } = require('@sapphire/discord.js-utilities');
+	 * const { MessageEmbed } = require('discord.js');
+	 *
+	 * const paginatedMessage = new PaginatedMessage()
+	 * 	.addAsyncPageBuilder(async (builder) => {
+	 * 		const someRemoteData = await fetch('https://contoso.com/api/users');
+	 *
+	 * 		const embed = new MessageEmbed()
+	 * 			.setColor('#FF0000')
+	 * 			.setDescription(someRemoteData.data);
+	 *
+	 * 		return builder
+	 * 			.setContent('example content')
+	 * 			.setEmbed(embed);
+	 * });
+	 * ```
+	 */
+	public addAsyncPageBuilder(builder: MessageBuilder | ((builder: MessageBuilder) => Promise<MessageBuilder>)): this {
+		return this.addPage(async () => (isFunction(builder) ? builder(new MessageBuilder()) : builder));
+	}
+
+	/**
+	 * Adds a page to the existing ones using simple message content. This will be added as the last page.
+	 * @param content The content to set.
+	 * @example
+	 * ```typescript
+	 * const { PaginatedMessage } = require('@sapphire/discord.js-utilities');
+	 *
+	 * const paginatedMessage = new PaginatedMessage()
+	 * 	.addPageContent('example content');
+	 * ```
+	 */
+	public addPageContent(content: string): this {
+		return this.addPage({ content });
+	}
+
+	/**
+	 * Adds a page to the existing ones using a {@link MessageEmbed}. This wil be added as the last page.
+	 * @param embed Either a callback whose first paramter is `new MessageEmbed()`, or an already constructed {@link MessageEmbed}
+	 * @example
+	 * ```typescript
+	 * const { PaginatedMessage } = require('@sapphire/discord.js-utilities');
+	 *
+	 * const paginatedMessage = new PaginatedMessage()
+	 * 	.addPageEmbed((embed) => {
+	 * 		embed
+	 * 			.setColor('#FF0000')
+	 * 			.setDescription('example description');
+	 *
+	 * 		return embed;
+	 * });
+	 * ```
+	 * @example
+	 * ```typescript
+	 * const { PaginatedMessage } = require('@sapphire/discord.js-utilities');
+	 *
+	 * const embed = new MessageEmbed()
+	 * 	.setColor('#FF0000')
+	 * 	.setDescription('example description');
+	 *
+	 * const paginatedMessage = new PaginatedMessage()
+	 * 	.addPageEmbed(embed);
+	 * ```
+	 */
+	public addPageEmbed(embed: MessageEmbed | ((embed: MessageEmbed) => MessageEmbed)): this {
+		return this.addPage({ embed: isFunction(embed) ? embed(new MessageEmbed()) : embed });
+	}
+
+	/**
+	 * Adds a page to the existing ones asynchronously using a {@link MessageEmbed}. This wil be added as the last page.
+	 * @param embed Either a callback whose first paramter is `new MessageEmbed()`, or an already constructed {@link MessageEmbed}
+	 * @example
+	 * ```typescript
+	 * const { PaginatedMessage } = require('@sapphire/discord.js-utilities');
+	 *
+	 * const paginatedMessage = new PaginatedMessage()
+	 * 	.addAsyncPageEmbed(async (embed) => {
+	 *		const someRemoteData = await fetch('https://contoso.com/api/users');
+	 *
+	 * 		embed
+	 * 			.setColor('#FF0000')
+	 * 			.setDescription(someRemoteData.data);
+	 *
+	 * 		return embed;
+	 * });
+	 * ```
+	 */
+	public addAsyncPageEmbed(embed: MessageEmbed | ((builder: MessageEmbed) => Promise<MessageEmbed>)): this {
+		return this.addPage(async () => ({ embed: isFunction(embed) ? await embed(new MessageEmbed()) : embed }));
 	}
 
 	/**
@@ -190,25 +344,47 @@ export class PaginatedMessage {
 	/**
 	 * Executes the {@link PaginatedMessage} and sends the pages corresponding with {@link PaginatedMessage.index}.
 	 * The handler will start collecting reactions and running actions once all actions have been reacted to the message.
-	 * @param author The author to validate.
-	 * @param channel The channel to use.
+	 * @param message The message that triggered this {@link PaginatedMessage}.
+	 * Generally this will be the command message, but it can also be another message from your bot, i.e. to indicate a loading state.
 	 */
-	public async run(author: User, channel: TextChannel | NewsChannel): Promise<this> {
-		await this.resolvePagesOnRun(channel);
+	public async run(message: Message): Promise<this> {
+		// Try to get the previous PaginatedMessage for this user
+		const paginatedMessage = PaginatedMessage.handlers.get(message.author.id);
+
+		// If a PaginatedMessage was found then stop it
+		if (paginatedMessage) paginatedMessage.collector!.stop();
+
+		// If the message was sent by a bot, then set the response as this one
+		if (message.author.bot) this.response = message;
+
+		await this.resolvePagesOnRun(message.channel);
 
 		// Sanity checks to handle
 		if (!this.messages.length) throw new Error('There are no messages.');
 		if (!this.actions.size) throw new Error('There are no messages.');
 
-		await this.setUpMessage(channel, author);
-		await this.setUpReactions(channel, author);
+		await this.setUpMessage(message.channel, message.author);
+		await this.setUpReactions(message.channel, message.author);
+
+		const messageId = this.response!.id;
+
+		if (this.collector) {
+			this.collector!.once('end', () => {
+				PaginatedMessage.messages.delete(messageId);
+				PaginatedMessage.handlers.delete(message.author.id);
+			});
+
+			PaginatedMessage.messages.set(messageId, this);
+			PaginatedMessage.handlers.set(message.author.id, this);
+		}
+
 		return this;
 	}
 
 	/**
 	 * Executed whenever {@link PaginatedMessage.run} is called.
 	 */
-	public async resolvePagesOnRun(channel: TextChannel | NewsChannel): Promise<void> {
+	public async resolvePagesOnRun(channel: Message['channel']): Promise<void> {
 		for (let i = 0; i < this.pages.length; i++) await this.resolvePage(channel, i);
 	}
 
@@ -216,7 +392,7 @@ export class PaginatedMessage {
 	 * Executed whenever an action is triggered and resolved.
 	 * @param index The index to resolve.
 	 */
-	public async resolvePage(channel: TextChannel | NewsChannel, index: number): Promise<APIMessage> {
+	public async resolvePage(channel: Message['channel'], index: number): Promise<APIMessage> {
 		// If the message was already processed, do not load it again:
 		const message = this.messages[index];
 		if (message !== null) return message;
@@ -235,6 +411,7 @@ export class PaginatedMessage {
 		const clone = new this.constructor({ pages: this.pages, actions: [] }).setIndex(this.index).setIdle(this.idle);
 		clone.actions = this.actions;
 		clone.response = this.response;
+		clone.template = this.template;
 		return clone;
 	}
 
@@ -243,8 +420,8 @@ export class PaginatedMessage {
 	 * @param channel The channel the handler is running at.
 	 * @param author The author the handler is for.
 	 */
-	protected async setUpMessage(channel: TextChannel | NewsChannel, author: User): Promise<void>;
-	protected async setUpMessage(channel: TextChannel | NewsChannel): Promise<void> {
+	protected async setUpMessage(channel: Message['channel'], author: User): Promise<void>;
+	protected async setUpMessage(channel: Message['channel']): Promise<void> {
 		const firstPage = this.messages[this.index]!;
 		if (this.response) await this.response.edit(firstPage);
 		else this.response = (await channel.send(firstPage)) as Message;
@@ -255,18 +432,20 @@ export class PaginatedMessage {
 	 * @param channel The channel the handler is running at.
 	 * @param author The author the handler is for.
 	 */
-	protected async setUpReactions(channel: TextChannel | NewsChannel, author: User): Promise<void> {
-		this.collector = this.response!.createReactionCollector(
-			(reaction: MessageReaction, user: User) =>
-				user.id === author.id && (this.actions.has(reaction.emoji.identifier) || this.actions.has(reaction.emoji.name)),
-			{ idle: this.idle }
-		)
-			.on('collect', this.handleCollect.bind(this, author, channel))
-			.on('end', this.handleEnd.bind(this));
+	protected async setUpReactions(channel: Message['channel'], author: User): Promise<void> {
+		if (this.pages.length > 1) {
+			this.collector = this.response!.createReactionCollector(
+				(reaction: MessageReaction, user: User) =>
+					user.id === author.id && (this.actions.has(reaction.emoji.identifier) || this.actions.has(reaction.emoji.name)),
+				{ idle: this.idle }
+			)
+				.on('collect', this.handleCollect.bind(this, author, channel))
+				.on('end', this.handleEnd.bind(this));
 
-		for (const id of this.actions.keys()) {
-			if (this.collector.ended) break;
-			await this.response!.react(id);
+			for (const id of this.actions.keys()) {
+				if (this.collector.ended) break;
+				await this.response!.react(id);
+			}
 		}
 	}
 
@@ -276,9 +455,10 @@ export class PaginatedMessage {
 	 * @param channel The channel the paginated message runs at.
 	 * @param index The index of the current page.
 	 */
-	protected async handlePageLoad(page: MessagePage, channel: TextChannel | NewsChannel, index: number): Promise<APIMessage> {
-		const options = typeof page === 'function' ? await page(index, this.pages, this) : page;
-		return (options instanceof APIMessage ? options : new APIMessage(channel, options)).resolveData();
+	protected async handlePageLoad(page: MessagePage, channel: Message['channel'], index: number): Promise<APIMessage> {
+		const options = isFunction(page) ? await page(index, this.pages, this) : page;
+		const resolved = options instanceof APIMessage ? options : new APIMessage(channel, this.applyTemplate(this.template, options));
+		return this.applyFooter(resolved.resolveData(), index);
 	}
 
 	/**
@@ -288,7 +468,7 @@ export class PaginatedMessage {
 	 * @param reaction The reaction that was received.
 	 * @param user The user that reacted to the message.
 	 */
-	protected async handleCollect(author: User, channel: TextChannel | NewsChannel, reaction: MessageReaction, user: User): Promise<void> {
+	protected async handleCollect(author: User, channel: Message['channel'], reaction: MessageReaction, user: User): Promise<void> {
 		if (isGuildBasedChannel(channel) && channel.client.user && channel.permissionsFor(channel.client.user.id)?.has('MANAGE_MESSAGES')) {
 			await reaction.users.remove(user);
 		}
@@ -329,6 +509,48 @@ export class PaginatedMessage {
 		}
 	}
 
+	protected applyFooter(message: APIMessage, index: number): APIMessage {
+		const data = message.data as RESTPostAPIChannelMessageJSONBody;
+		if (!data.embed) return message;
+
+		data.embed.footer ??= { text: this.template.embed?.footer?.text ?? '' };
+		data.embed.footer.text = `${index + 1} / ${this.pages.length}${data.embed.footer.text}`;
+		return message;
+	}
+
+	private applyTemplate(template: MessageOptions, options: MessageOptions): MessageOptions {
+		return { ...template, ...options, embed: this.applyTemplateEmbed(template.embed, options.embed) };
+	}
+
+	private applyTemplateEmbed(template: EmbedResolvable, embed: EmbedResolvable): MessageEmbed | MessageEmbedOptions | undefined {
+		if (!embed) return template;
+		if (!template) return embed;
+		return this.mergeEmbeds(template, embed);
+	}
+
+	private mergeEmbeds(template: MessageEmbed | MessageEmbedOptions, embed: MessageEmbed | MessageEmbedOptions): MessageEmbedOptions {
+		return {
+			title: embed.title ?? template.title ?? undefined,
+			description: embed.description ?? template.description ?? undefined,
+			url: embed.url ?? template.url ?? undefined,
+			timestamp: embed.timestamp ?? template.timestamp ?? undefined,
+			color: embed.color ?? template.color ?? undefined,
+			fields: this.mergeArrays(template.fields, embed.fields),
+			files: this.mergeArrays(template.files, embed.files),
+			author: embed.author ?? template.author ?? undefined,
+			thumbnail: embed.thumbnail ?? template.thumbnail ?? undefined,
+			image: embed.image ?? template.image ?? undefined,
+			video: embed.video ?? template.video ?? undefined,
+			footer: embed.footer ?? template.footer ?? undefined
+		};
+	}
+
+	private mergeArrays<T>(template?: T[], array?: T[]): undefined | T[] {
+		if (!array) return template;
+		if (!template) return array;
+		return [...template, ...array];
+	}
+
 	/**
 	 * The default actions of this handler.
 	 */
@@ -338,7 +560,7 @@ export class PaginatedMessage {
 			run: async ({ handler, author, channel }) => {
 				const questionMessage = await channel.send(PaginatedMessage.promptMessage);
 				const collected = await channel
-					.awaitMessages((message: Message) => message.author.id === author.id, { max: 1, idle: 15 * 1000 })
+					.awaitMessages((message: Message) => message.author.id === author.id, { max: 1, idle: Time.Minute * 20 })
 					.catch(() => null);
 
 				if (collected) {
@@ -404,6 +626,30 @@ export class PaginatedMessage {
 	 * @default "What page would you like to jump to?"
 	 */
 	public static promptMessage = 'What page would you like to jump to?';
+
+	/**
+	 * The messages that are currently being handled by a {@link PaginatedMessage}
+	 * The key is the ID of the message that triggered this {@link PaginatedMessage}
+	 *
+	 * This is to ensure that only 1 {@link PaginatedMessage} can run on a specified message at once.
+	 * This is important when having an editable commands solution.
+	 */
+	public static readonly messages = new Map<string, PaginatedMessage>();
+
+	/**
+	 * The current {@link ReactionCollector} handlers that are active.
+	 * The key is the ID of of the author who sent the message that triggered this {@link PaginatedMessage}
+	 *
+	 * This is to ensure that any given author can only trigger 1 {@link PaginatedMessage}.
+	 * This is important for performance reasons, and users should not have more than 1 {@link PaginatedMessage} open at once.
+	 */
+	public static readonly handlers = new Map<string, PaginatedMessage>();
+
+	private static resolveTemplate(template?: MessageEmbed | MessageOptions): MessageOptions {
+		if (template === undefined) return {};
+		if (template instanceof MessageEmbed) return { embed: template };
+		return template;
+	}
 }
 
 export interface PaginatedMessage {
@@ -411,10 +657,9 @@ export interface PaginatedMessage {
 }
 
 /**
+ * To utilize actions you can use the {@link IPaginatedMessageAction} by implementing it into a class.
  * @example
  * ```typescript
- * // To utilize actions you can use the {@link IPaginatedMessageAction} by implementing it into a class.
- *
  * class ForwardAction implements IPaginatedMessageAction {
  *   public id = '▶️';
  *
@@ -432,7 +677,8 @@ export interface PaginatedMessage {
  *     await response.reactions.removeAll();
  *     collector!.stop();
  *   }
- * }```
+ * }
+ * ```
  */
 export interface IPaginatedMessageAction {
 	id: string;
@@ -445,14 +691,24 @@ export interface IPaginatedMessageAction {
 export interface PaginatedMessageActionContext {
 	handler: PaginatedMessage;
 	author: User;
-	channel: TextChannel | NewsChannel;
+	channel: Message['channel'];
 	response: Message;
 	collector: ReactionCollector;
 }
 
 export interface PaginatedMessageOptions {
+	/**
+	 * The pages to display in this {@link PaginatedMessage}
+	 */
 	pages?: MessagePage[];
+	/**
+	 * Custom actions to provide when sending the paginated message
+	 */
 	actions?: IPaginatedMessageAction[];
+	/**
+	 * The {@link MessageEmbed} or {@link MessageOptions} options to apply to the entire {@link PaginatedMessage}
+	 */
+	template?: MessageEmbed | MessageOptions;
 }
 
 /**
@@ -503,4 +759,4 @@ export type MessagePage =
 	| APIMessage
 	| MessageOptions;
 
-type Awaited<T> = PromiseLike<T> | T;
+type EmbedResolvable = MessageOptions['embed'];
