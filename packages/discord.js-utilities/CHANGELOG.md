@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@1.6.0...@sapphire/discord.js-utilities@2.0.0) (2021-07-17)
+
+### Features
+
+-   **discord.js-utilities:** improve PaginatedMessage ([#134](https://github.com/sapphiredev/utilities/issues/134)) ([ad62513](https://github.com/sapphiredev/utilities/commit/ad62513a6a9fb4f8bdf681e7157324cb12ff56c5))
+
+### BREAKING CHANGES
+
+-   **discord.js-utilities:** `PaginatedMessageOptions.run` now takes a single parameter of `Message` instead of 2 parameters (`User` and `TextChannel | NewsChannel`)
+-   **discord.js-utilities:** Reactions will no longer be added if your `PaginatedMessage` only has 1 page
+-   **discord.js-utilities:** TypeScript types for various methods that previously had `TextChannel | NewsChannel` have been changed to `Message['channel']`
+-   **discord.js-utilities:** 1 user can no longer have more than 1 `PaginatedMessage` running. The older one will automatically be cancelled. You can override this by overriding the `run` method.
+
 # [1.6.0](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@1.5.10...@sapphire/discord.js-utilities@1.6.0) (2021-06-27)
 
 ### Bug Fixes
