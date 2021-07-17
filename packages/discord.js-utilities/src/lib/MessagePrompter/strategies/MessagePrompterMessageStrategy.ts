@@ -1,4 +1,4 @@
-import type { CollectorFilter, DMChannel, Message, NewsChannel, TextChannel, User } from 'discord.js';
+import type { CollectorFilter, CollectorOptions, DMChannel, Message, NewsChannel, TextChannel, User } from 'discord.js';
 import type { MessagePrompterMessage } from '../constants';
 import type { IMessagePrompterExplicitMessageReturn } from '../ExplicitReturnTypes';
 import type { IMessagePrompterStrategyOptions } from '../strategyOptions';
@@ -21,13 +21,14 @@ export class MessagePrompterMessageStrategy extends MessagePrompterBaseStrategy 
 	 * @param authorOrFilter An author object to validate or a {@linkplain https://discord.js.org/#/docs/main/stable/typedef/CollectorFilter CollectorFilter} predicate callback.
 	 * @returns A promise that resolves to the message object received.
 	 */
-	public async run(
+	public override async run(
 		channel: TextChannel | NewsChannel | DMChannel,
-		authorOrFilter: User | CollectorFilter
+		authorOrFilter: User | CollectorFilter<[Message]>
 	): Promise<IMessagePrompterExplicitMessageReturn | Message> {
 		this.appliedMessage = await channel.send(this.message);
 
-		const collector = await channel.awaitMessages(this.createMessagePromptFilter(authorOrFilter), {
+		const collector = await channel.awaitMessages({
+			...this.createMessagePromptFilter(authorOrFilter),
 			max: 1,
 			time: this.timeout,
 			errors: ['time']
@@ -41,7 +42,7 @@ export class MessagePrompterMessageStrategy extends MessagePrompterBaseStrategy 
 		return this.explicitReturn
 			? {
 					response,
-					strategy: this as MessagePrompterBaseStrategy,
+					strategy: this,
 					appliedMessage: this.appliedMessage,
 					message: this.message
 			  }
@@ -52,8 +53,11 @@ export class MessagePrompterMessageStrategy extends MessagePrompterBaseStrategy 
 	 * Creates a filter for the collector to filter on
 	 * @return The filter for awaitMessages function
 	 */
-	private createMessagePromptFilter(authorOrFilter: User | CollectorFilter): CollectorFilter {
-		return async (message: Message) =>
-			(typeof authorOrFilter === 'function' ? await authorOrFilter(message) : message.author.id === authorOrFilter.id) && !message.author.bot;
+	private createMessagePromptFilter(authorOrFilter: User | CollectorFilter<[Message]>): CollectorOptions<[Message]> {
+		return {
+			filter: async (message: Message) =>
+				(typeof authorOrFilter === 'function' ? await authorOrFilter(message) : message.author.id === authorOrFilter.id) &&
+				!message.author.bot
+		};
 	}
 }

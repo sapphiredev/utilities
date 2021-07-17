@@ -56,6 +56,8 @@ jobs:
         run: yarn workspace @sapphire/utilities build
       - name: Build Time Utilities
         run: yarn workspace @sapphire/time-utilities build
+      - name: Build Async Queue
+        run: yarn workspace @sapphire/async-queue build
       - name: Run tests
         run: yarn test --coverage
       - name: Store code coverage report

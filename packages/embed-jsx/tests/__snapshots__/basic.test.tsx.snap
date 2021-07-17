@@ -190,7 +190,7 @@ Object {
 exports[`returns an embed with options 1`] = `
 Object {
   "author": null,
-  "color": 15158332,
+  "color": 15548997,
   "description": null,
   "fields": Array [],
   "footer": null,
