@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.3](https://github.com/sapphiredev/utilities/compare/@sapphire/eslint-config@3.2.2...@sapphire/eslint-config@3.2.3) (2021-07-18)
+
+### Bug Fixes
+
+-   **eslint-config:** bump dependencies within semver range ([e4a942d](https://github.com/sapphiredev/utilities/commit/e4a942d6ac684ba60cba6757df92d48ce4306e31))
+
 ## [3.2.2](https://github.com/sapphiredev/utilities/compare/@sapphire/eslint-config@3.2.1...@sapphire/eslint-config@3.2.2) (2021-07-11)
 
 ### Bug Fixes

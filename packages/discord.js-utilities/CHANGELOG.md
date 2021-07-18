@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@2.0.0...@sapphire/discord.js-utilities@2.0.1) (2021-07-18)
+
+### Bug Fixes
+
+-   **discord.js-utilities:** fix run method for PaginatedMessage ([#137](https://github.com/sapphiredev/utilities/issues/137)) ([76b50e0](https://github.com/sapphiredev/utilities/commit/76b50e0b05292ff57732117fbf91d41ee281c7ad))
+
 # [2.0.0](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@1.6.0...@sapphire/discord.js-utilities@2.0.0) (2021-07-17)
 
 ### Features
