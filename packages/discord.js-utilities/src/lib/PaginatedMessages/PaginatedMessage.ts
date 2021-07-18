@@ -350,13 +350,13 @@ export class PaginatedMessage {
 	 */
 	public async run(message: Message, target = message.author): Promise<this> {
 		// Try to get the previous PaginatedMessage for this user
-		const paginatedMessage = PaginatedMessage.handlers.get(message.author.id);
+		const paginatedMessage = PaginatedMessage.handlers.get(target.id);
 
 		// If a PaginatedMessage was found then stop it
 		if (paginatedMessage) paginatedMessage.collector!.stop();
 
 		// If the message was sent by a bot, then set the response as this one
-		if (target.bot) this.response = message;
+		if (message.author.bot) this.response = message;
 
 		await this.resolvePagesOnRun(message.channel);
 
