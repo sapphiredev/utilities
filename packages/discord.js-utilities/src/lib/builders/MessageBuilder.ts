@@ -1,13 +1,8 @@
 import type { MessageEmbed, MessageMentionOptions, MessageOptions } from 'discord.js';
 
-/**
- * Exclude null and undefined from T
- */
-type Defined<T> = T extends undefined ? never : T;
-
-export type MessageBuilderFileResolvable = Defined<MessageOptions['files']>[number];
-export type MessageBuilderCodeResolvable = Defined<MessageOptions['code']>;
-export type MessageBuilderSplitResolvable = Defined<MessageOptions['split']>;
+export type MessageBuilderFileResolvable = NonNullable<MessageOptions['files']>[number];
+export type MessageBuilderCodeResolvable = NonNullable<MessageOptions['code']>;
+export type MessageBuilderSplitResolvable = NonNullable<MessageOptions['split']>;
 export type MessageBuilderResolvable = Omit<MessageOptions, 'embed' | 'disableMentions' | 'reply'> & { embed?: MessageEmbed };
 
 /**

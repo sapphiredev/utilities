@@ -1,5 +1,6 @@
+import type { Awaited } from '@sapphire/utilities';
 import type { CollectorFilter, DMChannel, EmojiIdentifierResolvable, Message, MessageReaction, NewsChannel, TextChannel, User } from 'discord.js';
-import type { Awaited, MessagePrompterMessage } from '../constants';
+import type { MessagePrompterMessage } from '../constants';
 import type { IMessagePrompterExplicitReturnBase } from '../ExplicitReturnTypes';
 import type { IMessagePrompterStrategyOptions } from '../strategyOptions';
 

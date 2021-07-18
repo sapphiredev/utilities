@@ -1,5 +1,6 @@
+import type { Ctor } from '@sapphire/utilities';
 import type { CollectorFilter, DMChannel, EmojiResolvable, Message, NewsChannel, TextChannel, User } from 'discord.js';
-import { Constructor, MessagePrompterMessage, MessagePrompterStrategies } from './constants';
+import { MessagePrompterMessage, MessagePrompterStrategies } from './constants';
 import type {
 	IMessagePrompterExplicitConfirmReturn,
 	IMessagePrompterExplicitMessageReturn,
@@ -129,7 +130,7 @@ export class MessagePrompter<S extends MessagePrompterStrategies = MessagePrompt
 	 */
 	public static strategies: Map<
 		MessagePrompterStrategies,
-		Constructor<
+		Ctor<
 			| ConstructorParameters<typeof MessagePrompterConfirmStrategy>
 			| ConstructorParameters<typeof MessagePrompterNumberStrategy>
 			| ConstructorParameters<typeof MessagePrompterReactionStrategy>
