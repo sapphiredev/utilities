@@ -346,10 +346,11 @@ export class PaginatedMessage {
 	 * The handler will start collecting reactions and running actions once all actions have been reacted to the message.
 	 * @param message The message that triggered this {@link PaginatedMessage}.
 	 * Generally this will be the command message, but it can also be another message from your bot, i.e. to indicate a loading state.
+	 * @param target The user who will be able to interact with the reactions of this {@link PaginatedMessage}. Defaults to `message.author`.
 	 */
-	public async run(message: Message): Promise<this> {
+	public async run(message: Message, target = message.author): Promise<this> {
 		// Try to get the previous PaginatedMessage for this user
-		const paginatedMessage = PaginatedMessage.handlers.get(message.author.id);
+		const paginatedMessage = PaginatedMessage.handlers.get(target.id);
 
 		// If a PaginatedMessage was found then stop it
 		if (paginatedMessage) paginatedMessage.collector!.stop();
@@ -363,19 +364,19 @@ export class PaginatedMessage {
 		if (!this.messages.length) throw new Error('There are no messages.');
 		if (!this.actions.size) throw new Error('There are no messages.');
 
-		await this.setUpMessage(message.channel, message.author);
-		await this.setUpReactions(message.channel, message.author);
+		await this.setUpMessage(message.channel, target);
+		await this.setUpReactions(message.channel, target);
 
 		const messageId = this.response!.id;
 
 		if (this.collector) {
 			this.collector!.once('end', () => {
 				PaginatedMessage.messages.delete(messageId);
-				PaginatedMessage.handlers.delete(message.author.id);
+				PaginatedMessage.handlers.delete(target.id);
 			});
 
 			PaginatedMessage.messages.set(messageId, this);
-			PaginatedMessage.handlers.set(message.author.id, this);
+			PaginatedMessage.handlers.set(target.id, this);
 		}
 
 		return this;
