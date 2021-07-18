@@ -1,69 +1,54 @@
-import type { MessageEmbed, MessageMentionOptions, MessageOptions } from 'discord.js';
+import type { MessageOptions } from 'discord.js';
 
 export type MessageBuilderFileResolvable = NonNullable<MessageOptions['files']>[number];
-export type MessageBuilderCodeResolvable = NonNullable<MessageOptions['code']>;
-export type MessageBuilderSplitResolvable = NonNullable<MessageOptions['split']>;
-export type MessageBuilderResolvable = Omit<MessageOptions, 'embed' | 'disableMentions' | 'reply'> & { embed?: MessageEmbed };
+export type MessageBuilderResolvable = Omit<MessageOptions, 'embed' | 'disableMentions' | 'reply'> & { embeds?: MessageOptions['embeds'] };
 
 /**
- * A message builder class, it implements the {@linkplain https://discord.js.org/#/docs/main/stable/typedef/MessageOptions MessageOptions}
- * interface.
+ * A message builder class, it implements the {@link MessageOptions} interface.
  */
 export class MessageBuilder implements MessageOptions {
 	/**
 	 * Whether or not the message should be spoken aloud.
 	 * @default false
 	 */
-	public tts?: boolean;
+	public tts?: MessageOptions['tts'];
 
 	/**
 	 * The nonce for the message.
 	 * @default ''
 	 */
-	public nonce?: string;
+	public nonce?: MessageOptions['nonce'];
 
 	/**
 	 * The content for the message. If set to undefined and the builder is used to edit, the content will not be
 	 * replaced.
 	 */
-	public content?: string;
+	public content?: MessageOptions['content'];
 
 	/**
-	 * An embed for the message. If set to undefined and the builder is used to edit, the embed will not be replaced.
+	 * The embeds for the message. If set to undefined and the builder is used to edit, the embed will not be replaced.
+	 * @remark There is a maximum of 10 embeds in 1 message
 	 */
-	public embed?: MessageEmbed;
+	public embeds?: MessageOptions['embeds'];
 
 	/**
 	 * Which mentions should be parsed from the message content.
 	 */
-	public allowedMentions?: MessageMentionOptions;
+	public allowedMentions?: MessageOptions['allowedMentions'];
 
 	/**
 	 * Files to send with the message. This should not be set when editing a message, as Discord does not support
 	 * editing file attachments.
 	 */
-	public files?: MessageBuilderFileResolvable[];
-
-	/**
-	 * Language for optional codeblock formatting to apply.
-	 */
-	public code?: MessageBuilderCodeResolvable;
-
-	/**
-	 * Whether or not the message should be split into multiple messages if it exceeds the character limit. If an object
-	 * is provided, these are the options for splitting the message.
-	 */
-	public split?: MessageBuilderSplitResolvable;
+	public files?: MessageOptions['files'];
 
 	public constructor(options?: MessageBuilderResolvable) {
 		this.tts = options?.tts ?? MessageBuilder.defaults.tts;
 		this.nonce = options?.nonce ?? MessageBuilder.defaults.nonce;
 		this.content = options?.content ?? MessageBuilder.defaults.content;
-		this.embed = options?.embed ?? MessageBuilder.defaults.embed;
+		this.embeds = options?.embeds ?? MessageBuilder.defaults.embeds;
 		this.allowedMentions = options?.allowedMentions ?? MessageBuilder.defaults.allowedMentions;
 		this.files = options?.files ?? MessageBuilder.defaults.files;
-		this.code = options?.code ?? MessageBuilder.defaults.code;
-		this.split = options?.split ?? MessageBuilder.defaults.split;
 	}
 
 	/**
@@ -96,11 +81,17 @@ export class MessageBuilder implements MessageOptions {
 
 	/**
 	 * Sets the value for the {@link MessageBuilder.embed} field.
-	 * @param embed An embed for the message. If set to undefined and the builder is used to edit, the embed will not be
-	 * replaced.
+	 * @param embeds The embeds for the message. If set to undefined and the builder is used to edit, the embed will not be
+	 * replaced. There is a maximum of 10 embeds per message
+	 * @remark When providing more than 10 embeds, the array will automatically be sliced down to the first 10.
 	 */
-	public setEmbed(embed?: MessageEmbed): this {
-		this.embed = embed;
+	public setEmbeds(embeds?: MessageOptions['embeds']): this {
+		// Ensure no more than 10 embeds are ever set
+		if (embeds && embeds.length > 10) {
+			embeds = embeds.slice(0, 10);
+		}
+
+		this.embeds = embeds;
 		return this;
 	}
 
@@ -108,7 +99,7 @@ export class MessageBuilder implements MessageOptions {
 	 * Sets the value for the {@link MessageBuilder.allowedMentions} field.
 	 * @param allowedMentions Which mentions should be parsed from the message content.
 	 */
-	public setAllowedMentions(allowedMentions?: MessageMentionOptions): this {
+	public setAllowedMentions(allowedMentions?: MessageOptions['allowedMentions']): this {
 		this.allowedMentions = allowedMentions;
 		return this;
 	}
@@ -139,25 +130,6 @@ export class MessageBuilder implements MessageOptions {
 	 */
 	public setFiles(files?: MessageBuilderFileResolvable[]): this {
 		this.files = files;
-		return this;
-	}
-
-	/**
-	 * Sets the value for the {@link MessageBuilder.code} field.
-	 * @param code Language for optional codeblock formatting to apply.
-	 */
-	public setCode(code?: MessageBuilderCodeResolvable): this {
-		this.code = code;
-		return this;
-	}
-
-	/**
-	 * Sets the value for the {@link MessageBuilder.split} field.
-	 * @param split Whether or not the message should be split into multiple messages if it exceeds the character limit.
-	 * If an object is provided, these are the options for splitting the message.
-	 */
-	public setSplit(split?: MessageBuilderSplitResolvable): this {
-		this.split = split;
 		return this;
 	}
 

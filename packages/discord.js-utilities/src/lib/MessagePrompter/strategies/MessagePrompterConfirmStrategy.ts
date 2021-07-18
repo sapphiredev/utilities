@@ -1,4 +1,4 @@
-import type { CollectorFilter, DMChannel, EmojiResolvable, NewsChannel, TextChannel, User } from 'discord.js';
+import type { CollectorFilter, DMChannel, EmojiResolvable, MessageReaction, NewsChannel, TextChannel, User } from 'discord.js';
 import type { MessagePrompterMessage } from '../constants';
 import type { IMessagePrompterExplicitConfirmReturn } from '../ExplicitReturnTypes';
 import type { IMessagePrompterConfirmStrategyOptions } from '../strategyOptions';
@@ -34,9 +34,9 @@ export class MessagePrompterConfirmStrategy extends MessagePrompterBaseStrategy 
 	 * @param authorOrFilter An author object to validate or a {@linkplain https://discord.js.org/#/docs/main/stable/typedef/CollectorFilter CollectorFilter} predicate callback.
 	 * @returns A promise that resolves to a boolean denoting the value of the input (`true` for yes, `false` for no).
 	 */
-	public async run(
+	public override async run(
 		channel: TextChannel | NewsChannel | DMChannel,
-		authorOrFilter: User | CollectorFilter
+		authorOrFilter: User | CollectorFilter<[MessageReaction, User]>
 	): Promise<IMessagePrompterExplicitConfirmReturn | boolean> {
 		const response = await this.collectReactions(channel, authorOrFilter, [this.confirmEmoji, this.cancelEmoji]);
 

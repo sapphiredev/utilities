@@ -1,5 +1,15 @@
 import type { Awaited } from '@sapphire/utilities';
-import type { CollectorFilter, DMChannel, EmojiIdentifierResolvable, Message, MessageReaction, NewsChannel, TextChannel, User } from 'discord.js';
+import type {
+	CollectorFilter,
+	CollectorOptions,
+	DMChannel,
+	EmojiIdentifierResolvable,
+	Message,
+	MessageReaction,
+	NewsChannel,
+	TextChannel,
+	User
+} from 'discord.js';
 import type { MessagePrompterMessage } from '../constants';
 import type { IMessagePrompterExplicitReturnBase } from '../ExplicitReturnTypes';
 import type { IMessagePrompterStrategyOptions } from '../strategyOptions';
@@ -16,7 +26,7 @@ export abstract class MessagePrompterBaseStrategy {
 	public timeout: number;
 
 	/**
-	 * Wether to return an explicit object with data, or the strategies' default
+	 * Whether to return an explicit object with data, or the strategies' default
 	 */
 	public explicitReturn: boolean;
 
@@ -42,16 +52,17 @@ export abstract class MessagePrompterBaseStrategy {
 		this.message = message;
 	}
 
-	public abstract run(channel: TextChannel | NewsChannel | DMChannel, authorOrFilter: User | CollectorFilter): Awaited<unknown>;
+	public abstract run(channel: TextChannel | NewsChannel | DMChannel, authorOrFilter: User | CollectorFilter<unknown[]>): Awaited<unknown>;
 
 	protected async collectReactions(
 		channel: TextChannel | NewsChannel | DMChannel,
-		authorOrFilter: User | CollectorFilter,
+		authorOrFilter: User | CollectorFilter<[MessageReaction, User]>,
 		reactions: string[] | EmojiIdentifierResolvable[]
 	): Promise<IMessagePrompterExplicitReturnBase> {
 		this.appliedMessage = await channel.send(this.message);
 
-		const collector = this.appliedMessage.createReactionCollector(this.createReactionPromptFilter(reactions, authorOrFilter), {
+		const collector = this.appliedMessage.createReactionCollector({
+			...this.createReactionPromptFilter(reactions, authorOrFilter),
 			max: 1,
 			time: this.timeout
 		});
@@ -94,11 +105,16 @@ export abstract class MessagePrompterBaseStrategy {
 	 * Creates a filter for the collector to filter on
 	 * @return The filter for awaitReactions function
 	 */
-	protected createReactionPromptFilter(reactions: string[] | EmojiIdentifierResolvable[], authorOrFilter: User | CollectorFilter): CollectorFilter {
-		return async (reaction: MessageReaction, user: User) =>
-			reactions.includes(reaction.emoji.id ?? reaction.emoji.name) &&
-			(typeof authorOrFilter === 'function' ? await authorOrFilter(reaction, user) : user.id === authorOrFilter.id) &&
-			!user.bot;
+	protected createReactionPromptFilter(
+		reactions: string[] | EmojiIdentifierResolvable[],
+		authorOrFilter: User | CollectorFilter<[MessageReaction, User]>
+	): CollectorOptions<[MessageReaction, User]> {
+		return {
+			filter: async (reaction: MessageReaction, user: User) =>
+				reactions.includes(reaction.emoji.id ?? reaction.emoji.name ?? '') &&
+				(typeof authorOrFilter === 'function' ? await authorOrFilter(reaction, user) : user.id === authorOrFilter.id) &&
+				!user.bot
+		};
 	}
 
 	/**

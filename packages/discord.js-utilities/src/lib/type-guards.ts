@@ -5,71 +5,80 @@ import type {
 	GuildChannel,
 	NewsChannel,
 	PartialGroupDMChannel,
+	StageChannel,
 	StoreChannel,
 	TextChannel,
 	VoiceChannel
 } from 'discord.js';
 
 /**
- * Checks whether a given channel is a {@linkplain https://discord.js.org/#/docs/main/stable/class/CategoryChannel CategoryChannel}
+ * Checks whether a given channel is a {@link CategoryChannel}
  * @param channel The channel to check
  */
 export function isCategoryChannel(channel: Channel): channel is CategoryChannel {
-	return channel.type === 'category';
+	return channel.type === 'GUILD_CATEGORY';
 }
 
 /**
- * Checks whether a given channel is a {@linkplain https://discord.js.org/#/docs/main/stable/class/DMChannel DMChannel}
+ * Checks whether a given channel is a {@link DMChannel}
  * @param channel The channel to check
  */
 export function isDMChannel(channel: Channel): channel is DMChannel {
-	return channel.type === 'dm';
+	return channel.type === 'DM';
 }
 
 /**
- * Checks whether a given channel is a {@linkplain https://discord.js.org/#/docs/main/stable/class/PartialGroupDMChannel PartialGroupDMChannel}
+ * Checks whether a given channel is a {@link PartialGroupDMChannel}
  * @param channel The channel to check
  */
 export function isGroupChannel(channel: Channel): channel is PartialGroupDMChannel {
-	return channel.type === 'group';
+	return channel.type === 'GROUP_DM';
 }
 
 /**
- * Checks whether a given channel is a {@linkplain https://discord.js.org/#/docs/main/stable/class/GuildChannel GuildChannel}
+ * Checks whether a given channel is a {@link GuildChannel}
  * @param channel The channel to check
  */
 export function isGuildBasedChannel(channel: Channel): channel is GuildChannel {
-	return channel.type !== 'dm' && channel.type !== 'group' && channel.type !== 'unknown';
+	return channel.type !== 'DM' && channel.type !== 'GROUP_DM' && channel.type !== 'UNKNOWN';
 }
 
 /**
- * Checks whether a given channel is a {@linkplain https://discord.js.org/#/docs/main/stable/class/NewsChannel NewsChannel}
+ * Checks whether a given channel is a {@link NewsChannel}
  * @param channel The channel to check
  */
 export function isNewsChannel(channel: Channel): channel is NewsChannel {
-	return channel.type === 'news';
+	return channel.type === 'GUILD_NEWS';
 }
 
 /**
- * Checks whether a given channel is a {@linkplain https://discord.js.org/#/docs/main/stable/class/StoreChannel StoreChannel}
+ * Checks whether a given channel is a {@link StoreChannel}
  * @param channel The channel to check
  */
 export function isStoreChannel(channel: Channel): channel is StoreChannel {
-	return channel.type === 'store';
+	return channel.type === 'GUILD_STORE';
 }
 
 /**
- * Checks whether a given channel is a {@linkplain https://discord.js.org/#/docs/main/stable/class/TextChannel TextChannel}
+ * Checks whether a given channel is a {@link TextChannel}
  * @param channel The channel to check
  */
 export function isTextChannel(channel: Channel): channel is TextChannel {
-	return channel.type === 'text';
+	return channel.type === 'GUILD_TEXT';
 }
 
 /**
- * Checks whether a given channel is a {@linkplain https://discord.js.org/#/docs/main/stable/class/VoiceChannel VoiceChannel}
+ * Checks whether a given channel is a {@link VoiceChannel}
  * @param channel The channel to check
  */
 export function isVoiceChannel(channel: Channel): channel is VoiceChannel {
-	return channel.type === 'voice';
+	return channel.type === 'GUILD_VOICE';
+}
+
+/**
+ * Checks whether a given channel is a {@link StageChannel}
+ * @param channel The channel to check
+ */
+export function isStageChannel(channel: Channel): channel is StageChannel {
+	return channel.type === 'GUILD_STAGE_VOICE';
 }

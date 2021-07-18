@@ -2,12 +2,12 @@ import { Time } from '@sapphire/time-utilities';
 import { Awaited, isFunction } from '@sapphire/utilities';
 import type { RESTPostAPIChannelMessageJSONBody } from 'discord-api-types/v8';
 import {
-	APIMessage,
 	Collection,
 	Message,
 	MessageEmbed,
 	MessageEmbedOptions,
 	MessageOptions,
+	MessagePayload,
 	MessageReaction,
 	ReactionCollector,
 	Snowflake,
@@ -24,7 +24,7 @@ import { isGuildBasedChannel } from '../type-guards';
  * You can utilize your own actions, or you can use the {@link PaginatedMessage.defaultActions}.
  * {@link PaginatedMessage.defaultActions} is also static so you can modify these directly.
  *
- * {@link PaginatedMessage} also uses pages, these are simply {@linkplain https://discord.js.org/#/docs/main/stable/class/APIMessage APIMessages}.
+ * {@link PaginatedMessage} also uses pages, these are simply {@linkplain https://discord.js.org/#/docs/main/stable/class/APIMessage MessagePayloads}.
  *
  * @example
  * ```typescript
@@ -75,7 +75,7 @@ export class PaginatedMessage {
 	/**
 	 * The pages which were converted from {@link PaginatedMessage.pages}
 	 */
-	public messages: (APIMessage | null)[] = [];
+	public messages: (MessagePayload | null)[] = [];
 
 	/**
 	 * The actions which are to be used.
@@ -105,7 +105,7 @@ export class PaginatedMessage {
 	public constructor({ pages, actions, template }: PaginatedMessageOptions = {}) {
 		this.pages = pages ?? [];
 
-		for (const page of this.pages) this.messages.push(page instanceof APIMessage ? page : null);
+		for (const page of this.pages) this.messages.push(page instanceof MessagePayload ? page : null);
 		for (const action of actions ?? this.constructor.defaultActions) this.actions.set(action.id, action);
 
 		this.template = PaginatedMessage.resolveTemplate(template);
@@ -192,7 +192,7 @@ export class PaginatedMessage {
 	 */
 	public addPage(page: MessagePage): this {
 		this.pages.push(page);
-		this.messages.push(page instanceof APIMessage ? page : null);
+		this.messages.push(page instanceof MessagePayload ? page : null);
 		return this;
 	}
 
@@ -306,7 +306,7 @@ export class PaginatedMessage {
 	 * ```
 	 */
 	public addPageEmbed(embed: MessageEmbed | ((embed: MessageEmbed) => MessageEmbed)): this {
-		return this.addPage({ embed: isFunction(embed) ? embed(new MessageEmbed()) : embed });
+		return this.addPage({ embeds: isFunction(embed) ? [embed(new MessageEmbed())] : [embed] });
 	}
 
 	/**
@@ -329,7 +329,185 @@ export class PaginatedMessage {
 	 * ```
 	 */
 	public addAsyncPageEmbed(embed: MessageEmbed | ((builder: MessageEmbed) => Promise<MessageEmbed>)): this {
-		return this.addPage(async () => ({ embed: isFunction(embed) ? await embed(new MessageEmbed()) : embed }));
+		return this.addPage(async () => ({ embeds: isFunction(embed) ? [await embed(new MessageEmbed())] : [embed] }));
+	}
+
+	/**
+	 * Adds a page to the existing ones asynchronously using multiple {@link MessageEmbed}'s. This wil be added as the last page.
+	 * @remark When using this with a callback this will construct 10 {@link MessageEmbed}'s in the callback parameters, regardless of how many are actually used.
+	 * If this a performance impact you do not want to cope with then it is recommended to use {@link PaginatedMessage.addPageBuilder} instead, which will let you add
+	 * as many embeds as you want, albeit manually
+	 * @param embeds Either a callback which receives 10 parameters of `new MessageEmbed()`, or an array of already constructed {@link MessageEmbed}'s
+	 * @example
+	 * ```typescript
+	 * const { PaginatedMessage } = require('@sapphire/discord.js-utilities');
+	 *
+	 * const paginatedMessage = new PaginatedMessage()
+	 * 	.addPageEmbeds((embed1, embed2, embed3) => { // You can add up to 10 embeds
+	 * 		embed1
+	 * 			.setColor('#FF0000')
+	 * 			.setDescription('example description 1');
+	 *
+	 * 		embed2
+	 * 			.setColor('#00FF00')
+	 * 			.setDescription('example description 2');
+	 *
+	 * 		embed3
+	 * 			.setColor('#0000FF')
+	 * 			.setDescription('example description 3');
+	 *
+	 * 		return [embed1, embed2, embed3];
+	 * });
+	 * ```
+	 * @example
+	 * ```typescript
+	 * const { PaginatedMessage } = require('@sapphire/discord.js-utilities');
+	 *
+	 * const embed1 = new MessageEmbed()
+	 * 	.setColor('#FF0000')
+	 * 	.setDescription('example description 1');
+	 *
+	 * const embed2 = new MessageEmbed()
+	 * 	.setColor('#00FF00')
+	 * 	.setDescription('example description 2');
+	 *
+	 * const embed3 = new MessageEmbed()
+	 * 	.setColor('#0000FF')
+	 * 	.setDescription('example description 3');
+	 *
+	 * const paginatedMessage = new PaginatedMessage()
+	 * 	.addPageEmbeds([embed1, embed2, embed3]); // You can add up to 10 embeds
+	 * ```
+	 */
+	public addPageEmbeds(
+		embeds:
+			| MessageEmbed[]
+			| ((
+					embed1: MessageEmbed,
+					embed2: MessageEmbed,
+					embed3: MessageEmbed,
+					embed4: MessageEmbed,
+					embed5: MessageEmbed,
+					embed6: MessageEmbed,
+					embed7: MessageEmbed,
+					embed8: MessageEmbed,
+					embed9: MessageEmbed,
+					embed10: MessageEmbed
+			  ) => MessageEmbed[])
+	): this {
+		let processedEmbeds = isFunction(embeds)
+			? embeds(
+					new MessageEmbed(),
+					new MessageEmbed(),
+					new MessageEmbed(),
+					new MessageEmbed(),
+					new MessageEmbed(),
+					new MessageEmbed(),
+					new MessageEmbed(),
+					new MessageEmbed(),
+					new MessageEmbed(),
+					new MessageEmbed()
+			  )
+			: embeds;
+
+		if (processedEmbeds.length > 10) {
+			processedEmbeds = processedEmbeds.slice(0, 10);
+		}
+
+		return this.addPage({ embeds: processedEmbeds });
+	}
+
+	/**
+	 * Adds a page to the existing ones using multiple {@link MessageEmbed}'s. This wil be added as the last page.
+	 * @remark When using this with a callback this will construct 10 {@link MessageEmbed}'s in the callback parameters, regardless of how many are actually used.
+	 * If this a performance impact you do not want to cope with then it is recommended to use {@link PaginatedMessage.addPageBuilder} instead, which will let you add
+	 * as many embeds as you want, albeit manually
+	 * @param embeds Either a callback which receives 10 parameters of `new MessageEmbed()`, or an array of already constructed {@link MessageEmbed}'s
+	 * @example
+	 * ```typescript
+	 * const { PaginatedMessage } = require('@sapphire/discord.js-utilities');
+	 *
+	 * const paginatedMessage = new PaginatedMessage().addAsyncPageEmbeds(async (embed0, embed1, embed2) => {
+	 * 	const someRemoteData = (await fetch('https://contoso.com/api/users')) as any;
+	 *
+	 * 	for (const [index, user] of Object.entries(someRemoteData.users.slice(0, 10)) as [`${0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10}`, any][]) {
+	 * 		switch (index) {
+	 * 			case '0': {
+	 * 				embed0.setColor('#FF0000').setDescription('example description 1').setAuthor(user.name);
+	 * 				break;
+	 * 			}
+	 * 			case '1': {
+	 * 				embed1.setColor('#00FF00').setDescription('example description 2').setAuthor(user.name);
+	 * 				break;
+	 * 			}
+	 * 			case '2': {
+	 * 				embed2.setColor('#0000FF').setDescription('example description 3').setAuthor(user.name);
+	 * 				break;
+	 * 			}
+	 * 		}
+	 * 	}
+	 *
+	 * 	return [embed0, embed1, embed2];
+	 * });
+	 * ```
+	 * @example
+	 * ```typescript
+	 * const { PaginatedMessage } = require('@sapphire/discord.js-utilities');
+	 *
+	 * const embed1 = new MessageEmbed()
+	 * 	.setColor('#FF0000')
+	 * 	.setDescription('example description 1');
+	 *
+	 * const embed2 = new MessageEmbed()
+	 * 	.setColor('#00FF00')
+	 * 	.setDescription('example description 2');
+	 *
+	 * const embed3 = new MessageEmbed()
+	 * 	.setColor('#0000FF')
+	 * 	.setDescription('example description 3');
+	 *
+	 * const paginatedMessage = new PaginatedMessage()
+	 * 	.addAsyncPageEmbeds([embed1, embed2, embed3]); // You can add up to 10 embeds
+	 * ```
+	 */
+	public addAsyncPageEmbeds(
+		embeds:
+			| MessageEmbed[]
+			| ((
+					embed1: MessageEmbed,
+					embed2: MessageEmbed,
+					embed3: MessageEmbed,
+					embed4: MessageEmbed,
+					embed5: MessageEmbed,
+					embed6: MessageEmbed,
+					embed7: MessageEmbed,
+					embed8: MessageEmbed,
+					embed9: MessageEmbed,
+					embed10: MessageEmbed
+			  ) => Promise<MessageEmbed[]>)
+	): this {
+		return this.addPage(async () => {
+			let processedEmbeds = isFunction(embeds)
+				? await embeds(
+						new MessageEmbed(),
+						new MessageEmbed(),
+						new MessageEmbed(),
+						new MessageEmbed(),
+						new MessageEmbed(),
+						new MessageEmbed(),
+						new MessageEmbed(),
+						new MessageEmbed(),
+						new MessageEmbed(),
+						new MessageEmbed()
+				  )
+				: embeds;
+
+			if (processedEmbeds.length > 10) {
+				processedEmbeds = processedEmbeds.slice(0, 10);
+			}
+
+			return { embeds: processedEmbeds };
+		});
 	}
 
 	/**
@@ -393,7 +571,7 @@ export class PaginatedMessage {
 	 * Executed whenever an action is triggered and resolved.
 	 * @param index The index to resolve.
 	 */
-	public async resolvePage(channel: Message['channel'], index: number): Promise<APIMessage> {
+	public async resolvePage(channel: Message['channel'], index: number): Promise<MessagePayload> {
 		// If the message was already processed, do not load it again:
 		const message = this.messages[index];
 		if (message !== null) return message;
@@ -435,11 +613,11 @@ export class PaginatedMessage {
 	 */
 	protected async setUpReactions(channel: Message['channel'], author: User): Promise<void> {
 		if (this.pages.length > 1) {
-			this.collector = this.response!.createReactionCollector(
-				(reaction: MessageReaction, user: User) =>
-					user.id === author.id && (this.actions.has(reaction.emoji.identifier) || this.actions.has(reaction.emoji.name)),
-				{ idle: this.idle }
-			)
+			this.collector = this.response!.createReactionCollector({
+				filter: (reaction: MessageReaction, user: User) =>
+					user.id === author.id && (this.actions.has(reaction.emoji.identifier) || this.actions.has(reaction.emoji.name ?? '')),
+				idle: this.idle
+			})
 				.on('collect', this.handleCollect.bind(this, author, channel))
 				.on('end', this.handleEnd.bind(this));
 
@@ -456,9 +634,9 @@ export class PaginatedMessage {
 	 * @param channel The channel the paginated message runs at.
 	 * @param index The index of the current page.
 	 */
-	protected async handlePageLoad(page: MessagePage, channel: Message['channel'], index: number): Promise<APIMessage> {
+	protected async handlePageLoad(page: MessagePage, channel: Message['channel'], index: number): Promise<MessagePayload> {
 		const options = isFunction(page) ? await page(index, this.pages, this) : page;
-		const resolved = options instanceof APIMessage ? options : new APIMessage(channel, this.applyTemplate(this.template, options));
+		const resolved = options instanceof MessagePayload ? options : new MessagePayload(channel, this.applyTemplate(this.template, options));
 		return this.applyFooter(resolved.resolveData(), index);
 	}
 
@@ -474,7 +652,7 @@ export class PaginatedMessage {
 			await reaction.users.remove(user);
 		}
 
-		const action = (this.actions.get(reaction.emoji.identifier) ?? this.actions.get(reaction.emoji.name))!;
+		const action = (this.actions.get(reaction.emoji.identifier) ?? this.actions.get(reaction.emoji.name ?? ''))!;
 		const previousIndex = this.index;
 
 		await action.run({
@@ -510,23 +688,31 @@ export class PaginatedMessage {
 		}
 	}
 
-	protected applyFooter(message: APIMessage, index: number): APIMessage {
-		const data = message.data as RESTPostAPIChannelMessageJSONBody;
-		if (!data.embed) return message;
+	protected applyFooter(message: MessagePayload, index: number): MessagePayload {
+		const data = message.data as PatchedRESTPostAPIChannelMessageJSONBody;
+		if (!data.embeds?.length) return message;
 
-		data.embed.footer ??= { text: this.template.embed?.footer?.text ?? '' };
-		data.embed.footer.text = `${index + 1} / ${this.pages.length}${data.embed.footer.text}`;
+		for (const [idx, embed] of Object.entries(data.embeds)) {
+			if (embed) {
+				embed.footer ??= { text: this.template.embeds?.[Number(idx)]?.footer?.text ?? this.template.embeds?.[0]?.footer?.text ?? '' };
+				embed.footer.text = `${index + 1} / ${this.pages.length}${embed.footer.text}`;
+			}
+		}
+
 		return message;
 	}
 
 	private applyTemplate(template: MessageOptions, options: MessageOptions): MessageOptions {
-		return { ...template, ...options, embed: this.applyTemplateEmbed(template.embed, options.embed) };
+		const embedData = this.applyTemplateEmbed(template.embeds, options.embeds);
+		const embeds = embedData ? [embedData] : undefined;
+
+		return { ...template, ...options, embeds };
 	}
 
 	private applyTemplateEmbed(template: EmbedResolvable, embed: EmbedResolvable): MessageEmbed | MessageEmbedOptions | undefined {
-		if (!embed) return template;
-		if (!template) return embed;
-		return this.mergeEmbeds(template, embed);
+		if (!embed) return template?.[0];
+		if (!template) return embed?.[0];
+		return this.mergeEmbeds(template?.[0], embed?.[0]);
 	}
 
 	private mergeEmbeds(template: MessageEmbed | MessageEmbedOptions, embed: MessageEmbed | MessageEmbedOptions): MessageEmbedOptions {
@@ -537,7 +723,6 @@ export class PaginatedMessage {
 			timestamp: embed.timestamp ?? template.timestamp ?? undefined,
 			color: embed.color ?? template.color ?? undefined,
 			fields: this.mergeArrays(template.fields, embed.fields),
-			files: this.mergeArrays(template.files, embed.files),
 			author: embed.author ?? template.author ?? undefined,
 			thumbnail: embed.thumbnail ?? template.thumbnail ?? undefined,
 			image: embed.image ?? template.image ?? undefined,
@@ -561,7 +746,11 @@ export class PaginatedMessage {
 			run: async ({ handler, author, channel }) => {
 				const questionMessage = await channel.send(PaginatedMessage.promptMessage);
 				const collected = await channel
-					.awaitMessages((message: Message) => message.author.id === author.id, { max: 1, idle: Time.Minute * 20 })
+					.awaitMessages({
+						filter: (message: Message) => message.author.id === author.id,
+						max: 1,
+						idle: Time.Minute * 20
+					})
 					.catch(() => null);
 
 				if (collected) {
@@ -648,7 +837,7 @@ export class PaginatedMessage {
 
 	private static resolveTemplate(template?: MessageEmbed | MessageOptions): MessageOptions {
 		if (template === undefined) return {};
-		if (template instanceof MessageEmbed) return { embed: template };
+		if (template instanceof MessageEmbed) return { embeds: [template] };
 		return template;
 	}
 }
@@ -715,12 +904,12 @@ export interface PaginatedMessageOptions {
 /**
  * The pages that are used for {@link PaginatedMessage.pages}
  *
- * Pages can be either an {@linkplain https://discord.js.org/#/docs/main/stable/class/APIMessage APIMessage} directly,
- * or an awaited function which returns an {@linkplain https://discord.js.org/#/docs/main/stable/class/APIMessage APIMessage}.
+ * Pages can be either an {@link MessagePayload} directly,
+ * or an awaited function which returns an {@link MessagePayload}.
  *
- * Furthermore, {@linkplain https://discord.js.org/#/docs/main/stable/typedef/MessageOptions MessageOptions} can be used to
+ * Furthermore, {@link MessageOptions} can be used to
  * construct the pages without state, this library also provides {@link MessageBuilder}, which can be used as a chainable
- * alternative to raw objects, similar to how {@linkplain https://discord.js.org/#/docs/main/stable/class/MessageEmbed MessageEmbed}
+ * alternative to raw objects, similar to how {@link MessageEmbed}
  * works.
  *
  * @example
@@ -740,8 +929,8 @@ export interface PaginatedMessageOptions {
  *
  * @example
  * ```typescript
- * // Direct usage as an APIMessage
- * new APIMessage(message.channel, {
+ * // Direct usage as an MessagePayload
+ * new MessagePayload(message.channel, {
  *   content: 'Test content!',
  * });
  * ```
@@ -750,14 +939,18 @@ export interface PaginatedMessageOptions {
  * ```typescript
  * // An awaited function. This function also passes index, pages, and handler.
  * (index, pages) =>
- *   new APIMessage(message.channel, {
+ *   new MessagePayload(message.channel, {
  *     embed: new MessageEmbed().setFooter(`Page ${index + 1} / ${pages.length}`)
  *   });
  * ```
  */
 export type MessagePage =
-	| ((index: number, pages: MessagePage[], handler: PaginatedMessage) => Awaited<APIMessage | MessageOptions>)
-	| APIMessage
+	| ((index: number, pages: MessagePage[], handler: PaginatedMessage) => Awaited<MessagePayload | MessageOptions>)
+	| MessagePayload
 	| MessageOptions;
 
-type EmbedResolvable = MessageOptions['embed'];
+type EmbedResolvable = MessageOptions['embeds'];
+
+type PatchedRESTPostAPIChannelMessageJSONBody = Omit<RESTPostAPIChannelMessageJSONBody, 'embed'> & {
+	embeds?: RESTPostAPIChannelMessageJSONBody['embed'][];
+};

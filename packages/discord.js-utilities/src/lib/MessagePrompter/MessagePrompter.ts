@@ -1,5 +1,5 @@
 import type { Ctor } from '@sapphire/utilities';
-import type { CollectorFilter, DMChannel, EmojiResolvable, Message, NewsChannel, TextChannel, User } from 'discord.js';
+import type { CollectorFilter, DMChannel, EmojiResolvable, Message, MessageReaction, NewsChannel, TextChannel, User } from 'discord.js';
 import { MessagePrompterMessage, MessagePrompterStrategies } from './constants';
 import type {
 	IMessagePrompterExplicitConfirmReturn,
@@ -30,6 +30,13 @@ export interface StrategyOptions {
 	[MessagePrompterStrategies.Message]: IMessagePrompterStrategyOptions;
 	[MessagePrompterStrategies.Number]: IMessagePrompterNumberStrategyOptions;
 	[MessagePrompterStrategies.Reaction]: IMessagePrompterReactionStrategyOptions;
+}
+
+export interface StrategyFilters {
+	[MessagePrompterStrategies.Confirm]: [MessageReaction, User];
+	[MessagePrompterStrategies.Message]: [Message];
+	[MessagePrompterStrategies.Number]: [MessageReaction, User];
+	[MessagePrompterStrategies.Reaction]: [MessageReaction, User];
 }
 
 /**
@@ -96,10 +103,10 @@ export class MessagePrompter<S extends MessagePrompterStrategies = MessagePrompt
 		strategy?: S,
 		strategyOptions?: S extends keyof StrategyOptions ? StrategyOptions[S] : never
 	) {
-		let strategyToRun: MessagePrompterBaseStrategy | undefined = undefined;
+		let strategyToRun: MessagePrompterBaseStrategy;
 
 		if (message instanceof MessagePrompterBaseStrategy) {
-			strategyToRun = message as MessagePrompterBaseStrategy;
+			strategyToRun = message;
 		} else {
 			const mapStrategy = MessagePrompter.strategies.get(strategy ?? MessagePrompter.defaultStrategy);
 
@@ -118,11 +125,13 @@ export class MessagePrompter<S extends MessagePrompterStrategies = MessagePrompt
 	 * @param channel The channel to use.
 	 * @param authorOrFilter An author object to validate or a {@linkplain https://discord.js.org/#/docs/main/stable/typedef/CollectorFilter CollectorFilter} predicate callback.
 	 */
-	public run(
+	public run<Filter extends S extends keyof StrategyFilters ? StrategyFilters[S] : unknown[]>(
 		channel: TextChannel | NewsChannel | DMChannel,
-		authorOrFilter: User | CollectorFilter
+		authorOrFilter: User | CollectorFilter<Filter>
 	): S extends keyof StrategyReturns ? Promise<StrategyReturns[S]> : never {
-		return this.strategy.run(channel, authorOrFilter) as S extends keyof StrategyReturns ? Promise<StrategyReturns[S]> : never;
+		return this.strategy.run(channel, authorOrFilter as User | CollectorFilter<unknown[]>) as S extends keyof StrategyReturns
+			? Promise<StrategyReturns[S]>
+			: never;
 	}
 
 	/**

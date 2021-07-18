@@ -1,4 +1,4 @@
-import type { CollectorFilter, DMChannel, EmojiResolvable, NewsChannel, TextChannel, User } from 'discord.js';
+import type { CollectorFilter, DMChannel, EmojiIdentifierResolvable, MessageReaction, NewsChannel, TextChannel, User } from 'discord.js';
 import type { MessagePrompterMessage } from '../constants';
 import type { IMessagePrompterExplicitNumberReturn } from '../ExplicitReturnTypes';
 import type { IMessagePrompterNumberStrategyOptions } from '../strategyOptions';
@@ -8,7 +8,7 @@ export class MessagePrompterNumberStrategy extends MessagePrompterBaseStrategy i
 	/**
 	 * The available number emojis
 	 */
-	public numberEmojis: string[] | EmojiResolvable[];
+	public numberEmojis: EmojiIdentifierResolvable[];
 	/**
 	 * The available number emojis
 	 */
@@ -40,7 +40,7 @@ export class MessagePrompterNumberStrategy extends MessagePrompterBaseStrategy i
 	 */
 	public async run(
 		channel: TextChannel | NewsChannel | DMChannel,
-		authorOrFilter: User | CollectorFilter
+		authorOrFilter: User | CollectorFilter<[MessageReaction, User]>
 	): Promise<IMessagePrompterExplicitNumberReturn | number> {
 		// 0 and 10 are the maximum available emojis as a number
 		if (this.start < 0) throw new TypeError('Starting number cannot be less than 0.');

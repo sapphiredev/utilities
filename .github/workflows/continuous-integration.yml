@@ -53,6 +53,8 @@ jobs:
       - name: Install Dependencies if Cache Miss
         if: ${{ !steps.cache-restore.outputs.cache-hit }}
         run: yarn --frozen-lockfile
+      - name: Build Async Queue
+        run: yarn workspace @sapphire/async-queue build
       - name: Build Utilities
         run: yarn workspace @sapphire/utilities build
       - name: Build Time Utilities
