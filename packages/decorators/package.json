@@ -7,7 +7,7 @@
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
 	"exports": {
-		"import": "./dist/index.js",
+		"import": "./dist/index.mjs",
 		"require": "./dist/index.js"
 	},
 	"sideEffects": false,
@@ -17,6 +17,7 @@
 		"prelint": "yarn test && yarn build",
 		"lint": "eslint src tests --ext ts --fix -c dist/index.js",
 		"build": "tsc -b src",
+		"postbuild": "gen-esm-wrapper dist/index.js dist/index.mjs",
 		"prepublishOnly": "yarn build"
 	},
 	"dependencies": {

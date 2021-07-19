@@ -70,10 +70,8 @@ jobs:
       - name: Install Dependencies if Cache Miss
         if: ${{ !steps.cache-restore.outputs.cache-hit }}
         run: yarn --frozen-lockfile
-      - name: Build Dependencies
-        run: yarn lerna run build --parallel --scope=@sapphire/utilities --scope=@sapphire/discord-utilities
-      - name: Build Time Utilities
-        run: yarn workspace @sapphire/time-utilities build
+      - name: Build all packages in proper order
+        run: yarn build
       - name: Build documentation
         run: yarn docs
       - name: Publish Docs
