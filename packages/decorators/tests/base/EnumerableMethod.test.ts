@@ -1,10 +1,12 @@
-import { enumerable } from '../../src';
+import { EnumerableMethod } from '../../src';
 
 describe('enumerable', () => {
 	test('GIVEN enumerable=false THEN should not be enumerable', () => {
 		class Sample {
-			@enumerable(false)
-			public name = 'name';
+			@EnumerableMethod(false)
+			public getName() {
+				return 'name';
+			}
 		}
 
 		expect(Sample.prototype).toEqual({});
@@ -12,10 +14,12 @@ describe('enumerable', () => {
 
 	test('GIVEN enumerable=true THEN should be enumerable', () => {
 		class AnotherSample {
-			@enumerable(true)
-			public name = 'name';
+			@EnumerableMethod(true)
+			public getName() {
+				return 'name';
+			}
 		}
 
-		expect(AnotherSample.prototype).toEqual({ name: undefined });
+		expect(AnotherSample.prototype).toEqual({ getName: expect.any(Function) });
 	});
 });

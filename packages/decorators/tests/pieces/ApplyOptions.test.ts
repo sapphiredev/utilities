@@ -1,5 +1,5 @@
 import { Command, CommandOptions, CommandStore } from '@sapphire/framework';
-import { ApplyOptions } from '../../src/core-decorators';
+import { ApplyOptions } from '../../src';
 
 describe('ApplyOptions', () => {
 	test('GIVEN options object THEN sets options', () => {
