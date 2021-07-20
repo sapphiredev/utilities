@@ -46,13 +46,13 @@ describe('RequiresPermissions', () => {
 
 		describe('WITH channel === GUILD_TEXT', () => {
 			test('GIVEN has permission THEN returns resolved', async () => {
-				const result = await instance.getValue(buildMessage('text', 'SEND_MESSAGES', 'ATTACH_FILES'));
+				const result = await instance.getValue(buildMessage('GUILD_TEXT', 'SEND_MESSAGES', 'ATTACH_FILES'));
 
 				expect(result).toBe('Resolved');
 			});
 
 			test('GIVEN lacking 1 permission THEN throws UserError', async () => {
-				const result = instance.getValue(buildMessage('text', 'SEND_MESSAGES'));
+				const result = instance.getValue(buildMessage('GUILD_TEXT', 'SEND_MESSAGES'));
 
 				await expect(result).rejects.toThrowError(
 					new UserError({
@@ -65,7 +65,7 @@ describe('RequiresPermissions', () => {
 			});
 
 			test('GIVEN lacking 2 permissions THEN throws UserError', async () => {
-				const result = instance.getValue(buildMessage('text'));
+				const result = instance.getValue(buildMessage('GUILD_TEXT'));
 
 				await expect(result).rejects.toThrowError(
 					new UserError({
@@ -80,7 +80,7 @@ describe('RequiresPermissions', () => {
 
 		describe('WITH channel === DM', () => {
 			test('GIVEN no additional permissions THEN resolves', async () => {
-				const result = await instance.getValue(buildMessage('dm'));
+				const result = await instance.getValue(buildMessage('DM'));
 
 				expect(result).toBe('Resolved');
 			});
@@ -99,7 +99,7 @@ describe('RequiresPermissions', () => {
 
 		describe('WITH channel === DM', () => {
 			test('GIVEN no additional permissions THEN resolves', async () => {
-				const result = instance.getValue(buildMessage('dm'));
+				const result = instance.getValue(buildMessage('DM'));
 
 				await expect(result).rejects.toThrowError(
 					new UserError({
