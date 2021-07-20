@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/sapphiredev/utilities/compare/@sapphire/decorators@2.1.5...@sapphire/decorators@2.2.0) (2021-07-20)
+
+### Features
+
+-   **decorators:** add new permission decorators ([#138](https://github.com/sapphiredev/utilities/issues/138)) ([60ab0ca](https://github.com/sapphiredev/utilities/commit/60ab0cabcc768950909b0a35c2924edff13cec0e))
+
 ## [2.1.5](https://github.com/sapphiredev/utilities/compare/@sapphire/decorators@2.1.4...@sapphire/decorators@2.1.5) (2021-06-27)
 
 **Note:** Version bump only for package @sapphire/decorators

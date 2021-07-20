@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1](https://github.com/sapphiredev/utilities/compare/@sapphire/utilities@2.0.0...@sapphire/utilities@2.0.1) (2021-07-20)
+
+### Bug Fixes
+
+-   **utilities:** add tsdoc for filter functions ([36d51d1](https://github.com/sapphiredev/utilities/commit/36d51d12366dd25fa2f04a90e834b5fc2aac73ac))
+
 # [2.0.0](https://github.com/sapphiredev/utilities/compare/@sapphire/utilities@1.7.0...@sapphire/utilities@2.0.0) (2021-07-17)
 
 ### Code Refactoring
