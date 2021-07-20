@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/sapphiredev/utilities/compare/@sapphire/ts-config@2.3.2...@sapphire/ts-config@3.0.0) (2021-07-20)
+
+### Features
+
+-   **ts-config:** bump target ES2019 to ES2020 ([9aad698](https://github.com/sapphiredev/utilities/commit/9aad698ff9f76b199b206f36799d3274ab60b70a))
+
+### BREAKING CHANGES
+
+-   **ts-config:** Code output by a non-overwritten @sapphire/ts-config will now be in ES2020 format.
+    This means you need to use _at least_ NodeJS v14 to run projects that use this config.
+
 ## [2.3.2](https://github.com/sapphiredev/utilities/compare/@sapphire/ts-config@2.3.1...@sapphire/ts-config@2.3.2) (2021-07-11)
 
 **Note:** Version bump only for package @sapphire/ts-config
