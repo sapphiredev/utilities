@@ -59,13 +59,17 @@ export interface StrategyFilters {
  *
  * @example
  * ```typescript
+ * const { MessagePrompter } = require('@sapphire/discord.js-utilities');
+ *
  * const handler = new MessagePrompter('Are you sure you want to continue?');
  * const result = await handler.run(channel, author);
  * ```
  *
  * @example
  * ```typescript
- * const handler = new MessagePrompter('Choose a number between 5 and 10?', 'number', {
+ * const { MessagePrompter, MessagePrompterStrategies } = require('@sapphire/discord.js-utilities');
+ *
+ * const handler = new MessagePrompter('Choose a number between 5 and 10?', MessagePrompterStrategies.Number, {
  * 		start: 5,
  * 		end: 10
  * });
@@ -74,7 +78,9 @@ export interface StrategyFilters {
  *
  * @example
  * ```typescript
- * const handler = new MessagePrompter('Are you happy or sad?', 'reaction', {
+ * const { MessagePrompter, MessagePrompterStrategies } = require('@sapphire/discord.js-utilities');
+ *
+ * const handler = new MessagePrompter('Are you happy or sad?', MessagePrompterStrategies.Reaction, {
  * 		reactions: ['🙂', '🙁']
  * });
  * const result = await handler.run(channel, author);
@@ -82,7 +88,9 @@ export interface StrategyFilters {
  *
  * @example
  * ```typescript
- * const handler = new MessagePrompter('Do you love me?', 'message');
+ * const { MessagePrompter, MessagePrompterStrategies } = require('@sapphire/discord.js-utilities');
+ *
+ * const handler = new MessagePrompter('Do you love me?', MessagePrompterStrategies.Message);
  * const result = await handler.run(channel, author);
  * ```
  */
