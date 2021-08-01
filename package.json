@@ -23,8 +23,8 @@
 		"prepare": "husky install .github/husky"
 	},
 	"devDependencies": {
-		"@commitlint/cli": "^12.1.4",
-		"@commitlint/config-conventional": "^12.1.4",
+		"@commitlint/cli": "^13.1.0",
+		"@commitlint/config-conventional": "^13.1.0",
 		"@discordjs/collection": "^0.2.0",
 		"@favware/rollup-type-bundler": "^1.0.3",
 		"@rollup/plugin-commonjs": "^19.0.1",
