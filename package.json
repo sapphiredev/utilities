@@ -40,7 +40,7 @@
 		"@typescript-eslint/eslint-plugin": "^4.28.3",
 		"@typescript-eslint/parser": "^4.28.5",
 		"cz-conventional-changelog": "^3.3.0",
-		"discord-api-types": "^0.18.1",
+		"discord-api-types": "^0.20.2",
 		"discord.js": "dev",
 		"eslint": "^7.30.0",
 		"eslint-config-prettier": "^8.3.0",
