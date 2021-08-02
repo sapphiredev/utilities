@@ -108,7 +108,16 @@ export class PaginationFieldMessageEmbed<Element> extends PaginatedMessage {
 	 * Make
 	 *
 	 * Build the item pagination of the configured array.
-	 * It is required to enter the `.make()` method at the end in order to start.
+	 * It is required to put the `.make()` and `.run()` method at the end in order to start.
+	 *
+	 * @example
+	 * new PaginationFieldManager()
+	 *    .setTitleField('Test field')
+	 *    .setTemplate({ ...options })
+	 *    .setItems([{ field: 'value' }, { field: 'value' }, { field: 'value' }, { field: 'value' }])
+	 *    .formatField((item) => `${item.field}\n${item.value}`)
+	 *    .make()
+	 *    .run(message.author, message.channel);
 	 */
 	public make() {
 		if (!this.fieldTitle) throw new Error('The title of the field to format must have a value.');
