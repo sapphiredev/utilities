@@ -523,7 +523,7 @@ export class PaginatedMessage {
 	 * Executes the {@link PaginatedMessage} and sends the pages corresponding with {@link PaginatedMessage.index}.
 	 * The handler will start collecting reactions and running actions once all actions have been reacted to the message.
 	 * @param message The message that triggered this {@link PaginatedMessage}.
-	 * Generally this will be the command message, but it can also be another message from your bot, i.e. to indicate a loading state.
+	 * Generally this will be the command message, but it can also be another message from your client, i.e. to indicate a loading state.
 	 * @param target The user who will be able to interact with the reactions of this {@link PaginatedMessage}. Defaults to `message.author`.
 	 */
 	public async run(message: Message, target = message.author): Promise<this> {
