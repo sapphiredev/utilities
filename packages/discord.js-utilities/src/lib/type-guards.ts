@@ -117,8 +117,6 @@ export function isNsfwChannel(channel: TextBasedChannelTypes): boolean {
 		case 'GUILD_NEWS_THREAD':
 		case 'GUILD_PUBLIC_THREAD':
 		case 'GUILD_PRIVATE_THREAD':
-			// `ThreadChannel#parent` returns `null` only when the cache is
-			// incomplete, which is never the case in Skyra.
-			return channel.parent!.nsfw;
+			return Boolean(channel.parent?.nsfw);
 	}
 }
