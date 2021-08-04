@@ -1,7 +1,7 @@
 import { UserError } from '@sapphire/framework';
-import { PermissionResolvable, Permissions, PermissionString, Message as DJSMessage } from 'discord.js';
+import { Message as DJSMessage, PermissionResolvable, Permissions, PermissionString } from 'discord.js';
 import diff from 'lodash/difference';
-import { DecoratorIdentifiers, RequiresPermissions } from '../../src';
+import { DecoratorIdentifiers, RequiresClientPermissions } from '../../src';
 
 interface BitField {
 	missing(resolvedPermissions: Permissions): PermissionString[];
@@ -33,10 +33,10 @@ function buildMessage(channelType: DJSMessage['channel']['type'], ...givenPermis
 	};
 }
 
-describe('RequiresPermissions', () => {
+describe('RequiresClientPermissions', () => {
 	describe('WITH DM-compatible permissions', () => {
 		class Test {
-			@RequiresPermissions(['SEND_MESSAGES', 'ATTACH_FILES'])
+			@RequiresClientPermissions(['SEND_MESSAGES', 'ATTACH_FILES'])
 			public getValue(_message: Message) {
 				return Promise.resolve('Resolved');
 			}
@@ -56,7 +56,8 @@ describe('RequiresPermissions', () => {
 
 				await expect(result).rejects.toThrowError(
 					new UserError({
-						identifier: DecoratorIdentifiers.RequiresPermissionsMissingPermissions,
+						identifier: DecoratorIdentifiers.RequiresClientPermissionsMissingPermissions,
+						message: `Sorry, but I am not allowed to do that. I am missing the permissions: ATTACH_FILES`,
 						context: {
 							missing: ['ATTACH_FILES']
 						}
@@ -69,7 +70,8 @@ describe('RequiresPermissions', () => {
 
 				await expect(result).rejects.toThrowError(
 					new UserError({
-						identifier: DecoratorIdentifiers.RequiresPermissionsMissingPermissions,
+						identifier: DecoratorIdentifiers.RequiresClientPermissionsMissingPermissions,
+						message: `Sorry, but I am not allowed to do that. I am missing the permissions: SEND_MESSAGES,ATTACH_FILES`,
 						context: {
 							missing: ['SEND_MESSAGES', 'ATTACH_FILES']
 						}
@@ -89,7 +91,7 @@ describe('RequiresPermissions', () => {
 
 	describe('WITH DM-incompatible permissions', () => {
 		class Test {
-			@RequiresPermissions(['MANAGE_MESSAGES', 'ADD_REACTIONS', 'EMBED_LINKS'])
+			@RequiresClientPermissions(['MANAGE_MESSAGES', 'ADD_REACTIONS', 'EMBED_LINKS'])
 			public getValue(_message: Message) {
 				return Promise.resolve('Resolved');
 			}
@@ -103,7 +105,8 @@ describe('RequiresPermissions', () => {
 
 				await expect(result).rejects.toThrowError(
 					new UserError({
-						identifier: DecoratorIdentifiers.RequiresPermissionsGuildOnly
+						identifier: DecoratorIdentifiers.RequiresClientPermissionsGuildOnly,
+						message: 'Sorry but that command can only be used in a server because I do not have sufficient permissions in DMs'
 					})
 				);
 			});
