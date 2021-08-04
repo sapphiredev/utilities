@@ -65,7 +65,10 @@ export const RequiresPermissions = (...permissionsResolvable: PermissionResolvab
 
 	return createFunctionPrecondition((message: Message) => {
 		if (isDMChannel(message.channel) && resolvedIncludesServerPermissions) {
-			throw new UserError({ identifier: DecoratorIdentifiers.RequiresPermissionsGuildOnly });
+			throw new UserError({
+				identifier: DecoratorIdentifiers.RequiresPermissionsGuildOnly,
+				message: 'Sorry but that command can only be used in a server because I do not have sufficient permissions in DMs'
+			});
 		}
 
 		if (isGuildBasedChannel(message.channel)) {
@@ -74,6 +77,7 @@ export const RequiresPermissions = (...permissionsResolvable: PermissionResolvab
 			if (missingPermissions.length) {
 				throw new UserError({
 					identifier: DecoratorIdentifiers.RequiresPermissionsMissingPermissions,
+					message: `Sorry, but I am not allowed to do that. I am missing the permissions: ${missingPermissions}`,
 					context: {
 						missing: missingPermissions
 					}
