@@ -3,14 +3,13 @@ import type {
 	Channel,
 	DMChannel,
 	Message,
-	GuildChannel,
 	NewsChannel,
 	PartialGroupDMChannel,
 	StageChannel,
 	StoreChannel,
 	TextChannel,
-	VoiceChannel,
-	ThreadChannel
+	ThreadChannel,
+	VoiceChannel
 } from 'discord.js';
 
 /**
@@ -42,7 +41,7 @@ export function isGroupChannel(channel: Channel): channel is PartialGroupDMChann
  * @param channel The channel to check
  */
 export function isGuildBasedChannel(channel: Message['channel']): channel is TextChannel | NewsChannel | ThreadChannel {
-	return (channel as GuildChannel).guildId !== null;
+	return channel.type !== 'DM';
 }
 
 /**
