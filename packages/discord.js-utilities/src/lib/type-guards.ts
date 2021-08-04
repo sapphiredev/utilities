@@ -2,13 +2,15 @@ import type {
 	CategoryChannel,
 	Channel,
 	DMChannel,
+	Message,
 	GuildChannel,
 	NewsChannel,
 	PartialGroupDMChannel,
 	StageChannel,
 	StoreChannel,
 	TextChannel,
-	VoiceChannel
+	VoiceChannel,
+	ThreadChannel
 } from 'discord.js';
 
 /**
@@ -23,7 +25,7 @@ export function isCategoryChannel(channel: Channel): channel is CategoryChannel 
  * Checks whether a given channel is a {@link DMChannel}
  * @param channel The channel to check
  */
-export function isDMChannel(channel: Channel): channel is DMChannel {
+export function isDMChannel(channel: Message['channel']): channel is DMChannel {
 	return channel.type === 'DM';
 }
 
@@ -39,15 +41,15 @@ export function isGroupChannel(channel: Channel): channel is PartialGroupDMChann
  * Checks whether a given channel is a {@link GuildChannel}
  * @param channel The channel to check
  */
-export function isGuildBasedChannel(channel: Channel): channel is GuildChannel {
-	return channel.type !== 'DM' && channel.type !== 'GROUP_DM' && channel.type !== 'UNKNOWN';
+export function isGuildBasedChannel(channel: Message['channel']): channel is TextChannel | NewsChannel | ThreadChannel {
+	return (channel as GuildChannel).guildId !== null;
 }
 
 /**
  * Checks whether a given channel is a {@link NewsChannel}
  * @param channel The channel to check
  */
-export function isNewsChannel(channel: Channel): channel is NewsChannel {
+export function isNewsChannel(channel: Message['channel']): channel is NewsChannel {
 	return channel.type === 'GUILD_NEWS';
 }
 
@@ -63,7 +65,7 @@ export function isStoreChannel(channel: Channel): channel is StoreChannel {
  * Checks whether a given channel is a {@link TextChannel}
  * @param channel The channel to check
  */
-export function isTextChannel(channel: Channel): channel is TextChannel {
+export function isTextChannel(channel: Message['channel']): channel is TextChannel {
 	return channel.type === 'GUILD_TEXT';
 }
 
