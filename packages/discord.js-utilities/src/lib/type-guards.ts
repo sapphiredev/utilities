@@ -37,7 +37,7 @@ export function isGroupChannel(channel: Channel): channel is PartialGroupDMChann
 }
 
 /**
- * Checks whether or not a channel comes from a guild.
+ * Checks if a channel comes from a guild.
  * @param channel The channel to check
  * @returns Whether or not the channel is guild-based.
  */
@@ -48,7 +48,7 @@ export function isGuildBasedChannel(channel: TextBasedChannelTypes): channel is 
 /**
  * Checks whether or not a channel comes from a guild.
  * @remark As opposed to {@link isGuildBasedChannel} this checks if there is `guild` property on the channel.
- * @param channel The channel to test.
+ * @param channel The channel to check.
  * @returns Whether or not the channel is guild-based.
  */
 export function isGuildBasedChannelByGuildKey(channel: TextBasedChannelTypes): channel is GuildTextBasedChannelTypes {
@@ -56,8 +56,8 @@ export function isGuildBasedChannelByGuildKey(channel: TextBasedChannelTypes): c
 }
 
 /**
- * Checks whether a given channel is a {@link NewsChannel}
- * @param channel The channel to check
+ * Checks whether a given channel is a {@link NewsChannel}.
+ * @param channel The channel to check.
  */
 export function isNewsChannel(channel: TextBasedChannelTypes): channel is NewsChannel {
 	return channel.type === 'GUILD_NEWS';
@@ -72,8 +72,8 @@ export function isStoreChannel(channel: Channel): channel is StoreChannel {
 }
 
 /**
- * Checks whether a given channel is a {@link TextChannel}
- * @param channel The channel to check
+ * Checks whether a given channel is a {@link TextChannel}.
+ * @param channel The channel to check.
  */
 export function isTextChannel(channel: TextBasedChannelTypes): channel is TextChannel {
 	return channel.type === 'GUILD_TEXT';
@@ -105,7 +105,7 @@ export function isThreadChannel(channel: Channel): channel is ThreadChannel {
 
 /**
  * Checks whether a given channel allows NSFW content or not
- * @param channel The channel to check whether it allows NSFW or not
+ * @param channel The channel to check.
  */
 export function isNsfwChannel(channel: TextBasedChannelTypes): boolean {
 	switch (channel.type) {
