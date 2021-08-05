@@ -65,7 +65,7 @@ import { isGuildBasedChannel } from '../type-guards';
  * @example
  * ```typescript
  * const myPaginatedMessage = new PaginatedMessage({
- * 	template: new MessageEmbed().setColor('#FF0000').setFooter('- powered by sapphire framework')
+ * 	template: new MessageEmbed().setColor('#FF0000').setFooter('- Powered by Sapphire framework')
  * });
  * ```
  *
