@@ -28,14 +28,50 @@ import { isGuildBasedChannel } from '../type-guards';
  *
  * @example
  * ```typescript
- * const handler = new PaginatedMessage();
+ * const myPaginatedMessage = new PaginatedMessage();
+ * // Once you have an instance of PaginatedMessage you can call various methods on it to add pages to it.
+ * // For more details see each method's documentation.
+ *
+ * myPaginatedMessage.addPageEmbed((embed) => {
+ *		embed
+ *			.setColor('#FF0000')
+ *			.setDescription('example description');
+ *
+ *		return embed;
+ * });
+ *
+ * myPaginatedMessage.addPageBuilder((builder) => {
+ *		const embed = new MessageEmbed()
+ *			.setColor('#FF0000')
+ *			.setDescription('example description');
+ *
+ *		return builder
+ *			.setContent('example content')
+ *			.setEmbed(embed);
+ * });
+ *
+ * myPaginatedMessage.addPageContent('Example');
+ *
+ * myPaginatedMessage.run(message)
  * ```
  *
+ * @remark You can also provide a MessageEmbed template. This will be applied to every page.
+ * If a page itself has an embed then the two will be merged, with the content of
+ * the page's embed taking priority over the template.
+ *
+ * Furthermore, if the template has a footer then it will be applied _after_ the page index part of the footer
+ * with a space preceding the template. For example, when setting `- Powered by Sapphire Framework`
+ * the resulting footer will be `1/2 - Powered by Sapphire Framework`
  * @example
  * ```typescript
- * // To utilize actions you can use the IPaginatedMessageAction by implementing it into a class.
- * // PaginatedMessage requires you to have the class initialized using `new`.
+ * const myPaginatedMessage = new PaginatedMessage({
+ * 	template: new MessageEmbed().setColor('#FF0000').setFooter('- Powered by Sapphire framework')
+ * });
+ * ```
  *
+ * @remark To utilize actions you can implement IPaginatedMessageAction into a class.
+ * @example
+ * ```typescript
  * class ForwardAction implements IPaginatedMessageAction {
  *   public id = '▶️';
  *
@@ -99,16 +135,24 @@ export class PaginatedMessage {
 	public template: MessageOptions;
 
 	/**
+	 * Custom text to show in front of the page index in the embed footer.
+	 * PaginatedMessage will automatically add a space (` `) after the given text. You do not have to add it yourself.
+	 * @default ```PaginatedMessage.pageIndexPrefix``` (static property)
+	 */
+	public pageIndexPrefix = PaginatedMessage.pageIndexPrefix;
+
+	/**
 	 * Constructor for the {@link PaginatedMessage} class
 	 * @param __namedParameters The {@link PaginatedMessageOptions} for this instance of the {@link PaginatedMessage} class
 	 */
-	public constructor({ pages, actions, template }: PaginatedMessageOptions = {}) {
+	public constructor({ pages, actions, template, pageIndexPrefix }: PaginatedMessageOptions = {}) {
 		this.pages = pages ?? [];
 
 		for (const page of this.pages) this.messages.push(page instanceof MessagePayload ? page : null);
 		for (const action of actions ?? this.constructor.defaultActions) this.actions.set(action.id, action);
 
 		this.template = PaginatedMessage.resolveTemplate(template);
+		this.pageIndexPrefix = pageIndexPrefix ?? PaginatedMessage.pageIndexPrefix;
 	}
 
 	public setPromptMessage(message: string) {
@@ -695,7 +739,9 @@ export class PaginatedMessage {
 		for (const [idx, embed] of Object.entries(data.embeds)) {
 			if (embed) {
 				embed.footer ??= { text: this.template.embeds?.[Number(idx)]?.footer?.text ?? this.template.embeds?.[0]?.footer?.text ?? '' };
-				embed.footer.text = `${index + 1} / ${this.pages.length}${embed.footer.text}`;
+				embed.footer.text = `${this.pageIndexPrefix ? `${this.pageIndexPrefix} ` : ''}${index + 1} / ${this.pages.length}${
+					embed.footer.text ? ` ${embed.footer.text}` : ''
+				}`;
 			}
 		}
 
@@ -814,8 +860,30 @@ export class PaginatedMessage {
 	/**
 	 * Custom prompt message when a user wants to jump to a certain page number.
 	 * @default "What page would you like to jump to?"
+	 * @remark To overwrite this property change it in a "setup" file prior to calling `client.login()` for your bot.
+	 * @example
+	 * ```typescript
+	 * import { PaginatedMessage } from '@sapphire/discord.js-utilities';
+	 *
+	 * PaginatedMessage.promptMessage = 'Please send the number of the page you would like to jump to.';
+	 * ```
 	 */
 	public static promptMessage = 'What page would you like to jump to?';
+
+	/**
+	 * Custom text to show in front of the page index in the embed footer.
+	 * PaginatedMessage will automatically add a space (` `) after the given text. You do not have to add it yourself.
+	 * @default ""
+	 * @remark To overwrite this property change it somewhere in a "setup" file, i.e. where you also call `client.login()` for your bot.
+	 * @example
+	 * ```typescript
+	 * import { PaginatedMessage } from '@sapphire/discord.js-utilities';
+	 *
+	 * PaginatedMessage.pageIndexPrefix = 'Page';
+	 * // This will make the footer of the embed something like "Page 1/2"
+	 * ```
+	 */
+	public static pageIndexPrefix = '';
 
 	/**
 	 * The messages that are currently being handled by a {@link PaginatedMessage}
@@ -899,50 +967,27 @@ export interface PaginatedMessageOptions {
 	 * The {@link MessageEmbed} or {@link MessageOptions} options to apply to the entire {@link PaginatedMessage}
 	 */
 	template?: MessageEmbed | MessageOptions;
+	/**
+	 * @seealso {@link PaginatedMessage.pageIndexPrefix}
+	 */
+	pageIndexPrefix?: string;
 }
 
 /**
  * The pages that are used for {@link PaginatedMessage.pages}
  *
- * Pages can be either an {@link MessagePayload} directly,
- * or an awaited function which returns an {@link MessagePayload}.
+ * Pages can be either a {@link MessagePayload},
+ * or an awaited function that returns a {@link MessagePayload}.
  *
  * Furthermore, {@link MessageOptions} can be used to
- * construct the pages without state, this library also provides {@link MessageBuilder}, which can be used as a chainable
+ * construct the pages without state. This library also provides {@link MessageBuilder}, which can be used as a chainable
  * alternative to raw objects, similar to how {@link MessageEmbed}
  * works.
  *
- * @example
- * ```typescript
- * // Direct usage as a MessageBuilder
- * new MessageBuilder().setContent('Test content!');
- * ```
- *
- * @example
- * ```typescript
- * // An awaited function. This function also passes index, pages, and handler.
- * (index, pages) =>
- *   new MessageBuilder().setEmbed(
- *     new MessageEmbed().setFooter(`Page ${index + 1} / ${pages.length}`)
- *   );
- * ```
- *
- * @example
- * ```typescript
- * // Direct usage as an MessagePayload
- * new MessagePayload(message.channel, {
- *   content: 'Test content!',
- * });
- * ```
- *
- * @example
- * ```typescript
- * // An awaited function. This function also passes index, pages, and handler.
- * (index, pages) =>
- *   new MessagePayload(message.channel, {
- *     embed: new MessageEmbed().setFooter(`Page ${index + 1} / ${pages.length}`)
- *   });
- * ```
+ * Ideally, however, you should use the utility functions
+ * {@link PaginatedMessage.addPageBuilder `addPageBuilder`}, {@link PaginatedMessage.addPageContent `addPageContent`}, and {@link PaginatedMessage.addPageEmbed `addPageEmbed`}
+ * as opposed to manually constructing {@link MessagePage `MessagePages`}. This is because a {@link PaginatedMessage} does a lot of post-processing
+ * on the provided pages and we can only guarantee this will work properly when using the utility methods.
  */
 export type MessagePage =
 	| ((index: number, pages: MessagePage[], handler: PaginatedMessage) => Awaited<MessagePayload | MessageOptions>)
