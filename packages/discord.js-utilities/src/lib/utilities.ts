@@ -10,7 +10,7 @@ const canReadMessagesPermissions = new Permissions(['VIEW_CHANNEL']);
  * @returns Whether or not we can send messages in the specified channel.
  */
 export function canReadMessages(channel: TextBasedChannelTypes): boolean {
-	return isGuildBasedChannel(channel) ? channel.permissionsFor(channel.guild.me!)!.has(canReadMessagesPermissions) : true;
+	return canDoUtility(channel, canReadMessagesPermissions);
 }
 
 const canSendMessagesPermissions = new Permissions([canReadMessagesPermissions, 'SEND_MESSAGES']);
@@ -21,7 +21,7 @@ const canSendMessagesPermissions = new Permissions([canReadMessagesPermissions, 
  * @returns Whether or not we can send messages in the specified channel.
  */
 export function canSendMessages(channel: TextBasedChannelTypes): boolean {
-	return isGuildBasedChannel(channel) ? channel.permissionsFor(channel.guild.me!)!.has(canSendMessagesPermissions) : true;
+	return canDoUtility(channel, canSendMessagesPermissions);
 }
 
 const canSendEmbedsPermissions = new Permissions([canSendMessagesPermissions, 'EMBED_LINKS']);
@@ -32,7 +32,7 @@ const canSendEmbedsPermissions = new Permissions([canSendMessagesPermissions, 'E
  * @returns Whether or not we can send embeds in the specified channel.
  */
 export function canSendEmbeds(channel: TextBasedChannelTypes): boolean {
-	return isGuildBasedChannel(channel) ? channel.permissionsFor(channel.guild.me!)!.has(canSendEmbedsPermissions) : true;
+	return canDoUtility(channel, canSendEmbedsPermissions);
 }
 
 const canSendAttachmentsPermissions = new Permissions([canSendMessagesPermissions, 'ATTACH_FILES']);
@@ -43,5 +43,9 @@ const canSendAttachmentsPermissions = new Permissions([canSendMessagesPermission
  * @returns Whether or not we can send attachments in the specified channel.
  */
 export function canSendAttachments(channel: TextBasedChannelTypes): boolean {
-	return isGuildBasedChannel(channel) ? channel.permissionsFor(channel.guild.me!)!.has(canSendAttachmentsPermissions) : true;
+	return canDoUtility(channel, canSendAttachmentsPermissions);
+}
+
+function canDoUtility(channel: TextBasedChannelTypes, permissionsToPass: Permissions) {
+	return isGuildBasedChannel(channel) ? channel.permissionsFor(channel.guild.me!)!.has(permissionsToPass) : true;
 }
