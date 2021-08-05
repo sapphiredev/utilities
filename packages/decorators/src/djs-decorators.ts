@@ -84,7 +84,7 @@ export const RequiresClientPermissions = (...permissionsResolvable: PermissionRe
 		if (resolvedIncludesServerPermissions && isDMChannel(message.channel)) {
 			throw new UserError({
 				identifier: DecoratorIdentifiers.RequiresClientPermissionsGuildOnly,
-				message: 'Sorry but that command can only be used in a server because I do not have sufficient permissions in DMs'
+				message: 'Sorry, but that command can only be used in a server because I do not have sufficient permissions in DMs'
 			});
 		}
 
@@ -153,7 +153,7 @@ export const RequiresUserPermissions = (...permissionsResolvable: PermissionReso
 		if (resolvedIncludesServerPermissions && isDMChannel(message.channel)) {
 			throw new UserError({
 				identifier: DecoratorIdentifiers.RequiresUserPermissionsGuildOnly,
-				message: 'Sorry but that command can only be used in a server because you do not have sufficient permissions in DMs'
+				message: 'Sorry, but that command can only be used in a server because you do not have sufficient permissions in DMs'
 			});
 		}
 

@@ -106,7 +106,7 @@ describe('RequiresClientPermissions', () => {
 				await expect(result).rejects.toThrowError(
 					new UserError({
 						identifier: DecoratorIdentifiers.RequiresClientPermissionsGuildOnly,
-						message: 'Sorry but that command can only be used in a server because I do not have sufficient permissions in DMs'
+						message: 'Sorry, but that command can only be used in a server because I do not have sufficient permissions in DMs'
 					})
 				);
 			});
