@@ -9,37 +9,34 @@ import { PaginatedMessage } from './PaginatedMessage';
  * ```typescript
  * import { PaginationFieldMessageEmbed } from '@sapphire/discord.js-utilities';
  *
- * new PaginationFieldManager()
+ * new PaginationFieldMessageEmbed()
  *    .setTitleField('Test pager field')
  *    .setTemplate({ embed })
  *    .setItems([{ field: 'value' }, { field: 'value' }, { field: 'value' }, { field: 'value' }])
+ *    .formatField((item) => `${item.field}\n${item.value}`)
  *    .setItemsPerPage(2)
  *    .make()
  *    .run(message);
  * ```
  */
-export class PaginationFieldMessageEmbed<Element> extends PaginatedMessage {
+export class PaginationFieldMessageEmbed<T> extends PaginatedMessage {
 	private embedTemplate: MessageEmbed = new MessageEmbed();
 	private totalPages = 0;
-	private items: Element[] = [];
+	private items: T[] = [];
 	private itemsPerPage = 10;
 	private fieldTitle!: string;
 
 	/**
-	 * Items
-	 *
-	 * Array of items for pagination.
+	 * Set the items to paginate.
 	 * @param items The pages to set
 	 */
-	public setItems(items: Element[]) {
+	public setItems(items: T[]) {
 		this.items = items;
 		return this;
 	}
 
 	/**
-	 * Title
-	 *
-	 * Title of the embed field that will be used to paginate the items.
+	 * Set the title of the embed field that will be used to paginate the items.
 	 * @param title Field title
 	 */
 	public setTitleField(title: string) {
@@ -48,9 +45,8 @@ export class PaginationFieldMessageEmbed<Element> extends PaginatedMessage {
 	}
 
 	/**
-	 * items per page
-	 * Number of items to show per page.
-	 * @param itemsPerPage Number o items
+	 * Sets the amount of items that should be shown per page.
+	 * @param itemsPerPage The number of items
 	 */
 	public setItemsPerPage(itemsPerPage: number) {
 		this.itemsPerPage = itemsPerPage;
@@ -58,21 +54,25 @@ export class PaginationFieldMessageEmbed<Element> extends PaginatedMessage {
 	}
 
 	/**
-	 * Embed template
-	 *
 	 * Template to be used to display the pagination of the articles. This template can be configured by the `new MessageEmbed()` class or directly by means of an object with embed options.
+	 *
+	 * @param template MessageEmbed
 	 *
 	 * @example
 	 * ```typescript
 	 * import { PaginationFieldMessageEmbed } from '@sapphire/discord.js-utilities';
 	 * import { MessageEmbed } from 'discord.js';
 	 *
-	 * // Option 1:
-	 * new PaginationFieldManager().setTemplate(new MessageEmbed().setTitle('Test pager embed')).make().run(message);
-	 * // Option 2:
-	 * new PaginationFieldManager().setTemplate({ title: 'Test pager embed' }).make().run(message);
+	 * new PaginationFieldMessageEmbed().setTemplate(new MessageEmbed().setTitle('Test pager embed')).make().run(message.author, message.channel);
 	 * ```
-	 * @param template MessageEmbed
+	 *
+	 * @example
+	 * ```typescript
+	 * import { PaginationFieldMessageEmbed } from '@sapphire/discord.js-utilities';
+	 * import { MessageEmbed } from 'discord.js';
+	 *
+	 * new PaginationFieldMessageEmbed().setTemplate({ title: 'Test pager embed' }).make().run(message.author, message.channel);
+	 * ```
 	 */
 	public setTemplate(template: MessageEmbedOptions | MessageEmbed) {
 		this.embedTemplate = new MessageEmbed(template);
@@ -80,15 +80,13 @@ export class PaginationFieldMessageEmbed<Element> extends PaginatedMessage {
 	}
 
 	/**
-	 * Format field
-	 *
 	 * The way in which the items of the object array will be represented in the embed field to be paginated.
 	 *
 	 * @example
 	 * ```typescript
 	 * import { PaginationFieldMessageEmbed } from '@sapphire/discord.js-utilities';
 	 *
-	 * new PaginationFieldManager()
+	 * new PaginationFieldMessageEmbed()
 	 *    .setTitleField('Test field')
 	 *    .setTemplate({ embed })
 	 *    .setItems([{ field: 'value' }, { field: 'value' }, { field: 'value' }, { field: 'value' }])
@@ -98,7 +96,7 @@ export class PaginationFieldMessageEmbed<Element> extends PaginatedMessage {
 	 * ```
 	 * @param value Item information
 	 */
-	public formatField(value: (value: Element, index: number, array: Element[]) => any) {
+	public formatField(value: (value: T, index: number, array: T[]) => any) {
 		this.items = this.items.map(value);
 		return this;
 	}
@@ -111,7 +109,7 @@ export class PaginationFieldMessageEmbed<Element> extends PaginatedMessage {
 	 * ```typescript
 	 * import { PaginationFieldMessageEmbed } from '@sapphire/discord.js-utilities';
 	 *
-	 * new PaginationFieldManager()
+	 * new PaginationFieldMessageEmbed()
 	 *    .setTitleField('Test field')
 	 *    .setTemplate({ embed })
 	 *    .setItems([{ field: 'value' }, { field: 'value' }, { field: 'value' }, { field: 'value' }])
@@ -132,7 +130,7 @@ export class PaginationFieldMessageEmbed<Element> extends PaginatedMessage {
 
 	private makePages() {
 		new Array(this.totalPages).forEach((_, index) => {
-			const clonedTemplate = new MessageEmbed(this.embedTemplate);
+			const clonedTemplate = this.embedTemplate instanceof MessageEmbed ? this.embedTemplate : new MessageEmbed(this.embedTemplate);
 			const fieldsClone = this.embedTemplate.fields;
 			clonedTemplate.fields = [];
 
@@ -146,7 +144,7 @@ export class PaginationFieldMessageEmbed<Element> extends PaginatedMessage {
 		});
 	}
 
-	private paginateArray(items: Element[], currentPage: number, perPageItems: number) {
+	private paginateArray(items: T[], currentPage: number, perPageItems: number) {
 		const page = currentPage;
 		const perPage = perPageItems;
 		const offset = (page - 1) * perPage;
