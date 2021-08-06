@@ -20,18 +20,17 @@
     -   [Description](#description)
     -   [Features](#features)
     -   [Installation](#installation)
-        -   [Node-fetch types](#node-fetch-types)
     -   [Usage](#usage)
-        -   [`GET`-ing JSON data](#get-ing-json-data)
-        -   [`GET`-ing Buffer data (images, etc.)](#get-ing-buffer-data-images-etc)
-        -   [`POST`-ing JSON data](#post-ing-json-data)
+        -   [`GET`ting JSON data](#getting-json-data)
+        -   [`GET`ting Buffer data (images, etc.)](#getting-buffer-data-images-etc)
+        -   [`POST`ing JSON data](#posting-json-data)
     -   [API Documentation](#api-documentation)
     -   [Buy us some doughnuts](#buy-us-some-doughnuts)
     -   [Contributors ✨](#contributors-%E2%9C%A8)
 
 ## Description
 
-[node-fetch] is already a great library for making API calls, but because it focuses solely on bringing the [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) to Node.js, it doesn't provide specific error messages and handling for different return types (JSON, Buffer, plain text, etc). This is where `@sapphire/fetch` comes in. The syntax is more restrictive than that of [node-fetch], but that makes it consistent and easier to use in TypeScript.
+[cross-fetch] is already a great library for making API calls, but because it focuses solely on bringing the [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) to Node.js, it doesn't provide specific error messages and handling for different return types (JSON, Buffer, plain text, etc). This is where `@sapphire/fetch` comes in. The syntax is more restrictive than that of [cross-fetch], but that makes it consistent and easier to use in TypeScript.
 
 ## Features
 
@@ -40,6 +39,7 @@
 -   Exported `const enum` for the common return data types.
 -   Throws distinctive errors when the API returns a "not ok" status code to make them easier to understand.
 -   Enforces casting the return type when requesting JSON data, to ensure your return data is strictly typed.
+-   Uses [cross-fetch] so this package can be used in NodeJS (where it uses [node-fetch]) and browser (where it uses [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API))
 
 ## Installation
 
@@ -48,16 +48,6 @@ You can use the following command to install this package, or replace `npm insta
 ```sh
 npm install @sapphire/fetch
 ```
-
-### Node-fetch types
-
-TypeScript users should also add `@types/node-fetch`:
-
-```sh
-npm install --save-dev @types/node-fetch
-```
-
-Alternatively, you can enable the [`skipLibChecks`](https://www.typescriptlang.org/tsconfig/#skipLibCheck) TypeScript compiler option
 
 ## Usage
 
@@ -187,3 +177,4 @@ This project follows the [all-contributors](https://github.com/all-contributors/
 <!-- LINKS -->
 
 [node-fetch]: https://github.com/node-fetch/node-fetch
+[cross-fetch]: https://github.com/lquixada/cross-fetch

@@ -1,6 +1,3 @@
-import type { Response } from 'node-fetch';
-import type { URL } from 'url';
-
 /**
  * The QueryError class which is thrown by the `fetch` method
  */
@@ -16,9 +13,9 @@ export class QueryError extends Error {
 	// eslint-disable-next-line @typescript-eslint/explicit-member-accessibility
 	#json: unknown;
 
-	public constructor(url: string | URL, code: number, response: Response, body: string) {
+	public constructor(url: string, code: number, response: Response, body: string) {
 		super(`Failed to request '${url}' with code ${code}.`);
-		this.url = typeof url === 'string' ? url : url.href;
+		this.url = url;
 		this.code = code;
 		this.body = body;
 		this.response = response;
