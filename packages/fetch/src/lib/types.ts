@@ -12,6 +12,7 @@ export const enum FetchResultTypes {
 	/**
 	 * Returns only the body, as a [Buffer](https://nodejs.org/api/buffer.html).
 	 * @remark Does not work in a Browser environment. For browsers use {@link FetchResultTypes.Blob} instead.
+	 * If you use this type in a Browsers environment a {@link ReferenceError `ReferenceError: Buffer is not defined`} will be thrown!
 	 */
 	Buffer = 'buffer',
 	/**
