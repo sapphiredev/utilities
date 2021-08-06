@@ -40,7 +40,7 @@ export async function fetch(url: URL | string, options?: RequestInit | FetchResu
 		type = FetchResultTypes.JSON;
 	}
 
-	// Transform the URL to a String if an URL object was passed
+	// Transform the URL to a String, in case an URL object was passed
 	const stringUrl = String(url);
 
 	const result: Response = await nodeFetch(stringUrl, options);
