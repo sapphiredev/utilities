@@ -29,8 +29,8 @@
 		"!dist/*.tsbuildinfo"
 	],
 	"engines": {
-		"node": ">=14",
-		"npm": ">=6"
+		"node": ">=16.6.0",
+		"npm": ">=7"
 	},
 	"keywords": [
 		"@sapphire/discord.js-utilities",
