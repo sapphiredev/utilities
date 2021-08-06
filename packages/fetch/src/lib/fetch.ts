@@ -1,4 +1,4 @@
-import nodeFetch from 'cross-fetch';
+import { fetch as nodeFetch } from 'cross-fetch';
 import { QueryError } from './QueryError';
 import { FetchResultTypes } from './types';
 
