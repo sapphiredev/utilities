@@ -34,7 +34,7 @@
 		"@types/fs-extra": "^9.0.12",
 		"@types/jest": "^26.0.24",
 		"@types/lodash": "^4.14.172",
-		"@types/node": "^16.4.12",
+		"@types/node": "^16.4.13",
 		"@types/node-fetch": "^2.5.12",
 		"@types/ws": "^7.4.7",
 		"@typescript-eslint/eslint-plugin": "^4.29.0",
@@ -52,13 +52,13 @@
 		"jest-circus": "^27.0.6",
 		"jest-extended": "^0.11.5",
 		"lerna": "^4.0.0",
-		"lint-staged": "^11.1.1",
+		"lint-staged": "^11.1.2",
 		"lodash": "^4.17.21",
 		"nock": "^13.1.1",
 		"npm-run-all": "^4.1.5",
 		"prettier": "^2.3.2",
 		"pretty-quick": "^3.1.1",
-		"rollup": "^2.55.1",
+		"rollup": "^2.56.0",
 		"rollup-plugin-cleaner": "^1.0.0",
 		"rollup-plugin-typescript2": "^0.30.0",
 		"ts-jest": "^27.0.4",
@@ -74,7 +74,7 @@
 		"url": "git+https://github.com/sapphiredev/utilities.git"
 	},
 	"engines": {
-		"node": ">=12"
+		"node": ">=16"
 	},
 	"commitlint": {
 		"extends": [
