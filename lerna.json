@@ -10,7 +10,7 @@
 			"ignoreChanges": ["**/*.md", "**/tests/**"]
 		},
 		"version": {
-			"allowBranch": "stable",
+			"allowBranch": "main",
 			"conventionalCommits": true,
 			"push": true,
 			"createRelease": "github",
