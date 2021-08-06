@@ -1,3 +1,6 @@
+// eslint-disable-next-line spaced-comment
+/// <reference lib="dom" />
+
 import { fetch as nodeFetch } from 'cross-fetch';
 import { QueryError } from './QueryError';
 import { FetchResultTypes } from './types';
