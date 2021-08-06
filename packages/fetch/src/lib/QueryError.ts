@@ -1,3 +1,6 @@
+// eslint-disable-next-line spaced-comment
+/// <reference lib="dom" />
+
 /**
  * The QueryError class which is thrown by the `fetch` method
  */
