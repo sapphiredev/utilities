@@ -79,7 +79,7 @@ export class PaginationFieldMessageEmbed<T> extends PaginatedMessage {
 	 * ```
 	 */
 	public setTemplate(template: MessageEmbedOptions | MessageEmbed) {
-		this.embedTemplate = new MessageEmbed(template);
+		this.embedTemplate = template instanceof MessageEmbed ? template : new MessageEmbed(template);
 		return this;
 	}
 
@@ -142,7 +142,9 @@ export class PaginationFieldMessageEmbed<T> extends PaginatedMessage {
 
 	private makePages() {
 		for (let i = 0; i < this.totalPages; i++) {
-			const clonedTemplate = new MessageEmbed(this.embedTemplate instanceof MessageEmbed ? this.embedTemplate.toJSON() : this.embedTemplate);
+			const clonedTemplate = new MessageEmbed(
+				this.embedTemplate instanceof MessageEmbed ? (this.embedTemplate.toJSON() as MessageEmbedOptions) : this.embedTemplate
+			);
 			const fieldsClone = this.embedTemplate.fields;
 			clonedTemplate.fields = [];
 
