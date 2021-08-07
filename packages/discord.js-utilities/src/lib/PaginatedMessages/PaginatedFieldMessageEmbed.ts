@@ -28,7 +28,7 @@ export class PaginationFieldMessageEmbed<T> extends PaginatedMessage {
 	private totalPages = 0;
 	private items: T[] = [];
 	private itemsPerPage = 10;
-	private fieldTitle!: string;
+	private fieldTitle = '';
 
 	/**
 	 * Set the items to paginate.
@@ -131,7 +131,7 @@ export class PaginationFieldMessageEmbed<T> extends PaginatedMessage {
 	 * ```
 	 */
 	public make() {
-		if (!this.fieldTitle) throw new Error('The title of the field to format must have a value.');
+		if (!this.fieldTitle.length) throw new Error('The title of the field to format must have a value.');
 		if (!this.items.length) throw new Error('The array introduced has no items.');
 		if (!this.items[0]) throw new Error('The format of the array items is incorrect.');
 
