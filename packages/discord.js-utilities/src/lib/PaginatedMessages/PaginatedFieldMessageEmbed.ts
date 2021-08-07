@@ -141,19 +141,19 @@ export class PaginationFieldMessageEmbed<T> extends PaginatedMessage {
 	}
 
 	private makePages() {
-		new Array(this.totalPages).forEach((_, index) => {
-			const clonedTemplate = this.embedTemplate instanceof MessageEmbed ? this.embedTemplate : new MessageEmbed(this.embedTemplate);
+		for (let i = 0; i < this.totalPages; i++) {
+			const clonedTemplate = new MessageEmbed(this.embedTemplate instanceof MessageEmbed ? this.embedTemplate.toJSON() : this.embedTemplate);
 			const fieldsClone = this.embedTemplate.fields;
 			clonedTemplate.fields = [];
 
-			if (!clonedTemplate.footer) clonedTemplate.setFooter(`${index + 1}/${this.totalPages}`);
+			if (!clonedTemplate.footer) clonedTemplate.setFooter(`${i + 1}/${this.totalPages}`);
 			if (!clonedTemplate.color) clonedTemplate.setColor('RANDOM');
 
-			const data = this.paginateArray(this.items, index + 1, this.itemsPerPage);
+			const data = this.paginateArray(this.items, i + 1, this.itemsPerPage);
 			this.addPage({
 				embeds: [clonedTemplate.addField(this.fieldTitle, data.join('\n'), false).addFields(fieldsClone)]
 			});
-		});
+		}
 	}
 
 	private paginateArray(items: T[], currentPage: number, perPageItems: number) {
