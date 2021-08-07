@@ -10,9 +10,16 @@ export const enum FetchResultTypes {
 	 */
 	JSON = 'json',
 	/**
-	 * Returns only the body, as a [Buffer](https://nodejs.org/api/buffer.html). Similar to [`Body.blob()`](https://developer.mozilla.org/en-US/docs/Web/API/Body/blob).
+	 * Returns only the body, as a [Buffer](https://nodejs.org/api/buffer.html).
+	 * @remark Does not work in a Browser environment. For browsers use {@link FetchResultTypes.Blob} instead.
+	 * If you use this type in a Browsers environment a {@link ReferenceError `ReferenceError: Buffer is not defined`} will be thrown!
 	 */
 	Buffer = 'buffer',
+	/**
+	 * Returns only the body, as a [`Blob`](https://developer.mozilla.org/en-US/docs/Web/API/Blob).
+	 * @remark For NodeJS environment other `FetchResultTypes` are recommended, but you can use a Blob if you want to.
+	 */
+	Blob = 'blob',
 	/**
 	 * Returns only the body, as plain text. Similar to [`Body.text()`](https://developer.mozilla.org/en-US/docs/Web/API/Body/text).
 	 */

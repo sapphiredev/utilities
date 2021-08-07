@@ -1,13 +1,13 @@
-import { HttpCodes, MimeTypes } from '@sapphire/plugin-api';
 import nock from 'nock';
-import { URL } from 'url';
-import fetch, { FetchResultTypes } from '../src';
+import { fetch, FetchResultTypes } from '../src';
+import { URL as NodeUrl } from 'url';
 
 describe('fetch', () => {
-	let nockScope: nock.Scope;
+	let nockScopeHttp: nock.Scope;
+	let nockScopeHttps: nock.Scope;
 
 	beforeAll(() => {
-		nockScope = nock('http://localhost')
+		nockScopeHttp = nock('http://localhost')
 			.persist()
 			.get('/simpleget')
 			.times(Infinity)
@@ -15,10 +15,17 @@ describe('fetch', () => {
 			.get('/404')
 			.times(Infinity)
 			.reply(404, { success: false });
+
+		nockScopeHttps = nock('https://localhost') //
+			.persist()
+			.get('/simpleget')
+			.times(Infinity)
+			.reply(200, { test: true });
 	});
 
 	afterAll(() => {
-		nockScope.persist(false);
+		nockScopeHttp.persist(false);
+		nockScopeHttps.persist(false);
 		nock.restore();
 	});
 
@@ -38,7 +45,7 @@ describe('fetch', () => {
 		test('GIVEN fetch w/o options w/ JSON response THEN returns JSON', async () => {
 			const response = await fetch<{ test: boolean }>(
 				'http://localhost/simpleget',
-				{ headers: { accept: MimeTypes.ApplicationJson } },
+				{ headers: { accept: 'application/json' } },
 				FetchResultTypes.JSON
 			);
 
@@ -47,7 +54,7 @@ describe('fetch', () => {
 
 		test('GIVEN fetch w/ options w/ No Response THEN returns JSON', async () => {
 			const response = await fetch<{ test: boolean }>('http://localhost/simpleget', {
-				headers: { accept: MimeTypes.ApplicationJson }
+				headers: { accept: 'application/json' }
 			});
 
 			expect(response.test).toBe(true);
@@ -66,15 +73,37 @@ describe('fetch', () => {
 			expect(response).toStrictEqual(Buffer.from(JSON.stringify({ test: true })));
 		});
 
+		test('GIVEN fetch w/ Buffer Response THEN returns Buffer', async () => {
+			const response = await fetch('http://localhost/simpleget', FetchResultTypes.Blob);
+			const jsonData = await response.text();
+
+			expect(jsonData).toStrictEqual(JSON.stringify({ test: true }));
+		});
+
 		test('GIVEN fetch w/ Text Response THEN returns raw text', async () => {
 			const response = await fetch('http://localhost/simpleget', FetchResultTypes.Text);
 
 			expect(response).toStrictEqual(JSON.stringify({ test: true }));
 		});
 
-		test('GIVEN fetch w/ invalid type THEN throws', async () => {
-			// @ts-expect-error handling error case
-			await expect(fetch('http://localhost/simpleget', 'type not found')).rejects.toThrowError('Unknown type "type not found"');
+		test('GIVEN fetch w/ NodeJS URL class THEN returns result', async () => {
+			const url = new NodeUrl('http://localhost/simpleget');
+			const response = await fetch(url, FetchResultTypes.Text);
+
+			expect(response).toStrictEqual(JSON.stringify({ test: true }));
+		});
+
+		test('GIVEN fetch w/ Browser URL class THEN returns result', async () => {
+			const url = new URL('http://localhost/simpleget');
+			const response = await fetch(url, FetchResultTypes.Text);
+
+			expect(response).toStrictEqual(JSON.stringify({ test: true }));
+		});
+
+		test('GIVEN fetch w/ relative path THEN returns result', async () => {
+			const response = await fetch('//localhost/simpleget', FetchResultTypes.Text);
+
+			expect(response).toStrictEqual(JSON.stringify({ test: true }));
 		});
 	});
 
@@ -91,7 +120,7 @@ describe('fetch', () => {
 			} catch (error) {
 				expect(error.message).toBe(`Failed to request '${url}' with code 404.`);
 				expect(error.body).toBe('{"success":false}');
-				expect(error.code).toBe(HttpCodes.NotFound);
+				expect(error.code).toBe(404);
 				expect(error.url).toBe(url);
 				expect(error.toJSON()).toStrictEqual({ success: false });
 			}
@@ -108,14 +137,14 @@ describe('fetch', () => {
 				await fetchResult;
 			} catch (error) {
 				expect(error.message).toBe(`Failed to request '${url}' with code 404.`);
-				expect(error.code).toBe(HttpCodes.NotFound);
+				expect(error.code).toBe(404);
 				expect(error.url).toBe(url.href);
 				expect(error.toJSON()).toStrictEqual({ success: false });
 			}
 		});
 
 		test('GIVEN fetch w/ calling error.toJSON() twice THEN returns FetchError', async () => {
-			const url = new URL('http://localhost/404');
+			const url = 'http://localhost/404';
 			const fetchResult = fetch(url, FetchResultTypes.JSON);
 
 			await expect(fetchResult).rejects.toThrowError(`Failed to request '${url}' with code 404.`);
@@ -129,6 +158,11 @@ describe('fetch', () => {
 				// This will use the cached value
 				expect(error.toJSON()).toStrictEqual({ success: false });
 			}
+		});
+
+		test('GIVEN fetch w/ invalid type THEN throws', async () => {
+			// @ts-expect-error handling error case
+			await expect(fetch('http://localhost/simpleget', 'type not found')).rejects.toThrowError('Unknown type "type not found"');
 		});
 	});
 });

@@ -30,7 +30,6 @@
 		"@rollup/plugin-commonjs": "^20.0.0",
 		"@rollup/plugin-node-resolve": "^13.0.4",
 		"@sapphire/framework": "^1.0.2",
-		"@sapphire/plugin-api": "^2.2.0",
 		"@types/fs-extra": "^9.0.12",
 		"@types/jest": "^26.0.24",
 		"@types/lodash": "^4.14.172",
