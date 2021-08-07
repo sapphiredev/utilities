@@ -12,8 +12,12 @@ import { PaginatedMessage } from './PaginatedMessage';
  * new PaginationFieldMessageEmbed()
  *    .setTitleField('Test pager field')
  *    .setTemplate({ embed })
- *    .setItems([{ field: 'value' }, { field: 'value' }, { field: 'value' }, { field: 'value' }])
- *    .formatField((item) => `${item.field}\n${item.value}`)
+ *    .setItems([
+ *       { title: 'Sapphire Framework', value: 'discord.js Framework' },
+ *       { title: 'Sapphire Framework 2', value: 'discord.js Framework 2' },
+ *       { title: 'Sapphire Framework 3', value: 'Discord.js Framework 3' }
+ *     ])
+ *    .formatField((item) => `${item.title}\n${item.value}`)
  *    .setItemsPerPage(2)
  *    .make()
  *    .run(message);
@@ -89,8 +93,12 @@ export class PaginationFieldMessageEmbed<T> extends PaginatedMessage {
 	 * new PaginationFieldMessageEmbed()
 	 *    .setTitleField('Test field')
 	 *    .setTemplate({ embed })
-	 *    .setItems([{ field: 'value' }, { field: 'value' }, { field: 'value' }, { field: 'value' }])
-	 *    .formatField((item) => `${item.field}\n${item.value}`)
+	 *    .setItems([
+	 *       { title: 'Sapphire Framework', value: 'discord.js Framework' },
+	 *       { title: 'Sapphire Framework 2', value: 'discord.js Framework 2' },
+	 *       { title: 'Sapphire Framework 3', value: 'Discord.js Framework 3' }
+	 *     ])
+	 *    .formatField((item) => `${item.title}\n${item.value}`)
 	 *    .make()
 	 *    .run(message);
 	 * ```
@@ -112,8 +120,12 @@ export class PaginationFieldMessageEmbed<T> extends PaginatedMessage {
 	 * new PaginationFieldMessageEmbed()
 	 *    .setTitleField('Test field')
 	 *    .setTemplate({ embed })
-	 *    .setItems([{ field: 'value' }, { field: 'value' }, { field: 'value' }, { field: 'value' }])
-	 *    .formatField((item) => `${item.field}\n${item.value}`)
+	 *    .setItems([
+	 *       { title: 'Sapphire Framework', value: 'discord.js Framework' },
+	 *       { title: 'Sapphire Framework 2', value: 'discord.js Framework 2' },
+	 *       { title: 'Sapphire Framework 3', value: 'Discord.js Framework 3' }
+	 *     ])
+	 *    .formatField((item) => `${item.title}\n${item.value}`)
 	 *    .make()
 	 *    .run(message);
 	 * ```
