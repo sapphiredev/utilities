@@ -51,7 +51,7 @@ jobs:
         run: |
           # Resolve the tag to be used. "next" for push events, "pr-{prNumber}" for dispatch events.
           TAG=$([[ ${{ github.event_name }} == 'push' ]] && echo 'next' || echo 'pr-${{ github.event.inputs.prNumber }}')
-          BRANCH=$(echo '${{ github.event.ref }}' | sed 's/refs\/heads\///g')
+          BRANCH=$(echo '${{ github.event.inputs.ref || 'main' }}')
 
           # Bump and publish
           yarn lerna publish --yes --conventional-prerelease --ignore-scripts --no-verify-access --no-git-tag-version --no-push --pre-dist-tag ${TAG} --preid "${TAG}.$(git rev-parse --verify --short HEAD)" --allow-branch ${BRANCH}
