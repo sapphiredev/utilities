@@ -13,7 +13,7 @@ on:
       repository:
         description: The {owner}/{repository} that is being deployed.
         required: false
-        default: sapphiredev/framework
+        default: sapphiredev/utilities
   push:
     branches:
       - main
@@ -27,7 +27,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-          repository: ${{ github.event.inputs.repository || 'sapphiredev/framework' }}
+          repository: ${{ github.event.inputs.repository || 'sapphiredev/utilities' }}
           ref: ${{ github.event.inputs.ref || 'main' }}
       - name: Add TypeScript problem matcher
         run: echo "::add-matcher::.github/problemMatchers/tsc.json"
