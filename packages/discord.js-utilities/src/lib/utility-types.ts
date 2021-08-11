@@ -1,5 +1,6 @@
 import type {
 	CategoryChannel,
+	Channel,
 	DMChannel,
 	GuildChannel,
 	Message,
@@ -24,7 +25,9 @@ export type ChannelTypes =
 	| StoreChannel
 	| TextChannel
 	| ThreadChannel
-	| VoiceChannel;
+	| VoiceChannel
+	| GuildChannel
+	| Channel;
 
 /**
  * A union of all the channel types that a message can come from
