@@ -104,8 +104,8 @@ export class PaginatedFieldMessageEmbed<T> extends PaginatedMessage {
 	 * ```
 	 * @param value The formatter callback to be applied to each embed item
 	 */
-	public formatItem(item: (item: T, index: number, array: T[]) => any) {
-		this.items = this.items.map(item);
+	public formatItems(formatter: (item: T, index: number, array: T[]) => any) {
+		this.items = this.items.map(formatter);
 		return this;
 	}
 
