@@ -148,7 +148,6 @@ export class PaginatedFieldMessageEmbed<T> extends PaginatedMessage {
 			const fieldsClone = this.embedTemplate.fields;
 			clonedTemplate.fields = [];
 
-			if (!clonedTemplate.footer) clonedTemplate.setFooter(`${i + 1}/${this.totalPages}`);
 			if (!clonedTemplate.color) clonedTemplate.setColor('RANDOM');
 
 			const data = this.paginateArray(this.items, i, this.itemsPerPage);
