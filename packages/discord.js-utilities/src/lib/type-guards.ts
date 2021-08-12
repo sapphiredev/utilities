@@ -12,12 +12,13 @@ import type {
 	VoiceChannel
 } from 'discord.js';
 import type { ChannelTypes, GuildTextBasedChannelTypes, NonThreadGuildTextBasedChannelTypes } from './utility-types';
+import { Nullish, isNullish } from '@sapphire/utilities';
 
 /**
  * Checks whether a given channel is a {@link CategoryChannel}
  * @param channel The channel to check
  */
-export function isCategoryChannel(channel: ChannelTypes | undefined | null): channel is CategoryChannel {
+export function isCategoryChannel(channel: ChannelTypes | Nullish): channel is CategoryChannel {
 	return channel?.type === 'GUILD_CATEGORY';
 }
 
@@ -25,7 +26,7 @@ export function isCategoryChannel(channel: ChannelTypes | undefined | null): cha
  * Checks whether a given channel is a {@link DMChannel}
  * @param channel The channel to check
  */
-export function isDMChannel(channel: ChannelTypes | undefined | null): channel is DMChannel {
+export function isDMChannel(channel: ChannelTypes | Nullish): channel is DMChannel {
 	return channel?.type === 'DM';
 }
 
@@ -33,7 +34,7 @@ export function isDMChannel(channel: ChannelTypes | undefined | null): channel i
  * Checks whether a given channel is a {@link PartialGroupDMChannel}
  * @param channel The channel to check
  */
-export function isGroupChannel(channel: Channel | PartialDMChannel | undefined | null): channel is PartialGroupDMChannel {
+export function isGroupChannel(channel: Channel | PartialDMChannel | Nullish): channel is PartialGroupDMChannel {
 	return channel?.type === 'GROUP_DM';
 }
 
@@ -42,7 +43,7 @@ export function isGroupChannel(channel: Channel | PartialDMChannel | undefined |
  * @param channel The channel to check
  * @returns Whether or not the channel is guild-based.
  */
-export function isGuildBasedChannel(channel: ChannelTypes | undefined | null): channel is GuildTextBasedChannelTypes {
+export function isGuildBasedChannel(channel: ChannelTypes | Nullish): channel is GuildTextBasedChannelTypes {
 	return channel?.type !== 'DM';
 }
 
@@ -52,7 +53,7 @@ export function isGuildBasedChannel(channel: ChannelTypes | undefined | null): c
  * @param channel The channel to check.
  * @returns Whether or not the channel is guild-based.
  */
-export function isGuildBasedChannelByGuildKey(channel: ChannelTypes | undefined | null): channel is GuildTextBasedChannelTypes {
+export function isGuildBasedChannelByGuildKey(channel: ChannelTypes | Nullish): channel is GuildTextBasedChannelTypes {
 	return Reflect.has(channel ?? {}, 'guild');
 }
 
@@ -60,7 +61,7 @@ export function isGuildBasedChannelByGuildKey(channel: ChannelTypes | undefined 
  * Checks whether a given channel is a {@link NewsChannel}.
  * @param channel The channel to check.
  */
-export function isNewsChannel(channel: ChannelTypes | undefined | null): channel is NewsChannel {
+export function isNewsChannel(channel: ChannelTypes | Nullish): channel is NewsChannel {
 	return channel?.type === 'GUILD_NEWS';
 }
 
@@ -68,7 +69,7 @@ export function isNewsChannel(channel: ChannelTypes | undefined | null): channel
  * Checks whether a given channel is a {@link StoreChannel}
  * @param channel The channel to check
  */
-export function isStoreChannel(channel: ChannelTypes | undefined | null): channel is StoreChannel {
+export function isStoreChannel(channel: ChannelTypes | Nullish): channel is StoreChannel {
 	return channel?.type === 'GUILD_STORE';
 }
 
@@ -76,7 +77,7 @@ export function isStoreChannel(channel: ChannelTypes | undefined | null): channe
  * Checks whether a given channel is a {@link TextChannel}.
  * @param channel The channel to check.
  */
-export function isTextChannel(channel: ChannelTypes | undefined | null): channel is TextChannel {
+export function isTextChannel(channel: ChannelTypes | Nullish): channel is TextChannel {
 	return channel?.type === 'GUILD_TEXT';
 }
 
@@ -84,7 +85,7 @@ export function isTextChannel(channel: ChannelTypes | undefined | null): channel
  * Checks whether a given channel is a {@link VoiceChannel}
  * @param channel The channel to check
  */
-export function isVoiceChannel(channel: ChannelTypes | undefined | null): channel is VoiceChannel {
+export function isVoiceChannel(channel: ChannelTypes | Nullish): channel is VoiceChannel {
 	return channel?.type === 'GUILD_VOICE';
 }
 
@@ -92,7 +93,7 @@ export function isVoiceChannel(channel: ChannelTypes | undefined | null): channe
  * Checks whether a given channel is a {@link StageChannel}
  * @param channel The channel to check
  */
-export function isStageChannel(channel: ChannelTypes | undefined | null): channel is StageChannel {
+export function isStageChannel(channel: ChannelTypes | Nullish): channel is StageChannel {
 	return channel?.type === 'GUILD_STAGE_VOICE';
 }
 
@@ -100,7 +101,7 @@ export function isStageChannel(channel: ChannelTypes | undefined | null): channe
  * Checks whether a given channel is a {@link ThreadChannel}
  * @param channel The channel to check.
  */
-export function isThreadChannel(channel: ChannelTypes | undefined | null): channel is ThreadChannel {
+export function isThreadChannel(channel: ChannelTypes | Nullish): channel is ThreadChannel {
 	return channel?.isThread() ?? false;
 }
 
@@ -108,26 +109,24 @@ export function isThreadChannel(channel: ChannelTypes | undefined | null): chann
  * Checks whether a given channel allows NSFW content or not
  * @param channel The channel to check.
  */
-export function isNsfwChannel(channel: ChannelTypes | undefined | null): boolean {
-	if (channel) {
-		switch (channel.type) {
-			case 'DM':
-			case 'GROUP_DM':
-			case 'GUILD_CATEGORY':
-			case 'GUILD_STAGE_VOICE':
-			case 'GUILD_STORE':
-			case 'GUILD_VOICE':
-			case 'UNKNOWN':
-				return false;
-			case 'GUILD_NEWS':
-			case 'GUILD_TEXT':
-				return (channel as NonThreadGuildTextBasedChannelTypes).nsfw;
-			case 'GUILD_NEWS_THREAD':
-			case 'GUILD_PRIVATE_THREAD':
-			case 'GUILD_PUBLIC_THREAD':
-				return Boolean((channel as ThreadChannel).parent?.nsfw);
-		}
-	}
+export function isNsfwChannel(channel: ChannelTypes | Nullish): boolean {
+	if (isNullish(channel)) return false;
 
-	return false;
+	switch (channel.type) {
+		case 'DM':
+		case 'GROUP_DM':
+		case 'GUILD_CATEGORY':
+		case 'GUILD_STAGE_VOICE':
+		case 'GUILD_STORE':
+		case 'GUILD_VOICE':
+		case 'UNKNOWN':
+			return false;
+		case 'GUILD_NEWS':
+		case 'GUILD_TEXT':
+			return (channel as NonThreadGuildTextBasedChannelTypes).nsfw;
+		case 'GUILD_NEWS_THREAD':
+		case 'GUILD_PRIVATE_THREAD':
+		case 'GUILD_PUBLIC_THREAD':
+			return Boolean((channel as ThreadChannel).parent?.nsfw);
+	}
 }
