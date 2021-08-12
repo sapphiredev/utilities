@@ -14,6 +14,10 @@ on:
         description: The {owner}/{repository} that is being deployed.
         required: false
         default: sapphiredev/utilities
+      fetchDepth:
+        description: Number of commits to fetch. 0 indicates all history for all branches and tags.
+        required: false
+        default: '0'
   push:
     branches:
       - main
@@ -26,7 +30,7 @@ jobs:
       - name: Checkout Project
         uses: actions/checkout@v2
         with:
-          fetch-depth: 0
+          fetch-depth: ${{ github.event.inputs.fetchDepth || 0 }}
           repository: ${{ github.event.inputs.repository || 'sapphiredev/utilities' }}
           ref: ${{ github.event.inputs.ref || 'main' }}
       - name: Add TypeScript problem matcher
