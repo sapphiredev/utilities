@@ -1,14 +1,5 @@
-import type {
-	CollectorFilter,
-	DMChannel,
-	EmojiIdentifierResolvable,
-	EmojiResolvable,
-	MessageReaction,
-	NewsChannel,
-	TextChannel,
-	User
-} from 'discord.js';
-import type { MessagePrompterMessage } from '../constants';
+import type { CollectorFilter, EmojiIdentifierResolvable, EmojiResolvable, MessageReaction, User } from 'discord.js';
+import type { MessagePrompterChannelTypes, MessagePrompterMessage } from '../constants';
 import type { IMessagePrompterExplicitReturnBase } from '../ExplicitReturnTypes';
 import type { IMessagePrompterReactionStrategyOptions } from '../strategyOptions';
 import { MessagePrompterBaseStrategy } from './MessagePrompterBaseStrategy';
@@ -38,7 +29,7 @@ export class MessagePrompterReactionStrategy extends MessagePrompterBaseStrategy
 	 * @returns A promise that resolves to the reaction object.
 	 */
 	public async run(
-		channel: TextChannel | NewsChannel | DMChannel,
+		channel: MessagePrompterChannelTypes,
 		authorOrFilter: User | CollectorFilter<[MessageReaction, User]>
 	): Promise<IMessagePrompterExplicitReturnBase | string | EmojiResolvable> {
 		if (!this.reactions?.length) throw new TypeError('There are no reactions provided.');
