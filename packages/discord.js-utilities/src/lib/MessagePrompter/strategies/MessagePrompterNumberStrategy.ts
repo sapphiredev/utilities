@@ -1,5 +1,5 @@
-import type { CollectorFilter, DMChannel, EmojiIdentifierResolvable, MessageReaction, NewsChannel, TextChannel, User } from 'discord.js';
-import type { MessagePrompterMessage } from '../constants';
+import type { CollectorFilter, EmojiIdentifierResolvable, MessageReaction, User } from 'discord.js';
+import type { MessagePrompterChannelTypes, MessagePrompterMessage } from '../constants';
 import type { IMessagePrompterExplicitNumberReturn } from '../ExplicitReturnTypes';
 import type { IMessagePrompterNumberStrategyOptions } from '../strategyOptions';
 import { MessagePrompterBaseStrategy } from './MessagePrompterBaseStrategy';
@@ -39,7 +39,7 @@ export class MessagePrompterNumberStrategy extends MessagePrompterBaseStrategy i
 	 * @returns A promise that resolves to the selected number within the range.
 	 */
 	public async run(
-		channel: TextChannel | NewsChannel | DMChannel,
+		channel: MessagePrompterChannelTypes,
 		authorOrFilter: User | CollectorFilter<[MessageReaction, User]>
 	): Promise<IMessagePrompterExplicitNumberReturn | number> {
 		// 0 and 10 are the maximum available emojis as a number

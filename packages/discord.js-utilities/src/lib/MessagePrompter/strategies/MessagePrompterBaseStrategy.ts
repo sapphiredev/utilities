@@ -1,16 +1,7 @@
 import type { Awaited } from '@sapphire/utilities';
-import type {
-	CollectorFilter,
-	CollectorOptions,
-	DMChannel,
-	EmojiIdentifierResolvable,
-	Message,
-	MessageReaction,
-	NewsChannel,
-	TextChannel,
-	User
-} from 'discord.js';
-import type { MessagePrompterMessage } from '../constants';
+import type { CollectorFilter, CollectorOptions, EmojiIdentifierResolvable, Message, MessageReaction, User } from 'discord.js';
+import { isTextBasedChannel } from '../../type-guards';
+import type { MessagePrompterChannelTypes, MessagePrompterMessage } from '../constants';
 import type { IMessagePrompterExplicitReturnBase } from '../ExplicitReturnTypes';
 import type { IMessagePrompterStrategyOptions } from '../strategyOptions';
 
@@ -52,53 +43,57 @@ export abstract class MessagePrompterBaseStrategy {
 		this.message = message;
 	}
 
-	public abstract run(channel: TextChannel | NewsChannel | DMChannel, authorOrFilter: User | CollectorFilter<unknown[]>): Awaited<unknown>;
+	public abstract run(channel: MessagePrompterChannelTypes, authorOrFilter: User | CollectorFilter<unknown[]>): Awaited<unknown>;
 
 	protected async collectReactions(
-		channel: TextChannel | NewsChannel | DMChannel,
+		channel: MessagePrompterChannelTypes,
 		authorOrFilter: User | CollectorFilter<[MessageReaction, User]>,
 		reactions: string[] | EmojiIdentifierResolvable[]
 	): Promise<IMessagePrompterExplicitReturnBase> {
-		this.appliedMessage = await channel.send(this.message);
+		if (isTextBasedChannel(channel)) {
+			this.appliedMessage = await channel.send(this.message);
 
-		const collector = this.appliedMessage.createReactionCollector({
-			...this.createReactionPromptFilter(reactions, authorOrFilter),
-			max: 1,
-			time: this.timeout
-		});
-
-		let resolved = false;
-		const collected: Promise<MessageReaction> = new Promise<MessageReaction>((resolve, reject) => {
-			collector.on('collect', (r) => {
-				resolve(r);
-				resolved = true;
-				collector.stop();
+			const collector = this.appliedMessage.createReactionCollector({
+				...this.createReactionPromptFilter(reactions, authorOrFilter),
+				max: 1,
+				time: this.timeout
 			});
 
-			collector.on('end', (collected) => {
-				resolved = true;
-				if (!collected.size) reject(new Error('Collector has ended'));
+			let resolved = false;
+			const collected: Promise<MessageReaction> = new Promise<MessageReaction>((resolve, reject) => {
+				collector.on('collect', (r) => {
+					resolve(r);
+					resolved = true;
+					collector.stop();
+				});
+
+				collector.on('end', (collected) => {
+					resolved = true;
+					if (!collected.size) reject(new Error('Collector has ended'));
+				});
 			});
-		});
 
-		for (const reaction of reactions) {
-			if (resolved) break;
+			for (const reaction of reactions) {
+				if (resolved) break;
 
-			await this.appliedMessage.react(reaction);
+				await this.appliedMessage.react(reaction);
+			}
+
+			const firstReaction = await collected;
+			const emoji = firstReaction?.emoji;
+
+			const reaction = reactions.find((r) => (emoji?.id ?? emoji?.name) === r);
+
+			return {
+				emoji,
+				reaction,
+				strategy: this,
+				appliedMessage: this.appliedMessage,
+				message: this.message
+			};
 		}
 
-		const firstReaction = await collected;
-		const emoji = firstReaction?.emoji;
-
-		const reaction = reactions.find((r) => (emoji?.id ?? emoji?.name) === r);
-
-		return {
-			emoji,
-			reaction,
-			strategy: this,
-			appliedMessage: this.appliedMessage,
-			message: this.message
-		};
+		throw new Error('A channel was provided to which I am not able to send messages');
 	}
 
 	/**

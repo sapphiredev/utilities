@@ -1,5 +1,5 @@
-import type { CollectorFilter, DMChannel, EmojiResolvable, MessageReaction, NewsChannel, TextChannel, User } from 'discord.js';
-import type { MessagePrompterMessage } from '../constants';
+import type { CollectorFilter, EmojiResolvable, MessageReaction, User } from 'discord.js';
+import type { MessagePrompterChannelTypes, MessagePrompterMessage } from '../constants';
 import type { IMessagePrompterExplicitConfirmReturn } from '../ExplicitReturnTypes';
 import type { IMessagePrompterConfirmStrategyOptions } from '../strategyOptions';
 import { MessagePrompterBaseStrategy } from './MessagePrompterBaseStrategy';
@@ -35,7 +35,7 @@ export class MessagePrompterConfirmStrategy extends MessagePrompterBaseStrategy 
 	 * @returns A promise that resolves to a boolean denoting the value of the input (`true` for yes, `false` for no).
 	 */
 	public override async run(
-		channel: TextChannel | NewsChannel | DMChannel,
+		channel: MessagePrompterChannelTypes,
 		authorOrFilter: User | CollectorFilter<[MessageReaction, User]>
 	): Promise<IMessagePrompterExplicitConfirmReturn | boolean> {
 		const response = await this.collectReactions(channel, authorOrFilter, [this.confirmEmoji, this.cancelEmoji]);

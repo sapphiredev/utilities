@@ -1,5 +1,6 @@
 import type { ArgumentTypes } from '@sapphire/utilities';
-import type { PartialTextBasedChannelFields } from 'discord.js';
+import type { CategoryChannel, PartialTextBasedChannelFields, StoreChannel } from 'discord.js';
+import type { ChannelTypes, VoiceBasedChannelTypes } from '../utility-types';
 
 /**
  * A type to extend multiple discord types and simplify usage in {@link MessagePrompter}
@@ -12,3 +13,5 @@ export const enum MessagePrompterStrategies {
 	Message = 'message',
 	Reaction = 'reaction'
 }
+
+export type MessagePrompterChannelTypes = Exclude<ChannelTypes, VoiceBasedChannelTypes | StoreChannel | CategoryChannel>;

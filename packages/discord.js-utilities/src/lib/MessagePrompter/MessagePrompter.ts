@@ -1,6 +1,6 @@
 import type { Ctor } from '@sapphire/utilities';
-import type { CollectorFilter, DMChannel, EmojiResolvable, Message, MessageReaction, NewsChannel, TextChannel, User } from 'discord.js';
-import { MessagePrompterMessage, MessagePrompterStrategies } from './constants';
+import type { CollectorFilter, EmojiResolvable, Message, MessageReaction, User } from 'discord.js';
+import { MessagePrompterChannelTypes, MessagePrompterMessage, MessagePrompterStrategies } from './constants';
 import type {
 	IMessagePrompterExplicitConfirmReturn,
 	IMessagePrompterExplicitMessageReturn,
@@ -134,7 +134,7 @@ export class MessagePrompter<S extends MessagePrompterStrategies = MessagePrompt
 	 * @param authorOrFilter An author object to validate or a {@linkplain https://discord.js.org/#/docs/main/stable/typedef/CollectorFilter CollectorFilter} predicate callback.
 	 */
 	public run<Filter extends S extends keyof StrategyFilters ? StrategyFilters[S] : unknown[]>(
-		channel: TextChannel | NewsChannel | DMChannel,
+		channel: MessagePrompterChannelTypes,
 		authorOrFilter: User | CollectorFilter<Filter>
 	): S extends keyof StrategyReturns ? Promise<StrategyReturns[S]> : never {
 		return this.strategy.run(channel, authorOrFilter as User | CollectorFilter<unknown[]>) as S extends keyof StrategyReturns

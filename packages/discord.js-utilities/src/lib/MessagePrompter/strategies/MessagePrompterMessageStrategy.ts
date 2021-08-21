@@ -1,5 +1,6 @@
-import type { CollectorFilter, CollectorOptions, DMChannel, Message, NewsChannel, TextChannel, User } from 'discord.js';
-import type { MessagePrompterMessage } from '../constants';
+import type { CollectorFilter, CollectorOptions, Message, User } from 'discord.js';
+import { isTextBasedChannel } from '../../type-guards';
+import type { MessagePrompterChannelTypes, MessagePrompterMessage } from '../constants';
 import type { IMessagePrompterExplicitMessageReturn } from '../ExplicitReturnTypes';
 import type { IMessagePrompterStrategyOptions } from '../strategyOptions';
 import { MessagePrompterBaseStrategy } from './MessagePrompterBaseStrategy';
@@ -22,31 +23,35 @@ export class MessagePrompterMessageStrategy extends MessagePrompterBaseStrategy 
 	 * @returns A promise that resolves to the message object received.
 	 */
 	public override async run(
-		channel: TextChannel | NewsChannel | DMChannel,
+		channel: MessagePrompterChannelTypes,
 		authorOrFilter: User | CollectorFilter<[Message]>
 	): Promise<IMessagePrompterExplicitMessageReturn | Message> {
-		this.appliedMessage = await channel.send(this.message);
+		if (isTextBasedChannel(channel)) {
+			this.appliedMessage = await channel.send(this.message);
 
-		const collector = await channel.awaitMessages({
-			...this.createMessagePromptFilter(authorOrFilter),
-			max: 1,
-			time: this.timeout,
-			errors: ['time']
-		});
-		const response = collector.first();
+			const collector = await channel.awaitMessages({
+				...this.createMessagePromptFilter(authorOrFilter),
+				max: 1,
+				time: this.timeout,
+				errors: ['time']
+			});
+			const response = collector.first();
 
-		if (!response) {
-			throw new Error('No messages received');
+			if (!response) {
+				throw new Error('No messages received');
+			}
+
+			return this.explicitReturn
+				? {
+						response,
+						strategy: this,
+						appliedMessage: this.appliedMessage,
+						message: this.message
+				  }
+				: response;
 		}
 
-		return this.explicitReturn
-			? {
-					response,
-					strategy: this,
-					appliedMessage: this.appliedMessage,
-					message: this.message
-			  }
-			: response;
+		throw new Error('A channel was provided to which I am not able to send messages');
 	}
 
 	/**
