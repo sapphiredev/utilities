@@ -11,7 +11,7 @@ import type {
 	ThreadChannel,
 	VoiceChannel
 } from 'discord.js';
-import type { ChannelTypes, GuildTextBasedChannelTypes, NonThreadGuildTextBasedChannelTypes } from './utility-types';
+import type { ChannelTypes, GuildTextBasedChannelTypes, NonThreadGuildTextBasedChannelTypes, TextBasedChannelTypes } from './utility-types';
 import { Nullish, isNullish } from '@sapphire/utilities';
 
 /**
@@ -127,6 +127,16 @@ export function isPublicThreadChannel(channel: ChannelTypes | Nullish): channel 
  */
 export function isPrivateThreadChannel(channel: ChannelTypes | Nullish): channel is ThreadChannel {
 	return channel?.type === 'GUILD_PRIVATE_THREAD';
+}
+
+/**
+ * Checks whether a given channel is a {@link TextBasedChannelTypes}. This means it has a `send` method.
+ * @param channel The channel to check.
+ */
+export function isTextBasedChannel(channel: ChannelTypes | Nullish): channel is TextBasedChannelTypes {
+	if (isNullish(channel)) return false;
+
+	return !isNullish((channel as TextBasedChannelTypes).send);
 }
 
 /**
