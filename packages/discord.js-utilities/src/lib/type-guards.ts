@@ -106,6 +106,30 @@ export function isThreadChannel(channel: ChannelTypes | Nullish): channel is Thr
 }
 
 /**
+ * Checks whether a given channel is a News {@link ThreadChannel}
+ * @param channel The channel to check.
+ */
+export function isNewsThreadChannel(channel: ChannelTypes | Nullish): channel is ThreadChannel {
+	return channel?.type === 'GUILD_NEWS_THREAD';
+}
+
+/**
+ * Checks whether a given channel is a Public {@link ThreadChannel}
+ * @param channel The channel to check.
+ */
+export function isPublicThreadChannel(channel: ChannelTypes | Nullish): channel is ThreadChannel {
+	return channel?.type === 'GUILD_PUBLIC_THREAD';
+}
+
+/**
+ * Checks whether a given channel is a Private {@link ThreadChannel}
+ * @param channel The channel to check.
+ */
+export function isPrivateThreadChannel(channel: ChannelTypes | Nullish): channel is ThreadChannel {
+	return channel?.type === 'GUILD_PRIVATE_THREAD';
+}
+
+/**
  * Checks whether a given channel allows NSFW content or not
  * @param channel The channel to check.
  */
