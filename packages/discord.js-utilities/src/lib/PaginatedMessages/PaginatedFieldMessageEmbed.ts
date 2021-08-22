@@ -126,7 +126,7 @@ export class PaginatedFieldMessageEmbed<T> extends PaginatedMessage {
 	 *       { title: 'Sapphire Framework 2', value: 'discord.js Framework 2' },
 	 *       { title: 'Sapphire Framework 3', value: 'discord.js Framework 3' }
 	 *     ])
-	 *    .formatField((item) => `${item.title}\n${item.value}`)
+	 *    .formatItems((item) => `${item.title}\n${item.value}`)
 	 *    .make()
 	 *    .run(message);
 	 * ```
