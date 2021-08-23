@@ -21,22 +21,22 @@ import type {
 
 export interface StrategyReturns {
 	confirm: IMessagePrompterExplicitConfirmReturn | boolean;
-	number: IMessagePrompterExplicitMessageReturn | Message;
-	message: IMessagePrompterExplicitNumberReturn | number;
+	message: IMessagePrompterExplicitMessageReturn | Message;
+	number: IMessagePrompterExplicitNumberReturn | number;
 	reaction: IMessagePrompterExplicitReturnBase | string | EmojiResolvable;
 }
 
 export interface StrategyOptions {
 	confirm: IMessagePrompterConfirmStrategyOptions;
-	number: IMessagePrompterStrategyOptions;
-	message: IMessagePrompterNumberStrategyOptions;
+	message: IMessagePrompterStrategyOptions;
+	number: IMessagePrompterNumberStrategyOptions;
 	reaction: IMessagePrompterReactionStrategyOptions;
 }
 
 export interface StrategyFilters {
 	confirm: [MessageReaction, User];
-	number: [Message];
-	message: [MessageReaction, User];
+	message: [Message];
+	number: [MessageReaction, User];
 	reaction: [MessageReaction, User];
 }
 
@@ -159,8 +159,8 @@ export class MessagePrompter<S extends keyof StrategyReturns = 'confirm'> {
 	> = new Map([
 		['confirm', MessagePrompterConfirmStrategy],
 		['number', MessagePrompterNumberStrategy],
-		['message', MessagePrompterReactionStrategy],
-		['reaction', MessagePrompterMessageStrategy]
+		['reaction', MessagePrompterReactionStrategy],
+		['message', MessagePrompterMessageStrategy]
 	]);
 
 	/**
