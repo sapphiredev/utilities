@@ -1,3 +1,4 @@
+import { isNullish } from '@sapphire/utilities';
 import type { CollectorFilter, CollectorOptions, Message, User } from 'discord.js';
 import { isTextBasedChannel } from '../../type-guards';
 import type { MessagePrompterChannelTypes, MessagePrompterMessage } from '../constants';
@@ -27,7 +28,11 @@ export class MessagePrompterMessageStrategy extends MessagePrompterBaseStrategy 
 		authorOrFilter: User | CollectorFilter<[Message]>
 	): Promise<IMessagePrompterExplicitMessageReturn | Message> {
 		if (isTextBasedChannel(channel)) {
-			this.appliedMessage = await channel.send(this.message);
+			if (!isNullish(this.editMessage) && this.editMessage.editable) {
+				this.appliedMessage = await this.editMessage.edit(this.message);
+			} else {
+				this.appliedMessage = await channel.send(this.message);
+			}
 
 			const collector = await channel.awaitMessages({
 				...this.createMessagePromptFilter(authorOrFilter),

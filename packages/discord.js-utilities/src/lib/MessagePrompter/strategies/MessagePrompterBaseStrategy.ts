@@ -1,4 +1,4 @@
-import type { Awaited } from '@sapphire/utilities';
+import { Awaited, isNullish } from '@sapphire/utilities';
 import type { CollectorFilter, CollectorOptions, EmojiIdentifierResolvable, Message, MessageReaction, User } from 'discord.js';
 import { isTextBasedChannel } from '../../type-guards';
 import type { MessagePrompterChannelTypes, MessagePrompterMessage } from '../constants';
@@ -32,14 +32,20 @@ export abstract class MessagePrompterBaseStrategy {
 	public message: MessagePrompterMessage;
 
 	/**
+	 * The message the bot will edit to send its prompt in {@link MessagePrompter.run}
+	 */
+	public editMessage: Message | undefined;
+
+	/**
 	 * Constructor for the {@link MessagePrompterBaseStrategy} class
 	 * @param messagePrompter The used instance of {@link MessagePrompter}
 	 * @param options Overrideable options if needed.
 	 */
 	public constructor(type: string, message: MessagePrompterMessage, options?: IMessagePrompterStrategyOptions) {
 		this.type = type;
-		this.timeout = options?.timeout ?? MessagePrompterBaseStrategy.defaultStrategyOptions.timeout;
-		this.explicitReturn = options?.explicitReturn ?? MessagePrompterBaseStrategy.defaultStrategyOptions.explicitReturn;
+		this.timeout = options?.timeout ?? MessagePrompterBaseStrategy.defaultStrategyOptions.timeout ?? 10 * 1000;
+		this.explicitReturn = options?.explicitReturn ?? MessagePrompterBaseStrategy.defaultStrategyOptions.explicitReturn ?? false;
+		this.editMessage = options?.editMessage ?? MessagePrompterBaseStrategy.defaultStrategyOptions.editMessage ?? undefined;
 		this.message = message;
 	}
 
@@ -51,7 +57,11 @@ export abstract class MessagePrompterBaseStrategy {
 		reactions: string[] | EmojiIdentifierResolvable[]
 	): Promise<IMessagePrompterExplicitReturnBase> {
 		if (isTextBasedChannel(channel)) {
-			this.appliedMessage = await channel.send(this.message);
+			if (!isNullish(this.editMessage) && this.editMessage.editable) {
+				this.appliedMessage = await this.editMessage.edit(this.message);
+			} else {
+				this.appliedMessage = await channel.send(this.message);
+			}
 
 			const collector = this.appliedMessage.createReactionCollector({
 				...this.createReactionPromptFilter(reactions, authorOrFilter),
@@ -115,8 +125,9 @@ export abstract class MessagePrompterBaseStrategy {
 	/**
 	 * The default strategy options
 	 */
-	public static defaultStrategyOptions: Required<IMessagePrompterStrategyOptions> = {
+	public static defaultStrategyOptions: IMessagePrompterStrategyOptions = {
 		timeout: 10 * 1000,
-		explicitReturn: false
+		explicitReturn: false,
+		editMessage: undefined
 	};
 }
