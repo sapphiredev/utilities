@@ -57,7 +57,7 @@ export abstract class MessagePrompterBaseStrategy {
 		reactions: string[] | EmojiIdentifierResolvable[]
 	): Promise<IMessagePrompterExplicitReturnBase> {
 		if (isTextBasedChannel(channel)) {
-			if (typeof this.editMessage !== 'undefined' && this.editMessage.editable) {
+			if (!isNullish(this.editMessage) && this.editMessage.editable) {
 				this.appliedMessage = await this.editMessage.edit(this.message);
 			} else {
 				this.appliedMessage = await channel.send(this.message);
