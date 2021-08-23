@@ -7,11 +7,4 @@ import type { ChannelTypes, VoiceBasedChannelTypes } from '../utility-types';
  */
 export type MessagePrompterMessage = ArgumentTypes<PartialTextBasedChannelFields['send']>[0];
 
-export const enum MessagePrompterStrategies {
-	Confirm = 'confirm',
-	Number = 'number',
-	Message = 'message',
-	Reaction = 'reaction'
-}
-
 export type MessagePrompterChannelTypes = Exclude<ChannelTypes, VoiceBasedChannelTypes | StoreChannel | CategoryChannel>;

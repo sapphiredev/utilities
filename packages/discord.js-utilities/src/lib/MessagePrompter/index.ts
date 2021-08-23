@@ -1,4 +1,4 @@
-export { MessagePrompterChannelTypes, MessagePrompterMessage, MessagePrompterStrategies } from './constants';
+export { MessagePrompterChannelTypes, MessagePrompterMessage } from './constants';
 export * from './ExplicitReturnTypes';
 export * from './MessagePrompter';
 export * from './strategies/MessagePrompterBaseStrategy';

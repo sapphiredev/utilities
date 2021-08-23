@@ -1,6 +1,6 @@
 import type { Ctor } from '@sapphire/utilities';
 import type { CollectorFilter, EmojiResolvable, Message, MessageReaction, User } from 'discord.js';
-import { MessagePrompterChannelTypes, MessagePrompterMessage, MessagePrompterStrategies } from './constants';
+import type { MessagePrompterChannelTypes, MessagePrompterMessage } from './constants';
 import type {
 	IMessagePrompterExplicitConfirmReturn,
 	IMessagePrompterExplicitMessageReturn,
@@ -20,23 +20,24 @@ import type {
 } from './strategyOptions';
 
 export interface StrategyReturns {
-	[MessagePrompterStrategies.Confirm]: IMessagePrompterExplicitConfirmReturn | boolean;
-	[MessagePrompterStrategies.Message]: IMessagePrompterExplicitMessageReturn | Message;
-	[MessagePrompterStrategies.Number]: IMessagePrompterExplicitNumberReturn | number;
-	[MessagePrompterStrategies.Reaction]: IMessagePrompterExplicitReturnBase | string | EmojiResolvable;
+	confirm: IMessagePrompterExplicitConfirmReturn | boolean;
+	number: IMessagePrompterExplicitMessageReturn | Message;
+	message: IMessagePrompterExplicitNumberReturn | number;
+	reaction: IMessagePrompterExplicitReturnBase | string | EmojiResolvable;
 }
+
 export interface StrategyOptions {
-	[MessagePrompterStrategies.Confirm]: IMessagePrompterConfirmStrategyOptions;
-	[MessagePrompterStrategies.Message]: IMessagePrompterStrategyOptions;
-	[MessagePrompterStrategies.Number]: IMessagePrompterNumberStrategyOptions;
-	[MessagePrompterStrategies.Reaction]: IMessagePrompterReactionStrategyOptions;
+	confirm: IMessagePrompterConfirmStrategyOptions;
+	number: IMessagePrompterStrategyOptions;
+	message: IMessagePrompterNumberStrategyOptions;
+	reaction: IMessagePrompterReactionStrategyOptions;
 }
 
 export interface StrategyFilters {
-	[MessagePrompterStrategies.Confirm]: [MessageReaction, User];
-	[MessagePrompterStrategies.Message]: [Message];
-	[MessagePrompterStrategies.Number]: [MessageReaction, User];
-	[MessagePrompterStrategies.Reaction]: [MessageReaction, User];
+	confirm: [MessageReaction, User];
+	number: [Message];
+	message: [MessageReaction, User];
+	reaction: [MessageReaction, User];
 }
 
 /**
@@ -94,7 +95,7 @@ export interface StrategyFilters {
  * const result = await handler.run(channel, author);
  * ```
  */
-export class MessagePrompter<S extends MessagePrompterStrategies = MessagePrompterStrategies.Confirm> {
+export class MessagePrompter<S extends keyof StrategyReturns = 'confirm'> {
 	/**
 	 * The strategy used in {@link MessagePrompter.run}
 	 */
@@ -146,7 +147,7 @@ export class MessagePrompter<S extends MessagePrompterStrategies = MessagePrompt
 	 * The available strategies
 	 */
 	public static strategies: Map<
-		MessagePrompterStrategies,
+		keyof StrategyReturns,
 		Ctor<
 			| ConstructorParameters<typeof MessagePrompterConfirmStrategy>
 			| ConstructorParameters<typeof MessagePrompterNumberStrategy>
@@ -156,14 +157,14 @@ export class MessagePrompter<S extends MessagePrompterStrategies = MessagePrompt
 		>
 		// @ts-expect-error 2322
 	> = new Map([
-		[MessagePrompterStrategies.Confirm, MessagePrompterConfirmStrategy],
-		[MessagePrompterStrategies.Number, MessagePrompterNumberStrategy],
-		[MessagePrompterStrategies.Reaction, MessagePrompterReactionStrategy],
-		[MessagePrompterStrategies.Message, MessagePrompterMessageStrategy]
+		['confirm', MessagePrompterConfirmStrategy],
+		['number', MessagePrompterNumberStrategy],
+		['message', MessagePrompterReactionStrategy],
+		['reaction', MessagePrompterMessageStrategy]
 	]);
 
 	/**
 	 * The default strategy to use
 	 */
-	public static defaultStrategy: MessagePrompterStrategies = MessagePrompterStrategies.Confirm;
+	public static defaultStrategy: keyof StrategyReturns = 'confirm';
 }
