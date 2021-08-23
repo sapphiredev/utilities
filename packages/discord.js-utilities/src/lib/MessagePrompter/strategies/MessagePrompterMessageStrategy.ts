@@ -27,7 +27,7 @@ export class MessagePrompterMessageStrategy extends MessagePrompterBaseStrategy 
 		authorOrFilter: User | CollectorFilter<[Message]>
 	): Promise<IMessagePrompterExplicitMessageReturn | Message> {
 		if (isTextBasedChannel(channel)) {
-			if (typeof this.editMessage !== 'undefined' && this.editMessage.editable) {
+			if (!isNullish(this.editMessage) && this.editMessage.editable) {
 				this.appliedMessage = await this.editMessage.edit(this.message);
 			} else {
 				this.appliedMessage = await channel.send(this.message);
