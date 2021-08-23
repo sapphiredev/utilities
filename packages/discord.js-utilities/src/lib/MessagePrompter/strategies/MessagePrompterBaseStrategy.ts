@@ -1,4 +1,4 @@
-import type { Awaited } from '@sapphire/utilities';
+import { Awaited, isNullish } from '@sapphire/utilities';
 import type { CollectorFilter, CollectorOptions, EmojiIdentifierResolvable, Message, MessageReaction, User } from 'discord.js';
 import { isTextBasedChannel } from '../../type-guards';
 import type { MessagePrompterChannelTypes, MessagePrompterMessage } from '../constants';
@@ -125,7 +125,7 @@ export abstract class MessagePrompterBaseStrategy {
 	/**
 	 * The default strategy options
 	 */
-	public static defaultStrategyOptions: Required<IMessagePrompterStrategyOptions> = {
+	public static defaultStrategyOptions: IMessagePrompterStrategyOptions = {
 		timeout: 10 * 1000,
 		explicitReturn: false
 	};
