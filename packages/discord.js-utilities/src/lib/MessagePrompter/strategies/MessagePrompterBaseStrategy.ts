@@ -43,9 +43,9 @@ export abstract class MessagePrompterBaseStrategy {
 	 */
 	public constructor(type: string, message: MessagePrompterMessage, options?: IMessagePrompterStrategyOptions) {
 		this.type = type;
-		this.timeout = options?.timeout ?? MessagePrompterBaseStrategy.defaultStrategyOptions.timeout;
-		this.explicitReturn = options?.explicitReturn ?? MessagePrompterBaseStrategy.defaultStrategyOptions.explicitReturn;
-		this.editMessage = options?.editMessage;
+		this.timeout = options?.timeout ?? MessagePrompterBaseStrategy.defaultStrategyOptions.timeout ?? 10 * 1000;
+		this.explicitReturn = options?.explicitReturn ?? MessagePrompterBaseStrategy.defaultStrategyOptions.explicitReturn ?? false;
+		this.editMessage = options?.editMessage ?? MessagePrompterBaseStrategy.defaultStrategyOptions.editMessage ?? undefined;
 		this.message = message;
 	}
 
@@ -127,6 +127,7 @@ export abstract class MessagePrompterBaseStrategy {
 	 */
 	public static defaultStrategyOptions: IMessagePrompterStrategyOptions = {
 		timeout: 10 * 1000,
-		explicitReturn: false
+		explicitReturn: false,
+		editMessage: undefined
 	};
 }
