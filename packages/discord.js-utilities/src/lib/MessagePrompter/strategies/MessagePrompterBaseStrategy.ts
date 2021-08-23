@@ -32,6 +32,11 @@ export abstract class MessagePrompterBaseStrategy {
 	public message: MessagePrompterMessage;
 
 	/**
+	 * The message the bot will edit to send its prompt in {@link MessagePrompter.run}
+	 */
+	public editMessage: Message | undefined;
+
+	/**
 	 * Constructor for the {@link MessagePrompterBaseStrategy} class
 	 * @param messagePrompter The used instance of {@link MessagePrompter}
 	 * @param options Overrideable options if needed.
@@ -40,6 +45,7 @@ export abstract class MessagePrompterBaseStrategy {
 		this.type = type;
 		this.timeout = options?.timeout ?? MessagePrompterBaseStrategy.defaultStrategyOptions.timeout;
 		this.explicitReturn = options?.explicitReturn ?? MessagePrompterBaseStrategy.defaultStrategyOptions.explicitReturn;
+		this.editMessage = options?.editMessage;
 		this.message = message;
 	}
 
@@ -51,7 +57,11 @@ export abstract class MessagePrompterBaseStrategy {
 		reactions: string[] | EmojiIdentifierResolvable[]
 	): Promise<IMessagePrompterExplicitReturnBase> {
 		if (isTextBasedChannel(channel)) {
-			this.appliedMessage = await channel.send(this.message);
+			if (typeof this.editMessage !== 'undefined' && this.editMessage.editable) {
+				this.appliedMessage = await this.editMessage.edit(this.message);
+			} else {
+				this.appliedMessage = await channel.send(this.message);
+			}
 
 			const collector = this.appliedMessage.createReactionCollector({
 				...this.createReactionPromptFilter(reactions, authorOrFilter),

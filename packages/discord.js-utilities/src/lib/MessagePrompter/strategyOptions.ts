@@ -1,8 +1,9 @@
-import type { EmojiIdentifierResolvable } from 'discord.js';
+import type { EmojiIdentifierResolvable, Message } from 'discord.js';
 
 export interface IMessagePrompterStrategyOptions {
 	timeout?: number;
 	explicitReturn?: boolean;
+	editMessage?: Message;
 }
 
 export interface IMessagePrompterConfirmStrategyOptions extends IMessagePrompterStrategyOptions {
