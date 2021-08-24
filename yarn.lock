@@ -504,6 +504,20 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
+"@favware/npm-deprecate@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@favware/npm-deprecate/-/npm-deprecate-1.0.2.tgz#555064bf33ba17a28a9efbc857a2c07eae33c392"
+  integrity sha512-931Z7GDKCD7PYEQ2CYwyJWALiwj91THMdR7Vn6Tad6iAwxgoGtXBRzUv1SA7a0n/h+4QQZZ7+L1fziDMacW/iw==
+  dependencies:
+    "@sapphire/fetch" next
+    "@sapphire/utilities" "^2.0.1"
+    colorette "^1.2.2"
+    commander "^8.1.0"
+    js-yaml "^4.1.0"
+    micromatch "^4.0.4"
+    npm-package-arg "^8.1.5"
+    npm-registry-fetch "^11.0.0"
+
 "@favware/rollup-type-bundler@^1.0.3":
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/@favware/rollup-type-bundler/-/rollup-type-bundler-1.0.3.tgz#cf42805ed3d1a37d3eeaf79efff9ef2b1d36c142"
@@ -1660,6 +1674,13 @@
   dependencies:
     "@sapphire/discord-utilities" "^2.1.5"
 
+"@sapphire/fetch@next":
+  version "2.0.0-next.823c6b12.0"
+  resolved "https://registry.yarnpkg.com/@sapphire/fetch/-/fetch-2.0.0-next.823c6b12.0.tgz#701e6b4dc5740a4e16b493108ca66d93d667f8c0"
+  integrity sha512-AIB8D7EaiYamcsPslDl4m8GIPWDkb5D6kQ/tLZrmwnHAtFHKuC7F1RJ6qYHHYEAHZgOh13nrtUl5O8HqdWpt2g==
+  dependencies:
+    cross-fetch "^3.1.4"
+
 "@sapphire/framework@^1.0.2":
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/@sapphire/framework/-/framework-1.0.2.tgz#50db64c0f7c9e0e87d604033fda0024345d23e74"
@@ -2729,7 +2750,7 @@ commander@^7.2.0:
   resolved "https://registry.yarnpkg.com/commander/-/commander-7.2.0.tgz#a36cb57d0b501ce108e4d20559a150a391d97ab7"
   integrity sha512-QrWXB+ZQSVPmIWIhtEO9H+gwHaMGYiF5ChvoJ+K9ZGHG/sVsa6yiesAD1GC/x46sET00Xlwo1u49RVVVzvcSkw==
 
-commander@^8.0.0:
+commander@^8.0.0, commander@^8.1.0:
   version "8.1.0"
   resolved "https://registry.yarnpkg.com/commander/-/commander-8.1.0.tgz#db36e3e66edf24ff591d639862c6ab2c52664362"
   integrity sha512-mf45ldcuHSYShkplHHGKWb4TrmwQadxOn7v4WuhDJy0ZVoY5JFajaRDKD0PNe5qXzBX0rhovjTnP6Kz9LETcuA==
@@ -6129,7 +6150,7 @@ npm-normalize-package-bin@^1.0.0, npm-normalize-package-bin@^1.0.1:
   resolved "https://registry.yarnpkg.com/npm-normalize-package-bin/-/npm-normalize-package-bin-1.0.1.tgz#6e79a41f23fd235c0623218228da7d9c23b8f6e2"
   integrity sha512-EPfafl6JL5/rU+ot6P3gRSCpPDW5VmIzX959Ob1+ySFUuuYHWHekXpwdUZcKP5C+DS4GEtdJluwBjnsNDl+fSA==
 
-npm-package-arg@^8.0.0, npm-package-arg@^8.0.1, npm-package-arg@^8.1.0, npm-package-arg@^8.1.2:
+npm-package-arg@^8.0.0, npm-package-arg@^8.0.1, npm-package-arg@^8.1.0, npm-package-arg@^8.1.2, npm-package-arg@^8.1.5:
   version "8.1.5"
   resolved "https://registry.yarnpkg.com/npm-package-arg/-/npm-package-arg-8.1.5.tgz#3369b2d5fe8fdc674baa7f1786514ddc15466e44"
   integrity sha512-LhgZrg0n0VgvzVdSm1oiZworPbTxYHUJCgtsJW8mGvlDpxTM1vSJc3m5QZeUkhAHIzbz3VCHd/R4osi1L1Tg/Q==
