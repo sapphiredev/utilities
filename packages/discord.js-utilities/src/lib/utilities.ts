@@ -1,6 +1,6 @@
 import { isNullish, Nullish } from '@sapphire/utilities';
 import { Permissions } from 'discord.js';
-import { isGuildBasedChannel } from './type-guards';
+import { isDMChannel, isGuildBasedChannel } from './type-guards';
 import type { ChannelTypes } from './utility-types';
 
 const canReadMessagesPermissions = new Permissions(['VIEW_CHANNEL']);
@@ -12,6 +12,7 @@ const canReadMessagesPermissions = new Permissions(['VIEW_CHANNEL']);
  */
 export function canReadMessages(channel: ChannelTypes | Nullish): boolean {
 	if (isNullish(channel)) return false;
+	if (isDMChannel(channel)) return true;
 
 	return canDoUtility(channel, canReadMessagesPermissions);
 }
@@ -25,6 +26,7 @@ const canSendMessagesPermissions = new Permissions([canReadMessagesPermissions, 
  */
 export function canSendMessages(channel: ChannelTypes | Nullish): boolean {
 	if (isNullish(channel)) return false;
+	if (isDMChannel(channel)) return true;
 
 	return canDoUtility(channel, canSendMessagesPermissions);
 }
@@ -38,6 +40,7 @@ const canSendEmbedsPermissions = new Permissions([canSendMessagesPermissions, 'E
  */
 export function canSendEmbeds(channel: ChannelTypes | Nullish): boolean {
 	if (isNullish(channel)) return false;
+	if (isDMChannel(channel)) return true;
 
 	return canDoUtility(channel, canSendEmbedsPermissions);
 }
@@ -51,8 +54,37 @@ const canSendAttachmentsPermissions = new Permissions([canSendMessagesPermission
  */
 export function canSendAttachments(channel: ChannelTypes | Nullish): boolean {
 	if (isNullish(channel)) return false;
+	if (isDMChannel(channel)) return true;
 
 	return canDoUtility(channel, canSendAttachmentsPermissions);
+}
+
+const canReactPermissions = new Permissions([canSendMessagesPermissions, 'READ_MESSAGE_HISTORY', 'ADD_REACTIONS']);
+
+/**
+ * Determines whether or not we can send react to messages in a given channel.
+ * @param channel The channel to test the permissions from.
+ * @returns Whether or not we can react to messages in the specified channel.
+ */
+export function canReact(channel: ChannelTypes | Nullish) {
+	if (isNullish(channel)) return false;
+	if (isDMChannel(channel)) return true;
+
+	return canDoUtility(channel, canReactPermissions);
+}
+
+const canRemoveAllReactionsPermissions = new Permissions([canReadMessagesPermissions, 'READ_MESSAGE_HISTORY', 'MANAGE_MESSAGES']);
+
+/**
+ * Determines whether or not we can remove reactions from messages in a given channel.
+ * @param channel The channel to test the permissions from.
+ * @returns Whether or not we can remove reactions from messages in the specified channel.
+ */
+export function canRemoveAllReactions(channel: ChannelTypes | Nullish) {
+	if (isNullish(channel)) return false;
+	if (isDMChannel(channel)) return false;
+
+	return canDoUtility(channel, canRemoveAllReactionsPermissions);
 }
 
 function canDoUtility(channel: ChannelTypes, permissionsToPass: Permissions) {
