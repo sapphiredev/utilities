@@ -24,6 +24,10 @@ jobs:
       - name: Install Dependencies if Cache Miss
         if: ${{ !steps.cache-restore.outputs.cache-hit }}
         run: yarn --frozen-lockfile
+      - name: Build Utilities
+        run: yarn workspace @sapphire/utilities build
+      - name: Build Fetch
+        run: yarn workspace @sapphire/fetch build
       - name: Deprecate versions
         run: yarn npm-deprecate
         env:
