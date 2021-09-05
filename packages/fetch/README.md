@@ -4,7 +4,7 @@
 
 # @sapphire/fetch
 
-**Tiny wrapper around node-fetch for improved TypeScript and data type support**
+**Tiny wrapper around cross-fetch for improved TypeScript and data type support**
 
 [![GitHub](https://img.shields.io/github/license/sapphiredev/utilities)](https://github.com/sapphiredev/utilities/blob/main/LICENSE.md)
 [![codecov](https://codecov.io/gh/sapphiredev/utilities/branch/main/graph/badge.svg?token=OEGIV6RFDO)](https://codecov.io/gh/sapphiredev/utilities)
