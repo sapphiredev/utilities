@@ -1,5 +1,5 @@
 import nock from 'nock';
-import { fetch, FetchResultTypes } from '../src';
+import { fetch, FetchResultTypes, QueryError } from '../src';
 import { URL as NodeUrl } from 'url';
 
 describe('fetch', () => {
@@ -118,11 +118,11 @@ describe('fetch', () => {
 			try {
 				await fetchResult;
 			} catch (error) {
-				expect(error.message).toBe(`Failed to request '${url}' with code 404.`);
-				expect(error.body).toBe('{"success":false}');
-				expect(error.code).toBe(404);
-				expect(error.url).toBe(url);
-				expect(error.toJSON()).toStrictEqual({ success: false });
+				expect((error as QueryError).message).toBe(`Failed to request '${url}' with code 404.`);
+				expect((error as QueryError).body).toBe('{"success":false}');
+				expect((error as QueryError).code).toBe(404);
+				expect((error as QueryError).url).toBe(url);
+				expect((error as QueryError).toJSON()).toStrictEqual({ success: false });
 			}
 		});
 
@@ -136,10 +136,10 @@ describe('fetch', () => {
 			try {
 				await fetchResult;
 			} catch (error) {
-				expect(error.message).toBe(`Failed to request '${url}' with code 404.`);
-				expect(error.code).toBe(404);
-				expect(error.url).toBe(url.href);
-				expect(error.toJSON()).toStrictEqual({ success: false });
+				expect((error as QueryError).message).toBe(`Failed to request '${url}' with code 404.`);
+				expect((error as QueryError).code).toBe(404);
+				expect((error as QueryError).url).toBe(url.href);
+				expect((error as QueryError).toJSON()).toStrictEqual({ success: false });
 			}
 		});
 
@@ -153,10 +153,10 @@ describe('fetch', () => {
 			try {
 				await fetchResult;
 			} catch (error) {
-				expect(error.toJSON()).toStrictEqual({ success: false });
+				expect((error as QueryError).toJSON()).toStrictEqual({ success: false });
 
 				// This will use the cached value
-				expect(error.toJSON()).toStrictEqual({ success: false });
+				expect((error as QueryError).toJSON()).toStrictEqual({ success: false });
 			}
 		});
 
