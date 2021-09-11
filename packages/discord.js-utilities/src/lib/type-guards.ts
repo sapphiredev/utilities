@@ -26,7 +26,7 @@ export function isCategoryChannel(channel: ChannelTypes | Nullish): channel is C
  * Checks whether a given channel is a {@link DMChannel}
  * @param channel The channel to check
  */
-export function isDMChannel(channel: ChannelTypes | Nullish): channel is DMChannel {
+export function isDMChannel(channel: ChannelTypes | Nullish): channel is DMChannel | PartialDMChannel {
 	return channel?.type === 'DM';
 }
 

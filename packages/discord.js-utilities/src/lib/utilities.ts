@@ -1,5 +1,6 @@
 import { isNullish, Nullish } from '@sapphire/utilities';
 import { Permissions } from 'discord.js';
+import { isThreadChannel } from '..';
 import { isDMChannel, isGuildBasedChannel } from './type-guards';
 import type { ChannelTypes } from './utility-types';
 
@@ -27,6 +28,7 @@ const canSendMessagesPermissions = new Permissions([canReadMessagesPermissions, 
 export function canSendMessages(channel: ChannelTypes | Nullish): boolean {
 	if (isNullish(channel)) return false;
 	if (isDMChannel(channel)) return true;
+	if (isThreadChannel(channel) && !channel.sendable) return false;
 
 	return canDoUtility(channel, canSendMessagesPermissions);
 }
@@ -41,6 +43,7 @@ const canSendEmbedsPermissions = new Permissions([canSendMessagesPermissions, 'E
 export function canSendEmbeds(channel: ChannelTypes | Nullish): boolean {
 	if (isNullish(channel)) return false;
 	if (isDMChannel(channel)) return true;
+	if (isThreadChannel(channel) && !channel.sendable) return false;
 
 	return canDoUtility(channel, canSendEmbedsPermissions);
 }
@@ -55,6 +58,7 @@ const canSendAttachmentsPermissions = new Permissions([canSendMessagesPermission
 export function canSendAttachments(channel: ChannelTypes | Nullish): boolean {
 	if (isNullish(channel)) return false;
 	if (isDMChannel(channel)) return true;
+	if (isThreadChannel(channel) && !channel.sendable) return false;
 
 	return canDoUtility(channel, canSendAttachmentsPermissions);
 }
@@ -69,6 +73,7 @@ const canReactPermissions = new Permissions([canSendMessagesPermissions, 'READ_M
 export function canReact(channel: ChannelTypes | Nullish) {
 	if (isNullish(channel)) return false;
 	if (isDMChannel(channel)) return true;
+	if (isThreadChannel(channel) && channel.archived) return false;
 
 	return canDoUtility(channel, canReactPermissions);
 }
