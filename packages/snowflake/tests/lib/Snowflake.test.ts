@@ -69,20 +69,42 @@ describe('Snowflake', () => {
 				'"timestamp" argument must be a number, BigInt or Date (received boolean)'
 			);
 		});
+
+		test('GIVEN multiple generate calls THEN generates distinct IDs', () => {
+			const snowflake = new Snowflake(sampleEpoch);
+
+			const arrayOf10Snowflakes = [
+				snowflake.generate(),
+				snowflake.generate(),
+				snowflake.generate(),
+				snowflake.generate(),
+				snowflake.generate(),
+				snowflake.generate(),
+				snowflake.generate(),
+				snowflake.generate(),
+				snowflake.generate(),
+				snowflake.generate()
+			];
+
+			const setOf10Snowflakes = new Set(arrayOf10Snowflakes);
+
+			// Validate that there are no duplicate IDs
+			expect(setOf10Snowflakes.size).toBe(arrayOf10Snowflakes.length);
+		});
 	});
 
 	describe('Deconstruct', () => {
 		test('GIVEN id as string THEN returns data about snowflake', () => {
 			const snowflake = new Snowflake(sampleEpoch);
 
-			const flake = snowflake.deconstruct('3971046231244935168');
+			const flake = snowflake.deconstruct('3971046231244935169');
 
 			expect(flake).toStrictEqual<DeconstructedSnowflake>({
-				id: 3971046231244935168n,
+				id: 3971046231244935169n,
 				timestamp: 2524608000000n,
 				workerID: 1n,
 				processID: 1n,
-				increment: 0n,
+				increment: 1n,
 				epoch: 1577836800000n
 			});
 		});
@@ -107,14 +129,14 @@ describe('Snowflake', () => {
 		test('GIVEN id as string THEN returns data about snowflake', () => {
 			const snowflake = new Snowflake(sampleEpoch);
 
-			const flake = snowflake.decode('3971046231244935168');
+			const flake = snowflake.decode('3971046231244935169');
 
 			expect(flake).toStrictEqual<DeconstructedSnowflake>({
-				id: 3971046231244935168n,
+				id: 3971046231244935169n,
 				timestamp: 2524608000000n,
 				workerID: 1n,
 				processID: 1n,
-				increment: 0n,
+				increment: 1n,
 				epoch: 1577836800000n
 			});
 		});

@@ -42,8 +42,7 @@ export class Snowflake {
 	 * @returns A unique snowflake
 	 */
 	public generate(
-		{ increment = this.#increment, timestamp = Date.now(), workerID = 1n, processID = 1n }: SnowflakeGenerateOptions = {
-			increment: this.#increment,
+		{ increment, timestamp = Date.now(), workerID = 1n, processID = 1n }: SnowflakeGenerateOptions = {
 			timestamp: Date.now(),
 			workerID: 1n,
 			processID: 1n
@@ -58,10 +57,13 @@ export class Snowflake {
 			);
 		}
 
-		if (increment >= 4095n) increment = 0n;
+		if (increment !== undefined && increment >= 4095n) increment = 0n;
+		if (this.#increment >= 4095n) this.#increment = 0n;
 
 		// timestamp, workerID, processID, increment
-		return ((timestamp - this.#epoch) << 22n) | (workerID << 17n) | (processID << 12n) | increment++;
+		return (
+			((timestamp - this.#epoch) << 22n) | (workerID << 17n) | (processID << 12n) | (increment === undefined ? this.#increment++ : increment++)
+		);
 	}
 
 	/**

@@ -19,7 +19,7 @@
 		"test": "jest",
 		"lint": "eslint src tests --ext ts --fix -c ../../.eslintrc",
 		"build": "rollup -c",
-		"start": "yarn build -w",
+		"watch": "yarn build -w",
 		"prepublishOnly": "yarn build"
 	},
 	"repository": {
