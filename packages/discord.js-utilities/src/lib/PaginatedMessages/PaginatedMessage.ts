@@ -1,6 +1,6 @@
 import { Time } from '@sapphire/time-utilities';
 import { Awaited, isFunction } from '@sapphire/utilities';
-import type { RESTPostAPIChannelMessageJSONBody } from 'discord-api-types/v8';
+import type { RESTPostAPIChannelMessageJSONBody } from 'discord-api-types/v9';
 import {
 	Collection,
 	Message,
