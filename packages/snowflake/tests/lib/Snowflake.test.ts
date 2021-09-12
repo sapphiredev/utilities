@@ -74,16 +74,16 @@ describe('Snowflake', () => {
 			const snowflake = new Snowflake(sampleEpoch);
 
 			const arrayOf10Snowflakes = [
-				snowflake.generate().toString(),
-				snowflake.generate().toString(),
-				snowflake.generate().toString(),
-				snowflake.generate().toString(),
-				snowflake.generate().toString(),
-				snowflake.generate().toString(),
-				snowflake.generate().toString(),
-				snowflake.generate().toString(),
-				snowflake.generate().toString(),
-				snowflake.generate().toString()
+				snowflake.generate(),
+				snowflake.generate(),
+				snowflake.generate(),
+				snowflake.generate(),
+				snowflake.generate(),
+				snowflake.generate(),
+				snowflake.generate(),
+				snowflake.generate(),
+				snowflake.generate(),
+				snowflake.generate()
 			];
 
 			const setOf10Snowflakes = new Set(arrayOf10Snowflakes);
