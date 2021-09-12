@@ -21,7 +21,7 @@
 	},
 	"dependencies": {
 		"tslib": "^2.3.1",
-		"typescript": "^4.4.2"
+		"typescript": "^4.4.3"
 	},
 	"files": [
 		"tsconfig.json"
