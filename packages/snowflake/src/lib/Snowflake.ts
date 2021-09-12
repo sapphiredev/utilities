@@ -61,7 +61,11 @@ export class Snowflake {
 		if (increment >= 4095n) increment = 0n;
 
 		// timestamp, workerID, processID, increment
-		return ((timestamp - this.#epoch) << 22n) | (workerID << 17n) | (processID << 12n) | increment++;
+		const snowflake = ((timestamp - this.#epoch) << 22n) | (workerID << 17n) | (processID << 12n) | increment++;
+
+		this.#increment = increment;
+
+		return snowflake;
 	}
 
 	/**
