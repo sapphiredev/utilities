@@ -34,7 +34,7 @@ describe('isNullOrUndefinedOrEmpty', () => {
 	});
 
 	test('GIVEN non-empty array THEN returns true', () => {
-		expect(isNullOrUndefinedOrEmpty(['non-empty array'])).toBeFalse();
+		expect(isNullOrUndefinedOrEmpty(['some non-empty array'])).toBeFalse();
 	});
 
 	test('GIVEN function THEN returns false', () => {
