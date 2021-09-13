@@ -33,6 +33,10 @@ describe('isNullOrUndefinedOrEmpty', () => {
 		expect(isNullOrUndefinedOrEmpty([])).toBeTrue();
 	});
 
+	test('GIVEN non-empty array THEN returns true', () => {
+		expect(isNullOrUndefinedOrEmpty(['non-empty array'])).toBeFalse();
+	});
+
 	test('GIVEN function THEN returns false', () => {
 		const value = function value(): void {
 			/* noop */

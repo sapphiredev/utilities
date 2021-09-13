@@ -72,6 +72,10 @@ describe('filterNullAndUndefinedAndEmpty', () => {
 		expect(filterNullAndUndefinedAndEmpty([])).toBeFalse();
 	});
 
+	test('GIVEN non-empty array THEN returns true', () => {
+		expect(filterNullAndUndefinedAndEmpty(['non-empty array'])).toBeTrue();
+	});
+
 	test('GIVEN function THEN returns true', () => {
 		const value = function value(): void {
 			/* noop */
