@@ -56,29 +56,29 @@ describe('filterNullAndUndefined', () => {
 		expect(filterNullAndUndefined(null)).toBeFalse();
 	});
 
-	test('GIVEN object THEN returns true', () => {
+	test('GIVEN empty object THEN returns true', () => {
 		expect(filterNullAndUndefined({})).toBeTrue();
 	});
 
-	test('GIVEN array THEN returns true', () => {
+	test('GIVEN empty array THEN returns true', () => {
 		expect(filterNullAndUndefined([])).toBeTrue();
 	});
 
-	test('GIVEN function THEN returns true', () => {
+	test('GIVEN empty function THEN returns true', () => {
 		const value = function value(): void {
 			/* noop */
 		};
 		expect(filterNullAndUndefined(value)).toBeTrue();
 	});
 
-	test('GIVEN array function THEN returns true', () => {
+	test('GIVEN empty array function THEN returns true', () => {
 		const value = (): void => {
 			/* noop */
 		};
 		expect(filterNullAndUndefined(value)).toBeTrue();
 	});
 
-	test('GIVEN class THEN returns true', () => {
+	test('GIVEN empty class THEN returns true', () => {
 		const value = class A {};
 		expect(filterNullAndUndefined(value)).toBeTrue();
 	});
