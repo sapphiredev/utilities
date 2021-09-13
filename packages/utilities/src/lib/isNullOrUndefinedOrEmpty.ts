@@ -6,5 +6,5 @@ import type { Nullish } from './utilityTypes';
  * @param value The value to check
  */
 export function isNullOrUndefinedOrEmpty(value: unknown): value is Nullish | '' {
-	return isNullOrUndefined(value) || Reflect.get(value, 'length') === 0;
+	return isNullOrUndefined(value) || Reflect.get(value, 'length') === 0 || value === '';
 }
