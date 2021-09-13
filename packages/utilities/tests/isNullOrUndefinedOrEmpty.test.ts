@@ -29,8 +29,8 @@ describe('isNullOrUndefinedOrEmpty', () => {
 		expect(isNullOrUndefinedOrEmpty({})).toBeFalse();
 	});
 
-	test('GIVEN array THEN returns false', () => {
-		expect(isNullOrUndefinedOrEmpty([])).toBeFalse();
+	test('GIVEN array THEN returns true', () => {
+		expect(isNullOrUndefinedOrEmpty([])).toBeTrue();
 	});
 
 	test('GIVEN function THEN returns false', () => {

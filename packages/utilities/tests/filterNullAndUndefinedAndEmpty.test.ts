@@ -68,8 +68,8 @@ describe('filterNullAndUndefinedAndEmpty', () => {
 		expect(filterNullAndUndefinedAndEmpty({})).toBeTrue();
 	});
 
-	test('GIVEN array THEN returns true', () => {
-		expect(filterNullAndUndefinedAndEmpty([])).toBeTrue();
+	test('GIVEN array THEN returns false', () => {
+		expect(filterNullAndUndefinedAndEmpty([])).toBeFalse();
 	});
 
 	test('GIVEN function THEN returns true', () => {
