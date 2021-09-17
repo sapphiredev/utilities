@@ -19,7 +19,7 @@
 		"prepublishOnly": "yarn build"
 	},
 	"dependencies": {
-		"prettier": "2.4.0"
+		"prettier": "2.4.1"
 	},
 	"repository": {
 		"type": "git",
