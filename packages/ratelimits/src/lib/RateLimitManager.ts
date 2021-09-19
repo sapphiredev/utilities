@@ -18,8 +18,8 @@ export class RateLimitManager<K = string> extends Map<K, RateLimit<K>> {
 	private sweepInterval!: NodeJS.Timer | null;
 
 	/**
-	 * @param limit The amount of times a {@link RateLimit} can drip before it's limited.
 	 * @param time The amount of milliseconds for the ratelimits from this manager to expire.
+	 * @param limit The amount of times a {@link RateLimit} can drip before it's limited.
 	 */
 	public constructor(time: number, limit = 1) {
 		super();

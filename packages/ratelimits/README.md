@@ -20,15 +20,15 @@
 -   [Features](#features)
 -   [Installation](#installation)
 -   [Usage](#usage)
-    -   [Token Bucket](#token-bucket)
-    -   [Leaky Bucket](#leaky-bucket)
+    -   [Token RateLimitManager](#token-ratelimitmanager)
+    -   [Leaky RateLimitManager](#leaky-ratelimitmanager)
 -   [API Documentation](#api-documentation)
 -   [Buy us some doughnuts](#buy-us-some-doughnuts)
 -   [Contributors ✨](#contributors-%E2%9C%A8)
 
 ## Description
 
-There is often a need to apply ratelimits to protect a network from excessive traffic levels on connections routed through it. This package offers two different techniques in the same implementation: the simple [Token Bucket](https://en.wikipedia.org/wiki/Token_bucket), and the more complex [Leaky Bucket](https://en.wikipedia.org/wiki/Leaky_bucket).
+There is often a need to apply ratelimits to protect a network from excessive traffic levels on connections routed through it, or limit bot command usages in your Discord bot, or similar things. This package offers two different techniques in the same implementation: the [Token Bucket](https://en.wikipedia.org/wiki/Token_bucket), and the [Leaky Bucket](https://en.wikipedia.org/wiki/Leaky_bucket).
 
 ## Features
 
@@ -47,33 +47,52 @@ npm install @sapphire/ratelimits
 
 ## Usage
 
-**Note:** While this section uses `require`, the imports match 1:1 with ESM imports. For example `const { Bucket } = require('@sapphire/ratelimits')` equals `import { Bucket } from '@sapphire/ratelimits'`.
+**Note:** While this section uses `require`, the imports match 1:1 with ESM imports. For example `const { RateLimitManager } = require('@sapphire/ratelimits')` equals `import { RateLimitManager } from '@sapphire/ratelimits'`.
 
-### Token Bucket
+### Token RateLimitManager
 
 ```ts
 // Import the Bucket class
-const { Bucket } = require('@sapphire/ratelimits');
+const { RateLimitManager } = require('@sapphire/ratelimits');
 
 // Define a bucket with 1 usage every 5 seconds
-const bucket = new Bucket().setDelay(5000);
+const rateLimitManager = new RateLimitManager(5000);
 
-console.log(bucket.take(420)); // -> 0
-console.log(bucket.take(420)); // -> 5000
+// Acquire the rate limit. The ID can be something like `'global'`, a Discord channel/server/user ID, or anything else.
+const ratelimit = rateLimitManager.acquire('some-unique-id-here');
+
+// Check if there is a rate limit right now
+if (ratelimit.limited) {
+	// Do something when limited, such as throwing an error
+}
+
+// We're not rate limited so we drip the bucket
+ratelimit.consume();
+
+// And now we can finish the flow by returning some form of "success" state.
 ```
 
-### Leaky Bucket
+### Leaky RateLimitManager
 
 ```ts
 // Import the Bucket class
-const { Bucket } = require('@sapphire/ratelimits');
+const { RateLimitManager } = require('@sapphire/ratelimits');
 
 // Define a bucket with 2 usages every 5 seconds
-const bucket = new Bucket().setLimit({ timespan: 5000, maximum: 2 });
+const rateLimitManager = new RateLimitManager(5000, 2);
 
-console.log(bucket.take(420)); // -> 0
-console.log(bucket.take(420)); // -> 0
-console.log(bucket.take(420)); // -> 5000
+// Acquire the rate limit. The ID can be something like `'global'`, a Discord channel/server/user ID, or anything else.
+const ratelimit = rateLimitManager.acquire('some-unique-id-here');
+
+// Check if there is a rate limit right now
+if (ratelimit.limited) {
+	// Do something when limited, such as throwing an error
+}
+
+// We're not rate limited so we drip the bucket. After consuming once, the next run through we'll be rate limited.
+ratelimit.consume();
+
+// And now we can finish the flow by returning some form of "success" state.
 ```
 
 ---
