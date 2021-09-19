@@ -66,7 +66,7 @@ if (ratelimit.limited) {
 	// Do something when limited, such as throwing an error
 }
 
-// We're not rate limited so we drip the bucket
+// We're not rate limited so we drip the bucket. After consuming once, the second run through we'll be rate limited.
 ratelimit.consume();
 
 // And now we can finish the flow by returning some form of "success" state.
@@ -89,7 +89,7 @@ if (ratelimit.limited) {
 	// Do something when limited, such as throwing an error
 }
 
-// We're not rate limited so we drip the bucket. After consuming once, the next run through we'll be rate limited.
+// We're not rate limited so we drip the bucket. After consuming twice, the third run through we'll be rate limited.
 ratelimit.consume();
 
 // And now we can finish the flow by returning some form of "success" state.
