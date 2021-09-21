@@ -29,26 +29,30 @@ describe('isNullOrUndefinedOrEmpty', () => {
 		expect(isNullOrUndefinedOrEmpty({})).toBeFalse();
 	});
 
-	test('GIVEN array THEN returns false', () => {
-		expect(isNullOrUndefinedOrEmpty([])).toBeFalse();
+	test('GIVEN array THEN returns true', () => {
+		expect(isNullOrUndefinedOrEmpty([])).toBeTrue();
 	});
 
-	test('GIVEN function THEN returns false', () => {
+	test('GIVEN non-empty array THEN returns false', () => {
+		expect(isNullOrUndefinedOrEmpty(['some non-empty array'])).toBeFalse();
+	});
+
+	test('GIVEN function THEN returns true', () => {
 		const value = function value(): void {
 			/* noop */
 		};
-		expect(isNullOrUndefinedOrEmpty(value)).toBeFalse();
+		expect(isNullOrUndefinedOrEmpty(value)).toBeTrue();
 	});
 
-	test('GIVEN array function THEN returns false', () => {
+	test('GIVEN array function THEN returns true', () => {
 		const value = (): void => {
 			/* noop */
 		};
-		expect(isNullOrUndefinedOrEmpty(value)).toBeFalse();
+		expect(isNullOrUndefinedOrEmpty(value)).toBeTrue();
 	});
 
-	test('GIVEN class THEN returns false', () => {
+	test('GIVEN class THEN returns true', () => {
 		const value = class A {};
-		expect(isNullOrUndefinedOrEmpty(value)).toBeFalse();
+		expect(isNullOrUndefinedOrEmpty(value)).toBeTrue();
 	});
 });
