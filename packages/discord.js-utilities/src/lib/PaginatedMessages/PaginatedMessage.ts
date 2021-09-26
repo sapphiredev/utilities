@@ -740,7 +740,7 @@ export class PaginatedMessage {
 			if (embed) {
 				embed.footer ??= { text: this.template.embeds?.[Number(idx)]?.footer?.text ?? this.template.embeds?.[0]?.footer?.text ?? '' };
 				embed.footer.text = `${this.pageIndexPrefix ? `${this.pageIndexPrefix} ` : ''}${index + 1} / ${this.pages.length}${
-					embed.footer.text ? `| ${embed.footer.text}` : ''
+					embed.footer.text ? ` • ${embed.footer.text}` : ''
 				}`;
 			}
 		}
