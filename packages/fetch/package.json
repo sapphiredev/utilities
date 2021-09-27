@@ -9,6 +9,7 @@
 	"browser": "dist/index.umd.js",
 	"unpkg": "dist/index.umd.js",
 	"types": "dist/index.d.ts",
+	"typedocMain": "src/index.ts",
 	"exports": {
 		"import": "./dist/index.mjs",
 		"require": "./dist/index.js"

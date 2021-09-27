@@ -5,6 +5,7 @@
 	"author": "@sapphire",
 	"license": "MIT",
 	"main": "tsconfig.json",
+	"typedocMain": "tests/index.ts",
 	"exports": {
 		"import": "./tsconfig.json",
 		"require": "./tsconfig.json"

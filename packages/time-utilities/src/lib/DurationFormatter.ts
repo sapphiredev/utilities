@@ -53,7 +53,7 @@ function addUnit(time: number, unit: DurationFormatAssetsUnit) {
 	return `${time} ${unit.DEFAULT}`;
 }
 
-interface DurationFormatAssetsUnit extends Record<number, string> {
+export interface DurationFormatAssetsUnit extends Record<number, string> {
 	// eslint-disable-next-line @typescript-eslint/naming-convention
 	DEFAULT: string;
 }
