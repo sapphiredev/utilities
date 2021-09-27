@@ -1,4 +1,4 @@
-import { MessageEmbed, ColorResolvable, MessageEmbedOptions } from 'discord.js';
+import { ColorResolvable, MessageEmbed, MessageEmbedOptions } from 'discord.js';
 import {
 	validateAuthorData,
 	validateDescriptionData,

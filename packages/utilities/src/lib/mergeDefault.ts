@@ -1,9 +1,6 @@
 import { deepClone } from './deepClone';
 import { isObject } from './isObject';
-import type { DeepRequired } from './utilityTypes';
-
-// eslint-disable-next-line @typescript-eslint/consistent-type-definitions, @typescript-eslint/ban-types
-type NonNullObject = {};
+import type { DeepRequired, NonNullObject } from './utilityTypes';
 
 /**
  * Deep merges 2 objects. Properties from the second parameter are applied to the first.
