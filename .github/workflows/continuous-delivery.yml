@@ -82,6 +82,8 @@ jobs:
         run: yarn build
       - name: Build documentation
         run: yarn docs
+        env:
+          NODE_OPTIONS: '--max_old_space_size=4096'
       - name: Publish Docs
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
