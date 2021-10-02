@@ -140,12 +140,18 @@ export class PaginatedMessage {
 	 * @default ```PaginatedMessage.pageIndexPrefix``` (static property)
 	 */
 	public pageIndexPrefix = PaginatedMessage.pageIndexPrefix;
+	/**
+	 * Custom seperator to show after the page index in the embed footer.
+	 * PaginatedMessage will automatically add a space (` `) after the given text. You do not have to add it yourself.
+	 * @default ```PaginatedMessage.pageIndexPrefix``` (static property)
+	 */
+	public embedFooterSeperator = PaginatedMessage.embedFooterSeperator;
 
 	/**
 	 * Constructor for the {@link PaginatedMessage} class
 	 * @param __namedParameters The {@link PaginatedMessageOptions} for this instance of the {@link PaginatedMessage} class
 	 */
-	public constructor({ pages, actions, template, pageIndexPrefix }: PaginatedMessageOptions = {}) {
+	public constructor({ pages, actions, template, pageIndexPrefix, embedFooterSeperator }: PaginatedMessageOptions = {}) {
 		this.pages = pages ?? [];
 
 		for (const page of this.pages) this.messages.push(page instanceof MessagePayload ? page : null);
@@ -153,6 +159,7 @@ export class PaginatedMessage {
 
 		this.template = PaginatedMessage.resolveTemplate(template);
 		this.pageIndexPrefix = pageIndexPrefix ?? PaginatedMessage.pageIndexPrefix;
+		this.embedFooterSeperator = embedFooterSeperator ?? PaginatedMessage.embedFooterSeperator;
 	}
 
 	public setPromptMessage(message: string) {
@@ -740,7 +747,7 @@ export class PaginatedMessage {
 			if (embed) {
 				embed.footer ??= { text: this.template.embeds?.[Number(idx)]?.footer?.text ?? this.template.embeds?.[0]?.footer?.text ?? '' };
 				embed.footer.text = `${this.pageIndexPrefix ? `${this.pageIndexPrefix} ` : ''}${index + 1} / ${this.pages.length}${
-					embed.footer.text ? ` • ${embed.footer.text}` : ''
+					embed.footer.text ? ` ${this.embedFooterSeperator} ${embed.footer.text}` : ''
 				}`;
 			}
 		}
@@ -886,6 +893,20 @@ export class PaginatedMessage {
 	public static pageIndexPrefix = '';
 
 	/**
+	 * Custom seperator for the page index in the embed footer.
+	 * @default "•"
+	 * @remark To overwrite this property change it somewhere in a "setup" file, i.e. where you also call `client.login()` for your bot.
+	 * @example
+	 * ```typescript
+	 * import { PaginatedMessage } from '@sapphire/discord.js-utilities';
+	 *
+	 * PaginatedMessage.embedFooterSeperator = '|';
+	 * // This will make the seperator of the embed footer something like "Page 1/2 | Today at 4:20"
+	 * ```
+	 */
+	public static embedFooterSeperator = '•';
+
+	/**
 	 * The messages that are currently being handled by a {@link PaginatedMessage}
 	 * The key is the ID of the message that triggered this {@link PaginatedMessage}
 	 *
@@ -971,6 +992,10 @@ export interface PaginatedMessageOptions {
 	 * @seealso {@link PaginatedMessage.pageIndexPrefix}
 	 */
 	pageIndexPrefix?: string;
+	/**
+	 * @seealso {@link PaginatedMessage.embedFooterSeperator}
+	 */
+	embedFooterSeperator?: string;
 }
 
 /**
