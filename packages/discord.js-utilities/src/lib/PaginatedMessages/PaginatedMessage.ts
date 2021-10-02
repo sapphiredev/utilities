@@ -896,6 +896,7 @@ export class PaginatedMessage {
 	 * Custom seperator for the page index in the embed footer.
 	 * @default "•"
 	 * @remark To overwrite this property change it somewhere in a "setup" file, i.e. where you also call `client.login()` for your bot.
+	 * Alternatively, you can also customize it on a per-PaginatedMessage basis by passing `embedFooterSeperator` in the options of the constructor.
 	 * @example
 	 * ```typescript
 	 * import { PaginatedMessage } from '@sapphire/discord.js-utilities';
