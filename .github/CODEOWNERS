@@ -1,14 +1,14 @@
-/packages/decorators @kyranet @favna
-/packages/discord-utilities @favna
-packages/discord.js-utilities/src/lib/*PaginatedMessage* @kyranet @realshadownova
-/packages/eslint-config @favna
-/packages/event-iterator @kyranet
-/packages/prettier-config @favna
-/packages/ratelimits @kyranet @vladfrangu
-/packages/snowflake @favna @vladfrangu
-/packages/stopwatch @Soumil07 @kyranet @vladfrangu
-/packages/time-utilities @favna @Soumil07 @kyranet
-/packages/ts-config @favna
-/packages/type @kyranet
-/packages/utilities @favna @kyranet @vladfrangu
-/packages/fetch @favna @kyranet
+/packages/decorators/**/*.ts @kyranet @favna
+/packages/discord-utilities/**/*.ts @favna
+/packages/discord.js-utilities/src/**/*.ts @kyranet @realshadownova @favna
+/packages/eslint-config/**/*.ts @favna
+/packages/event-iterator/**/*.ts @kyranet
+/packages/prettier-config/**/*.ts @favna
+/packages/ratelimits/**/*.ts @kyranet @vladfrangu
+/packages/snowflake/**/*.ts @favna @vladfrangu @kyranet
+/packages/stopwatch/**/*.ts @Stitch07 @kyranet @vladfrangu
+/packages/time-utilities/**/*.ts @favna @Stitch07 @kyranet
+/packages/ts-config/**/*.ts @favna
+/packages/type/**/*.ts @kyranet
+/packages/utilities/**/*.ts @favna @kyranet @vladfrangu
+/packages/fetch/**/*.ts @favna @kyranet
