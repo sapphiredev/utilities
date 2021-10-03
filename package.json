@@ -28,7 +28,7 @@
 		"@discordjs/collection": "^0.2.1",
 		"@favware/npm-deprecate": "^1.0.2",
 		"@favware/rollup-type-bundler": "^1.0.3",
-		"@rollup/plugin-commonjs": "^20.0.0",
+		"@rollup/plugin-commonjs": "^21.0.0",
 		"@rollup/plugin-node-resolve": "^13.0.5",
 		"@sapphire/framework": "^1.0.2",
 		"@types/fs-extra": "^9.0.13",
