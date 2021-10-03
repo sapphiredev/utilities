@@ -150,6 +150,13 @@
 			"avatar_url": "https://avatars.githubusercontent.com/u/62976649?v=4",
 			"profile": "https://github.com/nandhagk",
 			"contributions": ["bug"]
+		},
+		{
+			"login": "Megatank58",
+			"name": "Megatank58",
+			"avatar_url": "https://avatars.githubusercontent.com/u/51410502?v=4",
+			"profile": "https://megatank58.me/",
+			"contributions": ["code"]
 		}
 	],
 	"contributorsPerLine": 7,
