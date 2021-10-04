@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.3.0](https://github.com/sapphiredev/utilities/compare/@sapphire/eslint-config@3.2.3...@sapphire/eslint-config@3.3.0) (2021-10-04)
+
+### Features
+
+-   **eslint-config:** bump dependencies & set minimum NodeJS to v14 ([5ad846d](https://github.com/sapphiredev/utilities/commit/5ad846d7ce26d9144c5367fd22e6cfc339c2d403))
+
 ## [3.2.3](https://github.com/sapphiredev/utilities/compare/@sapphire/eslint-config@3.2.2...@sapphire/eslint-config@3.2.3) (2021-07-18)
 
 ### Bug Fixes

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/sapphiredev/utilities/compare/@sapphire/time-utilities@1.3.8...@sapphire/time-utilities@1.4.0) (2021-10-04)
+
+### Features
+
+-   **time-utilities:** set minimum NodeJS to v14 ([12f3d7a](https://github.com/sapphiredev/utilities/commit/12f3d7a6ec769c599239aa1b782c9afaf84f9667))
+
 ## [1.3.8](https://github.com/sapphiredev/utilities/compare/@sapphire/time-utilities@1.3.7...@sapphire/time-utilities@1.3.8) (2021-07-20)
 
 **Note:** Version bump only for package @sapphire/time-utilities

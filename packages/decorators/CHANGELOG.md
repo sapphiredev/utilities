@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/sapphiredev/utilities/compare/@sapphire/decorators@2.2.0...@sapphire/decorators@3.0.0) (2021-10-04)
+
+### Bug Fixes
+
+-   **discord.js-utilities:** fixed permission error messages grammar ([ea9840b](https://github.com/sapphiredev/utilities/commit/ea9840b258770be20eb576b59d470fb03293f694))
+
+### Features
+
+-   **decorators:** add `RequiresUserPermissions` ([688e39f](https://github.com/sapphiredev/utilities/commit/688e39f26507a81fcf8be7c9e55d6290f38da460))
+-   **decorators:** add default messages to errors thrown by `RequiresPermissions` ([13d89a3](https://github.com/sapphiredev/utilities/commit/13d89a3e4e37664e59d8a7b722df95786c5fdf1b))
+-   **decorators:** set minimum NodeJS to v14 ([46c0f68](https://github.com/sapphiredev/utilities/commit/46c0f68a4b4f8ec5cff221183a1a620954be84be))
+
+### BREAKING CHANGES
+
+-   **decorators:** `RequiresPermissions` has been renamed to `RequiresClientPermissions`
+-   **decorators:** enum entry `DecoratorIdentifiers.RequiresPermissionsGuildOnly` has been changed to `DecoratorIdentifiers.RequiresClientPermissionsGuildOnly`
+-   **decorators:** enum entry `DecoratorIdentifiers.RequiresPermissionsMissingPermissions` has been changed to `DecoratorIdentifiers.RequiresClientPermissionsMissingPermissions`
+-   **decorators:** i18n identifier `requiresPermissionsGuildOnly` has been changed to `requiresClientPermissionsGuildOnly`
+-   **decorators:** i18n identifier `requiresPermissionsMissingPermissions` has been changed to `requiresClientPermissionsMissingPermissions`
+
 # [2.2.0](https://github.com/sapphiredev/utilities/compare/@sapphire/decorators@2.1.5...@sapphire/decorators@2.2.0) (2021-07-20)
 
 ### Features

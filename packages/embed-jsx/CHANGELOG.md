@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/sapphiredev/utilities/compare/@sapphire/embed-jsx@1.1.3...@sapphire/embed-jsx@2.0.0) (2021-10-04)
+
+### Features
+
+-   **discord.js-utilities:** update for Discord.JS v13 ([#135](https://github.com/sapphiredev/utilities/issues/135)) ([f5a8f64](https://github.com/sapphiredev/utilities/commit/f5a8f642aa45d9c1267337bd141461f213ac9e98))
+-   **embed-jsx:** set minimum NodeJS to v14 ([3c49821](https://github.com/sapphiredev/utilities/commit/3c49821859f5aa2319c3e8fbaa816d92ebeb7d3d))
+
+### BREAKING CHANGES
+
+-   **discord.js-utilities:** As this release bumps the minimum Discord.JS version from v12.x to v13.x we also advice looking at [The DiscordJS v12 to v13 migration guide](https://deploy-preview-680--discordjs-guide.netlify.app/additional-info/changes-in-v13.html)
+-   **discord.js-utilities:** `Awaited` utility type is no longer exported from constants. Use `@sapphire/utilities`.
+-   **discord.js-utilities:** `Constructor` utility type is no longer exported from constants. Use `@sapphire/utilities`.
+-   **discord.js-utilities:** `MessageBuilder.allowedMentions`'s type has been changed to `MessageOptions['allowedMentions']`
+-   **discord.js-utilities:** `MessageBuilder.code` has been removed as this is no longer in the `MessageOptions` of Discord.JS
+-   **discord.js-utilities:** `MessageBuilder.content`'s type has been changed to `MessageOptions['content']`
+-   **discord.js-utilities:** `MessageBuilder.embed` has been changed to `MessageBuilder.embeds`
+-   **discord.js-utilities:** `MessageBuilder.embeds`'s type has been changed to `MessageOptions['embeds']`
+-   **discord.js-utilities:** `MessageBuilder.files`'s type has been changed to `MessageOptions['files']`
+-   **discord.js-utilities:** `MessageBuilder.nonce`'s type has been changed to `MessageOptions['nonce']`
+-   **discord.js-utilities:** `MessageBuilder.setEmbed()` has been changed to `MessageBuilder.setEmbeds()`
+-   **discord.js-utilities:** `MessageBuilder.split` has been removed as this is no longer in the `MessageOptions` of Discord.JS
+-   **discord.js-utilities:** `MessageBuilder.tts`'s type has been changed to `MessageOptions['tts']`
+-   **discord.js-utilities:** `MessagePrompterMessage` has been changed from `APIMessageContentResolvable | (MessageOptions & { split?: false }) | MessageAdditions` to `ArgumentTypes<PartialTextBasedChannelFields['send']>[0]`, which is the same type as the single argument for the common `message.channel.send()` method.
+-   **discord.js-utilities:** When providing more than 1 embed template to `PaginatedMessages.options.template` as well as more than 1 embed on a given `MessagePage` an attempt will be made to apply to footer of the template at the respective index, otherwise it will fallback to the footer of the first embed in the template, and if that fails it will be an empty string.
+
 ## [1.1.3](https://github.com/sapphiredev/utilities/compare/@sapphire/embed-jsx@1.1.2...@sapphire/embed-jsx@1.1.3) (2021-06-27)
 
 **Note:** Version bump only for package @sapphire/embed-jsx

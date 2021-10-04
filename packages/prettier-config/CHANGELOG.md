@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/sapphiredev/utilities/compare/@sapphire/prettier-config@1.1.6...@sapphire/prettier-config@1.2.0) (2021-10-04)
+
+### Features
+
+-   **prettier-config:** set minimum NodeJS to v14 ([2e518dc](https://github.com/sapphiredev/utilities/commit/2e518dc46e96753a07828a73fd437be18efca6da))
+
 ## [1.1.6](https://github.com/sapphiredev/utilities/compare/@sapphire/prettier-config@1.1.5...@sapphire/prettier-config@1.1.6) (2021-06-27)
 
 **Note:** Version bump only for package @sapphire/prettier-config

@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/sapphiredev/utilities/compare/@sapphire/utilities@2.0.1...@sapphire/utilities@3.0.0) (2021-10-04)
+
+### Bug Fixes
+
+-   **utilities:** rename `Awaited<T>` to `Awaitable<T>` ([#193](https://github.com/sapphiredev/utilities/issues/193)) ([6ff3e28](https://github.com/sapphiredev/utilities/commit/6ff3e28a78cc9c2b3d58d42fbfba876ab70046c2))
+
+### Features
+
+-   **utilities:** add empty array to 'isNullishOrEmpty' ([#168](https://github.com/sapphiredev/utilities/issues/168)) ([8f9e615](https://github.com/sapphiredev/utilities/commit/8f9e6156a802c90495f6f07ce6570226af01794c))
+-   **utilities:** set minimum NodeJS to v14 ([79aa230](https://github.com/sapphiredev/utilities/commit/79aa230a5874d1bbfb14c3b8506de06b3329395a))
+-   **utilities:** support abstract classes for `Constructor` utility type ([#194](https://github.com/sapphiredev/utilities/issues/194)) ([732d5a0](https://github.com/sapphiredev/utilities/commit/732d5a07b6eef9c37ee52a42f4a391764a08debf))
+
+### BREAKING CHANGES
+
+-   **utilities:** `Awaited` has been renamed to `Awaitable`
+
 ## [2.0.1](https://github.com/sapphiredev/utilities/compare/@sapphire/utilities@2.0.0...@sapphire/utilities@2.0.1) (2021-07-20)
 
 ### Bug Fixes

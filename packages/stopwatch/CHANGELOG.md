@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/sapphiredev/utilities/compare/@sapphire/stopwatch@1.1.4...@sapphire/stopwatch@1.2.0) (2021-10-04)
+
+### Features
+
+-   **stopwatch:** set minimum NodeJS to v14 ([8154bb7](https://github.com/sapphiredev/utilities/commit/8154bb7ce344b6675295d083f5ede9265fa0ae52))
+
 ## [1.1.4](https://github.com/sapphiredev/utilities/compare/@sapphire/stopwatch@1.1.3...@sapphire/stopwatch@1.1.4) (2021-06-27)
 
 **Note:** Version bump only for package @sapphire/stopwatch

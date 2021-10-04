@@ -3,6 +3,74 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@2.0.2...@sapphire/discord.js-utilities@3.0.0) (2021-10-04)
+
+### Bug Fixes
+
+-   **discord.js-utilities:** account thread channels in permission checks ([#165](https://github.com/sapphiredev/utilities/issues/165)) ([d4982ed](https://github.com/sapphiredev/utilities/commit/d4982ed61703ddfba4174766ee013a7088006a06))
+-   **discord.js-utilities:** allow more channel types for MessagePrompter ([cf7c8ed](https://github.com/sapphiredev/utilities/commit/cf7c8edbcd6b7ed1ffd2de63e99199be873c2963))
+-   **discord.js-utilities:** allow more types in `can*` methods ([15fcf51](https://github.com/sapphiredev/utilities/commit/15fcf513af69c47650214391b131bf2f5526cf39))
+-   **discord.js-utilities:** fixed examples for MessagePrompter ([660f4be](https://github.com/sapphiredev/utilities/commit/660f4be50ec851deaf0a5ea5fd11ed4fff7b810a))
+-   **discord.js-utilities:** import type from dapi types v9 ([9b57a29](https://github.com/sapphiredev/utilities/commit/9b57a2911aab6e995bcf0c93175622a1060a43d0))
+-   **discord.js-utilities:** mismatch between types ([#161](https://github.com/sapphiredev/utilities/issues/161)) ([823c6b1](https://github.com/sapphiredev/utilities/commit/823c6b12142eb69d4f91a829363b48038e687df3))
+-   **discord.js-utilities:** remove `MessagePrompterStrategies` in favour of `keyof StrategyReturns` ([#159](https://github.com/sapphiredev/utilities/issues/159)) ([c185369](https://github.com/sapphiredev/utilities/commit/c185369a699277e3d0cca842dc979b58d67ed978))
+-   **djs-utilities:** fixed parameter types for type guards ([#152](https://github.com/sapphiredev/utilities/issues/152)) ([6e8314f](https://github.com/sapphiredev/utilities/commit/6e8314f38dbf99105eec2533a8154a7820c86e25))
+-   **PaginatedMessage:** fixed `embedFooterSeperator` -> `embedFooterSeparator` ([#191](https://github.com/sapphiredev/utilities/issues/191)) ([cf2c08f](https://github.com/sapphiredev/utilities/commit/cf2c08f1333370779561a155f569416cc4aaa272))
+-   **PaginatedMessage:** fixed formatting for embed footers ([a4e5a56](https://github.com/sapphiredev/utilities/commit/a4e5a567a4d75dbba57df6774664ebaff55c24f4))
+-   **utilities:** rename `Awaited<T>` to `Awaitable<T>` ([#193](https://github.com/sapphiredev/utilities/issues/193)) ([6ff3e28](https://github.com/sapphiredev/utilities/commit/6ff3e28a78cc9c2b3d58d42fbfba876ab70046c2))
+
+### Features
+
+-   backported more utilities and fixed bugs ([5cb1862](https://github.com/sapphiredev/utilities/commit/5cb18622e200ebacfc2aa2cdcebc8a3ed9728384))
+-   **decorators:** add `RequiresUserPermissions` ([688e39f](https://github.com/sapphiredev/utilities/commit/688e39f26507a81fcf8be7c9e55d6290f38da460))
+-   **discord.js-utilities:** add `isTextBasedChannel` channel type guard ([ec70645](https://github.com/sapphiredev/utilities/commit/ec7064597745bccce19d9c8e6481376a5315f33d))
+-   **discord.js-utilities:** add `pageIndexPrefix` static property ([#143](https://github.com/sapphiredev/utilities/issues/143)) ([3c95c6f](https://github.com/sapphiredev/utilities/commit/3c95c6fc384b6ecab08724a07f1187843c826c12))
+-   **discord.js-utilities:** add `PaginatedFieldMessageEmbed` ([#144](https://github.com/sapphiredev/utilities/issues/144)) ([2c2df24](https://github.com/sapphiredev/utilities/commit/2c2df24fe37b19e7070c8a65e58b041c3f3eb8e5))
+-   **discord.js-utilities:** add many more utilities ([#147](https://github.com/sapphiredev/utilities/issues/147)) ([ba5c590](https://github.com/sapphiredev/utilities/commit/ba5c5908d8bae83db7d38ce4d352149bab99f83a))
+-   **discord.js-utilities:** add more thread-related type guards ([#155](https://github.com/sapphiredev/utilities/issues/155)) ([e5418d0](https://github.com/sapphiredev/utilities/commit/e5418d0d4ee0ba203da610fac3b8162ffe9eddab))
+-   **discord.js-utilities:** add more typeguards + update checks ([#162](https://github.com/sapphiredev/utilities/issues/162)) ([b89de42](https://github.com/sapphiredev/utilities/commit/b89de42655bbbc2f537a1dea92510ce38847651c))
+-   **discord.js-utilities:** option to make Prompters edit a message ([#160](https://github.com/sapphiredev/utilities/issues/160)) ([31af761](https://github.com/sapphiredev/utilities/commit/31af7614bbdcb7a2f8b40d05a4ffaefecf3e11f7))
+-   **discord.js-utilities:** set minimum NodeJS to v16.6.0 ([2abc6c1](https://github.com/sapphiredev/utilities/commit/2abc6c131c360a14f273e9cb57fc1b01458601e0))
+-   **discord.js-utilities:** update for Discord.JS v13 ([#135](https://github.com/sapphiredev/utilities/issues/135)) ([f5a8f64](https://github.com/sapphiredev/utilities/commit/f5a8f642aa45d9c1267337bd141461f213ac9e98))
+-   **PaginatedMessage:** made separator text of embed field customizable ([#188](https://github.com/sapphiredev/utilities/issues/188)) ([82f4dab](https://github.com/sapphiredev/utilities/commit/82f4dab78d6fa873a2a1377488aa1cf3f8ee6180))
+
+### BREAKING CHANGES
+
+-   **utilities:** `Awaited` has been renamed to `Awaitable`
+-   **PaginatedMessage:** `embedFooterSeperator` -> `embedFooterSeparator`
+-   **discord.js-utilities:** `MessagePrompterStrategies` does no exist as it was not mutable with type augmentation
+-   **discord.js-utilities:** If you had custom strategies then be sure to instead module augment `StrategyReturns` with your added keys.
+-   Increased strictness of `isCategoryChannel`
+-   Increased strictness of `isStageChannel`
+-   Increased strictness of `isStoreChannel`
+-   Increased strictness of `isThreadChannel`
+-   Increased strictness of `isVoiceChannel`
+-   Lowered strictness of `isDMChannel`
+-   Lowered strictness of `isGuildBasedChannel`
+-   Lowered strictness of `isGuildBasedChannelByGuildKey`
+-   Lowered strictness of `isNewsChannel`
+-   Lowered strictness of `isTextChannel`
+-   **decorators:** `RequiresPermissions` has been renamed to `RequiresClientPermissions`
+-   **decorators:** enum entry `DecoratorIdentifiers.RequiresPermissionsGuildOnly` has been changed to `DecoratorIdentifiers.RequiresClientPermissionsGuildOnly`
+-   **decorators:** enum entry `DecoratorIdentifiers.RequiresPermissionsMissingPermissions` has been changed to `DecoratorIdentifiers.RequiresClientPermissionsMissingPermissions`
+-   **decorators:** i18n identifier `requiresPermissionsGuildOnly` has been changed to `requiresClientPermissionsGuildOnly`
+-   **decorators:** i18n identifier `requiresPermissionsMissingPermissions` has been changed to `requiresClientPermissionsMissingPermissions`
+-   **discord.js-utilities:** As this release bumps the minimum Discord.JS version from v12.x to v13.x we also advice looking at [The DiscordJS v12 to v13 migration guide](https://deploy-preview-680--discordjs-guide.netlify.app/additional-info/changes-in-v13.html)
+-   **discord.js-utilities:** `Awaited` utility type is no longer exported from constants. Use `@sapphire/utilities`.
+-   **discord.js-utilities:** `Constructor` utility type is no longer exported from constants. Use `@sapphire/utilities`.
+-   **discord.js-utilities:** `MessageBuilder.allowedMentions`'s type has been changed to `MessageOptions['allowedMentions']`
+-   **discord.js-utilities:** `MessageBuilder.code` has been removed as this is no longer in the `MessageOptions` of Discord.JS
+-   **discord.js-utilities:** `MessageBuilder.content`'s type has been changed to `MessageOptions['content']`
+-   **discord.js-utilities:** `MessageBuilder.embed` has been changed to `MessageBuilder.embeds`
+-   **discord.js-utilities:** `MessageBuilder.embeds`'s type has been changed to `MessageOptions['embeds']`
+-   **discord.js-utilities:** `MessageBuilder.files`'s type has been changed to `MessageOptions['files']`
+-   **discord.js-utilities:** `MessageBuilder.nonce`'s type has been changed to `MessageOptions['nonce']`
+-   **discord.js-utilities:** `MessageBuilder.setEmbed()` has been changed to `MessageBuilder.setEmbeds()`
+-   **discord.js-utilities:** `MessageBuilder.split` has been removed as this is no longer in the `MessageOptions` of Discord.JS
+-   **discord.js-utilities:** `MessageBuilder.tts`'s type has been changed to `MessageOptions['tts']`
+-   **discord.js-utilities:** `MessagePrompterMessage` has been changed from `APIMessageContentResolvable | (MessageOptions & { split?: false }) | MessageAdditions` to `ArgumentTypes<PartialTextBasedChannelFields['send']>[0]`, which is the same type as the single argument for the common `message.channel.send()` method.
+-   **discord.js-utilities:** When providing more than 1 embed template to `PaginatedMessages.options.template` as well as more than 1 embed on a given `MessagePage` an attempt will be made to apply to footer of the template at the respective index, otherwise it will fallback to the footer of the first embed in the template, and if that fails it will be an empty string.
+
 ## [2.0.2](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@2.0.1...@sapphire/discord.js-utilities@2.0.2) (2021-07-20)
 
 **Note:** Version bump only for package @sapphire/discord.js-utilities

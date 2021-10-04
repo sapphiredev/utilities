@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/sapphiredev/utilities/compare/@sapphire/fetch@1.0.5...@sapphire/fetch@2.0.0) (2021-10-04)
+
+### Features
+
+-   **fetch:** migrate to using cross-fetch ([#149](https://github.com/sapphiredev/utilities/issues/149)) ([a8baab9](https://github.com/sapphiredev/utilities/commit/a8baab978814ca3aa18992120af7ad004ceaee80))
+-   **fetch:** set minimum NodeJS to v14 ([56889ab](https://github.com/sapphiredev/utilities/commit/56889abce158119adf1afcc1ec4cee8cbb411c79))
+
+### BREAKING CHANGES
+
+-   **fetch:** `fetch` is no longer on the default export. Use a named import instead.
+-   **fetch:** This package no longer depends on `node-fetch`
+-   **fetch:** This package no longer depends on `@types/node-fetch` for TypeScript users
+
 ## [1.0.5](https://github.com/sapphiredev/utilities/compare/@sapphire/fetch@1.0.4...@sapphire/fetch@1.0.5) (2021-06-27)
 
 **Note:** Version bump only for package @sapphire/fetch

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0](https://github.com/sapphiredev/utilities/compare/@sapphire/ts-config@3.0.0...@sapphire/ts-config@3.1.0) (2021-10-04)
+
+### Features
+
+-   **ts-config:** set minimum NodeJS to v14 ([81cc8f6](https://github.com/sapphiredev/utilities/commit/81cc8f60e42c5c074a7752a9fd026f6362fe6875))
+
 # [3.0.0](https://github.com/sapphiredev/utilities/compare/@sapphire/ts-config@2.3.2...@sapphire/ts-config@3.0.0) (2021-07-20)
 
 ### Features

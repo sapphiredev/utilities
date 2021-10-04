@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/sapphiredev/utilities/compare/@sapphire/event-iterator@1.2.4...@sapphire/event-iterator@1.3.0) (2021-10-04)
+
+### Features
+
+-   **event-iterator:** set minimum NodeJS to v14 ([57110ee](https://github.com/sapphiredev/utilities/commit/57110ee1a25879d7cde62b4cfc4d9e128886bd54))
+
 ## [1.2.4](https://github.com/sapphiredev/utilities/compare/@sapphire/event-iterator@1.2.3...@sapphire/event-iterator@1.2.4) (2021-06-27)
 
 **Note:** Version bump only for package @sapphire/event-iterator

@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/sapphiredev/utilities/compare/@sapphire/snowflake@2.0.0...@sapphire/snowflake@2.1.0) (2021-10-04)
+
+### Bug Fixes
+
+-   **snowflake:** fixed snowflake generating duplicate IDs ([#166](https://github.com/sapphiredev/utilities/issues/166)) ([f0cf4ad](https://github.com/sapphiredev/utilities/commit/f0cf4ad6bc0b8b2447499ca36581d2b453e52715))
+
+### Features
+
+-   **snowflake:** set minimum NodeJS to v14 ([11a61c7](https://github.com/sapphiredev/utilities/commit/11a61c72bc29e683f9a4492815db3db094103bbc))
+
 # [2.0.0](https://github.com/sapphiredev/utilities/compare/@sapphire/snowflake@1.3.6...@sapphire/snowflake@2.0.0) (2021-07-17)
 
 ### Code Refactoring

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/sapphiredev/utilities/compare/@sapphire/discord-utilities@2.1.5...@sapphire/discord-utilities@2.2.0) (2021-10-04)
+
+### Features
+
+-   **discord-utilities:** add channelId-messageId regex ([#192](https://github.com/sapphiredev/utilities/issues/192)) ([3a8b11a](https://github.com/sapphiredev/utilities/commit/3a8b11ad8c2ed596b1a5724f8aa73a8d31372c3a))
+-   **discord-utilities:** set minimum NodeJS to v14 ([2e3729d](https://github.com/sapphiredev/utilities/commit/2e3729de1e010c9822399b7ad2c57c99027e6475))
+
 ## [2.1.5](https://github.com/sapphiredev/utilities/compare/@sapphire/discord-utilities@2.1.4...@sapphire/discord-utilities@2.1.5) (2021-06-27)
 
 **Note:** Version bump only for package @sapphire/discord-utilities
