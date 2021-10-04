@@ -54,15 +54,15 @@ jobs:
         if: ${{ !steps.cache-restore.outputs.cache-hit }}
         run: yarn --frozen-lockfile
       - name: Build Async Queue
-        run: yarn workspace @sapphire/async-queue build
+        run: yarn lerna run build --parallel --scope=@sapphire/async-queue build
       - name: Build Utilities
-        run: yarn workspace @sapphire/utilities build
+        run: yarn lerna run build --parallel --scope=@sapphire/utilities build
       - name: Build Time Utilities
-        run: yarn workspace @sapphire/time-utilities build
+        run: yarn lerna run build --parallel --scope=@sapphire/time-utilities build
       - name: Build Discord Utilities
-        run: yarn workspace @sapphire/discord-utilities build
+        run: yarn lerna run build --parallel --scope=@sapphire/discord-utilities build
       - name: Build Discord.js Utilities
-        run: yarn workspace @sapphire/discord.js-utilities build
+        run: yarn lerna run build --parallel --scope=@sapphire/discord.js-utilities build
       - name: Run tests
         run: yarn test --coverage
       - name: Store code coverage report
