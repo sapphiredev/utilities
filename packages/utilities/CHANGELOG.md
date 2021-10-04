@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.1](https://github.com/sapphiredev/utilities/compare/@sapphire/utilities@3.0.0...@sapphire/utilities@3.0.1) (2021-10-04)
+
+### Bug Fixes
+
+-   **utilities:** add AbstractCtor and AbstractConstructor and remove abstract from their counterparts ([dbc0321](https://github.com/sapphiredev/utilities/commit/dbc032169791bbdc70eb2a8f151098d21fa192fd))
+-   **utilities:** support abstract classes for Ctor utility type ([1ce3136](https://github.com/sapphiredev/utilities/commit/1ce3136165aea830460ae5283d8348fef17c0dba))
+
 # [3.0.0](https://github.com/sapphiredev/utilities/compare/@sapphire/utilities@2.0.1...@sapphire/utilities@3.0.0) (2021-10-04)
 
 ### Bug Fixes

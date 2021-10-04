@@ -1,6 +1,6 @@
 {
 	"name": "@sapphire/ratelimits",
-	"version": "2.1.0",
+	"version": "2.1.1",
 	"description": "Bucket implementation for Ratelimits.",
 	"author": "@sapphire",
 	"license": "MIT",
@@ -53,6 +53,6 @@
 		"access": "public"
 	},
 	"dependencies": {
-		"@sapphire/time-utilities": "^1.4.0"
+		"@sapphire/time-utilities": "^1.4.1"
 	}
 }
