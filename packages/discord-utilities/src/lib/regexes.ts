@@ -8,6 +8,15 @@ import twemojiRegex from 'twemoji-parser/dist/lib/regex';
 export const ChannelMentionRegex = /^<#(?<id>\d{17,19})>$/;
 
 /**
+ * Regex that can capture the channel and message IDs in a channelId-messageId pattern
+ * This pattern can be found when you hold Shift and hover over a message, and click the "ID" button
+ * @raw `/^(?<channelId>\d{17,19})-(?<messageId>\d{17,19})$/`
+ * @remark Capture group 1 is the ID of the channel, named `channelId`.
+ * @remark Capture group 2 is the ID of the message, named `messageId`.
+ */
+export const ChannelMessageRegex = /^(?<channelId>\d{17,19})-(?<messageId>\d{17,19})$/;
+
+/**
  * Regex that matches links on the known Discord host names
  * @raw `/(?<subdomain>\w+)\.?(?<hostname>dis(?:cord)?(?:app|merch|status)?)\.(?<tld>com|g(?:d|g|ift)|(?:de(?:sign|v))|media|new|store|net)/i`
  * @remark The regex is case insensitive
