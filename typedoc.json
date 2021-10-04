@@ -19,7 +19,7 @@
 		"PrettierSchema",
 		"InternalAsyncQueueDeferredPromise",
 		"Ctor",
-		"Awaited",
+		"Awaitable",
 		"Nullish",
 		"EmbedData",
 		"EmbedInformation",

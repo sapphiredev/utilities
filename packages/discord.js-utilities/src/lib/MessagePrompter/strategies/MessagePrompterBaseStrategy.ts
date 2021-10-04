@@ -1,4 +1,4 @@
-import { Awaited, isNullish } from '@sapphire/utilities';
+import { Awaitable, isNullish } from '@sapphire/utilities';
 import type { CollectorFilter, CollectorOptions, EmojiIdentifierResolvable, Message, MessageReaction, User } from 'discord.js';
 import { isTextBasedChannel } from '../../type-guards';
 import type { MessagePrompterChannelTypes, MessagePrompterMessage } from '../constants';
@@ -49,7 +49,7 @@ export abstract class MessagePrompterBaseStrategy {
 		this.message = message;
 	}
 
-	public abstract run(channel: MessagePrompterChannelTypes, authorOrFilter: User | CollectorFilter<unknown[]>): Awaited<unknown>;
+	public abstract run(channel: MessagePrompterChannelTypes, authorOrFilter: User | CollectorFilter<unknown[]>): Awaitable<unknown>;
 
 	protected async collectReactions(
 		channel: MessagePrompterChannelTypes,

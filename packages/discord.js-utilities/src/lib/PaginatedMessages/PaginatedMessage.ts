@@ -1,5 +1,5 @@
 import { Time } from '@sapphire/time-utilities';
-import { Awaited, isFunction } from '@sapphire/utilities';
+import { Awaitable, isFunction } from '@sapphire/utilities';
 import type { RESTPostAPIChannelMessageJSONBody } from 'discord-api-types/v9';
 import {
 	Collection,
@@ -962,7 +962,7 @@ export interface PaginatedMessage {
  */
 export interface IPaginatedMessageAction {
 	id: string;
-	run(context: PaginatedMessageActionContext): Awaited<unknown>;
+	run(context: PaginatedMessageActionContext): Awaitable<unknown>;
 }
 
 /**
@@ -1016,7 +1016,7 @@ export interface PaginatedMessageOptions {
  * on the provided pages and we can only guarantee this will work properly when using the utility methods.
  */
 export type MessagePage =
-	| ((index: number, pages: MessagePage[], handler: PaginatedMessage) => Awaited<MessagePayload | MessageOptions>)
+	| ((index: number, pages: MessagePage[], handler: PaginatedMessage) => Awaitable<MessagePayload | MessageOptions>)
 	| MessagePayload
 	| MessageOptions;
 
