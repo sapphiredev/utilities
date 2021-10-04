@@ -5,7 +5,8 @@ describe('ApplyOptions', () => {
 	test('GIVEN options object THEN sets options', () => {
 		@ApplyOptions<CommandOptions>({
 			name: 'test',
-			description: 'test description'
+			description: 'test description',
+			fullCategory: ['One', 'Two']
 		})
 		class TestPiece extends Command {
 			public getName() {
@@ -36,7 +37,8 @@ describe('ApplyOptions', () => {
 	test('GIVEN options w/o defaults THEN sets options w/ baseOptions = {}', () => {
 		@ApplyOptions<CommandOptions>({
 			name: 'test',
-			description: 'test description'
+			description: 'test description',
+			fullCategory: ['One', 'Two']
 		})
 		class TestPiece extends Command {
 			public getName() {
@@ -64,7 +66,8 @@ describe('ApplyOptions', () => {
 	test('GIVEN options as function THEN sets options', () => {
 		@ApplyOptions<CommandOptions>(() => ({
 			name: '123456789',
-			description: 'test description'
+			description: 'test description',
+			fullCategory: ['One', 'Two']
 		}))
 		class TestPiece extends Command {
 			public getName() {
