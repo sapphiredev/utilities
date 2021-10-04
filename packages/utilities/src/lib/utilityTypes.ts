@@ -46,7 +46,7 @@ export type Arr = readonly any[];
 /**
  * A generic constructor with parameters
  */
-export type Ctor<A extends Arr = readonly any[], R = any> = new (...args: A) => R;
+export type Ctor<A extends Arr = readonly any[], R = any> = abstract new (...args: A) => R;
 
 /**
  * A generic constructor without parameters
