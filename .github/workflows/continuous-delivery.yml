@@ -44,7 +44,7 @@ jobs:
           key: ${{ runner.os }}-16-${{ hashFiles('**/yarn.lock') }}
       - name: Install Dependencies if Cache Miss
         if: ${{ !steps.cache-restore.outputs.cache-hit }}
-        run: yarn --frozen-lockfile
+        run: yarn --immutable
       - name: Build all packages in proper order
         run: yarn build
       - name: Bump Version & Publish
@@ -77,7 +77,7 @@ jobs:
           key: ${{ runner.os }}-16-${{ hashFiles('**/yarn.lock') }}
       - name: Install Dependencies if Cache Miss
         if: ${{ !steps.cache-restore.outputs.cache-hit }}
-        run: yarn --frozen-lockfile
+        run: yarn --immutable
       - name: Build all packages in proper order
         run: yarn build
       - name: Build documentation
