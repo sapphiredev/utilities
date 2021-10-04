@@ -6,12 +6,12 @@
 	],
 	"scripts": {
 		"clean": "rimraf packages/**/dist packages/**/build packages/**/node_modules/.cache",
-		"clean:full": "yarn clean && rimraf packages/**/node_modules",
+		"clean:full": "node scripts/clean-full.mjs",
 		"lint": "eslint packages --ext mjs,js,ts,tsx --fix",
 		"format": "prettier --write packages/**/{src,tests,scripts}/**/*.{mjs,ts,js}",
 		"test": "jest",
 		"test:watch": "jest --watch",
-		"build": "run-s build:**",
+		"build": "yarn build:1 && yarn build:2 && yarn build:3 && yarn build:4",
 		"build:1": "lerna run build --parallel --scope=@sapphire/utilities --scope=@sapphire/eslint-config --scope=@sapphire/prettier-config",
 		"build:2": "lerna run build --parallel --scope=@sapphire/discord-utilities --scope=@sapphire/time-utilities",
 		"build:3": "lerna run build --parallel --scope=@sapphire/discord.js-utilities",
@@ -30,11 +30,12 @@
 		"@favware/rollup-type-bundler": "^1.0.4",
 		"@rollup/plugin-commonjs": "^21.0.0",
 		"@rollup/plugin-node-resolve": "^13.0.5",
-		"@sapphire/framework": "^1.0.2",
+		"@sapphire/framework": "next",
 		"@types/fs-extra": "^9.0.13",
 		"@types/jest": "^27.0.2",
 		"@types/lodash": "^4.14.175",
 		"@types/node": "^16.10.1",
+		"@types/rimraf": "^3",
 		"@types/ws": "^8.2.0",
 		"@typescript-eslint/eslint-plugin": "^4.32.0",
 		"@typescript-eslint/parser": "^4.32.0",
@@ -54,9 +55,9 @@
 		"lint-staged": "^11.1.2",
 		"lodash": "^4.17.21",
 		"nock": "^13.1.3",
-		"npm-run-all": "^4.1.5",
 		"prettier": "^2.4.1",
 		"pretty-quick": "^3.1.1",
+		"rimraf": "^3.0.2",
 		"rollup": "^2.58.0",
 		"rollup-plugin-cleaner": "^1.0.0",
 		"rollup-plugin-typescript2": "^0.30.0",
@@ -100,5 +101,6 @@
 		"tar": "^6.1.11",
 		"trim": "^1.0.1",
 		"trim-newlines": "^4.0.2"
-	}
+	},
+	"packageManager": "yarn@3.0.2"
 }
