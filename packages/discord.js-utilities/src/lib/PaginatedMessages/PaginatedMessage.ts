@@ -1003,7 +1003,7 @@ export interface PaginatedMessageOptions {
  * The pages that are used for {@link PaginatedMessage.pages}
  *
  * Pages can be either a {@link MessagePayload},
- * or an awaited function that returns a {@link MessagePayload}.
+ * or an {@link Awaitable} function that returns a {@link MessagePayload}.
  *
  * Furthermore, {@link MessageOptions} can be used to
  * construct the pages without state. This library also provides {@link MessageBuilder}, which can be used as a chainable
