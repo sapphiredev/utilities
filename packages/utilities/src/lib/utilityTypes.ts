@@ -51,7 +51,7 @@ export type Ctor<A extends Arr = readonly any[], R = any> = new (...args: A) => 
 /**
  * A generic abstract constructor with parameters
  */
-export type AbstractCtor<A extends Arr = readonly any[], R = any> = new (...args: A) => R;
+export type AbstractCtor<A extends Arr = readonly any[], R = any> = abstract new (...args: A) => R;
 
 /**
  * A generic constructor without parameters
@@ -61,7 +61,7 @@ export type Constructor<T> = new (...args: any[]) => T;
 /**
  * A generic abstract constructor without parameters
  */
-export type AbstractConstructor<T> = new (...args: any[]) => T;
+export type AbstractConstructor<T> = abstract new (...args: any[]) => T;
 
 /**
  * Gets the first argument of any given function
