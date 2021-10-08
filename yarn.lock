@@ -2137,8 +2137,8 @@ __metadata:
   resolution: "@sapphire/discord.js-utilities@workspace:packages/discord.js-utilities"
   dependencies:
     "@sapphire/discord-utilities": ^2.2.0
-    "@sapphire/time-utilities": ^1.4.1
-    "@sapphire/utilities": ^3.0.1
+    "@sapphire/time-utilities": ^1.4.2
+    "@sapphire/utilities": ^3.0.2
   languageName: unknown
   linkType: soft
 
@@ -2216,7 +2216,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@sapphire/ratelimits@workspace:packages/ratelimits"
   dependencies:
-    "@sapphire/time-utilities": ^1.4.1
+    "@sapphire/time-utilities": ^1.4.2
   languageName: unknown
   linkType: soft
 
@@ -2234,11 +2234,11 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@sapphire/time-utilities@^1.4.1, @sapphire/time-utilities@workspace:packages/time-utilities":
+"@sapphire/time-utilities@^1.4.2, @sapphire/time-utilities@workspace:packages/time-utilities":
   version: 0.0.0-use.local
   resolution: "@sapphire/time-utilities@workspace:packages/time-utilities"
   dependencies:
-    "@sapphire/utilities": ^3.0.1
+    "@sapphire/utilities": ^3.0.2
   languageName: unknown
   linkType: soft
 
@@ -2251,7 +2251,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@sapphire/utilities@^3.0.1, @sapphire/utilities@workspace:packages/utilities":
+"@sapphire/utilities@^3.0.1, @sapphire/utilities@^3.0.2, @sapphire/utilities@workspace:packages/utilities":
   version: 0.0.0-use.local
   resolution: "@sapphire/utilities@workspace:packages/utilities"
   languageName: unknown
@@ -4211,13 +4211,6 @@ __metadata:
   version: 0.22.0
   resolution: "discord-api-types@npm:0.22.0"
   checksum: 673bcd960e394d8a3752bb03d50de44e74d508450e3d2cce947a69e0a6dc43c00196e18245c88dd26f3a8b0a56b40e0dbf52e058b7aabc7ed77f0f018003cb04
-  languageName: node
-  linkType: hard
-
-"discord-api-types@npm:^0.23.1":
-  version: 0.23.1
-  resolution: "discord-api-types@npm:0.23.1"
-  checksum: e2ea574d51bff9f74770194338ba2b981072c6814a4da4c1e9a6b09b5b6bcf4ecf9044397fd4d2d3bf245f7573f22f1c25ff3f57cfc23ed87dfee4629091c29d
   languageName: node
   linkType: hard
 
@@ -9410,7 +9403,7 @@ __metadata:
     "@typescript-eslint/eslint-plugin": ^4.33.0
     "@typescript-eslint/parser": ^4.33.0
     cz-conventional-changelog: ^3.3.0
-    discord-api-types: ^0.23.1
+    discord-api-types: ^0.22.0
     discord.js: 13.1.0
     eslint: ^7.32.0
     eslint-config-prettier: ^8.3.0
