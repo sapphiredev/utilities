@@ -677,7 +677,7 @@ export class PaginatedMessage {
 		page.data = { ...page.data, ...(this.paginatedMessagePayloadData ?? {}) };
 
 		if (this.response) await this.response.edit(page);
-		else this.response = (await channel.send(page)) as Message;
+		else this.response = await channel.send(page);
 	}
 
 	/**
