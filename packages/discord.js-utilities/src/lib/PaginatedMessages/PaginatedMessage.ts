@@ -1,6 +1,6 @@
 import { Time } from '@sapphire/time-utilities';
 import { Awaitable, isFunction } from '@sapphire/utilities';
-import type { RESTPostAPIChannelMessageJSONBody } from 'discord-api-types/v9';
+import type { RESTPatchAPIChannelMessageJSONBody, RESTPostAPIChannelMessageJSONBody } from 'discord-api-types/v9';
 import {
 	Collection,
 	Message,
@@ -140,6 +140,7 @@ export class PaginatedMessage {
 	 * @default ```PaginatedMessage.pageIndexPrefix``` (static property)
 	 */
 	public pageIndexPrefix = PaginatedMessage.pageIndexPrefix;
+
 	/**
 	 * Custom separator to show after the page index in the embed footer.
 	 * PaginatedMessage will automatically add a space (` `) after the given text. You do not have to add it yourself.
@@ -148,10 +149,26 @@ export class PaginatedMessage {
 	public embedFooterSeparator = PaginatedMessage.embedFooterSeparator;
 
 	/**
+	 * Additional options that are applied to each message when sending it to Discord.
+	 * Be careful with using this, misusing it can cause to issues such as sending empty messages.
+	 * This is for advanced usages only!
+	 *
+	 * @default null
+	 */
+	private paginatedMessagePayloadData: RESTPostAPIChannelMessageJSONBody | RESTPatchAPIChannelMessageJSONBody | null = null;
+
+	/**
 	 * Constructor for the {@link PaginatedMessage} class
 	 * @param __namedParameters The {@link PaginatedMessageOptions} for this instance of the {@link PaginatedMessage} class
 	 */
-	public constructor({ pages, actions, template, pageIndexPrefix, embedFooterSeparator }: PaginatedMessageOptions = {}) {
+	public constructor({
+		pages,
+		actions,
+		template,
+		pageIndexPrefix,
+		embedFooterSeparator,
+		paginatedMessagePayloadData = null
+	}: PaginatedMessageOptions = {}) {
 		this.pages = pages ?? [];
 
 		for (const page of this.pages) this.messages.push(page instanceof MessagePayload ? page : null);
@@ -160,6 +177,7 @@ export class PaginatedMessage {
 		this.template = PaginatedMessage.resolveTemplate(template);
 		this.pageIndexPrefix = pageIndexPrefix ?? PaginatedMessage.pageIndexPrefix;
 		this.embedFooterSeparator = embedFooterSeparator ?? PaginatedMessage.embedFooterSeparator;
+		this.paginatedMessagePayloadData = paginatedMessagePayloadData;
 	}
 
 	public setPromptMessage(message: string) {
@@ -652,9 +670,14 @@ export class PaginatedMessage {
 	 */
 	protected async setUpMessage(channel: Message['channel'], author: User): Promise<void>;
 	protected async setUpMessage(channel: Message['channel']): Promise<void> {
-		const firstPage = this.messages[this.index]!;
-		if (this.response) await this.response.edit(firstPage);
-		else this.response = (await channel.send(firstPage)) as Message;
+		// Get the current page
+		const page = this.messages[this.index]!;
+
+		// Merge in the advanced options
+		page.data = { ...page.data, ...(this.paginatedMessagePayloadData ?? {}) };
+
+		if (this.response) await this.response.edit(page);
+		else this.response = (await channel.send(page)) as Message;
 	}
 
 	/**
@@ -997,6 +1020,14 @@ export interface PaginatedMessageOptions {
 	 * @seealso {@link PaginatedMessage.embedFooterSeparator}
 	 */
 	embedFooterSeparator?: string;
+	/**
+	 * Additional options that are applied to each message when sending it to Discord.
+	 * Be careful with using this, misusing it can cause to issues such as sending empty messages.
+	 * This is for advanced usages only!
+	 *
+	 * @default null
+	 */
+	paginatedMessagePayloadData?: RESTPostAPIChannelMessageJSONBody | RESTPatchAPIChannelMessageJSONBody | null;
 }
 
 /**
