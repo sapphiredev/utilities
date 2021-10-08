@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.2](https://github.com/sapphiredev/utilities/compare/@sapphire/utilities@3.0.1...@sapphire/utilities@3.0.2) (2021-10-08)
+
+### Bug Fixes
+
+-   **utilities:** correct forgotten abstract ([#195](https://github.com/sapphiredev/utilities/issues/195)) ([20b7ef7](https://github.com/sapphiredev/utilities/commit/20b7ef7d22d88a7fe54ae40474fa58ab85c49488))
+
 ## [3.0.1](https://github.com/sapphiredev/utilities/compare/@sapphire/utilities@3.0.0...@sapphire/utilities@3.0.1) (2021-10-04)
 
 ### Bug Fixes

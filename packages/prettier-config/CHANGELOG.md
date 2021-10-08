@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.1](https://github.com/sapphiredev/utilities/compare/@sapphire/prettier-config@1.2.0...@sapphire/prettier-config@1.2.1) (2021-10-08)
+
+**Note:** Version bump only for package @sapphire/prettier-config
+
 # [1.2.0](https://github.com/sapphiredev/utilities/compare/@sapphire/prettier-config@1.1.6...@sapphire/prettier-config@1.2.0) (2021-10-04)
 
 ### Features

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.1](https://github.com/sapphiredev/utilities/compare/@sapphire/decorators@3.0.0...@sapphire/decorators@3.0.1) (2021-10-08)
+
+### Bug Fixes
+
+-   **decorators:** properly run postbuild scripts ([b71b7a5](https://github.com/sapphiredev/utilities/commit/b71b7a52ac2f2d64b49dc5835d08c8c6a3625752))
+
 # [3.0.0](https://github.com/sapphiredev/utilities/compare/@sapphire/decorators@2.2.0...@sapphire/decorators@3.0.0) (2021-10-04)
 
 ### Bug Fixes

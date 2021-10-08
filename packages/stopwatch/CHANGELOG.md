@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.1](https://github.com/sapphiredev/utilities/compare/@sapphire/stopwatch@1.2.0...@sapphire/stopwatch@1.2.1) (2021-10-08)
+
+### Bug Fixes
+
+-   **stopwatch:** properly run postbuild scripts ([e022d28](https://github.com/sapphiredev/utilities/commit/e022d2870a5ef613e2a6377dbf5db115f93f98c7))
+
 # [1.2.0](https://github.com/sapphiredev/utilities/compare/@sapphire/stopwatch@1.1.4...@sapphire/stopwatch@1.2.0) (2021-10-04)
 
 ### Features
