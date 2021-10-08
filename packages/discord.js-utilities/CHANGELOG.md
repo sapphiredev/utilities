@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@3.0.2...@sapphire/discord.js-utilities@3.1.0) (2021-10-08)
+
+### Features
+
+-   **discord.js-utilities:** add support for setting custom page options ([#196](https://github.com/sapphiredev/utilities/issues/196)) ([9baa7c0](https://github.com/sapphiredev/utilities/commit/9baa7c0feb70e045a1e54a0f17069abe7ee20dec))
+
 ## [3.0.2](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@3.0.1...@sapphire/discord.js-utilities@3.0.2) (2021-10-08)
 
 **Note:** Version bump only for package @sapphire/discord.js-utilities
