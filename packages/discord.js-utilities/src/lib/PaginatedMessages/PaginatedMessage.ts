@@ -150,8 +150,8 @@ export class PaginatedMessage {
 
 	/**
 	 * Additional options that are applied to each message when sending it to Discord.
-	 * Be careful with using this, misusing it can cause to issues such as sending empty messages.
-	 * This is for advanced usages only!
+	 * Be careful with using this, misusing it can cause issues, such as sending empty messages.
+	 * @remark **This is for advanced usages only!**
 	 *
 	 * @default null
 	 */
@@ -1022,8 +1022,8 @@ export interface PaginatedMessageOptions {
 	embedFooterSeparator?: string;
 	/**
 	 * Additional options that are applied to each message when sending it to Discord.
-	 * Be careful with using this, misusing it can cause to issues such as sending empty messages.
-	 * This is for advanced usages only!
+	 * Be careful with using this, misusing it can cause issues, such as sending empty messages.
+	 * @remark **This is for advanced usages only!**
 	 *
 	 * @default null
 	 */
