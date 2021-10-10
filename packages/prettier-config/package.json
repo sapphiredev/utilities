@@ -33,7 +33,7 @@
 	],
 	"engines": {
 		"node": ">=v14.18.0",
-		"npm": ">=7.24.1"
+		"npm": ">=8.0.0"
 	},
 	"keywords": [
 		"sapphiredev",
