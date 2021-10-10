@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.2.0](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@3.1.0...@sapphire/discord.js-utilities@3.2.0) (2021-10-10)
+
+### Features
+
+-   update to DJS v13 ([4085534](https://github.com/sapphiredev/utilities/commit/4085534e538a94e0a2fe6e33cd9825a408eb1c65))
+
 # [3.1.0](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@3.0.2...@sapphire/discord.js-utilities@3.1.0) (2021-10-08)
 
 ### Features
