@@ -1,6 +1,6 @@
 import { Time } from '@sapphire/time-utilities';
 import { Awaitable, isFunction } from '@sapphire/utilities';
-import type { RESTPatchAPIChannelMessageJSONBody, RESTPostAPIChannelMessageJSONBody } from 'discord-api-types/v9';
+import type { APIEmbed, RESTPatchAPIChannelMessageJSONBody, RESTPostAPIChannelMessageJSONBody } from 'discord-api-types/v9';
 import {
 	Collection,
 	Message,
@@ -348,7 +348,7 @@ export class PaginatedMessage {
 
 	/**
 	 * Adds a page to the existing ones using a {@link MessageEmbed}. This wil be added as the last page.
-	 * @param embed Either a callback whose first paramter is `new MessageEmbed()`, or an already constructed {@link MessageEmbed}
+	 * @param embed Either a callback whose first parameter is `new MessageEmbed()`, or an already constructed {@link MessageEmbed}
 	 * @example
 	 * ```typescript
 	 * const { PaginatedMessage } = require('@sapphire/discord.js-utilities');
@@ -380,7 +380,7 @@ export class PaginatedMessage {
 
 	/**
 	 * Adds a page to the existing ones asynchronously using a {@link MessageEmbed}. This wil be added as the last page.
-	 * @param embed Either a callback whose first paramter is `new MessageEmbed()`, or an already constructed {@link MessageEmbed}
+	 * @param embed Either a callback whose first parameter is `new MessageEmbed()`, or an already constructed {@link MessageEmbed}
 	 * @example
 	 * ```typescript
 	 * const { PaginatedMessage } = require('@sapphire/discord.js-utilities');
@@ -785,18 +785,24 @@ export class PaginatedMessage {
 		return { ...template, ...options, embeds };
 	}
 
-	private applyTemplateEmbed(template: EmbedResolvable, embed: EmbedResolvable): MessageEmbed | MessageEmbedOptions | undefined {
+	private applyTemplateEmbed(template: EmbedResolvable, embed: EmbedResolvable): APIEmbed | MessageEmbed | MessageEmbedOptions | undefined {
 		if (!embed) return template?.[0];
 		if (!template) return embed?.[0];
 		return this.mergeEmbeds(template?.[0], embed?.[0]);
 	}
 
-	private mergeEmbeds(template: MessageEmbed | MessageEmbedOptions, embed: MessageEmbed | MessageEmbedOptions): MessageEmbedOptions {
+	private mergeEmbeds(
+		template: APIEmbed | MessageEmbed | MessageEmbedOptions,
+		embed: APIEmbed | MessageEmbed | MessageEmbedOptions
+	): MessageEmbedOptions {
 		return {
 			title: embed.title ?? template.title ?? undefined,
 			description: embed.description ?? template.description ?? undefined,
 			url: embed.url ?? template.url ?? undefined,
-			timestamp: embed.timestamp ?? template.timestamp ?? undefined,
+			timestamp:
+				(typeof embed.timestamp === 'string' ? new Date(embed.timestamp) : embed.timestamp) ??
+				(typeof template.timestamp === 'string' ? new Date(template.timestamp) : template.timestamp) ??
+				undefined,
 			color: embed.color ?? template.color ?? undefined,
 			fields: this.mergeArrays(template.fields, embed.fields),
 			author: embed.author ?? template.author ?? undefined,
