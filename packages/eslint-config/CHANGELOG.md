@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0](https://github.com/sapphiredev/utilities/compare/@sapphire/eslint-config@3.3.1...@sapphire/eslint-config@4.0.0) (2021-10-11)
+
+### Features
+
+-   **eslint-config:** update to eslint v8.0.0 and [@typescript-eslint](https://github.com/typescript-eslint) v5.0.0 ([67ed0af](https://github.com/sapphiredev/utilities/commit/67ed0af714ffa04c0284142fa80734a3f01055a5))
+
+### BREAKING CHANGES
+
+-   **eslint-config:** drop node v10/v13/v15
+-   **eslint-config:** See eslint changes at: https://github.com/eslint/eslint/blob/master/CHANGELOG.md#:~:text=v8.0.0%20-%20october%209%2C%202021
+-   **eslint-config:** See parser changes at: https://github.com/typescript-eslint/typescript-eslint/compare/v4.33.0...v5.0.0
+
 ## [3.3.1](https://github.com/sapphiredev/utilities/compare/@sapphire/eslint-config@3.3.0...@sapphire/eslint-config@3.3.1) (2021-10-08)
 
 **Note:** Version bump only for package @sapphire/eslint-config
