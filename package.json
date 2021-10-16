@@ -30,7 +30,7 @@
 		"@favware/rollup-type-bundler": "^1.0.5",
 		"@rollup/plugin-commonjs": "^21.0.0",
 		"@rollup/plugin-node-resolve": "^13.0.5",
-		"@sapphire/framework": "next",
+		"@sapphire/framework": "^2.0.0",
 		"@types/fs-extra": "^9.0.13",
 		"@types/jest": "^27.0.2",
 		"@types/lodash": "^4.14.175",
