@@ -71,7 +71,8 @@
 		"url": "git+https://github.com/sapphiredev/utilities.git"
 	},
 	"engines": {
-		"node": ">=16"
+		"node": ">=v14.0.0",
+		"npm": ">=7.0.0"
 	},
 	"commitlint": {
 		"extends": [
