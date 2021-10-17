@@ -1,7 +1,11 @@
-import { Command, CommandOptions, CommandStore } from '@sapphire/framework';
+import { Command, CommandOptions, CommandStore, container } from '@sapphire/framework';
 import { ApplyOptions } from '../../src';
 
 describe('ApplyOptions', () => {
+	beforeAll(() => {
+		Reflect.set(container, 'client', { options: {} });
+	});
+
 	test('GIVEN options object THEN sets options', () => {
 		@ApplyOptions<CommandOptions>({
 			name: 'test',
@@ -13,7 +17,7 @@ describe('ApplyOptions', () => {
 				return this.name;
 			}
 
-			public async run() {
+			public async messageRun() {
 				// noop
 			}
 		}
@@ -45,7 +49,7 @@ describe('ApplyOptions', () => {
 				return this.name;
 			}
 
-			public async run() {
+			public async messageRun() {
 				// noop
 			}
 		}
@@ -74,7 +78,7 @@ describe('ApplyOptions', () => {
 				return this.name;
 			}
 
-			public async run() {
+			public async messageRun() {
 				// noop
 			}
 		}
