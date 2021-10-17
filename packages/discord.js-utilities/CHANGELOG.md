@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.2](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@3.2.1...@sapphire/discord.js-utilities@3.2.2) (2021-10-17)
+
+### Bug Fixes
+
+-   allow more node & npm versions in engines field ([5977d2a](https://github.com/sapphiredev/utilities/commit/5977d2a30a4b2cfdf84aff3f33af03ffde1bbec5))
+
 ## [3.2.1](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@3.2.0...@sapphire/discord.js-utilities@3.2.1) (2021-10-11)
 
 **Note:** Version bump only for package @sapphire/discord.js-utilities

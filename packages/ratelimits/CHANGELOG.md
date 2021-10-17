@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.4](https://github.com/sapphiredev/utilities/compare/@sapphire/ratelimits@2.1.3...@sapphire/ratelimits@2.1.4) (2021-10-17)
+
+### Bug Fixes
+
+-   allow more node & npm versions in engines field ([5977d2a](https://github.com/sapphiredev/utilities/commit/5977d2a30a4b2cfdf84aff3f33af03ffde1bbec5))
+
 ## [2.1.3](https://github.com/sapphiredev/utilities/compare/@sapphire/ratelimits@2.1.2...@sapphire/ratelimits@2.1.3) (2021-10-11)
 
 **Note:** Version bump only for package @sapphire/ratelimits
