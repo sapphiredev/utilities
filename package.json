@@ -39,9 +39,9 @@
 		"@typescript-eslint/eslint-plugin": "^5.0.0",
 		"@typescript-eslint/parser": "^5.0.0",
 		"cz-conventional-changelog": "^3.3.0",
-		"discord-api-types": "^0.23.1",
+		"discord-api-types": "^0.24.0",
 		"discord.js": "^13.2.0",
-		"eslint": "^8.0.0",
+		"eslint": "^8.0.1",
 		"eslint-config-prettier": "^8.3.0",
 		"eslint-plugin-prettier": "^4.0.0",
 		"fs-extra": "^10.0.0",
@@ -60,11 +60,11 @@
 		"rollup": "^2.58.0",
 		"rollup-plugin-cleaner": "^1.0.0",
 		"rollup-plugin-typescript2": "^0.30.0",
-		"ts-jest": "^27.0.5",
+		"ts-jest": "^27.0.7",
 		"ts-node": "^10.3.0",
 		"tslib": "^2.3.1",
 		"typedoc": "^0.22.5",
-		"typescript": "^4.4.3"
+		"typescript": "^4.4.4"
 	},
 	"repository": {
 		"type": "git",

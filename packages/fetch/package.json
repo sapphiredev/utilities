@@ -36,7 +36,7 @@
 		"!dist/*.tsbuildinfo"
 	],
 	"engines": {
-		"node": ">=v14.18.0",
+		"node": ">=v14.18.1",
 		"npm": ">=7.24.2"
 	},
 	"keywords": [

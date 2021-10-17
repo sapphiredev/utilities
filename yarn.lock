@@ -2104,11 +2104,11 @@ __metadata:
   dependencies:
     "@typescript-eslint/eslint-plugin": ^5.0.0
     "@typescript-eslint/parser": ^5.0.0
-    eslint: ^8.0.0
+    eslint: ^8.0.1
     eslint-config-prettier: ^8.3.0
     eslint-plugin-prettier: ^4.0.0
     prettier: ^2.4.1
-    typescript: ^4.4.3
+    typescript: ^4.4.4
   languageName: unknown
   linkType: soft
 
@@ -2195,7 +2195,7 @@ __metadata:
   resolution: "@sapphire/ts-config@workspace:packages/ts-config"
   dependencies:
     tslib: ^2.3.1
-    typescript: ^4.4.3
+    typescript: ^4.4.4
   languageName: unknown
   linkType: soft
 
@@ -3957,6 +3957,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"discord-api-types@npm:^0.24.0":
+  version: 0.24.0
+  resolution: "discord-api-types@npm:0.24.0"
+  checksum: b1a17cb3be4ade974193cedb92fb37e51ba8f1832dfe3ec0d188ba41f255f3dab8359c9d618d32469f1e648126258f9d6ed8828dc1cb50b74d9fd9d875f3390a
+  languageName: node
+  linkType: hard
+
 "discord.js@npm:^13.2.0":
   version: 13.2.0
   resolution: "discord.js@npm:13.2.0"
@@ -4226,7 +4233,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint@npm:8.0.1, eslint@npm:^8.0.0":
+"eslint@npm:8.0.1, eslint@npm:^8.0.1":
   version: 8.0.1
   resolution: "eslint@npm:8.0.1"
   dependencies:
@@ -8684,9 +8691,9 @@ __metadata:
     "@typescript-eslint/eslint-plugin": ^5.0.0
     "@typescript-eslint/parser": ^5.0.0
     cz-conventional-changelog: ^3.3.0
-    discord-api-types: ^0.23.1
+    discord-api-types: ^0.24.0
     discord.js: ^13.2.0
-    eslint: ^8.0.0
+    eslint: ^8.0.1
     eslint-config-prettier: ^8.3.0
     eslint-plugin-prettier: ^4.0.0
     fs-extra: ^10.0.0
@@ -8705,11 +8712,11 @@ __metadata:
     rollup: ^2.58.0
     rollup-plugin-cleaner: ^1.0.0
     rollup-plugin-typescript2: ^0.30.0
-    ts-jest: ^27.0.5
+    ts-jest: ^27.0.7
     ts-node: ^10.3.0
     tslib: ^2.3.1
     typedoc: ^0.22.5
-    typescript: ^4.4.3
+    typescript: ^4.4.4
   languageName: unknown
   linkType: soft
 
@@ -9501,7 +9508,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ts-jest@npm:^27.0.5":
+"ts-jest@npm:^27.0.7":
   version: 27.0.7
   resolution: "ts-jest@npm:27.0.7"
   dependencies:
@@ -9749,7 +9756,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-typescript@^4.4.3:
+"typescript@^4.4.3, typescript@^4.4.4":
   version: 4.4.4
   resolution: "typescript@npm:4.4.4"
   bin:
@@ -9759,7 +9766,7 @@ typescript@^4.4.3:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@^4.4.3#~builtin<compat/typescript>":
+"typescript@patch:typescript@^4.4.3#~builtin<compat/typescript>, typescript@patch:typescript@^4.4.4#~builtin<compat/typescript>":
   version: 4.4.4
   resolution: "typescript@patch:typescript@npm%3A4.4.4#~builtin<compat/typescript>::version=4.4.4&hash=32657b"
   bin:
