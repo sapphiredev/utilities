@@ -2072,7 +2072,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@sapphire/discord-utilities@^2.2.1, @sapphire/discord-utilities@workspace:packages/discord-utilities":
+"@sapphire/discord-utilities@^2.2.1, @sapphire/discord-utilities@^2.2.2, @sapphire/discord-utilities@workspace:packages/discord-utilities":
   version: 0.0.0-use.local
   resolution: "@sapphire/discord-utilities@workspace:packages/discord-utilities"
   dependencies:
@@ -2084,9 +2084,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@sapphire/discord.js-utilities@workspace:packages/discord.js-utilities"
   dependencies:
-    "@sapphire/discord-utilities": ^2.2.1
-    "@sapphire/time-utilities": ^1.4.3
-    "@sapphire/utilities": ^3.0.3
+    "@sapphire/discord-utilities": ^2.2.2
+    "@sapphire/time-utilities": ^1.4.4
+    "@sapphire/utilities": ^3.0.4
   languageName: unknown
   linkType: soft
 
@@ -2164,7 +2164,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@sapphire/ratelimits@workspace:packages/ratelimits"
   dependencies:
-    "@sapphire/time-utilities": ^1.4.3
+    "@sapphire/time-utilities": ^1.4.4
   languageName: unknown
   linkType: soft
 
@@ -2182,11 +2182,11 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@sapphire/time-utilities@^1.4.3, @sapphire/time-utilities@workspace:packages/time-utilities":
+"@sapphire/time-utilities@^1.4.4, @sapphire/time-utilities@workspace:packages/time-utilities":
   version: 0.0.0-use.local
   resolution: "@sapphire/time-utilities@workspace:packages/time-utilities"
   dependencies:
-    "@sapphire/utilities": ^3.0.3
+    "@sapphire/utilities": ^3.0.4
   languageName: unknown
   linkType: soft
 
@@ -2199,7 +2199,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@sapphire/utilities@^3.0.1, @sapphire/utilities@^3.0.3, @sapphire/utilities@workspace:packages/utilities":
+"@sapphire/utilities@^3.0.1, @sapphire/utilities@^3.0.3, @sapphire/utilities@^3.0.4, @sapphire/utilities@workspace:packages/utilities":
   version: 0.0.0-use.local
   resolution: "@sapphire/utilities@workspace:packages/utilities"
   languageName: unknown
@@ -8677,9 +8677,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"root@workspace:.":
+"root-utilities@workspace:.":
   version: 0.0.0-use.local
-  resolution: "root@workspace:."
+  resolution: "root-utilities@workspace:."
   dependencies:
     "@commitlint/cli": ^13.2.1
     "@commitlint/config-conventional": ^13.2.0
