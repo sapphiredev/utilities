@@ -164,6 +164,13 @@
 			"avatar_url": "https://avatars.githubusercontent.com/u/84702365?v=4",
 			"profile": "https://github.com/UndiedGamer",
 			"contributions": ["code"]
+		},
+		{
+			"login": "Lioness100",
+			"name": "Lioness100",
+			"avatar_url": "https://avatars.githubusercontent.com/u/65814829?v=4",
+			"profile": "https://github.com/Lioness100",
+			"contributions": ["doc"]
 		}
 	],
 	"contributorsPerLine": 7,
