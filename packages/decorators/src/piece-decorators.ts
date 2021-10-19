@@ -16,7 +16,7 @@ import { createClassDecorator, createProxy } from './utils';
  * 	enabled: true
  * })
  * export class UserCommand extends Command {
- * 	public async run(message: Message) {
+ * 	public async messageRun(message: Message) {
  * 		const msg = await message.channel.send('Ping?');
  *
  * 		return msg.edit(
