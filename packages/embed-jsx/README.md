@@ -48,7 +48,7 @@ In your tsconfig.json, add
 
 and in any tsx file, import the EmbedJsx namespace as you would if you were using React
 
-```ts
+```typescript
 import { EmbedJsx } from '@sapphire/embed-jsx';
 ```
 

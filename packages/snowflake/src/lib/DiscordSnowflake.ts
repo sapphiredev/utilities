@@ -21,7 +21,7 @@ export class DiscordSnowflake extends Snowflake {
 	 * @param id the snowflake to deconstruct
 	 * @returns a deconstructed snowflake
 	 * @example
-	 * ```ts
+	 * ```typescript
 	 * const snowflake = DiscordSnowflake.decode('3971046231244935168');
 	 * ```
 	 */
@@ -33,7 +33,7 @@ export class DiscordSnowflake extends Snowflake {
 	 * @param id the snowflake to deconstruct
 	 * @returns a deconstructed snowflake
 	 * @example
-	 * ```ts
+	 * ```typescript
 	 * const snowflake = DiscordSnowflake.deconstruct('3971046231244935168');
 	 * ```
 	 */
@@ -47,7 +47,7 @@ export class DiscordSnowflake extends Snowflake {
 	 *
 	 * **note** when increment is not provided it defaults to `0n`
 	 * @example
-	 * ```ts
+	 * ```typescript
 	 * const snowflake = DiscordSnowflake.generate();
 	 * ```
 	 * @returns A unique snowflake

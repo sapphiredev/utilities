@@ -56,7 +56,7 @@ npm install @sapphire/fetch
 
 ### `GET`ting JSON data
 
-```ts
+```typescript
 // Import the fetch function
 import { fetch, FetchResultTypes } from '@sapphire/fetch';
 
@@ -76,7 +76,7 @@ console.log(data.userId);
 
 ### `GET`ting Buffer data (images, etc.)
 
-```ts
+```typescript
 // Import the fetch function
 import { fetch, FetchResultTypes } from '@sapphire/fetch';
 
@@ -89,7 +89,7 @@ console.log(sapphireLogo);
 
 ### `POST`ing JSON data
 
-```ts
+```typescript
 // Import the fetch function
 import { fetch, FetchResultTypes, FetchMethods } from '@sapphire/fetch';
 

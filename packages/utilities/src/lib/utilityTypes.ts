@@ -99,7 +99,7 @@ export interface NonNullObject {}
 /**
  * Gets all the keys (as a string union) from a type `T` that match value `V`
  * @example
- * ```ts
+ * ```typescript
  * interface Sample {
  * 	id: string;
  * 	name: string | null;
@@ -121,7 +121,7 @@ export type PickByValue<T, V> = {
 /**
  * Transforms a `readonly` type to be mutable
  * @example
- * ```ts
+ * ```typescript
  * interface Sample {
  * 	id: string;
  * 	hobbies: readonly string[];
@@ -142,7 +142,7 @@ export type Mutable<T> = {
 /**
  * Transforms every key in an object to be strictly required, essentially removing `undefined` and `null` from the type.
  * @example
- * ```ts
+ * ```typescript
  * interface Sample {
  * 	id: string;
  * 	name: string | null;
@@ -165,7 +165,7 @@ export type StrictRequired<T> = {
 /**
  * Gets a union type of all the keys that are in an array.
  * @example
- * ```ts
+ * ```typescript
  * const sample = [1, 2, '3', true];
  *
  * type arrayUnion = ArrayElementType<typeof sample>;

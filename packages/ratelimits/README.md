@@ -50,7 +50,7 @@ npm install @sapphire/ratelimits
 
 ### Token RateLimitManager
 
-```ts
+```typescript
 // Import the Bucket class
 const { RateLimitManager } = require('@sapphire/ratelimits');
 
@@ -73,7 +73,7 @@ ratelimit.consume();
 
 ### Leaky RateLimitManager
 
-```ts
+```typescript
 // Import the Bucket class
 const { RateLimitManager } = require('@sapphire/ratelimits');
 

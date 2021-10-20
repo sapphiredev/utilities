@@ -10,31 +10,31 @@ import type { DeepRequired, NonNullObject } from './utilityTypes';
  * @param base Base object
  * @param overwrites Overwrites to apply
  * @example
- * ```ts
+ * ```typescript
  * const base = { a: 0, b: 1 };
  * const overwrites = {}; // will be { a: 0, b: 1 } after merge
  * mergeDefault(base, overwrites) // { a: 0, b: 1 }
  * ```
  * @example
- * ```ts
+ * ```typescript
  * const base = { a: 0, b: 1 };
  * const overwrites = { a: 2, i: 3 };
  * mergeDefault(base, overwrites) // { a: 2, i: 3, b: 1 };
  * ```
  * @example
- * ```ts
+ * ```typescript
  * const base = { a: 0, b: 1 };
  * const overwrites = { a: null };
  * mergeDefault(base, overwrites) // { a: null, b: 1 };
  * ```
  * @example
- * ```ts
+ * ```typescript
  * const base = { a: 0, b: 1 };
  * const overwrites = { a: undefined };
  * mergeDefault(base, overwrites) // { a: 0, b: 1 };
  * ```
  * @example
- * ```ts
+ * ```typescript
  * const base = { a: null };
  * const overwrites = { a: { b: 5 } };
  * mergeDefault(base, overwrites) // { a: { b: 5 } };

@@ -35,7 +35,7 @@ export class Snowflake {
 	 *
 	 * **note** when increment is not provided it defaults to the private increment of the instance
 	 * @example
-	 * ```ts
+	 * ```typescript
 	 * const epoch = new Date('2000-01-01T00:00:00.000Z');
 	 * const snowflake = new Snowflake(epoch).generate();
 	 * ```
@@ -71,7 +71,7 @@ export class Snowflake {
 	 * @param id the snowflake to deconstruct
 	 * @returns a deconstructed snowflake
 	 * @example
-	 * ```ts
+	 * ```typescript
 	 * const epoch = new Date('2000-01-01T00:00:00.000Z');
 	 * const snowflake = new Snowflake(epoch).deconstruct('3971046231244935168');
 	 * ```

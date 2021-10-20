@@ -47,7 +47,7 @@ npm install @sapphire/stopwatch
 
 ### Basic Usage
 
-```ts
+```typescript
 // Import the Stopwatch class
 const { Stopwatch } = require('@sapphire/stopwatch');
 

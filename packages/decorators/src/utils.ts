@@ -21,7 +21,7 @@ export interface FunctionFallback {
 /**
  * Utility to make a method decorator with lighter syntax and inferred types.
  *
- * ```ts
+ * ```typescript
  * // Enumerable function
  *	function enumerableMethod(value: boolean) {
  *		return createMethodDecorator((_target, _propertyKey, descriptor) => {
@@ -47,7 +47,7 @@ export function createClassDecorator<TFunction extends (...args: any[]) => void>
 /**
  * Utility to make function preconditions.
  *
- * ```ts
+ * ```typescript
  * // No fallback (returns undefined)
  * function requireGuild(value: number) {
  *   return createFunctionPrecondition((message: Message) =>

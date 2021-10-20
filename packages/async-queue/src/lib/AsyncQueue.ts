@@ -17,7 +17,7 @@ export class AsyncQueue {
 	/**
 	 * Waits for last promise and queues a new one
 	 * @example
-	 * ```
+	 * ```typescript
 	 * const queue = new AsyncQueue();
 	 * async function request(url, options) {
 	 *     await queue.wait();

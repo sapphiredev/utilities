@@ -59,7 +59,7 @@ npm install @sapphire/snowflake
 
 #### Snowflakes with custom epoch
 
-```ts
+```typescript
 // Import the Snowflake class
 const { Snowflake } = require('@sapphire/snowflake');
 
@@ -75,7 +75,7 @@ const uniqueId = snowflake.generate();
 
 #### Snowflake with Discord epoch constant
 
-```ts
+```typescript
 // Import the Snowflake class
 const { DiscordSnowflake } = require('@sapphire/snowflake');
 
@@ -91,7 +91,7 @@ const uniqueId = DiscordSnowflake.generate();
 
 #### Snowflake with Twitter epoch constant
 
-```ts
+```typescript
 // Import the Snowflake class
 const { TwitterSnowflake } = require('@sapphire/snowflake');
 
@@ -109,7 +109,7 @@ const uniqueId = TwitterSnowflake.generate();
 
 #### Snowflakes with custom epoch
 
-```ts
+```typescript
 // Import the Snowflake class
 const { Snowflake } = require('@sapphire/snowflake');
 
@@ -125,7 +125,7 @@ const uniqueId = snowflake.deconstruct('3971046231244935168');
 
 #### Snowflake with Discord epoch constant
 
-```ts
+```typescript
 // Import the Snowflake class
 const { DiscordSnowflake } = require('@sapphire/snowflake');
 
@@ -141,7 +141,7 @@ const uniqueId = DiscordSnowflake.deconstruct('3971046231244935168');
 
 #### Snowflake with Twitter epoch constant
 
-```ts
+```typescript
 // Import the Snowflake class
 const { TwitterSnowflake } = require('@sapphire/snowflake');
 

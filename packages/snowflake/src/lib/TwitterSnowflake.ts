@@ -21,7 +21,7 @@ export class TwitterSnowflake extends Snowflake {
 	 * @param id the snowflake to deconstruct
 	 * @returns a deconstructed snowflake
 	 * @example
-	 * ```ts
+	 * ```typescript
 	 * const snowflake = TwitterSnowflake.decode('3971046231244935168');
 	 * ```
 	 */
@@ -33,7 +33,7 @@ export class TwitterSnowflake extends Snowflake {
 	 * @param id the snowflake to deconstruct
 	 * @returns a deconstructed snowflake
 	 * @example
-	 * ```ts
+	 * ```typescript
 	 * const snowflake = TwitterSnowflake.deconstruct('3971046231244935168');
 	 * ```
 	 */
@@ -47,7 +47,7 @@ export class TwitterSnowflake extends Snowflake {
 	 *
 	 * **note** when increment is not provided it defaults to `0n`
 	 * @example
-	 * ```ts
+	 * ```typescript
 	 * const snowflake = TwitterSnowflake.generate();
 	 * ```
 	 * @returns A unique snowflake

@@ -49,7 +49,7 @@ npm install @sapphire/event-iterator
 
 ### Basic Usage
 
-```ts
+```typescript
 // Import the EventIterator class
 const { EventIterator } = require('@sapphire/event-iterator');
 
