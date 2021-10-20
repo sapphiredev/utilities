@@ -99,6 +99,7 @@ export interface NonNullObject {}
 /**
  * Gets all the keys (as a string union) from a type `T` that match value `V`
  * @example
+ * ```ts
  * interface Sample {
  * 	id: string;
  * 	name: string | null;
@@ -110,6 +111,7 @@ export interface NonNullObject {}
  * type BB = PickByValue<Sample, string>;
  * // Expected:
  * // "id" | "lastName"
+ * ```
  */
 export type PickByValue<T, V> = {
 	[P in keyof T]: T[P] extends V ? P : never;
@@ -119,6 +121,7 @@ export type PickByValue<T, V> = {
 /**
  * Transforms a `readonly` type to be mutable
  * @example
+ * ```ts
  * interface Sample {
  * 	id: string;
  * 	hobbies: readonly string[];
@@ -130,6 +133,7 @@ export type PickByValue<T, V> = {
  * //    id: string;
  * //    hobbies: string[];
  * // }
+ * ```
  */
 export type Mutable<T> = {
 	-readonly [P in keyof T]: T[P] extends Array<unknown> | NonNullObject ? Mutable<T[P]> : T[P];
@@ -138,6 +142,7 @@ export type Mutable<T> = {
 /**
  * Transforms every key in an object to be strictly required, essentially removing `undefined` and `null` from the type.
  * @example
+ * ```ts
  * interface Sample {
  * 	id: string;
  * 	name: string | null;
@@ -151,6 +156,7 @@ export type Mutable<T> = {
  * //    name: string;
  * //    middleName: string;
  * // }
+ * ```
  */
 export type StrictRequired<T> = {
 	[P in keyof T]-?: NonNullable<T[P]>;
@@ -159,9 +165,11 @@ export type StrictRequired<T> = {
 /**
  * Gets a union type of all the keys that are in an array.
  * @example
+ * ```ts
  * const sample = [1, 2, '3', true];
  *
  * type arrayUnion = ArrayElementType<typeof sample>;
  * // Expected: string | number | boolean
+ * ```
  */
 export type ArrayElementType<T> = T extends (infer K)[] ? K : T extends readonly (infer RK)[] ? RK : T;
