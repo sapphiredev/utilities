@@ -28,7 +28,7 @@
 		"@commitlint/config-conventional": "^13.2.0",
 		"@discordjs/collection": "^0.2.1",
 		"@favware/npm-deprecate": "^1.0.4",
-		"@favware/rollup-type-bundler": "^1.0.5",
+		"@favware/rollup-type-bundler": "^1.0.6",
 		"@rollup/plugin-commonjs": "^21.0.0",
 		"@rollup/plugin-node-resolve": "^13.0.5",
 		"@sapphire/framework": "^2.1.0",
