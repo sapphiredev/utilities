@@ -1,14 +1,14 @@
-/* eslint-disable @typescript-eslint/naming-convention */
-import fsExtra from 'fs-extra';
-import { dirname, join, resolve } from 'path';
-import { fileURLToPath } from 'url';
+import { copyFile, mkdir } from 'fs/promises';
 
-const { copy, mkdirp } = fsExtra;
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+const moduleDir = new URL('../', import.meta.url);
+const tempDir = new URL('temp/', moduleDir);
+const srcDir = new URL('src/', moduleDir);
 
-const moduleDir = resolve(__dirname, '..');
+const tempTsconfig = new URL('tsconfig.json', tempDir);
+const moduleTsconfig = new URL('tsconfig.json', moduleDir);
+const srcTsconfig = new URL('tsconfig.json', srcDir);
 
-await mkdirp(join(moduleDir, 'temp'));
-await copy(join(moduleDir, 'tsconfig.json'), join(moduleDir, 'temp', 'tsconfig.json'));
-await copy(join(moduleDir, 'src', 'tsconfig.json'), join(moduleDir, 'tsconfig.json'));
+await mkdir(tempDir, { recursive: true });
+
+await copyFile(moduleTsconfig, tempTsconfig);
+await copyFile(srcTsconfig, moduleTsconfig);
