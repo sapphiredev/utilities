@@ -4,6 +4,7 @@ import type { APIEmbed } from 'discord-api-types/v9';
 import {
 	ButtonInteraction,
 	Collection,
+	Constants,
 	Formatters,
 	InteractionButtonOptions,
 	InteractionCollector,
@@ -25,7 +26,7 @@ import { MessageBuilder } from '../builders/MessageBuilder';
  * This is a {@link PaginatedMessage}, a utility to paginate messages (usually embeds).
  * You must either use this class directly or extend it.
  *
- * {@link PaginatedMessage} uses {@linkplain https://discord.js.org/#/docs/main/stable/class/MessageButton MessageButtons} that perform the specified action when clicked.
+ * {@link PaginatedMessage} uses {@linkplain https://discord.js.org/#/docs/main/stable/typedef/MessageComponent MessageComponent} buttons that perform the specified action when clicked.
  * You can either use your own actions or the {@link PaginatedMessage.defaultActions}.
  * {@link PaginatedMessage.defaultActions} is also static so you can modify these directly.
  *
@@ -187,13 +188,13 @@ export class PaginatedMessage {
 	}
 
 	/**
-	 * Sets the {@link PaginatedMessage.promptPageJumpToMessage}.
+	 * Sets the {@link PaginatedMessage.promptMessage}.
 	 * This will apply to all instance of {@link PaginatedMessage}
-	 * @param promptPageJumpToMessage The new `promptPageJumpToMessage` to set
+	 * @param promptMessage The new `promptMessage` to set
 	 * @returns The current instance of {@link PaginatedMessage}
 	 */
-	public setPromptPageJumpToMessage(promptPageJumpToMessage: promptPageJumpToMessageFunction) {
-		PaginatedMessage.promptPageJumpToMessage = promptPageJumpToMessage;
+	public setPromptMessage(promptMessage: PromptMessageFunction) {
+		PaginatedMessage.promptMessage = promptMessage;
 		return this;
 	}
 
@@ -702,7 +703,7 @@ export class PaginatedMessage {
 		// Merge in the advanced options
 		page = { ...page, ...(this.paginatedMessageData ?? {}) };
 
-		const messageComponents = [...this.actions.values()].map((button) => new MessageButton(button));
+		const messageComponents = Array.from(this.actions.values()).map<MessageButton>((button) => new MessageButton(button));
 
 		const rowChunkedComponents = chunk(messageComponents, 5);
 		const actionRows = rowChunkedComponents.map((components) => new MessageActionRow().setComponents(components));
@@ -722,7 +723,8 @@ export class PaginatedMessage {
 		if (this.pages.length > 1) {
 			this.collector = this.response!.createMessageComponentCollector<MessageComponentTypes.BUTTON>({
 				filter: (interaction) => this.actions.has(interaction.customId),
-				idle: this.idle
+				idle: this.idle,
+				componentType: Constants.MessageComponentTypes.BUTTON
 			})
 				.on('collect', this.handleCollect.bind(this, targetUser, channel))
 				.on('end', this.handleEnd.bind(this));
@@ -789,7 +791,7 @@ export class PaginatedMessage {
 		// Remove all listeners from the collector:
 		this.collector?.removeAllListeners();
 
-		// Do not remove components if the message, channel, or guild, was deleted:
+		// Do not remove reactions if the message, channel, or guild, was deleted:
 		if (this.response && !PaginatedMessage.deletionStopReasons.includes(reason)) {
 			void this.response?.edit({ components: [] });
 		}
@@ -862,12 +864,10 @@ export class PaginatedMessage {
 			run: async ({ handler, author, channel, interaction }) => {
 				await interaction.deferUpdate();
 
-				const promptPageJumpToMessage = PaginatedMessage.promptPageJumpToMessage(interaction.user);
+				const promptMessage = PaginatedMessage.promptMessage(interaction.user);
 
 				await interaction.followUp(
-					isObject(promptPageJumpToMessage)
-						? promptPageJumpToMessage
-						: { content: promptPageJumpToMessage, ephemeral: true, allowedMentions: { users: [], roles: [] } }
+					isObject(promptMessage) ? promptMessage : { content: promptMessage, ephemeral: true, allowedMentions: { users: [], roles: [] } }
 				);
 
 				const collected = await channel
@@ -881,10 +881,9 @@ export class PaginatedMessage {
 				if (collected) {
 					const responseMessage = collected.first();
 
+					// if (questionMessage.deletable) await questionMessage.delete();
 					if (responseMessage) {
-						if (responseMessage.deletable) {
-							await responseMessage.delete();
-						}
+						if (responseMessage.deletable) await responseMessage.delete();
 
 						const i = Number(responseMessage.content) - 1;
 
@@ -1011,7 +1010,7 @@ export class PaginatedMessage {
 	 * import { PaginatedMessage } from '@sapphire/discord.js-utilities';
 	 *
 	 * // We  will add ephemeral and no allowed mention for string only overwrites
-	 * PaginatedMessage.promptPageJumpToMessage = (interactionUser) =>
+	 * PaginatedMessage.promptMessage = (interactionUser) =>
 	 *     `Please send the number of the page you would like to jump to.`;
 	 * ```
 	 *
@@ -1020,14 +1019,14 @@ export class PaginatedMessage {
 	 * import { PaginatedMessage } from '@sapphire/discord.js-utilities';
 	 * import { Formatters } from 'discord.js';
 	 *
-	 * PaginatedMessage.promptPageJumpToMessage = (interactionUser) => ({
+	 * PaginatedMessage.promptMessage = (interactionUser) => ({
 	 * 	content: `${Formatters.userMention(interactionUser.id)}, please tell me which page you want to jump to.`,
 	 * 	ephemeral: true,
 	 * 	allowedMentions: { users: [], roles: [] }
 	 * });
 	 * ```
 	 */
-	public static promptPageJumpToMessage: promptPageJumpToMessageFunction = () => ({
+	public static promptMessage: PromptMessageFunction = () => ({
 		content: 'What page would you like to jump to?',
 		ephemeral: true,
 		allowedMentions: { users: [], roles: [] }
@@ -1045,7 +1044,7 @@ export class PaginatedMessage {
 	 * @default
 	 * ```ts
 	 * {
-	 * 	content: `Only ${Formatters.userMention(targetUser.id)} may interact with these buttons.`,
+	 * 	content: `Please stop clicking the buttons on this message. They are only for ${Formatters.userMention(targetUser.id)}.`,
 	 * 	ephemeral: true,
 	 * 	allowedMentions: { users: [], roles: [] }
 	 * }
@@ -1076,7 +1075,7 @@ export class PaginatedMessage {
 	 * ```
 	 */
 	public static wrongUserInteractionReply: WrongUserInteractionReplyFunction = (targetUser: User) => ({
-		content: `Only ${Formatters.userMention(targetUser.id)} may interact with these buttons.`,
+		content: `Please stop clicking the buttons on this message. They are only for ${Formatters.userMention(targetUser.id)}.`,
 		ephemeral: true,
 		allowedMentions: { users: [], roles: [] }
 	});
@@ -1181,9 +1180,9 @@ export interface PaginatedMessageOptions {
 export type MessagePage = ((index: number, pages: MessagePage[], handler: PaginatedMessage) => Awaitable<MessageOptionsUnion>) | MessageOptionsUnion;
 
 /**
- * The type of the custom function that can be set for the {@link PaginatedMessage.promptPageJumpToMessage}
+ * The type of the custom function that can be set for the {@link PaginatedMessage.promptMessage}
  */
-export type promptPageJumpToMessageFunction = (interactionUser: User) => Parameters<MessageComponentInteraction['reply']>[0];
+export type PromptMessageFunction = (interactionUser: User) => Parameters<MessageComponentInteraction['reply']>[0];
 
 /**
  * The type of the custom function that can be set for the {@link PaginatedMessage.wrongUserInteractionReply}
