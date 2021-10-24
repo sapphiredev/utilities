@@ -735,7 +735,7 @@ export class PaginatedMessage {
 		// Merge in the advanced options
 		page = { ...page, ...(this.paginatedMessageData ?? {}) };
 
-		const messageComponents = Array.from(this.actions.values()).map<MessageButton | MessageSelectMenu>((interaction) => {
+		const messageComponents = [...this.actions.values()].map<MessageButton | MessageSelectMenu>((interaction) => {
 			return isMessageButtonInteraction(interaction)
 				? new MessageButton(interaction)
 				: new MessageSelectMenu({
