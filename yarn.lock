@@ -6945,12 +6945,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"marked@npm:^3.0.7":
-  version: 3.0.7
-  resolution: "marked@npm:3.0.7"
+"marked@npm:^3.0.8":
+  version: 3.0.8
+  resolution: "marked@npm:3.0.8"
   bin:
     marked: bin/marked
-  checksum: f77260b835ec6707ad38e9e4774694bbd2322cc39bc6dc8b11eb7c8c5eef03ed19f50c0b32e5c85fb58491f91008ba8ecef5530489fbf8b0f6c57ef884f45402
+  checksum: 3cdeaa126bbeca5b1b8d2f91e9728018dcd63b250233f3607009a4d70bb6bd9df8c769f1bc52ce9856d1316c91c9dacb1d94d80696f76d094146b4fab126a4eb
   languageName: node
   linkType: hard
 
