@@ -15,7 +15,7 @@ export function createPartitionedMessageRow(components: (MessageButton | Message
 	const chunkedComponents = chunk(components, 5);
 
 	// Map all the components to MessageActionRows
-	return chunkedComponents.map<MessageActionRow>((componentsChunk) =>
+	return chunkedComponents.map((componentsChunk) =>
 		new MessageActionRow() //
 			.setComponents(componentsChunk)
 	);
