@@ -1,7 +1,8 @@
 import { isFunction } from '@sapphire/utilities';
 import { MessageEmbed } from 'discord.js';
 import { MessageBuilder } from '../builders/MessageBuilder';
-import { MessagePage, PaginatedMessage } from './PaginatedMessage';
+import { PaginatedMessage } from './PaginatedMessage';
+import type { PaginatedMessagePage } from './PaginatedMessageTypes';
 
 /**
  * This is a LazyPaginatedMessage. Instead of resolving all pages that are functions on {@link PaginatedMessage.run} will resolve when requested.
@@ -18,7 +19,7 @@ export class LazyPaginatedMessage extends PaginatedMessage {
 	 * Resolves the page corresponding with the given index. This also resolves the index's before and after the given index.
 	 * @param index The index to resolve. Defaults to handler's current index.
 	 */
-	public override async resolvePage(index: number): Promise<MessagePage> {
+	public override async resolvePage(index: number): Promise<PaginatedMessagePage> {
 		const promises = [super.resolvePage(index)];
 		if (this.hasPage(index - 1)) promises.push(super.resolvePage(index - 1));
 		if (this.hasPage(index + 1)) promises.push(super.resolvePage(index + 1));
