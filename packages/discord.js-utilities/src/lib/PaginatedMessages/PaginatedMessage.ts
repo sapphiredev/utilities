@@ -168,6 +168,11 @@ export class PaginatedMessage {
 	private wrongUserInteractionReply: PaginatedMessageWrongUserInteractionReplyFunction = PaginatedMessage.wrongUserInteractionReply;
 
 	/**
+	 * Tracks whether a warning was already emitted for this {@link PaginatedMessage}
+	 */
+	private hasEmittedWarning = false;
+
+	/**
 	 * Constructor for the {@link PaginatedMessage} class
 	 * @param __namedParameters The {@link PaginatedMessageOptions} for this instance of the {@link PaginatedMessage} class
 	 */
@@ -294,6 +299,23 @@ export class PaginatedMessage {
 	 * @param page The page to add.
 	 */
 	public addPage(page: PaginatedMessagePage): this {
+		// Do not allow more than 25 pages, and send a warning when people try to do so.
+		if (this.pages.length === 25) {
+			if (!this.hasEmittedWarning) {
+				process.emitWarning(
+					'Maximum amount of pages exceeded for PaginatedMessage. Please check your instance of PaginatedMessage and ensure that you do not exceed 25 pages total.',
+					{
+						type: 'PaginatedMessageExceededMessagePageAmount',
+						code: 'PAGINATED_MESSAGE_EXCEEDED_MAXIMUM_AMOUNT_OF_PAGES',
+						detail: `If you do need more than 25 pages you can extend the class and overwrite the actions in the constructor. (This warning was emitted for ${this.response?.url})`
+					}
+				);
+				this.hasEmittedWarning = true;
+			}
+
+			return this;
+		}
+
 		this.pages.push(page);
 
 		if (isFunction(page) || isObject(page)) {
