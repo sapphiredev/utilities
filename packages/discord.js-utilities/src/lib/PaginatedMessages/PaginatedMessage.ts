@@ -1,26 +1,35 @@
 import { Time } from '@sapphire/time-utilities';
-import { Awaitable, chunk, isFunction, isObject } from '@sapphire/utilities';
+import { isFunction, isObject } from '@sapphire/utilities';
 import type { APIEmbed } from 'discord-api-types/v9';
 import {
 	ButtonInteraction,
 	Collection,
 	Constants,
 	Formatters,
-	InteractionButtonOptions,
 	InteractionCollector,
 	Message,
-	MessageActionRow,
 	MessageButton,
 	MessageComponentInteraction,
 	MessageEmbed,
 	MessageEmbedOptions,
 	MessageOptions,
+	MessageSelectMenu,
+	SelectMenuInteraction,
 	Snowflake,
 	User,
 	WebhookEditMessageOptions
 } from 'discord.js';
-import type { MessageComponentTypes } from 'discord.js/typings/enums';
 import { MessageBuilder } from '../builders/MessageBuilder';
+import type {
+	PaginatedMessageAction,
+	PaginatedMessageEmbedResolvable,
+	PaginatedMessageMessageOptionsUnion,
+	PaginatedMessageOptions,
+	PaginatedMessagePage,
+	PaginatedMessageSelectMenuOptionsFunction,
+	PaginatedMessageWrongUserInteractionReplyFunction
+} from './PaginatedMessageTypes';
+import { createPartitionedMessageRow, isMessageButtonInteraction } from './utils';
 
 /**
  * This is a {@link PaginatedMessage}, a utility to paginate messages (usually embeds).
@@ -100,7 +109,7 @@ export class PaginatedMessage {
 	/**
 	 * The pages to be converted to {@link PaginatedMessage.messages}
 	 */
-	public pages: MessagePage[];
+	public pages: PaginatedMessagePage[];
 
 	/**
 	 * The response message used to edit on page changes.
@@ -110,17 +119,17 @@ export class PaginatedMessage {
 	/**
 	 * The collector used for handling button clicks.
 	 */
-	public collector: InteractionCollector<ButtonInteraction> | null = null;
+	public collector: InteractionCollector<MessageComponentInteraction> | null = null;
 
 	/**
 	 * The pages which were converted from {@link PaginatedMessage.pages}
 	 */
-	public messages: (MessagePage | null)[] = [];
+	public messages: (PaginatedMessagePage | null)[] = [];
 
 	/**
 	 * The actions which are to be used.
 	 */
-	public actions = new Map<string, IPaginatedMessageAction>();
+	public actions = new Map<string, PaginatedMessageAction>();
 
 	/**
 	 * The handler's current page/message index.
@@ -136,7 +145,7 @@ export class PaginatedMessage {
 	 * The template for this {@link PaginatedMessage}.
 	 * You can use templates to set defaults that will apply to each and every page in the {@link PaginatedMessage}
 	 */
-	public template: MessageOptionsUnion;
+	public template: PaginatedMessageMessageOptionsUnion;
 
 	/**
 	 * Custom text to show in front of the page index in the embed footer.
@@ -152,10 +161,11 @@ export class PaginatedMessage {
 	 */
 	public embedFooterSeparator = PaginatedMessage.embedFooterSeparator;
 
-	private paginatedMessageData: Omit<MessageOptionsUnion, 'components'> | null = null;
+	private paginatedMessageData: Omit<PaginatedMessageMessageOptionsUnion, 'components'> | null = null;
 
-	private wrongUserInteractionReply: (targetUser: User, interactionUser: User) => Parameters<MessageComponentInteraction['reply']>[0] =
-		PaginatedMessage.wrongUserInteractionReply;
+	private selectMenuOptions: PaginatedMessageSelectMenuOptionsFunction = PaginatedMessage.selectMenuOptions;
+
+	private wrongUserInteractionReply: PaginatedMessageWrongUserInteractionReplyFunction = PaginatedMessage.wrongUserInteractionReply;
 
 	/**
 	 * Constructor for the {@link PaginatedMessage} class
@@ -188,13 +198,13 @@ export class PaginatedMessage {
 	}
 
 	/**
-	 * Sets the {@link PaginatedMessage.promptMessage}.
-	 * This will apply to all instance of {@link PaginatedMessage}
-	 * @param promptMessage The new `promptMessage` to set
+	 * Sets the {@link PaginatedMessage.selectMenuOptions} for this instance of {@link PaginatedMessage}.
+	 * This will only apply to this one instance and no others.
+	 * @param newOptions The new options generator to set
 	 * @returns The current instance of {@link PaginatedMessage}
 	 */
-	public setPromptMessage(promptMessage: PromptMessageFunction) {
-		PaginatedMessage.promptMessage = promptMessage;
+	public setSelectMenuOptions(newOptions: PaginatedMessageSelectMenuOptionsFunction): this {
+		this.selectMenuOptions = newOptions;
 		return this;
 	}
 
@@ -204,7 +214,7 @@ export class PaginatedMessage {
 	 * @param wrongUserInteractionReply The new `wrongUserInteractionReply` to set
 	 * @returns The current instance of {@link PaginatedMessage}
 	 */
-	public setWrongUserInteractionReply(wrongUserInteractionReply: WrongUserInteractionReplyFunction) {
+	public setWrongUserInteractionReply(wrongUserInteractionReply: PaginatedMessageWrongUserInteractionReplyFunction): this {
 		this.wrongUserInteractionReply = wrongUserInteractionReply;
 		return this;
 	}
@@ -231,7 +241,7 @@ export class PaginatedMessage {
 	 * Clears all current actions and sets them. The order given is the order they will be used.
 	 * @param actions The actions to set.
 	 */
-	public setActions(actions: IPaginatedMessageAction[]): this {
+	public setActions(actions: PaginatedMessageAction[]): this {
 		this.actions.clear();
 		return this.addActions(actions);
 	}
@@ -240,7 +250,7 @@ export class PaginatedMessage {
 	 * Adds actions to the existing ones. The order given is the order they will be used.
 	 * @param actions The actions to add.
 	 */
-	public addActions(actions: IPaginatedMessageAction[]): this {
+	public addActions(actions: PaginatedMessageAction[]): this {
 		for (const action of actions) this.addAction(action);
 		return this;
 	}
@@ -249,7 +259,7 @@ export class PaginatedMessage {
 	 * Adds an action to the existing ones. This will be added as the last action.
 	 * @param action The action to add.
 	 */
-	public addAction(action: IPaginatedMessageAction): this {
+	public addAction(action: PaginatedMessageAction): this {
 		this.actions.set(action.customId, action);
 		return this;
 	}
@@ -266,7 +276,7 @@ export class PaginatedMessage {
 	 * Clears all current pages and messages and sets them. The order given is the order they will be used.
 	 * @param pages The pages to set.
 	 */
-	public setPages(pages: MessagePage[]) {
+	public setPages(pages: PaginatedMessagePage[]) {
 		this.pages = [];
 		this.messages = [];
 		this.addPages(pages);
@@ -283,7 +293,7 @@ export class PaginatedMessage {
 	 *
 	 * @param page The page to add.
 	 */
-	public addPage(page: MessagePage): this {
+	public addPage(page: PaginatedMessagePage): this {
 		this.pages.push(page);
 
 		if (isFunction(page) || isObject(page)) {
@@ -611,7 +621,7 @@ export class PaginatedMessage {
 	 * Add pages to the existing ones. The order given is the order they will be used.
 	 * @param pages The pages to add.
 	 */
-	public addPages(pages: MessagePage[]): this {
+	public addPages(pages: PaginatedMessagePage[]): this {
 		for (const page of pages) this.addPage(page);
 		return this;
 	}
@@ -668,7 +678,7 @@ export class PaginatedMessage {
 	 * Executed whenever an action is triggered and resolved.
 	 * @param index The index to resolve.
 	 */
-	public async resolvePage(index: number): Promise<MessagePage> {
+	public async resolvePage(index: number): Promise<PaginatedMessagePage> {
 		// If the message was already processed, do not load it again:
 		const message = this.messages[index];
 		if (message !== null) return message;
@@ -703,12 +713,19 @@ export class PaginatedMessage {
 		// Merge in the advanced options
 		page = { ...page, ...(this.paginatedMessageData ?? {}) };
 
-		const messageComponents = Array.from(this.actions.values()).map<MessageButton>((button) => new MessageButton(button));
+		const messageComponents = Array.from(this.actions.values()).map<MessageButton | MessageSelectMenu>((interaction) => {
+			return isMessageButtonInteraction(interaction)
+				? new MessageButton(interaction)
+				: new MessageSelectMenu({
+						...interaction,
+						options: this.pages.map((_, index) => ({
+							...this.selectMenuOptions(index + 1),
+							value: index.toString()
+						}))
+				  });
+		});
 
-		const rowChunkedComponents = chunk(messageComponents, 5);
-		const actionRows = rowChunkedComponents.map((components) => new MessageActionRow().setComponents(components));
-
-		page.components = actionRows;
+		page.components = createPartitionedMessageRow(messageComponents);
 
 		if (this.response) await this.response.edit(page as WebhookEditMessageOptions);
 		else this.response = await channel.send(page as MessageOptions);
@@ -721,10 +738,9 @@ export class PaginatedMessage {
 	 */
 	protected setUpCollector(channel: Message['channel'], targetUser: User): void {
 		if (this.pages.length > 1) {
-			this.collector = this.response!.createMessageComponentCollector<MessageComponentTypes.BUTTON>({
+			this.collector = this.response!.createMessageComponentCollector({
 				filter: (interaction) => this.actions.has(interaction.customId),
-				idle: this.idle,
-				componentType: Constants.MessageComponentTypes.BUTTON
+				idle: this.idle
 			})
 				.on('collect', this.handleCollect.bind(this, targetUser, channel))
 				.on('end', this.handleEnd.bind(this));
@@ -737,7 +753,7 @@ export class PaginatedMessage {
 	 * @param channel The channel the paginated message runs at.
 	 * @param index The index of the current page.
 	 */
-	protected async handlePageLoad(page: MessagePage, index: number): Promise<MessageOptionsUnion> {
+	protected async handlePageLoad(page: PaginatedMessagePage, index: number): Promise<PaginatedMessageMessageOptionsUnion> {
 		const options = isFunction(page) ? await page(index, this.pages, this) : page;
 		const resolved = isObject(options) ? options : this.applyTemplate(this.template, options);
 		return this.applyFooter(resolved, index);
@@ -749,7 +765,11 @@ export class PaginatedMessage {
 	 * @param channel The channel the handler is running at.
 	 * @param interaction The button interaction that was received.
 	 */
-	protected async handleCollect(targetUser: User, channel: Message['channel'], interaction: ButtonInteraction): Promise<void> {
+	protected async handleCollect(
+		targetUser: User,
+		channel: Message['channel'],
+		interaction: ButtonInteraction | SelectMenuInteraction
+	): Promise<void> {
 		if (interaction.user.id === targetUser.id) {
 			const action = this.actions.get(interaction.customId)!;
 			const previousIndex = this.index;
@@ -787,7 +807,7 @@ export class PaginatedMessage {
 	 * Handles the `end` event from the collector.
 	 * @param reason The reason for which the collector was ended.
 	 */
-	protected handleEnd(_: Collection<Snowflake, ButtonInteraction>, reason: string): void {
+	protected handleEnd(_: Collection<Snowflake, ButtonInteraction | SelectMenuInteraction>, reason: string): void {
 		// Remove all listeners from the collector:
 		this.collector?.removeAllListeners();
 
@@ -797,7 +817,7 @@ export class PaginatedMessage {
 		}
 	}
 
-	protected applyFooter(message: MessageOptionsUnion, index: number): MessageOptionsUnion {
+	protected applyFooter(message: PaginatedMessageMessageOptionsUnion, index: number): PaginatedMessageMessageOptionsUnion {
 		if (!message.embeds?.length) return message;
 
 		for (const [idx, embed] of Object.entries(message.embeds)) {
@@ -812,14 +832,20 @@ export class PaginatedMessage {
 		return message;
 	}
 
-	private applyTemplate(template: MessageOptionsUnion, options: MessageOptionsUnion): MessageOptionsUnion {
+	private applyTemplate(
+		template: PaginatedMessageMessageOptionsUnion,
+		options: PaginatedMessageMessageOptionsUnion
+	): PaginatedMessageMessageOptionsUnion {
 		const embedData = this.applyTemplateEmbed(template.embeds, options.embeds);
 		const embeds = embedData ? [embedData] : undefined;
 
 		return { ...template, ...options, embeds };
 	}
 
-	private applyTemplateEmbed(template: EmbedResolvable, embed: EmbedResolvable): APIEmbed | MessageEmbed | MessageEmbedOptions | undefined {
+	private applyTemplateEmbed(
+		template: PaginatedMessageEmbedResolvable,
+		embed: PaginatedMessageEmbedResolvable
+	): APIEmbed | MessageEmbed | MessageEmbedOptions | undefined {
 		if (!embed) return template?.[0];
 		if (!template) return embed?.[0];
 		return this.mergeEmbeds(template?.[0], embed?.[0]);
@@ -856,52 +882,24 @@ export class PaginatedMessage {
 	/**
 	 * The default actions of this handler.
 	 */
-	public static defaultActions: IPaginatedMessageAction[] = [
+	public static defaultActions: PaginatedMessageAction[] = [
 		{
 			customId: '@sapphire/paginated-messages.goToPage',
-			style: 'PRIMARY',
-			emoji: '🔢',
-			run: async ({ handler, author, channel, interaction }) => {
-				await interaction.deferUpdate();
-
-				const promptMessage = PaginatedMessage.promptMessage(interaction.user);
-
-				await interaction.followUp(
-					isObject(promptMessage) ? promptMessage : { content: promptMessage, ephemeral: true, allowedMentions: { users: [], roles: [] } }
-				);
-
-				const collected = await channel
-					.awaitMessages({
-						filter: (message: Message) => message.author.id === author.id,
-						max: 1,
-						idle: Time.Minute * 10
-					})
-					.catch(() => null);
-
-				if (collected) {
-					const responseMessage = collected.first();
-
-					// if (questionMessage.deletable) await questionMessage.delete();
-					if (responseMessage) {
-						if (responseMessage.deletable) await responseMessage.delete();
-
-						const i = Number(responseMessage.content) - 1;
-
-						if (!Number.isNaN(i) && handler.hasPage(i)) handler.index = i;
-					}
-				}
-			}
+			type: Constants.MessageComponentTypes.SELECT_MENU,
+			run: ({ handler, interaction }) => interaction.isSelectMenu() && (handler.index = parseInt(interaction.values[0], 10))
 		},
 		{
 			customId: '@sapphire/paginated-messages.firstPage',
 			style: 'PRIMARY',
 			emoji: '⏪',
+			type: Constants.MessageComponentTypes.BUTTON,
 			run: ({ handler }) => (handler.index = 0)
 		},
 		{
 			customId: '@sapphire/paginated-messages.previousPage',
 			style: 'PRIMARY',
 			emoji: '◀️',
+			type: Constants.MessageComponentTypes.BUTTON,
 			run: ({ handler }) => {
 				if (handler.index === 0) handler.index = handler.pages.length - 1;
 				else --handler.index;
@@ -911,6 +909,7 @@ export class PaginatedMessage {
 			customId: '@sapphire/paginated-messages.nextPage',
 			style: 'PRIMARY',
 			emoji: '▶️',
+			type: Constants.MessageComponentTypes.BUTTON,
 			run: ({ handler }) => {
 				if (handler.index === handler.pages.length - 1) handler.index = 0;
 				else ++handler.index;
@@ -920,12 +919,14 @@ export class PaginatedMessage {
 			customId: '@sapphire/paginated-messages.goToLastPage',
 			style: 'PRIMARY',
 			emoji: '⏩',
+			type: Constants.MessageComponentTypes.BUTTON,
 			run: ({ handler }) => (handler.index = handler.pages.length - 1)
 		},
 		{
 			customId: '@sapphire/paginated-messages.stop',
 			style: 'DANGER',
 			emoji: '⏹️',
+			type: Constants.MessageComponentTypes.BUTTON,
 			run: async ({ collector, response }) => {
 				collector.stop();
 				await response.edit({ components: [] });
@@ -988,19 +989,16 @@ export class PaginatedMessage {
 	public static readonly handlers = new Map<string, PaginatedMessage>();
 
 	/**
-	 * A generator for {@link MessageComponentInteraction#followUp} that will be called and sent whenever the user presses the 🔢 button, prompting them to sent their page of choice.
-	 * When modifying this it is recommended that the message is set to be ephemeral so only the user that is pressing the buttons can see them.
-	 * Furthermore, we also recommend setting `allowedMentions: { users: [], roles: [] }`, so you don't have to worry about accidentally pinging anyone.
+	 * A generator for {@link MessageSelectOption} that will be used to generate the options for the {@link MessageSelectMenu}.
+	 * We do not allow overwriting the {@link MessageSelectOption#value} property with this, as it is vital to how we handle
+	 * select menu interactions.
 	 *
-	 * When setting just a string, we will add `{ ephemeral: true, allowedMentions: { users: [], roles: [] } }` for you.
-	 *
-	 * @param interactionUser The {@link User} that clicked the button.
+	 * @param pageIndex The index of the page to add to the {@link MessageSelectMenu}. We will add 1 to this number because our pages are 0 based,
+	 * so this will represent the pages as seen by the user.
 	 * @default
 	 * ```ts
 	 * {
-	 * 	content: `What page would you like to jump to?`,
-	 * 	ephemeral: true,
-	 * 	allowedMentions: { users: [], roles: [] }
+	 * 	label: `Page ${pageIndex}`
 	 * }
 	 * ```
 	 * @remark To overwrite this property change it in a "setup" file prior to calling `client.login()` for your bot.
@@ -1009,28 +1007,13 @@ export class PaginatedMessage {
 	 * ```typescript
 	 * import { PaginatedMessage } from '@sapphire/discord.js-utilities';
 	 *
-	 * // We  will add ephemeral and no allowed mention for string only overwrites
-	 * PaginatedMessage.promptMessage = (interactionUser) =>
-	 *     `Please send the number of the page you would like to jump to.`;
-	 * ```
-	 *
-	 * @example
-	 * ```typescript
-	 * import { PaginatedMessage } from '@sapphire/discord.js-utilities';
-	 * import { Formatters } from 'discord.js';
-	 *
-	 * PaginatedMessage.promptMessage = (interactionUser) => ({
-	 * 	content: `${Formatters.userMention(interactionUser.id)}, please tell me which page you want to jump to.`,
-	 * 	ephemeral: true,
-	 * 	allowedMentions: { users: [], roles: [] }
+	 * PaginatedMessage.selectMenuOptions = (pageIndex) => ({
+	 * 	 label: `Go to page: ${pageIndex}`,
+	 * 	 description: 'This is a description'
 	 * });
 	 * ```
 	 */
-	public static promptMessage: PromptMessageFunction = () => ({
-		content: 'What page would you like to jump to?',
-		ephemeral: true,
-		allowedMentions: { users: [], roles: [] }
-	});
+	public static selectMenuOptions: PaginatedMessageSelectMenuOptionsFunction = (pageIndex) => ({ label: `Page ${pageIndex}` });
 
 	/**
 	 * A generator for {@link MessageComponentInteraction#reply} that will be called and sent whenever an untargeted user interacts with one of the buttons.
@@ -1074,7 +1057,7 @@ export class PaginatedMessage {
 	 * });
 	 * ```
 	 */
-	public static wrongUserInteractionReply: WrongUserInteractionReplyFunction = (targetUser: User) => ({
+	public static wrongUserInteractionReply: PaginatedMessageWrongUserInteractionReplyFunction = (targetUser: User) => ({
 		content: `Please stop clicking the buttons on this message. They are only for ${Formatters.userMention(targetUser.id)}.`,
 		ephemeral: true,
 		allowedMentions: { users: [], roles: [] }
@@ -1090,105 +1073,3 @@ export class PaginatedMessage {
 export interface PaginatedMessage {
 	constructor: typeof PaginatedMessage;
 }
-
-/**
- * To utilize actions you can use the {@link IPaginatedMessageAction} by implementing it into a class.
- * @example
- * ```typescript
- * class ForwardAction implements IPaginatedMessageAction {
- *   public id = '▶️';
- *
- *   public run({ handler }) {
- *     if (handler.index !== handler.pages.length - 1) ++handler.index;
- *   }
- * }
- *
- * // You can also give the object directly.
- *
- * const StopAction: IPaginatedMessageAction {
- *   customId: 'CustomStopAction',
- *   emoji: '⏹️',
- *   run: ({ collector }) => {
- *     collector.stop();
- *   }
- * }
- * ```
- */
-export interface IPaginatedMessageAction extends InteractionButtonOptions {
-	run(context: PaginatedMessageActionContext): Awaitable<unknown>;
-}
-
-/**
- * The context to be used in {@link IPaginatedMessageAction}.
- */
-export interface PaginatedMessageActionContext {
-	interaction: ButtonInteraction;
-	handler: PaginatedMessage;
-	author: User;
-	channel: Message['channel'];
-	response: Message;
-	collector: InteractionCollector<ButtonInteraction>;
-}
-
-export interface PaginatedMessageOptions {
-	/**
-	 * The pages to display in this {@link PaginatedMessage}
-	 */
-	pages?: MessagePage[];
-	/**
-	 * Custom actions to provide when sending the paginated message
-	 */
-	actions?: IPaginatedMessageAction[];
-	/**
-	 * The {@link MessageEmbed} or {@link MessageOptions} options to apply to the entire {@link PaginatedMessage}
-	 */
-	template?: MessageEmbed | MessageOptions;
-	/**
-	 * @seealso {@link PaginatedMessage.pageIndexPrefix}
-	 */
-	pageIndexPrefix?: string;
-	/**
-	 * @seealso {@link PaginatedMessage.embedFooterSeparator}
-	 */
-	embedFooterSeparator?: string;
-	/**
-	 * Additional options that are applied to each message when sending it to Discord.
-	 * Be careful with using this, misusing it can cause issues, such as sending empty messages.
-	 * @remark **This is for advanced usages only!**
-	 *
-	 * @default null
-	 */
-	paginatedMessageData?: Omit<MessageOptionsUnion, 'components'> | null;
-}
-
-/**
- * The pages that are used for {@link PaginatedMessage.pages}
- *
- * Pages can be either a {@link Message},
- * or an {@link Awaitable} function that returns a {@link Message}.
- *
- * Furthermore, {@link MessageOptions} can be used to
- * construct the pages without state. This library also provides {@link MessageBuilder}, which can be used as a chainable
- * alternative to raw objects, similar to how {@link MessageEmbed}
- * works.
- *
- * Ideally, however, you should use the utility functions
- * {@link PaginatedMessage.addPageBuilder `addPageBuilder`}, {@link PaginatedMessage.addPageContent `addPageContent`}, and {@link PaginatedMessage.addPageEmbed `addPageEmbed`}
- * as opposed to manually constructing {@link MessagePage `MessagePages`}. This is because a {@link PaginatedMessage} does a lot of post-processing
- * on the provided pages and we can only guarantee this will work properly when using the utility methods.
- */
-export type MessagePage = ((index: number, pages: MessagePage[], handler: PaginatedMessage) => Awaitable<MessageOptionsUnion>) | MessageOptionsUnion;
-
-/**
- * The type of the custom function that can be set for the {@link PaginatedMessage.promptMessage}
- */
-export type PromptMessageFunction = (interactionUser: User) => Parameters<MessageComponentInteraction['reply']>[0];
-
-/**
- * The type of the custom function that can be set for the {@link PaginatedMessage.wrongUserInteractionReply}
- */
-export type WrongUserInteractionReplyFunction = (targetUser: User, interactionUser: User) => Parameters<MessageComponentInteraction['reply']>[0];
-
-type EmbedResolvable = MessageOptions['embeds'];
-
-type MessageOptionsUnion = MessageOptions | WebhookEditMessageOptions;
