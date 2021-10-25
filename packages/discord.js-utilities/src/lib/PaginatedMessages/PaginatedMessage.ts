@@ -307,7 +307,7 @@ export class PaginatedMessage {
 					{
 						type: 'PaginatedMessageExceededMessagePageAmount',
 						code: 'PAGINATED_MESSAGE_EXCEEDED_MAXIMUM_AMOUNT_OF_PAGES',
-						detail: `If you do need more than 25 pages you can extend the class and overwrite the actions in the constructor. (This warning was emitted for ${this.response?.url})`
+						detail: `If you do need more than 25 pages you can extend the class and overwrite the actions in the constructor.`
 					}
 				);
 				this.hasEmittedWarning = true;
