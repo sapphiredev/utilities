@@ -86,20 +86,5 @@
 			"path": "./node_modules/cz-conventional-changelog"
 		}
 	},
-	"resolutions": {
-		"acorn": "^8.5.0",
-		"minimist": "^1.2.5",
-		"kind-of": "^6.0.3",
-		"jest-environment-jsdom": "https://registry.yarnpkg.com/@favware/skip-dependency/-/skip-dependency-1.1.1.tgz",
-		"jest-jasmine2": "https://registry.yarnpkg.com/@favware/skip-dependency/-/skip-dependency-1.1.1.tgz",
-		"dot-prop": "^6.0.1",
-		"lodash": "^4.17.21",
-		"marked": "^3.0.8",
-		"merge": "^2.1.1",
-		"set-value": "^4.1.0",
-		"tar": "^6.1.11",
-		"trim": "^1.0.1",
-		"trim-newlines": "^4.0.2"
-	},
 	"packageManager": "yarn@3.0.2"
 }
