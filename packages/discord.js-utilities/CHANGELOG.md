@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@3.2.2...@sapphire/discord.js-utilities@4.0.0) (2021-10-26)
+
+### Features
+
+-   **PaginatedMessage:** migrate from emoji reactions to MessageButtons ([#203](https://github.com/sapphiredev/utilities/issues/203)) ([aeb3ee6](https://github.com/sapphiredev/utilities/commit/aeb3ee6309013652f9f1c0a6a87397de6586abf8))
+
+### BREAKING CHANGES
+
+-   **PaginatedMessage:** `PaginatedMessage` no longer uses emoji reactions. This means the bot no longer needs `MANAGE_MESSAGES` to change pages. You can now fully use `PaginatedMessage` in DMs!
+-   **PaginatedMessage:** It is no longer possible to add more than 25 pages to a PaginatedMessage without modifying the action as we now use a SelectMenu for custom page picking as opposed to prompt and chat input, and Discord limits the amount of options in a SelectMenu to 25. Upon hitting 25 pages any others won't be added, and a warning will be emitted to inform you of this issue.
+-   **PaginatedMessage:** A bunch of TypeScript types for `PaginatedMessage` changed in name, if you were previously explicitly setting any types you will have to update those. All types for `PaginatedMessage` now follow the naming pattern of `PaginatedMessage...`.
+-   **PaginatedMessage:** `PaginatedMessage.promptMessage` has been removed as the prompt message has been replaced with a SelectMenu. You can customize the entries for the SelectMenu with `PaginatedMessage.setSelectMenuOptions`.
+-   **PaginatedMessage:** When adding pages to a `PaginatedMessage` through the `pages` constructor option, that now takes an object of `MessageOptions | WebhookEditMessageOptions`.
+-   **PaginatedMessage:** The structure for custom actions through `PaginatedMessage#defaultActions` or in the constructor of a new `PaginatedMessage` has changed to incorporate `MessageButton`s. Please check the updated documentation to see how to update your actions.
+-   **PaginatedMessage:** `PaginatedMessage` option `paginatedMessageData` now takes an object of type `MessageOptions | WebhookEditMessageOptions`.
+-   **PaginatedMessage:** Whenever someone clicks a button of a PaginatedMessage that's not for them they will be send an ephemeral message to inform them of this. You can disable this by overwriting `PaginatedMessage#handleCollect`. Furthermore, if you just want a different message, you can set it with the static property `PaginatedMessage.wrongUserMessage`.
+
 ## [3.2.2](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@3.2.1...@sapphire/discord.js-utilities@3.2.2) (2021-10-17)
 
 ### Bug Fixes

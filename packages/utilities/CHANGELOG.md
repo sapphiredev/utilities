@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.5](https://github.com/sapphiredev/utilities/compare/@sapphire/utilities@3.0.4...@sapphire/utilities@3.0.5) (2021-10-26)
+
+**Note:** Version bump only for package @sapphire/utilities
+
 ## [3.0.4](https://github.com/sapphiredev/utilities/compare/@sapphire/utilities@3.0.3...@sapphire/utilities@3.0.4) (2021-10-17)
 
 ### Bug Fixes

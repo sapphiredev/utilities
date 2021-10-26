@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.3](https://github.com/sapphiredev/utilities/compare/@sapphire/decorators@3.1.2...@sapphire/decorators@3.1.3) (2021-10-26)
+
+### Bug Fixes
+
+-   **docs:** replace command usage of `run` to `messageRun` ([#204](https://github.com/sapphiredev/utilities/issues/204)) ([8279ec0](https://github.com/sapphiredev/utilities/commit/8279ec01e9037fb12e37e872979966c1c2e264e1))
+
 ## [3.1.2](https://github.com/sapphiredev/utilities/compare/@sapphire/decorators@3.1.1...@sapphire/decorators@3.1.2) (2021-10-17)
 
 ### Bug Fixes
