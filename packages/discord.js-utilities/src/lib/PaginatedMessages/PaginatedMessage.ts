@@ -318,10 +318,6 @@ export class PaginatedMessage {
 
 		this.pages.push(page);
 
-		if (isFunction(page) || isObject(page)) {
-			this.messages.push(page);
-		}
-
 		return this;
 	}
 
@@ -703,7 +699,7 @@ export class PaginatedMessage {
 	public async resolvePage(index: number): Promise<PaginatedMessagePage> {
 		// If the message was already processed, do not load it again:
 		const message = this.messages[index];
-		if (message !== null) return message;
+		if (!isNullish(message)) return message;
 
 		// Load the page and return it:
 		const resolved = await this.handlePageLoad(this.pages[index], index);
@@ -783,8 +779,8 @@ export class PaginatedMessage {
 	 */
 	protected async handlePageLoad(page: PaginatedMessagePage, index: number): Promise<PaginatedMessageMessageOptionsUnion> {
 		const options = isFunction(page) ? await page(index, this.pages, this) : page;
-		const resolved = isObject(options) ? options : this.applyTemplate(this.template, options);
-		return this.applyFooter(resolved, index);
+		const optionsWithTemplate = this.applyTemplate(this.template, options);
+		return this.applyFooter(optionsWithTemplate, index);
 	}
 
 	/**
