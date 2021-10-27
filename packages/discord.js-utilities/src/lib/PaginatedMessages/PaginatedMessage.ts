@@ -1,5 +1,5 @@
 import { Time } from '@sapphire/time-utilities';
-import { isFunction, isObject } from '@sapphire/utilities';
+import { isFunction, isNullish, isObject } from '@sapphire/utilities';
 import type { APIEmbed } from 'discord-api-types/v9';
 import {
 	ButtonInteraction,
@@ -699,7 +699,9 @@ export class PaginatedMessage {
 	public async resolvePage(index: number): Promise<PaginatedMessagePage> {
 		// If the message was already processed, do not load it again:
 		const message = this.messages[index];
-		if (!isNullish(message)) return message;
+		if (!isNullish(message)) {
+			return message;
+		}
 
 		// Load the page and return it:
 		const resolved = await this.handlePageLoad(this.pages[index], index);
@@ -734,19 +736,22 @@ export class PaginatedMessage {
 		// Merge in the advanced options
 		page = { ...page, ...(this.paginatedMessageData ?? {}) };
 
-		const messageComponents = [...this.actions.values()].map<MessageButton | MessageSelectMenu>((interaction) => {
-			return isMessageButtonInteraction(interaction)
-				? new MessageButton(interaction)
-				: new MessageSelectMenu({
-						...interaction,
-						options: this.pages.map((_, index) => ({
-							...this.selectMenuOptions(index + 1),
-							value: index.toString()
-						}))
-				  });
-		});
+		// If we do not have more than 1 page then there is no reason to add message components
+		if (this.pages.length > 1) {
+			const messageComponents = [...this.actions.values()].map<MessageButton | MessageSelectMenu>((interaction) => {
+				return isMessageButtonInteraction(interaction)
+					? new MessageButton(interaction)
+					: new MessageSelectMenu({
+							...interaction,
+							options: this.pages.map((_, index) => ({
+								...this.selectMenuOptions(index + 1),
+								value: index.toString()
+							}))
+					  });
+			});
 
-		page.components = createPartitionedMessageRow(messageComponents);
+			page.components = createPartitionedMessageRow(messageComponents);
+		}
 
 		if (this.response) {
 			await this.response.edit(page as WebhookEditMessageOptions);
@@ -842,7 +847,9 @@ export class PaginatedMessage {
 	}
 
 	protected applyFooter(message: PaginatedMessageMessageOptionsUnion, index: number): PaginatedMessageMessageOptionsUnion {
-		if (!message.embeds?.length) return message;
+		if (!message.embeds?.length) {
+			return message;
+		}
 
 		for (const [idx, embed] of Object.entries(message.embeds)) {
 			if (embed) {
@@ -870,8 +877,14 @@ export class PaginatedMessage {
 		template: PaginatedMessageEmbedResolvable,
 		embed: PaginatedMessageEmbedResolvable
 	): APIEmbed | MessageEmbed | MessageEmbedOptions | undefined {
-		if (!embed) return template?.[0];
-		if (!template) return embed?.[0];
+		if (!embed) {
+			return template?.[0];
+		}
+
+		if (!template) {
+			return embed?.[0];
+		}
+
 		return this.mergeEmbeds(template?.[0], embed?.[0]);
 	}
 
@@ -898,8 +911,14 @@ export class PaginatedMessage {
 	}
 
 	private mergeArrays<T>(template?: T[], array?: T[]): undefined | T[] {
-		if (!array) return template;
-		if (!template) return array;
+		if (!array) {
+			return template;
+		}
+
+		if (!template) {
+			return array;
+		}
+
 		return [...template, ...array];
 	}
 
@@ -925,8 +944,11 @@ export class PaginatedMessage {
 			emoji: '◀️',
 			type: Constants.MessageComponentTypes.BUTTON,
 			run: ({ handler }) => {
-				if (handler.index === 0) handler.index = handler.pages.length - 1;
-				else --handler.index;
+				if (handler.index === 0) {
+					handler.index = handler.pages.length - 1;
+				} else {
+					--handler.index;
+				}
 			}
 		},
 		{
@@ -935,8 +957,11 @@ export class PaginatedMessage {
 			emoji: '▶️',
 			type: Constants.MessageComponentTypes.BUTTON,
 			run: ({ handler }) => {
-				if (handler.index === handler.pages.length - 1) handler.index = 0;
-				else ++handler.index;
+				if (handler.index === handler.pages.length - 1) {
+					handler.index = 0;
+				} else {
+					++handler.index;
+				}
 			}
 		},
 		{
@@ -1088,8 +1113,14 @@ export class PaginatedMessage {
 	});
 
 	private static resolveTemplate(template?: MessageEmbed | MessageOptions): MessageOptions {
-		if (template === undefined) return {};
-		if (template instanceof MessageEmbed) return { embeds: [template] };
+		if (template === undefined) {
+			return {};
+		}
+
+		if (template instanceof MessageEmbed) {
+			return { embeds: [template] };
+		}
+
 		return template;
 	}
 }
