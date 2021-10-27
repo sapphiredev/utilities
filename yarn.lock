@@ -2080,13 +2080,25 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@sapphire/discord.js-utilities@^3.2.2, @sapphire/discord.js-utilities@workspace:packages/discord.js-utilities":
-  version: 0.0.0-use.local
-  resolution: "@sapphire/discord.js-utilities@workspace:packages/discord.js-utilities"
+"@sapphire/discord.js-utilities@npm:^3.2.2":
+  version: 3.2.2
+  resolution: "@sapphire/discord.js-utilities@npm:3.2.2"
   dependencies:
     "@sapphire/discord-utilities": ^2.2.2
     "@sapphire/time-utilities": ^1.4.4
     "@sapphire/utilities": ^3.0.4
+  checksum: 34338727587a306fe476493d86f39aa56552d97f156ea0fee10c8ca756061b91a2bb6888a1154c8ce3b0e476ef52560f6fa078ba61e91df36577346bd6dce53b
+  languageName: node
+  linkType: hard
+
+"@sapphire/discord.js-utilities@workspace:packages/discord.js-utilities":
+  version: 0.0.0-use.local
+  resolution: "@sapphire/discord.js-utilities@workspace:packages/discord.js-utilities"
+  dependencies:
+    "@sapphire/discord-utilities": ^2.2.2
+    "@sapphire/time-utilities": ^1.4.5
+    "@sapphire/utilities": ^3.0.5
+    tslib: ^2.3.1
   languageName: unknown
   linkType: soft
 
@@ -2164,7 +2176,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@sapphire/ratelimits@workspace:packages/ratelimits"
   dependencies:
-    "@sapphire/time-utilities": ^1.4.4
+    "@sapphire/time-utilities": ^1.4.5
   languageName: unknown
   linkType: soft
 
@@ -2182,11 +2194,11 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@sapphire/time-utilities@^1.4.4, @sapphire/time-utilities@workspace:packages/time-utilities":
+"@sapphire/time-utilities@^1.4.4, @sapphire/time-utilities@^1.4.5, @sapphire/time-utilities@workspace:packages/time-utilities":
   version: 0.0.0-use.local
   resolution: "@sapphire/time-utilities@workspace:packages/time-utilities"
   dependencies:
-    "@sapphire/utilities": ^3.0.4
+    "@sapphire/utilities": ^3.0.5
   languageName: unknown
   linkType: soft
 
@@ -2199,7 +2211,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@sapphire/utilities@^3.0.1, @sapphire/utilities@^3.0.3, @sapphire/utilities@^3.0.4, @sapphire/utilities@workspace:packages/utilities":
+"@sapphire/utilities@^3.0.1, @sapphire/utilities@^3.0.3, @sapphire/utilities@^3.0.4, @sapphire/utilities@^3.0.5, @sapphire/utilities@workspace:packages/utilities":
   version: 0.0.0-use.local
   resolution: "@sapphire/utilities@workspace:packages/utilities"
   languageName: unknown
