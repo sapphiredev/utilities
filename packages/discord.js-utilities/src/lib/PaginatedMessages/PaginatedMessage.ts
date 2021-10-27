@@ -732,6 +732,9 @@ export class PaginatedMessage {
 		// Get the current page
 		let page = this.messages[this.index]!;
 
+		// If the page is a callback function such as with `addAsyncPageEmbed` then resolve it here
+		page = isFunction(page) ? await page(this.index, this.pages, this) : page;
+
 		// Merge in the advanced options
 		page = { ...page, ...(this.paginatedMessageData ?? {}) };
 
@@ -749,8 +752,11 @@ export class PaginatedMessage {
 
 		page.components = createPartitionedMessageRow(messageComponents);
 
-		if (this.response) await this.response.edit(page as WebhookEditMessageOptions);
-		else this.response = await channel.send(page as MessageOptions);
+		if (this.response) {
+			await this.response.edit(page as WebhookEditMessageOptions);
+		} else {
+			this.response = await channel.send(page as MessageOptions);
+		}
 	}
 
 	/**
