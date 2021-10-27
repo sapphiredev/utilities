@@ -1,5 +1,5 @@
 import { Time } from '@sapphire/time-utilities';
-import { isFunction, isNullish, isObject } from '@sapphire/utilities';
+import { deepClone, isFunction, isNullish, isObject } from '@sapphire/utilities';
 import type { APIEmbed } from 'discord-api-types/v9';
 import {
 	ButtonInteraction,
@@ -783,8 +783,16 @@ export class PaginatedMessage {
 	 * @param index The index of the current page.
 	 */
 	protected async handlePageLoad(page: PaginatedMessagePage, index: number): Promise<PaginatedMessageMessageOptionsUnion> {
+		// Resolve the options from a function or an object
 		const options = isFunction(page) ? await page(index, this.pages, this) : page;
-		const optionsWithTemplate = this.applyTemplate(this.template, options);
+
+		// Clone the template to leave the original intact
+		const clonedTemplate = deepClone(this.template);
+
+		// Apply the template to the page
+		const optionsWithTemplate = this.applyTemplate(clonedTemplate, options);
+
+		// Apply the footer to the embed, if any
 		return this.applyFooter(optionsWithTemplate, index);
 	}
 
