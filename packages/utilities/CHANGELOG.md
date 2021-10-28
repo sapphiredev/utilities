@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.6](https://github.com/sapphiredev/utilities/compare/@sapphire/utilities@3.0.5...@sapphire/utilities@3.0.6) (2021-10-28)
+
+### Bug Fixes
+
+-   **deepClone:** fixed deep cloning when there are classes ([d3aeed1](https://github.com/sapphiredev/utilities/commit/d3aeed1613ae642ca96b1bd6914f0d43c7c35807))
+
 ## [3.0.5](https://github.com/sapphiredev/utilities/compare/@sapphire/utilities@3.0.4...@sapphire/utilities@3.0.5) (2021-10-26)
 
 **Note:** Version bump only for package @sapphire/utilities

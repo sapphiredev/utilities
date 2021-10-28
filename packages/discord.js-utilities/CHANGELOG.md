@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.1](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@4.0.0...@sapphire/discord.js-utilities@4.0.1) (2021-10-28)
+
+### Bug Fixes
+
+-   **discord.js-utilities:** build with tsc instead of rollup ([59a3d03](https://github.com/sapphiredev/utilities/commit/59a3d03d97922dfcea2d29df973cbe79dc360a22))
+-   **PaginatedMessage:** ensure async function pages are resolved properly ([500b67b](https://github.com/sapphiredev/utilities/commit/500b67b0de95dc3cdac414a42058c5161148fede))
+-   **PaginatedMessage:** ensure components aren't added when there's 1 page or less ([9973b8e](https://github.com/sapphiredev/utilities/commit/9973b8e6043daf4d4b84196eca6ef4e47b66545e))
+-   **PaginatedMessage:** fixed template not applying ([1d9c7cc](https://github.com/sapphiredev/utilities/commit/1d9c7ccd539123ffbb999fde123c3bac373dde14))
+-   **PaginatedMessage:** properly resolve and apply template ([5d784bf](https://github.com/sapphiredev/utilities/commit/5d784bfbf7ce0e978b72b59efdf5c34f55204fc1))
+
 # [4.0.0](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@3.2.2...@sapphire/discord.js-utilities@4.0.0) (2021-10-26)
 
 ### Features
