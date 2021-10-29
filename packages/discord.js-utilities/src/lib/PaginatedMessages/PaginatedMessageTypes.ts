@@ -11,7 +11,8 @@ import type {
 	MessageSelectOptionData,
 	SelectMenuInteraction,
 	User,
-	WebhookEditMessageOptions
+	WebhookEditMessageOptions,
+	ExcludeEnum
 } from 'discord.js';
 import type { MessageButtonStyles, MessageComponentTypes } from 'discord.js/typings/enums';
 import type { PaginatedMessage } from './PaginatedMessage';
@@ -125,6 +126,3 @@ export type PaginatedMessageWrongUserInteractionReplyFunction = (
 export type PaginatedMessageEmbedResolvable = MessageOptions['embeds'];
 
 export type PaginatedMessageMessageOptionsUnion = MessageOptions | WebhookEditMessageOptions;
-
-// TODO: Remove after next DJS update when this type will be exported from their typings file
-type ExcludeEnum<T, K extends keyof T> = Exclude<keyof T | T[keyof T], K | T[K]>;

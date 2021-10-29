@@ -1,6 +1,5 @@
 import { Time } from '@sapphire/time-utilities';
 import { deepClone, isFunction, isNullish, isObject } from '@sapphire/utilities';
-import type { APIEmbed } from 'discord-api-types/v9';
 import {
 	ButtonInteraction,
 	Collection,
@@ -11,7 +10,6 @@ import {
 	MessageButton,
 	MessageComponentInteraction,
 	MessageEmbed,
-	MessageEmbedOptions,
 	MessageOptions,
 	MessageSelectMenu,
 	SelectMenuInteraction,
@@ -876,54 +874,59 @@ export class PaginatedMessage {
 		options: PaginatedMessageMessageOptionsUnion
 	): PaginatedMessageMessageOptionsUnion {
 		const embedData = this.applyTemplateEmbed(template.embeds, options.embeds);
-		const embeds = embedData ? [embedData] : undefined;
 
-		return { ...template, ...options, embeds };
+		return { ...template, ...options, embeds: embedData };
 	}
 
 	private applyTemplateEmbed(
-		template: PaginatedMessageEmbedResolvable,
-		embed: PaginatedMessageEmbedResolvable
-	): APIEmbed | MessageEmbed | MessageEmbedOptions | undefined {
-		if (!embed) {
-			return template?.[0];
+		templateEmbed: PaginatedMessageEmbedResolvable,
+		pageEmbeds: PaginatedMessageEmbedResolvable
+	): PaginatedMessageEmbedResolvable {
+		if (isNullish(pageEmbeds)) {
+			return templateEmbed ? [templateEmbed?.[0]] : undefined;
 		}
 
-		if (!template) {
-			return embed?.[0];
+		if (isNullish(templateEmbed)) {
+			return pageEmbeds;
 		}
 
-		return this.mergeEmbeds(template?.[0], embed?.[0]);
+		return this.mergeEmbeds(templateEmbed[0], pageEmbeds);
 	}
 
 	private mergeEmbeds(
-		template: APIEmbed | MessageEmbed | MessageEmbedOptions,
-		embed: APIEmbed | MessageEmbed | MessageEmbedOptions
-	): MessageEmbedOptions {
-		return {
-			title: embed.title ?? template.title ?? undefined,
-			description: embed.description ?? template.description ?? undefined,
-			url: embed.url ?? template.url ?? undefined,
-			timestamp:
-				(typeof embed.timestamp === 'string' ? new Date(embed.timestamp) : embed.timestamp) ??
-				(typeof template.timestamp === 'string' ? new Date(template.timestamp) : template.timestamp) ??
-				undefined,
-			color: embed.color ?? template.color ?? undefined,
-			fields: this.mergeArrays(template.fields, embed.fields),
-			author: embed.author ?? template.author ?? undefined,
-			thumbnail: embed.thumbnail ?? template.thumbnail ?? undefined,
-			image: embed.image ?? template.image ?? undefined,
-			video: embed.video ?? template.video ?? undefined,
-			footer: embed.footer ?? template.footer ?? undefined
-		};
+		templateEmbed: Exclude<PaginatedMessageEmbedResolvable, undefined>[0],
+		pageEmbeds: Exclude<PaginatedMessageEmbedResolvable, undefined>
+	): Exclude<PaginatedMessageEmbedResolvable, undefined> {
+		const mergedEmbeds: Exclude<PaginatedMessageEmbedResolvable, undefined> = [];
+
+		for (const pageEmbed of pageEmbeds) {
+			mergedEmbeds.push({
+				title: pageEmbed.title ?? templateEmbed.title ?? undefined,
+				description: pageEmbed.description ?? templateEmbed.description ?? undefined,
+				url: pageEmbed.url ?? templateEmbed.url ?? undefined,
+				timestamp:
+					(typeof pageEmbed.timestamp === 'string' ? new Date(pageEmbed.timestamp) : pageEmbed.timestamp) ??
+					(typeof templateEmbed.timestamp === 'string' ? new Date(templateEmbed.timestamp) : templateEmbed.timestamp) ??
+					undefined,
+				color: pageEmbed.color ?? templateEmbed.color ?? undefined,
+				fields: this.mergeArrays(templateEmbed.fields, pageEmbed.fields),
+				author: pageEmbed.author ?? templateEmbed.author ?? undefined,
+				thumbnail: pageEmbed.thumbnail ?? templateEmbed.thumbnail ?? undefined,
+				image: pageEmbed.image ?? templateEmbed.image ?? undefined,
+				video: pageEmbed.video ?? templateEmbed.video ?? undefined,
+				footer: pageEmbed.footer ?? templateEmbed.footer ?? undefined
+			});
+		}
+
+		return mergedEmbeds;
 	}
 
 	private mergeArrays<T>(template?: T[], array?: T[]): undefined | T[] {
-		if (!array) {
+		if (isNullish(array)) {
 			return template;
 		}
 
-		if (!template) {
+		if (isNullish(template)) {
 			return array;
 		}
 
