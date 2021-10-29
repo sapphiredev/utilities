@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.2](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@4.0.1...@sapphire/discord.js-utilities@4.0.2) (2021-10-29)
+
+### Bug Fixes
+
+-   **PaginatedMessage:** fixed multiple page embeds not working ([52f2cbb](https://github.com/sapphiredev/utilities/commit/52f2cbbc4690ec8a785015b7d429492668c7d45a))
+
 ## [4.0.1](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@4.0.0...@sapphire/discord.js-utilities@4.0.1) (2021-10-28)
 
 ### Bug Fixes
