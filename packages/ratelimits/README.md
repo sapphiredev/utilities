@@ -21,7 +21,6 @@
 -   [Usage](#usage)
     -   [Token RateLimitManager](#token-ratelimitmanager)
     -   [Leaky RateLimitManager](#leaky-ratelimitmanager)
--   [API Documentation](#api-documentation)
 -   [Buy us some doughnuts](#buy-us-some-doughnuts)
 -   [Contributors ✨](#contributors-%E2%9C%A8)
 
@@ -95,10 +94,6 @@ ratelimit.consume();
 ```
 
 ---
-
-## API Documentation
-
-For the full API documentation please refer to the TypeDoc generated [documentation](https://sapphiredev.github.io/utilities/modules/_sapphire_ratelimits.html).
 
 ## Buy us some doughnuts
 

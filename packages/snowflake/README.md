@@ -27,7 +27,6 @@
         -   [Snowflakes with custom epoch](#snowflakes-with-custom-epoch-1)
         -   [Snowflake with Discord epoch constant](#snowflake-with-discord-epoch-constant-1)
         -   [Snowflake with Twitter epoch constant](#snowflake-with-twitter-epoch-constant-1)
--   [API Documentation](#api-documentation)
 -   [Buy us some doughnuts](#buy-us-some-doughnuts)
 -   [Contributors ✨](#contributors-%E2%9C%A8)
 
@@ -156,10 +155,6 @@ const uniqueId = TwitterSnowflake.deconstruct('3971046231244935168');
 ```
 
 ---
-
-## API Documentation
-
-For the full API documentation please refer to the TypeDoc generated [documentation](https://sapphiredev.github.io/utilities/modules/_sapphire_snowflake.html).
 
 ## Buy us some doughnuts
 

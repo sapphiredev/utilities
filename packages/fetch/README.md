@@ -23,7 +23,6 @@
         -   [`GET`ting JSON data](#getting-json-data)
         -   [`GET`ting Buffer data (images, etc.)](#getting-buffer-data-images-etc)
         -   [`POST`ing JSON data](#posting-json-data)
-    -   [API Documentation](#api-documentation)
     -   [Buy us some doughnuts](#buy-us-some-doughnuts)
     -   [Contributors ✨](#contributors-%E2%9C%A8)
 
@@ -113,10 +112,6 @@ console.log(responseData);
 ```
 
 ---
-
-## API Documentation
-
-For the full API documentation please refer to the TypeDoc generated [documentation](https://sapphiredev.github.io/utilities/modules/_sapphire_fetch.html).
 
 ## Buy us some doughnuts
 

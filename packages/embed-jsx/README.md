@@ -60,10 +60,6 @@ Note: as of now the package is currently not fully typed, so to get around any c
 
 to your tsconfig.json
 
-## API Documentation
-
-For the full API documentation please refer to the TypeDoc generated [documentation](https://sapphiredev.github.io/utilities/modules/_sapphire_embed_jsx.html)
-
 ## Buy us some doughnuts
 
 Sapphire Project is and always will be open source, even if we don't get donations. That being said, we know there are amazing people who may still want to donate just to show their appreciation. Thank you very much in advance!

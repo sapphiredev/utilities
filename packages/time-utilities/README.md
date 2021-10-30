@@ -20,7 +20,6 @@
 -   [Installation](#installation)
 -   [Usage](#usage)
     -   [Basic Usage](#basic-usage)
--   [API Documentation](#api-documentation)
 -   [Buy us some doughnuts](#buy-us-some-doughnuts)
 -   [Contributors ✨](#contributors-%E2%9C%A8)
 
@@ -42,10 +41,6 @@ You can use the following command to install this package, or replace `npm insta
 ```sh
 npm install @sapphire/time-utilities
 ```
-
-## API Documentation
-
-For the full API documentation please refer to the TypeDoc generated [documentation](https://sapphiredev.github.io/utilities/modules/_sapphire_time_utilities.html).
 
 ## Buy us some doughnuts
 

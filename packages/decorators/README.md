@@ -34,10 +34,6 @@ npm install @sapphire/decorators @sapphire/discord.js-utilities @sapphire/utilit
 
 ---
 
-## API Documentation
-
-For the full API documentation please refer to the TypeDoc generated [documentation](https://sapphiredev.github.io/utilities/modules/_sapphire_decorators.html).
-
 ## Buy us some doughnuts
 
 Sapphire Community is and always will be open source, even if we don't get donations. That being said, we know there are amazing people who may still want to donate just to show their appreciation. Thank you very much in advance!
