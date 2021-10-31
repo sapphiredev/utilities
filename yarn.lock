@@ -6919,7 +6919,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lint-staged@npm:^11.2.5":
+"lint-staged@npm:^11.2.6":
   version: 11.2.6
   resolution: "lint-staged@npm:11.2.6"
   dependencies:
@@ -9030,7 +9030,7 @@ __metadata:
   dependencies:
     "@commitlint/cli": ^13.2.1
     "@commitlint/config-conventional": ^13.2.0
-    "@discordjs/collection": ^0.2.1
+    "@discordjs/collection": ^0.3.2
     "@favware/npm-deprecate": ^1.0.4
     "@favware/rollup-type-bundler": ^1.0.6
     "@rollup/plugin-commonjs": ^21.0.1
@@ -9054,7 +9054,7 @@ __metadata:
     jest-circus: ^27.3.1
     jest-extended: ^1.1.0
     lerna: ^4.0.0
-    lint-staged: ^11.2.5
+    lint-staged: ^11.2.6
     lodash: ^4.17.21
     nock: ^13.1.4
     prettier: ^2.4.1
