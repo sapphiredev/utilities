@@ -18,6 +18,7 @@ import {
 	WebhookEditMessageOptions
 } from 'discord.js';
 import { MessageBuilder } from '../builders/MessageBuilder';
+import { isGuildBasedChannel } from '../type-guards';
 import type {
 	PaginatedMessageAction,
 	PaginatedMessageEmbedResolvable,
@@ -665,7 +666,7 @@ export class PaginatedMessage {
 		if (!this.messages.length) throw new Error('There are no messages.');
 		if (!this.actions.size) throw new Error('There are no messages.');
 
-		await this.setUpMessage(message.channel);
+		await this.setUpMessage(message.channel, target);
 		this.setUpCollector(message.channel, target);
 
 		const messageId = this.response!.id;
@@ -724,7 +725,7 @@ export class PaginatedMessage {
 	 * @param channel The channel the handler is running at.
 	 * @param author The author the handler is for.
 	 */
-	protected async setUpMessage(channel: Message['channel']): Promise<void> {
+	protected async setUpMessage(channel: Message['channel'], targetUser: User): Promise<void> {
 		// Get the current page
 		let page = this.messages[this.index]!;
 
@@ -742,7 +743,11 @@ export class PaginatedMessage {
 					: new MessageSelectMenu({
 							...interaction,
 							options: this.pages.map((_, index) => ({
-								...this.selectMenuOptions(index + 1),
+								...this.selectMenuOptions(index + 1, {
+									author: targetUser,
+									channel,
+									guild: isGuildBasedChannel(channel) ? channel.guild : null
+								}),
 								value: index.toString()
 							}))
 					  });
@@ -828,7 +833,11 @@ export class PaginatedMessage {
 				await interaction.update(updateOptions);
 			}
 		} else {
-			const interactionReplyOptions = this.wrongUserInteractionReply(targetUser, interaction.user);
+			const interactionReplyOptions = this.wrongUserInteractionReply(targetUser, interaction.user, {
+				author: interaction.user,
+				channel: interaction.channel,
+				guild: interaction.guild
+			});
 
 			await interaction.reply(
 				isObject(interactionReplyOptions)

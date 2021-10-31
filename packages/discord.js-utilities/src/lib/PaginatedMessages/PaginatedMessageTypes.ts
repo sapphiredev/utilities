@@ -1,6 +1,8 @@
 import type { Awaitable } from '@sapphire/utilities';
 import type {
 	ButtonInteraction,
+	ExcludeEnum,
+	Guild,
 	InteractionButtonOptions,
 	InteractionCollector,
 	Message,
@@ -10,9 +12,11 @@ import type {
 	MessageSelectMenuOptions,
 	MessageSelectOptionData,
 	SelectMenuInteraction,
+	StageChannel,
+	StoreChannel,
 	User,
-	WebhookEditMessageOptions,
-	ExcludeEnum
+	VoiceChannel,
+	WebhookEditMessageOptions
 } from 'discord.js';
 import type { MessageButtonStyles, MessageComponentTypes } from 'discord.js/typings/enums';
 import type { PaginatedMessage } from './PaginatedMessage';
@@ -113,16 +117,33 @@ export type PaginatedMessagePage =
 /**
  * The type of the custom function that can be set for the {@link PaginatedMessage.selectMenuOptions}
  */
-export type PaginatedMessageSelectMenuOptionsFunction = (pageIndex: number) => Omit<MessageSelectOptionData, 'value'>;
+export type PaginatedMessageSelectMenuOptionsFunction = (
+	pageIndex: number,
+	internationalizationContext: PaginatedMessageInternationalizationContext
+) => Omit<MessageSelectOptionData, 'value'>;
 
 /**
  * The type of the custom function that can be set for the {@link PaginatedMessage.wrongUserInteractionReply}
  */
 export type PaginatedMessageWrongUserInteractionReplyFunction = (
 	targetUser: User,
-	interactionUser: User
+	interactionUser: User,
+	internationalizationContext: PaginatedMessageInternationalizationContext
 ) => Parameters<MessageComponentInteraction['reply']>[0];
 
 export type PaginatedMessageEmbedResolvable = MessageOptions['embeds'];
 
 export type PaginatedMessageMessageOptionsUnion = MessageOptions | WebhookEditMessageOptions;
+
+/**
+ * @internal This is a duplicate of the same interface in `@sapphire/plugin-i18next`
+ * Duplicated here for the type of the parameters in the functions
+ *
+ * Context for {@link InternationalizationHandler.fetchLanguage} functions.
+ * This context enables implementation of per-guild, per-channel, and per-user localization.
+ */
+export interface PaginatedMessageInternationalizationContext {
+	guild: Guild | null;
+	channel: Message['channel'] | StoreChannel | StageChannel | VoiceChannel | null;
+	author: User | null;
+}
