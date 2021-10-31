@@ -737,21 +737,25 @@ export class PaginatedMessage {
 
 		// If we do not have more than 1 page then there is no reason to add message components
 		if (this.pages.length > 1) {
-			const messageComponents = [...this.actions.values()].map<MessageButton | MessageSelectMenu>((interaction) => {
-				return isMessageButtonInteraction(interaction)
-					? new MessageButton(interaction)
-					: new MessageSelectMenu({
-							...interaction,
-							options: this.pages.map((_, index) => ({
-								...this.selectMenuOptions(index + 1, {
-									author: targetUser,
-									channel,
-									guild: isGuildBasedChannel(channel) ? channel.guild : null
-								}),
-								value: index.toString()
-							}))
-					  });
-			});
+			const messageComponents = await Promise.all(
+				[...this.actions.values()].map<Promise<MessageButton | MessageSelectMenu>>(async (interaction) => {
+					return isMessageButtonInteraction(interaction)
+						? new MessageButton(interaction)
+						: new MessageSelectMenu({
+								...interaction,
+								options: await Promise.all(
+									this.pages.map(async (_, index) => ({
+										...(await this.selectMenuOptions(index + 1, {
+											author: targetUser,
+											channel,
+											guild: isGuildBasedChannel(channel) ? channel.guild : null
+										})),
+										value: index.toString()
+									}))
+								)
+						  });
+				})
+			);
 
 			page.components = createPartitionedMessageRow(messageComponents);
 		}
@@ -833,7 +837,7 @@ export class PaginatedMessage {
 				await interaction.update(updateOptions);
 			}
 		} else {
-			const interactionReplyOptions = this.wrongUserInteractionReply(targetUser, interaction.user, {
+			const interactionReplyOptions = await this.wrongUserInteractionReply(targetUser, interaction.user, {
 				author: interaction.user,
 				channel: interaction.channel,
 				guild: interaction.guild

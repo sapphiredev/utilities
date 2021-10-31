@@ -120,7 +120,7 @@ export type PaginatedMessagePage =
 export type PaginatedMessageSelectMenuOptionsFunction = (
 	pageIndex: number,
 	internationalizationContext: PaginatedMessageInternationalizationContext
-) => Omit<MessageSelectOptionData, 'value'>;
+) => Awaitable<Omit<MessageSelectOptionData, 'value'>>;
 
 /**
  * The type of the custom function that can be set for the {@link PaginatedMessage.wrongUserInteractionReply}
@@ -129,7 +129,7 @@ export type PaginatedMessageWrongUserInteractionReplyFunction = (
 	targetUser: User,
 	interactionUser: User,
 	internationalizationContext: PaginatedMessageInternationalizationContext
-) => Parameters<MessageComponentInteraction['reply']>[0];
+) => Awaitable<Parameters<MessageComponentInteraction['reply']>[0]>;
 
 export type PaginatedMessageEmbedResolvable = MessageOptions['embeds'];
 
