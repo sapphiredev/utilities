@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.1.0](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@4.0.2...@sapphire/discord.js-utilities@4.1.0) (2021-10-31)
+
+### Bug Fixes
+
+-   **PaginatedMessage:** allow internationalizationContext to be async ([e1251fc](https://github.com/sapphiredev/utilities/commit/e1251fc85ea263503b3662ffc05ba7efeb603752))
+-   **PaginatedMesssage:** change private to protected properties ([495aef8](https://github.com/sapphiredev/utilities/commit/495aef8682b7e65d80e8a1826d532dbdc87ff1cb))
+
+### Features
+
+-   **PaginatedMessage:** add internationalization context to `selectMenuOptions` and `wrongUserInteractionReply` ([190a8fe](https://github.com/sapphiredev/utilities/commit/190a8fec55988ac83b785d7ab4c0d4f95316fbdf))
+
 ## [4.0.2](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@4.0.1...@sapphire/discord.js-utilities@4.0.2) (2021-10-29)
 
 ### Bug Fixes
