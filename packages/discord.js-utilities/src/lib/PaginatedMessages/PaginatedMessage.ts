@@ -159,16 +159,16 @@ export class PaginatedMessage {
 	 */
 	public embedFooterSeparator = PaginatedMessage.embedFooterSeparator;
 
-	private paginatedMessageData: Omit<PaginatedMessageMessageOptionsUnion, 'components'> | null = null;
+	protected paginatedMessageData: Omit<PaginatedMessageMessageOptionsUnion, 'components'> | null = null;
 
-	private selectMenuOptions: PaginatedMessageSelectMenuOptionsFunction = PaginatedMessage.selectMenuOptions;
+	protected selectMenuOptions: PaginatedMessageSelectMenuOptionsFunction = PaginatedMessage.selectMenuOptions;
 
-	private wrongUserInteractionReply: PaginatedMessageWrongUserInteractionReplyFunction = PaginatedMessage.wrongUserInteractionReply;
+	protected wrongUserInteractionReply: PaginatedMessageWrongUserInteractionReplyFunction = PaginatedMessage.wrongUserInteractionReply;
 
 	/**
 	 * Tracks whether a warning was already emitted for this {@link PaginatedMessage}
 	 */
-	private hasEmittedWarning = false;
+	protected hasEmittedWarning = false;
 
 	/**
 	 * Constructor for the {@link PaginatedMessage} class
