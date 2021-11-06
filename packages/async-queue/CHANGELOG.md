@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.9](https://github.com/sapphiredev/utilities/compare/@sapphire/async-queue@1.1.8...@sapphire/async-queue@1.1.9) (2021-11-06)
+
+**Note:** Version bump only for package @sapphire/async-queue
+
 ## [1.1.8](https://github.com/sapphiredev/utilities/compare/@sapphire/async-queue@1.1.7...@sapphire/async-queue@1.1.8) (2021-10-26)
 
 **Note:** Version bump only for package @sapphire/async-queue
