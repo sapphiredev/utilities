@@ -72,7 +72,6 @@ type AuthorData = [TsxTypes.Author, string, string?, string?];
  * )
  * ```
  */
-// eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace EmbedJsx {
 	/**
 	 * The behind the scenes function that TS uses to turn JSX into proper JS
