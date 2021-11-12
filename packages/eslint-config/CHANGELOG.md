@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.4](https://github.com/sapphiredev/utilities/compare/@sapphire/eslint-config@4.0.3...@sapphire/eslint-config@4.0.4) (2021-11-12)
+
+### Bug Fixes
+
+-   **eslint-config:** disable `@typescript-eslint/no-namespace` ([#212](https://github.com/sapphiredev/utilities/issues/212)) ([6ea1e70](https://github.com/sapphiredev/utilities/commit/6ea1e702cd66cf0cdb7194309d2bcf0b3c4e4e0a))
+
 ## [4.0.3](https://github.com/sapphiredev/utilities/compare/@sapphire/eslint-config@4.0.2...@sapphire/eslint-config@4.0.3) (2021-11-06)
 
 **Note:** Version bump only for package @sapphire/eslint-config
