@@ -20,7 +20,7 @@
 		"docs": "typedoc",
 		"commit": "git-cz",
 		"cz": "git-cz",
-		"update": "yarn upgrade-interactive --latest",
+		"update": "yarn upgrade-interactive",
 		"prepare": "husky install .github/husky"
 	},
 	"devDependencies": {
