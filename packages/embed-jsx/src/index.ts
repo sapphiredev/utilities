@@ -3,7 +3,6 @@ import type { MessageEmbed, MessageEmbedOptions } from 'discord.js';
 export { EmbedJsx } from './lib/EmbedJsx';
 
 declare global {
-	// eslint-disable-next-line @typescript-eslint/no-namespace
 	namespace JSX {
 		interface IntrinsicElements {
 			embed: MessageEmbedOptions;
