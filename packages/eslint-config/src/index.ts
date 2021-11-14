@@ -194,7 +194,7 @@ export const eslintConfig = {
 		'no-dupe-class-members': 'off',
 		'no-dupe-keys': 'error',
 		'no-duplicate-case': 'error',
-		'no-duplicate-imports':'off',
+		'no-duplicate-imports': 'off',
 		'no-else-return': 'warn',
 		'no-empty': 'off',
 		'no-empty-character-class': 'error',
