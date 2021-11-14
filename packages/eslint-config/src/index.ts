@@ -86,6 +86,12 @@ export const eslintConfig = {
 		],
 		'@typescript-eslint/no-base-to-string': 'error',
 		'@typescript-eslint/no-dupe-class-members': 'error',
+		'@typescript-eslint/no-duplicate-imports': [
+			'error',
+			{
+				includeExports: false
+			}
+		],
 		'@typescript-eslint/no-empty-interface': 'off',
 		'@typescript-eslint/no-explicit-any': 'off',
 		'@typescript-eslint/no-extra-non-null-assertion': 'error',
@@ -188,12 +194,7 @@ export const eslintConfig = {
 		'no-dupe-class-members': 'off',
 		'no-dupe-keys': 'error',
 		'no-duplicate-case': 'error',
-		'no-duplicate-imports': [
-			'error',
-			{
-				includeExports: false
-			}
-		],
+		'no-duplicate-imports':'off',
 		'no-else-return': 'warn',
 		'no-empty': 'off',
 		'no-empty-character-class': 'error',
