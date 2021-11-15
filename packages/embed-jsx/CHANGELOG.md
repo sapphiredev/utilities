@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.5](https://github.com/sapphiredev/utilities/compare/@sapphire/embed-jsx@2.1.4...@sapphire/embed-jsx@2.1.5) (2021-11-15)
+
+### Bug Fixes
+
+-   **embed-jsx:** remove instances of eslint-ignore comment ([#213](https://github.com/sapphiredev/utilities/issues/213)) ([8a451b5](https://github.com/sapphiredev/utilities/commit/8a451b582c2bfbcc74e0a58749bda6a9d7cb3ccd))
+
 ## [2.1.4](https://github.com/sapphiredev/utilities/compare/@sapphire/embed-jsx@2.1.3...@sapphire/embed-jsx@2.1.4) (2021-11-06)
 
 **Note:** Version bump only for package @sapphire/embed-jsx

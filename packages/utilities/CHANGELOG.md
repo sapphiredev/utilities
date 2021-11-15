@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.8](https://github.com/sapphiredev/utilities/compare/@sapphire/utilities@3.0.7...@sapphire/utilities@3.0.8) (2021-11-15)
+
+### Bug Fixes
+
+-   **utilities:** target ES2019 for create-react-app support ([95575ed](https://github.com/sapphiredev/utilities/commit/95575ed5bc2def07fb8066d85662a08d8610d8d1))
+
 ## [3.0.7](https://github.com/sapphiredev/utilities/compare/@sapphire/utilities@3.0.6...@sapphire/utilities@3.0.7) (2021-11-06)
 
 **Note:** Version bump only for package @sapphire/utilities
