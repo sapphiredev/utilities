@@ -1,4 +1,5 @@
 name: '*next*'
+verbose: true
 package:
   - '@sapphire/async-queue'
   - '@sapphire/decorators'
