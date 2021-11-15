@@ -3,7 +3,8 @@
 	"compilerOptions": {
 		"module": "ESNext",
 		"outDir": "build",
-		"rootDir": "src"
+		"rootDir": "src",
+		"target": "ES2019"
 	},
 	"include": ["src"]
 }
