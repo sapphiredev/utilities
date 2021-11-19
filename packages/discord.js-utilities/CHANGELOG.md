@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.1.3](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@4.1.2...@sapphire/discord.js-utilities@4.1.3) (2021-11-19)
+
+### Bug Fixes
+
+-   **PaginatedMessage:** partition buttons and select menus ([#221](https://github.com/sapphiredev/utilities/issues/221)) ([47c37e7](https://github.com/sapphiredev/utilities/commit/47c37e7d5568dfa374a08c4b831d4aecdbc0054f))
+
 ## [4.1.2](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@4.1.1...@sapphire/discord.js-utilities@4.1.2) (2021-11-15)
 
 **Note:** Version bump only for package @sapphire/discord.js-utilities

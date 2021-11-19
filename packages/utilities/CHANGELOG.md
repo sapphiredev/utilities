@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0](https://github.com/sapphiredev/utilities/compare/@sapphire/utilities@3.0.8...@sapphire/utilities@3.1.0) (2021-11-19)
+
+### Features
+
+-   add array partitioning ([#220](https://github.com/sapphiredev/utilities/issues/220)) ([42d6b81](https://github.com/sapphiredev/utilities/commit/42d6b8123233ed5315c55412d993fc19266660bb))
+
 ## [3.0.8](https://github.com/sapphiredev/utilities/compare/@sapphire/utilities@3.0.7...@sapphire/utilities@3.0.8) (2021-11-15)
 
 ### Bug Fixes
