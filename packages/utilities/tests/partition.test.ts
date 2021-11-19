@@ -12,7 +12,7 @@ describe('partition', () => {
 		// @ts-expect-error fail case
 		const thrownCall = () => partition(['one', 'two', 'three'], 'not-a-function');
 		expect(thrownCall).toThrow(TypeError);
-		expect(thrownCall).toThrow('predicate must be an integer.');
+		expect(thrownCall).toThrow('predicate must be an function that returns a boolean value.');
 	});
 
 	test('GIVEN valid input THEN partitions array', () => {

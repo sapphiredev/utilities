@@ -11,7 +11,7 @@ import { isFunction } from './isFunction';
  */
 export function partition<T>(array: T[], predicate: (value: T, index: number) => boolean) {
 	if (!Array.isArray(array)) throw new TypeError('entries must be an array.');
-	if (!isFunction(predicate)) throw new TypeError('predicate must be an integer.');
+	if (!isFunction(predicate)) throw new TypeError('predicate must be an function that returns a boolean value.');
 
 	const partitionOne: T[] = [];
 	const partitionTwo: T[] = [];
