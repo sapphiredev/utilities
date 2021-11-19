@@ -156,7 +156,7 @@ export class PaginatedMessage {
 	/**
 	 * Custom separator to show after the page index in the embed footer.
 	 * PaginatedMessage will automatically add a space (` `) after the given text. You do not have to add it yourself.
-	 * @default ```PaginatedMessage.pageIndexPrefix``` (static property)
+	 * @default ```PaginatedMessage.embedFooterSeperator``` (static property)
 	 */
 	public embedFooterSeparator = PaginatedMessage.embedFooterSeparator;
 
