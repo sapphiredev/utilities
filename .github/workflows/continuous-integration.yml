@@ -63,6 +63,8 @@ jobs:
         run: yarn lerna run build --scope=@sapphire/discord-utilities
       - name: Build Discord.js Utilities
         run: yarn lerna run build --scope=@sapphire/discord.js-utilities
+      - name: Build Ratelimits
+        run: yarn lerna run build --scope=@sapphire/ratelimits
       - name: Run tests
         run: yarn test --coverage
       - name: Store code coverage report
