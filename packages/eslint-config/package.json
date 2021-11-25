@@ -1,6 +1,6 @@
 {
 	"name": "@sapphire/eslint-config",
-	"version": "4.0.5",
+	"version": "4.0.6",
 	"description": "Standard ESLint config for Sapphire Communitys written in TypeScript",
 	"author": "@sapphire",
 	"license": "MIT",
