@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.6](https://github.com/sapphiredev/utilities/compare/@sapphire/prettier-config@1.2.4...@sapphire/prettier-config@1.2.6) (2021-11-25)
+
+### Bug Fixes
+
+-   **prettier-config:** bump prettier dependency to 2.5.0 ([dfb2d91](https://github.com/sapphiredev/utilities/commit/dfb2d91c92b7637c2bee02af9c25339a2cdf7bbb))
+
 ## [1.2.5](https://github.com/sapphiredev/utilities/compare/@sapphire/prettier-config@1.2.4...@sapphire/prettier-config@1.2.5) (2021-11-25)
 
 ### Bug Fixes

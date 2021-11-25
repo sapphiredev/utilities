@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.7](https://github.com/sapphiredev/utilities/compare/@sapphire/eslint-config@4.0.5...@sapphire/eslint-config@4.0.7) (2021-11-25)
+
+### Bug Fixes
+
+-   **eslint-config:** bump prettier dependency to 2.5.0 ([bc28682](https://github.com/sapphiredev/utilities/commit/bc28682a21b43ff8cec172f4cd5365666debbdc5))
+
 ## [4.0.6](https://github.com/sapphiredev/utilities/compare/@sapphire/eslint-config@4.0.5...@sapphire/eslint-config@4.0.6) (2021-11-25)
 
 ### Bug Fixes
