@@ -8,7 +8,7 @@
 		"clean": "rimraf \"packages/**/dist\" \"packages/**/build\" \"packages/**/node_modules/.cache\"",
 		"clean:full": "node scripts/clean-full.mjs",
 		"lint": "eslint packages --ext mjs,js,ts,tsx --fix",
-		"format": "prettier --write packages/**/{src,tests,scripts}/**/*.{mjs,ts,js}",
+		"format": "prettier --write \"packages/**/{src,tests,scripts}/**/*.{mjs,ts,js}\"",
 		"test": "jest",
 		"test:watch": "jest --watch",
 		"build": "yarn build:1 && yarn build:2 && yarn build:3 && yarn build:4",
