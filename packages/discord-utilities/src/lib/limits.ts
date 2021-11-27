@@ -77,7 +77,7 @@ export const GuildMemberLimits = {
 	/**
 	 * Maximum characters allowed in the display name of a guild member.
 	 */
-	MaxDisplayNameLength: 32
+	MaximumDisplayNameLength: 32
 };
 
 export const MessageLimits = {
