@@ -22,7 +22,14 @@ const kTimeDurations: readonly [TimeTypes, number][] = [
 export class DurationFormatter {
 	public constructor(public units: DurationFormatAssetsTime = DEFAULT_UNITS) {}
 
-	public format(duration: number, precision = 7, separators: DurationFormatSeparators = DEFAULT_SEPARATORS) {
+	public format(
+		duration: number,
+		precision = 7,
+		{
+			left: leftSeparator = DEFAULT_SEPARATORS.left,
+			right: rightSeparator = DEFAULT_SEPARATORS.right
+		}: DurationFormatSeparators = DEFAULT_SEPARATORS
+	) {
 		const output: string[] = [];
 		const negative = duration < 0;
 		if (negative) duration *= -1;
@@ -33,13 +40,13 @@ export class DurationFormatter {
 
 			const floored = Math.floor(substraction);
 			duration -= floored * timeDuration;
-			output.push(addUnit(floored, this.units[type], separators.left));
+			output.push(addUnit(floored, this.units[type], leftSeparator!));
 
 			// If the output has enough precision, break
 			if (output.length >= precision) break;
 		}
 
-		return `${negative ? '-' : ''}${output.join(separators.right) || addUnit(0, this.units.second, separators.left)}`;
+		return `${negative ? '-' : ''}${output.join(rightSeparator) || addUnit(0, this.units.second, leftSeparator!)}`;
 	}
 }
 
@@ -54,8 +61,8 @@ function addUnit(time: number, unit: DurationFormatAssetsUnit, separator: string
 }
 
 export interface DurationFormatSeparators {
-	left: string;
-	right: string;
+	left?: string;
+	right?: string;
 }
 
 export interface DurationFormatAssetsUnit extends Record<number, string> {
