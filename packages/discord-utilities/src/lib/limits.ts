@@ -1,3 +1,6 @@
+/**
+ * Namespace containing limits related to Discord channels.
+ */
 export const ChannelLimits = {
 	/**
 	 * Maximum characters allowed in a channel description.
@@ -13,6 +16,9 @@ export const ChannelLimits = {
 	MaximumViewersPerScreenShare: 250
 };
 
+/**
+ * Namespace containing limits related to Discord embeds.
+ */
 export const EmbedLimits = {
 	/**
 	 * Maximum characters allowed in the author field of an embed.
@@ -55,6 +61,9 @@ export const EmbedLimits = {
 	MaximumTotalCharacters: 6000
 };
 
+/**
+ * Namespace containing limits related to Discord emojis.
+ */
 export const EmojiLimits = {
 	/**
 	 * Maximum characters allowed in a custom guild emoji.
@@ -62,6 +71,9 @@ export const EmojiLimits = {
 	MaximumEmojiNameLength: 32
 };
 
+/**
+ * Namespace containing limits related to Discord guilds.
+ */
 export const GuildLimits = {
 	/**
 	 * Maximum channels allowed per guild, including category channels.
@@ -73,6 +85,9 @@ export const GuildLimits = {
 	MaximumRoles: 250
 };
 
+/**
+ * Namespace containing limits related to Discord guild members.
+ */
 export const GuildMemberLimits = {
 	/**
 	 * Maximum characters allowed in the display name of a guild member.
@@ -80,6 +95,9 @@ export const GuildMemberLimits = {
 	MaximumDisplayNameLength: 32
 };
 
+/**
+ * Namespace containing limits related to Discord messages.
+ */
 export const MessageLimits = {
 	/**
 	 * Maximum embeds allowed in a single message.
@@ -97,6 +115,9 @@ export const MessageLimits = {
 	MaximumNitroLength: 4000
 };
 
+/**
+ * Namespace containing limits related to Discord roles.
+ */
 export const RoleLimits = {
 	/**
 	 * Maximum characters allowed in a role name.
@@ -104,6 +125,9 @@ export const RoleLimits = {
 	MaximumNameLength: 100
 };
 
+/**
+ * Namespace containing limits related to Discord users and Direct Messages.
+ */
 export const UserLimits = {
 	/**
 	 * Maximum viewers allowed per screen share.
