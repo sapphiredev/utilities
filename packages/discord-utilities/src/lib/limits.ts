@@ -13,7 +13,7 @@ export const ChannelLimits = {
 	/**
 	 * Maximum viewers allowed per screen share.
 	 */
-	MaximumViewersPerScreenShare: 250
+	MaximumViewersPerScreenShare: 50
 } as const;
 
 /**
