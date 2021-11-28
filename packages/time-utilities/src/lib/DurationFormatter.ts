@@ -1,4 +1,4 @@
-import { DEFAULT_UNITS, TimeTypes } from './constants';
+import { DEFAULT_SEPARATORS, DEFAULT_UNITS, TimeTypes } from './constants';
 
 /**
  * The duration of each time type in milliseconds
@@ -22,7 +22,7 @@ const kTimeDurations: readonly [TimeTypes, number][] = [
 export class DurationFormatter {
 	public constructor(public units: DurationFormatAssetsTime = DEFAULT_UNITS) {}
 
-	public format(duration: number, precision = 7) {
+	public format(duration: number, precision = 7, separators: DurationFormatSeparators = DEFAULT_SEPARATORS) {
 		const output: string[] = [];
 		const negative = duration < 0;
 		if (negative) duration *= -1;
@@ -33,13 +33,13 @@ export class DurationFormatter {
 
 			const floored = Math.floor(substraction);
 			duration -= floored * timeDuration;
-			output.push(addUnit(floored, this.units[type]));
+			output.push(addUnit(floored, this.units[type], separators.left));
 
 			// If the output has enough precision, break
 			if (output.length >= precision) break;
 		}
 
-		return `${negative ? '-' : ''}${output.join(' ') || addUnit(0, this.units.second)}`;
+		return `${negative ? '-' : ''}${output.join(separators.right) || addUnit(0, this.units.second, separators.left)}`;
 	}
 }
 
@@ -48,9 +48,14 @@ export class DurationFormatter {
  * @param time The duration of said unit
  * @param unit The unit language assets
  */
-function addUnit(time: number, unit: DurationFormatAssetsUnit) {
-	if (Reflect.has(unit, time)) return `${time} ${Reflect.get(unit, time)}`;
-	return `${time} ${unit.DEFAULT}`;
+function addUnit(time: number, unit: DurationFormatAssetsUnit, separator: string) {
+	if (Reflect.has(unit, time)) return `${time}${separator}${Reflect.get(unit, time)}`;
+	return `${time}${separator}${unit.DEFAULT}`;
+}
+
+export interface DurationFormatSeparators {
+	left: string;
+	right: string;
 }
 
 export interface DurationFormatAssetsUnit extends Record<number, string> {
