@@ -88,5 +88,8 @@
 			"path": "./node_modules/cz-conventional-changelog"
 		}
 	},
+	"resolutions": {
+		"jest-environment-jsdom": "https://registry.yarnpkg.com/@favware/skip-dependency/-/skip-dependency-1.1.3.tgz"
+	},
 	"packageManager": "yarn@3.1.1"
 }
