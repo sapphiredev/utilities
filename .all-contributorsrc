@@ -171,6 +171,13 @@
 			"avatar_url": "https://avatars.githubusercontent.com/u/65814829?v=4",
 			"profile": "https://github.com/Lioness100",
 			"contributions": ["doc", "code"]
+		},
+		{
+			"login": "DavidPHH",
+			"name": "David",
+			"avatar_url": "https://avatars.githubusercontent.com/u/44669930?v=4",
+			"profile": "https://gitlab.com/DavidPH/",
+			"contributions": ["code"]
 		}
 	],
 	"contributorsPerLine": 7,
