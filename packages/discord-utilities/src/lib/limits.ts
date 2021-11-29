@@ -130,7 +130,7 @@ export const RoleLimits = {
  */
 export const UserLimits = {
 	/**
-	 * Maximum viewers allowed per screen share.
+	 * Maximum numbers of users in a DM group.
 	 */
 	MaximumUsersPerDMGroup: 10
 } as const;
