@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0](https://github.com/sapphiredev/utilities/compare/@sapphire/discord-utilities@2.2.3...@sapphire/discord-utilities@2.3.0) (2021-11-29)
+
+### Features
+
+-   **discord-utilities:** add discord limits ([#224](https://github.com/sapphiredev/utilities/issues/224)) ([058110c](https://github.com/sapphiredev/utilities/commit/058110c1ead80a0a7c3655a0b28a15c9ff991d5a))
+
 ## [2.2.3](https://github.com/sapphiredev/utilities/compare/@sapphire/discord-utilities@2.2.2...@sapphire/discord-utilities@2.2.3) (2021-11-06)
 
 **Note:** Version bump only for package @sapphire/discord-utilities

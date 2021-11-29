@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/sapphiredev/utilities/compare/@sapphire/time-utilities@1.4.9...@sapphire/time-utilities@1.5.0) (2021-11-29)
+
+### Features
+
+-   **DurationFormatter:** added separators for joining units ([#226](https://github.com/sapphiredev/utilities/issues/226)) ([d986867](https://github.com/sapphiredev/utilities/commit/d9868676129a8510d645238aa11af36cf60a8c37))
+
 ## [1.4.9](https://github.com/sapphiredev/utilities/compare/@sapphire/time-utilities@1.4.8...@sapphire/time-utilities@1.4.9) (2021-11-19)
 
 **Note:** Version bump only for package @sapphire/time-utilities
