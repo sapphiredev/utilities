@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-import type { DurationFormatAssetsTime } from './DurationFormatter';
+import type { DurationFormatAssetsTime, DurationFormatSeparators } from './DurationFormatter';
 
 /**
  * The supported time types
@@ -124,4 +124,9 @@ export const DEFAULT_UNITS: DurationFormatAssetsTime = {
 		1: 'second',
 		DEFAULT: 'seconds'
 	}
+};
+
+export const DEFAULT_SEPARATORS: DurationFormatSeparators = {
+	left: ' ',
+	right: ' '
 };
