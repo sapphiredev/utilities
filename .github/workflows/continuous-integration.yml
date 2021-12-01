@@ -21,6 +21,7 @@ jobs:
         with:
           node-version: 16
           cache: yarn
+          registry-url: https://registry.npmjs.org/
       - name: Install Dependencies
         run: yarn --immutable
       - name: Build ESLint, Prettier and Utilities
@@ -39,6 +40,7 @@ jobs:
         with:
           node-version: 16
           cache: yarn
+          registry-url: https://registry.npmjs.org/
       - name: Install Dependencies
         run: yarn --immutable
       - name: Build Async Queue
@@ -74,6 +76,7 @@ jobs:
         with:
           node-version: 16
           cache: yarn
+          registry-url: https://registry.npmjs.org/
       - name: Install Dependencies
         run: yarn --immutable
       - name: Compile Projects
