@@ -96,6 +96,26 @@ export const GuildMemberLimits = {
 } as const;
 
 /**
+ * Namespace containing limits related to Discord interactions.
+ */
+export const InteractionLimits = {
+	/**
+	 * Maximum buttons allowed in a single action row.
+	 */
+	MaximumButtonsPerActionRow: 5,
+
+	/**
+	 * Maximum select menus allowed in a single action row.
+	 */
+	MaximumSelectMenusPerActionRow: 1,
+
+	/**
+	 * Maximum items allowed in a single select menu.
+	 */
+	MaximumItemsInSelectMenus: 25
+} as const;
+
+/**
  * Namespace containing limits related to Discord messages.
  */
 export const MessageLimits = {
@@ -103,6 +123,11 @@ export const MessageLimits = {
 	 * Maximum embeds allowed in a single message.
 	 */
 	MaximumEmbeds: 10,
+
+	/**
+	 * Maximum embeds allowed in a single message.
+	 */
+	MaximumActionRows: 5,
 
 	/**
 	 * Maximum characters allowed in a single message for a user.
