@@ -125,7 +125,7 @@ export const MessageLimits = {
 	MaximumEmbeds: 10,
 
 	/**
-	 * Maximum embeds allowed in a single message.
+	 * Maximum action rows allowed in a single message.
 	 */
 	MaximumActionRows: 5,
 
