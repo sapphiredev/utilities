@@ -110,7 +110,7 @@ export const InteractionLimits = {
 	MaximumSelectMenusPerActionRow: 1,
 
 	/**
-	 * Maximum items allowed in a single select menu.
+	 * Maximum options allowed in a single select menu.
 	 */
 	MaximumItemsInSelectMenus: 25
 } as const;
