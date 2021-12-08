@@ -1,11 +1,7 @@
 /* eslint-disable @typescript-eslint/explicit-member-accessibility */
 
-import { threadId } from 'node:worker_threads';
-
-// For testing purposes, we'll assign processId and workerId
-// to 1n so it's easier to match the generated snowflakes:
-const ProcessId = process.env.NODE_ENV === 'test' ? 1n : BigInt(process.pid);
-const WorkerId = process.env.NODE_ENV === 'test' ? 0n : BigInt(threadId);
+const ProcessId = 1n;
+const WorkerId = 0n;
 
 /**
  * A class for generating and deconstructing Twitter snowflakes.
@@ -133,13 +129,13 @@ export interface SnowflakeGenerateOptions {
 
 	/**
 	 * The worker ID to use, will be truncated to 5 bits (0-31)
-	 * @default BigInt(worker_threads.threadId)
+	 * @default 0n
 	 */
 	workerId?: bigint;
 
 	/**
 	 * The process ID to use, will be truncated to 5 bits (0-31)
-	 * @default BigInt(process.pid)
+	 * @default 1n
 	 */
 	processId?: bigint;
 }
