@@ -1,7 +1,5 @@
 /* eslint-disable @typescript-eslint/explicit-member-accessibility */
 
-// For testing purposes, we'll assign processId and workerId
-// to 1n so it's easier to match the generated snowflakes:
 const ProcessId = 1n;
 const WorkerId = 0n;
 
