@@ -15,58 +15,67 @@ describe('Snowflake', () => {
 
 	describe('Generate', () => {
 		test('GIVEN timestamp as number THEN returns predefined snowflake', () => {
-			const testID = '3971046231244935168';
+			const testId = '3971046231244804096';
 			const testTimestamp = 2524608000000;
 			const snowflake = new Snowflake(sampleEpoch);
 			const snow = snowflake.generate({ timestamp: testTimestamp });
 
-			expect(snow.toString()).toBe(testID);
+			expect(snow.toString()).toBe(testId);
 		});
 
 		test('GIVEN timestamp as Date THEN returns predefined snowflake', () => {
-			const testID = '3971046231244935168';
+			const testId = '3971046231244804096';
 			const testDate = new Date(2524608000000);
 			const snowflake = new Snowflake(sampleEpoch);
 			const snow = snowflake.generate({ timestamp: testDate });
 
-			expect(snow.toString()).toBe(testID);
+			expect(snow.toString()).toBe(testId);
 		});
 
 		test('GIVEN timestamp as Date and increment higher than 4095n THEN returns predefined snowflake', () => {
-			const testID = '3971046231244935168';
+			const testId = '3971046231244804096';
 			const testDate = new Date(2524608000000);
 			const snowflake = new Snowflake(sampleEpoch);
 			const snow = snowflake.generate({ timestamp: testDate, increment: 5000n });
 
-			expect(snow.toString()).toBe(testID);
+			expect(snow.toString()).toBe(testId);
 		});
 
 		test('GIVEN empty object options THEN returns predefined snowflake', () => {
-			const testID = '135168';
+			const testId = '4096';
 			const snowflake = new Snowflake(sampleEpoch);
 			const snow = snowflake.generate({});
 
-			expect(snow.toString()).toBe(testID);
+			expect(snow.toString()).toBe(testId);
 		});
 
 		test('GIVEN no options THEN returns predefined snowflake', () => {
-			const testID = '135168';
+			const testId = '4096';
 			const snowflake = new Snowflake(sampleEpoch);
 			const snow = snowflake.generate({});
 
-			expect(snow.toString()).toBe(testID);
+			expect(snow.toString()).toBe(testId);
 		});
 
 		test('GIVEN timestamp as NaN THEN returns error', () => {
+			const bigIntNaNErrorMessage = (() => {
+				try {
+					BigInt(NaN);
+					throw new RangeError('');
+				} catch (error) {
+					return (error as RangeError).message;
+				}
+			})();
+
 			const snowflake = new Snowflake(sampleEpoch);
-			expect(() => snowflake.generate({ timestamp: NaN })).toThrowError('"timestamp" argument must be a number, BigInt or Date (received NaN)');
+			expect(() => snowflake.generate({ timestamp: NaN })).toThrowError(bigIntNaNErrorMessage);
 		});
 
 		test('GIVEN timestamp as boolean THEN returns error', () => {
 			const snowflake = new Snowflake(sampleEpoch);
 			// @ts-expect-error testing fail case
 			expect(() => snowflake.generate({ timestamp: true })).toThrowError(
-				'"timestamp" argument must be a number, BigInt or Date (received boolean)'
+				'"timestamp" argument must be a number, bigint, or Date (received boolean)'
 			);
 		});
 
@@ -91,6 +100,22 @@ describe('Snowflake', () => {
 			// Validate that there are no duplicate IDs
 			expect(setOf10Snowflakes.size).toBe(arrayOf10Snowflakes.length);
 		});
+
+		test('GIVEN overflowing processId THEN generates ID with truncated processId', () => {
+			const testId = '106496';
+			const snowflake = new Snowflake(sampleEpoch);
+			const snow = snowflake.generate({ processId: 0b1111_1010n });
+
+			expect(snow.toString()).toBe(testId);
+		});
+
+		test('GIVEN overflowing workerId THEN generates ID with truncated workerId', () => {
+			const testId = '3411968';
+			const snowflake = new Snowflake(sampleEpoch);
+			const snow = snowflake.generate({ workerId: 0b1111_1010n });
+
+			expect(snow.toString()).toBe(testId);
+		});
 	});
 
 	describe('Deconstruct', () => {
@@ -102,8 +127,8 @@ describe('Snowflake', () => {
 			expect(flake).toStrictEqual<DeconstructedSnowflake>({
 				id: 3971046231244935169n,
 				timestamp: 2524608000000n,
-				workerID: 1n,
-				processID: 1n,
+				workerId: 1n,
+				processId: 1n,
 				increment: 1n,
 				epoch: 1577836800000n
 			});
@@ -117,8 +142,8 @@ describe('Snowflake', () => {
 			expect(flake).toStrictEqual<DeconstructedSnowflake>({
 				id: 3971046231244935168n,
 				timestamp: 2524608000000n,
-				workerID: 1n,
-				processID: 1n,
+				workerId: 1n,
+				processId: 1n,
 				increment: 0n,
 				epoch: 1577836800000n
 			});
@@ -134,8 +159,8 @@ describe('Snowflake', () => {
 			expect(flake).toStrictEqual<DeconstructedSnowflake>({
 				id: 3971046231244935169n,
 				timestamp: 2524608000000n,
-				workerID: 1n,
-				processID: 1n,
+				workerId: 1n,
+				processId: 1n,
 				increment: 1n,
 				epoch: 1577836800000n
 			});
@@ -149,8 +174,8 @@ describe('Snowflake', () => {
 			expect(flake).toStrictEqual<DeconstructedSnowflake>({
 				id: 3971046231244935168n,
 				timestamp: 2524608000000n,
-				workerID: 1n,
-				processID: 1n,
+				workerId: 1n,
+				processId: 1n,
 				increment: 0n,
 				epoch: 1577836800000n
 			});
