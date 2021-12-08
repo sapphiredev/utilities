@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.8](https://github.com/sapphiredev/utilities/compare/@sapphire/eslint-config@4.0.7...@sapphire/eslint-config@4.0.8) (2021-12-08)
+
+### Bug Fixes
+
+-   **eslint-config:** bump eslint dependencies ([dadcd38](https://github.com/sapphiredev/utilities/commit/dadcd38ec3a0f26b3d2e9443f6b0615aee59c9bc))
+
 ## [4.0.7](https://github.com/sapphiredev/utilities/compare/@sapphire/eslint-config@4.0.5...@sapphire/eslint-config@4.0.7) (2021-11-25)
 
 ### Bug Fixes

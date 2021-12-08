@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/sapphiredev/utilities/compare/@sapphire/snowflake@2.1.4...@sapphire/snowflake@3.0.0) (2021-12-08)
+
+### Bug Fixes
+
+-   **snowflake:** remove env-based defaults ([#232](https://github.com/sapphiredev/utilities/issues/232)) ([10408e4](https://github.com/sapphiredev/utilities/commit/10408e4d3677e91490d967c3d89bf9575946090b))
+
+### Features
+
+-   **Snowflake:** rework entire package ([#231](https://github.com/sapphiredev/utilities/issues/231)) ([1d02f1a](https://github.com/sapphiredev/utilities/commit/1d02f1a2f520efcbc194c3992af593d0e493873b))
+
+### BREAKING CHANGES
+
+-   **Snowflake:** Renamed `processID` to `processId`
+-   **Snowflake:** Renamed `workerID` to `workerId`
+-   **Snowflake:** `workerId` now defaults to 0n instead of 1n
+-   **Snowflake:** `DiscordSnowflake` is not longer a class, but a constructed Snowflake
+-   **Snowflake:** `TwitterSnowflake` is not longer a class, but a constructed Snowflake
+
 ## [2.1.4](https://github.com/sapphiredev/utilities/compare/@sapphire/snowflake@2.1.3...@sapphire/snowflake@2.1.4) (2021-11-06)
 
 **Note:** Version bump only for package @sapphire/snowflake
