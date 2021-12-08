@@ -1,7 +1,24 @@
 /* eslint-disable @typescript-eslint/explicit-member-accessibility */
 
+import { threadId } from 'node:worker_threads';
+
+// For testing purposes, we'll assign processId and workerId
+// to 1n so it's easier to match the generated snowflakes:
+const ProcessId = process.env.NODE_ENV === 'test' ? 1n : BigInt(process.pid);
+const WorkerId = process.env.NODE_ENV === 'test' ? 0n : BigInt(threadId);
+
 /**
- * A class for parsing snowflake ids
+ * A class for generating and deconstructing Twitter snowflakes.
+ *
+ * A {@link https://developer.twitter.com/en/docs/twitter-ids Twitter snowflake}
+ * is a 64-bit unsigned integer with 4 fields that have a fixed epoch value.
+ *
+ * If we have a snowflake `266241948824764416` we can represent it as binary:
+ * ```
+ * 64                                          22     17     12          0
+ *  000000111011000111100001101001000101000000  00001  00000  000000000000
+ *           number of ms since epoch           worker  pid    increment
+ * ```
  */
 export class Snowflake {
 	/**
@@ -30,10 +47,17 @@ export class Snowflake {
 	}
 
 	/**
+	 * The epoch for this snowflake.
+	 */
+	public get epoch(): bigint {
+		return this.#epoch;
+	}
+
+	/**
 	 * Generates a snowflake given an epoch and optionally a timestamp
 	 * @param options options to pass into the generator, see {@link SnowflakeGenerateOptions}
 	 *
-	 * **note** when increment is not provided it defaults to the private increment of the instance
+	 * **note** when `increment` is not provided it defaults to the private `increment` of the instance
 	 * @example
 	 * ```typescript
 	 * const epoch = new Date('2000-01-01T00:00:00.000Z');
@@ -41,29 +65,21 @@ export class Snowflake {
 	 * ```
 	 * @returns A unique snowflake
 	 */
-	public generate(
-		{ increment, timestamp = Date.now(), workerID = 1n, processID = 1n }: SnowflakeGenerateOptions = {
-			timestamp: Date.now(),
-			workerID: 1n,
-			processID: 1n
-		}
-	) {
+	public generate({ increment, timestamp = Date.now(), workerId = WorkerId, processId = ProcessId }: SnowflakeGenerateOptions = {}) {
 		if (timestamp instanceof Date) timestamp = BigInt(timestamp.getTime());
-		if (typeof timestamp === 'number' && !Number.isNaN(timestamp)) timestamp = BigInt(timestamp);
-
-		if (typeof timestamp !== 'bigint') {
-			throw new TypeError(
-				`"timestamp" argument must be a number, BigInt or Date (received ${Number.isNaN(timestamp) ? 'NaN' : typeof timestamp})`
-			);
+		else if (typeof timestamp === 'number') timestamp = BigInt(timestamp);
+		else if (typeof timestamp !== 'bigint') {
+			throw new TypeError(`"timestamp" argument must be a number, bigint, or Date (received ${typeof timestamp})`);
 		}
 
-		if (increment !== undefined && increment >= 4095n) increment = 0n;
-		if (this.#increment >= 4095n) this.#increment = 0n;
+		if (typeof increment === 'bigint' && increment >= 4095n) increment = 0n;
+		else {
+			increment = this.#increment++;
+			if (this.#increment >= 4095n) this.#increment = 0n;
+		}
 
-		// timestamp, workerID, processID, increment
-		return (
-			((timestamp - this.#epoch) << 22n) | (workerID << 17n) | (processID << 12n) | (increment === undefined ? this.#increment++ : increment++)
-		);
+		// timestamp, workerId, processId, increment
+		return ((timestamp - this.#epoch) << 22n) | ((workerId & 0b11111n) << 17n) | ((processId & 0b11111n) << 12n) | increment;
 	}
 
 	/**
@@ -81,11 +97,20 @@ export class Snowflake {
 		return {
 			id: bigIntId,
 			timestamp: (bigIntId >> 22n) + this.#epoch,
-			workerID: (bigIntId >> 17n) & 0b11111n,
-			processID: (bigIntId >> 12n) & 0b11111n,
+			workerId: (bigIntId >> 17n) & 0b11111n,
+			processId: (bigIntId >> 12n) & 0b11111n,
 			increment: bigIntId & 0b111111111111n,
 			epoch: this.#epoch
 		};
+	}
+
+	/**
+	 * Retrieves the timestamp field's value from a snowflake.
+	 * @param id The snowflake to get the timestamp value from.
+	 * @returns The UNIX timestamp that is stored in `id`.
+	 */
+	public timestampFrom(id: string | bigint): number {
+		return Number((BigInt(id) >> 22n) + this.#epoch);
 	}
 }
 
@@ -107,16 +132,16 @@ export interface SnowflakeGenerateOptions {
 	increment?: bigint;
 
 	/**
-	 * The worker ID to use
-	 * @default 1n
+	 * The worker ID to use, will be truncated to 5 bits (0-31)
+	 * @default BigInt(worker_threads.threadId)
 	 */
-	workerID?: bigint;
+	workerId?: bigint;
 
 	/**
-	 * The process ID to use
-	 * @default 1n
+	 * The process ID to use, will be truncated to 5 bits (0-31)
+	 * @default BigInt(process.pid)
 	 */
-	processID?: bigint;
+	processId?: bigint;
 }
 
 /**
@@ -136,12 +161,12 @@ export interface DeconstructedSnowflake {
 	/**
 	 * The worker id stored in the snowflake
 	 */
-	workerID: bigint;
+	workerId: bigint;
 
 	/**
 	 * The process id stored in the snowflake
 	 */
-	processID: bigint;
+	processId: bigint;
 
 	/**
 	 * The increment stored in the snowflake
