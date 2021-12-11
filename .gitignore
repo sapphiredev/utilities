@@ -38,4 +38,4 @@ docs/
 package-lock.json
 
 # Ignore Turbo caching
-.turbo/
+.turbo
