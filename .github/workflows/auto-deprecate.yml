@@ -20,7 +20,7 @@ jobs:
       - name: Install Dependencies
         run: yarn --immutable
       - name: Build Dependencies
-        run: yarn lerna run build --parallel --scope=@sapphire/utilities --scope=@sapphire/fetch
+        run: yarn turbo run build --scope="@sapphire/{utilities,fetch}" --no-deps
       - name: Deprecate versions
         run: yarn npm-deprecate
         env:

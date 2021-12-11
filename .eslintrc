@@ -2,9 +2,9 @@
 	"extends": ["./packages/eslint-config/dist/index.js"],
 	"overrides": [
 		{
-			"files": ["packages/utilities/tests/*.test.ts"],
+			"files": ["*.test.ts"],
 			"rules": {
-				"@typescript-eslint/no-extraneous-class": 0
+				"@typescript-eslint/no-extraneous-class": "off"
 			}
 		}
 	]

@@ -5,23 +5,45 @@
 		"packages/*"
 	],
 	"scripts": {
-		"clean": "rimraf \"packages/**/dist\" \"packages/**/build\" \"packages/**/node_modules/.cache\"",
+		"clean": "node scripts/clean.mjs",
 		"clean:full": "node scripts/clean-full.mjs",
 		"lint": "eslint packages --ext mjs,js,ts,tsx --fix",
 		"format": "prettier --write \"packages/**/{src,tests,scripts}/**/*.{mjs,ts,js}\"",
-		"test": "jest",
-		"test:watch": "jest --watch",
-		"build": "yarn build:1 && yarn build:2 && yarn build:3 && yarn build:4",
-		"build:123": "yarn build:1 && yarn build:2 && yarn build:3",
-		"build:1": "lerna run build --parallel --scope=@sapphire/utilities --scope=@sapphire/eslint-config --scope=@sapphire/prettier-config",
-		"build:2": "lerna run build --parallel --scope=@sapphire/discord-utilities --scope=@sapphire/time-utilities",
-		"build:3": "lerna run build --parallel --scope=@sapphire/discord.js-utilities --scope=@sapphire/ratelimits --scope=@sapphire/async-queue",
-		"build:4": "lerna run build --parallel --ignore=@sapphire/utilities --ignore=@sapphire/eslint-config --ignore=@sapphire/prettier-config --ignore=@sapphire/discord-utilities --ignore=@sapphire/time-utilities --ignore=@sapphire/discord.js-utilities --ignore=@sapphire/ratelimits --ignore=@sapphire/async-queue",
+		"test": "turbo run test",
+		"build": "turbo run build",
 		"docs": "typedoc",
 		"commit": "git-cz",
 		"cz": "git-cz",
 		"update": "yarn upgrade-interactive",
 		"prepare": "husky install .github/husky"
+	},
+	"turbo": {
+		"pipeline": {
+			"build": {
+				"dependsOn": [
+					"^build"
+				],
+				"outputs": [
+					"dist/**",
+					"build/**"
+				]
+			},
+			"lint": {
+				"dependsOn": [
+					"@sapphire/prettier-config#build",
+					"@sapphire/eslint-config#build"
+				],
+				"outputs": []
+			},
+			"test": {
+				"dependsOn": [
+					"@sapphire/time-utilities#build"
+				],
+				"outputs": [
+					"coverage/**"
+				]
+			}
+		}
 	},
 	"devDependencies": {
 		"@commitlint/cli": "^15.0.0",
@@ -62,6 +84,7 @@
 		"ts-jest": "^27.1.1",
 		"ts-node": "^10.4.0",
 		"tslib": "^2.3.1",
+		"turbo": "^1.0.6",
 		"typedoc": "^0.22.10",
 		"typedoc-plugin-djs-links": "^1.0.3",
 		"typedoc-plugin-mdn-links": "^1.0.4",
