@@ -27,7 +27,7 @@ jobs:
       - name: Build ESLint, Prettier and Utilities
         run: yarn turbo run build --scope="@sapphire/{utilities,{eslint,prettier}-config}" --no-deps
       - name: Run ESLint
-        run: yarn lint -- --fix=false
+        run: yarn lint --fix=false
 
   Testing:
     name: Unit Tests
