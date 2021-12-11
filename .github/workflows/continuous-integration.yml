@@ -25,7 +25,7 @@ jobs:
       - name: Install Dependencies
         run: yarn --immutable
       - name: Build ESLint, Prettier and Utilities
-        run: yarn build:1
+        run: yarn turbo run build --scope="@sapphire/{utilities,{eslint,prettier}-config}" --no-deps
       - name: Run ESLint
         run: yarn lint --fix=false
 
@@ -43,18 +43,8 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - name: Install Dependencies
         run: yarn --immutable
-      - name: Build Async Queue
-        run: yarn lerna run build --scope=@sapphire/async-queue
-      - name: Build Utilities
-        run: yarn lerna run build --scope=@sapphire/utilities
-      - name: Build Time Utilities
-        run: yarn lerna run build --scope=@sapphire/time-utilities
-      - name: Build Discord Utilities
-        run: yarn lerna run build --scope=@sapphire/discord-utilities
-      - name: Build Discord.js Utilities
-        run: yarn lerna run build --scope=@sapphire/discord.js-utilities
-      - name: Build Ratelimits
-        run: yarn lerna run build --scope=@sapphire/ratelimits
+      - name: Build test dependencies
+        run: yarn turbo run build --scope="@sapphire/{async-queue,*utilities,ratelimits}" --no-deps
       - name: Run tests
         run: yarn test --coverage
       - name: Store code coverage report

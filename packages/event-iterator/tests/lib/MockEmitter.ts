@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/explicit-member-accessibility */
 import { EventEmitter } from 'events';
-import { promisify } from 'util';
 import { EventIterator, EventIteratorOptions } from '../../src';
 import { Person } from './Person';
 
@@ -37,6 +36,11 @@ export class PeopleEmitter extends EventEmitter {
 		this.init();
 		return this.#iterator;
 	}
-}
 
-export const sleep = promisify(setTimeout);
+	public destroy(): void {
+		if (this.#timeout) {
+			this.#timeout.unref();
+			clearTimeout(this.#timeout);
+		}
+	}
+}

@@ -15,13 +15,18 @@
 	"homepage": "https://github.com/sapphiredev/utilities/tree/main/packages/decorators",
 	"scripts": {
 		"test": "jest",
-		"prelint": "yarn test && yarn build",
-		"lint": "eslint src tests --ext ts --fix -c dist/index.js",
+		"lint": "eslint src tests --ext ts --fix -c ../../.eslintrc",
 		"build": "tsc -b src && gen-esm-wrapper dist/index.js dist/index.mjs",
 		"prepublishOnly": "yarn build"
 	},
 	"dependencies": {
 		"tslib": "^2.3.1"
+	},
+	"devDependencies": {
+		"@sapphire/discord-utilities": "*",
+		"@sapphire/discord.js-utilities": "*",
+		"@sapphire/ratelimits": "*",
+		"@sapphire/utilities": "*"
 	},
 	"repository": {
 		"type": "git",

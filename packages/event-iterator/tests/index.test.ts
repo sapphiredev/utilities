@@ -1,23 +1,34 @@
+import { setTimeout as sleep } from 'node:timers/promises';
 import { EventIterator } from '../src';
-import { people, PeopleEmitter, sleep } from './lib/MockEmitter';
+import { people, PeopleEmitter } from './lib/MockEmitter';
 import type { Person } from './lib/Person';
 
 describe('EventIterator', () => {
 	test('PeopleIterator is an instanceof EventIterator', () => {
-		expect(new PeopleEmitter().createPeopleIterator() instanceof EventIterator).toBe(true);
+		const emitter = new PeopleEmitter();
+		const iter = emitter.createPeopleIterator();
+		expect(iter instanceof EventIterator).toBe(true);
+
+		iter.end();
+		emitter.destroy();
 	});
 
 	test('EventIterator#ended', () => {
-		const iter = new PeopleEmitter().createPeopleIterator();
+		const emitter = new PeopleEmitter();
+		const iter = emitter.createPeopleIterator();
 		expect(iter.ended).toBe(false);
 		iter.end();
 		expect(iter.ended).toBe(true);
 		iter.end();
 		expect(iter.ended).toBe(true);
+
+		emitter.destroy();
 	});
 
 	test('EventIterator#next', async () => {
-		const iter = new PeopleEmitter().createPeopleIterator({ limit: people.length });
+		const emitter = new PeopleEmitter();
+
+		const iter = emitter.createPeopleIterator({ limit: people.length });
 		const firstValue = await iter.next();
 		expect(firstValue).toStrictEqual({ done: false, value: [people[0]] });
 
@@ -27,10 +38,13 @@ describe('EventIterator', () => {
 		iter.end();
 		const thirdValue = await iter.next();
 		expect(thirdValue).toStrictEqual({ done: true, value: undefined });
+
+		emitter.destroy();
 	});
 
 	test("EventIterator ends when it hits it's limit", async () => {
-		const iter = new PeopleEmitter().createPeopleIterator({ limit: 2 });
+		const emitter = new PeopleEmitter();
+		const iter = emitter.createPeopleIterator({ limit: 2 });
 
 		let count = 0;
 		for await (const value of iter) {
@@ -38,11 +52,15 @@ describe('EventIterator', () => {
 		}
 
 		expect(count).toBe(2);
+
+		emitter.destroy();
 	});
 
 	test('EventIterator properly filters values', async () => {
+		const emitter = new PeopleEmitter();
+
 		const filteredPeople = people.filter((person: Person): boolean => person.name.length === 3);
-		const iter = new PeopleEmitter().createPeopleIterator({
+		const iter = emitter.createPeopleIterator({
 			limit: filteredPeople.length,
 			filter: ([person]: [Person]): boolean => person.name.length === 3
 		});
@@ -53,10 +71,14 @@ describe('EventIterator', () => {
 		}
 
 		expect(count).toBe(filteredPeople.length);
+
+		emitter.destroy();
 	});
 
 	test('EventIterator properly times out', async () => {
-		const iter = new PeopleEmitter().createPeopleIterator({ idle: 500 });
+		const emitter = new PeopleEmitter();
+
+		const iter = emitter.createPeopleIterator({ idle: 500 });
 
 		// eslint-disable-next-line @typescript-eslint/no-unused-vars
 		for await (const {} of iter) {
@@ -65,10 +87,14 @@ describe('EventIterator', () => {
 		}
 
 		expect(iter.ended).toBe(true);
+
+		emitter.destroy();
 	});
 
 	test('EventIterator timer properly idles out with iterations', async () => {
-		const iter = new PeopleEmitter().createPeopleIterator({ idle: 1200 });
+		const emitter = new PeopleEmitter();
+
+		const iter = emitter.createPeopleIterator({ idle: 1200 });
 		let count = 0;
 
 		for await (const value of iter) {
@@ -76,6 +102,8 @@ describe('EventIterator', () => {
 		}
 
 		expect(count).toBe(3);
+
+		emitter.destroy();
 	});
 
 	test('EventIterator properly increases listeners', () => {
@@ -87,6 +115,8 @@ describe('EventIterator', () => {
 
 		iter.end();
 		expect(emitter.getMaxListeners()).toBe(1);
+
+		emitter.destroy();
 	});
 
 	test('EventIterator does not increase listener count when count is 0', () => {
@@ -98,6 +128,8 @@ describe('EventIterator', () => {
 
 		iter.end();
 		expect(emitter.getMaxListeners()).toBe(0);
+
+		emitter.destroy();
 	});
 
 	test('EventIterator decreases count when loop is broken', async () => {
@@ -112,6 +144,8 @@ describe('EventIterator', () => {
 		}
 
 		expect(emitter.getMaxListeners()).toBe(1);
+
+		emitter.destroy();
 	});
 
 	test('EventIterator decreases count when loop is thrown from', async () => {
@@ -130,6 +164,8 @@ describe('EventIterator', () => {
 		}
 
 		expect(emitter.getMaxListeners()).toBe(1);
+
+		emitter.destroy();
 	});
 
 	test('EventIterator decreases count when some unknown internal throw happens', async () => {
@@ -142,10 +178,14 @@ describe('EventIterator', () => {
 		await iter.throw();
 
 		expect(emitter.getMaxListeners()).toBe(1);
+
+		emitter.destroy();
 	});
 
 	test('EventIterator does not have a next value after throwing', async () => {
-		const iter = new PeopleEmitter().createPeopleIterator();
+		const emitter = new PeopleEmitter();
+
+		const iter = emitter.createPeopleIterator();
 		expect(iter.ended).toBe(false);
 
 		await sleep(3000);
@@ -155,10 +195,14 @@ describe('EventIterator', () => {
 		const next = await iter.next();
 		expect(next.value).toBe(undefined);
 		expect(next.done).toBe(true);
+
+		emitter.destroy();
 	});
 
 	test('EventIterator does not have a next value after breaking', async () => {
-		const iter = new PeopleEmitter().createPeopleIterator();
+		const emitter = new PeopleEmitter();
+
+		const iter = emitter.createPeopleIterator();
 		expect(iter.ended).toBe(false);
 
 		await sleep(3000);
@@ -168,5 +212,7 @@ describe('EventIterator', () => {
 		const next = await iter.next();
 		expect(next.value).toBe(undefined);
 		expect(next.done).toBe(true);
+
+		emitter.destroy();
 	});
 });

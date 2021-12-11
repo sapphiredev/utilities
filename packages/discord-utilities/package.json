@@ -17,7 +17,7 @@
 	"sideEffects": false,
 	"homepage": "https://github.com/sapphiredev/utilities/tree/main/packages/discord-utilities",
 	"scripts": {
-		"lint": "eslint src tests --ext ts --fix -c ../../.eslintrc",
+		"lint": "eslint src --ext ts --fix -c ../../.eslintrc",
 		"build": "rollup -c",
 		"start": "yarn build -w",
 		"prepublishOnly": "yarn build"
