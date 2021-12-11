@@ -46,7 +46,7 @@ jobs:
       - name: Build test dependencies
         run: yarn turbo run build --scope="@sapphire/{async-queue,*utilities,ratelimits}" --no-deps
       - name: Run tests
-        run: yarn test --coverage
+        run: yarn jest --coverage
       - name: Store code coverage report
         uses: actions/upload-artifact@27121b0bdffd731efa15d66772be8dc71245d074 # renovate: tag=v2
         with:
