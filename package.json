@@ -7,7 +7,7 @@
 	"scripts": {
 		"clean": "node scripts/clean.mjs",
 		"clean:full": "node scripts/clean-full.mjs",
-		"lint": "eslint packages --ext mjs,js,ts,tsx --fix",
+		"lint": "turbo run lint",
 		"format": "prettier --write \"packages/**/{src,tests,scripts}/**/*.{mjs,ts,js}\"",
 		"test": "turbo run test",
 		"build": "turbo run build",
