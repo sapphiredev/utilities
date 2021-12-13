@@ -12,13 +12,11 @@ export class Stopwatch {
 	/**
 	 * The start time of this stopwatch
 	 */
-	// eslint-disable-next-line @typescript-eslint/explicit-member-accessibility
 	#start: number;
 
 	/**
 	 * The end time of this stopwatch
 	 */
-	// eslint-disable-next-line @typescript-eslint/explicit-member-accessibility
 	#end: number | null;
 
 	/**

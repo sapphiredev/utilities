@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/explicit-member-accessibility */
-
 const ProcessId = 1n;
 const WorkerId = 0n;
 

@@ -13,7 +13,7 @@ export class QueryError extends Error {
 	public readonly body: string;
 	/** The original {@link Response} object */
 	public readonly response: Response;
-	// eslint-disable-next-line @typescript-eslint/explicit-member-accessibility
+
 	#json: unknown;
 
 	public constructor(url: string, code: number, response: Response, body: string) {
