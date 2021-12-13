@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/explicit-member-accessibility */
 import { EventEmitter } from 'events';
 import { EventIterator, EventIteratorOptions } from '../../src';
 import { Person } from './Person';

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/explicit-member-accessibility */
 import type { EventEmitter } from 'events';
 
 /**
