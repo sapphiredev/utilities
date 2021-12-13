@@ -2121,6 +2121,8 @@ __metadata:
 "@sapphire/event-iterator@workspace:packages/event-iterator":
   version: 0.0.0-use.local
   resolution: "@sapphire/event-iterator@workspace:packages/event-iterator"
+  dependencies:
+    tslib: ^2.3.1
   languageName: unknown
   linkType: soft
 

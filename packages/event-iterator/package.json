@@ -6,8 +6,6 @@
 	"license": "MIT",
 	"main": "dist/index.js",
 	"module": "dist/index.mjs",
-	"browser": "dist/index.umd.js",
-	"unpkg": "dist/index.umd.js",
 	"types": "dist/index.d.ts",
 	"typedocMain": "src/index.ts",
 	"exports": {
@@ -19,9 +17,12 @@
 	"scripts": {
 		"test": "jest",
 		"lint": "eslint src tests --ext ts --fix -c ../../.eslintrc",
-		"build": "rollup -c",
+		"build": "tsc -b src && gen-esm-wrapper dist/index.js dist/index.mjs",
 		"start": "yarn build -w",
 		"prepublishOnly": "yarn build"
+	},
+	"dependencies": {
+		"tslib": "^2.3.1"
 	},
 	"repository": {
 		"type": "git",
