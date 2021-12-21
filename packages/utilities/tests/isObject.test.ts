@@ -74,7 +74,10 @@ describe('isObject', () => {
 	});
 
 	test('GIVEN instance of class WITH custom constructorType THEN returns true', () => {
-		class A {}
+		class A {
+			public B!: string;
+		}
+
 		const value = new A();
 
 		expect(isObject(value, A)).toBeTrue();
