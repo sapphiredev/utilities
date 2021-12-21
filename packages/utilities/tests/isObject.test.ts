@@ -65,4 +65,18 @@ describe('isObject', () => {
 		const value = class A {};
 		expect(isObject(value)).toBeFalse();
 	});
+
+	test('GIVEN instance of class THEN returns false', () => {
+		class A {}
+		const value = new A();
+
+		expect(isObject(value)).toBeFalse();
+	});
+
+	test('GIVEN instance of class WITH custom constructorType THEN returns true', () => {
+		class A {}
+		const value = new A();
+
+		expect(isObject(value, A)).toBeTrue();
+	});
 });
