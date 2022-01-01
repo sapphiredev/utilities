@@ -26,7 +26,7 @@
 	"commitConvention": "angular",
 	"contributors": [
 		{
-			"login": "Favna",
+			"login": "favna",
 			"name": "Jeroen Claassens",
 			"avatar_url": "https://avatars3.githubusercontent.com/u/4019718?v=4",
 			"profile": "https://favware.tech/",
@@ -152,8 +152,8 @@
 			"contributions": ["bug"]
 		},
 		{
-			"login": "Megatank58",
-			"name": "Megatank58",
+			"login": "megatank58",
+			"name": "megatank58",
 			"avatar_url": "https://avatars.githubusercontent.com/u/51410502?v=4",
 			"profile": "https://megatank58.me/",
 			"contributions": ["code"]
@@ -178,6 +178,13 @@
 			"avatar_url": "https://avatars.githubusercontent.com/u/44669930?v=4",
 			"profile": "https://gitlab.com/DavidPH/",
 			"contributions": ["code"]
+		},
+		{
+			"login": "renovate[bot]",
+			"name": "renovate[bot]",
+			"avatar_url": "https://avatars.githubusercontent.com/in/2740?v=4",
+			"profile": "https://github.com/apps/renovate",
+			"contributions": ["maintenance"]
 		}
 	],
 	"contributorsPerLine": 7,
