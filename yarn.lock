@@ -2110,7 +2110,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@sapphire/discord-utilities@*, @sapphire/discord-utilities@^2.3.0, @sapphire/discord-utilities@^2.4.0, @sapphire/discord-utilities@workspace:packages/discord-utilities":
+"@sapphire/discord-utilities@*, @sapphire/discord-utilities@^2.4.0, @sapphire/discord-utilities@workspace:packages/discord-utilities":
   version: 0.0.0-use.local
   resolution: "@sapphire/discord-utilities@workspace:packages/discord-utilities"
   dependencies:
@@ -2118,7 +2118,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@sapphire/discord.js-utilities@*, @sapphire/discord.js-utilities@^4.1.4, @sapphire/discord.js-utilities@workspace:packages/discord.js-utilities":
+"@sapphire/discord.js-utilities@*, @sapphire/discord.js-utilities@^4.1.5, @sapphire/discord.js-utilities@workspace:packages/discord.js-utilities":
   version: 0.0.0-use.local
   resolution: "@sapphire/discord.js-utilities@workspace:packages/discord.js-utilities"
   dependencies:
@@ -2168,18 +2168,18 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@sapphire/framework@npm:^2.2.1":
-  version: 2.2.1
-  resolution: "@sapphire/framework@npm:2.2.1"
+"@sapphire/framework@npm:^2.2.2":
+  version: 2.2.2
+  resolution: "@sapphire/framework@npm:2.2.2"
   dependencies:
-    "@sapphire/discord-utilities": ^2.3.0
-    "@sapphire/discord.js-utilities": ^4.1.4
+    "@sapphire/discord-utilities": ^2.4.0
+    "@sapphire/discord.js-utilities": ^4.1.5
     "@sapphire/pieces": ^3.2.0
     "@sapphire/ratelimits": ^2.1.10
     "@sapphire/utilities": ^3.1.0
     lexure: ^0.17.0
     tslib: ^2.3.1
-  checksum: 9903a4fd5f627730ed318f0bce31cd54029cd06cbd48f39ee78f9e7a7e7250339b651915f4ee967a65b7778fa2acdeacf2f6dbafb322c7e609b4f9c2a4ab5090
+  checksum: 12219d29c3f401b09ea77149e5837e6db004b8f2a0fc3b77573295ba5e1c4b54927c01479bd827fd1a7db2a3e3d9e9f7ea31a9f92d85729bf8e22c941e5d8a7c
   languageName: node
   linkType: hard
 
@@ -8918,7 +8918,7 @@ __metadata:
     "@favware/rollup-type-bundler": ^1.0.6
     "@rollup/plugin-commonjs": ^21.0.1
     "@rollup/plugin-node-resolve": ^13.1.1
-    "@sapphire/framework": ^2.2.1
+    "@sapphire/framework": ^2.2.2
     "@types/jest": ^27.0.3
     "@types/lodash": ^4.14.178
     "@types/node": ^17.0.0

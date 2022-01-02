@@ -53,7 +53,7 @@
 		"@favware/rollup-type-bundler": "^1.0.6",
 		"@rollup/plugin-commonjs": "^21.0.1",
 		"@rollup/plugin-node-resolve": "^13.1.1",
-		"@sapphire/framework": "^2.2.1",
+		"@sapphire/framework": "^2.2.2",
 		"@types/jest": "^27.0.3",
 		"@types/lodash": "^4.14.178",
 		"@types/node": "^17.0.0",
