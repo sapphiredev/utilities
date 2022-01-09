@@ -6,9 +6,9 @@ import type { ChannelTypes } from './utility-types';
 const canReadMessagesPermissions = new Permissions(['VIEW_CHANNEL']);
 
 /**
- * Determines whether or not we can send messages in a given channel.
+ * Determines whether or not we can read messages in a given channel.
  * @param channel The channel to test the permissions from.
- * @returns Whether or not we can send messages in the specified channel.
+ * @returns Whether or not we can read messages in the specified channel.
  */
 export function canReadMessages(channel: ChannelTypes | Nullish): boolean {
 	if (isNullish(channel)) return false;
