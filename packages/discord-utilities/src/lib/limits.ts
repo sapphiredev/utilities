@@ -171,7 +171,7 @@ export const MessageLimits = {
  */
 export const ModerationLimits = {
 	/**
-	 * Maximum duration of a guild Timeout, in seconds (corresponds to 28 days).
+	 * Maximum duration of a guild timeout, in seconds (corresponds to 28 days).
 	 */
 	MaximumTimeoutDuration: 2_419_200
 } as const;
