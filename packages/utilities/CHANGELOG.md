@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.2.0](https://github.com/sapphiredev/utilities/compare/@sapphire/utilities@3.1.0...@sapphire/utilities@3.2.0) (2022-01-10)
+
+### Bug Fixes
+
+-   **utilities:** make `NonNullObject` require object ([#242](https://github.com/sapphiredev/utilities/issues/242)) ([5e0f161](https://github.com/sapphiredev/utilities/commit/5e0f161145402e01b631a9b1b2033d0618cccc8b))
+
+### Features
+
+-   **utilities:** support custom constructors for `isObject` ([#241](https://github.com/sapphiredev/utilities/issues/241)) ([701c2c2](https://github.com/sapphiredev/utilities/commit/701c2c200f147d7d7dcccaee65b75e709b601f8c))
+
 # [3.1.0](https://github.com/sapphiredev/utilities/compare/@sapphire/utilities@3.0.8...@sapphire/utilities@3.1.0) (2021-11-19)
 
 ### Features

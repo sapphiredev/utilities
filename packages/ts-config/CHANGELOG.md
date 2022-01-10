@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.7](https://github.com/sapphiredev/utilities/compare/@sapphire/ts-config@3.1.6...@sapphire/ts-config@3.1.7) (2022-01-10)
+
+**Note:** Version bump only for package @sapphire/ts-config
+
 ## [3.1.6](https://github.com/sapphiredev/utilities/compare/@sapphire/ts-config@3.1.4...@sapphire/ts-config@3.1.6) (2021-11-25)
 
 **Note:** Version bump only for package @sapphire/ts-config

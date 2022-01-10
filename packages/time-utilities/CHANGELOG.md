@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.1](https://github.com/sapphiredev/utilities/compare/@sapphire/time-utilities@1.5.0...@sapphire/time-utilities@1.5.1) (2022-01-10)
+
+**Note:** Version bump only for package @sapphire/time-utilities
+
 # [1.5.0](https://github.com/sapphiredev/utilities/compare/@sapphire/time-utilities@1.4.9...@sapphire/time-utilities@1.5.0) (2021-11-29)
 
 ### Features

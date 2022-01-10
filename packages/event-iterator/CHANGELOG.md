@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/sapphiredev/utilities/compare/@sapphire/event-iterator@1.3.3...@sapphire/event-iterator@1.4.0) (2022-01-10)
+
+### Features
+
+-   **event-iterator:** do not bundle for browsers ([#237](https://github.com/sapphiredev/utilities/issues/237)) ([c922e61](https://github.com/sapphiredev/utilities/commit/c922e613bacdfb1dd428cc174c0742b24642827e))
+
 ## [1.3.3](https://github.com/sapphiredev/utilities/compare/@sapphire/event-iterator@1.3.2...@sapphire/event-iterator@1.3.3) (2021-11-06)
 
 **Note:** Version bump only for package @sapphire/event-iterator
