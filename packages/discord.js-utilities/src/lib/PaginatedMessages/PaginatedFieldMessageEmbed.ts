@@ -1,5 +1,7 @@
-import { MessageEmbed, MessageEmbedOptions } from 'discord.js';
+import { EmbedField, MessageEmbed, MessageEmbedOptions } from 'discord.js';
 import { PaginatedMessage } from './PaginatedMessage';
+
+export type PaginateFieldMessageEmbedMode = 'embed' | 'field'
 
 /**
  * This is a utility of {@link PaginatedMessage}, except it exclusively paginates the fields of an embed.
@@ -29,6 +31,12 @@ export class PaginatedFieldMessageEmbed<T> extends PaginatedMessage {
 	private items: T[] = [];
 	private itemsPerPage = 10;
 	private fieldTitle = '';
+	private mode: PaginateFieldMessageEmbedMode = 'embed';
+
+	public setMode(mode: PaginateFieldMessageEmbedMode) {
+		this.mode = mode;
+		return this;
+	}
 
 	/**
 	 * Set the items to paginate.
@@ -132,9 +140,11 @@ export class PaginatedFieldMessageEmbed<T> extends PaginatedMessage {
 	 * ```
 	 */
 	public make() {
-		if (!this.fieldTitle.length) throw new Error('The title of the field to format must have a value.');
+		if (!this.fieldTitle.length && this.mode === 'embed') throw new Error('The title of the field to format must have a value.');
 		if (!this.items.length) throw new Error('The items array is empty.');
+		if (!this.items.some((x: any) => !x.title || !x.value) && this.mode === 'field') throw new Error('The format of the items is incorrect. When using the "field" mode, the items must be an object and must have the "title" and "value" fields in order to be represented in the fields.');
 		if (this.items.some((x) => !x)) throw new Error('The format of the array items is incorrect.');
+		if (this.itemsPerPage > 25 && this.mode === 'field') throw new Error('When using the "field" mode, the limit of items per page must be less than 25.');
 
 		this.totalPages = Math.ceil(this.items.length / this.itemsPerPage);
 		this.generatePages();
@@ -151,9 +161,15 @@ export class PaginatedFieldMessageEmbed<T> extends PaginatedMessage {
 			if (!clonedTemplate.color) clonedTemplate.setColor('RANDOM');
 
 			const data = this.paginateArray(this.items, i, this.itemsPerPage);
-			this.addPage({
-				embeds: [clonedTemplate.addField(this.fieldTitle, data.join('\n'), false).addFields(fieldsClone)]
-			});
+			if (this.mode === 'embed') {
+				this.addPage({
+					embeds: [clonedTemplate.addField(this.fieldTitle, data.join('\n'), false).addFields(fieldsClone)]
+				});
+			} else {
+				this.addPage({
+					embeds: [clonedTemplate.addFields(...data as unknown as EmbedField[]).addFields(fieldsClone)]
+				});
+			}
 		}
 	}
 
