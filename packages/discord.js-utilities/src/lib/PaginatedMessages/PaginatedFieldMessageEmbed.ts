@@ -1,3 +1,4 @@
+import { isFunction } from '@sapphire/utilities';
 import { MessageEmbed, MessageEmbedOptions } from 'discord.js';
 import { PaginatedMessage } from './PaginatedMessage';
 
@@ -82,8 +83,8 @@ export class PaginatedFieldMessageEmbed<T> extends PaginatedMessage {
 	 * new PaginatedFieldMessageEmbed().setTemplate({ title: 'Test pager embed' }).make().run(message);
 	 * ```
 	 */
-	public setTemplate(template: MessageEmbedOptions | MessageEmbed) {
-		this.embedTemplate = template instanceof MessageEmbed ? template : new MessageEmbed(template);
+	public setTemplate(template: MessageEmbedOptions | MessageEmbed | ((embed: MessageEmbed) => MessageEmbed)) {
+		this.embedTemplate = this.resolveTemplate(template);
 		return this;
 	}
 
@@ -164,5 +165,17 @@ export class PaginatedFieldMessageEmbed<T> extends PaginatedMessage {
 	private paginateArray(items: T[], currentPage: number, perPageItems: number) {
 		const offset = currentPage * perPageItems;
 		return items.slice(offset, offset + perPageItems);
+	}
+
+	private resolveTemplate(template: MessageEmbed | MessageEmbedOptions | ((embed: MessageEmbed) => MessageEmbed)) {
+		if (template instanceof MessageEmbed) {
+			return template;
+		}
+
+		if (isFunction(template)) {
+			return template(new MessageEmbed());
+		}
+
+		return new MessageEmbed(template);
 	}
 }
