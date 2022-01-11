@@ -43,12 +43,19 @@ npm install @sapphire/phisherman
 
 **Note:** While this section uses `import`, it maps 1:1 with CommonJS' require syntax. For example, `import { check } from '@sapphire/phisherman'` is the same as `const { checkDomain } = require('@sapphire/phisherman')`.
 
+Before you do anything make sure to set the apiKey like this:
+```typescript
+import { setApiKey } from '@sapphire/phisherman';
+
+setApiKey('your-api-key');
+```
+
 The main use you will have for phisherman is checking whether an URL is safe or not. You can do so with:
 
 ```typescript
 import { checkDomain } from '@sapphire/phisherman';
 
-checkDomain('some-domain', 'my-api-key');
+checkDomain('some-domain');
 ```
 
 If you have an URL that didn't pass the check, but you are sure is actually a phishing site, you can use the following to report it to phisherman:
@@ -56,7 +63,7 @@ If you have an URL that didn't pass the check, but you are sure is actually a ph
 ```typescript
 import { reportDomain } from '@sapphire/phisherman';
 
-reportDomain('some-domain', 'my-api-key');
+reportDomain('some-domain');
 ```
 
 ## Buy us some doughnuts

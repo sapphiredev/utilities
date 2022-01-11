@@ -1,14 +1,14 @@
 import { fetch, FetchMethods, FetchResultTypes } from '@sapphire/fetch';
 import type { PhishermanReportType, PhishermanReturnType } from './PhishermanTypes';
 
+let apiKey: string;
+
 /**
  * Checks if a link is detected as a scam or phishing link by phisherman.
  * @param domain The domain to check.
- * @param apiKey The API to access the phisherman API.
  * @since 1.0.0
  */
-export async function checkDomain(domain: string, apiKey: string) {
-	await checkApiKey(apiKey);
+export async function checkDomain(domain: string) {
 	const result = await fetch<PhishermanReturnType>(
 		`https://api.phisherman.gg/v2/domains/check/${domain}`,
 		{
@@ -29,11 +29,9 @@ export async function checkDomain(domain: string, apiKey: string) {
 /**
  * Report a domain that is confirmed to be a scam or phishing domain to phisherman, to enhance their API.
  * @param domain The domain to report
- * @param apiKey The API to access the phisherman API.
  * @since 1.0.0
  */
-export async function reportDomain(domain: string, apiKey: string) {
-	await checkApiKey(apiKey);
+export function reportDomain(domain: string) {
 	return fetch<PhishermanReportType>(
 		`https://api.phisherman.gg/v2/phish/report`,
 		{
@@ -48,6 +46,16 @@ export async function reportDomain(domain: string, apiKey: string) {
 		},
 		FetchResultTypes.JSON
 	);
+}
+
+/**
+ * Set the phisherman's API key.
+ * @param key The API to access the phisherman API.
+ */
+export function setApiKey(key: string) {
+	void checkApiKey(apiKey).then(() => {
+		apiKey = key;
+	});
 }
 
 async function checkApiKey(apiKey: string) {
