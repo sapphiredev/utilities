@@ -12,3 +12,4 @@
 /packages/type/**/*.ts @kyranet
 /packages/utilities/**/*.ts @favna @kyranet @vladfrangu
 /packages/fetch/**/*.ts @favna @kyranet
+/packages/phisherman/**/*.ts @undiedgamer
