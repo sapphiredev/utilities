@@ -53,7 +53,7 @@ export function reportDomain(domain: string) {
  * @param key The API to access the phisherman API.
  */
 export function setApiKey(key: string) {
-	void checkApiKey(apiKey).then(() => {
+	void checkApiKey(key).then(() => {
 		apiKey = key;
 	});
 }
