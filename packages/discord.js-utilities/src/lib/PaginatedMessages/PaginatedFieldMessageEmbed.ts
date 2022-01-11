@@ -25,13 +25,13 @@ export type PaginateFieldMessageEmbedMode = 'embed' | 'field'
  *    .run(message);
  * ```
  */
-export class PaginatedFieldMessageEmbed<T> extends PaginatedMessage {
+export class PaginatedFieldMessageEmbed<T = EmbedField> extends PaginatedMessage {
 	private embedTemplate: MessageEmbed = new MessageEmbed();
 	private totalPages = 0;
 	private items: T[] = [];
 	private itemsPerPage = 10;
 	private fieldTitle = '';
-	private mode: PaginateFieldMessageEmbedMode = 'embed';
+	private mode: PaginateFieldMessageEmbedMode = 'field';
 
 	public setMode(mode: PaginateFieldMessageEmbedMode) {
 		this.mode = mode;
@@ -52,6 +52,7 @@ export class PaginatedFieldMessageEmbed<T> extends PaginatedMessage {
 	 * @param title The field title
 	 */
 	public setTitleField(title: string) {
+		if (this.mode === 'field') throw new Error('This method can only be used when using "embed" mode.')
 		this.fieldTitle = title;
 		return this;
 	}
@@ -61,6 +62,7 @@ export class PaginatedFieldMessageEmbed<T> extends PaginatedMessage {
 	 * @param itemsPerPage The number of items
 	 */
 	public setItemsPerPage(itemsPerPage: number) {
+		if (this.itemsPerPage > 25 && this.mode === 'field') throw new Error('When using the "field" mode, the limit of items per page must be less than 25.');
 		this.itemsPerPage = itemsPerPage;
 		return this;
 	}
@@ -142,9 +144,9 @@ export class PaginatedFieldMessageEmbed<T> extends PaginatedMessage {
 	public make() {
 		if (!this.fieldTitle.length && this.mode === 'embed') throw new Error('The title of the field to format must have a value.');
 		if (!this.items.length) throw new Error('The items array is empty.');
+
 		if (!this.items.some((x: any) => !x.title || !x.value) && this.mode === 'field') throw new Error('The format of the items is incorrect. When using the "field" mode, the items must be an object and must have the "title" and "value" fields in order to be represented in the fields.');
-		if (this.items.some((x) => !x)) throw new Error('The format of the array items is incorrect.');
-		if (this.itemsPerPage > 25 && this.mode === 'field') throw new Error('When using the "field" mode, the limit of items per page must be less than 25.');
+		if (this.items.some((x) => !x && this.mode === 'embed')) throw new Error('The format of the array items is incorrect.');
 
 		this.totalPages = Math.ceil(this.items.length / this.itemsPerPage);
 		this.generatePages();
