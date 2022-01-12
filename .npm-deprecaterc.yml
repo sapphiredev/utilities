@@ -16,3 +16,4 @@ package:
   - '@sapphire/time-utilities'
   - '@sapphire/ts-config'
   - '@sapphire/utilities'
+  - '@sapphire/phisherman'

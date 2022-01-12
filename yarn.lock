@@ -2102,7 +2102,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@sapphire/fetch@^2.0.0, @sapphire/fetch@workspace:packages/fetch":
+"@sapphire/fetch@^2.0.0, @sapphire/fetch@^2.0.3, @sapphire/fetch@workspace:packages/fetch":
   version: 0.0.0-use.local
   resolution: "@sapphire/fetch@workspace:packages/fetch"
   dependencies:
@@ -2124,6 +2124,14 @@ __metadata:
   checksum: 675c8322d4351b2e7349f2dc6df18df9fcf93d1279acad9ff2ad7b4244f01733022f6c8fc807744f8c9471bd3bd6dd36a090ce9f681a1589eace5c1d56f7d00f
   languageName: node
   linkType: hard
+
+"@sapphire/phisherman@workspace:packages/phisherman":
+  version: 0.0.0-use.local
+  resolution: "@sapphire/phisherman@workspace:packages/phisherman"
+  dependencies:
+    "@sapphire/fetch": ^2.0.3
+  languageName: unknown
+  linkType: soft
 
 "@sapphire/pieces@npm:^3.2.0":
   version: 3.2.0

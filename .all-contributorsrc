@@ -12,6 +12,7 @@
 		"packages/eslint-config/README.md",
 		"packages/event-iterator/README.md",
 		"packages/fetch/README.md",
+		"packages/phisherman/README.md",
 		"packages/prettier-config/README.md",
 		"packages/ratelimits/README.md",
 		"packages/snowflake/README.md",
