@@ -1,9 +1,14 @@
+import { isFunction } from '@sapphire/utilities';
 import { MessageEmbed, MessageEmbedOptions } from 'discord.js';
 import { PaginatedMessage } from './PaginatedMessage';
 
 /**
- * This is a utility of {@link PaginatedMessage}, except it exclusively paginates the fields of an embed.
+ * This is a utility of {@link PaginatedMessage}, except it exclusively adds pagination inside a field of an embed.
  * You must either use this class directly or extend it.
+ *
+ * It differs from PaginatedMessageEmbedFields as the items here are the shape you want, and are then concatenated
+ * in a single field with a given formatter function, whereas PaginatedMessageEmbedFields takes fields as the items
+ * and add them to the embed.
  *
  * @example
  * ```typescript
@@ -67,7 +72,7 @@ export class PaginatedFieldMessageEmbed<T> extends PaginatedMessage {
 	 * import { PaginatedFieldMessageEmbed } from '@sapphire/discord.js-utilities';
 	 * import { MessageEmbed } from 'discord.js';
 	 *
-	 * new PaginatedFieldMessageEmbed().setTemplate(new MessageEmbed().setTitle('Test pager embed')).make().run(message.author, message.channel);
+	 * new PaginatedFieldMessageEmbed().setTemplate(new MessageEmbed().setTitle('Test pager embed')).make().run(message);
 	 * ```
 	 *
 	 * @example
@@ -75,11 +80,11 @@ export class PaginatedFieldMessageEmbed<T> extends PaginatedMessage {
 	 * import { PaginatedFieldMessageEmbed } from '@sapphire/discord.js-utilities';
 	 * import { MessageEmbed } from 'discord.js';
 	 *
-	 * new PaginatedFieldMessageEmbed().setTemplate({ title: 'Test pager embed' }).make().run(message.author, message.channel);
+	 * new PaginatedFieldMessageEmbed().setTemplate({ title: 'Test pager embed' }).make().run(message);
 	 * ```
 	 */
-	public setTemplate(template: MessageEmbedOptions | MessageEmbed) {
-		this.embedTemplate = template instanceof MessageEmbed ? template : new MessageEmbed(template);
+	public setTemplate(template: MessageEmbedOptions | MessageEmbed | ((embed: MessageEmbed) => MessageEmbed)) {
+		this.embedTemplate = this.resolveTemplate(template);
 		return this;
 	}
 
@@ -160,5 +165,17 @@ export class PaginatedFieldMessageEmbed<T> extends PaginatedMessage {
 	private paginateArray(items: T[], currentPage: number, perPageItems: number) {
 		const offset = currentPage * perPageItems;
 		return items.slice(offset, offset + perPageItems);
+	}
+
+	private resolveTemplate(template: MessageEmbed | MessageEmbedOptions | ((embed: MessageEmbed) => MessageEmbed)) {
+		if (template instanceof MessageEmbed) {
+			return template;
+		}
+
+		if (isFunction(template)) {
+			return template(new MessageEmbed());
+		}
+
+		return new MessageEmbed(template);
 	}
 }
