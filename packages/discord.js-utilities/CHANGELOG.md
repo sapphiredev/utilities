@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.2.0](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@4.1.6...@sapphire/discord.js-utilities@4.2.0) (2022-01-12)
+
+### Features
+
+-   **discord.js-utilities:** add `PaginatedMessageEmbedFields` ([#254](https://github.com/sapphiredev/utilities/issues/254)) ([bf3a89a](https://github.com/sapphiredev/utilities/commit/bf3a89a736d1e8c1bc009c959821d8c9031f0226)), closes [#256](https://github.com/sapphiredev/utilities/issues/256)
+
 ## [4.1.6](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@4.1.5...@sapphire/discord.js-utilities@4.1.6) (2022-01-10)
 
 **Note:** Version bump only for package @sapphire/discord.js-utilities
