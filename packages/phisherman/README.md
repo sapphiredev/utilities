@@ -37,7 +37,7 @@ npm install @sapphire/phisherman
 
 ## Usage
 
-**Note:** While this section uses `import`, it maps 1:1 with CommonJS' require syntax. For example, `import { check } from '@sapphire/phisherman'` is the same as `const { checkDomain } = require('@sapphire/phisherman')`.
+**Note:** While this section uses `import`, it maps 1:1 with CommonJS' require syntax. For example, `import { checkDomain } from '@sapphire/phisherman'` is the same as `const { checkDomain } = require('@sapphire/phisherman')`.
 
 Before you do anything make sure to set the apiKey like this:
 
