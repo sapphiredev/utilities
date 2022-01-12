@@ -2045,7 +2045,7 @@ __metadata:
   resolution: "@sapphire/decorators@workspace:packages/decorators"
   dependencies:
     "@sapphire/discord-utilities": ^2.5.0
-    "@sapphire/discord.js-utilities": ^4.1.6
+    "@sapphire/discord.js-utilities": ^4.2.0
     "@sapphire/ratelimits": ^2.1.11
     "@sapphire/utilities": ^3.2.0
     tslib: ^2.3.1
@@ -2060,7 +2060,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@sapphire/discord.js-utilities@^4.1.5, @sapphire/discord.js-utilities@^4.1.6, @sapphire/discord.js-utilities@workspace:packages/discord.js-utilities":
+"@sapphire/discord.js-utilities@^4.1.5, @sapphire/discord.js-utilities@^4.2.0, @sapphire/discord.js-utilities@workspace:packages/discord.js-utilities":
   version: 0.0.0-use.local
   resolution: "@sapphire/discord.js-utilities@workspace:packages/discord.js-utilities"
   dependencies:
@@ -2426,9 +2426,9 @@ __metadata:
   linkType: hard
 
 "@types/prettier@npm:^2.1.5":
-  version: 2.4.2
-  resolution: "@types/prettier@npm:2.4.2"
-  checksum: 76e230b2d11028af11fe12e09b2d5b10b03738e9abf819ae6ebb0f78cac13d39f860755ce05ac3855b608222518d956628f5d00322dc206cc6d1f2d8d1519f1e
+  version: 2.4.3
+  resolution: "@types/prettier@npm:2.4.3"
+  checksum: b240434daabac54700c862b0bb52a83fec396e0e9c847447119ba41fd8404d79aadfa174e6306fb094b29efadac586344b7606c3a71c286b71755ab2579d54df
   languageName: node
   linkType: hard
 
@@ -3234,9 +3234,9 @@ __metadata:
   linkType: hard
 
 "caniuse-lite@npm:^1.0.30001286":
-  version: 1.0.30001298
-  resolution: "caniuse-lite@npm:1.0.30001298"
-  checksum: 43566732d1b8746e3dfae57f558471c701b26b2c166fb9fc53ad750d83128b2eb680a5e08233717e64055779b408c72d3b2cfad6d4ae33a3e647a11dc1c0d515
+  version: 1.0.30001299
+  resolution: "caniuse-lite@npm:1.0.30001299"
+  checksum: c770f60ebf3e0cc8043ba4db0ebec12d7a595a6b50cb4437c3c5c55b04de9d2413f711f2828be761e8c37bb46b927a8abe6b199b8f0ffc1a34af0ebdee84be27
   languageName: node
   linkType: hard
 
@@ -4122,9 +4122,9 @@ __metadata:
   linkType: hard
 
 "electron-to-chromium@npm:^1.4.17":
-  version: 1.4.40
-  resolution: "electron-to-chromium@npm:1.4.40"
-  checksum: f86a056ff719cffc66236dab73a08e7c2b3e0b2e6744b6061d9b9daf77f171e9f8cffb188b7938a5efb6aa81db97b19c840e7d65319bf925f62928d7ae3c9fb6
+  version: 1.4.43
+  resolution: "electron-to-chromium@npm:1.4.43"
+  checksum: c096a42ec6af0c22736f7151d1386e6597b125ad9a6379a747e67d33d03b3b2923336dbe17edad0037299e7aa1daa0f3feb726d797375e652b6918c1a467b39a
   languageName: node
   linkType: hard
 
@@ -8393,18 +8393,18 @@ __metadata:
   linkType: hard
 
 "qs@npm:^6.9.4":
-  version: 6.10.2
-  resolution: "qs@npm:6.10.2"
+  version: 6.10.3
+  resolution: "qs@npm:6.10.3"
   dependencies:
     side-channel: ^1.0.4
-  checksum: 46fcc8f75a062524b91f9bf6b3843f346135b27d91c2a2dc3eb7ef9e34435703fd52e16d927f8864fd572d4b0ebc5a40a00649535108b8e8ea845a861b414369
+  checksum: 0fac5e6c7191d0295a96d0e83c851aeb015df7e990e4d3b093897d3ac6c94e555dbd0a599739c84d7fa46d7fee282d94ba76943983935cf33bba6769539b8019
   languageName: node
   linkType: hard
 
 "qs@npm:~6.5.2":
-  version: 6.5.2
-  resolution: "qs@npm:6.5.2"
-  checksum: 24af7b9928ba2141233fba2912876ff100403dba1b08b20c3b490da9ea6c636760445ea2211a079e7dfa882a5cf8f738337b3748c8bdd0f93358fa8881d2db8f
+  version: 6.5.3
+  resolution: "qs@npm:6.5.3"
+  checksum: 6f20bf08cabd90c458e50855559539a28d00b2f2e7dddcb66082b16a43188418cb3cb77cbd09268bcef6022935650f0534357b8af9eeb29bf0f27ccb17655692
   languageName: node
   linkType: hard
 
@@ -9884,106 +9884,106 @@ __metadata:
   languageName: node
   linkType: hard
 
-"turbo-darwin-64@npm:1.0.25":
-  version: 1.0.25
-  resolution: "turbo-darwin-64@npm:1.0.25"
+"turbo-darwin-64@npm:1.0.26":
+  version: 1.0.26
+  resolution: "turbo-darwin-64@npm:1.0.26"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"turbo-darwin-arm64@npm:1.0.25":
-  version: 1.0.25
-  resolution: "turbo-darwin-arm64@npm:1.0.25"
+"turbo-darwin-arm64@npm:1.0.26":
+  version: 1.0.26
+  resolution: "turbo-darwin-arm64@npm:1.0.26"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"turbo-freebsd-64@npm:1.0.25":
-  version: 1.0.25
-  resolution: "turbo-freebsd-64@npm:1.0.25"
+"turbo-freebsd-64@npm:1.0.26":
+  version: 1.0.26
+  resolution: "turbo-freebsd-64@npm:1.0.26"
   conditions: os=freebsd & cpu=x64
   languageName: node
   linkType: hard
 
-"turbo-freebsd-arm64@npm:1.0.25":
-  version: 1.0.25
-  resolution: "turbo-freebsd-arm64@npm:1.0.25"
+"turbo-freebsd-arm64@npm:1.0.26":
+  version: 1.0.26
+  resolution: "turbo-freebsd-arm64@npm:1.0.26"
   conditions: os=freebsd & cpu=arm64
   languageName: node
   linkType: hard
 
-"turbo-linux-32@npm:1.0.25":
-  version: 1.0.25
-  resolution: "turbo-linux-32@npm:1.0.25"
+"turbo-linux-32@npm:1.0.26":
+  version: 1.0.26
+  resolution: "turbo-linux-32@npm:1.0.26"
   conditions: os=linux & cpu=ia32
   languageName: node
   linkType: hard
 
-"turbo-linux-64@npm:1.0.25":
-  version: 1.0.25
-  resolution: "turbo-linux-64@npm:1.0.25"
+"turbo-linux-64@npm:1.0.26":
+  version: 1.0.26
+  resolution: "turbo-linux-64@npm:1.0.26"
   conditions: os=linux & cpu=x64
   languageName: node
   linkType: hard
 
-"turbo-linux-arm64@npm:1.0.25":
-  version: 1.0.25
-  resolution: "turbo-linux-arm64@npm:1.0.25"
+"turbo-linux-arm64@npm:1.0.26":
+  version: 1.0.26
+  resolution: "turbo-linux-arm64@npm:1.0.26"
   conditions: os=linux & cpu=arm64
   languageName: node
   linkType: hard
 
-"turbo-linux-arm@npm:1.0.25":
-  version: 1.0.25
-  resolution: "turbo-linux-arm@npm:1.0.25"
+"turbo-linux-arm@npm:1.0.26":
+  version: 1.0.26
+  resolution: "turbo-linux-arm@npm:1.0.26"
   conditions: os=linux & cpu=arm
   languageName: node
   linkType: hard
 
-"turbo-linux-mips64le@npm:1.0.25":
-  version: 1.0.25
-  resolution: "turbo-linux-mips64le@npm:1.0.25"
+"turbo-linux-mips64le@npm:1.0.26":
+  version: 1.0.26
+  resolution: "turbo-linux-mips64le@npm:1.0.26"
   conditions: os=linux & cpu=mips64el
   languageName: node
   linkType: hard
 
-"turbo-linux-ppc64le@npm:1.0.25":
-  version: 1.0.25
-  resolution: "turbo-linux-ppc64le@npm:1.0.25"
+"turbo-linux-ppc64le@npm:1.0.26":
+  version: 1.0.26
+  resolution: "turbo-linux-ppc64le@npm:1.0.26"
   conditions: os=linux & cpu=ppc64
   languageName: node
   linkType: hard
 
-"turbo-windows-32@npm:1.0.25":
-  version: 1.0.25
-  resolution: "turbo-windows-32@npm:1.0.25"
+"turbo-windows-32@npm:1.0.26":
+  version: 1.0.26
+  resolution: "turbo-windows-32@npm:1.0.26"
   conditions: os=win32 & cpu=ia32
   languageName: node
   linkType: hard
 
-"turbo-windows-64@npm:1.0.25":
-  version: 1.0.25
-  resolution: "turbo-windows-64@npm:1.0.25"
+"turbo-windows-64@npm:1.0.26":
+  version: 1.0.26
+  resolution: "turbo-windows-64@npm:1.0.26"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
 
 "turbo@npm:^1.0.24":
-  version: 1.0.25
-  resolution: "turbo@npm:1.0.25"
+  version: 1.0.26
+  resolution: "turbo@npm:1.0.26"
   dependencies:
-    turbo-darwin-64: 1.0.25
-    turbo-darwin-arm64: 1.0.25
-    turbo-freebsd-64: 1.0.25
-    turbo-freebsd-arm64: 1.0.25
-    turbo-linux-32: 1.0.25
-    turbo-linux-64: 1.0.25
-    turbo-linux-arm: 1.0.25
-    turbo-linux-arm64: 1.0.25
-    turbo-linux-mips64le: 1.0.25
-    turbo-linux-ppc64le: 1.0.25
-    turbo-windows-32: 1.0.25
-    turbo-windows-64: 1.0.25
+    turbo-darwin-64: 1.0.26
+    turbo-darwin-arm64: 1.0.26
+    turbo-freebsd-64: 1.0.26
+    turbo-freebsd-arm64: 1.0.26
+    turbo-linux-32: 1.0.26
+    turbo-linux-64: 1.0.26
+    turbo-linux-arm: 1.0.26
+    turbo-linux-arm64: 1.0.26
+    turbo-linux-mips64le: 1.0.26
+    turbo-linux-ppc64le: 1.0.26
+    turbo-windows-32: 1.0.26
+    turbo-windows-64: 1.0.26
   dependenciesMeta:
     turbo-darwin-64:
       optional: true
@@ -10011,7 +10011,7 @@ __metadata:
       optional: true
   bin:
     turbo: bin/turbo
-  checksum: eb2131fbcd26c3f5f9f378b79f2c990c3ded2a5202ce85441c5f258c9b92d7b95663bcc9db4d1e802653a5288c172de904641ea64d6f24472898179aa35aa16c
+  checksum: 74aa86c73f16b27d6fd73209a795708d867ba247b707f1b65ec61d266eec47b0c32317621d53546c8fed15f763e231ce0cbd91688ead2713783a5c8c1d71a013
   languageName: node
   linkType: hard
 

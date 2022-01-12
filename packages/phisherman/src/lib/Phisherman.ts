@@ -25,7 +25,7 @@ export async function checkDomain(domain: string, apiKey: string = storedApiKey)
 
 	return {
 		...result,
-		isScam: result.classification === 'safe' ? false : true
+		isScam: result.classification === 'safe' || result.classification === 'unknown' ? false : true
 	};
 }
 
@@ -35,7 +35,7 @@ export async function checkDomain(domain: string, apiKey: string = storedApiKey)
  * @param apiKey optionally pass a Phiserman API key for making this request. This will default to {@link storedApiKey}, which can be configured through {@link setApiKey}.
  * @since 1.0.0
  */
-export async function reportDomain(domain: string, apiKey: string = storedApiKey) {
+export function reportDomain(domain: string, apiKey: string = storedApiKey) {
 	return fetch<PhishermanReportType>(
 		`https://api.phisherman.gg/v2/phish/report`,
 		{

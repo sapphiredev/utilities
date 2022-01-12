@@ -4,7 +4,7 @@ export interface PhishermanOptions {
 
 export interface PhishermanReturnType {
 	verifiedPhish: boolean;
-	classification: 'malicious' | 'suspicious' | 'safe';
+	classification: 'malicious' | 'suspicious' | 'safe' | 'unknown';
 }
 
 export type CheckReturnType = PhishermanReturnType & {
