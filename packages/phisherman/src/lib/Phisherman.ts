@@ -3,8 +3,8 @@ import type { PhishermanReportType, PhishermanReturnType } from './PhishermanTyp
 import os from 'node:os';
 
 /**
-* The cached apiKey which was created using {@link setApiKey}
-*/
+ * The cached apiKey which was created using {@link setApiKey}
+ */
 let storedApiKey: string;
 
 /**
