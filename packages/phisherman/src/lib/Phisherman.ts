@@ -2,6 +2,9 @@ import { fetch, FetchMethods, FetchResultTypes, QueryError } from '@sapphire/fet
 import type { PhishermanReportType, PhishermanReturnType } from './PhishermanTypes';
 import os from 'node:os';
 
+/**
+* The cached apiKey which was created using {@link setApiKey}
+*/
 let storedApiKey: string;
 
 /**
