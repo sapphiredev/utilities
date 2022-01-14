@@ -38,7 +38,7 @@ import { createClassDecorator, createProxy } from './utils';
  *   event: GatewayDispatchEvents.MessageDelete
  * }))
  * export class UserListener extends Listener {
- *   public run(data: GatewayMessageDeleteDispatch['d']): void {
+ *   public override run(data: GatewayMessageDeleteDispatch['d']): void {
  *     if (!data.guild_id) return;
  *
  *     const guild = this.container.client.guilds.cache.get(data.guild_id);
