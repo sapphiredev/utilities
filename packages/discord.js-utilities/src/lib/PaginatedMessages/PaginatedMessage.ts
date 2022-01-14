@@ -61,7 +61,7 @@ import { createPartitionedMessageRow, isMessageButtonInteraction } from './utils
  *
  *		return builder
  *			.setContent('example content')
- *			.setEmbed(embed);
+ *			.setEmbeds([embed]);
  * });
  *
  * myPaginatedMessage.addPageContent('Example');
@@ -336,7 +336,7 @@ export class PaginatedMessage {
 	 *
 	 * 		return builder
 	 * 			.setContent('example content')
-	 * 			.setEmbed(embed);
+	 * 			.setEmbeds([embed]);
 	 * });
 	 * ```
 	 * @example
@@ -350,7 +350,7 @@ export class PaginatedMessage {
 	 *
 	 * const builder = new MessageBuilder()
 	 * 	.setContent('example content')
-	 * 	.setEmbed(embed);
+	 * 	.setEmbeds([embed]);
 	 *
 	 * const paginatedMessage = new PaginatedMessage()
 	 * 	.addPageBuilder(builder);
@@ -378,7 +378,7 @@ export class PaginatedMessage {
 	 *
 	 * 		return builder
 	 * 			.setContent('example content')
-	 * 			.setEmbed(embed);
+	 * 			.setEmbeds([embed]);
 	 * });
 	 * ```
 	 */
