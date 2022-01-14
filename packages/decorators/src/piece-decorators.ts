@@ -8,39 +8,37 @@ import { createClassDecorator, createProxy } from './utils';
  * @param options The options to pass to the piece constructor
  * @example
  * ```typescript
- * import { ApplyOptions } from "@sapphire/decorators";
- * import { Command } from "@sapphire/framework";
- * import type { Message } from "discord.js";
+ * import { ApplyOptions } from '@sapphire/decorators';
+ * import { Command } from '@sapphire/framework';
+ * import type { Message } from 'discord.js';
  *
- * (at)ApplyOptions<Command.Options>({
- *   description: "ping pong",
- *   enabled: true,
+ * @ApplyOptions<Command.Options>({
+ *   description: 'ping pong',
+ *   enabled: true
  * })
  * export class UserCommand extends Command {
- *   public async messageRun(message: Message) {
- *     const msg = await message.channel.send("Ping?");
+ *   public override async messageRun(message: Message) {
+ *     const msg = await message.channel.send('Ping?');
  *
  *     return msg.edit(
- *       `Pong! Client Latency ${Math.round(this.container.client.ws.ping)}ms. API Latency ${
- *         msg.createdTimestamp - message.createdTimestamp
- *       }ms.`
+ *       `Pong! Client Latency ${Math.round(this.container.client.ws.ping)}ms. API Latency ${msg.createdTimestamp - message.createdTimestamp}ms.`
  *     );
  *   }
  * }
  * ```
  * @example
  * ```typescript
- * import { ApplyOptions } from "@sapphire/decorators";
- * import { Listener } from "@sapphire/framework";
- * import { GatewayDispatchEvents, GatewayMessageDeleteDispatch } from "discord-api-types/v9";
+ * import { ApplyOptions } from '@sapphire/decorators';
+ * import { Listener } from '@sapphire/framework';
+ * import { GatewayDispatchEvents, GatewayMessageDeleteDispatch } from 'discord-api-types/v9';
  *
- * (at)ApplyOptions<Listener.Options>((container) => ({
- *   description: "Handle Raw Message Delete events",
+ * @ApplyOptions<Listener.Options>((container) => ({
+ *   description: 'Handle Raw Message Delete events',
  *   emitter: container.client.ws,
- *   event: GatewayDispatchEvents.MessageDelete,
+ *   event: GatewayDispatchEvents.MessageDelete
  * }))
  * export class UserListener extends Listener {
- *   public run(data: GatewayMessageDeleteDispatch["d"]): void {
+ *   public run(data: GatewayMessageDeleteDispatch['d']): void {
  *     if (!data.guild_id) return;
  *
  *     const guild = this.container.client.guilds.cache.get(data.guild_id);
