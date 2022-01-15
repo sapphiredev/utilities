@@ -32,7 +32,7 @@ import { createClassDecorator, createProxy } from './utils';
  * import { Listener } from '@sapphire/framework';
  * import { GatewayDispatchEvents, GatewayMessageDeleteDispatch } from 'discord-api-types/v9';
  *
- * @ApplyOptions<Listener.Options>((container) => ({
+ * @ApplyOptions<Listener.Options>(({ container }) => ({
  *   description: 'Handle Raw Message Delete events',
  *   emitter: container.client.ws,
  *   event: GatewayDispatchEvents.MessageDelete
@@ -49,14 +49,21 @@ import { createClassDecorator, createProxy } from './utils';
  * }
  * ```
  */
-export function ApplyOptions<T extends PieceOptions>(optionsOrFn: T | ((container: Container, context: PieceContext) => T)): ClassDecorator {
+export function ApplyOptions<T extends PieceOptions>(
+	optionsOrFn: T | (({ container, context }: ApplyOptionsCallbackParameters) => T)
+): ClassDecorator {
 	return createClassDecorator((target: Ctor<ConstructorParameters<typeof Piece>, Piece>) =>
 		createProxy(target, {
 			construct: (ctor, [context, baseOptions = {}]) =>
 				new ctor(context, {
 					...baseOptions,
-					...(typeof optionsOrFn === 'function' ? optionsOrFn(container, context) : optionsOrFn)
+					...(typeof optionsOrFn === 'function' ? optionsOrFn({ container, context }) : optionsOrFn)
 				})
 		})
 	);
+}
+
+export interface ApplyOptionsCallbackParameters {
+	container: Container;
+	context: PieceContext;
 }
