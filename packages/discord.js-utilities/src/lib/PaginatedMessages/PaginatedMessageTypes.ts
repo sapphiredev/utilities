@@ -5,6 +5,7 @@ import type {
 	Guild,
 	InteractionButtonOptions,
 	InteractionCollector,
+	LinkButtonOptions,
 	Message,
 	MessageComponentInteraction,
 	MessageEmbed,
@@ -21,21 +22,13 @@ import type {
 import type { MessageButtonStyles, MessageComponentTypes } from 'discord.js/typings/enums';
 import type { PaginatedMessage } from './PaginatedMessage';
 
+export type PaginatedMessageAction = PaginatedMessageActionButton | PaginatedMessageActionLink | PaginatedMessageActionMenu;
+
 /**
- * To utilize actions you can use the {@link PaginatedMessageAction} by implementing it into a class.
+ * To utilize buttons you can pass an object with the structure of {@link PaginatedMessageActionButton} to {@link PaginatedMessage} actions.
  * @example
  * ```typescript
- * class ForwardAction implements IPaginatedMessageAction {
- *   public id = '▶️';
- *
- *   public run({ handler }) {
- *     if (handler.index !== handler.pages.length - 1) ++handler.index;
- *   }
- * }
- *
- * // You can also give the object directly.
- *
- * const StopAction: IPaginatedMessageAction {
+ * const StopAction: PaginatedMessageActionButton {
  *   customId: 'CustomStopAction',
  *   emoji: '⏹️',
  *   run: ({ collector }) => {
@@ -44,15 +37,49 @@ import type { PaginatedMessage } from './PaginatedMessage';
  * }
  * ```
  */
-export interface PaginatedMessageAction extends Omit<InteractionButtonOptions, 'customId' | 'style'>, Omit<MessageSelectMenuOptions, 'customId'> {
+export interface PaginatedMessageActionButton extends Omit<InteractionButtonOptions, 'customId' | 'style'> {
 	customId: string;
-	type: MessageComponentTypes;
-	style?: ExcludeEnum<typeof MessageButtonStyles, 'LINK'>;
+	type: ExcludeEnum<typeof MessageComponentTypes, 'SELECT_MENU' | 'ACTION_ROW'>;
+	style: ExcludeEnum<typeof MessageButtonStyles, 'LINK'>;
 	run(context: PaginatedMessageActionContext): Awaitable<unknown>;
 }
 
 /**
- * The context to be used in {@link PaginatedMessageAction}.
+ * To utilize links you can pass an object with the structure of {@link PaginatedMessageActionLink} to {@link PaginatedMessage} actions.
+ * @example
+ * ```typescript
+ *  You can also give the object directly.
+ *
+ * const LinkSapphireJs: PaginatedMessageActionLink {
+ *   url: 'https://sapphirejs.dev',
+ *   label: 'Sapphire Website',
+ *   emoji: '🔗'
+ * }
+ * ```
+ */
+export interface PaginatedMessageActionLink extends LinkButtonOptions {
+	type: ExcludeEnum<typeof MessageComponentTypes, 'SELECT_MENU' | 'ACTION_ROW'>;
+}
+
+/**
+ * To utilize Select Menus you can pass an object with the structure of {@link PaginatedMessageActionMenu} to {@link PaginatedMessage} actions.
+ * @example
+ * ```typescript
+ * const StopAction: PaginatedMessageActionMenu {
+ *   customId: 'CustomSelectMenu',
+ *   type: Constants.MessageComponentTypes.SELECT_MENU,
+ *   run: ({ handler, interaction }) => interaction.isSelectMenu() && (handler.index = parseInt(interaction.values[0], 10))
+ * }
+ * ```
+ */
+export interface PaginatedMessageActionMenu extends Omit<MessageSelectMenuOptions, 'customId'> {
+	customId: string;
+	type: ExcludeEnum<typeof MessageComponentTypes, 'BUTTON' | 'ACTION_ROW'>;
+	run(context: PaginatedMessageActionContext): Awaitable<unknown>;
+}
+
+/**
+ * The context to be used in {@link PaginatedMessageActionButton}.
  */
 export interface PaginatedMessageActionContext {
 	interaction: ButtonInteraction | SelectMenuInteraction;
@@ -71,7 +98,7 @@ export interface PaginatedMessageOptions {
 	/**
 	 * Custom actions to provide when sending the paginated message
 	 */
-	actions?: PaginatedMessageAction[];
+	actions?: PaginatedMessageActionButton[];
 	/**
 	 * The {@link MessageEmbed} or {@link MessageOptions} options to apply to the entire {@link PaginatedMessage}
 	 */
