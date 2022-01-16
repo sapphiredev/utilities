@@ -1,4 +1,4 @@
-import { container, type Piece, type PieceContext, type PieceOptions } from '@sapphire/framework';
+import { container, type Piece } from '@sapphire/framework';
 import type { Container } from '@sapphire/pieces';
 import type { Ctor } from '@sapphire/utilities';
 import { createClassDecorator, createProxy } from './utils';
@@ -49,12 +49,10 @@ import { createClassDecorator, createProxy } from './utils';
  * }
  * ```
  */
-export function ApplyOptions<T extends PieceOptions>(
-	optionsOrFn: T | (({ container, context }: ApplyOptionsCallbackParameters) => T)
-): ClassDecorator {
+export function ApplyOptions<T extends Piece.Options>(optionsOrFn: T | ((parameters: ApplyOptionsCallbackParameters) => T)): ClassDecorator {
 	return createClassDecorator((target: Ctor<ConstructorParameters<typeof Piece>, Piece>) =>
 		createProxy(target, {
-			construct: (ctor, [context, baseOptions = {}]) =>
+			construct: (ctor, [context, baseOptions = {}]: [Piece.Context, Piece.Options]) =>
 				new ctor(context, {
 					...baseOptions,
 					...(typeof optionsOrFn === 'function' ? optionsOrFn({ container, context }) : optionsOrFn)
@@ -65,5 +63,5 @@ export function ApplyOptions<T extends PieceOptions>(
 
 export interface ApplyOptionsCallbackParameters {
 	container: Container;
-	context: PieceContext;
+	context: Piece.Context;
 }
