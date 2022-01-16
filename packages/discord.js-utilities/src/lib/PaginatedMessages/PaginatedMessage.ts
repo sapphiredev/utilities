@@ -28,7 +28,7 @@ import type {
 	PaginatedMessageSelectMenuOptionsFunction,
 	PaginatedMessageWrongUserInteractionReplyFunction
 } from './PaginatedMessageTypes';
-import { createPartitionedMessageRow, isMessageButtonInteraction } from './utils';
+import { actionIsButtonOrMenu, createPartitionedMessageRow, isMessageButtonInteraction } from './utils';
 
 /**
  * This is a {@link PaginatedMessage}, a utility to paginate messages (usually embeds).
@@ -192,7 +192,11 @@ export class PaginatedMessage {
 		}
 
 		for (const action of actions ?? this.constructor.defaultActions) {
-			this.actions.set(action.customId, action);
+			if (actionIsButtonOrMenu(action)) {
+				this.actions.set(action.customId, action);
+			} else {
+				this.actions.set(action.url, action);
+			}
 		}
 
 		this.template = PaginatedMessage.resolveTemplate(template);
@@ -243,16 +247,76 @@ export class PaginatedMessage {
 
 	/**
 	 * Clears all current actions and sets them. The order given is the order they will be used.
-	 * @param actions The actions to set.
+	 * @param actions The actions to set. This can be either a Button, Link Button, or Select Menu.
+	 * @param includeDefaultActions Whether to merge in the {@link PaginatedMessage.defaultActions} when setting the actions.
+	 * If you set this to true then you do not need to manually add `...PaginatedMessage.defaultActions` as seen in the first example.
+	 * The default value is `false` for backwards compatibility within the current major version.
+	 *
+	 * @remark You can retrieve the default actions for the regular pagination
+	 * @example
+	 * ```typescript
+	 * const display = new PaginatedMessage();
+	 *
+	 * display.setActions([
+	 *   ...PaginatedMessage.defaultActions,
+	 * ])
+	 * ```
+	 *
+	 * @remark You can add custom Message Buttons by providing `style`, `customId`, `type`, `run` and at least one of `label` or `emoji`.
+	 * @example
+	 * ```typescript
+	 * const display = new PaginatedMessage();
+	 *
+	 * display.setActions([
+	 *   {
+	 *     style: 'PRIMARY',
+	 *     label: 'My Button',
+	 *     customId: 'custom_button',
+	 *     type: Constants.MessageComponentTypes.BUTTON,
+	 *     run: (context) => console.log(context)
+	 *   }
+	 * ], true);
+	 * ```
+	 *
+	 * @remark You can add custom Message **Link** Buttons by providing `style`, `url`, `type`, and at least one of `label` or `emoji`.
+	 * @example
+	 * ```typescript
+	 * const display = new PaginatedMessage();
+	 *
+	 * display.setActions([
+	 *   {
+	 *     style: 'LINK',
+	 *     label: 'Sapphire Website',
+	 *     emoji: '🔷',
+	 *     url: 'https://sapphirejs.dev',
+	 *     type: Constants.MessageComponentTypes.BUTTON
+	 *   }
+	 * ], true);
+	 * ```
+	 *
+	 * @remark You can add custom Select Menus by providing `customId`, `type`, and `run`.
+	 * @example
+	 * ```typescript
+	 * const display = new PaginatedMessage();
+	 *
+	 * display.setActions([
+	 *   {
+	 *     customId: 'custom_menu',
+	 *     type: Constants.MessageComponentTypes.SELECT_MENU,
+	 *     run: (context) => console.log(context) // Do something here
+	 *   }
+	 * ], true);
+	 * ```
 	 */
-	public setActions(actions: PaginatedMessageAction[]): this {
+	public setActions(actions: PaginatedMessageAction[], includeDefaultActions = false): this {
 		this.actions.clear();
-		return this.addActions(actions);
+		return this.addActions([...(includeDefaultActions ? PaginatedMessage.defaultActions : []), ...actions]);
 	}
 
 	/**
 	 * Adds actions to the existing ones. The order given is the order they will be used.
 	 * @param actions The actions to add.
+	 * @see {@link PaginatedMessage.setActions} for examples on how to structure the actions.
 	 */
 	public addActions(actions: PaginatedMessageAction[]): this {
 		for (const action of actions) this.addAction(action);
@@ -262,9 +326,15 @@ export class PaginatedMessage {
 	/**
 	 * Adds an action to the existing ones. This will be added as the last action.
 	 * @param action The action to add.
+	 * @see {@link PaginatedMessage.setActions} for examples on how to structure the action.
 	 */
 	public addAction(action: PaginatedMessageAction): this {
-		this.actions.set(action.customId, action);
+		if (actionIsButtonOrMenu(action)) {
+			this.actions.set(action.customId, action);
+		} else {
+			this.actions.set(action.url, action);
+		}
+
 		return this;
 	}
 
@@ -816,25 +886,28 @@ export class PaginatedMessage {
 	): Promise<void> {
 		if (interaction.user.id === targetUser.id) {
 			const action = this.actions.get(interaction.customId)!;
-			const previousIndex = this.index;
 
-			await action.run({
-				interaction,
-				handler: this,
-				author: targetUser,
-				channel,
-				response: this.response!,
-				collector: this.collector!
-			});
+			if (actionIsButtonOrMenu(action)) {
+				const previousIndex = this.index;
 
-			const newIndex = previousIndex === this.index ? previousIndex : this.index;
-			const messagePage = await this.resolvePage(newIndex);
-			const updateOptions = isFunction(messagePage) ? await messagePage(newIndex, this.pages, this) : messagePage;
+				await action.run({
+					interaction,
+					handler: this,
+					author: targetUser,
+					channel,
+					response: this.response!,
+					collector: this.collector!
+				});
 
-			if (interaction.replied || interaction.deferred) {
-				await interaction.editReply(updateOptions);
-			} else {
-				await interaction.update(updateOptions);
+				const newIndex = previousIndex === this.index ? previousIndex : this.index;
+				const messagePage = await this.resolvePage(newIndex);
+				const updateOptions = isFunction(messagePage) ? await messagePage(newIndex, this.pages, this) : messagePage;
+
+				if (interaction.replied || interaction.deferred) {
+					await interaction.editReply(updateOptions);
+				} else {
+					await interaction.update(updateOptions);
+				}
 			}
 		} else {
 			const interactionReplyOptions = await this.wrongUserInteractionReply(targetUser, interaction.user, {

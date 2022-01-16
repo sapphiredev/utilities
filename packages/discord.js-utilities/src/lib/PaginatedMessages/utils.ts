@@ -1,5 +1,14 @@
 import { chunk, partition } from '@sapphire/utilities';
 import { Constants, InteractionButtonOptions, MessageActionRow, MessageButton, MessageSelectMenu, MessageSelectMenuOptions } from 'discord.js';
+import type { PaginatedMessageAction, PaginatedMessageActionButton, PaginatedMessageActionLink, PaginatedMessageActionMenu } from '.';
+
+export function actionIsButtonOrMenu(action: PaginatedMessageAction): action is PaginatedMessageActionButton | PaginatedMessageActionMenu {
+	return (
+		action.type === Constants.MessageComponentTypes.SELECT_MENU ||
+		((action as PaginatedMessageActionButton | PaginatedMessageActionLink).style !== 'LINK' &&
+			(action as PaginatedMessageActionButton | PaginatedMessageActionLink).style !== Constants.MessageButtonStyles.LINK)
+	);
+}
 
 export function isMessageButtonInteraction(
 	interaction: InteractionButtonOptions | MessageSelectMenuOptions
