@@ -1,5 +1,5 @@
 /**
- * Default ESLint configuration for Sapphire Communitys
+ * Default ESLint configuration for Sapphire Communities
  * @example
  * ```json
  * {
