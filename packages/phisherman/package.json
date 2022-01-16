@@ -1,6 +1,6 @@
 {
 	"name": "@sapphire/phisherman",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Wrapper around phisherman to easily check and report domains",
 	"author": "@sapphire",
 	"license": "MIT",

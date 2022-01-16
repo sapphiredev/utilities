@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.3.0](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@4.2.0...@sapphire/discord.js-utilities@4.3.0) (2022-01-16)
+
+
+### Bug Fixes
+
+* **PaginatedMessageEmbedFields:** export class at top level ([#260](https://github.com/sapphiredev/utilities/issues/260)) ([e04f762](https://github.com/sapphiredev/utilities/commit/e04f762b545d9279ca6eec8b62e0e7e9327b20e9))
+
+
+### Features
+
+* **PaginatedMessage:** made it possible to add custom `link` buttons with `setActions` / `addActions` / `addAction` ([#259](https://github.com/sapphiredev/utilities/issues/259)) ([e8d7048](https://github.com/sapphiredev/utilities/commit/e8d704867af300238776dde7b57df0bbc5770b2e))
+
+
+
+
+
 # [4.2.0](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@4.1.6...@sapphire/discord.js-utilities@4.2.0) (2022-01-12)
 
 ### Features
