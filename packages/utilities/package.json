@@ -1,7 +1,7 @@
 {
 	"name": "@sapphire/utilities",
 	"version": "3.2.0",
-	"description": "Common JavaScript utilities for Sapphire Communitys",
+	"description": "Common JavaScript utilities for the Sapphire Community",
 	"author": "@sapphire",
 	"license": "MIT",
 	"main": "dist/index.js",

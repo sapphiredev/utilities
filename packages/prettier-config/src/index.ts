@@ -1,6 +1,6 @@
 import type { PrettierSchema } from './schema';
 /**
- * Default Prettier configuration for Sapphire Communitys
+ * Standard Prettier config for the Sapphire Community
  * @example
  * ```json
  * {

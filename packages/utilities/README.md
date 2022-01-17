@@ -4,7 +4,7 @@
 
 # @sapphire/utilities
 
-**Common JavaScript utilities for Sapphire Communitys.**
+**Common JavaScript utilities for the Sapphire Community.**
 
 [![GitHub](https://img.shields.io/github/license/sapphiredev/utilities)](https://github.com/sapphiredev/utilities/blob/main/LICENSE.md)
 [![codecov](https://codecov.io/gh/sapphiredev/utilities/branch/main/graph/badge.svg?token=OEGIV6RFDO)](https://codecov.io/gh/sapphiredev/utilities)
