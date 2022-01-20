@@ -1,5 +1,5 @@
 import { fetch, FetchMethods, FetchResultTypes, QueryError } from '@sapphire/fetch';
-import type { PhishermanReportType, PhishermanReturnType } from './PhishermanTypes';
+import type { PhishermanInfoType, PhishermanReportType, PhishermanReturnType } from './PhishermanTypes';
 import os from 'node:os';
 
 /**
@@ -57,6 +57,51 @@ export function reportDomain(domain: string, apiKey: string = storedApiKey) {
 }
 
 /**
+ * Returns information for a domain.
+ * @param domain The domain to get info about.
+ * @param apiKey optionally pass a Phiserman API key for making this request. This will default to {@link storedApiKey}, which can be configured through {@link setApiKey}.
+ * @since 1.1.0
+ */
+export async function getDomainInfo(domain: string, apiKey: string = storedApiKey) {
+		return fetch<PhishermanInfoType>(
+		`https://api.phisherman.gg/v2/domains/info/${domain}`,
+		{
+			headers: {
+				'Content-Type': 'application/json',
+				'User-Agent': `Sapphire Phisherman/1.0.0 (node-fetch) ${os.platform()}/${os.release()} (https://github.com/sapphiredev/utilities/tree/main/packages/phisherman)`,
+				Authorization: `Bearer ${apiKey}`
+			}
+		},
+		FetchResultTypes.JSON
+	);
+}
+
+/**
+ * Report a caught phish back to phisherman to improve their analytics.
+ * @param domain The domain which was caught.
+ * @param apiKey @param apiKey optionally pass a Phiserman API key for making this request. This will default to {@link storedApiKey}, which can be configured through {@link setApiKey}.
+ * @param guildId The id of the guild in which the domain was caught.
+ * @since 1.1.0 
+ */
+export async function reportCaughtPhish(domain: string, apiKey: string = storedApiKey, guildId: string | number = '') {
+	return fetch<PhishermanReportType>(
+		`https://api.phisherman.gg/v2/phish/report/${domain}`,
+		{
+			method: FetchMethods.Post,
+			headers: {
+				'Content-Type': 'application/json',
+				'User-Agent': `Sapphire Phisherman/1.0.0 (node-fetch) ${os.platform()}/${os.release()} (https://github.com/sapphiredev/utilities/tree/main/packages/phisherman)`,
+				Authorization: `Bearer ${apiKey}`
+			},
+			body: JSON.stringify({
+				guild: Number(guildId)
+			})
+		},
+		FetchResultTypes.JSON
+	);
+}
+
+/**
  * Set the phisherman's API key.
  * @param key The API key to access the phisherman API and cache within the code of the wrapper.
  * @since 1.0.0
@@ -65,6 +110,7 @@ export async function setApiKey(key: string) {
 	await checkApiKey(key);
 	storedApiKey = key;
 }
+
 
 async function checkApiKey(apiKey: string) {
 	try {
