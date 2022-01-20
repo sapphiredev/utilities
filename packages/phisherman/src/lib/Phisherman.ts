@@ -85,7 +85,7 @@ export function getDomainInfo(domain: string, apiKey: string = storedApiKey) {
  */
 export function reportCaughtPhish(domain: string, apiKey: string = storedApiKey, guildId: string | number = '') {
 	return fetch<PhishermanReportType>(
-		`https://api.phisherman.gg/v2/phish/report/${domain}`,
+		`https://api.phisherman.gg/v2/phish/caught/${domain}`,
 		{
 			method: FetchMethods.Post,
 			headers: {
