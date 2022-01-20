@@ -16,7 +16,7 @@ export interface PhishermanReportType {
 	message: string;
 }
 
-export interface PhishermanInfoType {
+export interface PhishermanInfo {
 	status: string;
 	created: string;
 	lastChecked: string;
@@ -27,6 +27,10 @@ export interface PhishermanInfoType {
 	targetedBrand: string;
 	phishCaught: number;
 	details: Details;
+}
+
+export interface PhishermanInfoType {
+	[key: string]: PhishermanInfo;
 }
 interface Details {
 	phishTankId: string;

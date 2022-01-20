@@ -62,8 +62,8 @@ export function reportDomain(domain: string, apiKey: string = storedApiKey) {
  * @param apiKey optionally pass a Phiserman API key for making this request. This will default to {@link storedApiKey}, which can be configured through {@link setApiKey}.
  * @since 1.1.0
  */
-export function getDomainInfo(domain: string, apiKey: string = storedApiKey) {
-	return fetch<PhishermanInfoType>(
+export async function getDomainInfo(domain: string, apiKey: string = storedApiKey) {
+	const result = await fetch<PhishermanInfoType>(
 		`https://api.phisherman.gg/v2/domains/info/${domain}`,
 		{
 			headers: {
@@ -74,6 +74,7 @@ export function getDomainInfo(domain: string, apiKey: string = storedApiKey) {
 		},
 		FetchResultTypes.JSON
 	);
+	return result[domain];
 }
 
 /**
