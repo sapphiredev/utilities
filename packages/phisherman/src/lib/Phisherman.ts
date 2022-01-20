@@ -62,8 +62,8 @@ export function reportDomain(domain: string, apiKey: string = storedApiKey) {
  * @param apiKey optionally pass a Phiserman API key for making this request. This will default to {@link storedApiKey}, which can be configured through {@link setApiKey}.
  * @since 1.1.0
  */
-export async function getDomainInfo(domain: string, apiKey: string = storedApiKey) {
-		return fetch<PhishermanInfoType>(
+export function getDomainInfo(domain: string, apiKey: string = storedApiKey) {
+	return fetch<PhishermanInfoType>(
 		`https://api.phisherman.gg/v2/domains/info/${domain}`,
 		{
 			headers: {
@@ -81,9 +81,9 @@ export async function getDomainInfo(domain: string, apiKey: string = storedApiKe
  * @param domain The domain which was caught.
  * @param apiKey @param apiKey optionally pass a Phiserman API key for making this request. This will default to {@link storedApiKey}, which can be configured through {@link setApiKey}.
  * @param guildId The id of the guild in which the domain was caught.
- * @since 1.1.0 
+ * @since 1.1.0
  */
-export async function reportCaughtPhish(domain: string, apiKey: string = storedApiKey, guildId: string | number = '') {
+export function reportCaughtPhish(domain: string, apiKey: string = storedApiKey, guildId: string | number = '') {
 	return fetch<PhishermanReportType>(
 		`https://api.phisherman.gg/v2/phish/report/${domain}`,
 		{
@@ -110,7 +110,6 @@ export async function setApiKey(key: string) {
 	await checkApiKey(key);
 	storedApiKey = key;
 }
-
 
 async function checkApiKey(apiKey: string) {
 	try {
