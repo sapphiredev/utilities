@@ -1,21 +1,23 @@
 import { Time } from '@sapphire/time-utilities';
 import { deepClone, isFunction, isNullish, isObject } from '@sapphire/utilities';
 import {
-	ButtonInteraction,
-	Collection,
 	Constants,
 	Formatters,
 	InteractionCollector,
-	Message,
 	MessageButton,
-	MessageComponentInteraction,
 	MessageEmbed,
-	MessageOptions,
 	MessageSelectMenu,
-	SelectMenuInteraction,
-	Snowflake,
-	User,
-	WebhookEditMessageOptions
+	type ButtonInteraction,
+	type Collection,
+	type CommandInteraction,
+	type Interaction,
+	type Message,
+	type MessageOptions,
+	type SelectMenuInteraction,
+	type Snowflake,
+	type TextBasedChannel,
+	type User,
+	type WebhookEditMessageOptions
 } from 'discord.js';
 import { MessageBuilder } from '../builders/MessageBuilder';
 import { isGuildBasedChannel } from '../type-guards';
@@ -28,7 +30,7 @@ import type {
 	PaginatedMessageSelectMenuOptionsFunction,
 	PaginatedMessageWrongUserInteractionReplyFunction
 } from './PaginatedMessageTypes';
-import { actionIsButtonOrMenu, createPartitionedMessageRow, isMessageButtonInteraction } from './utils';
+import { actionIsButtonOrMenu, createPartitionedMessageRow, isMessageButtonInteraction, runsOnInteraction } from './utils';
 
 /**
  * This is a {@link PaginatedMessage}, a utility to paginate messages (usually embeds).
@@ -113,12 +115,12 @@ export class PaginatedMessage {
 	/**
 	 * The response message used to edit on page changes.
 	 */
-	public response: Message | null = null;
+	public response: Message | CommandInteraction | SelectMenuInteraction | null = null;
 
 	/**
 	 * The collector used for handling button clicks.
 	 */
-	public collector: InteractionCollector<MessageComponentInteraction> | null = null;
+	public collector: InteractionCollector<Interaction> | null = null;
 
 	/**
 	 * The pages which were converted from {@link PaginatedMessage.pages}
@@ -715,40 +717,57 @@ export class PaginatedMessage {
 
 	/**
 	 * Executes the {@link PaginatedMessage} and sends the pages corresponding with {@link PaginatedMessage.index}.
-	 * The handler will start collecting message button interactions.
-	 * @param message The message that triggered this {@link PaginatedMessage}.
-	 * Generally this will be the command message, but it can also be another message from your client, i.e. to indicate a loading state.
-	 * @param target The user who will be able to interact with the message buttons of this {@link PaginatedMessage}. Defaults to `message.author`.
+	 * The handler will start collecting button interactions.
+	 *
+	 * @param messageOrInteraction The message or interaction that triggered this {@link PaginatedMessage}.
+	 * Generally this will be the command message or an interaction (either a {@link CommandInteraction} or a {@link SelectMenuInteraction}),
+	 * but it can also be another message from your client, i.e. to indicate a loading state.
+	 *
+	 * @param target The user who will be able to interact with the buttons of this {@link PaginatedMessage}.
+	 * If `messageOrInteraction` is an instance of {@link Message} then this defaults to {@link Message.author messageOrInteraction.author},
+	 * and if it is an instance of {@link CommandInteraction} then it defaults to {@link CommandInteraction.user messageOrInteraction.user}.
 	 */
-	public async run(message: Message, target = message.author): Promise<this> {
-		// Try to get the previous PaginatedMessage for this user
-		const paginatedMessage = PaginatedMessage.handlers.get(target.id);
+	public async run(messageOrInteraction: Message | CommandInteraction | SelectMenuInteraction, target?: User): Promise<this> {
+		// Only execute if there is a channel to send the reply to
+		if (messageOrInteraction.channel) {
+			// Assign the target based on whether a Message or CommandInteraction was passed in
+			target ??= runsOnInteraction(messageOrInteraction) ? messageOrInteraction.user : messageOrInteraction.author;
 
-		// If a PaginatedMessage was found then stop it
-		if (paginatedMessage) paginatedMessage.collector!.stop();
+			// Try to get the previous PaginatedMessage for this user
+			const paginatedMessage = PaginatedMessage.handlers.get(target.id);
 
-		// If the message was sent by a bot, then set the response as this one
-		if (message.author.bot) this.response = message;
+			// If a PaginatedMessage was found then stop it
+			if (paginatedMessage) paginatedMessage.collector!.stop();
 
-		await this.resolvePagesOnRun();
+			// If the message was sent by a bot, then set the response as this one
+			if (runsOnInteraction(messageOrInteraction)) {
+				if (messageOrInteraction.user.bot) {
+					this.response = messageOrInteraction;
+				}
+			} else if (messageOrInteraction.author.bot) {
+				this.response = messageOrInteraction;
+			}
 
-		// Sanity checks to handle
-		if (!this.messages.length) throw new Error('There are no messages.');
-		if (!this.actions.size) throw new Error('There are no messages.');
+			await this.resolvePagesOnRun();
 
-		await this.setUpMessage(message.channel, target);
-		this.setUpCollector(message.channel, target);
+			// Sanity checks to handle
+			if (!this.messages.length) throw new Error('There are no messages.');
+			if (!this.actions.size) throw new Error('There are no messages.');
 
-		const messageId = this.response!.id;
+			await this.setUpMessage(messageOrInteraction, target);
+			this.setUpCollector(messageOrInteraction.channel, target);
 
-		if (this.collector) {
-			this.collector!.once('end', () => {
-				PaginatedMessage.messages.delete(messageId);
-				PaginatedMessage.handlers.delete(target.id);
-			});
+			const messageId = this.response!.id;
 
-			PaginatedMessage.messages.set(messageId, this);
-			PaginatedMessage.handlers.set(target.id, this);
+			if (this.collector) {
+				this.collector!.once('end', () => {
+					PaginatedMessage.messages.delete(messageId);
+					PaginatedMessage.handlers.delete(target!.id);
+				});
+
+				PaginatedMessage.messages.set(messageId, this);
+				PaginatedMessage.handlers.set(target.id, this);
+			}
 		}
 
 		return this;
@@ -792,10 +811,14 @@ export class PaginatedMessage {
 
 	/**
 	 * Sets up the message.
-	 * @param channel The channel the handler is running at.
+	 *
+	 * @param messageOrInteraction The message or interaction that triggered this {@link PaginatedMessage}.
+	 * Generally this will be the command message or an interaction (either a {@link CommandInteraction} or a {@link SelectMenuInteraction}),
+	 * but it can also be another message from your client, i.e. to indicate a loading state.
+	 *
 	 * @param author The author the handler is for.
 	 */
-	protected async setUpMessage(channel: Message['channel'], targetUser: User): Promise<void> {
+	protected async setUpMessage(messageOrInteraction: Message | CommandInteraction | SelectMenuInteraction, targetUser: User): Promise<void> {
 		// Get the current page
 		let page = this.messages[this.index]!;
 
@@ -817,8 +840,8 @@ export class PaginatedMessage {
 									this.pages.map(async (_, index) => ({
 										...(await this.selectMenuOptions(index + 1, {
 											author: targetUser,
-											channel,
-											guild: isGuildBasedChannel(channel) ? channel.guild : null
+											channel: messageOrInteraction.channel,
+											guild: isGuildBasedChannel(messageOrInteraction.channel) ? messageOrInteraction.channel.guild : null
 										})),
 										value: index.toString()
 									}))
@@ -831,9 +854,25 @@ export class PaginatedMessage {
 		}
 
 		if (this.response) {
-			await this.response.edit(page as WebhookEditMessageOptions);
+			if (runsOnInteraction(this.response)) {
+				if (this.response.replied || this.response.deferred) {
+					await this.response.editReply(page as WebhookEditMessageOptions);
+				} else {
+					await this.response.reply(page as WebhookEditMessageOptions);
+				}
+			} else {
+				await this.response.edit(page as WebhookEditMessageOptions);
+			}
+		} else if (runsOnInteraction(messageOrInteraction)) {
+			this.response = messageOrInteraction;
+
+			if (this.response.replied || this.response.deferred) {
+				await this.response.editReply(page as MessageOptions);
+			} else {
+				await this.response.reply(page as MessageOptions);
+			}
 		} else {
-			this.response = await channel.send(page as MessageOptions);
+			this.response = await messageOrInteraction.channel.send(page as MessageOptions);
 		}
 	}
 
@@ -842,11 +881,14 @@ export class PaginatedMessage {
 	 * @param channel The channel the handler is running at.
 	 * @param targetUser The user the handler is for.
 	 */
-	protected setUpCollector(channel: Message['channel'], targetUser: User): void {
+	protected setUpCollector(channel: TextBasedChannel, targetUser: User): void {
 		if (this.pages.length > 1) {
-			this.collector = this.response!.createMessageComponentCollector({
-				filter: (interaction) => this.actions.has(interaction.customId),
-				idle: this.idle
+			this.collector = new InteractionCollector(targetUser.client, {
+				filter: (interaction) => (interaction.isButton() || interaction.isSelectMenu()) && this.actions.has(interaction.customId),
+				idle: this.idle,
+				guild: isGuildBasedChannel(channel) ? channel.guild : undefined,
+				channel,
+				interactionType: Constants.InteractionTypes.MESSAGE_COMPONENT
 			})
 				.on('collect', this.handleCollect.bind(this, targetUser, channel))
 				.on('end', this.handleEnd.bind(this));
@@ -934,7 +976,15 @@ export class PaginatedMessage {
 
 		// Do not remove reactions if the message, channel, or guild, was deleted:
 		if (this.response && !PaginatedMessage.deletionStopReasons.includes(reason)) {
-			void this.response?.edit({ components: [] });
+			if (runsOnInteraction(this.response)) {
+				if (this.response.replied || this.response.deferred) {
+					void this.response?.editReply({ components: [] });
+				} else {
+					void this.response?.reply({ components: [] });
+				}
+			} else {
+				void this.response?.edit({ components: [] });
+			}
 		}
 	}
 
@@ -1075,7 +1125,15 @@ export class PaginatedMessage {
 			type: Constants.MessageComponentTypes.BUTTON,
 			run: async ({ collector, response }) => {
 				collector.stop();
-				await response.edit({ components: [] });
+				if (runsOnInteraction(response)) {
+					if (response.replied || response.deferred) {
+						await response.editReply({ components: [] });
+					} else {
+						await response.reply({ components: [] });
+					}
+				} else {
+					await response.edit({ components: [] });
+				}
 			}
 		}
 	];
