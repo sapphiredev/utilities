@@ -88,7 +88,7 @@ export interface PaginatedMessageActionContext {
 	handler: PaginatedMessage;
 	author: User;
 	channel: Message['channel'];
-	response: Message | CommandInteraction | SelectMenuInteraction;
+	response: Message | CommandInteraction | SelectMenuInteraction | ButtonInteraction;
 	collector: InteractionCollector<Interaction>;
 }
 

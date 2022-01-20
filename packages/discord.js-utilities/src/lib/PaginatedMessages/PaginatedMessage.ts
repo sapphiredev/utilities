@@ -115,7 +115,7 @@ export class PaginatedMessage {
 	/**
 	 * The response message used to edit on page changes.
 	 */
-	public response: Message | CommandInteraction | SelectMenuInteraction | null = null;
+	public response: Message | CommandInteraction | SelectMenuInteraction | ButtonInteraction | null = null;
 
 	/**
 	 * The collector used for handling button clicks.
@@ -138,9 +138,11 @@ export class PaginatedMessage {
 	public index = 0;
 
 	/**
-	 * The amount of milliseconds to idle before the paginator is closed. Defaults to 20 minutes.
+	 * The amount of milliseconds to idle before the paginator is closed.
+	 * @default 14.5 minutes
+	 * @remark This is to ensure it is a bit before interactions expire.
 	 */
-	public idle = Time.Minute * 20;
+	public idle = Time.Minute * 14.5;
 
 	/**
 	 * The template for this {@link PaginatedMessage}.
@@ -720,14 +722,15 @@ export class PaginatedMessage {
 	 * The handler will start collecting button interactions.
 	 *
 	 * @param messageOrInteraction The message or interaction that triggered this {@link PaginatedMessage}.
-	 * Generally this will be the command message or an interaction (either a {@link CommandInteraction} or a {@link SelectMenuInteraction}),
+	 * Generally this will be the command message or an interaction
+	 * (either a {@link CommandInteraction}, a {@link SelectMenuInteraction} or a {@link ButtonInteraction}),
 	 * but it can also be another message from your client, i.e. to indicate a loading state.
 	 *
 	 * @param target The user who will be able to interact with the buttons of this {@link PaginatedMessage}.
 	 * If `messageOrInteraction` is an instance of {@link Message} then this defaults to {@link Message.author messageOrInteraction.author},
 	 * and if it is an instance of {@link CommandInteraction} then it defaults to {@link CommandInteraction.user messageOrInteraction.user}.
 	 */
-	public async run(messageOrInteraction: Message | CommandInteraction | SelectMenuInteraction, target?: User): Promise<this> {
+	public async run(messageOrInteraction: Message | CommandInteraction | SelectMenuInteraction | ButtonInteraction, target?: User): Promise<this> {
 		// Only execute if there is a channel to send the reply to
 		if (messageOrInteraction.channel) {
 			// Assign the target based on whether a Message or CommandInteraction was passed in
@@ -737,7 +740,7 @@ export class PaginatedMessage {
 			const paginatedMessage = PaginatedMessage.handlers.get(target.id);
 
 			// If a PaginatedMessage was found then stop it
-			if (paginatedMessage) paginatedMessage.collector!.stop();
+			paginatedMessage?.collector?.stop();
 
 			// If the message was sent by a bot, then set the response as this one
 			if (runsOnInteraction(messageOrInteraction)) {
@@ -760,7 +763,7 @@ export class PaginatedMessage {
 			const messageId = this.response!.id;
 
 			if (this.collector) {
-				this.collector!.once('end', () => {
+				this.collector.once('end', () => {
 					PaginatedMessage.messages.delete(messageId);
 					PaginatedMessage.handlers.delete(target!.id);
 				});
@@ -813,12 +816,16 @@ export class PaginatedMessage {
 	 * Sets up the message.
 	 *
 	 * @param messageOrInteraction The message or interaction that triggered this {@link PaginatedMessage}.
-	 * Generally this will be the command message or an interaction (either a {@link CommandInteraction} or a {@link SelectMenuInteraction}),
+	 * Generally this will be the command message or an interaction
+	 * (either a {@link CommandInteraction}, a {@link SelectMenuInteraction} or a {@link ButtonInteraction}),
 	 * but it can also be another message from your client, i.e. to indicate a loading state.
 	 *
 	 * @param author The author the handler is for.
 	 */
-	protected async setUpMessage(messageOrInteraction: Message | CommandInteraction | SelectMenuInteraction, targetUser: User): Promise<void> {
+	protected async setUpMessage(
+		messageOrInteraction: Message | CommandInteraction | SelectMenuInteraction | ButtonInteraction,
+		targetUser: User
+	): Promise<void> {
 		// Get the current page
 		let page = this.messages[this.index]!;
 
@@ -885,7 +892,7 @@ export class PaginatedMessage {
 		if (this.pages.length > 1) {
 			this.collector = new InteractionCollector(targetUser.client, {
 				filter: (interaction) => (interaction.isButton() || interaction.isSelectMenu()) && this.actions.has(interaction.customId),
-				idle: this.idle,
+				time: this.idle,
 				guild: isGuildBasedChannel(channel) ? channel.guild : undefined,
 				channel,
 				interactionType: Constants.InteractionTypes.MESSAGE_COMPONENT
@@ -974,16 +981,18 @@ export class PaginatedMessage {
 		// Remove all listeners from the collector:
 		this.collector?.removeAllListeners();
 
-		// Do not remove reactions if the message, channel, or guild, was deleted:
+		// Do not remove components if the message, channel, or guild, was deleted:
 		if (this.response && !PaginatedMessage.deletionStopReasons.includes(reason)) {
 			if (runsOnInteraction(this.response)) {
 				if (this.response.replied || this.response.deferred) {
-					void this.response?.editReply({ components: [] });
+					void this.response.editReply({ components: [] });
+				} else if (this.response.isSelectMenu()) {
+					void this.response.update({ components: [] });
 				} else {
-					void this.response?.reply({ components: [] });
+					void this.response.reply({ components: [] });
 				}
 			} else {
-				void this.response?.edit({ components: [] });
+				void this.response.edit({ components: [] });
 			}
 		}
 	}
@@ -1128,6 +1137,8 @@ export class PaginatedMessage {
 				if (runsOnInteraction(response)) {
 					if (response.replied || response.deferred) {
 						await response.editReply({ components: [] });
+					} else if (response.isSelectMenu()) {
+						await response.update({ components: [] });
 					} else {
 						await response.reply({ components: [] });
 					}
