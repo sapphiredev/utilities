@@ -989,7 +989,7 @@ export class PaginatedMessage {
 				} else if (this.response.isMessageComponent()) {
 					void this.response.update({ components: [] });
 				} else {
-					void this.response.reply({ components: [] });
+					void this.response.reply({ content: "This maze wasn't meant for you...what did you do.", ephemeral: true });
 				}
 			} else {
 				void this.response.edit({ components: [] });
@@ -1140,7 +1140,7 @@ export class PaginatedMessage {
 					} else if (response.isMessageComponent()) {
 						await response.update({ components: [] });
 					} else {
-						await response.reply({ components: [] });
+						await response.reply({ content: "This maze wasn't meant for you...what did you do.", ephemeral: true });
 					}
 				} else {
 					await response.edit({ components: [] });
