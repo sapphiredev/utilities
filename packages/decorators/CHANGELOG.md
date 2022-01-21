@@ -3,24 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [4.0.0](https://github.com/sapphiredev/utilities/compare/@sapphire/decorators@3.1.6...@sapphire/decorators@4.0.0) (2022-01-16)
+## [4.0.1](https://github.com/sapphiredev/utilities/compare/@sapphire/decorators@4.0.0...@sapphire/decorators@4.0.1) (2022-01-21)
 
+**Note:** Version bump only for package @sapphire/decorators
+
+# [4.0.0](https://github.com/sapphiredev/utilities/compare/@sapphire/decorators@3.1.6...@sapphire/decorators@4.0.0) (2022-01-16)
 
 ### Features
 
-* **decorators:** add container to `ApplyOptions` callback ([#258](https://github.com/sapphiredev/utilities/issues/258)) ([d2876b8](https://github.com/sapphiredev/utilities/commit/d2876b83ce2356424e12e63cfe9f9e14c6ce52e0))
-* **decorators:** remove `enumerable` and `enumerableMethod`. Use their PascalCased variants instead. ([38e2977](https://github.com/sapphiredev/utilities/commit/38e2977b8dc061d0d62f076b12808b196e92b73a))
-
+-   **decorators:** add container to `ApplyOptions` callback ([#258](https://github.com/sapphiredev/utilities/issues/258)) ([d2876b8](https://github.com/sapphiredev/utilities/commit/d2876b83ce2356424e12e63cfe9f9e14c6ce52e0))
+-   **decorators:** remove `enumerable` and `enumerableMethod`. Use their PascalCased variants instead. ([38e2977](https://github.com/sapphiredev/utilities/commit/38e2977b8dc061d0d62f076b12808b196e92b73a))
 
 ### BREAKING CHANGES
 
-* **decorators:** The previously deprecated enumerable` and
-`enumerableMethod` decorators have been removed. Use their PascalCased variants instead.
-* **decorators:** When using `@ApplyOptions` with a callback function, the single parameter of `PieceContex` been changed to an object, which also has a property of `Container`. Migration change is `@ApplyOptions<Listener.Options>(({ context }) => ({`
-
-
-
-
+-   **decorators:** The previously deprecated enumerable`and`enumerableMethod` decorators have been removed. Use their PascalCased variants instead.
+-   **decorators:** When using `@ApplyOptions` with a callback function, the single parameter of `PieceContex` been changed to an object, which also has a property of `Container`. Migration change is `@ApplyOptions<Listener.Options>(({ context }) => ({`
 
 ## [3.1.6](https://github.com/sapphiredev/utilities/compare/@sapphire/decorators@3.1.5...@sapphire/decorators@3.1.6) (2022-01-12)
 

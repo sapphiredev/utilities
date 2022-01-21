@@ -3,13 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.11](https://github.com/sapphiredev/utilities/compare/@sapphire/eslint-config@4.0.10...@sapphire/eslint-config@4.0.11) (2022-01-21)
+
+### Bug Fixes
+
+-   fixed typos of `communitys` ([e4e3a69](https://github.com/sapphiredev/utilities/commit/e4e3a6913a8157f24f366ac43db46faebdc085ce)), closes [#263](https://github.com/sapphiredev/utilities/issues/263)
+
 ## [4.0.10](https://github.com/sapphiredev/utilities/compare/@sapphire/eslint-config@4.0.9...@sapphire/eslint-config@4.0.10) (2022-01-16)
 
 **Note:** Version bump only for package @sapphire/eslint-config
-
-
-
-
 
 ## [4.0.9](https://github.com/sapphiredev/utilities/compare/@sapphire/eslint-config@4.0.8...@sapphire/eslint-config@4.0.9) (2022-01-10)
 

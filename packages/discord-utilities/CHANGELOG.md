@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.6.0](https://github.com/sapphiredev/utilities/compare/@sapphire/discord-utilities@2.5.0...@sapphire/discord-utilities@2.6.0) (2022-01-21)
+
+### Features
+
+-   **discord-utilities:** add Interaction limits ([#267](https://github.com/sapphiredev/utilities/issues/267)) ([ba37bca](https://github.com/sapphiredev/utilities/commit/ba37bca73b36d8ba5984ac8e090a2500dc8225e4))
+
 # [2.5.0](https://github.com/sapphiredev/utilities/compare/@sapphire/discord-utilities@2.4.0...@sapphire/discord-utilities@2.5.0) (2022-01-10)
 
 ### Features
