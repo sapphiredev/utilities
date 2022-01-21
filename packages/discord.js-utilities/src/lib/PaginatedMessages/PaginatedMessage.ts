@@ -118,7 +118,7 @@ export class PaginatedMessage {
 	public response: Message | CommandInteraction | SelectMenuInteraction | ButtonInteraction | null = null;
 
 	/**
-	 * The collector used for handling button clicks.
+	 * The collector used for handling component interactions.
 	 */
 	public collector: InteractionCollector<Interaction> | null = null;
 
