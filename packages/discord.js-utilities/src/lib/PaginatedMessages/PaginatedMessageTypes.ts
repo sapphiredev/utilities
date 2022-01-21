@@ -4,7 +4,6 @@ import type {
 	CommandInteraction,
 	ExcludeEnum,
 	Guild,
-	Interaction,
 	InteractionButtonOptions,
 	InteractionCollector,
 	LinkButtonOptions,
@@ -89,7 +88,7 @@ export interface PaginatedMessageActionContext {
 	author: User;
 	channel: Message['channel'];
 	response: Message | CommandInteraction | SelectMenuInteraction | ButtonInteraction;
-	collector: InteractionCollector<Interaction>;
+	collector: InteractionCollector<MessageComponentInteraction>;
 }
 
 export interface PaginatedMessageOptions {

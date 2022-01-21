@@ -10,8 +10,8 @@ import {
 	type ButtonInteraction,
 	type Collection,
 	type CommandInteraction,
-	type Interaction,
 	type Message,
+	type MessageComponentInteraction,
 	type MessageOptions,
 	type SelectMenuInteraction,
 	type Snowflake,
@@ -120,7 +120,7 @@ export class PaginatedMessage {
 	/**
 	 * The collector used for handling component interactions.
 	 */
-	public collector: InteractionCollector<Interaction> | null = null;
+	public collector: InteractionCollector<MessageComponentInteraction> | null = null;
 
 	/**
 	 * The pages which were converted from {@link PaginatedMessage.pages}
@@ -890,7 +890,7 @@ export class PaginatedMessage {
 	 */
 	protected setUpCollector(channel: TextBasedChannel, targetUser: User): void {
 		if (this.pages.length > 1) {
-			this.collector = new InteractionCollector(targetUser.client, {
+			this.collector = new InteractionCollector<MessageComponentInteraction>(targetUser.client, {
 				filter: (interaction) => interaction.isMessageComponent() && this.actions.has(interaction.customId),
 				time: this.idle,
 				guild: isGuildBasedChannel(channel) ? channel.guild : undefined,
