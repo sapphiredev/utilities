@@ -176,7 +176,6 @@ export const ButtonLimits = {
 /**
  * Namespace containing limits related to Select Menus.
  */
-
 export const SelectMenuLimits = {
 	/**
 	 * Maximum characters allowed in a select menu custom ID.
