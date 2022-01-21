@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.4.0](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@4.3.1...@sapphire/discord.js-utilities@4.4.0) (2022-01-21)
+
+### Features
+
+-   **PaginatedMessage:** add support for interactions ([#264](https://github.com/sapphiredev/utilities/issues/264)) ([d55b17e](https://github.com/sapphiredev/utilities/commit/d55b17e1dc11ed8d5a5e731a5acfd5f7c9958cbc))
+
 ## [4.3.1](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@4.3.0...@sapphire/discord.js-utilities@4.3.1) (2022-01-21)
 
 ### Bug Fixes
