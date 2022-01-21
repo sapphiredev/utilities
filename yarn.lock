@@ -2045,7 +2045,7 @@ __metadata:
   resolution: "@sapphire/decorators@workspace:packages/decorators"
   dependencies:
     "@sapphire/discord-utilities": ^2.6.0
-    "@sapphire/discord.js-utilities": ^4.3.1
+    "@sapphire/discord.js-utilities": ^4.4.0
     "@sapphire/ratelimits": ^2.1.12
     "@sapphire/utilities": ^3.2.1
     tslib: ^2.3.1
@@ -2060,7 +2060,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@sapphire/discord.js-utilities@^4.1.5, @sapphire/discord.js-utilities@^4.3.1, @sapphire/discord.js-utilities@workspace:packages/discord.js-utilities":
+"@sapphire/discord.js-utilities@^4.1.5, @sapphire/discord.js-utilities@^4.4.0, @sapphire/discord.js-utilities@workspace:packages/discord.js-utilities":
   version: 0.0.0-use.local
   resolution: "@sapphire/discord.js-utilities@workspace:packages/discord.js-utilities"
   dependencies:
