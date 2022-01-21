@@ -121,7 +121,7 @@ export const InteractionLimits = {
 /**
  * Namespace containing limits related to Discord application commands (slash commands).
  */
- export const ApplicationCommandLimits = {
+export const ApplicationCommandLimits = {
 	/**
 	 * Maximum characters allowed in an application command name.
 	 */
@@ -135,7 +135,7 @@ export const InteractionLimits = {
 	/**
 	 * Maximum options allowed in an application command.
 	 */
-	MaximumOptionsLength: 25,
+	MaximumOptionsLength: 25
 } as const;
 
 /**
@@ -146,7 +146,7 @@ export const ApplicationCommandOptionLimits = {
 	 * Maximum characters allowed in the name of an option of an application command.
 	 */
 	MaximumNameCharacters: 32,
-	
+
 	/**
 	 * Maximum characters allowed in the description of an option of an application command.
 	 */
@@ -155,11 +155,11 @@ export const ApplicationCommandOptionLimits = {
 	/**
 	 * Maximum length of choices allowed in the option of an application command.
 	 */
-	MaximumChoicesLength: 25,
+	MaximumChoicesLength: 25
 } as const;
 
 /**
- * Namespace containing limits related to Message Buttons. 
+ * Namespace containing limits related to Message Buttons.
  */
 export const ButtonLimits = {
 	/**
@@ -170,7 +170,7 @@ export const ButtonLimits = {
 	/**
 	 * Maximum characters allowed in a button custom ID.
 	 */
-	MaximumCustomIdCharacters: 100,
+	MaximumCustomIdCharacters: 100
 } as const;
 
 /**
@@ -201,7 +201,7 @@ export const SelectMenuLimits = {
 	 * Maximum "maximum" values allowed in a select menu.
 	 */
 	MaxmimumMaxValuesSize: 25
-} as const
+} as const;
 
 /**
  * Namespace containing limits related to Discord messages.
