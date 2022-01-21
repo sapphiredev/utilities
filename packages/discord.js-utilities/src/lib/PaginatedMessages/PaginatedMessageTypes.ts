@@ -1,6 +1,7 @@
 import type { Awaitable } from '@sapphire/utilities';
 import type {
 	ButtonInteraction,
+	CommandInteraction,
 	ExcludeEnum,
 	Guild,
 	InteractionButtonOptions,
@@ -86,7 +87,7 @@ export interface PaginatedMessageActionContext {
 	handler: PaginatedMessage;
 	author: User;
 	channel: Message['channel'];
-	response: Message;
+	response: Message | CommandInteraction | SelectMenuInteraction | ButtonInteraction;
 	collector: InteractionCollector<MessageComponentInteraction>;
 }
 

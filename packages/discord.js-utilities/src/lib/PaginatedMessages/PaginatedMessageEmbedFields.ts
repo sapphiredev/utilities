@@ -1,6 +1,6 @@
 import { EmbedLimits } from '@sapphire/discord-utilities';
 import { isFunction } from '@sapphire/utilities';
-import { EmbedFieldData, MessageEmbed, MessageEmbedOptions } from 'discord.js';
+import { MessageEmbed, type EmbedFieldData, type MessageEmbedOptions } from 'discord.js';
 import { PaginatedMessage } from './PaginatedMessage';
 
 /**
