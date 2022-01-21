@@ -26,7 +26,7 @@ import { PaginatedMessage } from './PaginatedMessage';
  * 	.run(message);
  * ```
  */
-export default class PaginatedMessageEmbedFields extends PaginatedMessage {
+export class PaginatedMessageEmbedFields extends PaginatedMessage {
 	private embedTemplate: MessageEmbed = new MessageEmbed();
 	private totalPages = 0;
 	private items: EmbedFieldData[] = [];
