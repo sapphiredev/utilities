@@ -119,6 +119,92 @@ export const InteractionLimits = {
 } as const;
 
 /**
+ * Namespace containing limits related to Discord application commands (slash commands).
+ */
+ export const ApplicationCommandLimits = {
+	/**
+	 * Maximum characters allowed in an application command name.
+	 */
+	MaximumNameCharacters: 32,
+
+	/**
+	 * Maximum characters allowed in an application command description.
+	 */
+	MaximumDescriptionCharacters: 100,
+
+	/**
+	 * Maximum characters allowed in an application command response.
+	 */
+	MaximumOptionsLength: 25,
+} as const;
+
+/**
+ * Namespace containing limits related to Choices of Discord Application Commands.
+ */
+export const ApplicationCommandOptionLimits = {
+	/**
+	 * Maximum characters allowed in the name of an option of an application command.
+	 */
+	MaximumNameCharacters: 32,
+	
+	/**
+	 * Maximum characters allowed in the description of an option of an application command.
+	 */
+	MaximumDescriptionCharacters: 100,
+
+	/**
+	 * Maximum length of choices allowed in the option of an application command.
+	 */
+	MaximumChoicesLength: 25,
+} as const;
+
+/**
+ * Namespace containing limits related to Message Buttons. 
+ */
+export const ButtonLimits = {
+	/**
+	 * Maximum characters allowed in a button lable.
+	 */
+	MaximumLabelCharacters: 80,
+
+	/**
+	 * Maximum characters allowed in a button custom ID.
+	 */
+	MaximumCustomIdCharacters: 100,
+} as const;
+
+/**
+ * Namespace containing limits related to Select Menus.
+ */
+
+export const SelectMenuLimits = {
+	/**
+	 * Maximum characters allowed in a select menu custom ID.
+	 */
+	MaximumCustomIdCharacters: 100,
+
+	/**
+	 * Maximum amount of options allowed in a select menu.
+	 */
+	MaximumOptionsLength: 25,
+
+	/**
+	 * Maximum characters allowed in a select menu placeholder.
+	 */
+	MaximumPlaceholderCharacters: 100,
+
+	/**
+	 * Maximum "minimum" values allowed in a select menu.
+	 */
+	MaximumMinValuesSize: 25,
+
+	/**
+	 * Maximum "maximum" values allowed in a select menu.
+	 */
+	MaxmimumMaxValuesSize: 25
+} as const
+
+/**
  * Namespace containing limits related to Discord messages.
  */
 export const MessageLimits = {
