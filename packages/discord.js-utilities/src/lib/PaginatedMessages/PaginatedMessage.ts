@@ -719,7 +719,7 @@ export class PaginatedMessage {
 
 	/**
 	 * Executes the {@link PaginatedMessage} and sends the pages corresponding with {@link PaginatedMessage.index}.
-	 * The handler will start collecting button interactions.
+	 * The handler will start collecting message component interactions.
 	 *
 	 * @param messageOrInteraction The message or interaction that triggered this {@link PaginatedMessage}.
 	 * Generally this will be the command message or an interaction
@@ -744,10 +744,10 @@ export class PaginatedMessage {
 
 			// If the message was sent by a bot, then set the response as this one
 			if (runsOnInteraction(messageOrInteraction)) {
-				if (messageOrInteraction.user.bot) {
+				if (messageOrInteraction.user.bot && messageOrInteraction.user.id === messageOrInteraction.client.user?.id) {
 					this.response = messageOrInteraction;
 				}
-			} else if (messageOrInteraction.author.bot) {
+			} else if (messageOrInteraction.author.bot && messageOrInteraction.author.id === messageOrInteraction.client.user?.id) {
 				this.response = messageOrInteraction;
 			}
 
@@ -891,7 +891,7 @@ export class PaginatedMessage {
 	protected setUpCollector(channel: TextBasedChannel, targetUser: User): void {
 		if (this.pages.length > 1) {
 			this.collector = new InteractionCollector(targetUser.client, {
-				filter: (interaction) => (interaction.isButton() || interaction.isSelectMenu()) && this.actions.has(interaction.customId),
+				filter: (interaction) => interaction.isMessageComponent() && this.actions.has(interaction.customId),
 				time: this.idle,
 				guild: isGuildBasedChannel(channel) ? channel.guild : undefined,
 				channel,
@@ -986,7 +986,7 @@ export class PaginatedMessage {
 			if (runsOnInteraction(this.response)) {
 				if (this.response.replied || this.response.deferred) {
 					void this.response.editReply({ components: [] });
-				} else if (this.response.isSelectMenu()) {
+				} else if (this.response.isMessageComponent()) {
 					void this.response.update({ components: [] });
 				} else {
 					void this.response.reply({ components: [] });
@@ -1137,7 +1137,7 @@ export class PaginatedMessage {
 				if (runsOnInteraction(response)) {
 					if (response.replied || response.deferred) {
 						await response.editReply({ components: [] });
-					} else if (response.isSelectMenu()) {
+					} else if (response.isMessageComponent()) {
 						await response.update({ components: [] });
 					} else {
 						await response.reply({ components: [] });
