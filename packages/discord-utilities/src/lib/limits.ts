@@ -133,7 +133,7 @@ export const InteractionLimits = {
 	MaximumDescriptionCharacters: 100,
 
 	/**
-	 * Maximum characters allowed in an application command response.
+	 * Maximum options allowed in an application command.
 	 */
 	MaximumOptionsLength: 25,
 } as const;
