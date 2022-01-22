@@ -2,6 +2,7 @@ import { fetch, FetchMethods, FetchResultTypes, QueryError } from '@sapphire/fet
 import type { PhishermanInfoType, PhishermanReportType, PhishermanReturnType } from './PhishermanTypes';
 import os from 'node:os';
 
+const agent = `Sapphire Phisherman/1.0.0 (node-fetch) ${os.platform()}/${os.release()} (https://github.com/sapphiredev/utilities/tree/main/packages/phisherman)`;
 /**
  * The cached apiKey which was created using {@link setApiKey}
  */
@@ -19,7 +20,7 @@ export async function checkDomain(domain: string, apiKey: string = storedApiKey)
 		{
 			headers: {
 				'Content-Type': 'application/json',
-				'User-Agent': `Sapphire Phisherman/1.0.0 (node-fetch) ${os.platform()}/${os.release()} (https://github.com/sapphiredev/utilities/tree/main/packages/phisherman)`,
+				'User-Agent': agent,
 				Authorization: `Bearer ${apiKey}`
 			}
 		},
@@ -45,7 +46,7 @@ export function reportDomain(domain: string, apiKey: string = storedApiKey) {
 			method: FetchMethods.Put,
 			headers: {
 				'Content-Type': 'application/json',
-				'User-Agent': `Sapphire Phisherman/1.0.0 (node-fetch) ${os.platform()}/${os.release()} (https://github.com/sapphiredev/utilities/tree/main/packages/phisherman)`,
+				'User-Agent': agent,
 				Authorization: `Bearer ${apiKey}`
 			},
 			body: JSON.stringify({
@@ -68,7 +69,7 @@ export async function getDomainInfo(domain: string, apiKey: string = storedApiKe
 		{
 			headers: {
 				'Content-Type': 'application/json',
-				'User-Agent': `Sapphire Phisherman/1.0.0 (node-fetch) ${os.platform()}/${os.release()} (https://github.com/sapphiredev/utilities/tree/main/packages/phisherman)`,
+				'User-Agent': ``,
 				Authorization: `Bearer ${apiKey}`
 			}
 		},
@@ -91,7 +92,7 @@ export function reportCaughtPhish(domain: string, apiKey: string = storedApiKey,
 			method: FetchMethods.Post,
 			headers: {
 				'Content-Type': 'application/json',
-				'User-Agent': `Sapphire Phisherman/1.0.0 (node-fetch) ${os.platform()}/${os.release()} (https://github.com/sapphiredev/utilities/tree/main/packages/phisherman)`,
+				'User-Agent': agent,
 				Authorization: `Bearer ${apiKey}`
 			},
 			body: JSON.stringify({
@@ -119,7 +120,7 @@ async function checkApiKey(apiKey: string) {
 			{
 				headers: {
 					'Content-Type': 'application/json',
-					'User-Agent': `Sapphire Phisherman/1.0.0 (node-fetch) ${os.platform()}/${os.release()} (https://github.com/sapphiredev/utilities/tree/main/packages/phisherman)`,
+					'User-Agent': agent,
 					Authorization: `Bearer ${apiKey}`
 				}
 			},
