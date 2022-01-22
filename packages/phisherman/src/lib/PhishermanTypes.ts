@@ -42,6 +42,7 @@ interface Details {
 	registry: string;
 	country: Country;
 }
+
 interface Asn {
 	asn: string;
 	asn_name: string;
