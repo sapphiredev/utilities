@@ -1,7 +1,8 @@
 import { fetch, FetchMethods, FetchResultTypes, QueryError } from '@sapphire/fetch';
-import type { PhishermanReportType, PhishermanReturnType } from './PhishermanTypes';
+import type { PhishermanInfoType, PhishermanReportType, PhishermanReturnType } from './PhishermanTypes';
 import os from 'node:os';
 
+const agent = `Sapphire Phisherman/1.0.0 (node-fetch) ${os.platform()}/${os.release()} (https://github.com/sapphiredev/utilities/tree/main/packages/phisherman)`;
 /**
  * The cached apiKey which was created using {@link setApiKey}
  */
@@ -19,7 +20,7 @@ export async function checkDomain(domain: string, apiKey: string = storedApiKey)
 		{
 			headers: {
 				'Content-Type': 'application/json',
-				'User-Agent': `Sapphire Phisherman/1.0.0 (node-fetch) ${os.platform()}/${os.release()} (https://github.com/sapphiredev/utilities/tree/main/packages/phisherman)`,
+				'User-Agent': agent,
 				Authorization: `Bearer ${apiKey}`
 			}
 		},
@@ -45,11 +46,57 @@ export function reportDomain(domain: string, apiKey: string = storedApiKey) {
 			method: FetchMethods.Put,
 			headers: {
 				'Content-Type': 'application/json',
-				'User-Agent': `Sapphire Phisherman/1.0.0 (node-fetch) ${os.platform()}/${os.release()} (https://github.com/sapphiredev/utilities/tree/main/packages/phisherman)`,
+				'User-Agent': agent,
 				Authorization: `Bearer ${apiKey}`
 			},
 			body: JSON.stringify({
 				url: domain
+			})
+		},
+		FetchResultTypes.JSON
+	);
+}
+
+/**
+ * Returns information for a domain.
+ * @param domain The domain to get info about.
+ * @param apiKey optionally pass a Phiserman API key for making this request. This will default to {@link storedApiKey}, which can be configured through {@link setApiKey}.
+ * @since 1.1.0
+ */
+export async function getDomainInfo(domain: string, apiKey: string = storedApiKey) {
+	const result = await fetch<PhishermanInfoType>(
+		`https://api.phisherman.gg/v2/domains/info/${domain}`,
+		{
+			headers: {
+				'Content-Type': 'application/json',
+				'User-Agent': ``,
+				Authorization: `Bearer ${apiKey}`
+			}
+		},
+		FetchResultTypes.JSON
+	);
+	return result[domain];
+}
+
+/**
+ * Report a caught phish back to phisherman to improve their analytics.
+ * @param domain The domain which was caught.
+ * @param apiKey @param apiKey optionally pass a Phiserman API key for making this request. This will default to {@link storedApiKey}, which can be configured through {@link setApiKey}.
+ * @param guildId The id of the guild in which the domain was caught.
+ * @since 1.1.0
+ */
+export function reportCaughtPhish(domain: string, apiKey: string = storedApiKey, guildId: string | number = '') {
+	return fetch<PhishermanReportType>(
+		`https://api.phisherman.gg/v2/phish/caught/${domain}`,
+		{
+			method: FetchMethods.Post,
+			headers: {
+				'Content-Type': 'application/json',
+				'User-Agent': agent,
+				Authorization: `Bearer ${apiKey}`
+			},
+			body: JSON.stringify({
+				guild: Number(guildId)
 			})
 		},
 		FetchResultTypes.JSON
@@ -73,7 +120,7 @@ async function checkApiKey(apiKey: string) {
 			{
 				headers: {
 					'Content-Type': 'application/json',
-					'User-Agent': `Sapphire Phisherman/1.0.0 (node-fetch) ${os.platform()}/${os.release()} (https://github.com/sapphiredev/utilities/tree/main/packages/phisherman)`,
+					'User-Agent': agent,
 					Authorization: `Bearer ${apiKey}`
 				}
 			},
