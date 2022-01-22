@@ -32,6 +32,7 @@ export interface PhishermanInfo {
 export interface PhishermanInfoType {
 	[key: string]: PhishermanInfo;
 }
+
 interface Details {
 	phishTankId: string;
 	urlScanId: string;
