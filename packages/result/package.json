@@ -1,0 +1,58 @@
+{
+	"name": "@sapphire/result",
+	"version": "0.0.1",
+	"description": "Sapphire results package",
+	"author": "@sapphire",
+	"license": "MIT",
+	"main": "dist/index.js",
+	"module": "dist/index.mjs",
+	"browser": "dist/index.global.js",
+	"unpkg": "dist/index.global.js",
+	"types": "dist/index.d.ts",
+	"typedocMain": "src/index.ts",
+	"exports": {
+		"import": "./dist/index.mjs",
+		"require": "./dist/index.js"
+	},
+	"sideEffects": false,
+	"homepage": "https://github.com/sapphiredev/utilities/tree/main/packages/result",
+	"scripts": {
+		"test": "jest",
+		"lint": "eslint src tests --ext ts --fix -c ../../.eslintrc",
+		"build": "tsup && tsc -b src",
+		"prepublishOnly": "yarn build"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/sapphiredev/utilities.git",
+		"directory": "packages/result"
+	},
+	"files": [
+		"dist",
+		"!dist/*.tsbuildinfo"
+	],
+	"engines": {
+		"node": ">=v14.0.0",
+		"npm": ">=7.0.0"
+	},
+	"keywords": [
+		"@sapphire/result",
+		"bot",
+		"discord",
+		"lexure",
+		"promise",
+		"sapphire",
+		"standalone",
+		"try catch",
+		"ts",
+		"typescript",
+		"wrapper",
+		"yarn"
+	],
+	"bugs": {
+		"url": "https://github.com/sapphiredev/utilities/issues"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
+}

@@ -15,6 +15,7 @@
 		"packages/phisherman/README.md",
 		"packages/prettier-config/README.md",
 		"packages/ratelimits/README.md",
+		"packages/results/README.md",
 		"packages/snowflake/README.md",
 		"packages/stopwatch/README.md",
 		"packages/time-utilities/README.md",
