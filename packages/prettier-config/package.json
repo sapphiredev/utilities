@@ -16,7 +16,7 @@
 		"test": "jest",
 		"prelint": "yarn test && yarn build",
 		"lint": "eslint src tests --ext ts --fix -c ../../.eslintrc",
-		"build": "tsc -b src",
+		"build": "tsup",
 		"prepublishOnly": "yarn build"
 	},
 	"dependencies": {

@@ -31,7 +31,7 @@ There is often a need to apply ratelimits to protect a network from excessive tr
 ## Features
 
 -   Written in TypeScript
--   Bundled with Rollup so it can be used in NodeJS and browsers
+-   Bundled with esbuild so it can be used in NodeJS and browsers
 -   Offers CommonJS, ESM and UMD bundles
 -   Fully tested
 

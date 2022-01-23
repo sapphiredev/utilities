@@ -10,7 +10,7 @@
 		"packages/**/tests/**",
 		"**/*.js",
 		"**/*.d.ts",
-		"**/rollup.config.ts",
+		"**/tsup.config.ts",
 		"**/jest.config.ts",
 		"**/jest.setup.ts"
 	],

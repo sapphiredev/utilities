@@ -1,10 +1,12 @@
 {
-	"extends": "../tsconfig.json",
+	"extends": "../../ts-config/src/tsconfig.json",
 	"compilerOptions": {
 		"rootDir": "./",
 		"outDir": "./build",
 		"tsBuildInfoFile": "./build/.tsbuildinfo",
-		"noImplicitAny": false
+		"noImplicitAny": false,
+		"jsx": "react",
+		"jsxFactory": "EmbedJsx.make"
 	},
 	"include": ["./"],
 	"references": [{ "path": "../src" }]

@@ -37,7 +37,7 @@ There is often a need to get a unique ID for entities, be that for Discord messa
 ## Features
 
 -   Written in TypeScript
--   Bundled with Rollup so it can be used in NodeJS and browsers
+-   Bundled with esbuild so it can be used in NodeJS and browsers
 -   Offers CommonJS, ESM and UMD bundles
 -   Offers predefined epochs for Discord and Twitter
 -   Fully tested

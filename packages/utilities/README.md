@@ -20,7 +20,7 @@ We often have a need for a function or type augmentation and having to include i
 ## Features
 
 -   Written in TypeScript
--   Bundled with Rollup so it can be used in NodeJS and browsers
+-   Bundled with esbuild so it can be used in NodeJS and browsers
 -   Offers CommonJS, ESM and UMD bundles
 -   Fully tested
 

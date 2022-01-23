@@ -17,7 +17,7 @@
 	"scripts": {
 		"test": "jest",
 		"lint": "eslint src tests --ext ts,tsx --fix -c ../../.eslintrc",
-		"build": "tsc -b src && gen-esm-wrapper dist/index.js dist/index.mjs",
+		"build": "tsup && tsc -b src",
 		"prepublishOnly": "yarn build"
 	},
 	"dependencies": {

@@ -15,8 +15,7 @@
 	"homepage": "https://github.com/sapphiredev/utilities/tree/main/packages/phisherman",
 	"scripts": {
 		"lint": "eslint src --ext ts --fix",
-		"build": "tsc -b src && yarn esm:default",
-		"esm:default": "gen-esm-wrapper dist/index.js dist/index.mjs",
+		"build": "tsup && tsc -b src",
 		"prepublishOnly": "yarn build"
 	},
 	"dependencies": {
