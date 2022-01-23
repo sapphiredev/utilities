@@ -207,6 +207,13 @@
 			"avatar_url": "https://avatars.githubusercontent.com/u/29551076?v=4",
 			"profile": "https://github.com/Tokipudi",
 			"contributions": ["code"]
+		},
+		{
+			"login": "ItsMrCube",
+			"name": "MrCube",
+			"avatar_url": "https://avatars.githubusercontent.com/u/25201357?v=4",
+			"profile": "https://github.com/ItsMrCube",
+			"contributions": ["code"]
 		}
 	],
 	"contributorsPerLine": 7,
