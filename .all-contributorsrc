@@ -200,6 +200,13 @@
 			"avatar_url": "https://avatars.githubusercontent.com/u/68158483?v=4",
 			"profile": "https://fc5570.me/",
 			"contributions": ["code"]
+		},
+		{
+			"login": "Tokipudi",
+			"name": "Jérémy de Saint Denis",
+			"avatar_url": "https://avatars.githubusercontent.com/u/29551076?v=4",
+			"profile": "https://github.com/Tokipudi",
+			"contributions": ["code"]
 		}
 	],
 	"contributorsPerLine": 7,
