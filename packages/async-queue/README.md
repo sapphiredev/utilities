@@ -20,7 +20,7 @@ Ever needed a queue for a set of promises? This is the package for you.
 ## Features
 
 -   Written in TypeScript
--   Bundled with Rollup so it can be used in NodeJS and browsers
+-   Bundled with esbuild so it can be used in NodeJS and browsers
 -   Offers CommonJS, ESM and UMD bundles
 -   Fully tested
 
