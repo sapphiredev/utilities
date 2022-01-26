@@ -1,14 +1,33 @@
 import { relative, resolve as resolveDir } from 'node:path';
-import { defineConfig, type Format } from 'tsup';
+import { defineConfig, type Options } from 'tsup';
 
-export const createTsupConfig = (
-	{ globalName = undefined, format = ['esm', 'cjs', 'iife'], target = 'es2021', sourcemap = true }: ConfigOptions = {
-		globalName: undefined,
-		format: ['esm', 'cjs', 'iife'],
-		target: 'es2021',
-		sourcemap: true
+const defaultConfigOptions: ConfigOptions = {
+	globalName: undefined,
+	format: ['esm', 'cjs', 'iife'],
+	target: 'es2021',
+	sourcemap: true,
+	esbuildOptions: (options, context) => {
+		if (context.format === 'cjs') {
+			options.banner = {
+				js: '"use strict";'
+			};
+		}
 	}
-) =>
+};
+
+export const createTsupConfig = ({
+	globalName = undefined,
+	format = ['esm', 'cjs', 'iife'],
+	target = 'es2021',
+	sourcemap = true,
+	esbuildOptions = (options, context) => {
+		if (context.format === 'cjs') {
+			options.banner = {
+				js: '"use strict";'
+			};
+		}
+	}
+}: ConfigOptions = defaultConfigOptions) =>
 	defineConfig({
 		clean: true,
 		dts: false,
@@ -20,15 +39,8 @@ export const createTsupConfig = (
 		target,
 		tsconfig: relative(__dirname, resolveDir(process.cwd(), 'src', 'tsconfig.json')),
 		keepNames: true,
-		banner: {
-			js: '"use strict";'
-		},
-		globalName
+		globalName,
+		esbuildOptions
 	});
 
-interface ConfigOptions {
-	globalName?: string;
-	format?: Format[];
-	target?: 'es2019' | 'es2020' | 'es2021';
-	sourcemap?: boolean;
-}
+type ConfigOptions = Pick<Options, 'esbuildOptions' | 'sourcemap' | 'target' | 'format' | 'globalName'>;
