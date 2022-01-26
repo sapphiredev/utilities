@@ -42,7 +42,7 @@ export async function fetch(url: URL | string, options?: RequestInit | FetchResu
 	// Transform the URL to a String, in case an URL object was passed
 	const stringUrl = String(url);
 
-	const result: Response = await baseFetch(stringUrl, options);
+	const result: Response = await globalThis.fetch(stringUrl, options);
 	if (!result.ok) throw new QueryError(stringUrl, result.status, result, await result.clone().text());
 
 	switch (type) {
@@ -60,5 +60,3 @@ export async function fetch(url: URL | string, options?: RequestInit | FetchResu
 			throw new Error(`Unknown type "${type}"`);
 	}
 }
-
-declare function baseFetch(url: RequestInfo, init?: RequestInit): Promise<Response>;

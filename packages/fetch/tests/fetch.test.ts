@@ -1,6 +1,6 @@
 import nock from 'nock';
-import { URL as NodeUrl } from 'url';
-import { fetch, FetchResultTypes, QueryError } from '../src';
+import { URL as NodeUrl } from 'node:url';
+import { fetch, FetchResultTypes, QueryError } from '../dist';
 
 describe('fetch', () => {
 	let nockScopeHttp: nock.Scope;
@@ -166,5 +166,3 @@ describe('fetch', () => {
 		});
 	});
 });
-
-declare function baseFetch(url: RequestInfo, init?: RequestInit): Promise<Response>;

@@ -1,7 +1,7 @@
 {
 	"name": "@sapphire/fetch",
 	"version": "2.0.4",
-	"description": "Tiny wrapper around node-fetch (for NodeJS) and window.fetch (for Browsers) for improved TypeScript and data type support",
+	"description": "Tiny wrapper around cross-fetch (for NodeJS) and window.fetch (for Browsers) for improved TypeScript and data type support",
 	"author": "@sapphire",
 	"license": "MIT",
 	"main": "dist/index.js",
@@ -23,8 +23,7 @@
 		"prepublishOnly": "yarn build"
 	},
 	"dependencies": {
-		"@types/node-fetch": "^2.5.12",
-		"node-fetch": "^2.6.7"
+		"cross-fetch": "^3.1.5"
 	},
 	"repository": {
 		"type": "git",

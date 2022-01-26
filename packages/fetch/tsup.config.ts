@@ -9,7 +9,7 @@ export default createTsupConfig({
 					js: [
 						//
 						'"use strict";',
-						'const baseFetch = globalThis && globalThis.fetch ? globalThis.fetch : require("node-fetch");'
+						'globalThis && globalThis.fetch ? globalThis.fetch : globalThis.fetch = require("cross-fetch");'
 					].join('\n')
 				};
 				break;
@@ -18,16 +18,14 @@ export default createTsupConfig({
 				options.banner = {
 					js: [
 						//
-						'import nodeFetch from "node-fetch";',
-						'const baseFetch = globalThis && globalThis.fetch ? globalThis.fetch : nodeFetch;'
+						'import crossFetch from "cross-fetch";',
+						'globalThis && globalThis.fetch ? globalThis.fetch : globalThis.fetch = crossFetch;'
 					].join('\n')
 				};
 				break;
 			}
 			case 'iife': {
-				options.banner = {
-					js: 'const baseFetch = globalThis.fetch;'
-				};
+				// iife doesn't need any fetch replacements
 				break;
 			}
 		}

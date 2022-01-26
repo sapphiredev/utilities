@@ -35,7 +35,8 @@
 			},
 			"test": {
 				"dependsOn": [
-					"@sapphire/time-utilities#build"
+					"@sapphire/time-utilities#build",
+					"@sapphire/fetch#build"
 				],
 				"outputs": [
 					"coverage/**"
