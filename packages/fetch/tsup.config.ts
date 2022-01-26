@@ -7,16 +7,24 @@ export default createTsupConfig({
 			case 'cjs': {
 				options.banner = {
 					js: [
-						//
 						'"use strict";',
-						'const { fetch: baseFetch } = require("node-fetch");'
+						'const baseFetch = window?.fetch;',
+						'if (baseFetch === undefined) {',
+						'\tbaseFetch = require("node-fetch")',
+						'}'
 					].join('\n')
 				};
 				break;
 			}
 			case 'esm': {
 				options.banner = {
-					js: 'import { fetch as baseFetch } from "node-fetch"'
+					js: [
+						'import { fetch as nodeFetch } from "node-fetch"',
+						'const baseFetch = window?.fetch;',
+						'if (baseFetch === undefined) {',
+						'\tbaseFetch = nodeFetch',
+						'}'
+					].join('\n')
 				};
 				break;
 			}
