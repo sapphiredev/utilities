@@ -7,11 +7,9 @@ export default createTsupConfig({
 			case 'cjs': {
 				options.banner = {
 					js: [
+						//
 						'"use strict";',
-						'const baseFetch = window?.fetch;',
-						'if (baseFetch === undefined) {',
-						'\tbaseFetch = require("node-fetch")',
-						'}'
+						'const baseFetch = globalThis && globalThis.fetch ? globalThis.fetch : require("node-fetch");'
 					].join('\n')
 				};
 				break;
@@ -19,18 +17,16 @@ export default createTsupConfig({
 			case 'esm': {
 				options.banner = {
 					js: [
-						'import { fetch as nodeFetch } from "node-fetch"',
-						'const baseFetch = window?.fetch;',
-						'if (baseFetch === undefined) {',
-						'\tbaseFetch = nodeFetch',
-						'}'
+						//
+						'import nodeFetch from "node-fetch";',
+						'const baseFetch = globalThis && globalThis.fetch ? globalThis.fetch : nodeFetch;'
 					].join('\n')
 				};
 				break;
 			}
 			case 'iife': {
 				options.banner = {
-					js: 'const baseFetch = window.fetch'
+					js: 'const baseFetch = globalThis.fetch;'
 				};
 				break;
 			}
