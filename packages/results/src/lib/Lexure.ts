@@ -1,10 +1,3 @@
-/**
- * A type used to express computations that can fail.
- * @typeparam T - Type of results.
- * @typeparam E - Type of errors.
- */
- export type Result<T, E> = Ok<T> | Err<E>;
-
  /**
   * The computation is successful.
   * @typeparam T - Type of results.
