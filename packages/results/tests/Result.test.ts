@@ -5,12 +5,13 @@ describe("Result", () => {
 		const returnValue = ok(42);
 
 		expect(isOk(returnValue)).toBeTruthy();
+		expect(isErr(returnValue)).toBeFalsy();
 	})
 
 	test("err", () => {
 		const returnValue = err(new Error());
 
 		expect(isOk(returnValue)).toBeFalsy();
-		expect(isErr(returnValue)).toBeFalsy();
+		expect(isErr(returnValue)).toBeTruthy();
 	})
 })
