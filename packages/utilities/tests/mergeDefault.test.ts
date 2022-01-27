@@ -17,6 +17,21 @@ describe('mergeDefault', () => {
 		expect(overwrites).toStrictEqual({ a: 0, b: 1 });
 	});
 
+	test('GIVEN different key date values THEN returns same dates all keys', () => {
+		interface TestObject {
+			dateTime?: Date;
+			timeDate?: Date;
+		}
+
+		const base: TestObject = { dateTime: new Date('1995-02-21T12:45:00.000Z') };
+		const overwrites: TestObject = { timeDate: new Date('2002-03-30T15:28:00.000Z') };
+
+		mergeDefault(base, overwrites);
+
+		expect(base).toStrictEqual({ dateTime: new Date('1995-02-21T12:45:00.000Z') });
+		expect(overwrites).toStrictEqual({ dateTime: new Date('1995-02-21T12:45:00.000Z'), timeDate: new Date('2002-03-30T15:28:00.000Z') });
+	});
+
 	test('GIVEN undefined overwrites THEN returns clones base', () => {
 		const base = { a: 0, b: 1 };
 		expect(mergeDefault(base)).toStrictEqual({ a: 0, b: 1 });

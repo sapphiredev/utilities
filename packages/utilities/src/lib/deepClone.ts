@@ -10,6 +10,12 @@ export function deepClone<T>(source: T): T {
 		return source;
 	}
 
+	if (source instanceof Date) {
+		const output = new (source.constructor as DateConstructor)(source.toISOString());
+
+		return output as unknown as T;
+	}
+
 	if (Array.isArray(source)) {
 		const output = new (source.constructor as ArrayConstructor)(source.length) as unknown as T & T extends (infer S)[] ? S[] : never;
 
