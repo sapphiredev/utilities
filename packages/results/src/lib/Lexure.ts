@@ -1,4 +1,7 @@
  /**
+  * @license MIT
+  * @copyright 2020 1Computer
+  * 
   * The computation is successful.
   * @typeparam T - Type of results.
   */
@@ -17,6 +20,9 @@
  }
  
  /**
+  * @license MIT
+  * @copyright 2020 1Computer
+  * 
   * The computation failed.
   * @typeparam E - Type of errors.
   */
@@ -35,6 +41,9 @@
  }
 
 /**
+  * @license MIT
+  * @copyright 2020 1Computer
+  * 
  * A type that can express the lack of a value.
  * Used in this library for when a generic type could be nullable.
  * @typeparam T - Type of results.
@@ -42,6 +51,9 @@
  export type Option<T> = Some<T> | None;
 
  /**
+  * @license MIT
+  * @copyright 2020 1Computer
+  * 
   * The value exists.
   * @typeparam T - Type of results.
   */
@@ -58,6 +70,9 @@
  }
  
  /**
+  * @license MIT
+  * @copyright 2020 1Computer
+  * 
   * The value does not exist.
   */
  export interface None {
