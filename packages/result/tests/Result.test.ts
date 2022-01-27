@@ -1,4 +1,4 @@
-import { ok, isOk, isErr, err } from '../src/index';
+import { err, isErr, isOk, ok } from '../src/index';
 
 describe('Result', () => {
 	test('ok', () => {
