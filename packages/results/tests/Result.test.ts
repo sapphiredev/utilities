@@ -1,17 +1,17 @@
-import { ok, isOk, isErr, err } from "../src/index"
+import { ok, isOk, isErr, err } from '../src/index';
 
-describe("Result", () => {
-	test("ok", () => {
+describe('Result', () => {
+	test('ok', () => {
 		const returnValue = ok(42);
 
 		expect(isOk(returnValue)).toBeTruthy();
 		expect(isErr(returnValue)).toBeFalsy();
-	})
+	});
 
-	test("err", () => {
+	test('err', () => {
 		const returnValue = err(new Error());
 
 		expect(isOk(returnValue)).toBeFalsy();
 		expect(isErr(returnValue)).toBeTruthy();
-	})
-})
+	});
+});

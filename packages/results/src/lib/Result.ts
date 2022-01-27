@@ -1,4 +1,4 @@
-import type { Ok, Err } from "./Lexure";
+import type { Ok, Err } from './Lexure';
 
 /**
  * A type used to express computations that can fail.

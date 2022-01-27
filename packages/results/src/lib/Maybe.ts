@@ -1,4 +1,4 @@
-import type { None, Some } from "./Lexure";
+import type { None, Some } from './Lexure';
 
 /**
  * A type used to express a value that may or may not exist.
