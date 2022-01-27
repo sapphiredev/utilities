@@ -1,0 +1,16 @@
+import { ok, isOk, isErr, err } from "../src/index"
+
+describe("Result", () => {
+	test("ok", () => {
+		const returnValue = ok(42);
+
+		expect(isOk(returnValue)).toBeTruthy();
+	})
+
+	test("err", () => {
+		const returnValue = err(new Error());
+
+		expect(isOk(returnValue)).toBeFalsy();
+		expect(isErr(returnValue)).toBeFalsy();
+	})
+})
