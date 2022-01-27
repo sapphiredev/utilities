@@ -11,7 +11,7 @@ export function deepClone<T>(source: T): T {
 	}
 
 	if (source instanceof Date) {
-		const output = new (source.constructor as DateConstructor)(source.toISOString());
+		const output = new (source.constructor as DateConstructor)(source);
 
 		return output as unknown as T;
 	}
