@@ -6,11 +6,13 @@ import type { Ok, Err } from "./Lexure";
  * @typeparam E The error's type.
  */
 export type Result<T, E> = Ok<T> | Err<E>;
+
 /**
  * Creates an Ok with no value.
  * @return A successful Result.
  */
 export function ok(): Ok<unknown>;
+
 /**
  * Creates an Ok.
  * @typeparam T The result's type.
@@ -27,6 +29,7 @@ export function ok<T>(x?: T): Ok<unknown> {
  * @return An erroneous Result.
  */
 export function err(): Err<unknown>;
+
 /**
  * Creates an Err.
  * @typeparam E The error's type.

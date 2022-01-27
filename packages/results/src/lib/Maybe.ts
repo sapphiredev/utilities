@@ -11,16 +11,19 @@ export type Maybe<T> = Some<T> | None;
  * @param value The value to convert.
  */
 export function maybe<T, V extends Maybe<T>>(value: V): V;
+
 /**
  * Creates a {@link None} from an existing {@link None} or a `null`.
  * @param value The value to convert.
  */
 export function maybe(value: null | None): None;
+
 /**
  * Creates a {@link Some} from a non-null value or an existing {@link Some}, or a {@link None} otherwise.
  * @param value The value to convert.
  */
 export function maybe<T>(value: T | Maybe<T> | null): Maybe<T>;
+
 /**
  * Creates a {@link Some} from a non-null value or an existing {@link Some}.
  * @param value The value to convert.
@@ -35,6 +38,7 @@ export function maybe<T>(value: T | Maybe<T> | null): Maybe<T> {
  * @return An existing Maybe.
  */
 export function some(): Some<unknown>;
+
 /**
  * Creates a None with a value.
  * @typeparam T The value's type.
@@ -75,6 +79,7 @@ export function isNone<T>(x: Maybe<T>): x is None {
  * @param x The value to check.
  */
 export function isMaybe<T>(x: Maybe<T>): true;
+
 /**
  * Determines whether or not an arbitrary value is a Maybe.
  * @param x The value to check.
