@@ -1,4 +1,4 @@
-import twemojiRegex from 'twemoji-parser/dist/lib/regex';
+import twemojiRegex from 'twemoji-parser/dist/lib/regex.js';
 
 /**
  * Regex that can capture the ID in Discord Channel mentions

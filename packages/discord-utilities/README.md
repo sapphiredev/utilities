@@ -22,7 +22,7 @@ When developing Discord bots or frameworks for Discord bots we often run into ce
 ## Features
 
 -   Written in TypeScript
--   Bundled with Rollup so it can be used in NodeJS and browsers
+-   Bundled with esbuild so it can be used in NodeJS and browsers
 -   Offers CommonJS, ESM and UMD bundles
 -   Fully tested
 -   Discord library agnostic

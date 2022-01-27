@@ -1,13 +1,13 @@
 {
 	"name": "@sapphire/fetch",
 	"version": "2.0.4",
-	"description": "Tiny wrapper around cross-fetch for improved TypeScript and data type support",
+	"description": "Tiny wrapper around cross-fetch (for NodeJS) and window.fetch (for Browsers) for improved TypeScript and data type support",
 	"author": "@sapphire",
 	"license": "MIT",
 	"main": "dist/index.js",
 	"module": "dist/index.mjs",
-	"browser": "dist/index.umd.js",
-	"unpkg": "dist/index.umd.js",
+	"browser": "dist/index.global.js",
+	"unpkg": "dist/index.global.js",
 	"types": "dist/index.d.ts",
 	"typedocMain": "src/index.ts",
 	"exports": {
@@ -19,8 +19,7 @@
 	"scripts": {
 		"test": "jest",
 		"lint": "eslint src tests --ext ts --fix -c ../../.eslintrc",
-		"build": "rollup -c",
-		"start": "yarn build -w",
+		"build": "tsup && tsc -b src",
 		"prepublishOnly": "yarn build"
 	},
 	"dependencies": {

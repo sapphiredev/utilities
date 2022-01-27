@@ -5,23 +5,6 @@ const packagesDir = new URL('packages/', rootDir);
 const options = { recursive: true, force: true };
 
 const paths = [
-	// Nested rollup cache folders
-	new URL('async-queue/node_modules/.cache/', packagesDir),
-	new URL('discord.js-utilities/node_modules/.cache/', packagesDir),
-	new URL('event-iterator/node_modules/.cache/', packagesDir),
-	new URL('ratelimits/node_modules/.cache/', packagesDir),
-	new URL('time-utilities/node_modules/.cache/', packagesDir),
-	new URL('decorators/node_modules/.cache/', packagesDir),
-	new URL('embed-jsx/node_modules/.cache/', packagesDir),
-	new URL('fetch/node_modules/.cache/', packagesDir),
-	new URL('snowflake/node_modules/.cache/', packagesDir),
-	new URL('ts-config/node_modules/.cache/', packagesDir),
-	new URL('discord-utilities/node_modules/.cache/', packagesDir),
-	new URL('eslint-config/node_modules/.cache/', packagesDir),
-	new URL('prettier-config/node_modules/.cache/', packagesDir),
-	new URL('stopwatch/node_modules/.cache/', packagesDir),
-	new URL('utilities/node_modules/.cache/', packagesDir),
-
 	// Dist folders
 	new URL('async-queue/dist/', packagesDir),
 	new URL('discord.js-utilities/dist/', packagesDir),
@@ -38,6 +21,7 @@ const paths = [
 	new URL('prettier-config/dist/', packagesDir),
 	new URL('stopwatch/dist/', packagesDir),
 	new URL('utilities/dist/', packagesDir),
+	new URL('phisherman/dist/', packagesDir),
 
 	// Turbo folders
 	new URL('async-queue/.turbo/', packagesDir),
@@ -54,7 +38,8 @@ const paths = [
 	new URL('eslint-config/.turbo/', packagesDir),
 	new URL('prettier-config/.turbo/', packagesDir),
 	new URL('stopwatch/.turbo/', packagesDir),
-	new URL('utilities/.turbo/', packagesDir)
+	new URL('utilities/.turbo/', packagesDir),
+	new URL('phisherman/.turbo/', packagesDir)
 ];
 
 await Promise.all(paths.map((path) => rm(path, options)));

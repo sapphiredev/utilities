@@ -1,7 +1,6 @@
 // eslint-disable-next-line spaced-comment
 /// <reference lib="dom" />
 
-import { fetch as nodeFetch } from 'cross-fetch';
 import { QueryError } from './QueryError';
 import { FetchResultTypes } from './types';
 
@@ -43,7 +42,7 @@ export async function fetch(url: URL | string, options?: RequestInit | FetchResu
 	// Transform the URL to a String, in case an URL object was passed
 	const stringUrl = String(url);
 
-	const result: Response = await nodeFetch(stringUrl, options);
+	const result: Response = await globalThis.fetch(stringUrl, options);
 	if (!result.ok) throw new QueryError(stringUrl, result.status, result, await result.clone().text());
 
 	switch (type) {

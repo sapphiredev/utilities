@@ -1,11 +1,13 @@
 {
-	"extends": "../tsconfig.json",
+	"extends": "../../ts-config/src/tsconfig",
 	"compilerOptions": {
 		"rootDir": "./",
 		"outDir": "../dist",
 		"tsBuildInfoFile": "../dist/.tsbuildinfo",
 		"composite": true,
-		"typeRoots": []
+		"typeRoots": [],
+		"jsx": "react",
+		"jsxFactory": "EmbedJsx.make"
 	},
 	"include": ["."]
 }

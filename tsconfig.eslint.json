@@ -7,7 +7,6 @@
 		"packages/decorators/*.js",
 		"packages/**/*.tsx",
 		"packages/**/jest.config.ts",
-		"packages/**/rollup.config.js",
 		"packages/**/tests/*.js",
 		"scripts"
 	]
