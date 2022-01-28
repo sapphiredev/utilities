@@ -123,9 +123,9 @@ export class PaginatedMessageEmbedFields extends PaginatedMessage {
 
 			if (!clonedTemplate.color) clonedTemplate.setColor('RANDOM');
 
-			const data = this.paginateArray(this.items, i, this.itemsPerPage);
+			const data = this.paginateArray(this.items, i, this.itemsPerPage - fieldsClone.length);
 			this.addPage({
-				embeds: [clonedTemplate.addFields(...data.slice(0, data.length - fieldsClone.length), ...fieldsClone)]
+				embeds: [clonedTemplate.addFields(...data, ...fieldsClone)]
 			});
 		}
 	}
