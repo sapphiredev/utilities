@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/sapphiredev/utilities/compare/@sapphire/ratelimits@2.1.12...@sapphire/ratelimits@2.2.0) (2022-01-28)
+
+### Features
+
+-   change build system to tsup ([#270](https://github.com/sapphiredev/utilities/issues/270)) ([365a53a](https://github.com/sapphiredev/utilities/commit/365a53a5517a01a0926cf28a83c96b63f32ed9f8))
+
 ## [2.1.12](https://github.com/sapphiredev/utilities/compare/@sapphire/ratelimits@2.1.11...@sapphire/ratelimits@2.1.12) (2022-01-21)
 
 **Note:** Version bump only for package @sapphire/ratelimits

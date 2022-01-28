@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.5.0](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@4.4.0...@sapphire/discord.js-utilities@4.5.0) (2022-01-28)
+
+### Bug Fixes
+
+-   **PaginatedMessageEmbedFields:** custom template with fields ([#276](https://github.com/sapphiredev/utilities/issues/276)) ([edfbf1c](https://github.com/sapphiredev/utilities/commit/edfbf1cfb99082aa30813050900a3df7e8be5ced))
+
+### Features
+
+-   change build system to tsup ([#270](https://github.com/sapphiredev/utilities/issues/270)) ([365a53a](https://github.com/sapphiredev/utilities/commit/365a53a5517a01a0926cf28a83c96b63f32ed9f8))
+
 # [4.4.0](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@4.3.1...@sapphire/discord.js-utilities@4.4.0) (2022-01-21)
 
 ### Features
