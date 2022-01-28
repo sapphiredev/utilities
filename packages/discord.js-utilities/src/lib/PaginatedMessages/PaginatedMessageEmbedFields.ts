@@ -17,9 +17,9 @@ import { PaginatedMessage } from './PaginatedMessage';
  * new PaginatedMessageEmbedFields()
  * 	.setTemplate({ title: 'Test pager embed', color: '#006080' })
  * 	.setItems([
- * 		{ title: 'Sapphire Framework', value: 'discord.js Framework' },
- * 		{ title: 'Sapphire Framework 2', value: 'discord.js Framework 2' },
- * 		{ title: 'Sapphire Framework 3', value: 'discord.js Framework 3' }
+ * 		{ name: 'Sapphire Framework', value: 'discord.js Framework' },
+ * 		{ name: 'Sapphire Framework 2', value: 'discord.js Framework 2' },
+ * 		{ name: 'Sapphire Framework 3', value: 'discord.js Framework 3' }
  * 	])
  * 	.setItemsPerPage(2)
  * 	.make()
@@ -96,9 +96,9 @@ export class PaginatedMessageEmbedFields extends PaginatedMessage {
 	 *
 	 * new PaginatedMessageEmbedFields()
 	 * 	.setItems([
-	 * 		{ title: 'Sapphire Framework', value: 'discord.js Framework' },
-	 * 		{ title: 'Sapphire Framework 2', value: 'discord.js Framework 2' },
-	 * 		{ title: 'Sapphire Framework 3', value: 'discord.js Framework 3' }
+	 * 		{ name: 'Sapphire Framework', value: 'discord.js Framework' },
+	 * 		{ name: 'Sapphire Framework 2', value: 'discord.js Framework 2' },
+	 * 		{ name: 'Sapphire Framework 3', value: 'discord.js Framework 3' }
 	 * 	])
 	 * 	.setItemsPerPage(3)
 	 * 	.make()
