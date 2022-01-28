@@ -125,7 +125,7 @@ export class PaginatedMessageEmbedFields extends PaginatedMessage {
 
 			const data = this.paginateArray(this.items, i, this.itemsPerPage);
 			this.addPage({
-				embeds: [clonedTemplate.addFields(...data, ...fieldsClone)]
+				embeds: [clonedTemplate.addFields(...data.slice(0, data.length - fieldsClone.length), ...fieldsClone)]
 			});
 		}
 	}
