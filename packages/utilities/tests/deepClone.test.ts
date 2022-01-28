@@ -101,4 +101,22 @@ describe('deepClone', () => {
 		expect(cloned.has('Hello')).toBeTrue();
 		expect(cloned.has('World')).toBeTrue();
 	});
+
+	test('GIVEN date THEN returns same date', () => {
+		expect.assertions(2);
+		const source = new Date('1995-02-21T12:45:00.000Z');
+		const clone = deepClone(source);
+
+		expect(source).not.toBe(clone);
+		expect(clone).toEqual(source);
+	});
+
+	test('GIVEN date in object THEN returns same date', () => {
+		expect.assertions(2);
+		const source = { dateTime: new Date('1995-02-21T12:45:00.000Z') };
+		const clone = deepClone(source);
+
+		expect(source).not.toBe(clone);
+		expect(clone).toEqual(source);
+	});
 });
