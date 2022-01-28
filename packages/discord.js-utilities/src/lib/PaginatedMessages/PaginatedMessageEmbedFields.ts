@@ -17,9 +17,9 @@ import { PaginatedMessage } from './PaginatedMessage';
  * new PaginatedMessageEmbedFields()
  * 	.setTemplate({ title: 'Test pager embed', color: '#006080' })
  * 	.setItems([
- * 		{ title: 'Sapphire Framework', value: 'discord.js Framework' },
- * 		{ title: 'Sapphire Framework 2', value: 'discord.js Framework 2' },
- * 		{ title: 'Sapphire Framework 3', value: 'discord.js Framework 3' }
+ * 		{ name: 'Sapphire Framework', value: 'discord.js Framework' },
+ * 		{ name: 'Sapphire Framework 2', value: 'discord.js Framework 2' },
+ * 		{ name: 'Sapphire Framework 3', value: 'discord.js Framework 3' }
  * 	])
  * 	.setItemsPerPage(2)
  * 	.make()
@@ -96,9 +96,9 @@ export class PaginatedMessageEmbedFields extends PaginatedMessage {
 	 *
 	 * new PaginatedMessageEmbedFields()
 	 * 	.setItems([
-	 * 		{ title: 'Sapphire Framework', value: 'discord.js Framework' },
-	 * 		{ title: 'Sapphire Framework 2', value: 'discord.js Framework 2' },
-	 * 		{ title: 'Sapphire Framework 3', value: 'discord.js Framework 3' }
+	 * 		{ name: 'Sapphire Framework', value: 'discord.js Framework' },
+	 * 		{ name: 'Sapphire Framework 2', value: 'discord.js Framework 2' },
+	 * 		{ name: 'Sapphire Framework 3', value: 'discord.js Framework 3' }
 	 * 	])
 	 * 	.setItemsPerPage(3)
 	 * 	.make()
@@ -118,13 +118,14 @@ export class PaginatedMessageEmbedFields extends PaginatedMessage {
 		const template = this.embedTemplate instanceof MessageEmbed ? (this.embedTemplate.toJSON() as MessageEmbedOptions) : this.embedTemplate;
 		for (let i = 0; i < this.totalPages; i++) {
 			const clonedTemplate = new MessageEmbed(template);
+			const fieldsClone = this.embedTemplate.fields;
 			clonedTemplate.fields = [];
 
 			if (!clonedTemplate.color) clonedTemplate.setColor('RANDOM');
 
-			const data = this.paginateArray(this.items, i, this.itemsPerPage);
+			const data = this.paginateArray(this.items, i, this.itemsPerPage - fieldsClone.length);
 			this.addPage({
-				embeds: [clonedTemplate.addFields(...data)]
+				embeds: [clonedTemplate.addFields(...data, ...fieldsClone)]
 			});
 		}
 	}
