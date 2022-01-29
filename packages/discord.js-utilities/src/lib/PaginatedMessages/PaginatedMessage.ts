@@ -755,7 +755,7 @@ export class PaginatedMessage {
 
 			// Sanity checks to handle
 			if (!this.messages.length) throw new Error('There are no messages.');
-			if (!this.actions.size) throw new Error('There are no messages.');
+			if (!this.actions.size) throw new Error('There are no actions.');
 
 			await this.setUpMessage(messageOrInteraction, target);
 			this.setUpCollector(messageOrInteraction.channel, target);
