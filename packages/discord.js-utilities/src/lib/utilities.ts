@@ -1,6 +1,6 @@
 import { isNullish, Nullish } from '@sapphire/utilities';
-import { Permissions } from 'discord.js';
-import { isDMChannel, isGuildBasedChannel } from './type-guards';
+import { Permissions, type VoiceBasedChannel } from 'discord.js';
+import { isDMChannel, isGuildBasedChannel, isTextBasedChannel } from './type-guards';
 import type { ChannelTypes } from './utility-types';
 
 const canReadMessagesPermissions = new Permissions(['VIEW_CHANNEL']);
@@ -89,6 +89,20 @@ export function canRemoveAllReactions(channel: ChannelTypes | Nullish) {
 	if (isDMChannel(channel)) return false;
 
 	return canDoUtility(channel, canRemoveAllReactionsPermissions);
+}
+
+const canJoinVoiceChannelPermissions = new Permissions(['CONNECT']);
+
+/**
+ * Determines whether the client can join the given voice based channel.
+ * @param channel The channel to test the permissions from.
+ * @returns Whether or not the client can join the specified channel.
+ */
+export function canJoinVoiceChannel(channel: VoiceBasedChannel | Nullish): boolean {
+	if (isNullish(channel)) return false;
+	if (isTextBasedChannel(channel)) return false;
+
+	return canDoUtility(channel, canJoinVoiceChannelPermissions);
 }
 
 function canDoUtility(channel: ChannelTypes, permissionsToPass: Permissions) {
