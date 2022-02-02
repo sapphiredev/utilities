@@ -51,7 +51,7 @@ export class RateLimitManager<K = string> extends Map<K, RateLimit<K>> {
 	 * @param id The id the {@link RateLimit} belongs to
 	 * @param value The {@link RateLimit} to set
 	 */
-	public set(id: K, value: RateLimit<K>): this {
+	public override set(id: K, value: RateLimit<K>): this {
 		this.sweepInterval ??= TimerManager.setInterval(this.sweep.bind(this), RateLimitManager.sweepIntervalDuration);
 		return super.set(id, value);
 	}
