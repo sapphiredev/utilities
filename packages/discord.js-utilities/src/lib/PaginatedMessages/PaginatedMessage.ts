@@ -1255,7 +1255,7 @@ export class PaginatedMessage {
 	 * @default
 	 * ```ts
 	 * {
-	 * 	content: `Please stop clicking the buttons on this message. They are only for ${Formatters.userMention(targetUser.id)}.`,
+	 * 	content: `Please stop interacting with the components on this message. They are only for ${Formatters.userMention(targetUser.id)}.`,
 	 * 	ephemeral: true,
 	 * 	allowedMentions: { users: [], roles: [] }
 	 * }
@@ -1286,7 +1286,7 @@ export class PaginatedMessage {
 	 * ```
 	 */
 	public static wrongUserInteractionReply: PaginatedMessageWrongUserInteractionReplyFunction = (targetUser: User) => ({
-		content: `Please stop clicking the buttons on this message. They are only for ${Formatters.userMention(targetUser.id)}.`,
+		content: `Please stop interacting with the components on this message. They are only for ${Formatters.userMention(targetUser.id)}.`,
 		ephemeral: true,
 		allowedMentions: { users: [], roles: [] }
 	});
