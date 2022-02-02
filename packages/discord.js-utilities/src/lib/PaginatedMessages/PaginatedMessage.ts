@@ -1,5 +1,6 @@
 import { Time } from '@sapphire/time-utilities';
 import { deepClone, isFunction, isNullish, isObject } from '@sapphire/utilities';
+import type { APIMessage } from 'discord-api-types/v9';
 import {
 	Constants,
 	Formatters,
@@ -20,7 +21,7 @@ import {
 	type WebhookEditMessageOptions
 } from 'discord.js';
 import { MessageBuilder } from '../builders/MessageBuilder';
-import { isGuildBasedChannel } from '../type-guards';
+import { isGuildBasedChannel, isMessageInstance } from '../type-guards';
 import type {
 	PaginatedMessageAction,
 	PaginatedMessageEmbedResolvable,
@@ -115,7 +116,7 @@ export class PaginatedMessage {
 	/**
 	 * The response message used to edit on page changes.
 	 */
-	public response: Message | CommandInteraction | SelectMenuInteraction | ButtonInteraction | null = null;
+	public response: APIMessage | Message | CommandInteraction | SelectMenuInteraction | ButtonInteraction | null = null;
 
 	/**
 	 * The collector used for handling component interactions.
@@ -867,16 +868,14 @@ export class PaginatedMessage {
 				} else {
 					await this.response.reply(page as WebhookEditMessageOptions);
 				}
-			} else {
+			} else if (isMessageInstance(this.response)) {
 				await this.response.edit(page as WebhookEditMessageOptions);
 			}
 		} else if (runsOnInteraction(messageOrInteraction)) {
-			this.response = messageOrInteraction;
-
-			if (this.response.replied || this.response.deferred) {
-				await this.response.editReply(page as MessageOptions);
+			if (messageOrInteraction.replied || messageOrInteraction.deferred) {
+				this.response = await messageOrInteraction.editReply(page);
 			} else {
-				await this.response.reply(page as MessageOptions);
+				this.response = await messageOrInteraction.reply({ ...page, fetchReply: true, ephemeral: false });
 			}
 		} else {
 			this.response = await messageOrInteraction.channel.send(page as MessageOptions);
@@ -891,11 +890,25 @@ export class PaginatedMessage {
 	protected setUpCollector(channel: TextBasedChannel, targetUser: User): void {
 		if (this.pages.length > 1) {
 			this.collector = new InteractionCollector<MessageComponentInteraction>(targetUser.client, {
-				filter: (interaction) => interaction.isMessageComponent() && this.actions.has(interaction.customId),
+				filter: (interaction) =>
+					!isNullish(this.response) &&
+					interaction.message.id === this.response?.id &&
+					interaction.isMessageComponent() &&
+					this.actions.has(interaction.customId),
+
 				time: this.idle,
+
 				guild: isGuildBasedChannel(channel) ? channel.guild : undefined,
+
 				channel,
-				interactionType: Constants.InteractionTypes.MESSAGE_COMPONENT
+
+				interactionType: Constants.InteractionTypes.MESSAGE_COMPONENT,
+
+				...(!isNullish(this.response) && !runsOnInteraction(this.response)
+					? {
+							message: this.response
+					  }
+					: {})
 			})
 				.on('collect', this.handleCollect.bind(this, targetUser, channel))
 				.on('end', this.handleEnd.bind(this));
@@ -991,7 +1004,7 @@ export class PaginatedMessage {
 				} else {
 					void this.response.reply({ content: "This maze wasn't meant for you...what did you do.", ephemeral: true });
 				}
-			} else {
+			} else if (isMessageInstance(this.response)) {
 				void this.response.edit({ components: [] });
 			}
 		}
@@ -1142,7 +1155,7 @@ export class PaginatedMessage {
 					} else {
 						await response.reply({ content: "This maze wasn't meant for you...what did you do.", ephemeral: true });
 					}
-				} else {
+				} else if (isMessageInstance(response)) {
 					await response.edit({ components: [] });
 				}
 			}
