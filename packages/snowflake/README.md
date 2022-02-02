@@ -78,11 +78,8 @@ const uniqueId = snowflake.generate();
 // Import the Snowflake class
 const { DiscordSnowflake } = require('@sapphire/snowflake');
 
-// Create an instance of Snowflake
-const discordSnowflake = new DiscordSnowflake();
-
 // Generate a snowflake with Discord's epoch
-const uniqueId = discordSnowflake.generate();
+const uniqueId = DiscordSnowflake.generate();
 
 // Alternatively, you can use the method directly
 const uniqueId = DiscordSnowflake.generate();
@@ -94,11 +91,8 @@ const uniqueId = DiscordSnowflake.generate();
 // Import the Snowflake class
 const { TwitterSnowflake } = require('@sapphire/snowflake');
 
-// Create an instance of Snowflake
-const twitterSnowflake = new TwitterSnowflake();
-
 // Generate a snowflake with Twitter's epoch
-const uniqueId = twitterSnowflake.generate();
+const uniqueId = TwitterSnowflake.generate();
 
 // Alternatively, you can use the method directly
 const uniqueId = TwitterSnowflake.generate();
@@ -128,11 +122,8 @@ const uniqueId = snowflake.deconstruct('3971046231244935168');
 // Import the Snowflake class
 const { DiscordSnowflake } = require('@sapphire/snowflake');
 
-// Create an instance of Snowflake
-const discordSnowflake = new DiscordSnowflake();
-
 // Deconstruct a snowflake with Discord's epoch
-const uniqueId = discordSnowflake.deconstruct('3971046231244935168');
+const uniqueId = DiscordSnowflake.deconstruct('3971046231244935168');
 
 // Alternatively, you can use the method directly
 const uniqueId = DiscordSnowflake.deconstruct('3971046231244935168');
@@ -144,11 +135,8 @@ const uniqueId = DiscordSnowflake.deconstruct('3971046231244935168');
 // Import the Snowflake class
 const { TwitterSnowflake } = require('@sapphire/snowflake');
 
-// Create an instance of Snowflake
-const twitterSnowflake = new TwitterSnowflake();
-
 // Deconstruct a snowflake with Twitter's epoch
-const uniqueId = twitterSnowflake.deconstruct('3971046231244935168');
+const uniqueId = TwitterSnowflake.deconstruct('3971046231244935168');
 
 // Alternatively, you can use the method directly
 const uniqueId = TwitterSnowflake.deconstruct('3971046231244935168');
