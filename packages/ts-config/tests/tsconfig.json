@@ -1,5 +1,5 @@
 {
-	"extends": "../src/tsconfig.json",
+	"extends": "../without-decorators.json",
 	"compilerOptions": {
 		"outDir": "../build",
 		"rootDir": "./",
