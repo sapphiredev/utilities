@@ -1,19 +1,21 @@
-import type {
-	CategoryChannel,
-	Channel,
-	DMChannel,
-	NewsChannel,
-	PartialDMChannel,
-	PartialGroupDMChannel,
-	StageChannel,
-	StoreChannel,
-	TextChannel,
-	ThreadChannel,
-	BaseGuildVoiceChannel,
-	VoiceChannel
+import { isNullish, Nullish } from '@sapphire/utilities';
+import type { APIMessage } from 'discord-api-types/v9';
+import {
+	Message,
+	type BaseGuildVoiceChannel,
+	type CategoryChannel,
+	type Channel,
+	type DMChannel,
+	type NewsChannel,
+	type PartialDMChannel,
+	type PartialGroupDMChannel,
+	type StageChannel,
+	type StoreChannel,
+	type TextChannel,
+	type ThreadChannel,
+	type VoiceChannel
 } from 'discord.js';
 import type { ChannelTypes, GuildTextBasedChannelTypes, NonThreadGuildTextBasedChannelTypes, TextBasedChannelTypes } from './utility-types';
-import { Nullish, isNullish } from '@sapphire/utilities';
 
 /**
  * Checks whether a given channel is a {@link CategoryChannel}
@@ -174,4 +176,13 @@ export function isNsfwChannel(channel: ChannelTypes | Nullish): boolean {
 		case 'GUILD_PUBLIC_THREAD':
 			return Boolean((channel as ThreadChannel).parent?.nsfw);
 	}
+}
+
+/**
+ * Checks whether a given message is an instance of {@link Message}, and not {@link APIMessage}
+ * @param message The message to check
+ * @returns `true` if the message is an instance of `Message`, false otherwise.
+ */
+export function isMessageInstance(message: APIMessage | Message): message is Message {
+	return message instanceof Message;
 }
