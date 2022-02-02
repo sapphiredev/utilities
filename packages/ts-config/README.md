@@ -89,7 +89,7 @@ Following is a copy of this config file for easy viewing:
 
 ### Config without decorators
 
-You can use `@sapphire/ts-config`'s [`without-decorators.json`](https://github.com/sapphiredev/utilities/blob/main/packages/ts-config/without-decorators.json) by extending it in yours:
+You can use `@sapphire/ts-config`'s [`without-decorators.json`](https://github.com/sapphiredev/utilities/blob/main/packages/ts-config/extra-strict-without-decorators.json) by extending it in yours:
 
 ```json
 {

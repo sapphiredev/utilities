@@ -1,5 +1,5 @@
 {
-	"extends": "../../ts-config/without-decorators.json",
+	"extends": "../../ts-config/extra-strict-without-decorators.json",
 	"compilerOptions": {
 		"rootDir": "./",
 		"outDir": "../dist",
