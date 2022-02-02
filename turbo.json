@@ -1,0 +1,16 @@
+{
+	"pipeline": {
+		"build": {
+			"dependsOn": ["^build"],
+			"outputs": ["dist/**", "build/**"]
+		},
+		"lint": {
+			"dependsOn": ["@sapphire/prettier-config#build", "@sapphire/eslint-config#build"],
+			"outputs": []
+		},
+		"test": {
+			"dependsOn": ["@sapphire/time-utilities#build", "@sapphire/fetch#build"],
+			"outputs": ["coverage/**"]
+		}
+	}
+}

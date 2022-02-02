@@ -16,35 +16,6 @@
 		"update": "yarn upgrade-interactive",
 		"prepare": "husky install .github/husky"
 	},
-	"turbo": {
-		"pipeline": {
-			"build": {
-				"dependsOn": [
-					"^build"
-				],
-				"outputs": [
-					"dist/**",
-					"build/**"
-				]
-			},
-			"lint": {
-				"dependsOn": [
-					"@sapphire/prettier-config#build",
-					"@sapphire/eslint-config#build"
-				],
-				"outputs": []
-			},
-			"test": {
-				"dependsOn": [
-					"@sapphire/time-utilities#build",
-					"@sapphire/fetch#build"
-				],
-				"outputs": [
-					"coverage/**"
-				]
-			}
-		}
-	},
 	"devDependencies": {
 		"@commitlint/cli": "^16.1.0",
 		"@commitlint/config-conventional": "^16.0.0",
