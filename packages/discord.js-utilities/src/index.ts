@@ -6,4 +6,4 @@ export * from './lib/type-guards';
 export * from './lib/utilities';
 export * from './lib/utility-types';
 
-console.log('This is just to have this commit show up in the changelog');
+console.log('This is just to have this commit show up in the changelog and once more');
