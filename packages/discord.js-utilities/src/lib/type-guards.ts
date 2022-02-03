@@ -9,6 +9,7 @@ import type {
 	StoreChannel,
 	TextChannel,
 	ThreadChannel,
+	BaseGuildVoiceChannel,
 	VoiceChannel
 } from 'discord.js';
 import type { ChannelTypes, GuildTextBasedChannelTypes, NonThreadGuildTextBasedChannelTypes, TextBasedChannelTypes } from './utility-types';
@@ -137,6 +138,16 @@ export function isTextBasedChannel(channel: ChannelTypes | Nullish): channel is 
 	if (isNullish(channel)) return false;
 
 	return !isNullish((channel as TextBasedChannelTypes).send);
+}
+
+/**
+ * Checks whether a given channel is a {@link BaseGuildVoiceChannel}.
+ * @param channel: The channel to checl.
+ */
+export function isVoiceBasedChannel(channel: Channel | Nullish): channel is BaseGuildVoiceChannel {
+	if (isNullish(channel)) return false;
+
+	return channel.isVoice();
 }
 
 /**

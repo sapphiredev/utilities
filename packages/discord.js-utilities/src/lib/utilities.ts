@@ -1,6 +1,6 @@
 import { isNullish, Nullish } from '@sapphire/utilities';
 import { Permissions, type VoiceBasedChannel } from 'discord.js';
-import { isDMChannel, isGuildBasedChannel, isTextBasedChannel } from './type-guards';
+import { isDMChannel, isGuildBasedChannel, isVoiceBasedChannel } from './type-guards';
 import type { ChannelTypes } from './utility-types';
 
 const canReadMessagesPermissions = new Permissions(['VIEW_CHANNEL']);
@@ -100,7 +100,8 @@ const canJoinVoiceChannelPermissions = new Permissions(['CONNECT']);
  */
 export function canJoinVoiceChannel(channel: VoiceBasedChannel | Nullish): boolean {
 	if (isNullish(channel)) return false;
-	if (isTextBasedChannel(channel)) return false;
+	if (!isVoiceBasedChannel(channel)) return false;
+	if (channel.userLimit >= channel.members.size) return false;
 
 	return canDoUtility(channel, canJoinVoiceChannelPermissions);
 }
