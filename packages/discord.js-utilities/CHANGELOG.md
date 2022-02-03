@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.6.0](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@4.5.0...@sapphire/discord.js-utilities@4.6.0) (2022-02-03)
+
+### Bug Fixes
+
+-   **discord.js-utilities:** fixed `PaginatedMessage` not filtering to the correct response and user ([7a15a2f](https://github.com/sapphiredev/utilities/commit/7a15a2f47f3d7ff7828859f0dfe7d8281726cdc7))
+-   fixed issues with `PaginatedMessage` ([#283](https://github.com/sapphiredev/utilities/issues/283)) ([9656d2a](https://github.com/sapphiredev/utilities/commit/9656d2a9eef5fcc5391e84ca59fdc72223060ba7))
+-   **PaginatedMessage:** adjust default `wrongUserInteractionReply` to account for the `SelectMenu` ([0888509](https://github.com/sapphiredev/utilities/commit/08885098969b4132fcadc027ca12dff0ef912edd))
+-   **PaginatedMessage:** update error message thrown when no actions are found in `run` ([#277](https://github.com/sapphiredev/utilities/issues/277)) ([deb9bd3](https://github.com/sapphiredev/utilities/commit/deb9bd330a09b8850ead2b7f0b0d84917407ef02))
+
+### Features
+
+-   add `canJoinVoiceChannel`, `isVoiceBasedChannel` ([#284](https://github.com/sapphiredev/utilities/issues/284)) ([69b9eae](https://github.com/sapphiredev/utilities/commit/69b9eae27928df91adf5b35107106f9ac31da6b8))
+-   **discord.js-utilities:** add `isMessageInstance` typeguard for `APIMessage` vs `Message` ([c3787f3](https://github.com/sapphiredev/utilities/commit/c3787f3e19758c00af851f52a3e7d32260a36cc2))
+-   **ts-config:** add multi-config structure ([#281](https://github.com/sapphiredev/utilities/issues/281)) ([b5191d7](https://github.com/sapphiredev/utilities/commit/b5191d7f2416dc5838590c4ff221454925553e37))
+
 # [4.5.0](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@4.4.0...@sapphire/discord.js-utilities@4.5.0) (2022-01-28)
 
 ### Bug Fixes

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0](https://github.com/sapphiredev/utilities/compare/@sapphire/ratelimits@2.2.0...@sapphire/ratelimits@2.3.0) (2022-02-03)
+
+### Features
+
+-   **ts-config:** add multi-config structure ([#281](https://github.com/sapphiredev/utilities/issues/281)) ([b5191d7](https://github.com/sapphiredev/utilities/commit/b5191d7f2416dc5838590c4ff221454925553e37))
+
 # [2.2.0](https://github.com/sapphiredev/utilities/compare/@sapphire/ratelimits@2.1.12...@sapphire/ratelimits@2.2.0) (2022-01-28)
 
 ### Features

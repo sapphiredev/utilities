@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.2.0](https://github.com/sapphiredev/utilities/compare/@sapphire/eslint-config@4.1.0...@sapphire/eslint-config@4.2.0) (2022-02-03)
+
+### Bug Fixes
+
+-   **deps:** update all non-major dependencies ([676a1e4](https://github.com/sapphiredev/utilities/commit/676a1e447667c555ca862a259e410984b1d4216a))
+
+### Features
+
+-   **eslint-config:** bump dependencies ([025a254](https://github.com/sapphiredev/utilities/commit/025a25464883a75e00a64df436f320373fd8a606))
+-   **ts-config:** add multi-config structure ([#281](https://github.com/sapphiredev/utilities/issues/281)) ([b5191d7](https://github.com/sapphiredev/utilities/commit/b5191d7f2416dc5838590c4ff221454925553e37))
+
 # [4.1.0](https://github.com/sapphiredev/utilities/compare/@sapphire/eslint-config@4.0.11...@sapphire/eslint-config@4.1.0) (2022-01-28)
 
 ### Features
