@@ -7,29 +7,43 @@
 	"main": "tsconfig.json",
 	"typedocMain": "tests/index.ts",
 	"exports": {
-		"import": "./tsconfig.json",
-		"require": "./tsconfig.json"
+		".": {
+			"import": "./tsconfig.json",
+			"require": "./tsconfig.json"
+		},
+		"./with-decorators": {
+			"import": "./with-decorators.json",
+			"require": "./with-decorators.json"
+		},
+		"./extra-strict": {
+			"import": "./extra-strict.json",
+			"require": "./extra-strict.json"
+		},
+		"./extra-strict-with-decorators": {
+			"import": "./extra-strict-with-decorators.json",
+			"require": "./extra-strict-with-decorators.json"
+		}
 	},
 	"sideEffects": false,
 	"homepage": "https://github.com/sapphiredev/utilities/tree/main/packages/ts-config",
 	"scripts": {
 		"test": "jest",
-		"lint": "eslint tests scripts --ext mjs,ts --fix -c ../../.eslintrc",
-		"prebuild": "yarn lint",
-		"build": "tsc -b tests",
-		"prepublishOnly": "node scripts/prepublish.mjs",
-		"postpublish": "node scripts/postpublish.mjs"
+		"lint": "eslint tests --ext mjs,ts --fix -c ../../.eslintrc",
+		"build": "yarn lint && tsc -b tests"
 	},
 	"dependencies": {
 		"tslib": "^2.3.1",
 		"typescript": "^4.5.5"
 	},
 	"files": [
-		"tsconfig.json"
+		"tsconfig.json",
+		"extra-strict-with-decorators.json",
+		"extra-strict.json",
+		"with-decorators.json"
 	],
 	"engines": {
-		"node": ">=v14.0.0",
-		"npm": ">=7.0.0"
+		"node": ">=v16.0.0",
+		"npm": ">=8.0.0"
 	},
 	"repository": {
 		"type": "git",

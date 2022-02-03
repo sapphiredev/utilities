@@ -2378,7 +2378,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/eslint-plugin@npm:^5.10.1, @typescript-eslint/eslint-plugin@npm:^5.10.2":
+"@typescript-eslint/eslint-plugin@npm:^5.10.2":
   version: 5.10.2
   resolution: "@typescript-eslint/eslint-plugin@npm:5.10.2"
   dependencies:
@@ -8786,7 +8786,7 @@ __metadata:
     "@types/lodash": ^4.14.178
     "@types/node": ^17.0.14
     "@types/ws": ^8.2.2
-    "@typescript-eslint/eslint-plugin": ^5.10.1
+    "@typescript-eslint/eslint-plugin": ^5.10.2
     "@typescript-eslint/parser": ^5.10.2
     cz-conventional-changelog: ^3.3.0
     discord-api-types: ^0.26.1

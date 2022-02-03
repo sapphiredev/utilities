@@ -13,6 +13,17 @@
 
 </div>
 
+**Table of Contents**
+
+-   [Installation](#installation)
+-   [Usage](#usage)
+    -   [Base Config](#base-config)
+    -   [Config without decorators](#config-without-decorators)
+    -   [Config with extra strict compiler options](#config-with-extra-strict-compiler-options)
+    -   [Config with extra strict compiler options and without decorators](#config-with-extra-strict-compiler-options-and-without-decorators)
+-   [Buy us some doughnuts](#buy-us-some-doughnuts)
+-   [Contributors ✨](#contributors-%E2%9C%A8)
+
 ## Installation
 
 You can use the following command to install this package, or replace `npm install` with your package manager of choice.
@@ -25,8 +36,9 @@ npm install --save-dev @sapphire/ts-config
 
 ## Usage
 
-You can use `@sapphire/ts-config`'s
-[`tsconfig.json`](https://github.com/sapphiredev/utilities/blob/main/packages/ts-config/src/tsconfig.json) by extending it in yours:
+### Base Config
+
+You can use `@sapphire/ts-config` base [`tsconfig.json`](https://github.com/sapphiredev/utilities/blob/main/packages/ts-config/tsconfig.json) by extending it in yours:
 
 ```json
 {
@@ -71,6 +83,83 @@ Following is a copy of this config file for easy viewing:
 		"strict": true,
 		"target": "ES2019",
 		"useDefineForClassFields": true
+	}
+}
+```
+
+### Config without decorators
+
+You can use `@sapphire/ts-config`'s [`without-decorators.json`](https://github.com/sapphiredev/utilities/blob/main/packages/ts-config/extra-strict-without-decorators.json) by extending it in yours:
+
+```json
+{
+	"extends": "@sapphire/ts-config/without-decorators"
+}
+```
+
+This TypeScript extends everything from the base config, but disables decorator support.
+
+Following is a copy of this config file for easy viewing:
+
+```json
+{
+	"$schema": "https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/tsconfig.json",
+	"extends": "./tsconfig.json",
+	"compilerOptions": {
+		"emitDecoratorMetadata": false,
+		"experimentalDecorators": false
+	}
+}
+```
+
+### Config with extra strict compiler options
+
+You can use `@sapphire/ts-config`'s [`extra-strict.json`](https://github.com/sapphiredev/utilities/blob/main/packages/ts-config/extra-strict.json) by extending it in yours:
+
+```json
+{
+	"extends": "@sapphire/ts-config/extra-strict"
+}
+```
+
+This TypeScript extends everything from the base config, while enabling some extra strict options.
+
+Following is a copy of this config file for easy viewing:
+
+```json
+{
+	"$schema": "https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/tsconfig.json",
+	"extends": "./tsconfig.json",
+	"compilerOptions": {
+		"allowUnreachableCode": false,
+		"allowUnusedLabels": false,
+		"exactOptionalPropertyTypes": false,
+		"noImplicitOverride": true
+	}
+}
+```
+
+### Config with extra strict compiler options and without decorators
+
+You can use `@sapphire/ts-config`'s [`extra-strict-without-decorators.json`](https://github.com/sapphiredev/utilities/blob/main/packages/ts-config/extra-strict-without-decorators.json) by extending it in yours:
+
+```json
+{
+	"extends": "@sapphire/ts-config/extra-strict-without-decorators"
+}
+```
+
+This TypeScript is a combination of the [Config without decorators](#config-without-decorators) and [Config with extra strict compiler options](#config-with-extra-strict-compiler-options) config files.
+
+Following is a copy of this config file for easy viewing:
+
+```json
+{
+	"$schema": "https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/tsconfig.json",
+	"extends": "./extra-strict.json",
+	"compilerOptions": {
+		"emitDecoratorMetadata": false,
+		"experimentalDecorators": false
 	}
 }
 ```

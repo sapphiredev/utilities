@@ -1,5 +1,5 @@
 {
-	"extends": "../../ts-config/src/tsconfig.json",
+	"extends": "../../ts-config/extra-strict-without-decorators.json",
 	"compilerOptions": {
 		"target": "ES2020",
 		"rootDir": "./",

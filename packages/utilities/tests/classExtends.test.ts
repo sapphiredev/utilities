@@ -6,7 +6,7 @@ describe('classExtends', () => {
 	}
 
 	class ExtendedClass extends BaseClass {
-		protected name = 'extendedClass';
+		protected override name = 'extendedClass';
 	}
 
 	test('GIVEN class that extends base class THEN returns true', () => {
