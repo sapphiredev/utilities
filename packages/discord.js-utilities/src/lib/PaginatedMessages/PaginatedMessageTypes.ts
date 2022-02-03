@@ -1,4 +1,5 @@
 import type { Awaitable } from '@sapphire/utilities';
+import type { APIMessage } from 'discord-api-types/v9';
 import type {
 	ButtonInteraction,
 	CommandInteraction,
@@ -87,7 +88,7 @@ export interface PaginatedMessageActionContext {
 	handler: PaginatedMessage;
 	author: User;
 	channel: Message['channel'];
-	response: Message | CommandInteraction | SelectMenuInteraction | ButtonInteraction;
+	response: APIMessage | Message | CommandInteraction | SelectMenuInteraction | ButtonInteraction;
 	collector: InteractionCollector<MessageComponentInteraction>;
 }
 
