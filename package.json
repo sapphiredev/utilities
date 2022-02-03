@@ -16,35 +16,6 @@
 		"update": "yarn upgrade-interactive",
 		"prepare": "husky install .github/husky"
 	},
-	"turbo": {
-		"pipeline": {
-			"build": {
-				"dependsOn": [
-					"^build"
-				],
-				"outputs": [
-					"dist/**",
-					"build/**"
-				]
-			},
-			"lint": {
-				"dependsOn": [
-					"@sapphire/prettier-config#build",
-					"@sapphire/eslint-config#build"
-				],
-				"outputs": []
-			},
-			"test": {
-				"dependsOn": [
-					"@sapphire/time-utilities#build",
-					"@sapphire/fetch#build"
-				],
-				"outputs": [
-					"coverage/**"
-				]
-			}
-		}
-	},
 	"devDependencies": {
 		"@commitlint/cli": "^16.1.0",
 		"@commitlint/config-conventional": "^16.0.0",
@@ -54,10 +25,10 @@
 		"@sapphire/framework": "^2.3.0",
 		"@types/jest": "^27.4.0",
 		"@types/lodash": "^4.14.178",
-		"@types/node": "^17.0.12",
+		"@types/node": "^17.0.14",
 		"@types/ws": "^8.2.2",
 		"@typescript-eslint/eslint-plugin": "^5.10.1",
-		"@typescript-eslint/parser": "^5.10.1",
+		"@typescript-eslint/parser": "^5.10.2",
 		"cz-conventional-changelog": "^3.3.0",
 		"discord-api-types": "^0.26.1",
 		"discord.js": "^13.6.0",
@@ -69,7 +40,7 @@
 		"jest-circus": "^27.4.6",
 		"jest-extended": "^2.0.0",
 		"lerna": "^4.0.0",
-		"lint-staged": "^12.3.2",
+		"lint-staged": "^12.3.3",
 		"lodash": "^4.17.21",
 		"nock": "^13.2.2",
 		"prettier": "^2.5.1",
@@ -79,7 +50,7 @@
 		"ts-node": "^10.4.0",
 		"tslib": "^2.3.1",
 		"tsup": "^5.11.13",
-		"turbo": "^1.1.1",
+		"turbo": "^1.1.2",
 		"typedoc": "^0.22.11",
 		"typedoc-plugin-djs-links": "^1.0.4",
 		"typedoc-plugin-mdn-links": "^1.0.5",
