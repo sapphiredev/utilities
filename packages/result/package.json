@@ -15,11 +15,7 @@
 		"require": "./dist/index.js"
 	},
 	"sideEffects": false,
-<<<<<<< HEAD
-	"homepage": "https://github.com/sapphiredev/utilities/tree/main/packages/utilities",
-=======
 	"homepage": "https://github.com/sapphiredev/utilities/tree/main/packages/result",
->>>>>>> b77b5ebe00bbbed2da1e5258708c642cf535a0d9
 	"scripts": {
 		"test": "jest",
 		"lint": "eslint src tests --ext ts --fix -c ../../.eslintrc",
@@ -29,11 +25,7 @@
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/sapphiredev/utilities.git",
-<<<<<<< HEAD
-		"directory": "packages/utilities"
-=======
 		"directory": "packages/result"
->>>>>>> b77b5ebe00bbbed2da1e5258708c642cf535a0d9
 	},
 	"files": [
 		"dist",
@@ -44,15 +36,6 @@
 		"npm": ">=7.0.0"
 	},
 	"keywords": [
-<<<<<<< HEAD
-		"lexure",
-		"try catch",
-		"wrapper",
-		"ts",
-		"promise",
-		"sapphire",
-		"standalone"
-=======
 		"@sapphire/result",
 		"bot",
 		"discord",
@@ -65,7 +48,6 @@
 		"typescript",
 		"wrapper",
 		"yarn"
->>>>>>> b77b5ebe00bbbed2da1e5258708c642cf535a0d9
 	],
 	"bugs": {
 		"url": "https://github.com/sapphiredev/utilities/issues"
