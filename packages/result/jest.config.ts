@@ -12,6 +12,10 @@ export default async (): Promise<Config.InitialOptions> => ({
 		'ts-jest': {
 			tsconfig: '<rootDir>/tests/tsconfig.json'
 		}
+<<<<<<< HEAD
 	},
 	coveragePathIgnorePatterns: ['<rootDir>/tests/util/common.ts']
+=======
+	}
+>>>>>>> b77b5ebe00bbbed2da1e5258708c642cf535a0d9
 });

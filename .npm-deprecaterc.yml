@@ -11,7 +11,11 @@ package:
   - '@sapphire/fetch'
   - '@sapphire/prettier-config'
   - '@sapphire/ratelimits'
+<<<<<<< HEAD
   - '@sapphire/results'
+=======
+  - '@sapphire/result'
+>>>>>>> b77b5ebe00bbbed2da1e5258708c642cf535a0d9
   - '@sapphire/snowflake'
   - '@sapphire/stopwatch'
   - '@sapphire/time-utilities'

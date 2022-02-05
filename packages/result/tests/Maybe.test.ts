@@ -1,4 +1,4 @@
-import { maybe, isSome, isNone, some, none, isMaybe } from '../src/index';
+import { isMaybe, isNone, isSome, maybe, none, some } from '../src/index';
 
 describe('Maybe', () => {
 	test('some', () => {
@@ -19,5 +19,17 @@ describe('Maybe', () => {
 		const returnValue = maybe(42);
 
 		expect(isMaybe(returnValue)).toBeTruthy();
+	});
+
+	test('maybe - null', () => {
+		const returnValue = maybe(null);
+
+		expect(returnValue).toEqual({ exists: false });
+	});
+
+	test('maybe - isMaybe', () => {
+		const returnValue = maybe({ exists: false });
+
+		expect(returnValue).toEqual({ exists: false });
 	});
 });
