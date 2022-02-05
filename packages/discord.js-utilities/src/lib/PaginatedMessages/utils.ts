@@ -1,4 +1,5 @@
 import { chunk, partition } from '@sapphire/utilities';
+import type { APIMessage } from 'discord-api-types/v9';
 import {
 	Constants,
 	Message,
@@ -24,7 +25,7 @@ import type {
  * @returns `true` if the PaginatedMessage runs on an an {@link CommandInteraction} or {@link SelectMenuInteraction}, `false` if it runs on a {@link Message}
  */
 export function runsOnInteraction(
-	messageOrInteraction: Message | CommandInteraction | SelectMenuInteraction | ButtonInteraction
+	messageOrInteraction: APIMessage | Message | CommandInteraction | SelectMenuInteraction | ButtonInteraction
 ): messageOrInteraction is CommandInteraction | SelectMenuInteraction | ButtonInteraction {
 	return !(messageOrInteraction instanceof Message);
 }

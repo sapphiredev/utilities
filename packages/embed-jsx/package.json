@@ -1,6 +1,6 @@
 {
 	"name": "@sapphire/embed-jsx",
-	"version": "2.1.6",
+	"version": "2.2.0",
 	"description": "An easy way to use JSX to create discord embeds with discord.js",
 	"author": "@sapphire",
 	"license": "MIT",
@@ -24,7 +24,7 @@
 		"tslib": "^2.3.1"
 	},
 	"devDependencies": {
-		"@sapphire/async-queue": "*"
+		"@sapphire/async-queue": "^1.2.0"
 	},
 	"repository": {
 		"type": "git",
