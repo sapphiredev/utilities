@@ -9,7 +9,9 @@ describe('Parsers', () => {
 	});
 
 	test('from - error', () => {
-		const returnValue = from(() => new Error());
+		const returnValue = from(() => {
+			throw new Error();
+		});
 
 		expect(isOk(returnValue)).toBeFalsy();
 		expect(isErr(returnValue)).toBeTruthy();
