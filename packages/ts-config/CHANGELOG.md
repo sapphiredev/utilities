@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.3.1](https://github.com/sapphiredev/utilities/compare/@sapphire/ts-config@3.3.0...@sapphire/ts-config@3.3.1) (2022-02-06)
+
+### Bug Fixes
+
+-   **ts-config:** actually publish the without-decorators configs ([cbf78e0](https://github.com/sapphiredev/utilities/commit/cbf78e0c672a117f80f90cc784e1f169d62c51c0))
+
 # [3.3.0](https://github.com/sapphiredev/utilities/compare/@sapphire/ts-config@3.2.0...@sapphire/ts-config@3.3.0) (2022-02-03)
 
 ### Features
