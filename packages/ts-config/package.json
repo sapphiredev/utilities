@@ -37,9 +37,8 @@
 	},
 	"files": [
 		"tsconfig.json",
-		"extra-strict-with-decorators.json",
-		"extra-strict.json",
-		"with-decorators.json"
+		"extra-strict*.json",
+		"*decorators*.json"
 	],
 	"engines": {
 		"node": ">=v16.0.0",
