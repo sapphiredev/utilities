@@ -15,7 +15,7 @@
 		"packages/phisherman/README.md",
 		"packages/prettier-config/README.md",
 		"packages/ratelimits/README.md",
-		"packages/results/README.md",
+		"packages/result/README.md",
 		"packages/snowflake/README.md",
 		"packages/stopwatch/README.md",
 		"packages/time-utilities/README.md",
@@ -221,6 +221,13 @@
 			"name": "bitomic",
 			"avatar_url": "https://avatars.githubusercontent.com/u/35199700?v=4",
 			"profile": "https://github.com/bitomic",
+			"contributions": ["code"]
+		},
+		{
+			"login": "c43721",
+			"name": "c43721",
+			"avatar_url": "https://avatars.githubusercontent.com/u/55610086?v=4",
+			"profile": "https://c43721.dev/",
 			"contributions": ["code"]
 		}
 	],

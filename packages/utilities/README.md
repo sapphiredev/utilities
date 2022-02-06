@@ -91,6 +91,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/ItsMrCube"><img src="https://avatars.githubusercontent.com/u/25201357?v=4?s=100" width="100px;" alt=""/><br /><sub><b>MrCube</b></sub></a><br /><a href="https://github.com/sapphiredev/utilities/commits?author=ItsMrCube" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/bitomic"><img src="https://avatars.githubusercontent.com/u/35199700?v=4?s=100" width="100px;" alt=""/><br /><sub><b>bitomic</b></sub></a><br /><a href="https://github.com/sapphiredev/utilities/commits?author=bitomic" title="Code">💻</a></td>
   </tr>
+  <tr>
+    <td align="center"><a href="https://c43721.dev/"><img src="https://avatars.githubusercontent.com/u/55610086?v=4?s=100" width="100px;" alt=""/><br /><sub><b>c43721</b></sub></a><br /><a href="https://github.com/sapphiredev/utilities/commits?author=c43721" title="Code">💻</a></td>
+  </tr>
 </table>
 
 <!-- markdownlint-restore -->
