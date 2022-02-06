@@ -2131,6 +2131,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@sapphire/result@workspace:packages/result":
+  version: 0.0.0-use.local
+  resolution: "@sapphire/result@workspace:packages/result"
+  languageName: unknown
+  linkType: soft
+
 "@sapphire/snowflake@workspace:packages/snowflake":
   version: 0.0.0-use.local
   resolution: "@sapphire/snowflake@workspace:packages/snowflake"

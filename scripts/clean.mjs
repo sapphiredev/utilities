@@ -22,6 +22,7 @@ const paths = [
 	new URL('stopwatch/dist/', packagesDir),
 	new URL('utilities/dist/', packagesDir),
 	new URL('phisherman/dist/', packagesDir),
+	new URL('result/dist/', packagesDir),
 
 	// Turbo folders
 	new URL('async-queue/.turbo/', packagesDir),
@@ -33,13 +34,14 @@ const paths = [
 	new URL('embed-jsx/.turbo/', packagesDir),
 	new URL('fetch/.turbo/', packagesDir),
 	new URL('snowflake/.turbo/', packagesDir),
-	new URL('ts-config/build/', packagesDir),
+	new URL('ts-config/.turbo/', packagesDir),
 	new URL('discord-utilities/.turbo/', packagesDir),
 	new URL('eslint-config/.turbo/', packagesDir),
 	new URL('prettier-config/.turbo/', packagesDir),
 	new URL('stopwatch/.turbo/', packagesDir),
 	new URL('utilities/.turbo/', packagesDir),
-	new URL('phisherman/.turbo/', packagesDir)
+	new URL('phisherman/.turbo/', packagesDir),
+	new URL('result/.turbo/', packagesDir)
 ];
 
 await Promise.all(paths.map((path) => rm(path, options)));
