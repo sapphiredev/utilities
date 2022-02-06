@@ -22,7 +22,7 @@
 		"@discordjs/collection": "^0.5.0",
 		"@favware/npm-deprecate": "^1.0.4",
 		"@favware/rollup-type-bundler": "^1.0.7",
-		"@sapphire/framework": "^2.3.0",
+		"@sapphire/framework": "^2.4.0",
 		"@types/jest": "^27.4.0",
 		"@types/lodash": "^4.14.178",
 		"@types/node": "^17.0.14",
