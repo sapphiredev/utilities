@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.6.1](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@4.6.0...@sapphire/discord.js-utilities@4.6.1) (2022-02-06)
+
+### Bug Fixes
+
+-   **PaginatedMessage:** fix footer application when there are multiple embeds ([#288](https://github.com/sapphiredev/utilities/issues/288)) ([8806e8a](https://github.com/sapphiredev/utilities/commit/8806e8ab596ebadc5a3e17593029a1d616b6d127))
+
 # [4.6.0](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@4.5.0...@sapphire/discord.js-utilities@4.6.0) (2022-02-03)
 
 ### Bug Fixes
