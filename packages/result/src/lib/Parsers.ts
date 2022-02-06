@@ -1,7 +1,5 @@
 import { err, ok, Result } from './Result';
 
-type Awaitable<T> = PromiseLike<T> | T;
-
 /**
  * Creates a {@link Result} out of a callback.
  * @typeparam T The result's type.
@@ -13,11 +11,6 @@ export function from<T, E = unknown>(cb: (...args: unknown[]) => T): Result<T, E
 	} catch (error) {
 		return err(error as E);
 	}
-}
-
-// eslint-disable-next-line @typescript-eslint/ban-types
-function isFunction(input: unknown): input is Function {
-	return typeof input === 'function';
 }
 
 /**
@@ -32,3 +25,10 @@ export async function fromAsync<T, E = unknown>(promiseOrCb: Awaitable<T> | ((..
 		return err(error as E);
 	}
 }
+
+// eslint-disable-next-line @typescript-eslint/ban-types
+function isFunction(input: unknown): input is Function {
+	return typeof input === 'function';
+}
+
+type Awaitable<T> = PromiseLike<T> | T;
