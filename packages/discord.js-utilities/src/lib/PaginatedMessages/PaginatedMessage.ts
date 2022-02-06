@@ -1015,7 +1015,9 @@ export class PaginatedMessage {
 			return message;
 		}
 
-		for (const [idx, embed] of Object.entries(message.embeds)) {
+		const embedsWithFooterApplied = deepClone(message.embeds);
+
+		for (const [idx, embed] of Object.entries(embedsWithFooterApplied)) {
 			if (embed) {
 				embed.footer ??= { text: this.template.embeds?.[Number(idx)]?.footer?.text ?? this.template.embeds?.[0]?.footer?.text ?? '' };
 				embed.footer.text = `${this.pageIndexPrefix ? `${this.pageIndexPrefix} ` : ''}${index + 1} / ${this.pages.length}${
@@ -1024,7 +1026,7 @@ export class PaginatedMessage {
 			}
 		}
 
-		return message;
+		return { ...message, embeds: embedsWithFooterApplied };
 	}
 
 	private applyTemplate(
