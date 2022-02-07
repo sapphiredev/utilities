@@ -165,6 +165,12 @@ export class PaginatedMessage {
 	 */
 	public embedFooterSeparator = PaginatedMessage.embedFooterSeparator;
 
+	/**
+	 * A list of `customId` that are bound to actions that will stop the {@link PaginatedMessage}
+	 * @default ```PaginatedMessage.stopPaginatedMessageCustomIds``` (static property)
+	 */
+	public stopPaginatedMessageCustomIds = PaginatedMessage.stopPaginatedMessageCustomIds;
+
 	protected paginatedMessageData: Omit<PaginatedMessageMessageOptionsUnion, 'components'> | null = null;
 
 	protected selectMenuOptions: PaginatedMessageSelectMenuOptionsFunction = PaginatedMessage.selectMenuOptions;
@@ -229,6 +235,17 @@ export class PaginatedMessage {
 	 */
 	public setWrongUserInteractionReply(wrongUserInteractionReply: PaginatedMessageWrongUserInteractionReplyFunction): this {
 		this.wrongUserInteractionReply = wrongUserInteractionReply;
+		return this;
+	}
+
+	/**
+	 * Sets the {@link PaginatedMessage.stopPaginatedMessageCustomIds} for this instance of {@link PaginatedMessage}.
+	 * This will only apply to this one instance and no others.
+	 * @param stopPaginatedMessageCustomIds The new `stopPaginatedMessageCustomIds` to set
+	 * @returns The current instance of {@link PaginatedMessage}
+	 */
+	public setStopPaginatedMessageCustomIds(stopPaginatedMessageCustomIds: string[]): this {
+		this.stopPaginatedMessageCustomIds = stopPaginatedMessageCustomIds;
 		return this;
 	}
 
@@ -781,7 +798,9 @@ export class PaginatedMessage {
 	 * Executed whenever {@link PaginatedMessage.run} is called.
 	 */
 	public async resolvePagesOnRun(): Promise<void> {
-		for (let i = 0; i < this.pages.length; i++) await this.resolvePage(i);
+		for (let i = 0; i < this.pages.length; i++) {
+			await this.resolvePage(i);
+		}
 	}
 
 	/**
@@ -891,8 +910,7 @@ export class PaginatedMessage {
 		if (this.pages.length > 1) {
 			this.collector = new InteractionCollector<MessageComponentInteraction>(targetUser.client, {
 				filter: (interaction) =>
-					!isNullish(this.response) &&
-					interaction.message.id === this.response?.id &&
+					!isNullish(this.response) && //
 					interaction.isMessageComponent() &&
 					this.actions.has(interaction.customId),
 
@@ -947,6 +965,9 @@ export class PaginatedMessage {
 		interaction: ButtonInteraction | SelectMenuInteraction
 	): Promise<void> {
 		if (interaction.user.id === targetUser.id) {
+			// Update the response to the latest interaction
+			this.response = interaction;
+
 			const action = this.actions.get(interaction.customId)!;
 
 			if (actionIsButtonOrMenu(action)) {
@@ -961,14 +982,21 @@ export class PaginatedMessage {
 					collector: this.collector!
 				});
 
-				const newIndex = previousIndex === this.index ? previousIndex : this.index;
-				const messagePage = await this.resolvePage(newIndex);
-				const updateOptions = isFunction(messagePage) ? await messagePage(newIndex, this.pages, this) : messagePage;
+				if (!this.stopPaginatedMessageCustomIds.includes(action.customId)) {
+					const newIndex = previousIndex === this.index ? previousIndex : this.index;
+					const messagePage = await this.resolvePage(newIndex);
+					const updateOptions = isFunction(messagePage) ? await messagePage(newIndex, this.pages, this) : messagePage;
 
-				if (interaction.replied || interaction.deferred) {
-					await interaction.editReply(updateOptions);
-				} else {
-					await interaction.update(updateOptions);
+					if (interaction.replied || interaction.deferred) {
+						await interaction.editReply(updateOptions);
+					} else if (interaction.isMessageComponent()) {
+						await interaction.update(updateOptions);
+					} else {
+						await this.response.reply({
+							content: "This maze wasn't meant for you...what did you do.",
+							ephemeral: true
+						});
+					}
 				}
 			}
 		} else {
@@ -1147,22 +1175,25 @@ export class PaginatedMessage {
 			style: 'DANGER',
 			emoji: '⏹️',
 			type: Constants.MessageComponentTypes.BUTTON,
-			run: async ({ collector, response }) => {
+			run: ({ collector }) => {
 				collector.stop();
-				if (runsOnInteraction(response)) {
-					if (response.replied || response.deferred) {
-						await response.editReply({ components: [] });
-					} else if (response.isMessageComponent()) {
-						await response.update({ components: [] });
-					} else {
-						await response.reply({ content: "This maze wasn't meant for you...what did you do.", ephemeral: true });
-					}
-				} else if (isMessageInstance(response)) {
-					await response.edit({ components: [] });
-				}
 			}
 		}
 	];
+
+	/**
+	 * A list of `customId` that are bound to actions that will stop the {@link PaginatedMessage}
+	 * @default ['@sapphire/paginated-messages.stop']
+	 * @remark To overwrite this property change it somewhere in a "setup" file, i.e. where you also call `client.login()` for your bot.
+	 * Alternatively, you can also customize it on a per-PaginatedMessage basis by using `paginatedMessageInstance.setStopPaginatedMessageCustomIds(customIds)`
+	 * @example
+	 * ```typescript
+	 * import { PaginatedMessage } from '@sapphire/discord.js-utilities';
+	 *
+	 * PaginatedMessage.stopPaginatedMessageCustomIds = ['my-custom-stop-custom-id'];
+	 * ```
+	 */
+	public static stopPaginatedMessageCustomIds = ['@sapphire/paginated-messages.stop'];
 
 	/**
 	 * The reasons sent by {@linkplain https://discord.js.org/#/docs/main/stable/class/InteractionCollector?scrollTo=e-end InteractionCollector#end}
