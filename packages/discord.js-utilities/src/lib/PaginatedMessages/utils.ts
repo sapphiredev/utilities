@@ -6,6 +6,7 @@ import {
 	MessageActionRow,
 	type ButtonInteraction,
 	type CommandInteraction,
+	type ContextMenuInteraction,
 	type InteractionButtonOptions,
 	type MessageButton,
 	type MessageSelectMenu,
@@ -20,13 +21,13 @@ import type {
 } from './PaginatedMessageTypes';
 
 /**
- * Checks whether the PaginatedMessage runs on an {@link CommandInteraction}, {@link SelectMenuInteraction} or {@link Message}
+ * Checks whether the PaginatedMessage runs on an {@link CommandInteraction}, {@link ContextMenuInteraction}, {@link SelectMenuInteraction} or {@link Message}
  * @param messageOrInteraction The message or interaction that the PaginatedMessage runs on
- * @returns `true` if the PaginatedMessage runs on an an {@link CommandInteraction} or {@link SelectMenuInteraction}, `false` if it runs on a {@link Message}
+ * @returns `true` if the PaginatedMessage runs on an an {@link CommandInteraction}, {@link ContextMenuInteraction} or {@link SelectMenuInteraction}, `false` if it runs on a {@link Message}
  */
 export function runsOnInteraction(
-	messageOrInteraction: APIMessage | Message | CommandInteraction | SelectMenuInteraction | ButtonInteraction
-): messageOrInteraction is CommandInteraction | SelectMenuInteraction | ButtonInteraction {
+	messageOrInteraction: APIMessage | Message | CommandInteraction | ContextMenuInteraction | SelectMenuInteraction | ButtonInteraction
+): messageOrInteraction is CommandInteraction | ContextMenuInteraction | SelectMenuInteraction | ButtonInteraction {
 	return !(messageOrInteraction instanceof Message);
 }
 
