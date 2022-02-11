@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.7.0](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@4.6.2...@sapphire/discord.js-utilities@4.7.0) (2022-02-11)
+
+### Features
+
+-   **PaginatedMessage:** support context menu interactions ([#290](https://github.com/sapphiredev/utilities/issues/290)) ([b2120d4](https://github.com/sapphiredev/utilities/commit/b2120d4d4ce04455b0262005c9588b220f2c9ade))
+
 ## [4.6.2](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@4.6.1...@sapphire/discord.js-utilities@4.6.2) (2022-02-07)
 
 ### Bug Fixes
