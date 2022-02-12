@@ -3,17 +3,22 @@ import type { APIMessage } from 'discord-api-types/v9';
 import type {
 	ButtonInteraction,
 	CommandInteraction,
+	ContextMenuInteraction,
 	ExcludeEnum,
 	Guild,
 	InteractionButtonOptions,
 	InteractionCollector,
+	InteractionReplyOptions,
+	InteractionUpdateOptions,
 	LinkButtonOptions,
 	Message,
 	MessageComponentInteraction,
+	MessageEditOptions,
 	MessageEmbed,
 	MessageOptions,
 	MessageSelectMenuOptions,
 	MessageSelectOptionData,
+	ReplyMessageOptions,
 	SelectMenuInteraction,
 	StageChannel,
 	StoreChannel,
@@ -175,4 +180,13 @@ export interface PaginatedMessageInternationalizationContext {
 	guild: Guild | null;
 	channel: Message['channel'] | StoreChannel | StageChannel | VoiceChannel | null;
 	author: User | null;
+}
+
+export interface SafeReplyToInteractionParameters<T extends 'edit' | 'reply' | never = never> {
+	messageOrInteraction: APIMessage | Message | CommandInteraction | ContextMenuInteraction | SelectMenuInteraction | ButtonInteraction;
+	interactionEditReplyContent: WebhookEditMessageOptions;
+	interactionReplyContent: InteractionReplyOptions;
+	componentUpdateContent: InteractionUpdateOptions;
+	messageMethod?: T;
+	messageMethodContent?: T extends 'reply' ? ReplyMessageOptions : MessageEditOptions;
 }

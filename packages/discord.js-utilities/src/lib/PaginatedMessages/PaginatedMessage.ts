@@ -4,6 +4,7 @@ import type { APIMessage } from 'discord-api-types/v9';
 import {
 	Constants,
 	Formatters,
+	Intents,
 	InteractionCollector,
 	MessageButton,
 	MessageEmbed,
@@ -32,7 +33,7 @@ import type {
 	PaginatedMessageSelectMenuOptionsFunction,
 	PaginatedMessageWrongUserInteractionReplyFunction
 } from './PaginatedMessageTypes';
-import { actionIsButtonOrMenu, createPartitionedMessageRow, isMessageButtonInteraction, runsOnInteraction } from './utils';
+import { actionIsButtonOrMenu, createPartitionedMessageRow, isMessageButtonInteraction, runsOnInteraction, safelyReplyToInteraction } from './utils';
 
 /**
  * This is a {@link PaginatedMessage}, a utility to paginate messages (usually embeds).
@@ -112,6 +113,9 @@ import { actionIsButtonOrMenu, createPartitionedMessageRow, isMessageButtonInter
  * ```
  */
 export class PaginatedMessage {
+	/** The response we send when someone gets into an invalid flow */
+	#thisMazeWasNotMeantForYouContent = { content: "This maze wasn't meant for you...what did you do." };
+
 	// #region public class properties
 	/**
 	 * The pages to be converted to {@link PaginatedMessage.messages}
@@ -178,6 +182,8 @@ export class PaginatedMessage {
 
 	/**
 	 * Whether to emit the warning about running a {@link PaginatedMessage} in a DM channel without the client having the `'CHANNEL'` partial.
+	 * @remark When using message based commands (as opposed to Application Commands) then you will also need to specify the `DIRECT_MESSAGE` intent for {@link PaginatedMessage} to work.
+	 *
 	 * @default ```PaginatedMessage.emitPartialDMChannelWarning``` (static property)
 	 */
 	public emitPartialDMChannelWarning = PaginatedMessage.emitPartialDMChannelWarning;
@@ -200,6 +206,8 @@ export class PaginatedMessage {
 	 * Tracks whether a warning was already emitted for this {@link PaginatedMessage}
 	 * concerning the {@link PaginatedMessage} being called in a `DMChannel`
 	 * without the client having the `'Channel'` partial.
+	 *
+	 * @remark When using message based commands (as opposed to Application Commands) then you will also need to specify the `DIRECT_MESSAGE` intent for {@link PaginatedMessage} to work.
 	 */
 	protected hasEmittedPartialDMChannelWarning = false;
 
@@ -801,15 +809,45 @@ export class PaginatedMessage {
 	): Promise<this> {
 		// If there is no channel then exit early and potentially emit a warning
 		if (!messageOrInteraction.channel) {
+			const isInteraction = runsOnInteraction(messageOrInteraction);
+			let shouldEmitWarning = this.emitPartialDMChannelWarning;
+
+			// If we are to emit a warning,
+			//   then check if a warning was already emitted,
+			//   in which case we don't want to emit a warning.
+			if (shouldEmitWarning && this.hasEmittedPartialDMChannelWarning) {
+				shouldEmitWarning = false;
+			}
+
+			// If we are to emit a warning,
+			//   then check if the interaction is an interaction based command,
+			//   and check if the client has the `'CHANNEL'` partial,
+			//   in which case we don't want to emit a warning.
+			if (shouldEmitWarning && isInteraction && messageOrInteraction.client.options.partials?.includes('CHANNEL')) {
+				shouldEmitWarning = false;
+			}
+
+			// IF we are to emit a warning,
+			//   then check if the interaction is a message based command,
+			//   and check if the client has the 'CHANNEL' partial,
+			//   and check if the client has the 'DIRECT_MESSAGE' intent',
+			//   in which case we don't want to emit a warning.
 			if (
-				this.emitPartialDMChannelWarning &&
-				!this.hasEmittedPartialDMChannelWarning &&
-				!messageOrInteraction.client.options.partials?.includes('CHANNEL')
+				shouldEmitWarning &&
+				!isInteraction &&
+				messageOrInteraction.client.options.partials?.includes('CHANNEL') &&
+				new Intents(messageOrInteraction.client.options.intents).has(Intents.FLAGS.DIRECT_MESSAGES)
 			) {
+				shouldEmitWarning = false;
+			}
+
+			// If we should emit a warning then do so.
+			if (shouldEmitWarning) {
 				process.emitWarning(
 					[
 						'PaginatedMessage was initiated in a DM channel without the client having the required partial configured.',
 						'If you want PaginatedMessage to work in DM channels then make sure you start your client with "CHANNEL" added to "client.options.partials".',
+						'Furthermore if you are using message based commands (as opposed to application commands) then you will also need to add the "DIRECT_MESSAGE" intent to "client.options.intents"',
 						'If you do not want to be alerted about this in the future then you can disable this warning by setting "PaginatedMessage.emitPartialDMChannelWarning" to "false", or use "setEmitPartialDMChannelWarning(false)" before calling "run".'
 					].join('\n'),
 					{
@@ -819,6 +857,15 @@ export class PaginatedMessage {
 				);
 				this.hasEmittedPartialDMChannelWarning = true;
 			}
+
+			await safelyReplyToInteraction({
+				messageOrInteraction,
+				interactionEditReplyContent: this.#thisMazeWasNotMeantForYouContent,
+				interactionReplyContent: { ...this.#thisMazeWasNotMeantForYouContent, ephemeral: true },
+				componentUpdateContent: this.#thisMazeWasNotMeantForYouContent,
+				messageMethod: 'reply',
+				messageMethodContent: this.#thisMazeWasNotMeantForYouContent
+			});
 
 			return this;
 		}
@@ -1058,16 +1105,12 @@ export class PaginatedMessage {
 					const messagePage = await this.resolvePage(newIndex);
 					const updateOptions = isFunction(messagePage) ? await messagePage(newIndex, this.pages, this) : messagePage;
 
-					if (interaction.replied || interaction.deferred) {
-						await interaction.editReply(updateOptions);
-					} else if (interaction.isMessageComponent()) {
-						await interaction.update(updateOptions);
-					} else {
-						await this.response.reply({
-							content: "This maze wasn't meant for you...what did you do.",
-							ephemeral: true
-						});
-					}
+					await safelyReplyToInteraction({
+						messageOrInteraction: interaction,
+						interactionEditReplyContent: updateOptions,
+						interactionReplyContent: { ...this.#thisMazeWasNotMeantForYouContent, ephemeral: true },
+						componentUpdateContent: updateOptions
+					});
 				}
 			}
 		} else {
@@ -1095,17 +1138,14 @@ export class PaginatedMessage {
 
 		// Do not remove components if the message, channel, or guild, was deleted:
 		if (this.response && !PaginatedMessage.deletionStopReasons.includes(reason)) {
-			if (runsOnInteraction(this.response)) {
-				if (this.response.replied || this.response.deferred) {
-					void this.response.editReply({ components: [] });
-				} else if (this.response.isMessageComponent()) {
-					void this.response.update({ components: [] });
-				} else {
-					void this.response.reply({ content: "This maze wasn't meant for you...what did you do.", ephemeral: true });
-				}
-			} else if (isMessageInstance(this.response)) {
-				void this.response.edit({ components: [] });
-			}
+			void safelyReplyToInteraction({
+				messageOrInteraction: this.response,
+				interactionEditReplyContent: { components: [] },
+				interactionReplyContent: { ...this.#thisMazeWasNotMeantForYouContent, ephemeral: true },
+				componentUpdateContent: { components: [] },
+				messageMethod: 'edit',
+				messageMethodContent: { components: [] }
+			});
 		}
 	}
 
@@ -1254,6 +1294,8 @@ export class PaginatedMessage {
 
 	/**
 	 * Whether to emit the warning about running a {@link PaginatedMessage} in a DM channel without the client the `'CHANNEL'` partial.
+	 * @remark When using message based commands (as opposed to Application Commands) then you will also need to specify the `DIRECT_MESSAGE` intent for {@link PaginatedMessage} to work.
+	 *
 	 * @remark To overwrite this property change it somewhere in a "setup" file, i.e. where you also call `client.login()` for your client.
 	 * Alternatively, you can also customize it on a per-PaginatedMessage basis by using `paginatedMessageInstance.setEmitPartialDMChannelWarning(newBoolean)`
 	 * @default true
