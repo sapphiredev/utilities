@@ -808,7 +808,7 @@ export class PaginatedMessage {
 			) {
 				process.emitWarning(
 					[
-						'PaginatedMessage initiated in a DM channel without the client having required partial configured.',
+						'PaginatedMessage was initiated in a DM channel without the client having the required partial configured.',
 						'If you want PaginatedMessage to work in DM channels then make sure you start your client with "CHANNEL" added to "client.options.partials".',
 						'If you do not want to be alerted about this in the future then you can disable this warning by setting "PaginatedMessage.emitPartialDMChannelWarning" to "false", or use "setEmitPartialDMChannelWarning(false)" before calling "run".'
 					].join('\n'),
