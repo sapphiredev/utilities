@@ -1,4 +1,4 @@
-import { fetch, FetchMethods, FetchResultTypes, QueryError } from '../../../fetch/src/index';
+import { fetch, FetchMethods, FetchResultTypes, QueryError } from '@sapphire/fetch';
 import type { PhishermanInfoType, PhishermanReportType, PhishermanReturnType } from './PhishermanTypes';
 import os from 'node:os';
 
