@@ -13,11 +13,13 @@ import {
 	type MessageSelectMenuOptions,
 	type SelectMenuInteraction
 } from 'discord.js';
+import { isMessageInstance } from '../type-guards';
 import type {
 	PaginatedMessageAction,
 	PaginatedMessageActionButton,
 	PaginatedMessageActionLink,
-	PaginatedMessageActionMenu
+	PaginatedMessageActionMenu,
+	SafeReplyToInteractionParameters
 } from './PaginatedMessageTypes';
 
 /**
@@ -69,4 +71,22 @@ export function createPartitionedMessageRow(components: (MessageButton | Message
 	);
 
 	return [...messageButtonActionRows, ...selectMenuActionRows];
+}
+
+/**
+ * Safely replies to a message or interaction. This is primarily to save duplicated code in the main `PaginatedMessage` class
+ * @param parameters The parameters to create a safe reply to interaction parameters
+ */
+export async function safelyReplyToInteraction<T extends 'edit' | 'reply'>(parameters: SafeReplyToInteractionParameters<T>) {
+	if (runsOnInteraction(parameters.messageOrInteraction)) {
+		if (parameters.messageOrInteraction.replied || parameters.messageOrInteraction.deferred) {
+			await parameters.messageOrInteraction.editReply(parameters.interactionEditReplyContent);
+		} else if (parameters.messageOrInteraction.isMessageComponent()) {
+			await parameters.messageOrInteraction.update(parameters.componentUpdateContent);
+		} else {
+			await parameters.messageOrInteraction.reply(parameters.interactionReplyContent);
+		}
+	} else if (parameters.messageMethodContent && parameters.messageMethod && isMessageInstance(parameters.messageOrInteraction)) {
+		await parameters.messageOrInteraction[parameters.messageMethod](parameters.messageMethodContent as any);
+	}
 }
