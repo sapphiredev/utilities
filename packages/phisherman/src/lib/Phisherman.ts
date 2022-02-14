@@ -15,6 +15,7 @@ let storedApiKey: string;
  * @since 1.0.0
  */
 export async function checkDomain(domain: string, apiKey: string = storedApiKey) {
+	validateUrl(domain);
 	const result = await fetch<PhishermanReturnType>(
 		`https://api.phisherman.gg/v2/domains/check/${domain}`,
 		{
@@ -40,6 +41,7 @@ export async function checkDomain(domain: string, apiKey: string = storedApiKey)
  * @since 1.0.0
  */
 export function reportDomain(domain: string, apiKey: string = storedApiKey) {
+	validateUrl(domain);
 	return fetch<PhishermanReportType>(
 		`https://api.phisherman.gg/v2/phish/report`,
 		{
@@ -64,12 +66,13 @@ export function reportDomain(domain: string, apiKey: string = storedApiKey) {
  * @since 1.1.0
  */
 export async function getDomainInfo(domain: string, apiKey: string = storedApiKey) {
+	validateUrl(domain);
 	const result = await fetch<PhishermanInfoType>(
 		`https://api.phisherman.gg/v2/domains/info/${domain}`,
 		{
 			headers: {
 				'Content-Type': 'application/json',
-				'User-Agent': ``,
+				'User-Agent': agent,
 				Authorization: `Bearer ${apiKey}`
 			}
 		},
@@ -135,4 +138,9 @@ async function checkApiKey(apiKey: string) {
 
 		throw error;
 	}
+}
+
+function validateUrl(domain: string) {
+	const regexp = /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/gi;
+	if (!domain.match(regexp)) throw new Error('[SapphirePhisherman]: Invalid domain provided');
 }
