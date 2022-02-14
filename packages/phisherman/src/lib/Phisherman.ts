@@ -141,6 +141,6 @@ async function checkApiKey(apiKey: string) {
 }
 
 function validateUrl(domain: string) {
-	const regexp = /(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]/g;
-	if (!regexp.test(domain)) throw new Error('[SapphirePhisherman]: Invalid domain provided');
+	const regexp = /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/gi;
+	if (!domain.match(regexp)) throw new Error('[SapphirePhisherman]: Invalid domain provided');
 }
