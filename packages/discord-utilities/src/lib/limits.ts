@@ -200,7 +200,12 @@ export const SelectMenuLimits = {
 	/**
 	 * Maximum "maximum" values allowed in a select menu.
 	 */
-	MaxmimumMaxValuesSize: 25
+	MaximumMaxValuesSize: 25,
+
+	/**
+	 * Maximum characters allowed in a select menu option's name.
+	 */
+	MaximumLengthOfNameOfOption: 100
 } as const;
 
 /**
@@ -284,4 +289,19 @@ export const UserLimits = {
 	 * Maximum characters allowed in a user's biography (the "About Me" section).
 	 */
 	MaximumBiographyLength: 190
+} as const;
+
+/**
+ * Namespace container limits related to Discord autocomplete interactions.
+ */
+export const AutoCompleteLimits = {
+	/**
+	 * Maximum options allowed in a single autocomplete response.
+	 */
+	MaximumAmountOfOptions: 20,
+
+	/**
+	 * Maximum characters allowed in a select menu option's name.
+	 */
+	MaximumLengthOfNameOfOption: 100
 } as const;
