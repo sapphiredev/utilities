@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.8.0](https://github.com/sapphiredev/utilities/compare/@sapphire/discord-utilities@2.7.0...@sapphire/discord-utilities@2.8.0) (2022-02-15)
+
+### Features
+
+-   **discord-utilities:** add limits for autocomplete ([#295](https://github.com/sapphiredev/utilities/issues/295)) ([645573a](https://github.com/sapphiredev/utilities/commit/645573a6401adb8ff64cc6ff30bacc19cd5bf371))
+-   **ts-config:** add multi-config structure ([#281](https://github.com/sapphiredev/utilities/issues/281)) ([b5191d7](https://github.com/sapphiredev/utilities/commit/b5191d7f2416dc5838590c4ff221454925553e37))
+
 # [2.7.0](https://github.com/sapphiredev/utilities/compare/@sapphire/discord-utilities@2.6.0...@sapphire/discord-utilities@2.7.0) (2022-01-28)
 
 ### Features

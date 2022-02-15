@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/sapphiredev/utilities/compare/@sapphire/phisherman@1.2.0...@sapphire/phisherman@1.3.0) (2022-02-15)
+
+### Features
+
+-   **phisherman:** add url validation ([#294](https://github.com/sapphiredev/utilities/issues/294)) ([b039d4a](https://github.com/sapphiredev/utilities/commit/b039d4a621b4b0be7b87af578868a37145087846))
+-   **ts-config:** add multi-config structure ([#281](https://github.com/sapphiredev/utilities/issues/281)) ([b5191d7](https://github.com/sapphiredev/utilities/commit/b5191d7f2416dc5838590c4ff221454925553e37))
+
 # [1.2.0](https://github.com/sapphiredev/utilities/compare/@sapphire/phisherman@1.1.0...@sapphire/phisherman@1.2.0) (2022-01-28)
 
 ### Features

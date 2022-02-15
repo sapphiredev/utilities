@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.8.0](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@4.7.0...@sapphire/discord.js-utilities@4.8.0) (2022-02-15)
+
+### Bug Fixes
+
+-   **MessagePrompter:** fixed example code in tsdoc ([2d2f9f9](https://github.com/sapphiredev/utilities/commit/2d2f9f9c750a9529aa0cdd5bbc00e10115f6ac1a)), closes [#285](https://github.com/sapphiredev/utilities/issues/285)
+
+### Features
+
+-   **PaginatedMessage:** emit warning when running in a DM channel without required client options ([#291](https://github.com/sapphiredev/utilities/issues/291)) ([668c540](https://github.com/sapphiredev/utilities/commit/668c5400821d7889fe9e8cc765f3a6d1d0a73505))
+
 # [4.7.0](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@4.6.2...@sapphire/discord.js-utilities@4.7.0) (2022-02-11)
 
 ### Features
