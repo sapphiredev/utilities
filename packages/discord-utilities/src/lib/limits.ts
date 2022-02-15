@@ -298,7 +298,7 @@ export const AutoCompleteLimits = {
 	/**
 	 * Maximum options allowed in a single autocomplete response.
 	 */
-	MaximumAmountOfOptions: 25,
+	MaximumAmountOfOptions: 20,
 
 	/**
 	 * Maximum characters allowed in a select menu option's name.
