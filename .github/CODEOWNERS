@@ -1,15 +1,17 @@
-/packages/decorators/**/*.ts @kyranet @favna
+/packages/async-queue/**/*.ts @vladfrangu @kyranet @favna
+/packages/decorators/**/*.ts @vladfrangu @kyranet @favna
 /packages/discord-utilities/**/*.ts @favna
-/packages/discord.js-utilities/src/**/*.ts @kyranet @realshadownova @favna
+/packages/discord.js-utilities/src/**/*.ts @kyranet @vladfrangu @realshadownova @favna
+/packages/embed-jsx/**/*.ts @favna
 /packages/eslint-config/**/*.ts @favna
-/packages/event-iterator/**/*.ts @kyranet
+/packages/event-iterator/**/*.ts @kyranet @vladfrangu @favna
+/packages/fetch/**/*.ts @favna @kyranet @vladfrangu
+/packages/phisherman/**/*.ts @undiedgamer @favna @vladfrangu
 /packages/prettier-config/**/*.ts @favna
-/packages/ratelimits/**/*.ts @kyranet @vladfrangu
+/packages/ratelimits/**/*.ts @kyranet @vladfrangu @favna
+/packages/result/**/*.ts @kyranet @vladfrangu @favna
 /packages/snowflake/**/*.ts @favna @vladfrangu @kyranet
 /packages/stopwatch/**/*.ts @Stitch07 @kyranet @vladfrangu
-/packages/time-utilities/**/*.ts @favna @Stitch07 @kyranet
+/packages/time-utilities/**/*.ts @favna @Stitch07 @kyranet @vladfrangu
 /packages/ts-config/**/*.ts @favna
-/packages/type/**/*.ts @kyranet
 /packages/utilities/**/*.ts @favna @kyranet @vladfrangu
-/packages/fetch/**/*.ts @favna @kyranet
-/packages/phisherman/**/*.ts @undiedgamer
