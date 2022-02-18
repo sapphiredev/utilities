@@ -980,7 +980,6 @@ export class PaginatedMessage {
 					return isMessageButtonInteraction(interaction)
 						? new MessageButton(interaction)
 						: new MessageSelectMenu({
-								...interaction,
 								options: await Promise.all(
 									this.pages.map(async (_, index) => ({
 										...(await this.selectMenuOptions(index + 1, {
@@ -990,7 +989,8 @@ export class PaginatedMessage {
 										})),
 										value: index.toString()
 									}))
-								)
+								),
+								...interaction
 						  });
 				})
 			);
