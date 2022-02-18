@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.8.1](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@4.8.0...@sapphire/discord.js-utilities@4.8.1) (2022-02-18)
+
+### Bug Fixes
+
+-   **PaginatedMessage:** allow overwriting `SelectMenu` options ([#298](https://github.com/sapphiredev/utilities/issues/298)) ([10f3c25](https://github.com/sapphiredev/utilities/commit/10f3c25b1f44ade9d60bf2436f8fae05d08eeb9f)), closes [#297](https://github.com/sapphiredev/utilities/issues/297)
+
 # [4.8.0](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@4.7.0...@sapphire/discord.js-utilities@4.8.0) (2022-02-15)
 
 ### Bug Fixes

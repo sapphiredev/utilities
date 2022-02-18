@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.1](https://github.com/sapphiredev/utilities/compare/@sapphire/ratelimits@2.3.0...@sapphire/ratelimits@2.3.1) (2022-02-18)
+
+### Bug Fixes
+
+-   **RateLimit:** add default type to `RateLimit`'s type parameter to match its usage in `RateLimitManager` ([#296](https://github.com/sapphiredev/utilities/issues/296)) ([b6799a7](https://github.com/sapphiredev/utilities/commit/b6799a7c5a420f416ca9972c9abf3ba0a95f7974))
+
 # [2.3.0](https://github.com/sapphiredev/utilities/compare/@sapphire/ratelimits@2.2.0...@sapphire/ratelimits@2.3.0) (2022-02-03)
 
 ### Features
