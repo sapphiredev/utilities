@@ -1,6 +1,6 @@
 import type { RateLimitManager } from './RateLimitManager';
 
-export class RateLimit<K> {
+export class RateLimit<K = string> {
 	/**
 	 * The remaining amount of times this entry can be dripped before the bucket is empty.
 	 */
