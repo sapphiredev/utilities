@@ -19,10 +19,10 @@
 		"prepublishOnly": "yarn build"
 	},
 	"dependencies": {
-		"@typescript-eslint/eslint-plugin": "^5.11.0",
-		"@typescript-eslint/parser": "^5.11.0",
+		"@typescript-eslint/eslint-plugin": "^5.12.0",
+		"@typescript-eslint/parser": "^5.12.0",
 		"eslint": "^8.9.0",
-		"eslint-config-prettier": "^8.3.0",
+		"eslint-config-prettier": "^8.4.0",
 		"eslint-plugin-prettier": "^4.0.0",
 		"prettier": "^2.5.1",
 		"typescript": "^4.5.5"
