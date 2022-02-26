@@ -114,7 +114,7 @@ export const SnowflakeRegex = /^(?<id>\d{17,19})$/;
  * Regex that can capture a Discord Token
  * @raw /(mfa\.[a-z0-9_-]{20,})|([a-z0-9_-]{23,28}\.[a-z0-9_-]{6,7}\.[a-z0-9_-]{27})/i
  */
-export const TokenRegex = /(mfa\.[a-z0-9_-]{20,})|([a-z0-9_-]{23,28}\.[a-z0-9_-]{6,7}\.[a-z0-9_-]{27})/i
+export const TokenRegex = /(mfa\.[a-z0-9_-]{20,})|([a-z0-9_-]{23,28}\.[a-z0-9_-]{6,7}\.[a-z0-9_-]{27})/i;
 
 /**
  * Regex that can capture a Twemoji (Twitter Emoji)
