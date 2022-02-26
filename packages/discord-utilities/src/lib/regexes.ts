@@ -117,6 +117,11 @@ export const SnowflakeRegex = /^(?<id>\d{17,19})$/;
 export const TwemojiRegex = twemojiRegex;
 
 /**
+ * Regex that can capture a Discord Token
+ */
+export const TokenRegex = /(mfa\.[a-z0-9_-]{20,})|([a-z0-9_-]{23,28}\.[a-z0-9_-]{6,7}\.[a-z0-9_-]{27})/i
+
+/**
  * Regex that can capture the ID of a user in Discord user mentions
  * @raw `/^<@!?(?<id>\d{17,19})>$/`
  * @remark Capture group 1 is the ID of the user. It is named `id`.
