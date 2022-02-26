@@ -111,15 +111,16 @@ export const RoleMentionRegex = /^<@&(?<id>\d{17,19})>$/;
 export const SnowflakeRegex = /^(?<id>\d{17,19})$/;
 
 /**
+ * Regex that can capture a Discord Token
+ * @raw /(mfa\.[a-z0-9_-]{20,})|([a-z0-9_-]{23,28}\.[a-z0-9_-]{6,7}\.[a-z0-9_-]{27})/i
+ */
+export const TokenRegex = /(mfa\.[a-z0-9_-]{20,})|([a-z0-9_-]{23,28}\.[a-z0-9_-]{6,7}\.[a-z0-9_-]{27})/i
+
+/**
  * Regex that can capture a Twemoji (Twitter Emoji)
  * @raw {@linkplain https://github.com/twitter/twemoji-parser/blob/master/src/lib/regex.js See official source code}
  */
 export const TwemojiRegex = twemojiRegex;
-
-/**
- * Regex that can capture a Discord Token
- */
-export const TokenRegex = /(mfa\.[a-z0-9_-]{20,})|([a-z0-9_-]{23,28}\.[a-z0-9_-]{6,7}\.[a-z0-9_-]{27})/i
 
 /**
  * Regex that can capture the ID of a user in Discord user mentions
