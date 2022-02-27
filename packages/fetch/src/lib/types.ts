@@ -82,36 +82,36 @@ export const enum FetchMethods {
 }
 
 /**
- * The list of [Body Media Content Types](https://www.iana.org/assignments/media-types/media-types.xhtml)
+ * A list of common [Media Content Types](https://www.iana.org/assignments/media-types/media-types.xhtml) as defined by the IANA.
  */
-export const enum FetchBodyMediaContentTypes {
+export const enum FetchMediaContentTypes {
 	/**
-	 * The `JSON` body media content type.
+	 * The `JSON` media content type.
 	 * @see [Media-Types / JSON](https://www.iana.org/assignments/media-types/application/json)
 	 */
 	JSON = 'application/json',
 	/**
-	 * The `XML` body media content type.
+	 * The `XML` media content type.
 	 * @see [Media-Types / XML](https://www.iana.org/assignments/media-types/application/xml)
 	 */
 	XML = 'application/xml',
 	/**
-	 * The `X-WWW-FORM-URLENCODED` body media content type.
+	 * The `X-WWW-FORM-URLENCODED` media content type.
 	 * @see [Media-Types / X-WWW-FORM-URLENCODED](https://www.iana.org/assignments/media-types/application/x-www-form-urlencoded)
 	 */
 	FORM_URLENCODED = 'application/x-www-form-urlencoded',
 	/**
-	 * The `FORM-DATA` body media content type.
+	 * The `FORM-DATA` media content type.
 	 * @see [Media-Types / FORM-DATA](https://www.iana.org/assignments/media-types/application/form-data)
 	 */
 	FORM_DATA = 'multipart/form-data',
 	/**
-	 * The `TEXT/HTML` body media content type.
+	 * The `TEXT/HTML` media content type.
 	 * @see [Media-Types / TEXT/HTML](https://www.iana.org/assignments/media-types/text/html)
 	 */
 	TEXT_HTML = 'text/html',
 	/**
-	 * The `TEXT/PLAIN` body media content type.
+	 * The `TEXT/PLAIN` media content type.
 	 */
 	TEXT_PLAIN = 'text/plain'
 }
