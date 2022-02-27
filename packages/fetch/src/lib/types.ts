@@ -106,12 +106,18 @@ export const enum FetchMediaContentTypes {
 	FormURLEncoded = 'application/x-www-form-urlencoded',
 	/**
 	 * The `application/octet-stream` media content type.
-	 * @see [Media-Types / application / xml](https://www.iana.org/assignments/media-types/application/octet-stream)
+	 * @see [Media-Types / application / octet-stream](https://www.iana.org/assignments/media-types/application/octet-stream)
 	 * @see [[RFC2045](https://www.iana.org/go/rfc2045)] [[RFC2046(https://www.iana.org/go/rfc2046)]
 	 */
-	OctetStream = '	application/octet-stream',
+	OctetStream = 'application/octet-stream',
 	/**
-	 * The `multipart / form-data` media content type.
+	 * The `application/javascript` media content type.
+	 * @see [Media-Types / application / javascript](https://www.iana.org/assignments/media-types/application/javascript)
+	 * @see [[RFC4329](https://www.iana.org/go/rfc4329)]
+	 */
+	JavaScript = 'application/javascript',
+	/**
+	 * The `multipart/form-data` media content type.
 	 * @see [@see [Media-Types / multipart / form-data](https://www.iana.org/assignments/media-types/application/form-data)
 	 * @see [[RFC7578](https://www.iana.org/go/rfc7578)]
 	 */
