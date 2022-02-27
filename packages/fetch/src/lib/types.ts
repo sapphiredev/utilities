@@ -89,29 +89,29 @@ export const enum FetchMediaContentTypes {
 	 * The `JSON` media content type.
 	 * @see [Media-Types / JSON](https://www.iana.org/assignments/media-types/application/json)
 	 */
-	JSON = 'application/json',
+	Json = 'application/json',
 	/**
 	 * The `XML` media content type.
 	 * @see [Media-Types / XML](https://www.iana.org/assignments/media-types/application/xml)
 	 */
-	XML = 'application/xml',
+	Xml = 'application/xml',
 	/**
 	 * The `X-WWW-FORM-URLENCODED` media content type.
 	 * @see [Media-Types / X-WWW-FORM-URLENCODED](https://www.iana.org/assignments/media-types/application/x-www-form-urlencoded)
 	 */
-	FORM_URLENCODED = 'application/x-www-form-urlencoded',
+	FormUrlEncoded = 'application/x-www-form-urlencoded',
 	/**
 	 * The `FORM-DATA` media content type.
 	 * @see [Media-Types / FORM-DATA](https://www.iana.org/assignments/media-types/application/form-data)
 	 */
-	FORM_DATA = 'multipart/form-data',
+	FormData = 'multipart/form-data',
 	/**
 	 * The `TEXT/HTML` media content type.
 	 * @see [Media-Types / TEXT/HTML](https://www.iana.org/assignments/media-types/text/html)
 	 */
-	TEXT_HTML = 'text/html',
+	TextHtml = 'text/html',
 	/**
 	 * The `TEXT/PLAIN` media content type.
 	 */
-	TEXT_PLAIN = 'text/plain'
+	TextPlain = 'text/plain'
 }
