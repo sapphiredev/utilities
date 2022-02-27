@@ -120,7 +120,7 @@ export const SnowflakeRegex = /^(?<id>\d{17,19})$/;
  * You can use the name of the capture group to determine if the validated token was configured for a user with Multi-Factor Authentication, for a user without Multi-Factor Authentication, or for a bot application.
  * If both capture groups are undefined, then the token is invalid.
  */
-export const TokenRegex = /(?<mfaToken>mfa\.[a-z0-9_-]{20,})|(?<botToken>[a-z0-9_-]{23,28}\.[a-z0-9_-]{6,7}\.[a-z0-9_-]{27})/i;
+export const TokenRegex = /(?<mfaToken>mfa\.[a-z0-9_-]{20,})|(?<basicToken>[a-z0-9_-]{23,28}\.[a-z0-9_-]{6,7}\.[a-z0-9_-]{27})/i;
 
 /**
  * Regex that can capture a Twemoji (Twitter Emoji)
