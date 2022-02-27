@@ -105,6 +105,12 @@ export const enum FetchMediaContentTypes {
 	 */
 	FormURLEncoded = 'application/x-www-form-urlencoded',
 	/**
+	 * The `application/octet-stream` media content type.
+	 * @see [Media-Types / application / xml](https://www.iana.org/assignments/media-types/application/octet-stream)
+	 * @see [[RFC2045](https://www.iana.org/go/rfc2045)] [[RFC2046(https://www.iana.org/go/rfc2046)]
+	 */
+	OctetStream = '	application/octet-stream',
+	/**
 	 * The `multipart / form-data` media content type.
 	 * @see [@see [Media-Types / multipart / form-data](https://www.iana.org/assignments/media-types/application/form-data)
 	 * @see [[RFC7578](https://www.iana.org/go/rfc7578)]
@@ -116,9 +122,61 @@ export const enum FetchMediaContentTypes {
 	 */
 	TextHTML = 'text/html',
 	/**
+	 * The `text/css` media content type.
+	 * @see [Media-Types / text / css](https://www.iana.org/assignments/media-types/text/css)
+	 * @see [[RFC2318](https://www.iana.org/go/rfc2318)]
+	 */
+	TextCSS = 'text/css',
+	/**
 	 * The `text/plain` media content type.
 	 * @see [Media-Types / text / plain](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types#textplain)
 	 * @see [[RFC2046](https://www.iana.org/go/rfc2046)] [[RFC3676](https://www.iana.org/go/rfc3676)] [[RFC5147](https://www.iana.org/go/rfc5147)]
 	 */
-	TextPlain = 'text/plain'
+	TextPlain = 'text/plain',
+	/**
+	 * The `image/gif` media content type.
+	 * @see [Media-Types / image / gif](https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Image_types#gif_graphics_interchange_format)
+	 */
+	ImageGIF = 'image/gif',
+	/**
+	 * The `image/jpeg` media content type.
+	 * @see [Media-Types / image / jpeg](https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Image_types#jpeg_joint_photographic_experts_group_image)
+	 * @see [[RFC2045](https://www.iana.org/go/rfc2045)] [[RFC2046](https://www.iana.org/go/rfc2046)]
+	 */
+	ImageJPEG = 'image/jpeg',
+	/**
+	 * The `image/png` media content type.
+	 * @see [Media-Types / image / png](https://www.iana.org/assignments/media-types/image/png)
+	 */
+	ImagePNG = 'image/png',
+	/**
+	 * The `image/webp` media content type.
+	 * @see [Media-Types / image / webp](https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Image_types#webp_image)
+	 */
+	ImageWEBP = 'image/webp',
+	/**
+	 * The `image/apng` media content type.
+	 * @see [Media-Types / image / png](https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Image_types#apng_animated_portable_network_graphics)
+	 */
+	ImageAPNG = 'image/apng',
+	/**
+	 * The `audio/webm` media content type.
+	 */
+	AudioWebm = 'audio/webm',
+	/**
+	 * The `video/webm` media content type.
+	 */
+	VideoWebm = 'video/webm',
+	/**
+	 * The `audio/ogg` media content type.
+	 */
+	AudioOgg = 'audio/ogg',
+	/**
+	 * The `video/ogg` media content type.
+	 */
+	VideoOgg = 'video/ogg',
+	/**
+	 * The `audio/wav` media content type.
+	 */
+	AudioWav = 'audio/wav'
 }
