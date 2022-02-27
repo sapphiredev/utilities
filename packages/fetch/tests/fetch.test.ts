@@ -1,6 +1,6 @@
 import nock from 'nock';
 import { URL as NodeUrl } from 'node:url';
-import { fetch, FetchResultTypes, QueryError } from '../dist';
+import { fetch, FetchResultTypes, QueryError, FetchMediaContentTypes } from '../dist';
 
 describe('fetch', () => {
 	let nockScopeHttp: nock.Scope;
@@ -164,5 +164,47 @@ describe('fetch', () => {
 			// @ts-expect-error handling error case
 			await expect(fetch('http://localhost/simpleget', 'type not found')).rejects.toThrowError('Unknown type "type not found"');
 		});
+	});
+});
+
+describe('FetchMediaContentTypes', () => {
+	test('GIVEN Entries of FetchMediaContentTypes THEN returns expected entries', () => {
+		// @ts-expect-error TypeScript doesn't like this on const enum but because we have `--preserveConstEnums` it is actually possible
+		const MediaTypeEntries = [...Object.entries(FetchMediaContentTypes)];
+
+		expect(MediaTypeEntries).toHaveLength(31);
+		expect(MediaTypeEntries).toStrictEqual([
+			['JSON', 'application/json'],
+			['XML', 'application/xml'],
+			['FormURLEncoded', 'application/x-www-form-urlencoded'],
+			['OctetStream', 'application/octet-stream'],
+			['JavaScript', 'application/javascript'],
+			['FormData', 'multipart/form-data'],
+			['TextHTML', 'text/html'],
+			['TextCSS', 'text/css'],
+			['TextPlain', 'text/plain'],
+			['ImageGIF', 'image/gif'],
+			['ImageJPEG', 'image/jpeg'],
+			['ImagePNG', 'image/png'],
+			['ImageWEBP', 'image/webp'],
+			['ImageAPNG', 'image/apng'],
+			['AudioWebm', 'audio/webm'],
+			['VideoWebm', 'video/webm'],
+			['AudioOgg', 'audio/ogg'],
+			['VideoOgg', 'video/ogg'],
+			['AudioAac', 'audio/aac'],
+			['AudioWav', 'audio/wav'],
+			['AudioOpus', 'audio/opus'],
+			['AudioMp4', 'audio/mp4'],
+			['AudioMpeg', 'audio/mpeg'],
+			['AudioVorbis', 'audio/vorbis'],
+			['VideoH264', 'video/h264'],
+			['VideoH265', 'video/h265'],
+			['VideoMp4', 'video/mp4'],
+			['FontOtf', 'font/otf'],
+			['FontTtf', 'font/ttf'],
+			['FontWoff', 'font/woff'],
+			['FontWoff2', 'font/woff2']
+		]);
 	});
 });
