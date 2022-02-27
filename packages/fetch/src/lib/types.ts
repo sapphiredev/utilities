@@ -82,36 +82,43 @@ export const enum FetchMethods {
 }
 
 /**
- * A list of common [Media Content Types](https://www.iana.org/assignments/media-types/media-types.xhtml) as defined by the IANA.
+ * A list of common [Media Content Types](https://www.iana.org/assignments/media-types/media-types.xhtml) as defined by the [IANA](https://www.iana.org/).
+ * Media Content Types are also known as a Multipurpose Internet Mail Extensions or MIME type
+ * Media Content Types are defined and standardized in IETF's [RFC 6838](https://datatracker.ietf.org/doc/html/rfc6838).
  */
 export const enum FetchMediaContentTypes {
 	/**
-	 * The `JSON` media content type.
-	 * @see [Media-Types / JSON](https://www.iana.org/assignments/media-types/application/json)
+	 * The `application/json` media content type.
+	 * @see [@see [Media-Types / application / json](https://www.iana.org/assignments/media-types/application/json)
+	 * @see [[RFC8259](https://www.iana.org/go/rfc8259)]
 	 */
-	Json = 'application/json',
+	JSON = 'application/json',
 	/**
-	 * The `XML` media content type.
-	 * @see [Media-Types / XML](https://www.iana.org/assignments/media-types/application/xml)
+	 * The `application/xml` media content type.
+	 * @see [@see [Media-Types / application / xml](https://www.iana.org/assignments/media-types/application/xml)
+	 * @see [[RFC7303](https://www.iana.org/go/rfc7303)]
 	 */
-	Xml = 'application/xml',
+	XML = 'application/xml',
 	/**
-	 * The `X-WWW-FORM-URLENCODED` media content type.
-	 * @see [Media-Types / X-WWW-FORM-URLENCODED](https://www.iana.org/assignments/media-types/application/x-www-form-urlencoded)
+	 * The `x-www-form-urlencoded` media content type.
+	 * @see [@see [Media-Types / application / x-www-form-urlencoded](https://www.iana.org/assignments/media-types/application/x-www-form-urlencoded)
 	 */
-	FormUrlEncoded = 'application/x-www-form-urlencoded',
+	FormURLEncoded = 'application/x-www-form-urlencoded',
 	/**
-	 * The `FORM-DATA` media content type.
-	 * @see [Media-Types / FORM-DATA](https://www.iana.org/assignments/media-types/application/form-data)
+	 * The `multipart / form-data` media content type.
+	 * @see [@see [Media-Types / multipart / form-data](https://www.iana.org/assignments/media-types/application/form-data)
+	 * @see [[RFC7578](https://www.iana.org/go/rfc7578)]
 	 */
 	FormData = 'multipart/form-data',
 	/**
-	 * The `TEXT/HTML` media content type.
-	 * @see [Media-Types / TEXT/HTML](https://www.iana.org/assignments/media-types/text/html)
+	 * The `text/HTML` media content type.
+	 * @see [Media-Types / text / html](https://www.iana.org/assignments/media-types/text/html)
 	 */
-	TextHtml = 'text/html',
+	TextHTML = 'text/html',
 	/**
-	 * The `TEXT/PLAIN` media content type.
+	 * The `text/plain` media content type.
+	 * @see [Media-Types / text / plain](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types#textplain)
+	 * @see [[RFC2046](https://www.iana.org/go/rfc2046)] [[RFC3676](https://www.iana.org/go/rfc3676)] [[RFC5147](https://www.iana.org/go/rfc5147)]
 	 */
 	TextPlain = 'text/plain'
 }
