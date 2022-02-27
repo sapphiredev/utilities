@@ -112,17 +112,12 @@ export const SnowflakeRegex = /^(?<id>\d{17,19})$/;
 
 /**
  * Regex that can capture a Discord Token
- *
- * @raw `/(?<mfaToken>mfa\.[a-z0-9_-]{20,})|(?<botToken>[a-z0-9_-]{23,28}\.[a-z0-9_-]{6,7}\.[a-z0-9_-]{27})/i`
- *
+ * @raw `/(?<mfaToken>mfa\.[a-z0-9_-]{20,})|(?<basicToken>[a-z0-9_-]{23,28}\.[a-z0-9_-]{6,7}\.[a-z0-9_-]{27})/i`
  * @remark Capture group 1 can be used to retrieve a token for a User that has Multi-Factor Authentication enabled. It is named `mfaToken`.
- *
- * @remark Capture group 2 can be used to retrieve a token for a Bot application. It is named `botToken`.
- *
+ * @remark Capture group 2 can be used to retrieve a token for a User that doesn't have Multi-Factor Authentication enabled, or a Bot application. It is named `basicToken`.
  * @remark For a valid token, either Capture group 1 or Capture group 2 will always be undefined, whereas the other group will then be defined and
  * contain the matched token.
- * You can use the name of the capture group to determine if the validated token was configured for a user with Multi-Factor Authentication, or for a
- * bot application.
+ * You can use the name of the capture group to determine if the validated token was configured for a user with Multi-Factor Authentication, for a user without Multi-Factor Authentication, or for a bot application.
  * If both capture groups are undefined, then the token is invalid.
  */
 export const TokenRegex = /(?<mfaToken>mfa\.[a-z0-9_-]{20,})|(?<botToken>[a-z0-9_-]{23,28}\.[a-z0-9_-]{6,7}\.[a-z0-9_-]{27})/i;
