@@ -89,19 +89,19 @@ export const enum FetchMethods {
 export const enum FetchMediaContentTypes {
 	/**
 	 * The `application/json` media content type.
-	 * @see [@see [Media-Types / application / json](https://www.iana.org/assignments/media-types/application/json)
+	 * @see [Media-Types / application / json](https://www.iana.org/assignments/media-types/application/json)
 	 * @see [[RFC8259](https://www.iana.org/go/rfc8259)]
 	 */
 	JSON = 'application/json',
 	/**
 	 * The `application/xml` media content type.
-	 * @see [@see [Media-Types / application / xml](https://www.iana.org/assignments/media-types/application/xml)
+	 * @see [Media-Types / application / xml](https://www.iana.org/assignments/media-types/application/xml)
 	 * @see [[RFC7303](https://www.iana.org/go/rfc7303)]
 	 */
 	XML = 'application/xml',
 	/**
 	 * The `x-www-form-urlencoded` media content type.
-	 * @see [@see [Media-Types / application / x-www-form-urlencoded](https://www.iana.org/assignments/media-types/application/x-www-form-urlencoded)
+	 * @see [Media-Types / application / x-www-form-urlencoded](https://www.iana.org/assignments/media-types/application/x-www-form-urlencoded)
 	 */
 	FormURLEncoded = 'application/x-www-form-urlencoded',
 	/**
@@ -118,7 +118,7 @@ export const enum FetchMediaContentTypes {
 	JavaScript = 'application/javascript',
 	/**
 	 * The `multipart/form-data` media content type.
-	 * @see [@see [Media-Types / multipart / form-data](https://www.iana.org/assignments/media-types/application/form-data)
+	 * @see [Media-Types / multipart / form-data](https://www.iana.org/assignments/media-types/multipart/form-data)
 	 * @see [[RFC7578](https://www.iana.org/go/rfc7578)]
 	 */
 	FormData = 'multipart/form-data',
@@ -142,6 +142,7 @@ export const enum FetchMediaContentTypes {
 	/**
 	 * The `image/gif` media content type.
 	 * @see [Media-Types / image / gif](https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Image_types#gif_graphics_interchange_format)
+	 * @see [[RFC2045](https://www.iana.org/go/rfc2045)] [[RFC2046](https://www.iana.org/go/rfc2046)]
 	 */
 	ImageGIF = 'image/gif',
 	/**
@@ -162,7 +163,7 @@ export const enum FetchMediaContentTypes {
 	ImageWEBP = 'image/webp',
 	/**
 	 * The `image/apng` media content type.
-	 * @see [Media-Types / image / png](https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Image_types#apng_animated_portable_network_graphics)
+	 * @see [Media-Types / image / apng](https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Image_types#apng_animated_portable_network_graphics)
 	 */
 	ImageAPNG = 'image/apng',
 	/**
@@ -175,14 +176,89 @@ export const enum FetchMediaContentTypes {
 	VideoWebm = 'video/webm',
 	/**
 	 * The `audio/ogg` media content type.
+	 * @see [Media-Types / audio / ogg](https://www.iana.org/assignments/media-types/audio/ogg)
+	 * @see [[RFC5334](https://www.iana.org/go/rfc5334)] [[RFC7845](https://www.iana.org/go/rfc7845)]
 	 */
 	AudioOgg = 'audio/ogg',
 	/**
 	 * The `video/ogg` media content type.
+	 * @see [Media-Types / video / ogg](https://www.iana.org/assignments/media-types/video/ogg)
+	 * @see [[RFC5334](https://www.iana.org/go/rfc5334)] [[RFC7845](https://www.iana.org/go/rfc7845)]
 	 */
 	VideoOgg = 'video/ogg',
 	/**
+	 * The `audio/aac` media content type.
+	 * @see [Media-Types / audio / aac](https://www.iana.org/assignments/media-types/audio/aac)
+	 */
+	AudioAac = 'audio/aac',
+	/**
 	 * The `audio/wav` media content type.
 	 */
-	AudioWav = 'audio/wav'
+	AudioWav = 'audio/wav',
+	/**
+	 * The `audio/opus` media content type.
+	 * @see [Media-Types / audio / opus](https://www.iana.org/assignments/media-types/audio/opus)
+	 * @see [[RFC7587](https://www.iana.org/go/rfc7587)]
+	 */
+	AudioOpus = 'audio/opus',
+	/**
+	 * The `audio/mp4` media content type.
+	 * @see [Media-Types / audio / mp4](https://www.iana.org/assignments/media-types/audio/mp4)
+	 * @see [[RFC4337](https://www.iana.org/go/rfc4337)] [[RFC6381](https://www.iana.org/go/rfc6381)]
+	 */
+	AudioMp4 = 'audio/mp4',
+	/**
+	 * The `audio/mpeg` media content type.
+	 * @see [Media-Types / audio / mpeg](https://www.iana.org/assignments/media-types/audio/mpeg)
+	 * @see [[RFC3003](https://www.iana.org/go/rfc3003)]
+	 */
+	AudioMpeg = 'audio/mpeg',
+	/**
+	 * The `audio/vorbis` media content type.
+	 * @see [Media-Types / audio / vorbis](https://www.iana.org/assignments/media-types/audio/vorbis)
+	 * @see [[RFC5215](https://www.iana.org/go/rfc5215)]
+	 */
+	AudioVorbis = 'audio/vorbis',
+	/**
+	 * The `video/h264` media content type.
+	 * @see [Media-Types / video / h264](https://www.iana.org/assignments/media-types/video/H264)
+	 * @see [[RFC6184](https://www.iana.org/go/rfc6184)]
+	 */
+	VideoH264 = 'video/h264',
+	/**
+	 * The `video/h265` media content type.
+	 * @see [Media-Types / video / h265](https://www.iana.org/assignments/media-types/video/H265)
+	 * @see [[RFC7798](https://www.iana.org/go/rfc7798)]
+	 */
+	VideoH265 = 'video/h265',
+	/**
+	 * The `video/mp4` media content type.
+	 * @see [Media-Types / video / mp4](https://www.iana.org/assignments/media-types/video/mp4)
+	 * @see [[RFC4337](https://www.iana.org/go/rfc4337)] [[RFC6381](https://www.iana.org/go/rfc6381)]
+	 */
+	VideoMp4 = 'video/mp4',
+	/**
+	 * The `font/otf` media content type.
+	 * @see [Media-Types / font / otf](https://www.iana.org/assignments/media-types/font/otf)
+	 * @see [[RFC8081](https://www.iana.org/go/rfc8081)]
+	 */
+	FontOtf = 'font/otf',
+	/**
+	 * The `font/ttf` media content type.
+	 * @see [Media-Types / font / ttf](https://www.iana.org/assignments/media-types/font/ttf)
+	 * @see [[RFC8081](https://www.iana.org/go/rfc8081)]
+	 */
+	FontTtf = 'font/ttf',
+	/**
+	 * The `font/woff` media content type.
+	 * @see [Media-Types / font / woff](https://www.iana.org/assignments/media-types/font/woff)
+	 * @see [[RFC8081](https://www.iana.org/go/rfc8081)]
+	 */
+	FontWoff = 'font/woff',
+	/**
+	 * The `font/woff2` media content type.
+	 * @see [Media-Types / font / woff2](https://www.iana.org/assignments/media-types/font/woff2)
+	 * @see [[RFC8081](https://www.iana.org/go/rfc8081)]
+	 */
+	FontWoff2 = 'font/woff2'
 }
