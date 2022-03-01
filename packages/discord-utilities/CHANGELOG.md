@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.9.0](https://github.com/sapphiredev/utilities/compare/@sapphire/discord-utilities@2.8.0...@sapphire/discord-utilities@2.9.0) (2022-03-01)
+
+### Features
+
+-   **discord-utilities:** Add token regex ([#302](https://github.com/sapphiredev/utilities/issues/302)) ([6aa7aa0](https://github.com/sapphiredev/utilities/commit/6aa7aa02345957c4b6bd52c2392ebcc034b88f68))
+
 # [2.8.0](https://github.com/sapphiredev/utilities/compare/@sapphire/discord-utilities@2.7.0...@sapphire/discord-utilities@2.8.0) (2022-02-15)
 
 ### Features

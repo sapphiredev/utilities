@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/sapphiredev/utilities/compare/@sapphire/fetch@2.1.0...@sapphire/fetch@2.2.0) (2022-03-01)
+
+### Features
+
+-   **fetch:** add common media content types enum ([#303](https://github.com/sapphiredev/utilities/issues/303)) ([2f1c464](https://github.com/sapphiredev/utilities/commit/2f1c4640a9d4d12b1a22d0227172323d54eaed8f))
+-   **ts-config:** add multi-config structure ([#281](https://github.com/sapphiredev/utilities/issues/281)) ([b5191d7](https://github.com/sapphiredev/utilities/commit/b5191d7f2416dc5838590c4ff221454925553e37))
+
 # [2.1.0](https://github.com/sapphiredev/utilities/compare/@sapphire/fetch@2.0.4...@sapphire/fetch@2.1.0) (2022-01-28)
 
 ### Features
