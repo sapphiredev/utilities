@@ -10,7 +10,8 @@
 	"typedocMain": "src/index.ts",
 	"exports": {
 		"import": "./dist/index.mjs",
-		"require": "./dist/index.js"
+		"require": "./dist/index.js",
+		"types": "./dist/index.d.ts"
 	},
 	"homepage": "https://github.com/sapphiredev/utilities/tree/main/packages/phisherman",
 	"scripts": {
