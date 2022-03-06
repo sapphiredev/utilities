@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.3.0](https://github.com/sapphiredev/utilities/compare/@sapphire/eslint-config@4.2.2...@sapphire/eslint-config@4.3.0) (2022-03-06)
+
+### Features
+
+-   allow module: NodeNext ([#306](https://github.com/sapphiredev/utilities/issues/306)) ([9dc6dd6](https://github.com/sapphiredev/utilities/commit/9dc6dd619efab879bb2b0b3c9e64304e10a67ed6))
+
 ## [4.2.2](https://github.com/sapphiredev/utilities/compare/@sapphire/eslint-config@4.2.1...@sapphire/eslint-config@4.2.2) (2022-03-01)
 
 **Note:** Version bump only for package @sapphire/eslint-config

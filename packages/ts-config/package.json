@@ -1,6 +1,6 @@
 {
 	"name": "@sapphire/ts-config",
-	"version": "3.3.1",
+	"version": "3.3.2",
 	"description": "Shareable TypeScript configuration for the Sapphire Community",
 	"author": "@sapphire",
 	"license": "MIT",

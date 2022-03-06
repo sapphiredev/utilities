@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.10.0](https://github.com/sapphiredev/utilities/compare/@sapphire/discord-utilities@2.9.0...@sapphire/discord-utilities@2.10.0) (2022-03-06)
+
+### Features
+
+-   allow module: NodeNext ([#306](https://github.com/sapphiredev/utilities/issues/306)) ([9dc6dd6](https://github.com/sapphiredev/utilities/commit/9dc6dd619efab879bb2b0b3c9e64304e10a67ed6))
+
 # [2.9.0](https://github.com/sapphiredev/utilities/compare/@sapphire/discord-utilities@2.8.0...@sapphire/discord-utilities@2.9.0) (2022-03-01)
 
 ### Features

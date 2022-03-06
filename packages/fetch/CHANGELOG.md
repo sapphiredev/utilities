@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0](https://github.com/sapphiredev/utilities/compare/@sapphire/fetch@2.2.0...@sapphire/fetch@2.3.0) (2022-03-06)
+
+### Features
+
+-   allow module: NodeNext ([#306](https://github.com/sapphiredev/utilities/issues/306)) ([9dc6dd6](https://github.com/sapphiredev/utilities/commit/9dc6dd619efab879bb2b0b3c9e64304e10a67ed6))
+
 # [2.2.0](https://github.com/sapphiredev/utilities/compare/@sapphire/fetch@2.1.0...@sapphire/fetch@2.2.0) (2022-03-01)
 
 ### Features

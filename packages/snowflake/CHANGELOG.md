@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.2.0](https://github.com/sapphiredev/utilities/compare/@sapphire/snowflake@3.1.0...@sapphire/snowflake@3.2.0) (2022-03-06)
+
+### Bug Fixes
+
+-   **snowflake:** fixed the examples for `DiscordSnowflake` and `TwitterSnowflake` ([#282](https://github.com/sapphiredev/utilities/issues/282)) ([2e5ed7f](https://github.com/sapphiredev/utilities/commit/2e5ed7fdadccf261967c45f73d0dc78e2497eed3))
+
+### Features
+
+-   allow module: NodeNext ([#306](https://github.com/sapphiredev/utilities/issues/306)) ([9dc6dd6](https://github.com/sapphiredev/utilities/commit/9dc6dd619efab879bb2b0b3c9e64304e10a67ed6))
+-   **ts-config:** add multi-config structure ([#281](https://github.com/sapphiredev/utilities/issues/281)) ([b5191d7](https://github.com/sapphiredev/utilities/commit/b5191d7f2416dc5838590c4ff221454925553e37))
+
 # [3.1.0](https://github.com/sapphiredev/utilities/compare/@sapphire/snowflake@3.0.1...@sapphire/snowflake@3.1.0) (2022-01-28)
 
 ### Features
