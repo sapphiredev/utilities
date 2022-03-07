@@ -1,6 +1,6 @@
 {
 	"name": "@sapphire/prettier-config",
-	"version": "1.3.0",
+	"version": "1.4.0",
 	"description": "Standard Prettier config for the Sapphire Community",
 	"author": "@sapphire",
 	"license": "MIT",
