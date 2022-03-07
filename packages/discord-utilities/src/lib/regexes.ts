@@ -150,4 +150,4 @@ export const WebSocketUrlRegex = /^wss?:\/\//;
  * @remark Capture group 3 is the token of the Discord Webhook. It is named `token`.
  * @remark for regular HTTP URLs see {@link HttpUrlRegex}
  */
-export const WebhookRegex = /(?<url>^https:\/\/(?:(?:canary|ptb).)?discordapp.com\/api\/webhooks\/(?<id>\d+)\/(?<token>[\w-]+)\/?$)/;
+export const WebhookRegex = /(?<url>^https:\/\/(?:(?:canary|ptb).)?discord(?:app)?.com\/api(?:\/v\d+)?\/webhooks\/(?<id>\d+)\/(?<token>[\w-]+)\/?$)/;
