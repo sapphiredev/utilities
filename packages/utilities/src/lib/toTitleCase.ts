@@ -10,6 +10,8 @@ const baseVariants: Record<string, string> = {
  * Converts a string to Title Case
  * @description This is designed to also ensure common Discord PascalCased strings
  * 				are put in their TitleCase baseVariants. See below for the full list.
+ *              You can also provide your own variants to merge with the baseVariants
+ *              for your own functionality use.
  * @param str The string to title case
  * @param variants The optional title case variants to merge with baseVariants
  * @terms
