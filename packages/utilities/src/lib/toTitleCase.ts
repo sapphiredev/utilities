@@ -1,7 +1,8 @@
 const TO_TITLE_CASE = /[A-Za-zÀ-ÖØ-öø-ÿ]\S*/g;
 
 /**
- * The variants that will not strictly follow the `toTitleCase` algorithm and will instead return the value matched with the key.
+ * The variants that will not strictly follow the `toTitleCase` algorithm
+ * and will instead return the value matched with the key.
  *
  * This table lists how certain terms are converted, these are case insensitive.
  * Any terms not included are converted to regular `Titlecase`.
