@@ -36,6 +36,6 @@ export * from './lib/range';
 export * from './lib/regExpEsc';
 export * from './lib/roundNumber';
 export * from './lib/splitText';
-export * from './lib/toTitleCase';
+export { toTitleCase, ToTitleCaseOptions } from './lib/toTitleCase';
 export * from './lib/tryParse';
 export * from './lib/utilityTypes';
