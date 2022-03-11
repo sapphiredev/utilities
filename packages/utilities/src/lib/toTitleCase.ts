@@ -4,7 +4,7 @@ const TO_TITLE_CASE = /[A-Za-zÀ-ÖØ-öø-ÿ]\S*/g;
  * The variants that will not strictly follow the `toTitleCase` algorithm
  * and will instead return the value matched with the key.
  *
- * This table lists how certain terms are converted, these are case insensitive.
+ * This table lists how certain terms are converted.
  * Any terms not included are converted to regular `Titlecase`.
  * |       Term       |   Converted To   |
  * |:---------------- |:---------------- |
@@ -30,10 +30,37 @@ export const baseVariants: Record<string, string> = {
  * your own functionality use.
  *
  * @param str The string to title case
- * @param additionalVariants The optional title case variants to merge with {@link baseVariants}
+ * @param options The options to use when converting the string
  */
-export function toTitleCase(str: string, additionalVariants: Record<string, string> = {}): string {
-	const titleCaseVariants = { ...baseVariants, ...additionalVariants };
+export function toTitleCase(str: string, options: ToTitleCaseOptions = {}): string {
+	const { additionalVariants = {}, caseSensitive } = options;
+	const titleCaseVariants = {
+		...baseVariants,
+		...(caseSensitive
+			? additionalVariants
+			: Object.entries(additionalVariants).reduce<Record<string, string>>(
+					(variants, [key, variant]) => ({ ...variants, [key.toLowerCase()]: variant }),
+					{}
+			  ))
+	};
 
-	return str.replace(TO_TITLE_CASE, (txt) => titleCaseVariants[txt] ?? txt.charAt(0).toUpperCase() + txt.substring(1).toLowerCase());
+	return str.replace(
+		TO_TITLE_CASE,
+		(txt) => titleCaseVariants[caseSensitive ? txt : txt.toLowerCase()] ?? txt.charAt(0).toUpperCase() + txt.substring(1).toLowerCase()
+	);
+}
+
+/**
+ * The options to use when converting a string to title case
+ */
+export interface ToTitleCaseOptions {
+	/**
+	 * The optional additional variants to use when converting the string
+	 */
+	additionalVariants?: Record<string, string>;
+
+	/**
+	 * Whether to convert the string to title case in a case sensitive manner.
+	 */
+	caseSensitive?: boolean;
 }
