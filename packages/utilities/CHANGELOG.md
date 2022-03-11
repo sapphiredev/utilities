@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.5.0](https://github.com/sapphiredev/utilities/compare/@sapphire/utilities@3.4.0...@sapphire/utilities@3.5.0) (2022-03-11)
+
+### Features
+
+-   **utlities:** add title case `options` param ([#313](https://github.com/sapphiredev/utilities/issues/313)) ([ca7cffa](https://github.com/sapphiredev/utilities/commit/ca7cffa015d027de6ba4121f45c0b88867aede02))
+
 # [3.4.0](https://github.com/sapphiredev/utilities/compare/@sapphire/utilities@3.3.0...@sapphire/utilities@3.4.0) (2022-03-06)
 
 ### Features
