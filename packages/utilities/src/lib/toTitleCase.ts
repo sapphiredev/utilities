@@ -5,12 +5,12 @@ const TO_TITLE_CASE = /[A-Za-zÀ-ÖØ-öø-ÿ]\S*/g;
  *
  * This table lists how certain terms are converted, these are case insensitive.
  * Any terms not included are converted to regular `Titlecase`.
- * |       Term      	|   Converted To  	|
- * |:---------------:	|:---------------:	|
- * | textchannel     	| TextChannel     	|
- * | voicechannel    	| VoiceChannel    	|
- * | categorychannel 	| CategoryChannel 	|
- * | guildmember     	| GuildMember     	|
+ * |       Term       |   Converted To   |
+ * |:---------------- |:---------------- |
+ * | textchannel      | TextChannel      |
+ * | voicechannel     | VoiceChannel     |
+ * | categorychannel  | CategoryChannel  |
+ * | guildmember      | GuildMember      |
  */
 export const baseVariants: Record<string, string> = {
 	textchannel: 'TextChannel',
