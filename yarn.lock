@@ -2016,29 +2016,29 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@sapphire/decorators@workspace:packages/decorators"
   dependencies:
-    "@sapphire/discord-utilities": ^2.10.0
-    "@sapphire/discord.js-utilities": ^4.9.0
-    "@sapphire/ratelimits": ^2.4.0
-    "@sapphire/utilities": ^3.4.0
+    "@sapphire/discord-utilities": ^2.10.1
+    "@sapphire/discord.js-utilities": ^4.9.1
+    "@sapphire/ratelimits": ^2.4.1
+    "@sapphire/utilities": ^3.5.0
     tslib: ^2.3.1
   languageName: unknown
   linkType: soft
 
-"@sapphire/discord-utilities@^2.10.0, @sapphire/discord-utilities@^2.8.0, @sapphire/discord-utilities@workspace:packages/discord-utilities":
+"@sapphire/discord-utilities@^2.10.1, @sapphire/discord-utilities@^2.8.0, @sapphire/discord-utilities@workspace:packages/discord-utilities":
   version: 0.0.0-use.local
   resolution: "@sapphire/discord-utilities@workspace:packages/discord-utilities"
   dependencies:
-    twemoji-parser: ^13.1.0
+    twemoji-parser: ^14.0.0
   languageName: unknown
   linkType: soft
 
-"@sapphire/discord.js-utilities@^4.8.1, @sapphire/discord.js-utilities@^4.9.0, @sapphire/discord.js-utilities@workspace:packages/discord.js-utilities":
+"@sapphire/discord.js-utilities@^4.8.1, @sapphire/discord.js-utilities@^4.9.1, @sapphire/discord.js-utilities@workspace:packages/discord.js-utilities":
   version: 0.0.0-use.local
   resolution: "@sapphire/discord.js-utilities@workspace:packages/discord.js-utilities"
   dependencies:
-    "@sapphire/discord-utilities": ^2.10.0
-    "@sapphire/time-utilities": ^1.7.0
-    "@sapphire/utilities": ^3.4.0
+    "@sapphire/discord-utilities": ^2.10.1
+    "@sapphire/time-utilities": ^1.7.1
+    "@sapphire/utilities": ^3.5.0
     tslib: ^2.3.1
   languageName: unknown
   linkType: soft
@@ -2124,11 +2124,11 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@sapphire/ratelimits@^2.3.1, @sapphire/ratelimits@^2.4.0, @sapphire/ratelimits@workspace:packages/ratelimits":
+"@sapphire/ratelimits@^2.3.1, @sapphire/ratelimits@^2.4.1, @sapphire/ratelimits@workspace:packages/ratelimits":
   version: 0.0.0-use.local
   resolution: "@sapphire/ratelimits@workspace:packages/ratelimits"
   dependencies:
-    "@sapphire/time-utilities": ^1.7.0
+    "@sapphire/time-utilities": ^1.7.1
   languageName: unknown
   linkType: soft
 
@@ -2152,11 +2152,11 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@sapphire/time-utilities@^1.7.0, @sapphire/time-utilities@workspace:packages/time-utilities":
+"@sapphire/time-utilities@^1.7.1, @sapphire/time-utilities@workspace:packages/time-utilities":
   version: 0.0.0-use.local
   resolution: "@sapphire/time-utilities@workspace:packages/time-utilities"
   dependencies:
-    "@sapphire/utilities": ^3.4.0
+    "@sapphire/utilities": ^3.5.0
   languageName: unknown
   linkType: soft
 
@@ -2169,7 +2169,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@sapphire/utilities@^3.0.1, @sapphire/utilities@^3.1.0, @sapphire/utilities@^3.3.0, @sapphire/utilities@^3.4.0, @sapphire/utilities@workspace:packages/utilities":
+"@sapphire/utilities@^3.0.1, @sapphire/utilities@^3.1.0, @sapphire/utilities@^3.3.0, @sapphire/utilities@^3.5.0, @sapphire/utilities@workspace:packages/utilities":
   version: 0.0.0-use.local
   resolution: "@sapphire/utilities@workspace:packages/utilities"
   languageName: unknown
@@ -10124,10 +10124,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"twemoji-parser@npm:^13.1.0":
-  version: 13.1.0
-  resolution: "twemoji-parser@npm:13.1.0"
-  checksum: 8046ce003c03dd92d68c2648cfbfa39c659fca4f05c10da8d14957985dc3c0c680f3ecf2de8245dc1ddffedc5b2a675f2032053e1e77cc7474301a88fe192ad3
+"twemoji-parser@npm:^14.0.0":
+  version: 14.0.0
+  resolution: "twemoji-parser@npm:14.0.0"
+  checksum: 8eede69cf71f94735de7b6fddf5dfbfe3cb2e01baefc3201360984ccc97cfc659f206c8f73bd1405a2282779af3b79a8c9bed3864c672e15e2dc6f8ce4810452
   languageName: node
   linkType: hard
 
