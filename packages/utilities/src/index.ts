@@ -1,4 +1,5 @@
 export * from './lib/arrayStrictEquals';
+export * from './lib/cast';
 export * from './lib/chunk';
 export * from './lib/classExtends';
 export * from './lib/codeBlock';
