@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.6.0](https://github.com/sapphiredev/utilities/compare/@sapphire/utilities@3.5.0...@sapphire/utilities@3.6.0) (2022-03-20)
+
+### Features
+
+-   **utilities:** add `cast` method ([7e02bf5](https://github.com/sapphiredev/utilities/commit/7e02bf5b34f33c4cafb321055629c9f6a24c5ed9))
+
 # [3.5.0](https://github.com/sapphiredev/utilities/compare/@sapphire/utilities@3.4.0...@sapphire/utilities@3.5.0) (2022-03-11)
 
 ### Features

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.10.2](https://github.com/sapphiredev/utilities/compare/@sapphire/discord-utilities@2.10.1...@sapphire/discord-utilities@2.10.2) (2022-03-20)
+
+### Bug Fixes
+
+-   **deps:** update dependency twemoji-parser to v14 ([#315](https://github.com/sapphiredev/utilities/issues/315)) ([3a659a7](https://github.com/sapphiredev/utilities/commit/3a659a7242e397f351bbeea4be404ca81eab93d6))
+
 ## [2.10.1](https://github.com/sapphiredev/utilities/compare/@sapphire/discord-utilities@2.10.0...@sapphire/discord-utilities@2.10.1) (2022-03-11)
 
 **Note:** Version bump only for package @sapphire/discord-utilities

@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.3.1](https://github.com/sapphiredev/utilities/compare/@sapphire/eslint-config@4.3.0...@sapphire/eslint-config@4.3.1) (2022-03-20)
+
+**Note:** Version bump only for package @sapphire/eslint-config
+
 # [4.3.0](https://github.com/sapphiredev/utilities/compare/@sapphire/eslint-config@4.2.2...@sapphire/eslint-config@4.3.0) (2022-03-06)
 
 ### Features
