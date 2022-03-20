@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.9.3](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@4.9.2...@sapphire/discord.js-utilities@4.9.3) (2022-03-20)
+
+**Note:** Version bump only for package @sapphire/discord.js-utilities
+
 ## [4.9.2](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@4.9.1...@sapphire/discord.js-utilities@4.9.2) (2022-03-20)
 
 **Note:** Version bump only for package @sapphire/discord.js-utilities

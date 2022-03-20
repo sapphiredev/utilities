@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.6.1](https://github.com/sapphiredev/utilities/compare/@sapphire/utilities@3.6.0...@sapphire/utilities@3.6.1) (2022-03-20)
+
+### Bug Fixes
+
+-   **utilities:** remove `U` type from `cast` ([241ca66](https://github.com/sapphiredev/utilities/commit/241ca66bcecb11477c948e11c0428c31f4e34e6b))
+
 # [3.6.0](https://github.com/sapphiredev/utilities/compare/@sapphire/utilities@3.5.0...@sapphire/utilities@3.6.0) (2022-03-20)
 
 ### Features
