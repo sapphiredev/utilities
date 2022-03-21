@@ -1,0 +1,56 @@
+{
+	"name": "@sapphire/argument",
+	"version": "0.0.1",
+	"description": "template",
+	"author": "@sapphire",
+	"license": "MIT",
+	"main": "dist/index.js",
+	"module": "dist/index.mjs",
+	"types": "dist/index.d.ts",
+	"typedocMain": "src/index.ts",
+	"exports": {
+		"import": "./dist/index.mjs",
+		"require": "./dist/index.js",
+		"types": "./dist/index.d.ts"
+	},
+	"sideEffects": false,
+	"homepage": "https://github.com/sapphiredev/utilities/tree/main/packages/argument",
+	"scripts": {
+		"lint": "eslint src --ext ts --fix -c ../../.eslintrc",
+		"build": "tsup && tsc -b src",
+		"prepublishOnly": "rollup-type-bundler -e @sapphire/discord-utilities @sapphire/time-utilities @sapphire/utilities discord.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/sapphiredev/utilities.git",
+		"directory": "packages/argument"
+	},
+	"files": [
+		"dist",
+		"!dist/*.tsbuildinfo"
+	],
+	"engines": {
+		"node": ">=16.6.0",
+		"npm": ">=7.0.0"
+	},
+	"keywords": [
+		"@sapphire/argument",
+		"bot",
+		"typescript",
+		"ts",
+		"yarn",
+		"discord",
+		"sapphire",
+		"standalone",
+		"discord.js"
+	],
+	"bugs": {
+		"url": "https://github.com/sapphiredev/utilities/issues"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"dependencies": {
+		"tslib": "^2.3.1"
+	}
+}
