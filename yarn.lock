@@ -2017,9 +2017,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@sapphire/discord-argument@workspace:packages/argument":
+"@sapphire/discord-argument@workspace:packages/discord-argument":
   version: 0.0.0-use.local
-  resolution: "@sapphire/discord-argument@workspace:packages/argument"
+  resolution: "@sapphire/discord-argument@workspace:packages/discord-argument"
   dependencies:
     "@sapphire/discord.js-utilities": "workspace:^"
     "@sapphire/pieces": ^3.3.0
