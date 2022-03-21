@@ -39,27 +39,5 @@ export const enum Identifiers {
 	ArgumentStringTooShort = 'stringTooShort',
 	ArgumentUserError = 'userError',
 	ArgumentEnumEmptyError = 'enumEmptyError',
-	ArgumentEnumError = 'enumError',
-
-	CommandDisabled = 'commandDisabled',
-
-	PreconditionCooldown = 'preconditionCooldown',
-	PreconditionDMOnly = 'preconditionDmOnly',
-	PreconditionGuildNewsOnly = 'preconditionGuildNewsOnly',
-	PreconditionGuildNewsThreadOnly = 'preconditionGuildNewsThreadOnly',
-	PreconditionGuildOnly = 'preconditionGuildOnly',
-	PreconditionGuildPrivateThreadOnly = 'preconditionGuildPrivateThreadOnly',
-	PreconditionGuildPublicThreadOnly = 'preconditionGuildPublicThreadOnly',
-	PreconditionGuildTextOnly = 'preconditionGuildTextOnly',
-	PreconditionNSFW = 'preconditionNsfw',
-	PreconditionClientPermissions = 'preconditionClientPermissions',
-	PreconditionClientPermissionsNoClient = 'preconditionClientPermissionsNoClient',
-	PreconditionClientPermissionsNoPermissions = 'preconditionClientPermissionsNoPermissions',
-	PreconditionUserPermissions = 'preconditionUserPermissions',
-	PreconditionUserPermissionsNoPermissions = 'preconditionUserPermissionsNoPermissions',
-	PreconditionThreadOnly = 'preconditionThreadOnly',
-
-	PreconditionMissingMessageHandler = 'preconditionMissingMessageHandler',
-	PreconditionMissingChatInputHandler = 'preconditionMissingChatInputHandler',
-	PreconditionMissingContextMenuHandler = 'preconditionMissingContextMenuHandler'
+	ArgumentEnumError = 'enumError'
 }
