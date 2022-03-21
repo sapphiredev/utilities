@@ -1,3 +1,4 @@
+/packages/argument/**/*.ts @vladfrangu @kyranet @favna
 /packages/async-queue/**/*.ts @vladfrangu @kyranet @favna
 /packages/decorators/**/*.ts @vladfrangu @kyranet @favna
 /packages/discord-utilities/**/*.ts @favna

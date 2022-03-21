@@ -1999,6 +1999,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@sapphire/argument@workspace:packages/argument":
+  version: 0.0.0-use.local
+  resolution: "@sapphire/argument@workspace:packages/argument"
+  dependencies:
+    "@sapphire/discord.js-utilities": "workspace:^"
+    "@sapphire/pieces": ^3.3.0
+    "@sapphire/result": "workspace:^"
+    lexure: ^0.17.0
+    tslib: ^2.3.1
+  languageName: unknown
+  linkType: soft
+
 "@sapphire/async-queue@^1.1.9, @sapphire/async-queue@^1.3.0, @sapphire/async-queue@workspace:packages/async-queue":
   version: 0.0.0-use.local
   resolution: "@sapphire/async-queue@workspace:packages/async-queue"
@@ -2010,9 +2022,9 @@ __metadata:
   resolution: "@sapphire/decorators@workspace:packages/decorators"
   dependencies:
     "@sapphire/discord-utilities": ^2.10.2
-    "@sapphire/discord.js-utilities": ^4.9.2
-    "@sapphire/ratelimits": ^2.4.2
-    "@sapphire/utilities": ^3.6.0
+    "@sapphire/discord.js-utilities": ^4.9.3
+    "@sapphire/ratelimits": ^2.4.3
+    "@sapphire/utilities": ^3.6.1
     tslib: ^2.3.1
   languageName: unknown
   linkType: soft
@@ -2025,13 +2037,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@sapphire/discord.js-utilities@^4.8.1, @sapphire/discord.js-utilities@^4.9.2, @sapphire/discord.js-utilities@workspace:packages/discord.js-utilities":
+"@sapphire/discord.js-utilities@^4.8.1, @sapphire/discord.js-utilities@^4.9.3, @sapphire/discord.js-utilities@workspace:^, @sapphire/discord.js-utilities@workspace:packages/discord.js-utilities":
   version: 0.0.0-use.local
   resolution: "@sapphire/discord.js-utilities@workspace:packages/discord.js-utilities"
   dependencies:
     "@sapphire/discord-utilities": ^2.10.2
-    "@sapphire/time-utilities": ^1.7.2
-    "@sapphire/utilities": ^3.6.0
+    "@sapphire/time-utilities": ^1.7.3
+    "@sapphire/utilities": ^3.6.1
     tslib: ^2.3.1
   languageName: unknown
   linkType: soft
@@ -2098,7 +2110,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@sapphire/pieces@npm:^3.2.0":
+"@sapphire/pieces@npm:^3.2.0, @sapphire/pieces@npm:^3.3.0":
   version: 3.3.0
   resolution: "@sapphire/pieces@npm:3.3.0"
   dependencies:
@@ -2117,15 +2129,15 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@sapphire/ratelimits@^2.3.1, @sapphire/ratelimits@^2.4.2, @sapphire/ratelimits@workspace:packages/ratelimits":
+"@sapphire/ratelimits@^2.3.1, @sapphire/ratelimits@^2.4.3, @sapphire/ratelimits@workspace:packages/ratelimits":
   version: 0.0.0-use.local
   resolution: "@sapphire/ratelimits@workspace:packages/ratelimits"
   dependencies:
-    "@sapphire/time-utilities": ^1.7.2
+    "@sapphire/time-utilities": ^1.7.3
   languageName: unknown
   linkType: soft
 
-"@sapphire/result@workspace:packages/result":
+"@sapphire/result@workspace:^, @sapphire/result@workspace:packages/result":
   version: 0.0.0-use.local
   resolution: "@sapphire/result@workspace:packages/result"
   languageName: unknown
@@ -2145,11 +2157,11 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@sapphire/time-utilities@^1.7.2, @sapphire/time-utilities@workspace:packages/time-utilities":
+"@sapphire/time-utilities@^1.7.3, @sapphire/time-utilities@workspace:packages/time-utilities":
   version: 0.0.0-use.local
   resolution: "@sapphire/time-utilities@workspace:packages/time-utilities"
   dependencies:
-    "@sapphire/utilities": ^3.6.0
+    "@sapphire/utilities": ^3.6.1
   languageName: unknown
   linkType: soft
 
@@ -2162,7 +2174,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@sapphire/utilities@^3.0.1, @sapphire/utilities@^3.1.0, @sapphire/utilities@^3.3.0, @sapphire/utilities@^3.4.0, @sapphire/utilities@^3.6.0, @sapphire/utilities@workspace:packages/utilities":
+"@sapphire/utilities@^3.0.1, @sapphire/utilities@^3.1.0, @sapphire/utilities@^3.3.0, @sapphire/utilities@^3.4.0, @sapphire/utilities@^3.6.1, @sapphire/utilities@workspace:packages/utilities":
   version: 0.0.0-use.local
   resolution: "@sapphire/utilities@workspace:packages/utilities"
   languageName: unknown

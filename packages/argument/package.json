@@ -18,7 +18,7 @@
 	"scripts": {
 		"lint": "eslint src --ext ts --fix -c ../../.eslintrc",
 		"build": "tsup && tsc -b src",
-		"prepublishOnly": "rollup-type-bundler -e @sapphire/discord-utilities @sapphire/time-utilities @sapphire/utilities discord.js"
+		"prepublishOnly": "rollup-type-bundler -e @sapphire/result @sapphire/pieces @sapphire/discord.js-utilities discord.js"
 	},
 	"repository": {
 		"type": "git",
@@ -51,6 +51,10 @@
 		"access": "public"
 	},
 	"dependencies": {
+		"@sapphire/discord.js-utilities": "workspace:^",
+		"@sapphire/pieces": "^3.3.0",
+		"@sapphire/result": "workspace:^",
+		"lexure": "^0.17.0",
 		"tslib": "^2.3.1"
 	}
 }
