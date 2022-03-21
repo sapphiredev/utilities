@@ -1999,18 +1999,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/argument@workspace:packages/argument":
-  version: 0.0.0-use.local
-  resolution: "@sapphire/argument@workspace:packages/argument"
-  dependencies:
-    "@sapphire/discord.js-utilities": "workspace:^"
-    "@sapphire/pieces": ^3.3.0
-    "@sapphire/result": "workspace:^"
-    lexure: ^0.17.0
-    tslib: ^2.3.1
-  languageName: unknown
-  linkType: soft
-
 "@sapphire/async-queue@^1.1.9, @sapphire/async-queue@^1.3.0, @sapphire/async-queue@workspace:packages/async-queue":
   version: 0.0.0-use.local
   resolution: "@sapphire/async-queue@workspace:packages/async-queue"
@@ -2025,6 +2013,18 @@ __metadata:
     "@sapphire/discord.js-utilities": ^4.9.3
     "@sapphire/ratelimits": ^2.4.3
     "@sapphire/utilities": ^3.6.1
+    tslib: ^2.3.1
+  languageName: unknown
+  linkType: soft
+
+"@sapphire/discord-argument@workspace:packages/argument":
+  version: 0.0.0-use.local
+  resolution: "@sapphire/discord-argument@workspace:packages/argument"
+  dependencies:
+    "@sapphire/discord.js-utilities": "workspace:^"
+    "@sapphire/pieces": ^3.3.0
+    "@sapphire/result": "workspace:^"
+    lexure: ^0.17.0
     tslib: ^2.3.1
   languageName: unknown
   linkType: soft

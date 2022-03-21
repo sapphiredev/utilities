@@ -2,13 +2,13 @@
 
 ![Sapphire Logo](https://cdn.skyra.pw/gh-assets/sapphire-banner.png)
 
-# @sapphire/argument
+# @sapphire/discord-argument
 
 **Template for Sapphire Repositories.**
 
-[![GitHub](https://img.shields.io/github/license/sapphiredev/sapphire-template)](https://github.com/sapphiredev/sapphire-template/blob/main/LICENSE.md)
-[![codecov](https://codecov.io/gh/sapphiredev/sapphire-template/branch/main/graph/badge.svg?token=0MSAyoZNxz)](https://codecov.io/gh/sapphiredev/sapphire-template)
-[![npm](https://img.shields.io/npm/v/@sapphire/template?color=crimson&logo=npm&style=flat-square)](https://www.npmjs.com/package/@sapphire/template)
+[![GitHub](https://img.shields.io/github/license/sapphiredev/utilities)](https://github.com/sapphiredev/utilities/blob/main/LICENSE.md)
+[![codecov](https://codecov.io/gh/sapphiredev/utilities/branch/main/graph/badge.svg?token=OEGIV6RFDO)](https://codecov.io/gh/sapphiredev/utilities)[![npm bundle size](https://img.shields.io/bundlephobia/min/@sapphire/discord-argument?logo=webpack&style=flat-square)](https://bundlephobia.com/result?p=@sapphire/discord-argument)
+[![npm](https://img.shields.io/npm/v/@sapphire/discord-argument?color=crimson&logo=npm&style=flat-square)](https://www.npmjs.com/package/@sapphire/discord-argument)
 
 </div>
 

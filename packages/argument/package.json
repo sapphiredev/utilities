@@ -1,5 +1,5 @@
 {
-	"name": "@sapphire/argument",
+	"name": "@sapphire/discord-argument",
 	"version": "0.0.1",
 	"description": "template",
 	"author": "@sapphire",
@@ -14,7 +14,7 @@
 		"types": "./dist/index.d.ts"
 	},
 	"sideEffects": false,
-	"homepage": "https://github.com/sapphiredev/utilities/tree/main/packages/argument",
+	"homepage": "https://github.com/sapphiredev/utilities/tree/main/packages/discord-argument",
 	"scripts": {
 		"lint": "eslint src --ext ts --fix -c ../../.eslintrc",
 		"build": "tsup && tsc -b src",
