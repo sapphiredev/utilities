@@ -1,12 +1,11 @@
-import type { Config } from '@jest/types';
-
-// eslint-disable-next-line @typescript-eslint/require-await
-export default async (): Promise<Config.InitialOptions> => ({
+/** @type {import('@jest/types').Config.InitialOptions} */
+const config = {
 	displayName: 'unit test',
 	preset: 'ts-jest',
 	testEnvironment: 'node',
 	testRunner: 'jest-circus/runner',
 	testMatch: ['<rootDir>/packages/**/tests/**/*.test.ts', '<rootDir>/packages/**/tests/**/*.test.js', '<rootDir>/packages/**/tests/**/*.test.tsx'],
+	collectCoverageFrom: ['<rootDir>/packages/src/**/*.ts'],
 	setupFilesAfterEnv: ['jest-extended/all'],
 	globals: {
 		'ts-jest': {
@@ -20,4 +19,6 @@ export default async (): Promise<Config.InitialOptions> => ({
 		'<rootDir>/packages/utilities/src/index.ts',
 		'<rootDir>/packages/utilities/src/lib/debounce/index.ts'
 	]
-});
+};
+
+export default config;
