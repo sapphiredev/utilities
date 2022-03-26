@@ -34,7 +34,7 @@
 		"npm": ">=7.0.0"
 	},
 	"keywords": [
-		"@sapphire/argument",
+		"@sapphire/argument-parser",
 		"bot",
 		"typescript",
 		"ts",
