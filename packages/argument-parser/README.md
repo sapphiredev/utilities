@@ -4,7 +4,7 @@
 
 # @sapphire/argument-parser
 
-**Template for Sapphire Repositories.**
+**Argument parser for your JavaScript/TypeScript Discord bots.**
 
 [![GitHub](https://img.shields.io/github/license/sapphiredev/utilities)](https://github.com/sapphiredev/utilities/blob/main/LICENSE.md)
 [![codecov](https://codecov.io/gh/sapphiredev/utilities/branch/main/graph/badge.svg?token=OEGIV6RFDO)](https://codecov.io/gh/sapphiredev/utilities)[![npm bundle size](https://img.shields.io/bundlephobia/min/@sapphire/argument-parser?logo=webpack&style=flat-square)](https://bundlephobia.com/result?p=@sapphire/argument-parser)
@@ -14,12 +14,17 @@
 
 ## Features
 
--   This
--   Needs
--   Some
--   More
--   Filling
--   In
+-   Written in TypeScript
+-   Bundled with esbuild to provide size-optimal bundles
+-   Offers CommonJS and ESM bundles
+
+## Installation
+
+You can use the following command to install this package, or replace `npm install` with your package manager of choice.
+
+```bash
+npm install @sapphire/argument-parser
+```
 
 ## Buy us some doughnuts
 

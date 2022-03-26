@@ -1,7 +1,7 @@
 {
 	"name": "@sapphire/argument-parser",
 	"version": "0.0.0",
-	"description": "template",
+	"description": "Argument parser for your JavaScript/TypeScript Discord bots.",
 	"author": "@sapphire",
 	"license": "MIT",
 	"main": "dist/index.js",
