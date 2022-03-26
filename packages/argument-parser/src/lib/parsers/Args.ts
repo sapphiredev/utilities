@@ -15,13 +15,17 @@ import type {
 	VoiceChannel
 } from 'discord.js';
 import type * as Lexure from 'lexure';
+import { join } from 'path';
 import type { URL } from 'url';
 import { ArgumentError } from '../errors/ArgumentError';
 import { Identifiers } from '../errors/Identifiers';
 import { UserError } from '../errors/UserError';
 import type { EmojiObject } from '../resolvers/emoji';
 import type { Argument, IArgument } from '../structures/Argument';
+import { ArgumentStore } from '../structures/ArgumentStore';
 import type { Command } from '../structures/Command';
+
+container.stores.register(new ArgumentStore().registerPath(join(__dirname, '..', 'arguments')));
 
 /**
  * The argument parser to be used in {@link Command}.
@@ -662,7 +666,6 @@ export class Args {
 	 */
 	private resolveArgument<T>(arg: keyof ArgType | IArgument<T>): IArgument<T> | undefined {
 		if (typeof arg === 'object') return arg;
-		// TODO: lemme learn pieces first
 		return container.stores.get('arguments').get(arg as string) as IArgument<T> | undefined;
 	}
 
@@ -738,4 +741,10 @@ export interface ArgsNextCallback<T> {
 	 * The value to be mapped.
 	 */
 	(value: string): Maybe<T>;
+}
+
+declare module '@sapphire/pieces' {
+	interface StoreRegistryEntries {
+		arguments: ArgumentStore;
+	}
 }
