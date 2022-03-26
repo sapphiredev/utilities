@@ -1999,6 +1999,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@sapphire/argument-parser@workspace:packages/argument-parser":
+  version: 0.0.0-use.local
+  resolution: "@sapphire/argument-parser@workspace:packages/argument-parser"
+  dependencies:
+    "@sapphire/discord.js-utilities": "*"
+    "@sapphire/pieces": ^3.3.0
+    "@sapphire/result": "*"
+    lexure: ^0.17.0
+    tslib: ^2.3.1
+  languageName: unknown
+  linkType: soft
+
 "@sapphire/async-queue@^1.1.9, @sapphire/async-queue@^1.3.0, @sapphire/async-queue@workspace:packages/async-queue":
   version: 0.0.0-use.local
   resolution: "@sapphire/async-queue@workspace:packages/async-queue"
@@ -2017,18 +2029,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@sapphire/discord-argument@workspace:packages/discord-argument":
-  version: 0.0.0-use.local
-  resolution: "@sapphire/discord-argument@workspace:packages/discord-argument"
-  dependencies:
-    "@sapphire/discord.js-utilities": "workspace:^"
-    "@sapphire/pieces": ^3.3.0
-    "@sapphire/result": "workspace:^"
-    lexure: ^0.17.0
-    tslib: ^2.3.1
-  languageName: unknown
-  linkType: soft
-
 "@sapphire/discord-utilities@^2.10.2, @sapphire/discord-utilities@^2.8.0, @sapphire/discord-utilities@workspace:packages/discord-utilities":
   version: 0.0.0-use.local
   resolution: "@sapphire/discord-utilities@workspace:packages/discord-utilities"
@@ -2037,7 +2037,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@sapphire/discord.js-utilities@^4.8.1, @sapphire/discord.js-utilities@^4.9.3, @sapphire/discord.js-utilities@workspace:^, @sapphire/discord.js-utilities@workspace:packages/discord.js-utilities":
+"@sapphire/discord.js-utilities@*, @sapphire/discord.js-utilities@^4.8.1, @sapphire/discord.js-utilities@^4.9.3, @sapphire/discord.js-utilities@workspace:packages/discord.js-utilities":
   version: 0.0.0-use.local
   resolution: "@sapphire/discord.js-utilities@workspace:packages/discord.js-utilities"
   dependencies:
@@ -2137,7 +2137,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@sapphire/result@workspace:^, @sapphire/result@workspace:packages/result":
+"@sapphire/result@*, @sapphire/result@workspace:packages/result":
   version: 0.0.0-use.local
   resolution: "@sapphire/result@workspace:packages/result"
   languageName: unknown

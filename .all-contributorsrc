@@ -4,6 +4,7 @@
 	"repoType": "github",
 	"repoHost": "https://github.com",
 	"files": [
+		"packages/argument-parser/README.md",
 		"packages/async-queue/README.md",
 		"packages/decorators/README.md",
 		"packages/discord-utilities/README.md",

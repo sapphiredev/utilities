@@ -17,6 +17,7 @@
 				"**/tsup.config.ts",
 				"**/jest.config.ts",
 				"**/*.d.ts",
+				"**/packages/argument-parser/**/tsconfig.json",
 				"**/packages/async-queue/**/tsconfig.json",
 				"**/packages/decorators/**/tsconfig.json",
 				"**/packages/discord-utilities/**/tsconfig.json",

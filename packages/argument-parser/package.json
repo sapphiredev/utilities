@@ -1,6 +1,6 @@
 {
-	"name": "@sapphire/discord-argument",
-	"version": "0.0.1",
+	"name": "@sapphire/argument-parser",
+	"version": "0.0.0",
 	"description": "template",
 	"author": "@sapphire",
 	"license": "MIT",
@@ -14,7 +14,7 @@
 		"types": "./dist/index.d.ts"
 	},
 	"sideEffects": false,
-	"homepage": "https://github.com/sapphiredev/utilities/tree/main/packages/discord-argument",
+	"homepage": "https://github.com/sapphiredev/utilities/tree/main/packages/argument-parser",
 	"scripts": {
 		"lint": "eslint src --ext ts --fix -c ../../.eslintrc",
 		"build": "tsup && tsc -b src",
@@ -23,7 +23,7 @@
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/sapphiredev/utilities.git",
-		"directory": "packages/argument"
+		"directory": "packages/argument-parser"
 	},
 	"files": [
 		"dist",
@@ -42,7 +42,9 @@
 		"discord",
 		"sapphire",
 		"standalone",
-		"discord.js"
+		"discord.js",
+		"argument",
+		"parser"
 	],
 	"bugs": {
 		"url": "https://github.com/sapphiredev/utilities/issues"
@@ -51,9 +53,9 @@
 		"access": "public"
 	},
 	"dependencies": {
-		"@sapphire/discord.js-utilities": "workspace:^",
+		"@sapphire/discord.js-utilities": "*",
 		"@sapphire/pieces": "^3.3.0",
-		"@sapphire/result": "workspace:^",
+		"@sapphire/result": "*",
 		"lexure": "^0.17.0",
 		"tslib": "^2.3.1"
 	}

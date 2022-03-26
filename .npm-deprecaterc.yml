@@ -1,6 +1,7 @@
 name: '*next*'
 verbose: true
 package:
+  - '@sapphire/argument-parser'
   - '@sapphire/async-queue'
   - '@sapphire/decorators'
   - '@sapphire/discord-utilities'
