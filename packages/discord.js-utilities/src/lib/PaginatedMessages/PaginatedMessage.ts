@@ -1150,11 +1150,11 @@ export class PaginatedMessage {
 	}
 
 	/**
-     * Applies footer to the last embed of the page
-     * @param message The message options
-     * @param index The current index
-     * @returns The message options with the footer applied
-     */
+	 * Applies footer to the last embed of the page
+	 * @param message The message options
+	 * @param index The current index
+	 * @returns The message options with the footer applied
+	 */
 	protected applyFooter(message: PaginatedMessageMessageOptionsUnion, index: number): PaginatedMessageMessageOptionsUnion {
 		if (!message.embeds?.length) {
 			return message;
@@ -1162,14 +1162,14 @@ export class PaginatedMessage {
 
 		const embedsWithFooterApplied = deepClone(message.embeds);
 
-        const idx = embedsWithFooterApplied.length - 1;
-        const lastEmbed = embedsWithFooterApplied[idx];
-        if (lastEmbed) {
-            lastEmbed.footer ??= { text: this.template.embeds?.[Number(idx)]?.footer?.text ?? this.template.embeds?.[0]?.footer?.text ?? '' };
-            lastEmbed.footer.text = `${this.pageIndexPrefix ? `${this.pageIndexPrefix} ` : ''}${index + 1} / ${this.pages.length}${
-                lastEmbed.footer.text ? ` ${this.embedFooterSeparator} ${lastEmbed.footer.text}` : ''
-            }`;
-        }
+		const idx = embedsWithFooterApplied.length - 1;
+		const lastEmbed = embedsWithFooterApplied[idx];
+		if (lastEmbed) {
+			lastEmbed.footer ??= { text: this.template.embeds?.[Number(idx)]?.footer?.text ?? this.template.embeds?.[0]?.footer?.text ?? '' };
+			lastEmbed.footer.text = `${this.pageIndexPrefix ? `${this.pageIndexPrefix} ` : ''}${index + 1} / ${this.pages.length}${
+				lastEmbed.footer.text ? ` ${this.embedFooterSeparator} ${lastEmbed.footer.text}` : ''
+			}`;
+		}
 
 		return { ...message, embeds: embedsWithFooterApplied };
 	}
