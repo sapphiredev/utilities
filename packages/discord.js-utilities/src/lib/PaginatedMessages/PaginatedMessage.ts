@@ -1149,6 +1149,12 @@ export class PaginatedMessage {
 		}
 	}
 
+	/**
+	 * Applies footer to the last embed of the page
+	 * @param message The message options
+	 * @param index The current index
+	 * @returns The message options with the footer applied
+	 */
 	protected applyFooter(message: PaginatedMessageMessageOptionsUnion, index: number): PaginatedMessageMessageOptionsUnion {
 		if (!message.embeds?.length) {
 			return message;
@@ -1156,13 +1162,13 @@ export class PaginatedMessage {
 
 		const embedsWithFooterApplied = deepClone(message.embeds);
 
-		for (const [idx, embed] of Object.entries(embedsWithFooterApplied)) {
-			if (embed) {
-				embed.footer ??= { text: this.template.embeds?.[Number(idx)]?.footer?.text ?? this.template.embeds?.[0]?.footer?.text ?? '' };
-				embed.footer.text = `${this.pageIndexPrefix ? `${this.pageIndexPrefix} ` : ''}${index + 1} / ${this.pages.length}${
-					embed.footer.text ? ` ${this.embedFooterSeparator} ${embed.footer.text}` : ''
-				}`;
-			}
+		const idx = embedsWithFooterApplied.length - 1;
+		const lastEmbed = embedsWithFooterApplied[idx];
+		if (lastEmbed) {
+			lastEmbed.footer ??= { text: this.template.embeds?.[idx]?.footer?.text ?? this.template.embeds?.[0]?.footer?.text ?? '' };
+			lastEmbed.footer.text = `${this.pageIndexPrefix ? `${this.pageIndexPrefix} ` : ''}${index + 1} / ${this.pages.length}${
+				lastEmbed.footer.text ? ` ${this.embedFooterSeparator} ${lastEmbed.footer.text}` : ''
+			}`;
 		}
 
 		return { ...message, embeds: embedsWithFooterApplied };
