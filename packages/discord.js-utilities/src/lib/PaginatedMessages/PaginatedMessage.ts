@@ -1165,7 +1165,7 @@ export class PaginatedMessage {
 		const idx = embedsWithFooterApplied.length - 1;
 		const lastEmbed = embedsWithFooterApplied[idx];
 		if (lastEmbed) {
-			lastEmbed.footer ??= { text: this.template.embeds?.[Number(idx)]?.footer?.text ?? this.template.embeds?.[0]?.footer?.text ?? '' };
+			lastEmbed.footer ??= { text: this.template.embeds?.[idx]?.footer?.text ?? this.template.embeds?.[0]?.footer?.text ?? '' };
 			lastEmbed.footer.text = `${this.pageIndexPrefix ? `${this.pageIndexPrefix} ` : ''}${index + 1} / ${this.pages.length}${
 				lastEmbed.footer.text ? ` ${this.embedFooterSeparator} ${lastEmbed.footer.text}` : ''
 			}`;
