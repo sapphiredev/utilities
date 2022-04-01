@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.9.4](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@4.9.3...@sapphire/discord.js-utilities@4.9.4) (2022-04-01)
+
+### Bug Fixes
+
+-   **PaginatedMessage:** removed duplicate page index footers on multiple embed pages ([#320](https://github.com/sapphiredev/utilities/issues/320)) ([0d6934d](https://github.com/sapphiredev/utilities/commit/0d6934db2aba8235270df0ec8160c7915e906831))
+
 ## [4.9.3](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@4.9.2...@sapphire/discord.js-utilities@4.9.3) (2022-03-20)
 
 **Note:** Version bump only for package @sapphire/discord.js-utilities

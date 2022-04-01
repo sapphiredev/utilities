@@ -1,6 +1,6 @@
 {
 	"name": "@sapphire/fetch",
-	"version": "2.3.0",
+	"version": "2.3.1",
 	"description": "Tiny wrapper around cross-fetch (for NodeJS) and window.fetch (for Browsers) for improved TypeScript and data type support",
 	"author": "@sapphire",
 	"license": "MIT",

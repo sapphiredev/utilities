@@ -1,6 +1,6 @@
 {
 	"name": "@sapphire/phisherman",
-	"version": "1.4.0",
+	"version": "1.4.1",
 	"description": "Wrapper around phisherman to easily check and report domains",
 	"author": "@sapphire",
 	"license": "MIT",
@@ -20,7 +20,7 @@
 		"prepublishOnly": "yarn build"
 	},
 	"dependencies": {
-		"@sapphire/fetch": "^2.3.0"
+		"@sapphire/fetch": "^2.3.1"
 	},
 	"repository": {
 		"type": "git",

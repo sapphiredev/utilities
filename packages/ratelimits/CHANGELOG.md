@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.4.4](https://github.com/sapphiredev/utilities/compare/@sapphire/ratelimits@2.4.3...@sapphire/ratelimits@2.4.4) (2022-04-01)
+
+**Note:** Version bump only for package @sapphire/ratelimits
+
 ## [2.4.3](https://github.com/sapphiredev/utilities/compare/@sapphire/ratelimits@2.4.2...@sapphire/ratelimits@2.4.3) (2022-03-20)
 
 **Note:** Version bump only for package @sapphire/ratelimits

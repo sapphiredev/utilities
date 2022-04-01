@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.1](https://github.com/sapphiredev/utilities/compare/@sapphire/embed-jsx@2.3.0...@sapphire/embed-jsx@2.3.1) (2022-04-01)
+
+**Note:** Version bump only for package @sapphire/embed-jsx
+
 # [2.3.0](https://github.com/sapphiredev/utilities/compare/@sapphire/embed-jsx@2.2.0...@sapphire/embed-jsx@2.3.0) (2022-03-06)
 
 ### Features

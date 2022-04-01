@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.3.4](https://github.com/sapphiredev/utilities/compare/@sapphire/ts-config@3.3.3...@sapphire/ts-config@3.3.4) (2022-04-01)
+
+### Bug Fixes
+
+-   **deps:** update all non-major dependencies ([308cf66](https://github.com/sapphiredev/utilities/commit/308cf66056b9b3718abb6946b1bc1cc9c144c4a3))
+
 ## [3.3.3](https://github.com/sapphiredev/utilities/compare/@sapphire/ts-config@3.3.2...@sapphire/ts-config@3.3.3) (2022-03-20)
 
 ### Bug Fixes

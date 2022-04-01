@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.1](https://github.com/sapphiredev/utilities/compare/@sapphire/event-iterator@1.6.0...@sapphire/event-iterator@1.6.1) (2022-04-01)
+
+**Note:** Version bump only for package @sapphire/event-iterator
+
 # [1.6.0](https://github.com/sapphiredev/utilities/compare/@sapphire/event-iterator@1.5.0...@sapphire/event-iterator@1.6.0) (2022-03-06)
 
 ### Features
