@@ -71,6 +71,7 @@ export function isNewsChannel(channel: ChannelTypes | Nullish): channel is NewsC
 /**
  * Checks whether a given channel is a {@link StoreChannel}
  * @param channel The channel to check
+ * @deprecated See [Self-serve Game Selling Deprecation](https://support-dev.discord.com/hc/en-us/articles/4414590563479) for more information.
  */
 export function isStoreChannel(channel: ChannelTypes | Nullish): channel is StoreChannel {
 	return channel?.type === 'GUILD_STORE';
