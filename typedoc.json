@@ -19,17 +19,6 @@
 		"packages/time-utilities/src/index.ts",
 		"packages/utilities/src/index.ts"
 	],
-	"exclude": [
-		"**/node_modules/**",
-		"**/dist/**",
-		"**/*.test.ts",
-		"packages/**/tests/**",
-		"**/*.js",
-		"**/*.d.ts",
-		"**/tsup.config.ts",
-		"**/jest.config.ts",
-		"**/jest.setup.ts"
-	],
 	"intentionallyNotExported": [
 		"ArgumentTypes",
 		"PhishermanInfo",
