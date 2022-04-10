@@ -61,7 +61,7 @@ type AuthorData = [TsxTypes.Author, string, string?, string?];
  * The namespace to import for embed-jsx
  *
  * @example
- * ```typescriptreact
+ * ```typescript
  * import { EmbedJsx } from '@sapphire/embed-jsx';
  *
  * const embed = (
