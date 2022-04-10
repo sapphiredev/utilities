@@ -5,7 +5,6 @@ package:
   - '@sapphire/decorators'
   - '@sapphire/discord-utilities'
   - '@sapphire/discord.js-utilities'
-  - '@sapphire/embed-jsx'
   - '@sapphire/eslint-config'
   - '@sapphire/event-iterator'
   - '@sapphire/fetch'

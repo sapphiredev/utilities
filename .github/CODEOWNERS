@@ -2,7 +2,6 @@
 /packages/decorators/**/*.ts @vladfrangu @kyranet @favna
 /packages/discord-utilities/**/*.ts @favna
 /packages/discord.js-utilities/src/**/*.ts @kyranet @vladfrangu @realshadownova @favna
-/packages/embed-jsx/**/*.ts @favna
 /packages/eslint-config/**/*.ts @favna
 /packages/event-iterator/**/*.ts @kyranet @vladfrangu @favna
 /packages/fetch/**/*.ts @favna @kyranet @vladfrangu

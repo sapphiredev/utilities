@@ -6,7 +6,6 @@
 		"packages/decorators/src/index.ts",
 		"packages/discord-utilities/src/index.ts",
 		"packages/discord.js-utilities/src/index.ts",
-		"packages/embed-jsx/src/index.ts",
 		"packages/eslint-config/src/index.ts",
 		"packages/event-iterator/src/index.ts",
 		"packages/fetch/src/index.ts",

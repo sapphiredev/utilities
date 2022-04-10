@@ -21,7 +21,6 @@
 				"**/packages/decorators/**/tsconfig.json",
 				"**/packages/discord-utilities/**/tsconfig.json",
 				"**/packages/discord.js-utilities/**/tsconfig.json",
-				"**/packages/embed-jsx/**/tsconfig.json",
 				"**/packages/eslint-config/**/tsconfig.json",
 				"**/packages/event-iterator/**/tsconfig.json",
 				"**/packages/fetch/**/tsconfig.json",
