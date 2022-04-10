@@ -10,7 +10,7 @@
 		"lint": "eslint packages --ext mjs,js,ts,tsx --fix",
 		"format": "prettier --write \"packages/**/{src,tests,scripts}/**/*.{mjs,ts,js}\"",
 		"test": "turbo run test",
-		"test:coverage": "yarn turbo run build --scope=@sapphire/fetch && yarn jest --coverage",
+		"test:coverage": "yarn jest --coverage",
 		"build": "turbo run build",
 		"docs": "typedoc",
 		"update": "yarn upgrade-interactive",
