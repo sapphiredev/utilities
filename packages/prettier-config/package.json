@@ -5,7 +5,6 @@
 	"author": "@sapphire",
 	"license": "MIT",
 	"main": "dist/index.js",
-	"typedocMain": "src/index.ts",
 	"exports": {
 		"import": "./dist/index.js",
 		"require": "./dist/index.js",

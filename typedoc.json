@@ -1,8 +1,24 @@
 {
 	"cleanOutputDir": true,
-	"emit": true,
-	"entryPointStrategy": "packages",
-	"entryPoints": ["."],
+	"entryPointStrategy": "resolve",
+	"entryPoints": [
+		"packages/async-queue/src/index.ts",
+		"packages/decorators/src/index.ts",
+		"packages/discord-utilities/src/index.ts",
+		"packages/discord.js-utilities/src/index.ts",
+		"packages/embed-jsx/src/index.ts",
+		"packages/eslint-config/src/index.ts",
+		"packages/event-iterator/src/index.ts",
+		"packages/fetch/src/index.ts",
+		"packages/phisherman/src/index.ts",
+		"packages/prettier-config/src/index.ts",
+		"packages/ratelimits/src/index.ts",
+		"packages/result/src/index.ts",
+		"packages/snowflake/src/index.ts",
+		"packages/stopwatch/src/index.ts",
+		"packages/time-utilities/src/index.ts",
+		"packages/utilities/src/index.ts"
+	],
 	"exclude": [
 		"**/node_modules/**",
 		"**/dist/**",
@@ -16,7 +32,7 @@
 	],
 	"intentionallyNotExported": [
 		"ArgumentTypes",
-		"PrettierSchema",
+		"PhishermanInfo",
 		"InternalAsyncQueueDeferredPromise",
 		"Ctor",
 		"Awaitable",
