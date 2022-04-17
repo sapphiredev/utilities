@@ -1,7 +1,6 @@
-# Change Log
+# Changelog
 
 All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 ## [4.9.4](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@4.9.3...@sapphire/discord.js-utilities@4.9.4) (2022-04-01)
 

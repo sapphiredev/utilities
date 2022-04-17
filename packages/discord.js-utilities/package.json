@@ -17,7 +17,9 @@
 	"scripts": {
 		"lint": "eslint src --ext ts --fix -c ../../.eslintrc",
 		"build": "tsup && tsc -b src",
-		"prepublishOnly": "rollup-type-bundler -e @sapphire/discord-utilities @sapphire/time-utilities @sapphire/utilities discord.js"
+		"prepublish": "rollup-type-bundler -e @sapphire/discord-utilities @sapphire/time-utilities @sapphire/utilities discord.js",
+		"bump": "cliff-jumper",
+		"check-update": "cliff-jumper --dry-run"
 	},
 	"repository": {
 		"type": "git",
@@ -25,8 +27,9 @@
 		"directory": "packages/discord.js-utilities"
 	},
 	"files": [
-		"dist",
-		"!dist/*.tsbuildinfo"
+		"dist/**/*.js*",
+		"dist/**/*.mjs*",
+		"dist/**/*.d*"
 	],
 	"engines": {
 		"node": ">=16.6.0",
@@ -50,9 +53,9 @@
 		"access": "public"
 	},
 	"dependencies": {
-		"@sapphire/discord-utilities": "^2.10.3",
-		"@sapphire/time-utilities": "^1.7.4",
-		"@sapphire/utilities": "^3.6.2",
+		"@sapphire/discord-utilities": "workspace:^",
+		"@sapphire/time-utilities": "workspace:^",
+		"@sapphire/utilities": "workspace:^",
 		"tslib": "^2.3.1"
 	}
 }

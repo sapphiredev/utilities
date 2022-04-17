@@ -17,7 +17,9 @@
 		"prelint": "yarn test && yarn build",
 		"lint": "eslint src tests --ext ts --fix -c ../../.eslintrc",
 		"build": "tsup",
-		"prepublishOnly": "yarn build"
+		"prepublish": "yarn build",
+		"bump": "cliff-jumper",
+		"check-update": "cliff-jumper --dry-run"
 	},
 	"dependencies": {
 		"prettier": "^2.6.2"
@@ -28,8 +30,9 @@
 		"directory": "packages/prettier-config"
 	},
 	"files": [
-		"dist",
-		"!dist/*.tsbuildinfo"
+		"dist/**/*.js*",
+		"dist/**/*.mjs*",
+		"dist/**/*.d*"
 	],
 	"engines": {
 		"node": ">=v14.0.0",

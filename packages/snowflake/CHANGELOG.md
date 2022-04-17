@@ -1,7 +1,6 @@
-# Change Log
+# Changelog
 
 All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 ## [3.2.1](https://github.com/sapphiredev/utilities/compare/@sapphire/snowflake@3.2.0...@sapphire/snowflake@3.2.1) (2022-04-01)
 

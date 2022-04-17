@@ -1,7 +1,6 @@
-# Change Log
+# Changelog
 
 All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 ## [4.3.3](https://github.com/sapphiredev/utilities/compare/@sapphire/eslint-config@4.3.2...@sapphire/eslint-config@4.3.3) (2022-04-01)
 
