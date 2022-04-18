@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/eslint-config@4.3.4](https://github.com/sapphiredev/utilities/compare/@sapphire/eslint-config@4.3.3...@sapphire/eslint-config@4.3.4) - (2022-04-18)
+
+## Bug Fixes
+
+- **eslint-config:** Update dependencies ([8eefb1e](https://github.com/sapphiredev/utilities/commit/8eefb1eeee64f89ac97d3783471cc27dc22a8461))
+- **deps:** Update all non-major dependencies ([ebaa54d](https://github.com/sapphiredev/utilities/commit/ebaa54d484e0f5917821838b026a2f4a269dc526))
+- **deps:** Update all non-major dependencies (#324) ([45be361](https://github.com/sapphiredev/utilities/commit/45be3611dff931ce9ee7919ce94ab68b6527e30e))
+- **deps:** Update all non-major dependencies ([b10c1b0](https://github.com/sapphiredev/utilities/commit/b10c1b00d88a561b982d64cee2203e49d0e1e546))
+
+## Documentation
+
+- Fix typedoc causing OOM crashes ([63ba41c](https://github.com/sapphiredev/utilities/commit/63ba41c4b6678554b1c7043a22d3296db4f59360))
+
 ## [4.3.3](https://github.com/sapphiredev/utilities/compare/@sapphire/eslint-config@4.3.2...@sapphire/eslint-config@4.3.3) (2022-04-01)
 
 ### Bug Fixes
