@@ -16,7 +16,7 @@ on:
         default: sapphiredev/utilities
   push:
     branches:
-      - chore/setup-git-cliff
+      - main
 
 jobs:
   Publish:
@@ -28,7 +28,7 @@ jobs:
         with:
           fetch-depth: 0
           repository: ${{ github.event.inputs.repository || 'sapphiredev/utilities' }}
-          ref: ${{ github.event.inputs.ref || 'chore/setup-git-cliff' }}
+          ref: ${{ github.event.inputs.ref || 'main' }}
       - name: Add TypeScript problem matcher
         run: echo "::add-matcher::.github/problemMatchers/tsc.json"
       - name: Use Node.js v16
