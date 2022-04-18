@@ -20,7 +20,9 @@
 		"test": "jest",
 		"lint": "eslint src tests --ext ts --fix -c ../../.eslintrc",
 		"build": "tsup && tsc -b src",
-		"prepublishOnly": "yarn build"
+		"prepublish": "yarn build",
+		"bump": "cliff-jumper",
+		"check-update": "cliff-jumper --dry-run"
 	},
 	"repository": {
 		"type": "git",
@@ -28,8 +30,9 @@
 		"directory": "packages/snowflake"
 	},
 	"files": [
-		"dist",
-		"!dist/*.tsbuildinfo"
+		"dist/**/*.js*",
+		"dist/**/*.mjs*",
+		"dist/**/*.d*"
 	],
 	"engines": {
 		"node": ">=v14.0.0",

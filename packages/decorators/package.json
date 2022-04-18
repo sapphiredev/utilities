@@ -17,16 +17,18 @@
 		"test": "jest",
 		"lint": "eslint src tests --ext ts --fix -c ../../.eslintrc",
 		"build": "tsup && tsc -b src",
-		"prepublishOnly": "yarn build"
+		"prepublish": "yarn build",
+		"bump": "cliff-jumper",
+		"check-update": "cliff-jumper --dry-run"
 	},
 	"dependencies": {
 		"tslib": "^2.3.1"
 	},
 	"devDependencies": {
-		"@sapphire/discord-utilities": "^2.10.3",
-		"@sapphire/discord.js-utilities": "^4.9.4",
-		"@sapphire/ratelimits": "^2.4.4",
-		"@sapphire/utilities": "^3.6.2"
+		"@sapphire/discord-utilities": "workspace:^",
+		"@sapphire/discord.js-utilities": "workspace:^",
+		"@sapphire/ratelimits": "workspace:^",
+		"@sapphire/utilities": "workspace:^"
 	},
 	"repository": {
 		"type": "git",
@@ -34,8 +36,9 @@
 		"directory": "packages/decorators"
 	},
 	"files": [
-		"dist",
-		"!dist/*.tsbuildinfo"
+		"dist/**/*.js*",
+		"dist/**/*.mjs*",
+		"dist/**/*.d*"
 	],
 	"engines": {
 		"node": ">=v14.0.0",

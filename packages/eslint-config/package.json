@@ -16,7 +16,9 @@
 		"test": "jest",
 		"prelint": "yarn test && yarn build",
 		"build": "tsup",
-		"prepublishOnly": "yarn build"
+		"prepublish": "yarn build",
+		"bump": "cliff-jumper",
+		"check-update": "cliff-jumper --dry-run"
 	},
 	"dependencies": {
 		"@typescript-eslint/eslint-plugin": "^5.19.0",
@@ -33,8 +35,9 @@
 		"directory": "packages/eslint-config"
 	},
 	"files": [
-		"dist",
-		"!dist/*.tsbuildinfo"
+		"dist/**/*.js*",
+		"dist/**/*.mjs*",
+		"dist/**/*.d*"
 	],
 	"engines": {
 		"node": ">=v14.0.0",

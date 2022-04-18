@@ -1,7 +1,6 @@
-# Change Log
+# Changelog
 
 All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 ## [2.10.3](https://github.com/sapphiredev/utilities/compare/@sapphire/discord-utilities@2.10.2...@sapphire/discord-utilities@2.10.3) (2022-04-01)
 

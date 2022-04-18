@@ -1,7 +1,6 @@
-# Change Log
+# Changelog
 
 All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 ## [3.6.2](https://github.com/sapphiredev/utilities/compare/@sapphire/utilities@3.6.1...@sapphire/utilities@3.6.2) (2022-04-01)
 

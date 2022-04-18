@@ -29,7 +29,9 @@
 	"scripts": {
 		"test": "jest",
 		"lint": "eslint tests --ext mjs,ts --fix -c ../../.eslintrc",
-		"build": "yarn lint && tsc -b tests"
+		"build": "yarn lint && tsc -b tests",
+		"bump": "cliff-jumper",
+		"check-update": "cliff-jumper --dry-run"
 	},
 	"dependencies": {
 		"tslib": "^2.3.1",

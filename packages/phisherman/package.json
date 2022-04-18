@@ -16,10 +16,12 @@
 	"scripts": {
 		"lint": "eslint src --ext ts --fix",
 		"build": "tsup && tsc -b src",
-		"prepublishOnly": "yarn build"
+		"prepublish": "yarn build",
+		"bump": "cliff-jumper",
+		"check-update": "cliff-jumper --dry-run"
 	},
 	"dependencies": {
-		"@sapphire/fetch": "^2.3.1"
+		"@sapphire/fetch": "workspace:^"
 	},
 	"repository": {
 		"type": "git",
@@ -27,8 +29,9 @@
 		"directory": "packages/phisherman"
 	},
 	"files": [
-		"dist",
-		"!dist/*.tsbuildinfo"
+		"dist/**/*.js*",
+		"dist/**/*.mjs*",
+		"dist/**/*.d*"
 	],
 	"engines": {
 		"node": ">=16.6.0",

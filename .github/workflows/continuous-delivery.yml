@@ -39,15 +39,27 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - name: Install Dependencies
         run: yarn --immutable
-      - name: Build all packages in proper order
+      - name: Build all packages
         run: yarn build
-      - name: Bump Version & Publish
+      - name: Set up git-cliff
+        uses: kenji-miyake/setup-git-cliff@v1
+      - name: Bump Versions & Publish
+        working-directory: packages/
         run: |
           # Resolve the tag to be used. "next" for push events, "pr-{prNumber}" for dispatch events.
           TAG=$([[ ${{ github.event_name }} == 'push' ]] && echo 'next' || echo 'pr-${{ github.event.inputs.prNumber }}')
-          BRANCH=$(echo '${{ github.event.inputs.ref || 'main' }}')
 
-          # Bump and publish
-          yarn lerna publish --yes --conventional-prerelease --ignore-scripts --no-verify-access --no-git-tag-version --no-push --pre-dist-tag ${TAG} --preid "${TAG}.$(git rev-parse --verify --short HEAD)" --allow-branch ${BRANCH}
+          yarn config set npmAuthToken ${NODE_AUTH_TOKEN}
+          yarn config set npmPublishRegistry "https://registry.yarnpkg.com"
+
+          for d in */; do
+            pushd $d
+
+            yarn dlx --quiet @favware/cliff-jumper --preid "${TAG}.$(git rev-parse --verify --short HEAD)"
+
+            yarn npm publish --tag ${TAG}
+
+            popd
+          done
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
