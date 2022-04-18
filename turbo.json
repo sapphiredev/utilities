@@ -12,9 +12,13 @@
 			"dependsOn": ["@sapphire/time-utilities#build", "@sapphire/fetch#build"],
 			"outputs": ["coverage/**"]
 		},
-		"check-update": {
-			"dependsOn": ["^build"],
+		"bump": {
+			"dependsOn": [],
 			"outputs": ["CHANGELOG.md"]
+		},
+		"check-update": {
+			"dependsOn": [],
+			"outputs": []
 		}
 	}
 }
