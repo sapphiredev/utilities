@@ -638,9 +638,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@favware/cliff-jumper@npm:1.1.1-next.efc28dd.0":
-  version: 1.1.1-next.efc28dd.0
-  resolution: "@favware/cliff-jumper@npm:1.1.1-next.efc28dd.0"
+"@favware/cliff-jumper@npm:1.1.1":
+  version: 1.1.1
+  resolution: "@favware/cliff-jumper@npm:1.1.1"
   dependencies:
     "@sapphire/result": ^1.1.1
     "@sapphire/utilities": ^3.6.2
@@ -654,7 +654,7 @@ __metadata:
   bin:
     cj: ./dist/cli.js
     cliff-jumper: ./dist/cli.js
-  checksum: 026f4d190840e7784a18360266f881fd49b0ec7da9b4c9b456f27f9cb9fc5d32d8c88410a46a8f55db79c2e0a2b396fc97c9be31e3651001e22074d91721874b
+  checksum: 843688697f105b56d1bd385d05c58e8df289da79eb1de5f739f78e2f9d5f181227f8f0011e9c84f74576903f62255b9de0aab41e3715884ebcc59f8a5561e4e2
   languageName: node
   linkType: hard
 
@@ -6246,7 +6246,7 @@ __metadata:
     "@commitlint/cli": ^16.2.3
     "@commitlint/config-conventional": ^16.2.1
     "@discordjs/collection": ^0.5.0
-    "@favware/cliff-jumper": 1.1.1-next.efc28dd.0
+    "@favware/cliff-jumper": 1.1.1
     "@favware/npm-deprecate": ^1.0.4
     "@favware/rollup-type-bundler": ^1.0.7
     "@sapphire/framework": ^2.4.1
