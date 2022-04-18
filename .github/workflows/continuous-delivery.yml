@@ -88,7 +88,7 @@ jobs:
             jq '.version' package.json
 
             # Publish to NPM
-            # yarn npm publish --tag ${TAG}
+            yarn npm publish --tag ${TAG}
 
             popd
           done
