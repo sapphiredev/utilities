@@ -39,8 +39,8 @@ jobs:
           registry-url: https://registry.yarnpkg.com/
       - name: Install Dependencies
         run: yarn --immutable
-      - name: Build all packages
-        run: yarn build
+      # - name: Build all packages
+      #   run: yarn build
       - name: Set up git-cliff
         uses: kenji-miyake/setup-git-cliff@v1
       - name: Bump Versions & Publish
