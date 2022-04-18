@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/prettier-config@1.4.3](https://github.com/sapphiredev/utilities/compare/@sapphire/prettier-config@1.4.2...@sapphire/prettier-config@1.4.3) - (2022-04-18)
+
+## Bug Fixes
+
+- **deps:** Update all non-major dependencies ([b10c1b0](https://github.com/sapphiredev/utilities/commit/b10c1b00d88a561b982d64cee2203e49d0e1e546))
+
+## Documentation
+
+- Fix typedoc causing OOM crashes ([63ba41c](https://github.com/sapphiredev/utilities/commit/63ba41c4b6678554b1c7043a22d3296db4f59360))
+
 ## [1.4.2](https://github.com/sapphiredev/utilities/compare/@sapphire/prettier-config@1.4.1...@sapphire/prettier-config@1.4.2) (2022-04-01)
 
 ### Bug Fixes
