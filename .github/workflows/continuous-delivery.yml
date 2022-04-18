@@ -74,7 +74,7 @@ jobs:
           for d in */; do
             pushd $d
 
-            yarn dlx @favware/cliff-jumper --preid "${TAG}.$(git rev-parse --verify --short HEAD)"
+            yarn dlx --quiet @favware/cliff-jumper --preid "${TAG}.$(git rev-parse --verify --short HEAD)"
 
             yarn npm publish --tag ${TAG}
 
