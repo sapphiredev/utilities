@@ -14,8 +14,7 @@
 	"homepage": "https://github.com/sapphiredev/utilities/tree/main/packages/prettier-config",
 	"scripts": {
 		"test": "jest",
-		"prelint": "yarn test && yarn build",
-		"lint": "eslint src tests --ext ts --fix -c ../../.eslintrc",
+		"lint": "yarn test && yarn build && eslint src tests --ext ts --fix -c ../../.eslintrc",
 		"build": "tsup",
 		"prepublish": "yarn build",
 		"bump": "cliff-jumper",
@@ -53,5 +52,8 @@
 	},
 	"publishConfig": {
 		"access": "public"
+	},
+	"devDependencies": {
+		"tsup": "^5.12.5"
 	}
 }

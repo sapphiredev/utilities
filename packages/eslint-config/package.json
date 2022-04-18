@@ -58,5 +58,8 @@
 	},
 	"publishConfig": {
 		"access": "public"
+	},
+	"devDependencies": {
+		"tsup": "^5.12.5"
 	}
 }
