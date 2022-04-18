@@ -74,20 +74,8 @@ jobs:
           for d in */; do
             pushd $d
 
-            currentDirName=$(pwd | awk -F/ '{print $NF}')
-
-            echo "Versioning ${currentDirName}"
-
-            # Bump the version
-            echo "before bump"
-            jq '.version' package.json
-
             yarn dlx @favware/cliff-jumper --preid "${TAG}.$(git rev-parse --verify --short HEAD)"
 
-            echo "after bump"
-            jq '.version' package.json
-
-            # Publish to NPM
             yarn npm publish --tag ${TAG}
 
             popd
