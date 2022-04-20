@@ -36,6 +36,7 @@ export function runsOnInteraction(
 export function actionIsButtonOrMenu(action: PaginatedMessageAction): action is PaginatedMessageActionButton | PaginatedMessageActionMenu {
 	return (
 		action.type === Constants.MessageComponentTypes.SELECT_MENU ||
+		action.type === "SELECT_MENU" ||
 		((action as PaginatedMessageActionButton | PaginatedMessageActionLink).style !== 'LINK' &&
 			(action as PaginatedMessageActionButton | PaginatedMessageActionLink).style !== Constants.MessageButtonStyles.LINK)
 	);
@@ -44,7 +45,7 @@ export function actionIsButtonOrMenu(action: PaginatedMessageAction): action is 
 export function isMessageButtonInteraction(
 	interaction: InteractionButtonOptions | MessageSelectMenuOptions
 ): interaction is InteractionButtonOptions {
-	return interaction.type === Constants.MessageComponentTypes.BUTTON;
+	return interaction.type === Constants.MessageComponentTypes.BUTTON || interaction.type === "BUTTON";
 }
 
 export function isMessageButtonComponent(component: MessageButton | MessageSelectMenu): component is MessageButton {
