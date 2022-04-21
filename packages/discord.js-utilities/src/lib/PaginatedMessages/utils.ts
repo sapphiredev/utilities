@@ -45,7 +45,7 @@ export function actionIsButtonOrMenu(action: PaginatedMessageAction): action is 
 export function isMessageButtonInteraction(
 	interaction: InteractionButtonOptions | MessageSelectMenuOptions
 ): interaction is InteractionButtonOptions {
-	return interaction.type === Constants.MessageComponentTypes.BUTTON || interaction.type === "BUTTON";
+	return interaction.type === Constants.MessageComponentTypes.BUTTON || interaction.type === 'BUTTON';
 }
 
 export function isMessageButtonComponent(component: MessageButton | MessageSelectMenu): component is MessageButton {
