@@ -242,6 +242,13 @@
 			"avatar_url": "https://avatars.githubusercontent.com/u/73697546?v=4",
 			"profile": "https://github.com/dhruv-kaushikk",
 			"contributions": ["code"]
+		},
+		{
+			"login": "axisiscool",
+			"name": "Jonathan",
+			"avatar_url": "https://avatars.githubusercontent.com/u/54381371?v=4",
+			"profile": "https://axis.moe/",
+			"contributions": ["code"]
 		}
 	],
 	"contributorsPerLine": 7,
