@@ -36,7 +36,7 @@ export function runsOnInteraction(
 export function actionIsButtonOrMenu(action: PaginatedMessageAction): action is PaginatedMessageActionButton | PaginatedMessageActionMenu {
 	return (
 		action.type === Constants.MessageComponentTypes.SELECT_MENU ||
-		action.type === "SELECT_MENU" ||
+		action.type === 'SELECT_MENU' ||
 		((action as PaginatedMessageActionButton | PaginatedMessageActionLink).style !== 'LINK' &&
 			(action as PaginatedMessageActionButton | PaginatedMessageActionLink).style !== Constants.MessageButtonStyles.LINK)
 	);
