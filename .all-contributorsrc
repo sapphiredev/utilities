@@ -249,6 +249,13 @@
 			"avatar_url": "https://avatars.githubusercontent.com/u/54381371?v=4",
 			"profile": "https://axis.moe/",
 			"contributions": ["code"]
+		},
+		{
+			"login": "imranbarbhuiya",
+			"name": "Parbez",
+			"avatar_url": "https://avatars.githubusercontent.com/u/74945038?v=4",
+			"profile": "https://github.com/imranbarbhuiya",
+			"contributions": ["maintenance"]
 		}
 	],
 	"contributorsPerLine": 7,
