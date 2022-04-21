@@ -235,6 +235,13 @@
 			"avatar_url": "https://avatars.githubusercontent.com/u/68407783?v=4",
 			"profile": "https://commandtechno.com/",
 			"contributions": ["code"]
+		},
+		{
+			"login": "dhruv-kaushikk",
+			"name": "Aura",
+			"avatar_url": "https://avatars.githubusercontent.com/u/73697546?v=4",
+			"profile": "https://github.com/dhruv-kaushikk",
+			"contributions": ["code"]
 		}
 	],
 	"contributorsPerLine": 7,
