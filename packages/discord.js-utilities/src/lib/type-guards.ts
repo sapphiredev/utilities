@@ -145,7 +145,7 @@ export function isTextBasedChannel(channel: ChannelTypes | Nullish): channel is 
 
 /**
  * Checks whether a given channel is a {@link BaseGuildVoiceChannel}.
- * @param channel: The channel to checl.
+ * @param channel: The channel to check.
  */
 export function isVoiceBasedChannel(channel: Channel | Nullish): channel is BaseGuildVoiceChannel {
 	if (isNullish(channel)) return false;
