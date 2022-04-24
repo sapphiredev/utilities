@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/discord.js-utilities@4.9.7](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@4.9.6...@sapphire/discord.js-utilities@4.9.7) - (2022-04-24)
+
+## Bug Fixes
+
+- **PaginatedMessage:** Make `resolvePaginatedMessageInternationalizationContext` protected ([0bb7c55](https://github.com/sapphiredev/utilities/commit/0bb7c55ea06a633c547cf58d6976bc75dd5db64f))
+
 # [@sapphire/discord.js-utilities@4.9.6](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@4.9.5...@sapphire/discord.js-utilities@4.9.6) - (2022-04-24)
 
 ## Bug Fixes
