@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/discord.js-utilities@4.9.6](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@4.9.5...@sapphire/discord.js-utilities@4.9.6) - (2022-04-24)
+
+## Bug Fixes
+
+- **PaginatedMessage:** Update i18nContext to match plugin-i18next (#337) ([bcc053c](https://github.com/sapphiredev/utilities/commit/bcc053c4778668341cf0c10df11d53ba357b32a3))
+
+## Documentation
+
+- **discord.js-utilities:** Fix typo (#332) ([0c4b486](https://github.com/sapphiredev/utilities/commit/0c4b486ee8254cc5607b8f26f7a7dafcd5adea4f))
+
 # [@sapphire/discord.js-utilities@4.9.5](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@4.9.4...@sapphire/discord.js-utilities@4.9.5) - (2022-04-21)
 
 ## Bug Fixes
