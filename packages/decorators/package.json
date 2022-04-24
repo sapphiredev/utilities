@@ -22,14 +22,14 @@
 		"check-update": "cliff-jumper --dry-run"
 	},
 	"dependencies": {
-		"tslib": "^2.3.1"
+		"tslib": "^2.4.0"
 	},
 	"devDependencies": {
 		"@sapphire/discord-utilities": "workspace:^",
 		"@sapphire/discord.js-utilities": "workspace:^",
 		"@sapphire/ratelimits": "workspace:^",
 		"@sapphire/utilities": "workspace:^",
-		"tsup": "^5.12.5",
+		"tsup": "^5.12.6",
 		"typescript": "^4.6.3"
 	},
 	"repository": {

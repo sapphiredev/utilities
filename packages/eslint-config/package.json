@@ -23,7 +23,7 @@
 	"dependencies": {
 		"@typescript-eslint/eslint-plugin": "^5.20.0",
 		"@typescript-eslint/parser": "^5.20.0",
-		"eslint": "^8.13.0",
+		"eslint": "^8.14.0",
 		"eslint-config-prettier": "^8.5.0",
 		"eslint-plugin-prettier": "^4.0.0",
 		"prettier": "^2.6.2",
@@ -60,6 +60,6 @@
 		"access": "public"
 	},
 	"devDependencies": {
-		"tsup": "^5.12.5"
+		"tsup": "^5.12.6"
 	}
 }
