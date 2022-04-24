@@ -22,11 +22,13 @@ import {
 	type User,
 	type WebhookEditMessageOptions
 } from 'discord.js';
+import { deprecate } from 'node:util';
 import { MessageBuilder } from '../builders/MessageBuilder';
 import { isGuildBasedChannel, isMessageInstance } from '../type-guards';
 import type {
 	PaginatedMessageAction,
 	PaginatedMessageEmbedResolvable,
+	PaginatedMessageInternationalizationContext,
 	PaginatedMessageMessageOptionsUnion,
 	PaginatedMessageOptions,
 	PaginatedMessagePage,
@@ -981,14 +983,15 @@ export class PaginatedMessage {
 						? new MessageButton(interaction)
 						: new MessageSelectMenu({
 								options: await Promise.all(
-									this.pages.map(async (_, index) => ({
-										...(await this.selectMenuOptions(index + 1, {
-											author: targetUser,
-											channel: messageOrInteraction.channel,
-											guild: isGuildBasedChannel(messageOrInteraction.channel) ? messageOrInteraction.channel.guild : null
-										})),
-										value: index.toString()
-									}))
+									this.pages.map(async (_, index) => {
+										return {
+											...(await this.selectMenuOptions(
+												index + 1,
+												this.resolvePaginatedMessageInternationalizationContext(messageOrInteraction, targetUser)
+											)),
+											value: index.toString()
+										};
+									})
 								),
 								...interaction
 						  });
@@ -1114,11 +1117,11 @@ export class PaginatedMessage {
 				}
 			}
 		} else {
-			const interactionReplyOptions = await this.wrongUserInteractionReply(targetUser, interaction.user, {
-				author: interaction.user,
-				channel: interaction.channel,
-				guild: interaction.guild
-			});
+			const interactionReplyOptions = await this.wrongUserInteractionReply(
+				targetUser,
+				interaction.user,
+				this.resolvePaginatedMessageInternationalizationContext(interaction, targetUser)
+			);
 
 			await interaction.reply(
 				isObject(interactionReplyOptions)
@@ -1172,6 +1175,44 @@ export class PaginatedMessage {
 		}
 
 		return { ...message, embeds: embedsWithFooterApplied };
+	}
+
+	/**
+	 * Constructs a {@link PaginatedMessageInternationalizationContext} including a deprecation notice for {@link PaginatedMessageInternationalizationContext.author}
+	 * @param messageOrInteraction The message or interaction for which the {@link PaginatedMessageInternationalizationContext} should be resolved.
+	 * @param targetUser The target user for whom this interaction is
+	 * @returns A constructed {@link PaginatedMessageInternationalizationContext}
+	 */
+	private resolvePaginatedMessageInternationalizationContext(
+		messageOrInteraction: Message | CommandInteraction | ContextMenuInteraction | SelectMenuInteraction | ButtonInteraction,
+		targetUser: User
+	): PaginatedMessageInternationalizationContext {
+		const context: PaginatedMessageInternationalizationContext = {
+			user: targetUser,
+			channel: messageOrInteraction.channel,
+			guild: isGuildBasedChannel(messageOrInteraction.channel) ? messageOrInteraction.channel.guild : null,
+			interactionGuildLocale: runsOnInteraction(messageOrInteraction) ? messageOrInteraction.guildLocale : undefined,
+			interactionLocale: runsOnInteraction(messageOrInteraction) ? messageOrInteraction.locale : undefined
+		};
+
+		Object.defineProperty(context, 'author', {
+			get: deprecate(
+				() => {
+					return context.user;
+				},
+				"PaginatedMessageInternationalizationContext's `author` property is deprecated and will be removed in the next major version. Please use `PaginatedMessageInternationalizationContext.user` instead.",
+				'DeprecationWarning'
+			),
+			set: deprecate(
+				(val: PaginatedMessageInternationalizationContext['user']) => {
+					context.user = val;
+				},
+				"PaginatedMessageInternationalizationContext's `author` property is deprecated and will be removed in the next major version. Please use `PaginatedMessageInternationalizationContext.user` instead.",
+				'DeprecationWarning'
+			)
+		});
+
+		return context;
 	}
 
 	private applyTemplate(

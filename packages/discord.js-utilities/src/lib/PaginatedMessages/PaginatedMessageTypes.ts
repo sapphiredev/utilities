@@ -6,6 +6,7 @@ import type {
 	ContextMenuInteraction,
 	ExcludeEnum,
 	Guild,
+	Interaction,
 	InteractionButtonOptions,
 	InteractionCollector,
 	InteractionReplyOptions,
@@ -177,9 +178,21 @@ export type PaginatedMessageMessageOptionsUnion = MessageOptions | WebhookEditMe
  * This context enables implementation of per-guild, per-channel, and per-user localization.
  */
 export interface PaginatedMessageInternationalizationContext {
+	/** The {@link Guild} object to fetch the preferred language for, or `null` if the language is to be fetched in a DM. */
 	guild: Guild | null;
+	/** The {@link DiscordChannel} object to fetch the preferred language for. */
 	channel: Message['channel'] | StoreChannel | StageChannel | VoiceChannel | null;
-	author: User | null;
+	/**
+	 * @deprecated Use {@link InternationalizationContext.user} instead; this will be removed in the next major version.
+	 * The user to fetch the preferred language for.
+	 */
+	author?: User | null;
+	/** The user to fetch the preferred language for. */
+	user: User | null;
+	/** The {@link Interaction.guildLocale} provided by the Discord API */
+	interactionGuildLocale?: Interaction['guildLocale'];
+	/** The {@link Interaction.locale} provided by the Discord API */
+	interactionLocale?: Interaction['locale'];
 }
 
 export interface SafeReplyToInteractionParameters<T extends 'edit' | 'reply' | never = never> {
