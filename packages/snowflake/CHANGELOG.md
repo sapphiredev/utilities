@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/snowflake@3.2.2](https://github.com/sapphiredev/utilities/compare/@sapphire/snowflake@3.2.1...@sapphire/snowflake@3.2.2) - (2022-04-24)
+
+## Bug Fixes
+
+- Fix typo (#333) ([ae2f257](https://github.com/sapphiredev/utilities/commit/ae2f25766d5985735f2d9b257eebd27cdc8a7c52))
+
+## Documentation
+
+- Add @NotKaskus as a contributor ([00da8f1](https://github.com/sapphiredev/utilities/commit/00da8f199137b9277119823f322d1f2d168d928a))
+- Add @imranbarbhuiya as a contributor ([fb674c2](https://github.com/sapphiredev/utilities/commit/fb674c2c5594d41e71662263553dcb4bac9e37f4))
+- Add @axisiscool as a contributor ([ce1aa31](https://github.com/sapphiredev/utilities/commit/ce1aa316871a88d3663efbdf2a42d3d8dfe6a27f))
+- Add @dhruv-kaushikk as a contributor ([ebbf43f](https://github.com/sapphiredev/utilities/commit/ebbf43f63617daba96e72c50a234bf8b64f6ddc4))
+- Add @Commandtechno as a contributor ([f1d69fa](https://github.com/sapphiredev/utilities/commit/f1d69fabe1ee0abe4be08b19e63dbec03102f7ce))
+- Fix typedoc causing OOM crashes ([63ba41c](https://github.com/sapphiredev/utilities/commit/63ba41c4b6678554b1c7043a22d3296db4f59360))
+
 ## [3.2.1](https://github.com/sapphiredev/utilities/compare/@sapphire/snowflake@3.2.0...@sapphire/snowflake@3.2.1) (2022-04-01)
 
 **Note:** Version bump only for package @sapphire/snowflake
