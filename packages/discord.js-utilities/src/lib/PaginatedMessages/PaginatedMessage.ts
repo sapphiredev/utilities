@@ -1183,7 +1183,7 @@ export class PaginatedMessage {
 	 * @param targetUser The target user for whom this interaction is
 	 * @returns A constructed {@link PaginatedMessageInternationalizationContext}
 	 */
-	private resolvePaginatedMessageInternationalizationContext(
+	protected resolvePaginatedMessageInternationalizationContext(
 		messageOrInteraction: Message | CommandInteraction | ContextMenuInteraction | SelectMenuInteraction | ButtonInteraction,
 		targetUser: User
 	): PaginatedMessageInternationalizationContext {
