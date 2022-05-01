@@ -196,7 +196,7 @@ export class PaginatedMessage {
 
 	protected selectMenuOptions: PaginatedMessageSelectMenuOptionsFunction = PaginatedMessage.selectMenuOptions;
 
-	protected selectMenuPlaceholder: string = 'Make a selection';
+	protected selectMenuPlaceholder = 'Make a selection';
 
 	protected wrongUserInteractionReply: PaginatedMessageWrongUserInteractionReplyFunction = PaginatedMessage.wrongUserInteractionReply;
 
