@@ -196,7 +196,7 @@ export class PaginatedMessage {
 
 	protected selectMenuOptions: PaginatedMessageSelectMenuOptionsFunction = PaginatedMessage.selectMenuOptions;
 
-	protected selectMenuPlaceholder = 'Make a selection';
+	protected selectMenuPlaceholder: string | undefined = undefined;
 
 	protected wrongUserInteractionReply: PaginatedMessageWrongUserInteractionReplyFunction = PaginatedMessage.wrongUserInteractionReply;
 
@@ -270,7 +270,7 @@ export class PaginatedMessage {
 	 * @param placeholder The new placeholder to set
 	 * @returns The current instance of {@link PaginatedMessage}
 	 */
-	public setSelectMenuPlaceholder(placeholder: string): this {
+	public setSelectMenuPlaceholder(placeholder: string | undefined): this {
 		this.selectMenuPlaceholder = placeholder;
 		return this;
 	}
