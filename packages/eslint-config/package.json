@@ -16,7 +16,7 @@
 		"test": "jest",
 		"prelint": "yarn test && yarn build",
 		"build": "tsup",
-		"prepublish": "yarn build",
+		"prepack": "yarn build",
 		"bump": "cliff-jumper",
 		"check-update": "cliff-jumper --dry-run"
 	},

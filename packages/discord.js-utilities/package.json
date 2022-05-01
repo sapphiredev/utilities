@@ -17,7 +17,7 @@
 	"scripts": {
 		"lint": "eslint src --ext ts --fix -c ../../.eslintrc",
 		"build": "tsup && tsc -b src",
-		"prepublish": "rollup-type-bundler -e @sapphire/discord-utilities @sapphire/time-utilities @sapphire/utilities discord.js",
+		"prepack": "rollup-type-bundler -e @sapphire/discord-utilities @sapphire/time-utilities @sapphire/utilities discord.js",
 		"bump": "cliff-jumper",
 		"check-update": "cliff-jumper --dry-run"
 	},

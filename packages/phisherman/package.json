@@ -16,7 +16,7 @@
 	"scripts": {
 		"lint": "eslint src --ext ts --fix",
 		"build": "tsup && tsc -b src",
-		"prepublish": "yarn build",
+		"prepack": "yarn build",
 		"bump": "cliff-jumper",
 		"check-update": "cliff-jumper --dry-run"
 	},

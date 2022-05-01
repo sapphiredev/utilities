@@ -16,7 +16,7 @@
 		"test": "jest",
 		"lint": "yarn test && yarn build && eslint src tests --ext ts --fix -c ../../.eslintrc",
 		"build": "tsup",
-		"prepublish": "yarn build",
+		"prepack": "yarn build",
 		"bump": "cliff-jumper",
 		"check-update": "cliff-jumper --dry-run"
 	},
