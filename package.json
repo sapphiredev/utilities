@@ -18,10 +18,10 @@
 		"check-update": "turbo run check-update"
 	},
 	"devDependencies": {
-		"@commitlint/cli": "^16.2.3",
-		"@commitlint/config-conventional": "^16.2.1",
+		"@commitlint/cli": "^16.2.4",
+		"@commitlint/config-conventional": "^16.2.4",
 		"@discordjs/collection": "^0.6.0",
-		"@favware/cliff-jumper": "^1.2.0",
+		"@favware/cliff-jumper": "^1.4.0",
 		"@favware/npm-deprecate": "^1.0.4",
 		"@favware/rollup-type-bundler": "^1.0.7",
 		"@sapphire/framework": "^2.4.1",
@@ -29,8 +29,8 @@
 		"@types/lodash": "^4.14.182",
 		"@types/node": "^17.0.25",
 		"@types/ws": "^8.5.3",
-		"@typescript-eslint/eslint-plugin": "^5.20.0",
-		"@typescript-eslint/parser": "^5.20.0",
+		"@typescript-eslint/eslint-plugin": "^5.21.0",
+		"@typescript-eslint/parser": "^5.21.0",
 		"cz-conventional-changelog": "^3.3.0",
 		"discord-api-types": "^0.26.1",
 		"discord.js": "^13.6.0",
@@ -41,7 +41,7 @@
 		"jest": "^27.5.1",
 		"jest-circus": "^27.5.1",
 		"jest-extended": "^2.0.0",
-		"lint-staged": "^12.4.0",
+		"lint-staged": "^12.4.1",
 		"lodash": "^4.17.21",
 		"nock": "^13.2.4",
 		"prettier": "^2.6.2",
@@ -50,11 +50,11 @@
 		"ts-jest": "^27.1.4",
 		"tslib": "^2.4.0",
 		"tsup": "^5.12.6",
-		"turbo": "^1.2.5",
+		"turbo": "^1.2.6",
 		"typedoc": "^0.22.15",
 		"typedoc-plugin-djs-links": "^1.0.4",
 		"typedoc-plugin-mdn-links": "^1.0.6",
-		"typescript": "^4.6.3"
+		"typescript": "^4.6.4"
 	},
 	"repository": {
 		"type": "git",
