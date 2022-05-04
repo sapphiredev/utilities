@@ -2,8 +2,6 @@
 const config = {
 	displayName: 'unit test',
 	preset: 'ts-jest',
-	testEnvironment: 'node',
-	testRunner: 'jest-circus/runner',
 	testMatch: ['<rootDir>/tests/**/*.test.ts'],
 	collectCoverageFrom: ['<rootDir>/src/**/*.ts'],
 	globals: {
@@ -11,7 +9,8 @@ const config = {
 			tsconfig: '<rootDir>/tests/tsconfig.json'
 		}
 	},
-	coveragePathIgnorePatterns: ['<rootDir>/tests/util/common.ts']
+	coveragePathIgnorePatterns: ['<rootDir>/tests/util/common.ts'],
+	reporters: ['default', 'github-actions']
 };
 
 export default config;

@@ -2,8 +2,6 @@
 const config = {
 	displayName: 'unit test',
 	preset: 'ts-jest',
-	testEnvironment: 'node',
-	testRunner: 'jest-circus/runner',
 	testMatch: ['<rootDir>/packages/**/tests/**/*.test.ts', '<rootDir>/packages/**/tests/**/*.test.js', '<rootDir>/packages/**/tests/**/*.test.tsx'],
 	collectCoverageFrom: ['<rootDir>/packages/src/**/*.ts'],
 	setupFilesAfterEnv: ['jest-extended/all'],
@@ -18,7 +16,8 @@ const config = {
 		'<rootDir>/packages/utilities/dist/index.js',
 		'<rootDir>/packages/utilities/src/index.ts',
 		'<rootDir>/packages/utilities/src/lib/debounce/index.ts'
-	]
+	],
+	reporters: ['default', 'github-actions']
 };
 
 export default config;

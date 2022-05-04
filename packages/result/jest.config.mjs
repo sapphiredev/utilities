@@ -2,8 +2,6 @@
 const config = {
 	displayName: 'unit test',
 	preset: 'ts-jest',
-	testEnvironment: 'node',
-	testRunner: 'jest-circus/runner',
 	testMatch: ['<rootDir>/tests/**/*.test.ts'],
 	setupFilesAfterEnv: ['jest-extended/all'],
 	collectCoverageFrom: ['<rootDir>/src/**/*.ts'],
@@ -11,7 +9,8 @@ const config = {
 		'ts-jest': {
 			tsconfig: '<rootDir>/tests/tsconfig.json'
 		}
-	}
+	},
+	reporters: ['default', 'github-actions']
 };
 
 export default config;
