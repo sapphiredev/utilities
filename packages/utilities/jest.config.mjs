@@ -10,8 +10,7 @@ const config = {
 			tsconfig: '<rootDir>/tests/tsconfig.json'
 		}
 	},
-	coveragePathIgnorePatterns: ['<rootDir>/tests/util/common.ts'],
-	reporters: ['default', 'github-actions']
+	coveragePathIgnorePatterns: ['<rootDir>/tests/util/common.ts']
 };
 
 export default config;

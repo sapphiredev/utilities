@@ -9,8 +9,7 @@ const config = {
 		'ts-jest': {
 			tsconfig: '<rootDir>/tests/tsconfig.json'
 		}
-	},
-	reporters: ['default', 'github-actions']
+	}
 };
 
 export default config;
