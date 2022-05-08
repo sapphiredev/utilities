@@ -58,7 +58,7 @@
 		"@sapphire/time-utilities": "workspace:^"
 	},
 	"devDependencies": {
-		"tsup": "^5.12.6",
+		"tsup": "^5.12.7",
 		"typescript": "^4.6.4"
 	}
 }
