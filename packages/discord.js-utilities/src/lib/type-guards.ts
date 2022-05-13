@@ -194,6 +194,6 @@ export function isMessageInstance(message: APIMessage | Message): message is Mes
  * @param member The message to check
  * @returns `true` if the member is an instance of `GuildMember`, false otherwise.
  */
-function isGuildMember(member: GuildMember | APIGuildMember | APIInteractionGuildMember | Nullish): member is GuildMember {
+export function isGuildMember(member: GuildMember | APIGuildMember | APIInteractionGuildMember | Nullish): member is GuildMember {
    return member instanceof GuildMember;
 }
