@@ -1,7 +1,8 @@
 import { isNullish, Nullish } from '@sapphire/utilities';
-import type { APIMessage } from 'discord-api-types/v9';
+import type { APIMessage, APIGuildMember, APIInteractionGuildMember } from 'discord-api-types/v9';
 import {
 	Message,
+	GuildMember,
 	type BaseGuildVoiceChannel,
 	type CategoryChannel,
 	type Channel,
@@ -186,4 +187,13 @@ export function isNsfwChannel(channel: ChannelTypes | Nullish): boolean {
  */
 export function isMessageInstance(message: APIMessage | Message): message is Message {
 	return message instanceof Message;
+}
+
+/**
+ * Checks whether a given member is an instance of {@link GuildMember}, and not {@link APIInteractionGuildMember} or {@link APIGuildMember}
+ * @param member The message to check
+ * @returns `true` if the member is an instance of `GuildMember`, false otherwise.
+ */
+function isGuildMember(member: GuildMember | APIGuildMember | APIInteractionGuildMember | Nullish): member is GuildMember {
+  return member instanceof GuildMember;
 }
