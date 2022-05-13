@@ -14,7 +14,7 @@
 		"build": "turbo run build",
 		"docs": "typedoc",
 		"update": "yarn upgrade-interactive",
-		"prepare": "husky install .github/husky",
+		"postinstall": "husky install .github/husky",
 		"check-update": "turbo run check-update"
 	},
 	"devDependencies": {
