@@ -106,7 +106,7 @@ export interface PaginatedMessageOptions {
 	/**
 	 * Custom actions to provide when sending the paginated message
 	 */
-	actions?: PaginatedMessageActionButton[];
+	actions?: PaginatedMessageAction[];
 	/**
 	 * The {@link MessageEmbed} or {@link MessageOptions} options to apply to the entire {@link PaginatedMessage}
 	 */
