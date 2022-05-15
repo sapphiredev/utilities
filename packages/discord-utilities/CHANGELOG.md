@@ -2,25 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
-## [2.10.3](https://github.com/sapphiredev/utilities/compare/@sapphire/discord-utilities@2.10.2...@sapphire/discord-utilities@2.10.3) (2022-04-01)
+# [@sapphire/discord-utilities@2.10.2](https://github.com/sapphiredev/utilities/compare/@sapphire/discord-utilities@2.10.1...@sapphire/discord-utilities@2.10.2) - (2022-03-20)
 
-**Note:** Version bump only for package @sapphire/discord-utilities
+## 🐛 Bug Fixes
 
-## [2.10.2](https://github.com/sapphiredev/utilities/compare/@sapphire/discord-utilities@2.10.1...@sapphire/discord-utilities@2.10.2) (2022-03-20)
+- **deps:** Update dependency twemoji-parser to v14 (#315) ([3a659a7](https://github.com/sapphiredev/utilities/commit/3a659a7242e397f351bbeea4be404ca81eab93d6))
 
-### Bug Fixes
+# [@sapphire/discord-utilities@2.10.0](https://github.com/sapphiredev/utilities/compare/@sapphire/discord-utilities@2.9.0...@sapphire/discord-utilities@2.10.0) - (2022-03-06)
 
--   **deps:** update dependency twemoji-parser to v14 ([#315](https://github.com/sapphiredev/utilities/issues/315)) ([3a659a7](https://github.com/sapphiredev/utilities/commit/3a659a7242e397f351bbeea4be404ca81eab93d6))
+## 🚀 Features
 
-## [2.10.1](https://github.com/sapphiredev/utilities/compare/@sapphire/discord-utilities@2.10.0...@sapphire/discord-utilities@2.10.1) (2022-03-11)
-
-**Note:** Version bump only for package @sapphire/discord-utilities
-
-# [2.10.0](https://github.com/sapphiredev/utilities/compare/@sapphire/discord-utilities@2.9.0...@sapphire/discord-utilities@2.10.0) (2022-03-06)
-
-### Features
-
--   allow module: NodeNext ([#306](https://github.com/sapphiredev/utilities/issues/306)) ([9dc6dd6](https://github.com/sapphiredev/utilities/commit/9dc6dd619efab879bb2b0b3c9e64304e10a67ed6))
+- Allow module: NodeNext (#306) ([9dc6dd6](https://github.com/sapphiredev/utilities/commit/9dc6dd619efab879bb2b0b3c9e64304e10a67ed6))
 
 # [2.9.0](https://github.com/sapphiredev/utilities/compare/@sapphire/discord-utilities@2.8.0...@sapphire/discord-utilities@2.9.0) (2022-03-01)
 
