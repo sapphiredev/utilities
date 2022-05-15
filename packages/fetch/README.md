@@ -177,6 +177,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://axis.moe/"><img src="https://avatars.githubusercontent.com/u/54381371?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Jonathan</b></sub></a><br /><a href="https://github.com/sapphiredev/utilities/commits?author=axisiscool" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/imranbarbhuiya"><img src="https://avatars.githubusercontent.com/u/74945038?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Parbez</b></sub></a><br /><a href="#maintenance-imranbarbhuiya" title="Maintenance">🚧</a></td>
     <td align="center"><a href="https://github.com/NotKaskus"><img src="https://avatars.githubusercontent.com/u/75168528?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Paul Andrew</b></sub></a><br /><a href="https://github.com/sapphiredev/utilities/commits?author=NotKaskus" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://linktr.ee/mzato0001"><img src="https://avatars.githubusercontent.com/u/62367547?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Mzato</b></sub></a><br /><a href="https://github.com/sapphiredev/utilities/commits?author=Mzato0001" title="Code">💻</a> <a href="https://github.com/sapphiredev/utilities/issues?q=author%3AMzato0001" title="Bug reports">🐛</a></td>
   </tr>
 </table>
 

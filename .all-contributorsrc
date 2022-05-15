@@ -263,6 +263,13 @@
 			"avatar_url": "https://avatars.githubusercontent.com/u/75168528?v=4",
 			"profile": "https://github.com/NotKaskus",
 			"contributions": ["doc"]
+		},
+		{
+			"login": "Mzato0001",
+			"name": "Mzato",
+			"avatar_url": "https://avatars.githubusercontent.com/u/62367547?v=4",
+			"profile": "https://linktr.ee/mzato0001",
+			"contributions": ["code", "bug"]
 		}
 	],
 	"contributorsPerLine": 7,
