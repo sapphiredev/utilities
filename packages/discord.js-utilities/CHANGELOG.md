@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/discord.js-utilities@4.11.0](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@4.10.0...@sapphire/discord.js-utilities@4.11.0) - (2022-05-15)
+
+## 🐛 Bug Fixes
+
+- **PaginatedMessage:** Broaden option  types (#350) ([a747050](https://github.com/sapphiredev/utilities/commit/a747050243f46a6e653ecbe5c5ce790218ebcb59))
+
+## 🚀 Features
+
+- **discord.js-utilities:** Update to DJS v13.7 ([76e4efd](https://github.com/sapphiredev/utilities/commit/76e4efdafa150ca1279e0335f1feda4180f10619))
+- **discord.js-utilities:** IsGuildMember type guard (#349) ([c3a77c0](https://github.com/sapphiredev/utilities/commit/c3a77c033c2694f7cd2501ac33c635684ede1f0d))
+
+# [@sapphire/discord.js-utilities@4.10.0](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@4.9.7...@sapphire/discord.js-utilities@4.10.0) - (2022-05-01)
+
+## 🚀 Features
+
+- **PaginatedMessage:** Supports placeholder setting for default SelectMenu (#342) ([101ea97](https://github.com/sapphiredev/utilities/commit/101ea971cd28586c2800151a8b39d6a7540c5e2b))
+
 # [@sapphire/discord.js-utilities@4.10.0](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@4.9.7...@sapphire/discord.js-utilities@4.10.0) - (2022-05-01)
 
 ## Features
