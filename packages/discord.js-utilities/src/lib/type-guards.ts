@@ -1,8 +1,8 @@
 import { isNullish, Nullish } from '@sapphire/utilities';
-import type { APIMessage, APIGuildMember, APIInteractionGuildMember } from 'discord-api-types/v9';
+import type { APIGuildMember, APIInteractionGuildMember, APIMessage } from 'discord-api-types/v9';
 import {
-	Message,
 	GuildMember,
+	Message,
 	type BaseGuildVoiceChannel,
 	type CategoryChannel,
 	type Channel,
@@ -168,6 +168,7 @@ export function isNsfwChannel(channel: ChannelTypes | Nullish): boolean {
 		case 'GUILD_STAGE_VOICE':
 		case 'GUILD_STORE':
 		case 'GUILD_VOICE':
+		case 'GUILD_DIRECTORY':
 		case 'UNKNOWN':
 			return false;
 		case 'GUILD_NEWS':

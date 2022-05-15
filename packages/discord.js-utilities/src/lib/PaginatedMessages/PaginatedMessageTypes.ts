@@ -168,7 +168,7 @@ export type PaginatedMessageWrongUserInteractionReplyFunction = (
 
 export type PaginatedMessageEmbedResolvable = MessageOptions['embeds'];
 
-export type PaginatedMessageMessageOptionsUnion = MessageOptions | WebhookEditMessageOptions;
+export type PaginatedMessageMessageOptionsUnion = Omit<MessageOptions, 'flags'> | WebhookEditMessageOptions;
 
 /**
  * @internal This is a duplicate of the same interface in `@sapphire/plugin-i18next`
