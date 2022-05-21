@@ -163,7 +163,7 @@ export const ApplicationCommandOptionLimits = {
  */
 export const ButtonLimits = {
 	/**
-	 * Maximum characters allowed in a button lable.
+	 * Maximum characters allowed in a button label.
 	 */
 	MaximumLabelCharacters: 80,
 
