@@ -113,6 +113,11 @@ export const InteractionLimits = {
 	MaximumSelectMenusPerActionRow: 1,
 
 	/**
+	 * Maximum text inputs allowed in a single action row.
+	 */
+	MaximumTextInputsPerActionRow: 1,
+
+	/**
 	 * Maximum options allowed in a single select menu.
 	 */
 	MaximumOptionsInSelectMenus: 25
@@ -304,4 +309,49 @@ export const AutoCompleteLimits = {
 	 * Maximum characters allowed in a select menu option's name.
 	 */
 	MaximumLengthOfNameOfOption: 100
+} as const;
+
+/**
+ * Namespace containing limits related to Discord Modals.
+ */
+export const ModalLimits = {
+	/**
+	 * Maximum characters allowed in a modal custom ID.
+	 */
+	MaximumCustomIdCharacters: 100,
+
+	/**
+	 * Maximum characters allowed in a modal title.
+	 */
+	MaximumTitleCharacters: 45,
+
+	/**
+	 * Maximum components allowed in a modal.
+	 */
+	MaximumComponents: 5
+} as const;
+
+/**
+ * Namespace containing limits related to Discord Modal Text Input component.
+ */
+export const TextInputLimits = {
+	/**
+	 * Maximum characters allowed in a text input custom ID.
+	 */
+	MaximumCustomIdCharacters: 100,
+
+	/**
+	 * Maximum characters allowed in a text input label.
+	 */
+	MaximumLabelCharacters: 45,
+
+	/**
+	 * Maximum characters allowed in a text input placeholder.
+	 */
+	MaximumPlaceholderCharacters: 100,
+
+	/**
+	 * Maximum characters allowed in a text input value.
+	 */
+	MaximumValueCharacters: 4000
 } as const;
