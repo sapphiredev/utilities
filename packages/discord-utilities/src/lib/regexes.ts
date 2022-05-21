@@ -29,10 +29,10 @@ export const DiscordHostnameRegex =
 
 /**
  * Regex that can can capture the code of Discord invite links
- * @raw `/(https:\/\/)?(www\.)?(((discord(app)?)?\.com\/invite)|((discord(app)?)?\.gg))\/(?<invite>.+)/i`
+ * @raw `/(https:\/\/)?(www\.)?(((discord(app)?)?\.com\/invite)|((discord(app)?)?\.gg))\/(?<invite>\S+)/i`
  * @remark Capture group 1 is the invite URL's unique code. It is named `code`.
  */
-export const DiscordInviteLinkRegex = /(https:\/\/)?(www\.)?(((discord(app)?)?\.com\/invite)|((discord(app)?)?\.gg))\/(?<invite>.+)/i;
+export const DiscordInviteLinkRegex = /(https:\/\/)?(www\.)?(((discord(app)?)?\.com\/invite)|((discord(app)?)?\.gg))\/(?<invite>\S+)/i;
 
 /**
  * Regex that can capture the ID of any animated or non-animated custom Discord emoji
