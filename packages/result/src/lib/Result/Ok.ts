@@ -120,7 +120,7 @@ export class Ok<T> implements IResult<T, any> {
 	}
 
 	public flatten<Inner extends IResult<any, any>>(this: Ok<Inner>): Inner {
-		return this.unwrap();
+		return this.value;
 	}
 
 	public intoOkOrErr() {

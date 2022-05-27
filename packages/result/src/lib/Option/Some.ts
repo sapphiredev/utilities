@@ -104,8 +104,8 @@ export class Some<T> implements IOption<T> {
 		return other.map((o) => f(this.value, o));
 	}
 
-	public unzip<Inner, U>(this: IOption<[Inner, U]>): [IOption<Inner>, IOption<U>] {
-		const [s, o] = this.unwrap();
+	public unzip<Inner, U>(this: Some<[Inner, U]>): [IOption<Inner>, IOption<U>] {
+		const [s, o] = this.value;
 		return [some(s), some(o)];
 	}
 
