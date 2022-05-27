@@ -25,11 +25,11 @@ export class None implements IOption<any> {
 		throw new OptionError('Unwrap failed');
 	}
 
-	public unwrapOr<T>(defaultValue: T): T {
+	public unwrapOr<R>(defaultValue: R): R {
 		return defaultValue;
 	}
 
-	public unwrapOrElse<T>(cb: () => T): T {
+	public unwrapOrElse<R>(cb: () => R): R {
 		return cb();
 	}
 
@@ -37,11 +37,11 @@ export class None implements IOption<any> {
 		return this;
 	}
 
-	public mapOr<U>(defaultValue: U): U {
+	public mapOr<R>(defaultValue: R): R {
 		return defaultValue;
 	}
 
-	public mapOrElse<U>(defaultValue: () => U): U {
+	public mapOrElse<R>(defaultValue: () => R): R {
 		return defaultValue();
 	}
 
@@ -57,7 +57,7 @@ export class None implements IOption<any> {
 		return err(cb());
 	}
 
-	public *iter(): Generator<any> {
+	public *iter(): Generator<never> {
 		// Yields no values
 	}
 
@@ -121,7 +121,7 @@ export class None implements IOption<any> {
 		return branches.none();
 	}
 
-	public *[Symbol.iterator](): Generator<any> {
+	public *[Symbol.iterator](): Generator<never> {
 		// Yields no values
 	}
 }

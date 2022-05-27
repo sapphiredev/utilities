@@ -5,3 +5,9 @@ export function isFunction(input: any): input is (...args: readonly any[]) => an
 export function isFunction(input: any) {
 	return typeof input === 'function';
 }
+
+export function isPromise<T>(input: PromiseLike<T>): input is PromiseLike<T>;
+export function isPromise(input: any): input is PromiseLike<any>;
+export function isPromise(input: any) {
+	return typeof input === 'object' && input && typeof input.then === 'function';
+}

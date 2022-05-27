@@ -15,7 +15,7 @@ export class Some<T> implements IOption<T> {
 		return true;
 	}
 
-	public isSomeAnd(cb: (value: T) => boolean): boolean {
+	public isSomeAnd<R extends boolean>(cb: (value: T) => R): R {
 		return cb(this.value);
 	}
 
@@ -68,11 +68,11 @@ export class Some<T> implements IOption<T> {
 		yield this.value;
 	}
 
-	public and<U>(option: IOption<U>): IOption<U> {
+	public and<R extends IOption<any>>(option: R): R {
 		return option;
 	}
 
-	public andThen<U>(cb: (value: T) => IOption<U>): IOption<U> {
+	public andThen<R extends IOption<any>>(cb: (value: T) => R): R {
 		return cb(this.value);
 	}
 

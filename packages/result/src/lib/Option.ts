@@ -1,4 +1,4 @@
-import { isFunction } from './common/utils';
+import { Awaitable, isFunction } from './common/utils';
 import { None, none as _none } from './Option/None';
 import { Some, some as _some } from './Option/Some';
 
@@ -37,11 +37,9 @@ export namespace Option {
 	 * Creates an {@link Option} out of a value or callback.
 	 * @typeparam T The result's type.
 	 */
-	export async function fromAsync<T>(op: Resolvable<T> | (() => Promise<Resolvable<T>>)): Promise<Option<T>> {
-		if (!isFunction(op)) return resolve(op);
-
+	export async function fromAsync<T>(op: Awaitable<Resolvable<T>> | (() => Awaitable<Resolvable<T>>)): Promise<Option<T>> {
 		try {
-			return resolve(await op());
+			return resolve(await (isFunction(op) ? op() : op));
 		} catch {
 			return none;
 		}

@@ -1,6 +1,6 @@
 import type { IOption } from '../Option/IOption';
-import { None, none } from '../Option/None';
-import { some } from '../Option/Some';
+import { none, type None } from '../Option/None';
+import { some, type Some } from '../Option/Some';
 import type { IResult } from './IResult';
 import { ResultError } from './ResultError';
 
@@ -27,7 +27,7 @@ export class Ok<T> implements IResult<T, any> {
 		return false;
 	}
 
-	public ok(): IOption<T> {
+	public ok(): Some<T> {
 		return some(this.value);
 	}
 
@@ -47,8 +47,8 @@ export class Ok<T> implements IResult<T, any> {
 		return cb(this.value);
 	}
 
-	public mapErr<F>(): IResult<T, F> {
-		return this as unknown as IResult<T, F>;
+	public mapErr(): Ok<T> {
+		return this;
 	}
 
 	public inspect(cb: (value: T) => void): this {

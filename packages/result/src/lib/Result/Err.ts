@@ -34,8 +34,8 @@ export class Err<E> implements IResult<any, E> {
 		return some(this.error);
 	}
 
-	public map<U>(): IResult<U, E> {
-		return this as unknown as IResult<U, E>;
+	public map(): Err<E> {
+		return this;
 	}
 
 	public mapOr<U>(defaultValue: U): U {
@@ -46,7 +46,7 @@ export class Err<E> implements IResult<any, E> {
 		return op(this.error);
 	}
 
-	public mapErr<F>(cb: (error: E) => F): IResult<any, F> {
+	public mapErr<F>(cb: (error: E) => F): Err<F> {
 		return err(cb(this.error));
 	}
 
@@ -135,7 +135,7 @@ export class Err<E> implements IResult<any, E> {
 		return branches.err(this.error);
 	}
 
-	public *[Symbol.iterator](): Generator<any> {
+	public *[Symbol.iterator](): Generator<never> {
 		// Yields no values
 	}
 }
