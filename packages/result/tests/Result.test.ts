@@ -1,79 +1,83 @@
 import { Option, Result, ResultError } from '../src/index';
 import type { None } from '../src/lib/Option/None';
 import type { Some } from '../src/lib/Option/Some';
+import type { Err } from '../src/lib/Result/Err';
 import type { Ok } from '../src/lib/Result/Ok';
+
+const { ok, err } = Result;
+const { some, none } = Option;
 
 describe('Result', () => {
 	describe('prototype', () => {
 		describe('isOk', () => {
 			test('GIVEN ok THEN returns true', () => {
-				const result = Result.ok(42);
-				expect<true>(result.isOk()).toBe(true);
+				const x = ok(42);
+				expect<true>(x.isOk()).toBe(true);
 			});
 
 			test('GIVEN err THEN returns false', () => {
-				const result = Result.err('Some error message');
-				expect<false>(result.isOk()).toBe(false);
+				const x = err('Some error message');
+				expect<false>(x.isOk()).toBe(false);
 			});
 		});
 
 		describe('isOkAnd', () => {
 			test('GIVEN ok AND true-returning callback THEN returns true', () => {
-				const result = Result.ok(2);
+				const x = ok(2);
 				const cb = jest.fn((value: number) => value > 1);
 
-				expect(result.isOkAnd(cb)).toBe(true);
+				expect(x.isOkAnd(cb)).toBe(true);
 				expect(cb).toHaveBeenCalledTimes(1);
 				expect(cb).toHaveBeenCalledWith(2);
 				expect(cb).toHaveReturnedWith(true);
 			});
 
 			test('GIVEN ok AND false-returning callback THEN returns false', () => {
-				const result = Result.ok(0);
+				const x = ok(0);
 				const cb = jest.fn((value: number) => value > 1);
 
-				expect(result.isOkAnd(cb)).toBe(false);
+				expect(x.isOkAnd(cb)).toBe(false);
 				expect(cb).toHaveBeenCalledTimes(1);
 				expect(cb).toHaveBeenCalledWith(0);
 				expect(cb).toHaveReturnedWith(false);
 			});
 
 			test('GIVEN err THEN returns false', () => {
-				const result = Result.err('Some error message') as Result<number, string>;
+				const x = err('Some error message');
 				const cb = jest.fn((value: number) => value > 1);
 
-				expect(result.isOkAnd(cb)).toBe(false);
+				expect(x.isOkAnd(cb)).toBe(false);
 				expect(cb).not.toHaveBeenCalled();
 			});
 		});
 
 		describe('isErr', () => {
 			test('GIVEN ok THEN returns false', () => {
-				const result = Result.ok(42);
-				expect<false>(result.isErr()).toBe(false);
+				const x = ok(42);
+				expect<false>(x.isErr()).toBe(false);
 			});
 
 			test('GIVEN err THEN returns true', () => {
-				const result = Result.err('Some error message');
-				expect<true>(result.isErr()).toBe(true);
+				const x = err('Some error message');
+				expect<true>(x.isErr()).toBe(true);
 			});
 		});
 
 		describe('isErrAnd', () => {
 			test('GIVEN ok AND true-returning callback THEN returns true', () => {
-				const result = Result.ok(2) as Result<number, Error>;
+				const x = ok(2);
 				const cb = jest.fn((value: Error) => value instanceof TypeError);
 
-				expect(result.isErrAnd(cb)).toBe(false);
+				expect(x.isErrAnd(cb)).toBe(false);
 				expect(cb).not.toHaveBeenCalled();
 			});
 
 			test('GIVEN err AND false-returning callback THEN returns false', () => {
 				const error = new Error('Some error message');
-				const result = Result.err(error);
+				const x = err(error);
 				const cb = jest.fn((value: Error) => value instanceof TypeError);
 
-				expect(result.isErrAnd(cb)).toBe(false);
+				expect(x.isErrAnd(cb)).toBe(false);
 				expect(cb).toHaveBeenCalledTimes(1);
 				expect(cb).toHaveBeenCalledWith(error);
 				expect(cb).toHaveReturnedWith(false);
@@ -81,10 +85,10 @@ describe('Result', () => {
 
 			test('GIVEN err AND true-returning callback THEN returns false', () => {
 				const error = new TypeError('Some error message');
-				const result = Result.err(error);
+				const x = err(error);
 				const cb = jest.fn((value: Error) => value instanceof TypeError);
 
-				expect(result.isErrAnd(cb)).toBe(true);
+				expect(x.isErrAnd(cb)).toBe(true);
 				expect(cb).toHaveBeenCalledTimes(1);
 				expect(cb).toHaveBeenCalledWith(error);
 				expect(cb).toHaveReturnedWith(true);
@@ -93,79 +97,79 @@ describe('Result', () => {
 
 		describe('ok', () => {
 			test('GIVEN ok THEN returns some', () => {
-				const result = Result.ok(2);
+				const x = ok(2);
 
-				expect<Some<number>>(result.ok()).toEqual(Option.some(2));
+				expect<Some<number>>(x.ok()).toEqual(some(2));
 			});
 
 			test('GIVEN err THEN returns none', () => {
-				const result = Result.err('Some error message');
+				const x = err('Some error message');
 
-				expect<None>(result.ok()).toEqual(Option.none);
+				expect<None>(x.ok()).toEqual(none);
 			});
 		});
 
 		describe('err', () => {
 			test('GIVEN ok THEN returns none', () => {
-				const result = Result.ok(2);
+				const x = ok(2);
 
-				expect<None>(result.err()).toEqual(Option.none);
+				expect<None>(x.err()).toEqual(none);
 			});
 
 			test('GIVEN err THEN returns some', () => {
-				const result = Result.err('Some error message');
+				const x = err('Some error message');
 
-				expect<Some<string>>(result.err()).toEqual(Option.some('Some error message'));
+				expect<Some<string>>(x.err()).toEqual(Option.some('Some error message'));
 			});
 		});
 
 		describe('map', () => {
 			test('GIVEN ok THEN returns ok with mapped value', () => {
-				const result = Result.ok(2);
+				const x = ok(2);
 				const cb = jest.fn((value: number) => value > 1);
 
-				expect<Ok<boolean>>(result.map(cb)).toEqual(Result.ok(true));
+				expect<Ok<boolean>>(x.map(cb)).toEqual(ok(true));
 				expect(cb).toHaveBeenCalledTimes(1);
 				expect(cb).toHaveBeenCalledWith(2);
 				expect(cb).toHaveReturnedWith(true);
 			});
 
 			test('GIVEN err THEN returns err', () => {
-				const result = Result.err('Some error message') as Result<number, string>;
+				const x = err('Some error message');
 				const cb = jest.fn((value: number) => value > 1);
 
-				expect(result.map(cb)).toEqual(Result.err('Some error message'));
+				expect(x.map(cb)).toEqual(err('Some error message'));
 				expect(cb).not.toHaveBeenCalled();
 			});
 		});
 
 		describe('mapOr', () => {
 			test('GIVEN ok THEN returns ok with mapped value', () => {
-				const result = Result.ok(2);
+				const x = ok(2);
 				const cb = jest.fn((value: number) => value > 1);
 
-				expect<boolean>(result.mapOr(false, cb)).toEqual(true);
+				expect<boolean>(x.mapOr(false, cb)).toEqual(true);
 				expect(cb).toHaveBeenCalledTimes(1);
 				expect(cb).toHaveBeenCalledWith(2);
 				expect(cb).toHaveReturnedWith(true);
 			});
 
 			test('GIVEN err THEN returns err', () => {
-				const result = Result.err('Some error message') as Result<number, string>;
+				const x = err('Some error message');
 				const cb = jest.fn((value: number) => value > 1);
 
-				expect<boolean>(result.mapOr(false, cb)).toEqual(false);
+				expect<boolean>(x.mapOr(false, cb)).toEqual(false);
 				expect(cb).not.toHaveBeenCalled();
 			});
 		});
 
 		describe('mapOrElse', () => {
 			test('GIVEN ok THEN returns ok with mapped value', () => {
-				const result = Result.ok(2);
+				const x = ok(2);
 				const op = jest.fn(() => false);
 				const cb = jest.fn((value: number) => value > 1);
 
-				expect<boolean>(result.mapOrElse(op, cb)).toEqual(true);
+				expect<boolean>(x.mapOrElse(op, cb)).toEqual(true);
 				expect(op).not.toHaveBeenCalled();
 				expect(cb).toHaveBeenCalledTimes(1);
 				expect(cb).toHaveBeenCalledWith(2);
@@ -173,11 +177,11 @@ describe('Result', () => {
 			});
 
 			test('GIVEN err THEN returns err', () => {
-				const result = Result.err('Some error message') as Result<number, string>;
+				const x = err('Some error message');
 				const op = jest.fn(() => false);
 				const cb = jest.fn((value: number) => value > 1);
 
-				expect<boolean>(result.mapOrElse(op, cb)).toEqual(false);
+				expect<boolean>(x.mapOrElse(op, cb)).toEqual(false);
 				expect(op).toHaveBeenCalledTimes(1);
 				expect(op).toHaveBeenCalledWith('Some error message');
 				expect(op).toHaveReturnedWith(false);
@@ -187,18 +191,18 @@ describe('Result', () => {
 
 		describe('mapErr', () => {
 			test('GIVEN ok THEN returns ok', () => {
-				const result = Result.ok(2) as Result<number, string>;
+				const x = ok(2);
 				const cb = jest.fn((error: string) => error.length);
 
-				expect<Result<number, number>>(result.mapErr(cb)).toEqual(Result.ok(2));
+				expect<Result<number, number>>(x.mapErr(cb)).toEqual(ok(2));
 				expect(cb).not.toHaveBeenCalled();
 			});
 
 			test('GIVEN ok THEN returns err with mapped value', () => {
-				const result = Result.err('Some error message') as Result<number, string>;
+				const x = err('Some error message');
 				const cb = jest.fn((error: string) => error.length);
 
-				expect<Result<number, number>>(result.mapErr(cb)).toEqual(Result.err(18));
+				expect<Result<number, number>>(x.mapErr(cb)).toEqual(err(18));
 				expect(cb).toHaveBeenCalledTimes(1);
 				expect(cb).toHaveBeenCalledWith('Some error message');
 				expect(cb).toHaveReturnedWith(18);
@@ -207,37 +211,37 @@ describe('Result', () => {
 
 		describe('inspect', () => {
 			test('GIVEN ok THEN calls callback and returns self', () => {
-				const result = Result.ok(2);
+				const x = ok(2);
 				const cb = jest.fn();
 
-				expect<typeof result>(result.inspect(cb)).toBe(result);
+				expect<typeof x>(x.inspect(cb)).toBe(x);
 				expect(cb).toHaveBeenCalledTimes(1);
 				expect(cb).toHaveBeenCalledWith(2);
 			});
 
 			test('GIVEN err THEN returns self', () => {
-				const result = Result.err('Some error message') as Result<number, string>;
+				const x = err('Some error message');
 				const cb = jest.fn();
 
-				expect<typeof result>(result.inspect(cb)).toBe(result);
+				expect<typeof x>(x.inspect(cb)).toBe(x);
 				expect(cb).not.toHaveBeenCalled();
 			});
 		});
 
 		describe('inspectErr', () => {
 			test('GIVEN ok THEN calls callback and returns self', () => {
-				const result = Result.ok(2) as Result<number, string>;
+				const x = ok(2);
 				const cb = jest.fn();
 
-				expect<typeof result>(result.inspectErr(cb)).toBe(result);
+				expect<typeof x>(x.inspectErr(cb)).toBe(x);
 				expect(cb).not.toHaveBeenCalled();
 			});
 
 			test('GIVEN err THEN returns self', () => {
-				const result = Result.err('Some error message');
+				const x = err('Some error message');
 				const cb = jest.fn();
 
-				expect<typeof result>(result.inspectErr(cb)).toBe(result);
+				expect<typeof x>(x.inspectErr(cb)).toBe(x);
 				expect(cb).toHaveBeenCalledTimes(1);
 				expect(cb).toHaveBeenCalledWith('Some error message');
 			});
@@ -245,133 +249,413 @@ describe('Result', () => {
 
 		describe('iter', () => {
 			test('GIVEN ok THEN yields one value', () => {
-				const result = Result.ok(2) as Result<number, string>;
+				const x = ok(2);
 
-				expect<number[]>([...result.iter()]).toStrictEqual([2]);
+				expect<number[]>([...x.iter()]).toStrictEqual([2]);
 			});
 
 			test('GIVEN err THEN yields no value', () => {
-				const result = Result.err('Some error message') as Result<number, string>;
+				const x = err('Some error message');
 
-				expect<number[]>([...result.iter()]).toStrictEqual([]);
+				expect<number[]>([...x.iter()]).toStrictEqual([]);
 			});
 		});
 
 		describe('expect', () => {
 			test('GIVEN ok THEN returns value', () => {
-				const result = Result.ok(2) as Result<number, string>;
+				const x = ok(2);
 
-				expect<number>(result.expect('Whoops!')).toBe(2);
+				expect<number>(x.expect('Whoops!')).toBe(2);
 			});
 
 			test('GIVEN err THEN throws ResultError', () => {
-				const result = Result.err('Some error message') as Result<number, string>;
+				const x = err('Some error message');
 
-				expectResultError('Whoops!', 'Some error message', () => result.expect('Whoops!'));
+				expectResultError('Whoops!', 'Some error message', () => x.expect('Whoops!'));
 			});
 		});
 
 		describe('expectErr', () => {
 			test('GIVEN ok THEN throws ResultError', () => {
-				const result = Result.ok(2) as Result<number, string>;
+				const x = ok(2);
 
-				expectResultError('Whoops!', 2, () => result.expectErr('Whoops!'));
+				expectResultError('Whoops!', 2, () => x.expectErr('Whoops!'));
 			});
 
 			test('GIVEN err THEN returns error', () => {
-				const result = Result.err('Some error message') as Result<number, string>;
+				const x = err('Some error message');
 
-				expect<string>(result.expectErr('Whoops!')).toBe('Some error message');
+				expect<string>(x.expectErr('Whoops!')).toBe('Some error message');
 			});
 		});
 
 		describe('unwrap', () => {
 			test('GIVEN ok THEN returns value', () => {
-				const result = Result.ok(2) as Result<number, string>;
+				const x = ok(2);
 
-				expect<number>(result.unwrap()).toBe(2);
+				expect<number>(x.unwrap()).toBe(2);
 			});
 
 			test('GIVEN err THEN throws ResultError', () => {
-				const result = Result.err('Some error message') as Result<number, string>;
+				const x = err('Some error message');
 
-				expectResultError('Unwrap failed', 'Some error message', () => result.unwrap());
+				expectResultError('Unwrap failed', 'Some error message', () => x.unwrap());
 			});
 		});
 
 		describe('unwrapErr', () => {
 			test('GIVEN ok THEN throws ResultError', () => {
-				const result = Result.ok(2) as Result<number, string>;
+				const x = ok(2);
 
-				expectResultError('Unwrap failed', 2, () => result.unwrapErr());
+				expectResultError('Unwrap failed', 2, () => x.unwrapErr());
 			});
 
 			test('GIVEN err THEN returns error', () => {
-				const result = Result.err('Some error message') as Result<number, string>;
+				const x = err('Some error message');
 
-				expect<string>(result.unwrapErr()).toBe('Some error message');
+				expect<string>(x.unwrapErr()).toBe('Some error message');
 			});
 		});
 
 		describe('unwrapOr', () => {
-			// TODO: Write tests
+			test('GIVEN ok THEN returns value', () => {
+				const x = ok(2);
+
+				expect<number>(x.unwrapOr(5)).toBe(2);
+			});
+
+			test('GIVEN err THEN returns default', () => {
+				const x = err('Some error message');
+
+				expect<5>(x.unwrapOr(5)).toBe(5);
+			});
 		});
 
 		describe('unwrapOrElse', () => {
-			// TODO: Write tests
+			test('GIVEN ok THEN returns value', () => {
+				const x = ok(2);
+
+				expect<number>(x.unwrapOrElse(() => 5)).toBe(2);
+			});
+
+			test('GIVEN err THEN returns default', () => {
+				const x = err('Some error message');
+
+				expect<5>(x.unwrapOrElse(() => 5)).toBe(5);
+			});
 		});
 
 		describe('and', () => {
-			// TODO: Write tests
+			test('GIVEN x=ok and y=err THEN returns y', () => {
+				const x = ok(2);
+				const y = err('Late error');
+
+				expect<typeof y>(x.and(y)).toBe(y);
+			});
+
+			test('GIVEN x=err and y=err THEN returns x', () => {
+				const x = err('Early error');
+				const y = err('Late error');
+
+				expect<typeof x>(x.and(y)).toBe(x);
+			});
+
+			test('GIVEN x=ok and y=ok THEN returns y', () => {
+				const x = ok(2);
+				const y = ok('Hello');
+
+				expect<typeof y>(x.and(y)).toBe(y);
+			});
 		});
 
 		describe('andThen', () => {
-			// TODO: Write tests
+			const cb = (value: number) => (value === 0 ? err('overflowed') : ok(4 / value));
+
+			test('GIVEN ok AND ok-returning callback THEN returns ok', () => {
+				const x = ok(4);
+				const op = jest.fn(cb);
+
+				expect<Result<number, string>>(x.andThen(op)).toEqual(ok(1));
+				expect(op).toHaveBeenCalledTimes(1);
+				expect(op).toHaveBeenCalledWith(4);
+				expect(op).toHaveReturnedWith(ok(1));
+			});
+
+			test('GIVEN ok AND err-returning callback THEN returns err', () => {
+				const x = ok(0);
+				const op = jest.fn(cb);
+
+				expect<Result<number, string>>(x.andThen(op)).toEqual(err('overflowed'));
+				expect(op).toHaveBeenCalledTimes(1);
+				expect(op).toHaveBeenCalledWith(0);
+				expect(op).toHaveReturnedWith(err('overflowed'));
+			});
+
+			test('GIVEN err THEN always returns err', () => {
+				const x = err('not a number');
+				const op = jest.fn(cb);
+
+				expect<typeof x>(x.andThen(op)).toBe(x);
+				expect(op).not.toHaveBeenCalled();
+			});
 		});
 
 		describe('or', () => {
-			// TODO: Write tests
+			test('GIVEN x=ok and y=err THEN returns x', () => {
+				const x = ok(2);
+				const y = err('Late error');
+
+				expect<typeof x>(x.or(y)).toBe(x);
+			});
+
+			test('GIVEN x=err and y=ok THEN returns y', () => {
+				const x = err('Early error');
+				const y = ok(2);
+
+				expect<typeof y>(x.or(y)).toBe(y);
+			});
+
+			test('GIVEN x=err and y=err THEN returns y', () => {
+				const x = err('Early error');
+				const y = err('Late error');
+
+				expect<typeof y>(x.or(y)).toBe(y);
+			});
+
+			test('GIVEN x=ok and y=ok THEN returns x', () => {
+				const x = ok(2);
+				const y = ok(100);
+
+				expect<typeof x>(x.or(y)).toBe(x);
+			});
 		});
 
 		describe('orElse', () => {
-			// TODO: Write tests
+			const square = (value: number) => ok(value * value);
+			const wrapErr = (error: number) => err(error);
+
+			test('GIVEN x=ok, a->ok, b->ok THEN returns x without calling a or b', () => {
+				const x = ok(2);
+				const a = jest.fn(square);
+				const b = jest.fn(square);
+
+				expect<typeof x>(x.orElse(a).orElse(b)).toBe(x);
+				expect(a).not.toHaveBeenCalled();
+				expect(b).not.toHaveBeenCalled();
+			});
+
+			test('GIVEN x=ok, a->ok, b->err THEN returns x without calling a or b', () => {
+				const x = ok(2);
+				const a = jest.fn(square);
+				const b = jest.fn(wrapErr);
+
+				expect<typeof x>(x.orElse(a).orElse(b)).toBe(x);
+				expect(a).not.toHaveBeenCalled();
+				expect(b).not.toHaveBeenCalled();
+			});
+
+			test('GIVEN x=err, a->ok, b->err THEN returns ok without calling b', () => {
+				const x = err(3);
+				const a = jest.fn(square);
+				const b = jest.fn(wrapErr);
+
+				expect<Ok<number>>(x.orElse(a).orElse(b)).toEqual(ok(9));
+				expect(a).toHaveBeenCalledTimes(1);
+				expect(a).toHaveBeenCalledWith(3);
+				expect(a).toHaveReturnedWith(ok(9));
+				expect(b).not.toHaveBeenCalled();
+			});
+
+			test('GIVEN x=err, a->err, b->err THEN returns ok calling a and b', () => {
+				const x = err(3);
+				const a = jest.fn(wrapErr);
+				const b = jest.fn(wrapErr);
+
+				expect<Err<number>>(x.orElse(a).orElse(b)).toEqual(err(3));
+				expect(a).toHaveBeenCalledTimes(1);
+				expect(a).toHaveBeenCalledWith(3);
+				expect(a).toHaveReturnedWith(err(3));
+				expect(b).toHaveBeenCalledTimes(1);
+				expect(b).toHaveBeenCalledWith(3);
+				expect(b).toHaveReturnedWith(err(3));
+			});
 		});
 
 		describe('contains', () => {
-			// TODO: Write tests
+			test('GIVEN ok AND matching value THEN returns true', () => {
+				const x = ok(2);
+
+				expect<boolean>(x.contains(2)).toBe(true);
+			});
+
+			test('GIVEN ok AND different value THEN returns false', () => {
+				const x = ok(3);
+
+				expect<boolean>(x.contains(2)).toBe(false);
+			});
+
+			test('GIVEN err THEN always returns false', () => {
+				const x = err('Some error message');
+
+				expect<false>(x.contains(2)).toBe(false);
+			});
 		});
 
 		describe('containsErr', () => {
-			// TODO: Write tests
+			test('GIVEN ok THEN always returns false', () => {
+				const x = ok(2);
+
+				expect<false>(x.containsErr('Some error message')).toBe(false);
+			});
+
+			test('GIVEN err AND matching value THEN returns true', () => {
+				const x = err('Some error message');
+
+				expect<boolean>(x.containsErr('Some error message')).toBe(true);
+			});
+
+			test('GIVEN err AND different value THEN returns false', () => {
+				const x = err('Some other error message');
+
+				expect<boolean>(x.containsErr('Some error message')).toBe(false);
+			});
 		});
 
 		describe('transpose', () => {
-			// TODO: Write tests
+			test('GIVEN Ok<Some<T>> THEN returns Some<Ok<T>>', () => {
+				const x = ok(some(5));
+
+				expect(x.transpose()).toEqual(some(ok(5)));
+			});
+
+			test('GIVEN Ok<None> THEN returns None', () => {
+				const x = ok(none);
+
+				expect(x.transpose()).toEqual(none);
+			});
+
+			test('GIVEN Err<E> THEN returns Some<Err<E>>', () => {
+				const x = err('Some error message');
+
+				expect(x.transpose()).toEqual(some(err('Some error message')));
+			});
 		});
 
 		describe('flatten', () => {
-			// TODO: Write tests
+			test('GIVEN Ok<Ok<T>> THEN returns Ok<T>', () => {
+				const x = ok(ok('Hello'));
+
+				expect<Ok<string>>(x.flatten()).toEqual(ok('Hello'));
+			});
+
+			test('GIVEN Ok<Err<E>> THEN returns Err<E>', () => {
+				const x = ok(err(6));
+
+				expect<Err<number>>(x.flatten()).toEqual(err(6));
+			});
+
+			test('GIVEN Err<E> THEN returns Err<E>', () => {
+				const x = err(6);
+
+				expect<typeof x>(x.flatten()).toBe(x);
+			});
 		});
 
 		describe('intoOkOrErr', () => {
-			// TODO: Write tests
+			test('GIVEN ok(s) THEN returns s', () => {
+				const x = ok(3);
+
+				expect<number>(x.intoOkOrErr()).toBe(3);
+			});
+
+			test('GIVEN err(e) THEN returns e', () => {
+				const x = err(4);
+
+				expect<number>(x.intoOkOrErr()).toBe(4);
+			});
 		});
 
 		describe('eq', () => {
-			// TODO: Write tests
+			test('GIVEN x=ok(s), y=ok(s) THEN returns true', () => {
+				const x = ok(3);
+				const y = ok(3);
+
+				expect<boolean>(x.eq(y)).toBe(true);
+			});
+
+			test('GIVEN x=ok(s), y=ok(t) / s !== t THEN returns false', () => {
+				const x = ok(3);
+				const y = ok(4);
+
+				expect<boolean>(x.eq(y)).toBe(false);
+			});
+
+			test('GIVEN x=ok(s), y=err(e) THEN always returns false', () => {
+				const x = ok(3);
+				const y = err(3);
+
+				expect<boolean>(x.eq(y)).toBe(false);
+			});
+
+			test('GIVEN x=err(e), y=err(e) THEN returns true', () => {
+				const x = err(3);
+				const y = err(3);
+
+				expect<boolean>(x.eq(y)).toBe(true);
+			});
+
+			test('GIVEN x=err(e), y=err(t) / e !== t THEN returns false', () => {
+				const x = ok(3);
+				const y = ok(4);
+
+				expect<boolean>(x.eq(y)).toBe(false);
+			});
 		});
 
 		describe('ne', () => {
-			// TODO: Write tests
+			test('GIVEN x=ok(s), y=ok(s) THEN returns false', () => {
+				const x = ok(3);
+				const y = ok(3);
+
+				expect<boolean>(x.ne(y)).toBe(false);
+			});
+
+			test('GIVEN x=ok(s), y=ok(t) / s !== t THEN returns true', () => {
+				const x = ok(3);
+				const y = ok(4);
+
+				expect<boolean>(x.ne(y)).toBe(true);
+			});
+
+			test('GIVEN x=ok(s), y=err(e) THEN always returns true', () => {
+				const x = ok(3);
+				const y = err(3);
+
+				expect<boolean>(x.ne(y)).toBe(true);
+			});
+
+			test('GIVEN x=err(e), y=err(e) THEN returns false', () => {
+				const x = err(3);
+				const y = err(3);
+
+				expect<boolean>(x.ne(y)).toBe(false);
+			});
+
+			test('GIVEN x=err(e), y=err(t) / e !== t THEN returns true', () => {
+				const x = ok(3);
+				const y = ok(4);
+
+				expect<boolean>(x.ne(y)).toBe(true);
+			});
 		});
 
 		describe('match', () => {
 			test('GIVEN ok THEN calls ok callback', () => {
-				const result = Result.ok(2) as Result<number, string>;
+				const x = Result.ok(2);
 				const ok = jest.fn((value: number) => value * 2);
 				const err = jest.fn((error: string) => error.length);
 
-				expect<number>(result.match({ ok, err })).toBe(4);
+				expect<number>(x.match({ ok, err })).toBe(4);
 				expect(ok).toHaveBeenCalledTimes(1);
 				expect(ok).toHaveBeenCalledWith(2);
 				expect(ok).toHaveReturnedWith(4);
@@ -379,11 +663,11 @@ describe('Result', () => {
 			});
 
 			test('GIVEN ok THEN calls ok callback', () => {
-				const result = Result.err('Some error message') as Result<number, string>;
+				const x = Result.err('Some error message');
 				const ok = jest.fn((value: number) => value * 2);
 				const err = jest.fn((error: string) => error.length);
 
-				expect<number>(result.match({ ok, err })).toBe(18);
+				expect<number>(x.match({ ok, err })).toBe(18);
 				expect(ok).not.toHaveBeenCalled();
 				expect(err).toHaveBeenCalledTimes(1);
 				expect(err).toHaveBeenCalledWith('Some error message');
@@ -394,77 +678,77 @@ describe('Result', () => {
 
 	describe('ok', () => {
 		test('GIVEN ok THEN returns { isOk->true, isErr->false }', () => {
-			const returnValue = Result.ok(42);
+			const x = Result.ok(42);
 
-			expect<true>(returnValue.isOk()).toBe(true);
-			expect<false>(returnValue.isErr()).toBe(false);
+			expect<true>(x.isOk()).toBe(true);
+			expect<false>(x.isErr()).toBe(false);
 		});
 	});
 
 	describe('err', () => {
 		test('GIVEN err THEN returns { isOk->false, isErr->true }', () => {
-			const returnValue = Result.err(new Error());
+			const x = Result.err(new Error());
 
-			expect<false>(returnValue.isOk()).toBe(false);
-			expect<true>(returnValue.isErr()).toBe(true);
+			expect<false>(x.isOk()).toBe(false);
+			expect<true>(x.isErr()).toBe(true);
 		});
 	});
 
 	describe('from', () => {
 		test('GIVEN truthy value THEN returns Ok', () => {
-			const returnValue = Result.from(() => 42);
+			const x = Result.from(() => 42);
 
-			expect(returnValue.isOk()).toBeTruthy();
-			expect(returnValue.isErr()).toBeFalsy();
-			expect(returnValue.unwrap()).toBe(42);
+			expect(x.isOk()).toBeTruthy();
+			expect(x.isErr()).toBeFalsy();
+			expect(x.unwrap()).toBe(42);
 		});
 
 		test('GIVEN thrown error THEN returns Err', () => {
-			const returnValue = Result.from(() => {
+			const x = Result.from(() => {
 				throw new Error();
 			});
 
-			expect(returnValue.isOk()).toBeFalsy();
-			expect(returnValue.isErr()).toBeTruthy();
-			expect(returnValue.unwrapErr()).toBeDefined();
+			expect(x.isOk()).toBeFalsy();
+			expect(x.isErr()).toBeTruthy();
+			expect(x.unwrapErr()).toBeDefined();
 		});
 	});
 
 	describe('fromAsync', () => {
 		test('GIVEN truthy value THEN returns Ok', async () => {
-			const returnValue = await Result.fromAsync(() => Promise.resolve(42));
+			const x = await Result.fromAsync(() => Promise.resolve(42));
 
-			expect(returnValue.isOk()).toBeTruthy();
-			expect(returnValue.isErr()).toBeFalsy();
-			expect(returnValue.unwrap()).toBe(42);
+			expect(x.isOk()).toBeTruthy();
+			expect(x.isErr()).toBeFalsy();
+			expect(x.unwrap()).toBe(42);
 		});
 
 		test('GIVEN existing promise with value THEN returns Ok', async () => {
 			const promise = new Promise<number>((resolve) => resolve(42));
 
-			const returnValue = await Result.fromAsync(promise);
+			const x = await Result.fromAsync(promise);
 
-			expect(returnValue.isOk()).toBeTruthy();
-			expect(returnValue.isErr()).toBeFalsy();
-			expect(returnValue.unwrap()).toBe(42);
+			expect(x.isOk()).toBeTruthy();
+			expect(x.isErr()).toBeFalsy();
+			expect(x.unwrap()).toBe(42);
 		});
 
 		test('GIVEN promise rejection THEN returns Err', async () => {
-			const returnValue = await Result.fromAsync(() => Promise.reject(new Error()));
+			const x = await Result.fromAsync(() => Promise.reject(new Error()));
 
-			expect(returnValue.isOk()).toBeFalsy();
-			expect(returnValue.isErr()).toBeTruthy();
-			expect(returnValue.unwrapErr()).toBeDefined();
+			expect(x.isOk()).toBeFalsy();
+			expect(x.isErr()).toBeTruthy();
+			expect(x.unwrapErr()).toBeDefined();
 		});
 
 		test('GIVEN existing promise with rejection THEN returns Err', async () => {
 			const promise = new Promise((_, reject) => reject(new Error()));
 
-			const returnValue = await Result.fromAsync(promise);
+			const x = await Result.fromAsync(promise);
 
-			expect(returnValue.isOk()).toBeFalsy();
-			expect(returnValue.isErr()).toBeTruthy();
-			expect(returnValue.unwrapErr()).toBeDefined();
+			expect(x.isOk()).toBeFalsy();
+			expect(x.isErr()).toBeTruthy();
+			expect(x.unwrapErr()).toBeDefined();
 		});
 	});
 });

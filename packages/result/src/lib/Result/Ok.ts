@@ -23,6 +23,7 @@ export class Ok<T> implements IResult<T, any> {
 		return false;
 	}
 
+	public isErrAnd(cb?: (error: never) => boolean): false;
 	public isErrAnd(): false {
 		return false;
 	}
@@ -47,7 +48,8 @@ export class Ok<T> implements IResult<T, any> {
 		return cb(this.value);
 	}
 
-	public mapErr(): Ok<T> {
+	public mapErr(cb?: (error: never) => any): this;
+	public mapErr(): this {
 		return this;
 	}
 
@@ -56,6 +58,7 @@ export class Ok<T> implements IResult<T, any> {
 		return this;
 	}
 
+	public inspectErr(cb?: (error: never) => void): this;
 	public inspectErr(): this {
 		return this;
 	}
@@ -64,6 +67,7 @@ export class Ok<T> implements IResult<T, any> {
 		yield this.value;
 	}
 
+	public expect(message?: string): T;
 	public expect(): T {
 		return this.value;
 	}
@@ -80,10 +84,12 @@ export class Ok<T> implements IResult<T, any> {
 		throw new ResultError('Unwrap failed', this.value);
 	}
 
+	public unwrapOr(defaultValue: T): T;
 	public unwrapOr(): T {
 		return this.value;
 	}
 
+	public unwrapOrElse(op: (error: any) => T): T;
 	public unwrapOrElse(): T {
 		return this.value;
 	}
@@ -96,11 +102,13 @@ export class Ok<T> implements IResult<T, any> {
 		return cb(this.value);
 	}
 
-	public or(): Ok<T> {
+	public or(result: IResult<T, any>): this;
+	public or(): this {
 		return this;
 	}
 
-	public orElse(): Ok<T> {
+	public orElse(cb: (error: never) => IResult<T, any>): this;
+	public orElse(): this {
 		return this;
 	}
 
@@ -108,6 +116,7 @@ export class Ok<T> implements IResult<T, any> {
 		return this.value === value;
 	}
 
+	public containsErr(error?: unknown): false;
 	public containsErr(): false {
 		return false;
 	}

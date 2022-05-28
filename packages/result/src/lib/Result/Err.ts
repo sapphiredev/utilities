@@ -14,6 +14,7 @@ export class Err<E> implements IResult<any, E> {
 		return false;
 	}
 
+	public isOkAnd(cb?: (value: never) => boolean): false;
 	public isOkAnd(): false {
 		return false;
 	}
@@ -34,14 +35,17 @@ export class Err<E> implements IResult<any, E> {
 		return some(this.error);
 	}
 
-	public map(): Err<E> {
+	public map(cb?: (value: never) => unknown): this;
+	public map(): this {
 		return this;
 	}
 
+	public mapOr<U>(defaultValue: U, cb?: (value: never) => U): U;
 	public mapOr<U>(defaultValue: U): U {
 		return defaultValue;
 	}
 
+	public mapOrElse<U>(op: (error: E) => U, cb?: (value: never) => U): U;
 	public mapOrElse<U>(op: (error: E) => U): U {
 		return op(this.error);
 	}
@@ -50,6 +54,7 @@ export class Err<E> implements IResult<any, E> {
 		return err(cb(this.error));
 	}
 
+	public inspect(cb?: (value: never) => void): this;
 	public inspect(): this {
 		return this;
 	}
@@ -67,6 +72,7 @@ export class Err<E> implements IResult<any, E> {
 		throw new ResultError(message, this.error);
 	}
 
+	public expectErr(message?: string): E;
 	public expectErr(): E {
 		return this.error;
 	}
@@ -87,11 +93,13 @@ export class Err<E> implements IResult<any, E> {
 		return op(this.error);
 	}
 
-	public and(): Err<E> {
+	public and(result?: IResult<any, E>): this;
+	public and(): this {
 		return this;
 	}
 
-	public andThen(): Err<E> {
+	public andThen(cb?: (value: never) => IResult<any, E>): this;
+	public andThen(): this {
 		return this;
 	}
 
@@ -103,7 +111,8 @@ export class Err<E> implements IResult<any, E> {
 		return cb(this.error);
 	}
 
-	public contains(): boolean {
+	public contains(value?: any): false;
+	public contains(): false {
 		return false;
 	}
 
@@ -111,11 +120,11 @@ export class Err<E> implements IResult<any, E> {
 		return this.error === error;
 	}
 
-	public transpose(): Some<Err<E>> {
+	public transpose(): Some<this> {
 		return some(this);
 	}
 
-	public flatten(): Err<E> {
+	public flatten(): this {
 		return this;
 	}
 
