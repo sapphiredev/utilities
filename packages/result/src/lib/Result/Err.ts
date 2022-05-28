@@ -1,9 +1,11 @@
+import type { IValue } from '../common/IValue';
+import { toJSON, toPrimitive, toString, valueOf } from '../common/utils';
 import { none, type None } from '../Option/None';
 import { some, type Some } from '../Option/Some';
 import type { IResult } from './IResult';
 import { ResultError } from './ResultError';
 
-export class Err<E> implements IResult<any, E> {
+export class Err<E> implements IResult<any, E>, IValue<E> {
 	private readonly error: E;
 
 	public constructor(error: E) {
@@ -146,6 +148,25 @@ export class Err<E> implements IResult<any, E> {
 
 	public *[Symbol.iterator](): Generator<never> {
 		// Yields no values
+	}
+
+	public toString(): IValue.ToString<E> {
+		return toString(this.error);
+	}
+
+	public valueOf(): IValue.ValueOf<E> {
+		return valueOf(this.error);
+	}
+
+	public toJSON(): IValue.ToJSON<E> {
+		return toJSON(this.error);
+	}
+
+	public [Symbol.toPrimitive](hint: 'number'): IValue.ToNumber<E>;
+	public [Symbol.toPrimitive](hint: 'string'): IValue.ToString<E>;
+	public [Symbol.toPrimitive](hint: IValue.PrimitiveHint): IValue.ToPrimitive<E>;
+	public [Symbol.toPrimitive](hint: IValue.PrimitiveHint): IValue.ToPrimitive<E> {
+		return toPrimitive(hint, this.error);
 	}
 }
 

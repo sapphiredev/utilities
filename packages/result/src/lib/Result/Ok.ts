@@ -1,10 +1,12 @@
+import type { IValue } from '../common/IValue';
+import { toJSON, toPrimitive, toString, valueOf } from '../common/utils';
 import type { IOption } from '../Option/IOption';
 import { none, type None } from '../Option/None';
 import { some, type Some } from '../Option/Some';
 import type { IResult } from './IResult';
 import { ResultError } from './ResultError';
 
-export class Ok<T> implements IResult<T, any> {
+export class Ok<T> implements IResult<T, any>, IValue<T> {
 	private readonly value: T;
 
 	public constructor(value: T) {
@@ -151,6 +153,25 @@ export class Ok<T> implements IResult<T, any> {
 	public *[Symbol.iterator](): Generator<T> {
 		yield this.value;
 	}
+
+	public toString(): IValue.ToString<T> {
+		return toString(this.value);
+	}
+
+	public valueOf(): IValue.ValueOf<T> {
+		return valueOf(this.value);
+	}
+
+	public toJSON(): IValue.ToJSON<T> {
+		return toJSON(this.value);
+	}
+
+	public [Symbol.toPrimitive](hint: 'number'): IValue.ToNumber<T>;
+	public [Symbol.toPrimitive](hint: 'string'): IValue.ToString<T>;
+	public [Symbol.toPrimitive](hint: IValue.PrimitiveHint): IValue.ToPrimitive<T>;
+	public [Symbol.toPrimitive](hint: IValue.PrimitiveHint): IValue.ToPrimitive<T> {
+		return toPrimitive(hint, this.value);
+	}
 }
 
 /**
@@ -166,6 +187,6 @@ export function ok(): Ok<unknown>;
  * @return A successful Result.
  */
 export function ok<T>(x: T): Ok<T>;
-export function ok<T>(x?: T): Ok<unknown> {
+export function ok<T>(x?: T): Ok<T | undefined> {
 	return new Ok(x);
 }
