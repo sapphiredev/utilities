@@ -601,7 +601,14 @@ describe('Result', () => {
 				const x = ok(3);
 				const y = err(3);
 
-				expect<boolean>(x.eq(y)).toBe(false);
+				expect<false>(x.eq(y)).toBe(false);
+			});
+
+			test('GIVEN x=err(e), y=ok(t) THEN always returns false', () => {
+				const x = err(3);
+				const y = ok(3);
+
+				expect<false>(x.eq(y)).toBe(false);
 			});
 
 			test('GIVEN x=err(e), y=err(e) THEN returns true', () => {
@@ -638,7 +645,14 @@ describe('Result', () => {
 				const x = ok(3);
 				const y = err(3);
 
-				expect<boolean>(x.ne(y)).toBe(true);
+				expect<true>(x.ne(y)).toBe(true);
+			});
+
+			test('GIVEN x=err(e), y=ok(t) THEN always returns true', () => {
+				const x = err(3);
+				const y = ok(3);
+
+				expect<true>(x.ne(y)).toBe(true);
 			});
 
 			test('GIVEN x=err(e), y=err(e) THEN returns false', () => {

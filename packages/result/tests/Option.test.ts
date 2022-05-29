@@ -604,14 +604,21 @@ describe('Option', () => {
 				const x = some(3);
 				const y = none;
 
-				expect<boolean>(x.eq(y)).toBe(false);
+				expect<false>(x.eq(y)).toBe(false);
+			});
+
+			test('GIVEN x=none, y=some(t) THEN always returns false', () => {
+				const x = none;
+				const y = some(4);
+
+				expect<false>(x.eq(y)).toBe(false);
 			});
 
 			test('GIVEN x=none, y=none THEN returns true', () => {
 				const x = none;
 				const y = none;
 
-				expect<boolean>(x.eq(y)).toBe(true);
+				expect<true>(x.eq(y)).toBe(true);
 			});
 		});
 
@@ -634,14 +641,21 @@ describe('Option', () => {
 				const x = some(3);
 				const y = none;
 
-				expect<boolean>(x.ne(y)).toBe(true);
+				expect<true>(x.ne(y)).toBe(true);
+			});
+
+			test('GIVEN x=none, y=some(t) THEN always returns true', () => {
+				const x = none;
+				const y = some(4);
+
+				expect<true>(x.ne(y)).toBe(true);
 			});
 
 			test('GIVEN x=none, y=none THEN always returns false', () => {
 				const x = none;
 				const y = none;
 
-				expect<boolean>(x.ne(y)).toBe(false);
+				expect<false>(x.ne(y)).toBe(false);
 			});
 		});
 

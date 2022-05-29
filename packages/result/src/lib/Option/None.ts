@@ -124,10 +124,16 @@ export class None implements IOption<any>, IValue<undefined> {
 		return this;
 	}
 
+	public eq(other: None): true;
+	public eq(other: Some<any>): false;
+	public eq(other: IOption<any>): boolean;
 	public eq(other: IOption<any>): boolean {
 		return other.isNone();
 	}
 
+	public ne(other: None): false;
+	public ne(other: Some<any>): true;
+	public ne(other: IOption<any>): boolean;
 	public ne(other: IOption<any>): boolean {
 		return other.isSome();
 	}

@@ -3,6 +3,7 @@ import { toJSON, toPrimitive, toString, valueOf } from '../common/utils';
 import { none, type None } from '../Option/None';
 import { some, type Some } from '../Option/Some';
 import type { IResult } from './IResult';
+import type { Ok } from './Ok';
 import { ResultError } from './ResultError';
 
 export class Err<E> implements IResult<any, E>, IValue<E> {
@@ -134,10 +135,14 @@ export class Err<E> implements IResult<any, E>, IValue<E> {
 		return this.error;
 	}
 
+	public eq(other: Ok<any>): false;
+	public eq(other: IResult<any, E>): boolean;
 	public eq(other: IResult<any, E>): boolean {
 		return other.isErrAnd((error) => this.error === error);
 	}
 
+	public ne(other: Ok<any>): true;
+	public ne(other: IResult<any, E>): boolean;
 	public ne(other: IResult<any, E>): boolean {
 		return !this.eq(other);
 	}

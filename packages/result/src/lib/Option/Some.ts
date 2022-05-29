@@ -100,6 +100,9 @@ export class Some<T> implements IOption<T>, IValue<T> {
 		return option.isSome() ? none : this;
 	}
 
+	public filter(predicate: (value: T) => true): this;
+	public filter(predicate: (value: T) => false): None;
+	public filter(predicate: (value: T) => boolean): this | None;
 	public filter(predicate: (value: T) => boolean): this | None {
 		return predicate(this.value) ? this : none;
 	}
@@ -141,10 +144,14 @@ export class Some<T> implements IOption<T>, IValue<T> {
 		return this.value;
 	}
 
+	public eq(other: None): false;
+	public eq(other: IOption<T>): boolean;
 	public eq(other: IOption<T>): boolean {
 		return other.isSomeAnd((value) => this.value === value);
 	}
 
+	public ne(other: None): true;
+	public ne(other: IOption<T>): boolean;
 	public ne(other: IOption<T>): boolean {
 		return !this.eq(other);
 	}
