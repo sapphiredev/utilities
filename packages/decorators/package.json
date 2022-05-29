@@ -29,7 +29,7 @@
 		"@sapphire/discord.js-utilities": "workspace:^",
 		"@sapphire/ratelimits": "workspace:^",
 		"@sapphire/utilities": "workspace:^",
-		"tsup": "^5.12.9",
+		"tsup": "^6.0.1",
 		"typescript": "^4.7.2"
 	},
 	"repository": {
