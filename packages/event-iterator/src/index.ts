@@ -95,7 +95,6 @@ export class EventIterator<V extends unknown[]> implements AsyncIterableIterator
 		// This timer is to idle out on lack of valid responses
 		if (this.#idle) this.#idleTimer = setTimeout(this.end.bind(this), this.#idle);
 
-		// @ts-expect-error Silence weird compiler issue regarding `this.push`'s arguments not being `any`.
 		this.#push = this.push.bind(this);
 		const maxListeners = this.emitter.getMaxListeners();
 		if (maxListeners !== 0) this.emitter.setMaxListeners(maxListeners + 1);
