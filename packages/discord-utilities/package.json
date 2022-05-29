@@ -57,7 +57,7 @@
 		"twemoji-parser": "^14.0.0"
 	},
 	"devDependencies": {
-		"tsup": "^5.12.8",
-		"typescript": "^4.6.4"
+		"tsup": "^5.12.9",
+		"typescript": "^4.7.2"
 	}
 }

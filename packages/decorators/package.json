@@ -29,8 +29,8 @@
 		"@sapphire/discord.js-utilities": "workspace:^",
 		"@sapphire/ratelimits": "workspace:^",
 		"@sapphire/utilities": "workspace:^",
-		"tsup": "^5.12.8",
-		"typescript": "^4.6.4"
+		"tsup": "^5.12.9",
+		"typescript": "^4.7.2"
 	},
 	"repository": {
 		"type": "git",

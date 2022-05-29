@@ -60,6 +60,6 @@
 	},
 	"devDependencies": {
 		"@favware/rollup-type-bundler": "^1.0.7",
-		"typescript": "^4.6.4"
+		"typescript": "^4.7.2"
 	}
 }
