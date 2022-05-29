@@ -1,6 +1,6 @@
 import type { IValue } from '../common/IValue';
 import { toJSON, toPrimitive, toString, valueOf } from '../common/utils';
-import { err } from '../Result/Err';
+import { err, type Err } from '../Result/Err';
 import type { IResult } from '../Result/IResult';
 import { ok, type Ok } from '../Result/Ok';
 import type { IOption } from './IOption';
@@ -25,6 +25,7 @@ export class Some<T> implements IOption<T>, IValue<T> {
 		return false;
 	}
 
+	public expect(message: string): T;
 	public expect(): T {
 		return this.value;
 	}
@@ -33,10 +34,12 @@ export class Some<T> implements IOption<T>, IValue<T> {
 		return this.value;
 	}
 
+	public unwrapOr(defaultValue: T): T;
 	public unwrapOr(): T {
 		return this.value;
 	}
 
+	public unwrapOrElse(cb: () => T): T;
 	public unwrapOrElse(): T {
 		return this.value;
 	}
@@ -58,10 +61,12 @@ export class Some<T> implements IOption<T>, IValue<T> {
 		return this;
 	}
 
+	public okOr(err?: any): Ok<T>;
 	public okOr(): Ok<T> {
 		return ok(this.value);
 	}
 
+	public okOrElse(cb: () => any): Ok<T>;
 	public okOrElse(): Ok<T> {
 		return ok(this.value);
 	}
@@ -78,14 +83,19 @@ export class Some<T> implements IOption<T>, IValue<T> {
 		return cb(this.value);
 	}
 
+	public or(option: IOption<any>): this;
 	public or(): this {
 		return this;
 	}
 
+	public orElse(cb?: () => IOption<any>): this;
 	public orElse(): this {
 		return this;
 	}
 
+	public xor(option: Some<T>): None;
+	public xor(option: None): this;
+	public xor(option: IOption<T>): this | None;
 	public xor(option: IOption<T>): this | None {
 		return option.isSome() ? none : this;
 	}
@@ -98,23 +108,32 @@ export class Some<T> implements IOption<T>, IValue<T> {
 		return this.value === value;
 	}
 
+	public zip(other: None): None;
+	public zip<U>(other: Some<U>): Some<[T, U]>;
+	public zip<U>(other: IOption<U>): IOption<[T, U]>;
 	public zip<U>(other: IOption<U>): IOption<[T, U]> {
 		return other.map((o) => [this.value, o]);
 	}
 
+	public zipWith<U, R>(other: None, f: (s: T, o: U) => R): None;
+	public zipWith<U, R>(other: Some<U>, f: (s: T, o: U) => R): Some<R>;
+	public zipWith<U, R>(other: IOption<U>, f: (s: T, o: U) => R): IOption<R>;
 	public zipWith<U, R>(other: IOption<U>, f: (s: T, o: U) => R): IOption<R> {
 		return other.map((o) => f(this.value, o));
 	}
 
-	public unzip<Inner, U>(this: Some<[Inner, U]>): [IOption<Inner>, IOption<U>] {
+	public unzip<I, U>(this: Some<readonly [I, U]>): [Some<I>, Some<U>] {
 		const [s, o] = this.value;
 		return [some(s), some(o)];
 	}
 
+	public transpose<Inner>(this: Some<Ok<Inner>>): Ok<Some<Inner>>;
+	public transpose<Inner>(this: Some<Err<Inner>>): Err<Some<Inner>>;
+	public transpose<IT, E>(this: Some<IResult<IT, E>>): IResult<Some<IT>, E>;
 	public transpose<IT, E>(this: Some<IResult<IT, E>>): IResult<Some<IT>, E> {
 		return this.value.match({
-			ok: (v) => ok(some(v)) as IResult<Some<IT>, E>,
-			err: (e) => err(e) as IResult<Some<IT>, E>
+			ok: (v) => ok(some(v)) as any,
+			err: (e) => err(e) as any
 		});
 	}
 

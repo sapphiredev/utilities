@@ -10,12 +10,12 @@ const { some, none } = Option;
 describe('Result', () => {
 	describe('prototype', () => {
 		describe('isOk', () => {
-			test('GIVEN ok THEN returns true', () => {
+			test('GIVEN ok THEN always returns true', () => {
 				const x = ok(42);
 				expect<true>(x.isOk()).toBe(true);
 			});
 
-			test('GIVEN err THEN returns false', () => {
+			test('GIVEN err THEN always returns false', () => {
 				const x = err('Some error message');
 				expect<false>(x.isOk()).toBe(false);
 			});
@@ -42,11 +42,11 @@ describe('Result', () => {
 				expect(cb).toHaveReturnedWith(false);
 			});
 
-			test('GIVEN err THEN returns false', () => {
+			test('GIVEN err THEN always returns false', () => {
 				const x = err('Some error message');
 				const cb = jest.fn((value: number) => value > 1);
 
-				expect(x.isOkAnd(cb)).toBe(false);
+				expect<false>(x.isOkAnd(cb)).toBe(false);
 				expect(cb).not.toHaveBeenCalled();
 			});
 		});
@@ -254,7 +254,7 @@ describe('Result', () => {
 				expect<number[]>([...x.iter()]).toStrictEqual([2]);
 			});
 
-			test('GIVEN err THEN yields no value', () => {
+			test('GIVEN err THEN yields no values', () => {
 				const x = err('Some error message');
 
 				expect<number[]>([...x.iter()]).toStrictEqual([]);
@@ -346,6 +346,13 @@ describe('Result', () => {
 		});
 
 		describe('and', () => {
+			test('GIVEN x=ok and y=ok THEN returns y', () => {
+				const x = ok(2);
+				const y = ok('Hello');
+
+				expect<typeof y>(x.and(y)).toBe(y);
+			});
+
 			test('GIVEN x=ok and y=err THEN returns y', () => {
 				const x = ok(2);
 				const y = err('Late error');
@@ -353,18 +360,18 @@ describe('Result', () => {
 				expect<typeof y>(x.and(y)).toBe(y);
 			});
 
+			test('GIVEN x=err and y=ok THEN returns x', () => {
+				const x = err('Early error');
+				const y = ok('Hello');
+
+				expect<typeof x>(x.and(y)).toBe(x);
+			});
+
 			test('GIVEN x=err and y=err THEN returns x', () => {
 				const x = err('Early error');
 				const y = err('Late error');
 
 				expect<typeof x>(x.and(y)).toBe(x);
-			});
-
-			test('GIVEN x=ok and y=ok THEN returns y', () => {
-				const x = ok(2);
-				const y = ok('Hello');
-
-				expect<typeof y>(x.and(y)).toBe(y);
 			});
 		});
 
@@ -401,6 +408,13 @@ describe('Result', () => {
 		});
 
 		describe('or', () => {
+			test('GIVEN x=ok and y=ok THEN returns x', () => {
+				const x = ok(2);
+				const y = ok(100);
+
+				expect<typeof x>(x.or(y)).toBe(x);
+			});
+
 			test('GIVEN x=ok and y=err THEN returns x', () => {
 				const x = ok(2);
 				const y = err('Late error');
@@ -420,13 +434,6 @@ describe('Result', () => {
 				const y = err('Late error');
 
 				expect<typeof y>(x.or(y)).toBe(y);
-			});
-
-			test('GIVEN x=ok and y=ok THEN returns x', () => {
-				const x = ok(2);
-				const y = ok(100);
-
-				expect<typeof x>(x.or(y)).toBe(x);
 			});
 		});
 

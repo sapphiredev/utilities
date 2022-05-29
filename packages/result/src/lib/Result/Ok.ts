@@ -3,6 +3,7 @@ import { toJSON, toPrimitive, toString, valueOf } from '../common/utils';
 import type { IOption } from '../Option/IOption';
 import { none, type None } from '../Option/None';
 import { some, type Some } from '../Option/Some';
+import type { Err } from './Err';
 import type { IResult } from './IResult';
 import { ResultError } from './ResultError';
 
@@ -123,10 +124,13 @@ export class Ok<T> implements IResult<T, any>, IValue<T> {
 		return false;
 	}
 
+	public transpose(this: Ok<None>): None;
+	public transpose<Inner>(this: Ok<Some<Inner>>): Some<Ok<Inner>>;
+	public transpose<Inner>(this: Ok<IOption<Inner>>): IOption<Ok<Inner>>;
 	public transpose<IT>(this: Ok<IOption<IT>>): IOption<Ok<IT>> {
 		return this.value.match({
-			some: (value) => some(ok(value)) as IOption<Ok<IT>>,
-			none: () => none as IOption<Ok<IT>>
+			some: (value) => some(ok(value)) as any,
+			none: () => none as any
 		});
 	}
 
@@ -138,10 +142,14 @@ export class Ok<T> implements IResult<T, any>, IValue<T> {
 		return this.value;
 	}
 
+	public eq(other: Err<any>): false;
+	public eq(other: IResult<T, any>): boolean;
 	public eq(other: IResult<T, any>): boolean {
 		return other.isOkAnd((value) => this.value === value);
 	}
 
+	public ne(other: Err<any>): true;
+	public ne(other: IResult<T, any>): boolean;
 	public ne(other: IResult<T, any>): boolean {
 		return !this.eq(other);
 	}

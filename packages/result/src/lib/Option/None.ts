@@ -10,6 +10,7 @@ export class None implements IOption<any>, IValue<undefined> {
 		return false;
 	}
 
+	public isSomeAnd(cb?: (value: never) => boolean): false;
 	public isSomeAnd(): false {
 		return false;
 	}
@@ -34,18 +35,22 @@ export class None implements IOption<any>, IValue<undefined> {
 		return cb();
 	}
 
-	public map(): None {
+	public map(cb: (value: never) => any): this;
+	public map(): this {
 		return this;
 	}
 
+	public mapOr<R>(defaultValue: R, cb?: (value: never) => R): R;
 	public mapOr<R>(defaultValue: R): R {
 		return defaultValue;
 	}
 
+	public mapOrElse<R>(defaultValue: () => R, cb?: (value: never) => R): R;
 	public mapOrElse<R>(defaultValue: () => R): R {
 		return defaultValue();
 	}
 
+	public inspect(cb?: (value: never) => void): this;
 	public inspect(): this {
 		return this;
 	}
@@ -62,11 +67,13 @@ export class None implements IOption<any>, IValue<undefined> {
 		// Yields no values
 	}
 
-	public and(): None {
+	public and(option: IOption<any>): this;
+	public and(): this {
 		return this;
 	}
 
-	public andThen(): None {
+	public andThen(cb: (value: never) => IOption<any>): this;
+	public andThen(): this {
 		return this;
 	}
 
@@ -78,22 +85,29 @@ export class None implements IOption<any>, IValue<undefined> {
 		return cb();
 	}
 
-	public xor<T>(option: IOption<T>): Some<T> | None {
-		return option.isSome() ? this : this;
+	public xor<T>(option: None): None;
+	public xor<T>(option: Some<T>): Some<T>;
+	public xor<T>(option: IOption<T>): Some<T> | None;
+	public xor<T>(option: Some<T> | None): Some<T> | None {
+		return option.isSome() ? option : this;
 	}
 
+	public filter(predicate: (value: never) => boolean): None;
 	public filter(): None {
 		return this;
 	}
 
+	public contains(value?: any): false;
 	public contains(): false {
 		return false;
 	}
 
+	public zip(other: IOption<any>): None;
 	public zip(): None {
 		return this;
 	}
 
+	public zipWith(other: IOption<any>, f: (s: never, o: never) => any): None;
 	public zipWith(): None {
 		return this;
 	}
