@@ -1136,7 +1136,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@sapphire/async-queue@workspace:packages/async-queue"
   dependencies:
-    tsup: ^5.12.9
+    tsup: ^6.0.1
     typescript: ^4.7.2
   languageName: unknown
   linkType: soft
@@ -1150,7 +1150,7 @@ __metadata:
     "@sapphire/ratelimits": "workspace:^"
     "@sapphire/utilities": "workspace:^"
     tslib: ^2.4.0
-    tsup: ^5.12.9
+    tsup: ^6.0.1
     typescript: ^4.7.2
   languageName: unknown
   linkType: soft
@@ -1159,7 +1159,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@sapphire/discord-utilities@workspace:packages/discord-utilities"
   dependencies:
-    tsup: ^5.12.9
+    tsup: ^6.0.1
     twemoji-parser: ^14.0.0
     typescript: ^4.7.2
   languageName: unknown
@@ -1188,7 +1188,7 @@ __metadata:
     eslint-config-prettier: ^8.5.0
     eslint-plugin-prettier: ^4.0.0
     prettier: ^2.6.2
-    tsup: ^5.12.9
+    tsup: ^6.0.1
     typescript: ^4.7.2
   languageName: unknown
   linkType: soft
@@ -1198,7 +1198,7 @@ __metadata:
   resolution: "@sapphire/event-iterator@workspace:packages/event-iterator"
   dependencies:
     tslib: ^2.4.0
-    tsup: ^5.12.9
+    tsup: ^6.0.1
     typescript: ^4.7.2
   languageName: unknown
   linkType: soft
@@ -1208,7 +1208,7 @@ __metadata:
   resolution: "@sapphire/fetch@workspace:packages/fetch"
   dependencies:
     cross-fetch: ^3.1.5
-    tsup: ^5.12.9
+    tsup: ^6.0.1
     typescript: ^4.7.2
   languageName: unknown
   linkType: soft
@@ -1233,7 +1233,7 @@ __metadata:
   resolution: "@sapphire/phisherman@workspace:packages/phisherman"
   dependencies:
     "@sapphire/fetch": "workspace:^"
-    tsup: ^5.12.9
+    tsup: ^6.0.1
     typescript: ^4.7.2
   languageName: unknown
   linkType: soft
@@ -1254,7 +1254,7 @@ __metadata:
   resolution: "@sapphire/prettier-config@workspace:packages/prettier-config"
   dependencies:
     prettier: ^2.6.2
-    tsup: ^5.12.9
+    tsup: ^6.0.1
   languageName: unknown
   linkType: soft
 
@@ -1263,7 +1263,7 @@ __metadata:
   resolution: "@sapphire/ratelimits@workspace:packages/ratelimits"
   dependencies:
     "@sapphire/time-utilities": "workspace:^"
-    tsup: ^5.12.9
+    tsup: ^6.0.1
     typescript: ^4.7.2
   languageName: unknown
   linkType: soft
@@ -1272,7 +1272,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@sapphire/result@workspace:packages/result"
   dependencies:
-    tsup: ^5.12.9
+    tsup: ^6.0.1
     typescript: ^4.7.2
   languageName: unknown
   linkType: soft
@@ -1288,7 +1288,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@sapphire/snowflake@workspace:packages/snowflake"
   dependencies:
-    tsup: ^5.12.9
+    tsup: ^6.0.1
     typescript: ^4.7.2
   languageName: unknown
   linkType: soft
@@ -1298,7 +1298,7 @@ __metadata:
   resolution: "@sapphire/stopwatch@workspace:packages/stopwatch"
   dependencies:
     tslib: ^2.4.0
-    tsup: ^5.12.9
+    tsup: ^6.0.1
     typescript: ^4.7.2
   languageName: unknown
   linkType: soft
@@ -1308,7 +1308,7 @@ __metadata:
   resolution: "@sapphire/time-utilities@workspace:packages/time-utilities"
   dependencies:
     "@sapphire/utilities": "workspace:^"
-    tsup: ^5.12.9
+    tsup: ^6.0.1
     typescript: ^4.7.2
   languageName: unknown
   linkType: soft
@@ -1326,7 +1326,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@sapphire/utilities@workspace:packages/utilities"
   dependencies:
-    tsup: ^5.12.9
+    tsup: ^6.0.1
     typescript: ^4.7.2
   languageName: unknown
   linkType: soft
@@ -6426,7 +6426,7 @@ __metadata:
     rimraf: ^3.0.2
     ts-jest: ^28.0.3
     tslib: ^2.4.0
-    tsup: ^5.12.9
+    tsup: ^6.0.1
     turbo: ^1.2.14
     typedoc: ^0.22.15
     typedoc-plugin-djs-links: ^1.0.4
@@ -7196,9 +7196,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tsup@npm:^5.12.9":
-  version: 5.12.9
-  resolution: "tsup@npm:5.12.9"
+"tsup@npm:^6.0.1":
+  version: 6.0.1
+  resolution: "tsup@npm:6.0.1"
   dependencies:
     bundle-require: ^3.0.2
     cac: ^6.7.12
@@ -7228,7 +7228,7 @@ __metadata:
   bin:
     tsup: dist/cli-default.js
     tsup-node: dist/cli-node.js
-  checksum: 872b7d1b523cb2feb6cdfaf9d0d45c1dee835b4b0a38d4f18dfd619ee5abc312421cf201edc8957cac8ba0d1061e697dd6ad1ccb2b45dc200a78ef7d0dd2569d
+  checksum: 4630409533213b3b1953204b29fad514bd93bdb8635b18c12f76101d0dae745982ab7fe47be052111c3b99e23ef356eebce19e77ebd9f72d3769fda43cf9af6f
   languageName: node
   linkType: hard
 

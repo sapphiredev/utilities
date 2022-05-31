@@ -59,7 +59,7 @@
 		"access": "public"
 	},
 	"devDependencies": {
-		"tsup": "^5.12.9",
+		"tsup": "^6.0.1",
 		"typescript": "^4.7.2"
 	}
 }
