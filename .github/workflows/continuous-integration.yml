@@ -32,13 +32,16 @@ jobs:
   Testing:
     name: Unit Tests
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [16, 18]
     steps:
       - name: Checkout Project
         uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b # tag=v3
-      - name: Use Node.js v16
+      - name: Use Node.js v{{ matrix.version }}
         uses: actions/setup-node@17f8bd926464a1afa4c6a11669539e9c1ba77048 # tag=v3
         with:
-          node-version: 16
+          node-version: ${{ matrix.version }}
           cache: yarn
           registry-url: https://registry.npmjs.org/
       - name: Install Dependencies
@@ -48,6 +51,7 @@ jobs:
       - name: Run tests
         run: yarn test:coverage
       - name: Store code coverage report
+        if: ${{ matrix.node == '18' }}
         uses: actions/upload-artifact@3cea5372237819ed00197afe530f5a7ea3e805c8 # tag=v3
         with:
           name: coverage
