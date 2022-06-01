@@ -1,5 +1,5 @@
 import { isNullish, Nullish } from '@sapphire/utilities';
-import type { APIGuildMember, APIInteractionGuildMember, APIMessage } from 'discord-api-types/v9';
+import type { APIGuildMember, APIInteractionGuildMember, APIMessage, APIInteractionDataResolvedGuildMember } from 'discord-api-types/v9';
 import {
 	GuildMember,
 	Message,
@@ -195,6 +195,8 @@ export function isMessageInstance(message: APIMessage | Message): message is Mes
  * @param member The member to check
  * @returns `true` if the member is an instance of `GuildMember`, false otherwise.
  */
-export function isGuildMember(member: GuildMember | APIGuildMember | APIInteractionGuildMember | Nullish): member is GuildMember {
+export function isGuildMember(
+	member: GuildMember | APIGuildMember | APIInteractionGuildMember | APIInteractionDataResolvedGuildMember | Nullish
+): member is GuildMember {
 	return member instanceof GuildMember;
 }
