@@ -4,7 +4,7 @@ import type { Some } from '../src/lib/Option/Some';
 import type { Err } from '../src/lib/Result/Err';
 import type { Ok } from '../src/lib/Result/Ok';
 
-const { ok, err } = Result;
+const { ok, err, from, fromAsync } = Result;
 const { some, none } = Option;
 
 describe('Result', () => {
@@ -717,7 +717,7 @@ describe('Result', () => {
 
 	describe('from', () => {
 		test('GIVEN truthy value THEN returns Ok', () => {
-			const x = Result.from(() => 42);
+			const x = from(() => 42);
 
 			expect(x.isOk()).toBeTruthy();
 			expect(x.isErr()).toBeFalsy();
@@ -725,7 +725,7 @@ describe('Result', () => {
 		});
 
 		test('GIVEN thrown error THEN returns Err', () => {
-			const x = Result.from(() => {
+			const x = from(() => {
 				throw new Error();
 			});
 
@@ -737,7 +737,7 @@ describe('Result', () => {
 
 	describe('fromAsync', () => {
 		test('GIVEN truthy value THEN returns Ok', async () => {
-			const x = await Result.fromAsync(() => Promise.resolve(42));
+			const x = await fromAsync(() => Promise.resolve(42));
 
 			expect(x.isOk()).toBeTruthy();
 			expect(x.isErr()).toBeFalsy();
@@ -747,7 +747,7 @@ describe('Result', () => {
 		test('GIVEN existing promise with value THEN returns Ok', async () => {
 			const promise = new Promise<number>((resolve) => resolve(42));
 
-			const x = await Result.fromAsync(promise);
+			const x = await fromAsync(promise);
 
 			expect(x.isOk()).toBeTruthy();
 			expect(x.isErr()).toBeFalsy();
@@ -755,7 +755,7 @@ describe('Result', () => {
 		});
 
 		test('GIVEN promise rejection THEN returns Err', async () => {
-			const x = await Result.fromAsync(() => Promise.reject(new Error()));
+			const x = await fromAsync(() => Promise.reject(new Error()));
 
 			expect(x.isOk()).toBeFalsy();
 			expect(x.isErr()).toBeTruthy();
@@ -765,7 +765,7 @@ describe('Result', () => {
 		test('GIVEN existing promise with rejection THEN returns Err', async () => {
 			const promise = new Promise((_, reject) => reject(new Error()));
 
-			const x = await Result.fromAsync(promise);
+			const x = await fromAsync(promise);
 
 			expect(x.isOk()).toBeFalsy();
 			expect(x.isErr()).toBeTruthy();

@@ -4,7 +4,7 @@ import type { Some } from '../src/lib/Option/Some';
 import type { Err } from '../src/lib/Result/Err';
 import type { Ok } from '../src/lib/Result/Ok';
 
-const { some, none } = Option;
+const { some, none, from } = Option;
 const { ok, err } = Result;
 
 describe('Option', () => {
@@ -706,28 +706,28 @@ describe('Option', () => {
 
 	describe('from', () => {
 		test('GIVEN from(T) THEN returns { isSome->truthy, isNone->falsy }', () => {
-			const x = Option.from(42);
+			const x = from(42);
 
 			expect(x.isSome()).toBeTruthy();
 			expect(x.isNone()).toBeFalsy();
 		});
 
 		test('GIVEN from(Some(T)) THEN returns { isSome->truthy, isNone->falsy }', () => {
-			const x = Option.from(Option.some(42));
+			const x = from(Option.some(42));
 
 			expect(x.isSome()).toBeTruthy();
 			expect(x.isNone()).toBeFalsy();
 		});
 
 		test('GIVEN from(null) WITH value as null THEN returns { isSome->truthy, isNone->falsy }', () => {
-			const x = Option.from(null);
+			const x = from(null);
 
 			expect(x.isSome()).toBeFalsy();
 			expect(x.isNone()).toBeTruthy();
 		});
 
 		test('GIVEN from(None) WITH value as isMaybe result THEN returns { isSome->truthy, isNone->falsy }', () => {
-			const x = Option.from(Option.none);
+			const x = from(Option.none);
 
 			expect(x.isSome()).toBeFalsy();
 			expect(x.isNone()).toBeTruthy();
