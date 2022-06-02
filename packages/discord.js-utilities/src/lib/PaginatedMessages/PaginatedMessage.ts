@@ -973,7 +973,7 @@ export class PaginatedMessage {
 	 * (either a {@link CommandInteraction}, a {@link ContextMenuInteraction}, a {@link SelectMenuInteraction} or a {@link ButtonInteraction}),
 	 * but it can also be another message from your client, i.e. to indicate a loading state.
 	 *
-	 * @param author The author the handler is for.
+	 * @param targetUser The author the handler is for.
 	 */
 	protected async setUpMessage(
 		messageOrInteraction: Message | CommandInteraction | ContextMenuInteraction | SelectMenuInteraction | ButtonInteraction,
@@ -1027,7 +1027,8 @@ export class PaginatedMessage {
 			}
 		} else if (runsOnInteraction(messageOrInteraction)) {
 			if (messageOrInteraction.replied || messageOrInteraction.deferred) {
-				this.response = await messageOrInteraction.editReply(page);
+				const editReplyResponse = await messageOrInteraction.editReply(page);
+				this.response = messageOrInteraction.ephemeral ? messageOrInteraction : editReplyResponse;
 			} else {
 				this.response = await messageOrInteraction.reply({ ...page, fetchReply: true, ephemeral: false });
 			}
