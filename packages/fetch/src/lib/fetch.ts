@@ -2,7 +2,7 @@
 /// <reference lib="dom" />
 
 import { QueryError } from './QueryError';
-import { FetchResultTypes } from './types';
+import { FetchResultTypes, RequestOptions } from './types';
 
 /**
  * Performs an HTTP(S) fetch
@@ -17,18 +17,19 @@ import { FetchResultTypes } from './types';
  * - When using `FetchResultTypes.Text` the return type will be a `string`
  * - When using `FetchResultTypes.Result` the return type will be a [`Response`](https://developer.mozilla.org/en-US/docs/Web/API/Response) ({@link Response} in typescript)
  */
+
 export async function fetch<R>(url: URL | string, type?: FetchResultTypes.JSON): Promise<R>;
-export async function fetch<R>(url: URL | string, options: RequestInit, type?: FetchResultTypes.JSON): Promise<R>;
+export async function fetch<R>(url: URL | string, options: RequestOptions, type?: FetchResultTypes.JSON): Promise<R>;
 export async function fetch(url: URL | string, type: FetchResultTypes.Buffer): Promise<Buffer>;
-export async function fetch(url: URL | string, options: RequestInit, type: FetchResultTypes.Buffer): Promise<Buffer>;
+export async function fetch(url: URL | string, options: RequestOptions, type: FetchResultTypes.Buffer): Promise<Buffer>;
 export async function fetch(url: URL | string, type: FetchResultTypes.Blob): Promise<Blob>;
-export async function fetch(url: URL | string, options: RequestInit, type: FetchResultTypes.Blob): Promise<Blob>;
+export async function fetch(url: URL | string, options: RequestOptions, type: FetchResultTypes.Blob): Promise<Blob>;
 export async function fetch(url: URL | string, type: FetchResultTypes.Text): Promise<string>;
-export async function fetch(url: URL | string, options: RequestInit, type: FetchResultTypes.Text): Promise<string>;
+export async function fetch(url: URL | string, options: RequestOptions, type: FetchResultTypes.Text): Promise<string>;
 export async function fetch(url: URL | string, type: FetchResultTypes.Result): Promise<Response>;
-export async function fetch(url: URL | string, options: RequestInit, type: FetchResultTypes.Result): Promise<Response>;
-export async function fetch<R>(url: URL | string, options: RequestInit, type: FetchResultTypes): Promise<Response | Blob | Buffer | string | R>;
-export async function fetch(url: URL | string, options?: RequestInit | FetchResultTypes, type?: FetchResultTypes) {
+export async function fetch(url: URL | string, options: RequestOptions, type: FetchResultTypes.Result): Promise<Response>;
+export async function fetch<R>(url: URL | string, options: RequestOptions, type: FetchResultTypes): Promise<Response | Blob | Buffer | string | R>;
+export async function fetch(url: URL | string, options?: RequestOptions | FetchResultTypes, type?: FetchResultTypes) {
 	if (typeof options === 'undefined') {
 		options = {};
 		type = FetchResultTypes.JSON;
@@ -39,10 +40,16 @@ export async function fetch(url: URL | string, options?: RequestInit | FetchResu
 		type = FetchResultTypes.JSON;
 	}
 
+	let { body } = options;
+
+	if (typeof body === 'object' && body !== null) {
+		body = JSON.stringify(body);
+	}
+
 	// Transform the URL to a String, in case an URL object was passed
 	const stringUrl = String(url);
 
-	const result: Response = await globalThis.fetch(stringUrl, options);
+	const result: Response = await globalThis.fetch(stringUrl, { ...options, body });
 	if (!result.ok) throw new QueryError(stringUrl, result.status, result, await result.clone().text());
 
 	switch (type) {
