@@ -2,7 +2,7 @@
 /// <reference lib="dom" />
 
 import { QueryError } from './QueryError';
-import { FetchResultTypes, RequestOptions } from './types';
+import { FetchResultTypes, type RequestOptions } from './types';
 
 /**
  * Performs an HTTP(S) fetch
@@ -42,7 +42,7 @@ export async function fetch(url: URL | string, options?: RequestOptions | FetchR
 
 	let { body } = options;
 
-	if (typeof body === 'object' && body !== null) {
+	if (body && typeof body === 'object') {
 		body = JSON.stringify(body);
 	}
 
