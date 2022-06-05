@@ -1,6 +1,6 @@
 import nock from 'nock';
 import { URL as NodeUrl } from 'node:url';
-import { fetch, FetchMediaContentTypes, FetchResultTypes, QueryError } from '../dist';
+import { fetch, FetchResultTypes, QueryError, FetchMediaContentTypes } from '../dist';
 
 describe('fetch', () => {
 	let nockScopeHttp: nock.Scope;
@@ -12,6 +12,9 @@ describe('fetch', () => {
 			.get('/simpleget')
 			.times(Infinity)
 			.reply(200, { test: true })
+			.post('/simplepost', { sapphire: 'isAwesome' })
+			.times(Infinity)
+			.reply(200, { test: true })
 			.get('/404')
 			.times(Infinity)
 			.reply(404, { success: false });
@@ -19,6 +22,9 @@ describe('fetch', () => {
 		nockScopeHttps = nock('https://localhost') //
 			.persist()
 			.get('/simpleget')
+			.times(Infinity)
+			.reply(200, { test: true })
+			.post('/simplepost', { sapphire: 'isAwesome' })
 			.times(Infinity)
 			.reply(200, { test: true });
 	});
@@ -104,6 +110,16 @@ describe('fetch', () => {
 			const response = await fetch('//localhost/simpleget', FetchResultTypes.Text);
 
 			expect(response).toStrictEqual(JSON.stringify({ test: true }));
+		});
+
+		test('GIVEN fetch w/ object body w/ JSON response THEN returns JSON', async () => {
+			const response = await fetch<{ test: boolean }>(
+				'http://localhost/simplepost',
+				{ method: 'POST', body: { sapphire: 'isAwesome' } },
+				FetchResultTypes.JSON
+			);
+
+			expect(response.test).toBe(true);
 		});
 	});
 

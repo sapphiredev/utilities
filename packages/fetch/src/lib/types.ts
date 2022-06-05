@@ -262,3 +262,7 @@ export const enum FetchMediaContentTypes {
 	 */
 	XML = 'application/xml'
 }
+
+export interface RequestOptions extends Omit<RequestInit, 'body'> {
+	body?: BodyInit | Record<any, any>;
+}
