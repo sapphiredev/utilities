@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/fetch@2.4.0](https://github.com/sapphiredev/utilities/compare/@sapphire/fetch@2.3.1...@sapphire/fetch@2.4.0) - (2022-06-05)
+
+## 🐛 Bug Fixes
+
+- **deps:** Update all non-major dependencies ([50cd8de](https://github.com/sapphiredev/utilities/commit/50cd8dea593b6f5ae75571209456b3421e2ca59a))
+
+## 📝 Documentation
+
+- Add @MajesticString as a contributor ([295b3e9](https://github.com/sapphiredev/utilities/commit/295b3e9849a4b0fe64074bae02f6426378a303c3))
+- Add @Mzato0001 as a contributor ([c790ef2](https://github.com/sapphiredev/utilities/commit/c790ef25df2d7e22888fa9f8169167aa555e9e19))
+- Add @NotKaskus as a contributor ([00da8f1](https://github.com/sapphiredev/utilities/commit/00da8f199137b9277119823f322d1f2d168d928a))
+- Add @imranbarbhuiya as a contributor ([fb674c2](https://github.com/sapphiredev/utilities/commit/fb674c2c5594d41e71662263553dcb4bac9e37f4))
+- Add @axisiscool as a contributor ([ce1aa31](https://github.com/sapphiredev/utilities/commit/ce1aa316871a88d3663efbdf2a42d3d8dfe6a27f))
+- Add @dhruv-kaushikk as a contributor ([ebbf43f](https://github.com/sapphiredev/utilities/commit/ebbf43f63617daba96e72c50a234bf8b64f6ddc4))
+- Add @Commandtechno as a contributor ([f1d69fa](https://github.com/sapphiredev/utilities/commit/f1d69fabe1ee0abe4be08b19e63dbec03102f7ce))
+- Fix typedoc causing OOM crashes ([63ba41c](https://github.com/sapphiredev/utilities/commit/63ba41c4b6678554b1c7043a22d3296db4f59360))
+
+## 🚀 Features
+
+- **fetch:** Accept JS objects for the request body (#365) ([a3eee88](https://github.com/sapphiredev/utilities/commit/a3eee88f36192655c50bbde05ecca1e7d07c464d))
+
+## 🧪 Testing
+
+- Fix fetch tests for Node 18 ([e92fb02](https://github.com/sapphiredev/utilities/commit/e92fb025cb1dcb5f33c1ea76fb25a4a1b5b37368))
+
 ## [2.3.1](https://github.com/sapphiredev/utilities/compare/@sapphire/fetch@2.3.0...@sapphire/fetch@2.3.1) (2022-04-01)
 
 **Note:** Version bump only for package @sapphire/fetch
