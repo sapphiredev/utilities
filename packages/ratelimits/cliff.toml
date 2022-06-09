@@ -10,7 +10,7 @@ body = """
     {% if previous %}\
         {% if previous.version %}\
             (https://github.com/sapphiredev/utilities/compare/{{ previous.version }}...{{ version }})\
-        {% else %}
+        {% else %}\
             (https://github.com/sapphiredev/utilities/tree/{{ version }})\
         {% endif %}\
     {% endif %} \
