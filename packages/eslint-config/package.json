@@ -21,8 +21,8 @@
 		"check-update": "cliff-jumper --dry-run"
 	},
 	"dependencies": {
-		"@typescript-eslint/eslint-plugin": "^5.27.0",
-		"@typescript-eslint/parser": "^5.27.0",
+		"@typescript-eslint/eslint-plugin": "^5.27.1",
+		"@typescript-eslint/parser": "^5.27.1",
 		"eslint": "^8.17.0",
 		"eslint-config-prettier": "^8.5.0",
 		"eslint-plugin-prettier": "^4.0.0",
@@ -60,6 +60,6 @@
 		"access": "public"
 	},
 	"devDependencies": {
-		"tsup": "^6.0.1"
+		"tsup": "^6.1.2"
 	}
 }

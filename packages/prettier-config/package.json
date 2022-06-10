@@ -54,6 +54,6 @@
 		"access": "public"
 	},
 	"devDependencies": {
-		"tsup": "^6.0.1"
+		"tsup": "^6.1.2"
 	}
 }
