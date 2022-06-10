@@ -42,11 +42,6 @@ const [commits, { default: ciData }] = await Promise.all([
 ]);
 
 const data = { sha: commits.length ? commits[0].sha : null, length: commits.length };
-if (!data) {
-	console.error(red('no data from request'));
-
-	process.exit(1);
-}
 
 if (data.sha === null || data.sha === ciData.twemojiRegexLastSha) {
 	console.info(yellow('Fetched data but no new commit was available'));
@@ -68,4 +63,4 @@ if (data.sha) writePromises.push(writeFile(shaTrackerFileUrl, JSON.stringify({ .
 
 await Promise.all(writePromises);
 
-console.log(green(`Successfully wrote updated learnsets data to file; Latest SHA ${data.sha}`));
+console.log(green(`Successfully wrote updated Twemoji Regex to file; Latest SHA ${data.sha}`));
