@@ -1,5 +1,3 @@
-import twemojiRegex from 'twemoji-parser/dist/lib/regex.js';
-
 /**
  * Regex that can capture the ID in Discord Channel mentions
  * @raw `/^<#(?<id>\d{17,19})>$/`
@@ -121,12 +119,6 @@ export const SnowflakeRegex = /^(?<id>\d{17,19})$/;
  * If both capture groups are undefined, then the token is invalid.
  */
 export const TokenRegex = /(?<mfaToken>mfa\.[a-z0-9_-]{20,})|(?<basicToken>[a-z0-9_-]{23,28}\.[a-z0-9_-]{6,7}\.[a-z0-9_-]{27})/i;
-
-/**
- * Regex that can capture a Twemoji (Twitter Emoji)
- * @raw {@linkplain https://github.com/twitter/twemoji-parser/blob/master/src/lib/regex.js See official source code}
- */
-export const TwemojiRegex = twemojiRegex;
 
 /**
  * Regex that can capture the ID of a user in Discord user mentions
