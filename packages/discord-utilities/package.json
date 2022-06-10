@@ -53,9 +53,6 @@
 	"publishConfig": {
 		"access": "public"
 	},
-	"dependencies": {
-		"twemoji-parser": "^14.0.0"
-	},
 	"devDependencies": {
 		"tsup": "^6.0.1",
 		"typescript": "^4.7.3"
