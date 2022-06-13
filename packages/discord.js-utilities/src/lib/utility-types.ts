@@ -52,7 +52,7 @@ export type GuildBasedChannelTypes = NonThreadGuildBasedChannelTypes | ThreadCha
 /**
  * A union of guild based message channels, not including {@link ThreadChannel}
  */
-export type NonThreadGuildTextBasedChannelTypes = Exclude<Extract<TextBasedChannelTypes, GuildChannel>, VoiceChannel>;
+export type NonThreadGuildTextBasedChannelTypes = Extract<TextBasedChannelTypes, GuildChannel>;
 
 /**
  * A union of guild based message channels, including {@link ThreadChannel}
