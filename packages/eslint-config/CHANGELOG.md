@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/eslint-config@4.3.7](https://github.com/sapphiredev/utilities/compare/@sapphire/eslint-config@4.3.6...@sapphire/eslint-config@4.3.7) - (2022-06-13)
+
+## 🐛 Bug Fixes
+
+- **deps:** Update all non-major dependencies (#378) ([9a20de6](https://github.com/sapphiredev/utilities/commit/9a20de656dba6639265eff9e5987a550282f5e5e))
+
 # [@sapphire/eslint-config@4.3.6](https://github.com/sapphiredev/utilities/compare/@sapphire/eslint-config@4.3.5...@sapphire/eslint-config@4.3.6) - (2022-05-31)
 
 ## 🐛 Bug Fixes
