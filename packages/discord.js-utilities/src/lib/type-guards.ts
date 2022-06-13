@@ -173,7 +173,7 @@ export function isNsfwChannel(channel: ChannelTypes | Nullish): boolean {
 			return false;
 		case 'GUILD_NEWS':
 		case 'GUILD_TEXT':
-			return (channel as NonThreadGuildTextBasedChannelTypes).nsfw;
+			return (channel as Exclude<NonThreadGuildTextBasedChannelTypes, VoiceChannel>).nsfw;
 		case 'GUILD_NEWS_THREAD':
 		case 'GUILD_PRIVATE_THREAD':
 		case 'GUILD_PUBLIC_THREAD':
