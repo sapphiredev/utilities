@@ -21,7 +21,7 @@
 		"check-update": "cliff-jumper --dry-run"
 	},
 	"dependencies": {
-		"prettier": "^2.6.2"
+		"prettier": "^2.7.1"
 	},
 	"repository": {
 		"type": "git",
