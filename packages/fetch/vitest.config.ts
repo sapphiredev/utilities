@@ -10,6 +10,6 @@ export default defineConfig({
 		setupFiles: ['./tests/vitest.setup.ts']
 	},
 	esbuild: {
-		target: 'es2020'
+		target: 'es2021'
 	}
 });
