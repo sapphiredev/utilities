@@ -1,8 +1,8 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
 
-exports[`ESLint Config should export rules 1`] = `
-Object {
-  "env": Object {
+exports[`ESLint Config > should export rules 1`] = `
+{
+  "env": {
     "browser": true,
     "commonjs": true,
     "es2017": true,
@@ -11,14 +11,14 @@ Object {
     "jest": true,
     "node": true,
   },
-  "extends": Array [
+  "extends": [
     "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended",
   ],
   "parser": "@typescript-eslint/parser",
-  "parserOptions": Object {
+  "parserOptions": {
     "ecmaVersion": 2020,
-    "extraFileExtensions": Array [
+    "extraFileExtensions": [
       ".mjs",
     ],
     "project": "./tsconfig.eslint.json",
@@ -26,13 +26,13 @@ Object {
     "warnOnUnsupportedTypeScriptVersion": false,
   },
   "root": true,
-  "rules": Object {
+  "rules": {
     "@typescript-eslint/adjacent-overload-signatures": "error",
     "@typescript-eslint/array-type": "off",
     "@typescript-eslint/await-thenable": "off",
-    "@typescript-eslint/ban-ts-comment": Array [
+    "@typescript-eslint/ban-ts-comment": [
       "error",
-      Object {
+      {
         "minimumDescriptionLength": 3,
         "ts-check": true,
         "ts-expect-error": "allow-with-description",
@@ -43,9 +43,9 @@ Object {
     "@typescript-eslint/class-literal-property-style": "error",
     "@typescript-eslint/consistent-type-definitions": "error",
     "@typescript-eslint/default-param-last": "error",
-    "@typescript-eslint/dot-notation": Array [
+    "@typescript-eslint/dot-notation": [
       "error",
-      Object {
+      {
         "allowKeywords": true,
         "allowPattern": "(^[A-Z])|(^[a-z]+(_[a-z]+)+$)",
         "allowPrivateClassPropertyAccess": true,
@@ -55,10 +55,10 @@ Object {
     "@typescript-eslint/explicit-member-accessibility": "error",
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "@typescript-eslint/init-declarations": "off",
-    "@typescript-eslint/member-ordering": Array [
+    "@typescript-eslint/member-ordering": [
       "error",
-      Object {
-        "default": Array [
+      {
+        "default": [
           "signature",
           "public-instance-field",
           "protected-instance-field",
@@ -85,9 +85,9 @@ Object {
     ],
     "@typescript-eslint/no-base-to-string": "error",
     "@typescript-eslint/no-dupe-class-members": "error",
-    "@typescript-eslint/no-duplicate-imports": Array [
+    "@typescript-eslint/no-duplicate-imports": [
       "error",
-      Object {
+      {
         "includeExports": false,
       },
     ],
@@ -134,23 +134,23 @@ Object {
     "class-methods-use-this": "off",
     "complexity": "off",
     "consistent-return": "off",
-    "consistent-this": Array [
+    "consistent-this": [
       "error",
       "self",
     ],
     "constructor-super": "off",
     "default-case": "off",
     "dot-notation": "off",
-    "eqeqeq": Array [
+    "eqeqeq": [
       "error",
       "smart",
     ],
     "for-direction": "off",
-    "func-name-matching": Array [
+    "func-name-matching": [
       "warn",
       "always",
     ],
-    "func-names": Array [
+    "func-names": [
       "warn",
       "as-needed",
     ],
@@ -163,10 +163,10 @@ Object {
     "id-match": "off",
     "init-declarations": "off",
     "line-comment-position": "off",
-    "lines-between-class-members": Array [
+    "lines-between-class-members": [
       "error",
       "always",
-      Object {
+      {
         "exceptAfterSingleLine": true,
       },
     ],
@@ -175,9 +175,9 @@ Object {
     "max-nested-callbacks": "off",
     "max-params": "off",
     "max-statements": "off",
-    "max-statements-per-line": Array [
+    "max-statements-per-line": [
       "error",
-      Object {
+      {
         "max": 1,
       },
     ],
@@ -229,9 +229,9 @@ Object {
     "no-inner-declarations": "off",
     "no-invalid-regexp": "warn",
     "no-invalid-this": "off",
-    "no-irregular-whitespace": Array [
+    "no-irregular-whitespace": [
       "error",
-      Object {
+      {
         "skipComments": true,
         "skipRegExps": true,
         "skipStrings": true,
@@ -311,33 +311,33 @@ Object {
     "no-void": "off",
     "no-warning-comments": "off",
     "no-with": "error",
-    "object-shorthand": Array [
+    "object-shorthand": [
       "error",
       "always",
     ],
-    "one-var": Array [
+    "one-var": [
       "error",
       "never",
     ],
-    "operator-assignment": Array [
+    "operator-assignment": [
       "error",
       "always",
     ],
     "padding-line-between-statements": "off",
-    "prefer-const": Array [
+    "prefer-const": [
       "error",
-      Object {
+      {
         "destructuring": "all",
       },
     ],
-    "prefer-destructuring": Array [
+    "prefer-destructuring": [
       "error",
-      Object {
-        "AssignmentExpression": Object {
+      {
+        "AssignmentExpression": {
           "array": true,
           "object": false,
         },
-        "VariableDeclarator": Object {
+        "VariableDeclarator": {
           "array": false,
           "object": true,
         },
@@ -355,11 +355,11 @@ Object {
     "sort-imports": "off",
     "sort-keys": "off",
     "sort-vars": "off",
-    "spaced-comment": Array [
+    "spaced-comment": [
       "error",
       "always",
     ],
-    "strict": Array [
+    "strict": [
       "error",
       "never",
     ],

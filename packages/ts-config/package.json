@@ -27,7 +27,7 @@
 	"sideEffects": false,
 	"homepage": "https://github.com/sapphiredev/utilities/tree/main/packages/ts-config",
 	"scripts": {
-		"test": "jest",
+		"test": "vitest run",
 		"lint": "eslint tests --ext mjs,ts --fix -c ../../.eslintrc",
 		"build": "yarn lint && tsc -b tests",
 		"bump": "cliff-jumper",

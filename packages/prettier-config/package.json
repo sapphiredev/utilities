@@ -13,7 +13,7 @@
 	"sideEffects": false,
 	"homepage": "https://github.com/sapphiredev/utilities/tree/main/packages/prettier-config",
 	"scripts": {
-		"test": "jest",
+		"test": "vitest run",
 		"lint": "yarn test && yarn build && eslint src tests --ext ts --fix -c ../../.eslintrc",
 		"build": "tsup",
 		"prepack": "yarn build",

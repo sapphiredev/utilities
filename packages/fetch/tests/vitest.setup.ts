@@ -1,6 +1,6 @@
 const originalGlobalFetch = globalThis.fetch;
 
-globalThis.fetch = undefined;
+globalThis.fetch = undefined!;
 
 afterAll(() => {
 	if (originalGlobalFetch) {

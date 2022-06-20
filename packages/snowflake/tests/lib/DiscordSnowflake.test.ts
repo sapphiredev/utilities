@@ -2,12 +2,12 @@ import { DeconstructedSnowflake, DiscordSnowflake } from '../../src';
 
 describe('Discord Snowflakes', () => {
 	beforeAll(() => {
-		jest.useFakeTimers();
-		jest.setSystemTime(new Date('2020-01-01T00:00:00.000+00:00'));
+		vi.useFakeTimers();
+		vi.setSystemTime(new Date('2020-01-01T00:00:00.000+00:00'));
 	});
 
 	afterAll(() => {
-		jest.useRealTimers();
+		vi.useRealTimers();
 	});
 
 	describe('Generate', () => {

@@ -1,12 +1,11 @@
 {
 	"extends": "./tsconfig.base.json",
 	"include": [
-		"jest.config.mjs",
+		"vitest.config.ts",
 		"packages/**/*.mjs",
 		"packages/**/*.ts",
 		"packages/decorators/*.js",
 		"packages/**/*.tsx",
-		"packages/**/jest.config.mjs",
 		"packages/**/tests/*.js",
 		"scripts"
 	]

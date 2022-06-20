@@ -1,6 +1,5 @@
-// This has to be imported with require!
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const prettierConfig = require('../src');
+// @ts-expect-error TS considers the src to not be a module because it uses module.exports but vitest transpiles it just fine for this
+import prettierConfig from '../src';
 
 describe('Prettier Config', () => {
 	test('should export rules', () => {

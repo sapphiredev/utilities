@@ -1,19 +1,19 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
 
-exports[`Prettier Config should export rules 1`] = `
-Object {
+exports[`Prettier Config > should export rules 1`] = `
+{
   "$schema": "http://json.schemastore.org/prettierrc",
   "endOfLine": "lf",
-  "overrides": Array [
-    Object {
+  "overrides": [
+    {
       "files": ".all-contributorsrc",
-      "options": Object {
+      "options": {
         "parser": "json",
       },
     },
-    Object {
+    {
       "files": "*.yml",
-      "options": Object {
+      "options": {
         "tabWidth": 2,
         "useTabs": false,
       },
