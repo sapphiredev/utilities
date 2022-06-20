@@ -1,6 +1,3 @@
 {
-	"extends": "./packages/ts-config/extra-strict-without-decorators.json",
-	"compilerOptions": {
-		"types": ["vitest/globals"]
-	}
+	"extends": "./packages/ts-config/extra-strict-without-decorators.json"
 }
