@@ -2,7 +2,7 @@ import { TimerManager } from '../../../src';
 
 describe('TimerManager', () => {
 	afterEach(() => {
-		vitest.clearAllTimers();
+		vi.clearAllTimers();
 		TimerManager.destroy();
 	});
 
