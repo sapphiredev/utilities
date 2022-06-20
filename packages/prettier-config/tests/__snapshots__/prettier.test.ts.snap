@@ -28,32 +28,3 @@ exports[`Prettier Config > should export rules 1`] = `
   "useTabs": true,
 }
 `;
-
-exports[`Prettier Config should export rules 1`] = `
-Object {
-  "$schema": "http://json.schemastore.org/prettierrc",
-  "endOfLine": "lf",
-  "overrides": Array [
-    Object {
-      "files": ".all-contributorsrc",
-      "options": Object {
-        "parser": "json",
-      },
-    },
-    Object {
-      "files": "*.yml",
-      "options": Object {
-        "tabWidth": 2,
-        "useTabs": false,
-      },
-    },
-  ],
-  "printWidth": 150,
-  "quoteProps": "as-needed",
-  "semi": true,
-  "singleQuote": true,
-  "tabWidth": 4,
-  "trailingComma": "none",
-  "useTabs": true,
-}
-`;

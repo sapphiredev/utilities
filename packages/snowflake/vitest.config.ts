@@ -1,13 +1,6 @@
-import { defineConfig } from 'vitest/config';
+import { createVitestConfig } from '../../scripts/vitest.config';
 
-export default defineConfig({
-	test: {
-		globals: true,
-		coverage: {
-			enabled: true,
-			reporter: ['text', 'lcov', 'clover']
-		}
-	},
+export default createVitestConfig({
 	esbuild: {
 		target: 'es2020'
 	}
