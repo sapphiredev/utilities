@@ -13,7 +13,7 @@
 	"sideEffects": false,
 	"homepage": "https://github.com/sapphiredev/utilities/tree/main/packages/eslint-config",
 	"scripts": {
-		"test": "jest",
+		"test": "vitest run",
 		"prelint": "yarn test && yarn build",
 		"build": "tsup",
 		"prepack": "yarn build",

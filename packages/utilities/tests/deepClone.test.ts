@@ -83,7 +83,7 @@ describe('deepClone', () => {
 		const source = new Map().set('Hello', 420).set('World', 'Yay!');
 		const cloned = deepClone(source);
 
-		expect(cloned instanceof Map).toBeTrue();
+		expect(cloned instanceof Map).toBe(true);
 		expect(source).not.toBe(cloned);
 		expect(cloned.size).toBe(2);
 		expect(cloned.get('Hello')).toBe(420);
@@ -95,11 +95,11 @@ describe('deepClone', () => {
 		const source = new Set().add('Hello').add('World');
 		const cloned = deepClone(source);
 
-		expect(cloned instanceof Set).toBeTrue();
+		expect(cloned instanceof Set).toBe(true);
 		expect(source).not.toBe(cloned);
 		expect(cloned.size).toBe(2);
-		expect(cloned.has('Hello')).toBeTrue();
-		expect(cloned.has('World')).toBeTrue();
+		expect(cloned.has('Hello')).toBe(true);
+		expect(cloned.has('World')).toBe(true);
 	});
 
 	test('GIVEN date THEN returns same date', () => {

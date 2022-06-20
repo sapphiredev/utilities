@@ -2,7 +2,7 @@ import { TimerManager } from '../../../src';
 
 describe('TimerManager', () => {
 	afterEach(() => {
-		jest.clearAllTimers();
+		vitest.clearAllTimers();
 		TimerManager.destroy();
 	});
 
@@ -16,7 +16,7 @@ describe('TimerManager', () => {
 		expect(TimerManager['storedTimeouts'].size).toBe(0);
 
 		TimerManager.setTimeout(() => {
-			expect(true).toBeTruthy();
+			expect(true).toBe(true);
 			done();
 		}, 20);
 	});
