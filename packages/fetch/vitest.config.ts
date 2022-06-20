@@ -6,7 +6,8 @@ export default defineConfig({
 		coverage: {
 			enabled: true,
 			reporter: ['text', 'lcov', 'clover']
-		}
+		},
+		setupFiles: ['./tests/vitest.setup.ts']
 	},
 	esbuild: {
 		target: 'es2020'

@@ -1,6 +1,6 @@
 // This has to be imported with require!
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const config = require('../src');
+const config = require('../dist');
 
 describe('ESLint Config', () => {
 	test('should export rules', () => {

@@ -1,6 +1,6 @@
 // This has to be imported with require!
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const prettierConfig = require('../src');
+const prettierConfig = require('../dist');
 
 describe('Prettier Config', () => {
 	test('should export rules', () => {
