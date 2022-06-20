@@ -3,7 +3,8 @@
 	"compilerOptions": {
 		"outDir": "../build",
 		"rootDir": "./",
-		"tsBuildInfoFile": "../build/test.tsbuildinfo"
+		"tsBuildInfoFile": "../build/test.tsbuildinfo",
+		"types": ["vitest/globals"]
 	},
 	"include": ["./"]
 }

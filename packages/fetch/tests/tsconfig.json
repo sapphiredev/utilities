@@ -3,7 +3,8 @@
 	"compilerOptions": {
 		"rootDir": "./",
 		"outDir": "./build",
-		"tsBuildInfoFile": "./build/.tsbuildinfo"
+		"tsBuildInfoFile": "./build/.tsbuildinfo",
+		"types": ["vitest/globals"]
 	},
 	"include": ["./"],
 	"references": [{ "path": "../src" }]
