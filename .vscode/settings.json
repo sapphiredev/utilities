@@ -5,5 +5,6 @@
 	"editor.insertSpaces": false,
 	"editor.detectIndentation": false,
 	"files.eol": "\n",
-	"typescript.tsdk": "node_modules\\typescript\\lib"
+	"typescript.tsdk": "node_modules\\typescript\\lib",
+	"testing.automaticallyOpenPeekView": "never"
 }

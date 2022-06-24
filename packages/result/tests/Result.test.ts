@@ -24,7 +24,7 @@ describe('Result', () => {
 		describe('isOkAnd', () => {
 			test('GIVEN ok AND true-returning callback THEN returns true', () => {
 				const x = ok(2);
-				const cb = jest.fn((value: number) => value > 1);
+				const cb = vi.fn((value: number) => value > 1);
 
 				expect(x.isOkAnd(cb)).toBe(true);
 				expect(cb).toHaveBeenCalledTimes(1);
@@ -34,7 +34,7 @@ describe('Result', () => {
 
 			test('GIVEN ok AND false-returning callback THEN returns false', () => {
 				const x = ok(0);
-				const cb = jest.fn((value: number) => value > 1);
+				const cb = vi.fn((value: number) => value > 1);
 
 				expect(x.isOkAnd(cb)).toBe(false);
 				expect(cb).toHaveBeenCalledTimes(1);
@@ -44,7 +44,7 @@ describe('Result', () => {
 
 			test('GIVEN err THEN always returns false', () => {
 				const x = err('Some error message');
-				const cb = jest.fn((value: number) => value > 1);
+				const cb = vi.fn((value: number) => value > 1);
 
 				expect<false>(x.isOkAnd(cb)).toBe(false);
 				expect(cb).not.toHaveBeenCalled();
@@ -66,7 +66,7 @@ describe('Result', () => {
 		describe('isErrAnd', () => {
 			test('GIVEN ok AND true-returning callback THEN returns true', () => {
 				const x = ok(2);
-				const cb = jest.fn((value: Error) => value instanceof TypeError);
+				const cb = vi.fn((value: Error) => value instanceof TypeError);
 
 				expect(x.isErrAnd(cb)).toBe(false);
 				expect(cb).not.toHaveBeenCalled();
@@ -75,7 +75,7 @@ describe('Result', () => {
 			test('GIVEN err AND false-returning callback THEN returns false', () => {
 				const error = new Error('Some error message');
 				const x = err(error);
-				const cb = jest.fn((value: Error) => value instanceof TypeError);
+				const cb = vi.fn((value: Error) => value instanceof TypeError);
 
 				expect(x.isErrAnd(cb)).toBe(false);
 				expect(cb).toHaveBeenCalledTimes(1);
@@ -86,7 +86,7 @@ describe('Result', () => {
 			test('GIVEN err AND true-returning callback THEN returns false', () => {
 				const error = new TypeError('Some error message');
 				const x = err(error);
-				const cb = jest.fn((value: Error) => value instanceof TypeError);
+				const cb = vi.fn((value: Error) => value instanceof TypeError);
 
 				expect(x.isErrAnd(cb)).toBe(true);
 				expect(cb).toHaveBeenCalledTimes(1);
@@ -126,7 +126,7 @@ describe('Result', () => {
 		describe('map', () => {
 			test('GIVEN ok THEN returns ok with mapped value', () => {
 				const x = ok(2);
-				const cb = jest.fn((value: number) => value > 1);
+				const cb = vi.fn((value: number) => value > 1);
 
 				expect<Ok<boolean>>(x.map(cb)).toEqual(ok(true));
 				expect(cb).toHaveBeenCalledTimes(1);
@@ -136,7 +136,7 @@ describe('Result', () => {
 
 			test('GIVEN err THEN returns err', () => {
 				const x = err('Some error message');
-				const cb = jest.fn((value: number) => value > 1);
+				const cb = vi.fn((value: number) => value > 1);
 
 				expect(x.map(cb)).toEqual(err('Some error message'));
 				expect(cb).not.toHaveBeenCalled();
@@ -146,7 +146,7 @@ describe('Result', () => {
 		describe('mapOr', () => {
 			test('GIVEN ok THEN returns ok with mapped value', () => {
 				const x = ok(2);
-				const cb = jest.fn((value: number) => value > 1);
+				const cb = vi.fn((value: number) => value > 1);
 
 				expect<boolean>(x.mapOr(false, cb)).toEqual(true);
 				expect(cb).toHaveBeenCalledTimes(1);
@@ -156,7 +156,7 @@ describe('Result', () => {
 
 			test('GIVEN err THEN returns err', () => {
 				const x = err('Some error message');
-				const cb = jest.fn((value: number) => value > 1);
+				const cb = vi.fn((value: number) => value > 1);
 
 				expect<boolean>(x.mapOr(false, cb)).toEqual(false);
 				expect(cb).not.toHaveBeenCalled();
@@ -166,8 +166,8 @@ describe('Result', () => {
 		describe('mapOrElse', () => {
 			test('GIVEN ok THEN returns ok with mapped value', () => {
 				const x = ok(2);
-				const op = jest.fn(() => false);
-				const cb = jest.fn((value: number) => value > 1);
+				const op = vi.fn(() => false);
+				const cb = vi.fn((value: number) => value > 1);
 
 				expect<boolean>(x.mapOrElse(op, cb)).toEqual(true);
 				expect(op).not.toHaveBeenCalled();
@@ -178,8 +178,8 @@ describe('Result', () => {
 
 			test('GIVEN err THEN returns err', () => {
 				const x = err('Some error message');
-				const op = jest.fn(() => false);
-				const cb = jest.fn((value: number) => value > 1);
+				const op = vi.fn(() => false);
+				const cb = vi.fn((value: number) => value > 1);
 
 				expect<boolean>(x.mapOrElse(op, cb)).toEqual(false);
 				expect(op).toHaveBeenCalledTimes(1);
@@ -192,7 +192,7 @@ describe('Result', () => {
 		describe('mapErr', () => {
 			test('GIVEN ok THEN returns ok', () => {
 				const x = ok(2);
-				const cb = jest.fn((error: string) => error.length);
+				const cb = vi.fn((error: string) => error.length);
 
 				expect<Result<number, number>>(x.mapErr(cb)).toEqual(ok(2));
 				expect(cb).not.toHaveBeenCalled();
@@ -200,7 +200,7 @@ describe('Result', () => {
 
 			test('GIVEN ok THEN returns err with mapped value', () => {
 				const x = err('Some error message');
-				const cb = jest.fn((error: string) => error.length);
+				const cb = vi.fn((error: string) => error.length);
 
 				expect<Result<number, number>>(x.mapErr(cb)).toEqual(err(18));
 				expect(cb).toHaveBeenCalledTimes(1);
@@ -212,7 +212,7 @@ describe('Result', () => {
 		describe('inspect', () => {
 			test('GIVEN ok THEN calls callback and returns self', () => {
 				const x = ok(2);
-				const cb = jest.fn();
+				const cb = vi.fn();
 
 				expect<typeof x>(x.inspect(cb)).toBe(x);
 				expect(cb).toHaveBeenCalledTimes(1);
@@ -221,7 +221,7 @@ describe('Result', () => {
 
 			test('GIVEN err THEN returns self', () => {
 				const x = err('Some error message');
-				const cb = jest.fn();
+				const cb = vi.fn();
 
 				expect<typeof x>(x.inspect(cb)).toBe(x);
 				expect(cb).not.toHaveBeenCalled();
@@ -231,7 +231,7 @@ describe('Result', () => {
 		describe('inspectErr', () => {
 			test('GIVEN ok THEN calls callback and returns self', () => {
 				const x = ok(2);
-				const cb = jest.fn();
+				const cb = vi.fn();
 
 				expect<typeof x>(x.inspectErr(cb)).toBe(x);
 				expect(cb).not.toHaveBeenCalled();
@@ -239,7 +239,7 @@ describe('Result', () => {
 
 			test('GIVEN err THEN returns self', () => {
 				const x = err('Some error message');
-				const cb = jest.fn();
+				const cb = vi.fn();
 
 				expect<typeof x>(x.inspectErr(cb)).toBe(x);
 				expect(cb).toHaveBeenCalledTimes(1);
@@ -380,7 +380,7 @@ describe('Result', () => {
 
 			test('GIVEN ok AND ok-returning callback THEN returns ok', () => {
 				const x = ok(4);
-				const op = jest.fn(cb);
+				const op = vi.fn(cb);
 
 				expect<Result<number, string>>(x.andThen(op)).toEqual(ok(1));
 				expect(op).toHaveBeenCalledTimes(1);
@@ -390,7 +390,7 @@ describe('Result', () => {
 
 			test('GIVEN ok AND err-returning callback THEN returns err', () => {
 				const x = ok(0);
-				const op = jest.fn(cb);
+				const op = vi.fn(cb);
 
 				expect<Result<number, string>>(x.andThen(op)).toEqual(err('overflowed'));
 				expect(op).toHaveBeenCalledTimes(1);
@@ -400,7 +400,7 @@ describe('Result', () => {
 
 			test('GIVEN err THEN always returns err', () => {
 				const x = err('not a number');
-				const op = jest.fn(cb);
+				const op = vi.fn(cb);
 
 				expect<typeof x>(x.andThen(op)).toBe(x);
 				expect(op).not.toHaveBeenCalled();
@@ -443,8 +443,8 @@ describe('Result', () => {
 
 			test('GIVEN x=ok, a->ok, b->ok THEN returns x without calling a or b', () => {
 				const x = ok(2);
-				const a = jest.fn(square);
-				const b = jest.fn(square);
+				const a = vi.fn(square);
+				const b = vi.fn(square);
 
 				expect<typeof x>(x.orElse(a).orElse(b)).toBe(x);
 				expect(a).not.toHaveBeenCalled();
@@ -453,8 +453,8 @@ describe('Result', () => {
 
 			test('GIVEN x=ok, a->ok, b->err THEN returns x without calling a or b', () => {
 				const x = ok(2);
-				const a = jest.fn(square);
-				const b = jest.fn(wrapErr);
+				const a = vi.fn(square);
+				const b = vi.fn(wrapErr);
 
 				expect<typeof x>(x.orElse(a).orElse(b)).toBe(x);
 				expect(a).not.toHaveBeenCalled();
@@ -463,8 +463,8 @@ describe('Result', () => {
 
 			test('GIVEN x=err, a->ok, b->err THEN returns ok without calling b', () => {
 				const x = err(3);
-				const a = jest.fn(square);
-				const b = jest.fn(wrapErr);
+				const a = vi.fn(square);
+				const b = vi.fn(wrapErr);
 
 				expect<Ok<number>>(x.orElse(a).orElse(b)).toEqual(ok(9));
 				expect(a).toHaveBeenCalledTimes(1);
@@ -475,8 +475,8 @@ describe('Result', () => {
 
 			test('GIVEN x=err, a->err, b->err THEN returns ok calling a and b', () => {
 				const x = err(3);
-				const a = jest.fn(wrapErr);
-				const b = jest.fn(wrapErr);
+				const a = vi.fn(wrapErr);
+				const b = vi.fn(wrapErr);
 
 				expect<Err<number>>(x.orElse(a).orElse(b)).toEqual(err(3));
 				expect(a).toHaveBeenCalledTimes(1);
@@ -673,8 +673,8 @@ describe('Result', () => {
 		describe('match', () => {
 			test('GIVEN ok THEN calls ok callback', () => {
 				const x = Result.ok(2);
-				const ok = jest.fn((value: number) => value * 2);
-				const err = jest.fn((error: string) => error.length);
+				const ok = vi.fn((value: number) => value * 2);
+				const err = vi.fn((error: string) => error.length);
 
 				expect<number>(x.match({ ok, err })).toBe(4);
 				expect(ok).toHaveBeenCalledTimes(1);
@@ -685,8 +685,8 @@ describe('Result', () => {
 
 			test('GIVEN ok THEN calls ok callback', () => {
 				const x = Result.err('Some error message');
-				const ok = jest.fn((value: number) => value * 2);
-				const err = jest.fn((error: string) => error.length);
+				const ok = vi.fn((value: number) => value * 2);
+				const err = vi.fn((error: string) => error.length);
 
 				expect<number>(x.match({ ok, err })).toBe(18);
 				expect(ok).not.toHaveBeenCalled();

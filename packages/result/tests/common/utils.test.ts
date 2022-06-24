@@ -70,7 +70,7 @@ describe('utils', () => {
 
 		test('GIVEN an object with toString override THEN calls it', () => {
 			const expected = '42' as const;
-			const fn = jest.fn(() => expected);
+			const fn = vi.fn(() => expected);
 
 			const given = { toString: fn };
 

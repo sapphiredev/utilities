@@ -24,7 +24,7 @@ describe('Option', () => {
 		describe('isSomeAnd', () => {
 			test('GIVEN some AND true-returning callback THEN returns true', () => {
 				const x = some(2);
-				const cb = jest.fn((value: number) => value > 1);
+				const cb = vi.fn((value: number) => value > 1);
 
 				expect(x.isSomeAnd(cb)).toBe(true);
 				expect(cb).toHaveBeenCalledTimes(1);
@@ -34,7 +34,7 @@ describe('Option', () => {
 
 			test('GIVEN some AND false-returning callback THEN returns false', () => {
 				const x = some(0);
-				const cb = jest.fn((value: number) => value > 1);
+				const cb = vi.fn((value: number) => value > 1);
 
 				expect(x.isSomeAnd(cb)).toBe(false);
 				expect(cb).toHaveBeenCalledTimes(1);
@@ -44,7 +44,7 @@ describe('Option', () => {
 
 			test('GIVEN none THEN always returns false', () => {
 				const x = none;
-				const cb = jest.fn((value: number) => value > 1);
+				const cb = vi.fn((value: number) => value > 1);
 
 				expect(x.isSomeAnd(cb)).toBe(false);
 				expect(cb).not.toHaveBeenCalled();
@@ -122,7 +122,7 @@ describe('Option', () => {
 		describe('map', () => {
 			test('GIVEN some THEN returns mapped value', () => {
 				const x = some('Hello, world!');
-				const op = jest.fn((value: string) => value.length);
+				const op = vi.fn((value: string) => value.length);
 
 				expect<Some<number>>(x.map(op)).toEqual(some(13));
 				expect(op).toHaveBeenCalledTimes(1);
@@ -132,7 +132,7 @@ describe('Option', () => {
 
 			test('GIVEN none THEN returns self', () => {
 				const x = none;
-				const op = jest.fn((value: string) => value.length);
+				const op = vi.fn((value: string) => value.length);
 
 				expect<None>(x.map(op)).toBe(none);
 				expect(op).not.toHaveBeenCalled();
@@ -142,7 +142,7 @@ describe('Option', () => {
 		describe('mapOr', () => {
 			test('GIVEN some THEN returns mapped value', () => {
 				const x = some('Hello, world!');
-				const op = jest.fn((value: string) => value.length);
+				const op = vi.fn((value: string) => value.length);
 
 				expect<number>(x.mapOr(5, op)).toEqual(13);
 				expect(op).toHaveBeenCalledTimes(1);
@@ -152,7 +152,7 @@ describe('Option', () => {
 
 			test('GIVEN none THEN returns default value', () => {
 				const x = none;
-				const op = jest.fn((value: string) => value.length);
+				const op = vi.fn((value: string) => value.length);
 
 				expect<number>(x.mapOr(5, op)).toBe(5);
 				expect(op).not.toHaveBeenCalled();
@@ -162,8 +162,8 @@ describe('Option', () => {
 		describe('mapOrElse', () => {
 			test('GIVEN some THEN returns mapped value', () => {
 				const x = some('Hello, world!');
-				const op = jest.fn((value: string) => value.length);
-				const df = jest.fn(() => 5);
+				const op = vi.fn((value: string) => value.length);
+				const df = vi.fn(() => 5);
 
 				expect<number>(x.mapOrElse(df, op)).toEqual(13);
 				expect(op).toHaveBeenCalledTimes(1);
@@ -174,8 +174,8 @@ describe('Option', () => {
 
 			test('GIVEN none THEN returns default value', () => {
 				const x = none;
-				const op = jest.fn((value: string) => value.length);
-				const df = jest.fn(() => 5);
+				const op = vi.fn((value: string) => value.length);
+				const df = vi.fn(() => 5);
 
 				expect<number>(x.mapOrElse(df, op)).toBe(5);
 				expect(df).toHaveBeenCalledTimes(1);
@@ -188,7 +188,7 @@ describe('Option', () => {
 		describe('inspect', () => {
 			test('GIVEN some THEN calls callback and returns self', () => {
 				const x = some(2);
-				const cb = jest.fn();
+				const cb = vi.fn();
 
 				expect<typeof x>(x.inspect(cb)).toBe(x);
 				expect(cb).toHaveBeenCalledTimes(1);
@@ -197,7 +197,7 @@ describe('Option', () => {
 
 			test('GIVEN none THEN returns self', () => {
 				const x = none;
-				const cb = jest.fn();
+				const cb = vi.fn();
 
 				expect<typeof x>(x.inspect(cb)).toBe(x);
 				expect(cb).not.toHaveBeenCalled();
@@ -221,7 +221,7 @@ describe('Option', () => {
 		describe('okOrElse', () => {
 			test('GIVEN some(s) THEN returns ok(s)', () => {
 				const x = some('hello');
-				const op = jest.fn(() => 0);
+				const op = vi.fn(() => 0);
 
 				expect<Ok<string>>(x.okOrElse(op)).toEqual(ok('hello'));
 				expect(op).not.toHaveBeenCalled();
@@ -229,7 +229,7 @@ describe('Option', () => {
 
 			test('GIVEN none THEN returns err(default)', () => {
 				const x = none;
-				const op = jest.fn(() => 0);
+				const op = vi.fn(() => 0);
 
 				expect<Err<number>>(x.okOrElse(op)).toEqual(err(0));
 				expect(op).toHaveBeenCalledTimes(1);
@@ -287,7 +287,7 @@ describe('Option', () => {
 
 			test('GIVEN some AND some-returning callback THEN returns some', () => {
 				const x = some(4);
-				const op = jest.fn(cb);
+				const op = vi.fn(cb);
 
 				expect<Option<number>>(x.andThen(op)).toEqual(some(1));
 				expect(op).toHaveBeenCalledTimes(1);
@@ -297,7 +297,7 @@ describe('Option', () => {
 
 			test('GIVEN some AND none-returning callback THEN returns none', () => {
 				const x = some(0);
-				const op = jest.fn(cb);
+				const op = vi.fn(cb);
 
 				expect<Option<number>>(x.andThen(op)).toEqual(none);
 				expect(op).toHaveBeenCalledTimes(1);
@@ -307,7 +307,7 @@ describe('Option', () => {
 
 			test('GIVEN none THEN always returns none', () => {
 				const x = none;
-				const op = jest.fn(cb);
+				const op = vi.fn(cb);
 
 				expect<typeof x>(x.andThen(op)).toBe(none);
 				expect(op).not.toHaveBeenCalled();
@@ -350,7 +350,7 @@ describe('Option', () => {
 
 			test('GIVEN some AND some-returning callback THEN returns self', () => {
 				const x = some('barbarians');
-				const op = jest.fn(vikings);
+				const op = vi.fn(vikings);
 
 				expect<typeof x>(x.orElse(op)).toBe(x);
 				expect(op).not.toHaveBeenCalled();
@@ -358,7 +358,7 @@ describe('Option', () => {
 
 			test('GIVEN none AND some-returning callback THEN returns some', () => {
 				const x = none;
-				const op = jest.fn(vikings);
+				const op = vi.fn(vikings);
 
 				expect<Some<string>>(x.orElse(op)).toEqual(some('vikings'));
 				expect(op).toHaveBeenCalledTimes(1);
@@ -368,7 +368,7 @@ describe('Option', () => {
 
 			test('GIVEN none AND none-returning callback THEN returns none', () => {
 				const x = none;
-				const op = jest.fn(nobody);
+				const op = vi.fn(nobody);
 
 				expect<None>(x.orElse(op)).toEqual(none);
 				expect(op).toHaveBeenCalledTimes(1);
@@ -412,7 +412,7 @@ describe('Option', () => {
 
 			test('GIVEN some(s) AND some-returning callback THEN returns some(s)', () => {
 				const x = some(4);
-				const op = jest.fn(cb);
+				const op = vi.fn(cb);
 
 				expect(x.filter(op)).toBe(x);
 				expect(op).toHaveBeenCalledTimes(1);
@@ -422,7 +422,7 @@ describe('Option', () => {
 
 			test('GIVEN some(s) AND none-returning callback THEN returns none', () => {
 				const x = some(3);
-				const op = jest.fn(cb);
+				const op = vi.fn(cb);
 
 				expect(x.filter(op)).toEqual(none);
 				expect(op).toHaveBeenCalledTimes(1);
@@ -432,7 +432,7 @@ describe('Option', () => {
 
 			test('GIVEN none THEN always returns none', () => {
 				const x = none;
-				const op = jest.fn(cb);
+				const op = vi.fn(cb);
 
 				expect(x.filter(op)).toEqual(none);
 				expect(op).not.toHaveBeenCalled();
@@ -495,7 +495,7 @@ describe('Option', () => {
 			test('GIVEN x=some, y=some THEN always returns some', () => {
 				const x = some(2);
 				const y = some(4);
-				const op = jest.fn(cb);
+				const op = vi.fn(cb);
 
 				expect<Some<number>>(x.zipWith(y, op)).toEqual(some(8));
 				expect(op).toHaveBeenCalledTimes(1);
@@ -506,7 +506,7 @@ describe('Option', () => {
 			test('GIVEN x=some, y=none THEN always returns none', () => {
 				const x = some(2);
 				const y = none;
-				const op = jest.fn(cb);
+				const op = vi.fn(cb);
 
 				expect<None>(x.zipWith(y, op)).toEqual(none);
 				expect(op).not.toHaveBeenCalled();
@@ -515,7 +515,7 @@ describe('Option', () => {
 			test('GIVEN x=none, y=some THEN always returns none', () => {
 				const x = none;
 				const y = some(4);
-				const op = jest.fn(cb);
+				const op = vi.fn(cb);
 
 				expect<None>(x.zipWith(y, op)).toEqual(none);
 				expect(op).not.toHaveBeenCalled();
@@ -524,7 +524,7 @@ describe('Option', () => {
 			test('GIVEN x=none, y=none THEN always returns none', () => {
 				const x = none;
 				const y = none;
-				const op = jest.fn(cb);
+				const op = vi.fn(cb);
 
 				expect<None>(x.zipWith(y, op)).toEqual(none);
 				expect(op).not.toHaveBeenCalled();
@@ -662,8 +662,8 @@ describe('Option', () => {
 		describe('match', () => {
 			test('GIVEN some THEN calls some callback', () => {
 				const x = Option.some(2);
-				const some = jest.fn((value: number) => value * 2);
-				const none = jest.fn(() => 0);
+				const some = vi.fn((value: number) => value * 2);
+				const none = vi.fn(() => 0);
 
 				expect<number>(x.match({ some, none })).toBe(4);
 				expect(some).toHaveBeenCalledTimes(1);
@@ -674,8 +674,8 @@ describe('Option', () => {
 
 			test('GIVEN none THEN calls none callback', () => {
 				const x = Option.none;
-				const some = jest.fn((value: number) => value * 2);
-				const none = jest.fn(() => 0);
+				const some = vi.fn((value: number) => value * 2);
+				const none = vi.fn(() => 0);
 
 				expect<number>(x.match({ some, none })).toBe(0);
 				expect(some).not.toHaveBeenCalled();
