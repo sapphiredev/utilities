@@ -1,11 +1,10 @@
-import type { IValue } from '../common/IValue';
 import { err, type Err } from '../Result/Err';
 import { ok, type Ok } from '../Result/Ok';
 import type { IOption } from './IOption';
 import { OptionError } from './OptionError';
 import type { Some } from './Some';
 
-export class None implements IOption<any>, IValue<undefined> {
+export class None implements IOption<any> {
 	public isSome(): false {
 		return false;
 	}
@@ -144,25 +143,6 @@ export class None implements IOption<any>, IValue<undefined> {
 
 	public *[Symbol.iterator](): Generator<never> {
 		// Yields no values
-	}
-
-	public toString(): 'undefined' {
-		return 'undefined';
-	}
-
-	public valueOf(): undefined {
-		return undefined;
-	}
-
-	public toJSON(): undefined {
-		return undefined;
-	}
-
-	public [Symbol.toPrimitive](hint: 'number'): number;
-	public [Symbol.toPrimitive](hint: 'string'): 'undefined';
-	public [Symbol.toPrimitive](hint: IValue.PrimitiveHint): IValue.ToPrimitive<undefined>;
-	public [Symbol.toPrimitive](hint: IValue.PrimitiveHint): IValue.ToPrimitive<undefined> {
-		return hint === 'number' ? NaN : 'undefined';
 	}
 }
 
