@@ -687,50 +687,87 @@ describe('Option', () => {
 	});
 
 	describe('some', () => {
-		test('GIVEN some THEN returns { isSome->truthy, isNone->falsy }', () => {
+		test('GIVEN some THEN returns Some', () => {
 			const x = Option.some(42);
 
-			expect(x.isSome()).toBeTruthy();
-			expect(x.isNone()).toBeFalsy();
+			expect(x.isSome()).toBe(true);
+			expect(x.isNone()).toBe(false);
 		});
 	});
 
 	describe('none', () => {
-		test('GIVEN none THEN returns { isSome->falsy, isNone->truthy }', () => {
+		test('GIVEN none THEN returns None', () => {
 			const x = Option.none;
 
-			expect(x.isSome()).toBeFalsy();
-			expect(x.isNone()).toBeTruthy();
+			expect(x.isSome()).toBe(false);
+			expect(x.isNone()).toBe(true);
 		});
 	});
 
 	describe('from', () => {
-		test('GIVEN from(T) THEN returns { isSome->truthy, isNone->falsy }', () => {
+		test('GIVEN from(T) THEN returns Some', () => {
 			const x = from(42);
 
-			expect(x.isSome()).toBeTruthy();
-			expect(x.isNone()).toBeFalsy();
+			expect(x.isSome()).toBe(true);
+			expect(x.isNone()).toBe(false);
 		});
 
-		test('GIVEN from(Some(T)) THEN returns { isSome->truthy, isNone->falsy }', () => {
+		test('GIVEN from(Some(T)) THEN returns Some', () => {
 			const x = from(Option.some(42));
 
-			expect(x.isSome()).toBeTruthy();
-			expect(x.isNone()).toBeFalsy();
+			expect(x.isSome()).toBe(true);
+			expect(x.isNone()).toBe(false);
 		});
 
-		test('GIVEN from(null) WITH value as null THEN returns { isSome->truthy, isNone->falsy }', () => {
+		test('GIVEN from(null) WITH value as null THEN returns None', () => {
 			const x = from(null);
 
-			expect(x.isSome()).toBeFalsy();
-			expect(x.isNone()).toBeTruthy();
+			expect(x.isSome()).toBe(false);
+			expect(x.isNone()).toBe(true);
 		});
 
-		test('GIVEN from(None) WITH value as isMaybe result THEN returns { isSome->truthy, isNone->falsy }', () => {
+		test('GIVEN from(None) WITH value as isMaybe result THEN returns None', () => {
 			const x = from(Option.none);
 
-			expect(x.isSome()).toBeFalsy();
-			expect(x.isNone()).toBeTruthy();
+			expect(x.isSome()).toBe(false);
+			expect(x.isNone()).toBe(true);
+		});
+
+		test('GIVEN from(() => T) THEN returns Some', () => {
+			const x = from(() => 42);
+
+			expect(x.isSome()).toBe(true);
+			expect(x.isNone()).toBe(false);
+		});
+
+		test('GIVEN from(() => Some(T)) THEN returns Some', () => {
+			const x = from(() => Option.some(42));
+
+			expect(x.isSome()).toBe(true);
+			expect(x.isNone()).toBe(false);
+		});
+
+		test('GIVEN from(() => null) WITH value as null THEN returns None', () => {
+			const x = from(() => null);
+
+			expect(x.isSome()).toBe(false);
+			expect(x.isNone()).toBe(true);
+		});
+
+		test('GIVEN from(() => None) WITH value as isMaybe result THEN returns None', () => {
+			const x = from(() => Option.none);
+
+			expect(x.isSome()).toBe(false);
+			expect(x.isNone()).toBe(true);
+		});
+
+		test('GIVEN from(() => throw) WITH value as isMaybe result THEN returns None', () => {
+			const x = from(() => {
+				throw new Error('throws');
+			});
+
+			expect(x.isSome()).toBe(false);
+			expect(x.isNone()).toBe(true);
 		});
 	});
 });

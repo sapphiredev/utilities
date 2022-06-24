@@ -716,60 +716,111 @@ describe('Result', () => {
 	});
 
 	describe('from', () => {
-		test('GIVEN truthy value THEN returns Ok', () => {
-			const x = from(() => 42);
+		test('GIVEN from(T) value THEN returns Ok', () => {
+			const x = from(42);
 
-			expect(x.isOk()).toBeTruthy();
-			expect(x.isErr()).toBeFalsy();
+			expect(x.isOk()).toBe(true);
+			expect(x.isErr()).toBe(false);
 			expect(x.unwrap()).toBe(42);
 		});
 
-		test('GIVEN thrown error THEN returns Err', () => {
+		test('GIVEN from(Ok) value THEN returns Ok', () => {
+			const x = from(Result.ok(42));
+
+			expect(x.isOk()).toBe(true);
+			expect(x.isErr()).toBe(false);
+			expect(x.unwrap()).toBe(42);
+		});
+
+		test('GIVEN from(Err) error THEN returns Err', () => {
+			const error = new Error('thrown');
+			const x = from(Result.err(error));
+
+			expect(x.isOk()).toBe(false);
+			expect(x.isErr()).toBe(true);
+			expect(x.unwrapErr()).toBe(error);
+		});
+
+		test('GIVEN from(() => T) THEN returns Ok', () => {
+			const x = from(() => 42);
+
+			expect(x.isOk()).toBe(true);
+			expect(x.isErr()).toBe(false);
+			expect(x.unwrap()).toBe(42);
+		});
+
+		test('GIVEN from(() => throw) THEN returns Err with thrown error', () => {
+			const error = new Error('thrown');
 			const x = from(() => {
-				throw new Error();
+				throw error;
 			});
 
-			expect(x.isOk()).toBeFalsy();
-			expect(x.isErr()).toBeTruthy();
-			expect(x.unwrapErr()).toBeDefined();
+			expect(x.isOk()).toBe(false);
+			expect(x.isErr()).toBe(true);
+			expect(x.unwrapErr()).toBe(error);
 		});
 	});
 
 	describe('fromAsync', () => {
-		test('GIVEN truthy value THEN returns Ok', async () => {
+		test('GIVEN fromAsync(T) THEN returns Ok', async () => {
+			const x = await fromAsync(42);
+
+			expect(x.isOk()).toBe(true);
+			expect(x.isErr()).toBe(false);
+			expect(x.unwrap()).toBe(42);
+		});
+
+		test('GIVEN fromAsync(() => T) THEN returns Ok', async () => {
+			const x = await fromAsync(() => 42);
+
+			expect(x.isOk()).toBe(true);
+			expect(x.isErr()).toBe(false);
+			expect(x.unwrap()).toBe(42);
+		});
+
+		test('GIVEN fromAsync(Promise.resolve(T)) THEN returns Ok', async () => {
+			const x = await fromAsync(Promise.resolve(42));
+
+			expect(x.isOk()).toBe(true);
+			expect(x.isErr()).toBe(false);
+			expect(x.unwrap()).toBe(42);
+		});
+
+		test('GIVEN fromAsync(() => Promise.resolve(T)) THEN returns Ok', async () => {
 			const x = await fromAsync(() => Promise.resolve(42));
 
-			expect(x.isOk()).toBeTruthy();
-			expect(x.isErr()).toBeFalsy();
+			expect(x.isOk()).toBe(true);
+			expect(x.isErr()).toBe(false);
 			expect(x.unwrap()).toBe(42);
 		});
 
-		test('GIVEN existing promise with value THEN returns Ok', async () => {
-			const promise = new Promise<number>((resolve) => resolve(42));
+		test('GIVEN fromAsync(() => throw) THEN returns Err with thrown error', async () => {
+			const error = new Error('thrown');
+			const x = await fromAsync(() => {
+				throw error;
+			});
 
-			const x = await fromAsync(promise);
-
-			expect(x.isOk()).toBeTruthy();
-			expect(x.isErr()).toBeFalsy();
-			expect(x.unwrap()).toBe(42);
+			expect(x.isOk()).toBe(false);
+			expect(x.isErr()).toBe(true);
+			expect(x.unwrapErr()).toBe(error);
 		});
 
-		test('GIVEN promise rejection THEN returns Err', async () => {
-			const x = await fromAsync(() => Promise.reject(new Error()));
+		test('GIVEN fromAsync(Promise.reject) THEN returns Err', async () => {
+			const error = new Error('thrown');
+			const x = await fromAsync(Promise.reject(error));
 
-			expect(x.isOk()).toBeFalsy();
-			expect(x.isErr()).toBeTruthy();
-			expect(x.unwrapErr()).toBeDefined();
+			expect(x.isOk()).toBe(false);
+			expect(x.isErr()).toBe(true);
+			expect(x.unwrapErr()).toBe(error);
 		});
 
-		test('GIVEN existing promise with rejection THEN returns Err', async () => {
-			const promise = new Promise((_, reject) => reject(new Error()));
+		test('GIVEN fromAsync(() => Promise.reject) THEN returns Err', async () => {
+			const error = new Error('thrown');
+			const x = await fromAsync(() => Promise.reject(error));
 
-			const x = await fromAsync(promise);
-
-			expect(x.isOk()).toBeFalsy();
-			expect(x.isErr()).toBeTruthy();
-			expect(x.unwrapErr()).toBeDefined();
+			expect(x.isOk()).toBe(false);
+			expect(x.isErr()).toBe(true);
+			expect(x.unwrapErr()).toBe(error);
 		});
 	});
 });
