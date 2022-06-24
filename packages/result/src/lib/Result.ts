@@ -15,8 +15,14 @@ export type Result<T, E> = Result.Ok<T> | Result.Err<E>;
 export namespace Result {
 	export type Resolvable<T, E> = T | Result<T, E>;
 	function resolve<T, E>(value: Resolvable<T, E>) {
-		if (value instanceof Ok || value instanceof Err) return value;
+		if (is(value)) return value;
 		return ok(value);
+	}
+
+	export function is<T, E>(value: Result<T, E>): true;
+	export function is(value: any): value is Result<unknown, unknown>;
+	export function is(value: any) {
+		return value instanceof Ok || value instanceof Err;
 	}
 
 	/**
@@ -52,4 +58,7 @@ export namespace Result {
 
 	export type Err<E> = import('./Result/Err').Err<E>;
 	export type Ok<T> = import('./Result/Ok').Ok<T>;
+
+	export type UnwrapOk<T> = T extends Result<infer S, unknown> ? S : never;
+	export type UnwrapErr<T> = T extends Result<unknown, infer S> ? S : never;
 }

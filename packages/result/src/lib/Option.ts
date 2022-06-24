@@ -15,8 +15,14 @@ export namespace Option {
 	export type Resolvable<T> = T | null | undefined | Option<T>;
 	function resolve<T>(value: Resolvable<T>) {
 		if (value === null || value === undefined) return none;
-		if (value instanceof None || value instanceof Some) return value;
+		if (is(value)) return value;
 		return some(value);
+	}
+
+	export function is<T>(value: Option<T>): true;
+	export function is(value: any): value is Option<unknown>;
+	export function is(value: any) {
+		return value instanceof None || value instanceof Some;
 	}
 
 	/**
@@ -50,4 +56,6 @@ export namespace Option {
 
 	export type Some<T> = import('./Option/Some').Some<T>;
 	export type None = import('./Option/None').None;
+
+	export type UnwrapSome<T> = T extends Option<infer S> ? S : never;
 }
