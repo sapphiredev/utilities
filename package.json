@@ -24,7 +24,6 @@
 		"@favware/npm-deprecate": "^1.0.4",
 		"@favware/rollup-type-bundler": "^1.0.7",
 		"@sapphire/framework": "next",
-		"@sapphire/result": "workspace:^",
 		"@types/lodash": "^4.14.182",
 		"@types/node": "^18.0.0",
 		"@types/ws": "^8.5.3",
