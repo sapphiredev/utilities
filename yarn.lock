@@ -371,24 +371,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@favware/rollup-type-bundler@npm:^1.0.7":
-  version: 1.0.7
-  resolution: "@favware/rollup-type-bundler@npm:1.0.7"
-  dependencies:
-    "@sapphire/utilities": ^3.1.0
-    colorette: ^2.0.16
-    commander: ^8.3.0
-    js-yaml: ^4.1.0
-    rollup: ^2.63.0
-    rollup-plugin-dts: ^4.1.0
-    typescript: ^4.5.4
-  bin:
-    rollup-type-bundler: dist/cli.js
-    rtb: dist/cli.js
-  checksum: e42a8c5b4509b78219b477acdd36baedfb97e48265796e3418baba085d0f9e65ce7ccab59c011a4eb320bcf778dfda8ff2a257910044846b02c2ca00baee73ec
-  languageName: node
-  linkType: hard
-
 "@favware/rollup-type-bundler@npm:^1.0.9":
   version: 1.0.9
   resolution: "@favware/rollup-type-bundler@npm:1.0.9"
@@ -742,7 +724,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@sapphire/utilities@^3.0.1, @sapphire/utilities@^3.1.0, @sapphire/utilities@^3.6.2, @sapphire/utilities@workspace:^, @sapphire/utilities@workspace:packages/utilities":
+"@sapphire/utilities@^3.0.1, @sapphire/utilities@^3.6.2, @sapphire/utilities@workspace:^, @sapphire/utilities@workspace:packages/utilities":
   version: 0.0.0-use.local
   resolution: "@sapphire/utilities@workspace:packages/utilities"
   dependencies:
@@ -1651,7 +1633,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"commander@npm:^8.2.0, commander@npm:^8.3.0":
+"commander@npm:^8.2.0":
   version: 8.3.0
   resolution: "commander@npm:8.3.0"
   checksum: 0f82321821fc27b83bd409510bb9deeebcfa799ff0bf5d102128b500b7af22872c0c92cb6a0ebc5a4cf19c6b550fba9cedfa7329d18c6442a625f851377bacf0
@@ -4863,7 +4845,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rollup-plugin-dts@npm:^4.1.0, rollup-plugin-dts@npm:^4.2.2":
+"rollup-plugin-dts@npm:^4.2.2":
   version: 4.2.2
   resolution: "rollup-plugin-dts@npm:4.2.2"
   dependencies:
@@ -4879,7 +4861,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rollup@npm:^2.59.0, rollup@npm:^2.63.0, rollup@npm:^2.74.1, rollup@npm:^2.75.7":
+"rollup@npm:^2.59.0, rollup@npm:^2.74.1, rollup@npm:^2.75.7":
   version: 2.75.7
   resolution: "rollup@npm:2.75.7"
   dependencies:
@@ -4902,7 +4884,7 @@ __metadata:
     "@discordjs/collection": ^0.7.0
     "@favware/cliff-jumper": ^1.8.3
     "@favware/npm-deprecate": ^1.0.4
-    "@favware/rollup-type-bundler": ^1.0.7
+    "@favware/rollup-type-bundler": ^1.0.9
     "@sapphire/framework": next
     "@types/lodash": ^4.14.182
     "@types/node": ^18.0.0
@@ -5883,7 +5865,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:^4.5.4, typescript@npm:^4.6.4, typescript@npm:^4.7.3, typescript@npm:^4.7.4":
+"typescript@npm:^4.6.4, typescript@npm:^4.7.3, typescript@npm:^4.7.4":
   version: 4.7.4
   resolution: "typescript@npm:4.7.4"
   bin:
@@ -5893,7 +5875,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@^4.5.4#~builtin<compat/typescript>, typescript@patch:typescript@^4.6.4#~builtin<compat/typescript>, typescript@patch:typescript@^4.7.3#~builtin<compat/typescript>, typescript@patch:typescript@^4.7.4#~builtin<compat/typescript>":
+"typescript@patch:typescript@^4.6.4#~builtin<compat/typescript>, typescript@patch:typescript@^4.7.3#~builtin<compat/typescript>, typescript@patch:typescript@^4.7.4#~builtin<compat/typescript>":
   version: 4.7.4
   resolution: "typescript@patch:typescript@npm%3A4.7.4#~builtin<compat/typescript>::version=4.7.4&hash=7ad353"
   bin:
