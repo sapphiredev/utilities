@@ -1,60 +1,64 @@
-import type { Err, Ok } from './Lexure';
+import { isFunction, type Awaitable } from './common/utils';
+import { Err, err as _err } from './Result/Err';
+import { Ok, ok as _ok } from './Result/Ok';
+
+export * from './Result/IResult';
+export * from './Result/ResultError';
 
 /**
- * A type used to express computations that can fail.
+ * The union of the two variations of `Result`.
  * @typeparam T The result's type.
  * @typeparam E The error's type.
  */
-export type Result<T, E> = Ok<T> | Err<E>;
+export type Result<T, E> = Result.Ok<T> | Result.Err<E>;
 
-/**
- * Creates an Ok with no value.
- * @return A successful Result.
- */
-export function ok(): Ok<unknown>;
+export namespace Result {
+	export type Resolvable<T, E> = T | Result<T, E>;
+	function resolve<T, E>(value: Resolvable<T, E>) {
+		if (is(value)) return value;
+		return ok(value);
+	}
 
-/**
- * Creates an Ok.
- * @typeparam T The result's type.
- * @param x Value to use.
- * @return A successful Result.
- */
-export function ok<T>(x: T): Ok<T>;
-export function ok<T>(x?: T): Ok<unknown> {
-	return { success: true, value: x };
-}
+	export function is<T, E>(value: Result<T, E>): true;
+	export function is(value: any): value is Result<unknown, unknown>;
+	export function is(value: any) {
+		return value instanceof Ok || value instanceof Err;
+	}
 
-/**
- * Creates an Err with no error.
- * @return An erroneous Result.
- */
-export function err(): Err<unknown>;
+	/**
+	 * Creates a {@link Result} out of a callback.
+	 * @typeparam T The result's type.
+	 * @typeparam E The error's type.
+	 */
+	export function from<T, E = unknown>(op: Resolvable<T, E> | (() => Resolvable<T, E>)): Result<T, E> {
+		if (!isFunction(op)) return resolve(op);
 
-/**
- * Creates an Err.
- * @typeparam E The error's type.
- * @param x Value to use.
- * @return An erroneous Result.
- */
-export function err<E>(x: E): Err<E>;
-export function err<E>(x?: E): Err<unknown> {
-	return { success: false, error: x };
-}
+		try {
+			return resolve(op());
+		} catch (error) {
+			return err(error as E);
+		}
+	}
 
-/**
- * Determines whether or not a result is an Ok.
- * @typeparam T The result's type.
- * @typeparam E The error's type.
- */
-export function isOk<T, E>(x: Result<T, E>): x is Ok<T> {
-	return x.success;
-}
+	/**
+	 * Creates a {@link Result} out of a promise or async callback.
+	 * @typeparam T The result's type.
+	 * @typeparam E The error's type.
+	 */
+	export async function fromAsync<T, E = unknown>(op: Awaitable<Resolvable<T, E>> | (() => Awaitable<Resolvable<T, E>>)): Promise<Result<T, E>> {
+		try {
+			return resolve(await (isFunction(op) ? op() : op));
+		} catch (error) {
+			return err(error as E);
+		}
+	}
 
-/**
- * Determines whether or not a result is an Err.
- * @typeparam T The result's type.
- * @typeparam E The error's type.
- */
-export function isErr<T, E>(x: Result<T, E>): x is Err<E> {
-	return !x.success;
+	export const err = _err;
+	export const ok = _ok;
+
+	export type Err<E> = import('./Result/Err').Err<E>;
+	export type Ok<T> = import('./Result/Ok').Ok<T>;
+
+	export type UnwrapOk<T> = T extends Result<infer S, unknown> ? S : never;
+	export type UnwrapErr<T> = T extends Result<unknown, infer S> ? S : never;
 }

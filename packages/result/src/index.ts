@@ -1,4 +1,2 @@
-export * from './lib/Lexure';
-export * from './lib/Maybe';
+export * from './lib/Option';
 export * from './lib/Result';
-export * from './lib/Parsers';
