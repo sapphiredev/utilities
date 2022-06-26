@@ -538,6 +538,7 @@ __metadata:
     "@sapphire/discord-utilities": "workspace:^"
     "@sapphire/discord.js-utilities": "workspace:^"
     "@sapphire/ratelimits": "workspace:^"
+    "@sapphire/result": "workspace:^"
     "@sapphire/utilities": "workspace:^"
     tslib: ^2.4.0
     tsup: ^6.1.2
@@ -658,7 +659,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@sapphire/result@^1.1.1, @sapphire/result@workspace:packages/result":
+"@sapphire/result@^1.1.1, @sapphire/result@workspace:^, @sapphire/result@workspace:packages/result":
   version: 0.0.0-use.local
   resolution: "@sapphire/result@workspace:packages/result"
   dependencies:
