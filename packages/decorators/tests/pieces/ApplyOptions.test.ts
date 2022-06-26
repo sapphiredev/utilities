@@ -17,7 +17,7 @@ describe('ApplyOptions', () => {
 				return this.name;
 			}
 
-			public async messageRun() {
+			public override async messageRun() {
 				// noop
 			}
 		}
@@ -49,7 +49,7 @@ describe('ApplyOptions', () => {
 				return this.name;
 			}
 
-			public async messageRun() {
+			public override async messageRun() {
 				// noop
 			}
 		}
@@ -78,7 +78,7 @@ describe('ApplyOptions', () => {
 				return this.name;
 			}
 
-			public async messageRun() {
+			public override async messageRun() {
 				// noop
 			}
 		}

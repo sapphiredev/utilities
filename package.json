@@ -23,7 +23,7 @@
 		"@favware/cliff-jumper": "^1.8.3",
 		"@favware/npm-deprecate": "^1.0.4",
 		"@favware/rollup-type-bundler": "^1.0.9",
-		"@sapphire/framework": "^2.5.1",
+		"@sapphire/framework": "next",
 		"@types/lodash": "^4.14.182",
 		"@types/node": "^18.0.0",
 		"@types/ws": "^8.5.3",

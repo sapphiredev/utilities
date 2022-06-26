@@ -27,6 +27,7 @@
 	"devDependencies": {
 		"@sapphire/discord-utilities": "workspace:^",
 		"@sapphire/discord.js-utilities": "workspace:^",
+		"@sapphire/plugin-subcommands": "pr-271",
 		"@sapphire/ratelimits": "workspace:^",
 		"@sapphire/utilities": "workspace:^",
 		"tsup": "^6.1.2",
