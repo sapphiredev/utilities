@@ -1,8 +1,7 @@
 import type { SubcommandMappingArray, SubcommandMappingMethod } from '@sapphire/plugin-subcommands';
 
 export function MessageSubcommand(name: string): MethodDecorator {
-	// eslint-disable-next-line func-names
-	return function (target: any, propertyKey: string | symbol) {
+	return (target: any, propertyKey: string | symbol) => {
 		if (!Reflect.has(target, 'subcommandMappings')) Reflect.set(target, 'subcommandMappings', []);
 		const mappings: SubcommandMappingArray = Reflect.get(target, 'subcommandMappings');
 		const subcommand = mappings.find((mapping) => mapping.name === name);
@@ -19,8 +18,7 @@ export function MessageSubcommand(name: string): MethodDecorator {
 }
 
 export function ChatInputSubcommand(name: string): MethodDecorator {
-	// eslint-disable-next-line func-names
-	return function (target: any, propertyKey: string | symbol) {
+	return (target: any, propertyKey: string | symbol) => {
 		if (!Reflect.has(target, 'subcommandMappings')) Reflect.set(target, 'subcommandMappings', []);
 		const mappings: SubcommandMappingArray = Reflect.get(target, 'subcommandMappings');
 		const subcommand = mappings.find((mapping) => mapping.name === name);
@@ -37,8 +35,7 @@ export function ChatInputSubcommand(name: string): MethodDecorator {
 }
 
 export function ChatInputGroupSubcommand(group: string, name: string) {
-	// eslint-disable-next-line func-names
-	return function (target: any, propertyKey: string | symbol) {
+	return (target: any, propertyKey: string | symbol) => {
 		if (!Reflect.has(target, 'subcommandMappings')) Reflect.set(target, 'subcommandMappings', []);
 		const mappings: SubcommandMappingArray = Reflect.get(target, 'subcommandMappings');
 		const cmdgroup = mappings.find((mapping) => mapping.name === group);
@@ -68,8 +65,7 @@ export function ChatInputGroupSubcommand(group: string, name: string) {
 }
 
 export function MessageGroupSubcommand(group: string, name: string) {
-	// eslint-disable-next-line func-names
-	return function (target: any, propertyKey: string | symbol) {
+	return (target: any, propertyKey: string | symbol) => {
 		if (!Reflect.has(target, 'subcommandMappings')) Reflect.set(target, 'subcommandMappings', []);
 		const mappings: SubcommandMappingArray = Reflect.get(target, 'subcommandMappings');
 		const cmdgroup = mappings.find((mapping) => mapping.name === group);
