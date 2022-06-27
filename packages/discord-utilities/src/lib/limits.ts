@@ -195,7 +195,7 @@ export const SelectMenuLimits = {
 	/**
 	 * Maximum characters allowed in a select menu placeholder.
 	 */
-	MaximumPlaceholderCharacters: 100,
+	MaximumPlaceholderCharacters: 150,
 
 	/**
 	 * Maximum "minimum" values allowed in a select menu.
@@ -303,7 +303,7 @@ export const AutoCompleteLimits = {
 	/**
 	 * Maximum options allowed in a single autocomplete response.
 	 */
-	MaximumAmountOfOptions: 20,
+	MaximumAmountOfOptions: 25,
 
 	/**
 	 * Maximum characters allowed in a select menu option's name.
