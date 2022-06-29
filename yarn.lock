@@ -289,23 +289,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@favware/cliff-jumper@npm:^1.8.3":
-  version: 1.8.3
-  resolution: "@favware/cliff-jumper@npm:1.8.3"
+"@favware/cliff-jumper@npm:^1.8.5":
+  version: 1.8.5
+  resolution: "@favware/cliff-jumper@npm:1.8.5"
   dependencies:
-    "@sapphire/result": ^1.1.1
+    "@sapphire/result": ^2.0.0
     "@sapphire/utilities": ^3.6.2
-    colorette: ^2.0.17
+    colorette: ^2.0.19
     commander: ^9.3.0
     conventional-changelog-angular: ^5.0.13
     conventional-recommended-bump: ^6.1.0
     js-yaml: ^4.1.0
     semver: ^7.3.7
-    typescript: ^4.7.3
+    typescript: ^4.7.4
   bin:
     cj: ./dist/cli.js
     cliff-jumper: ./dist/cli.js
-  checksum: 817214fc1cbc583ed4337a4edb5fba8da833ae8b1b08f1252cd49d31e6f8ab1059f965df8e10b89dd6525413850e49452d684d4c50e320933f39b44a043caad0
+  checksum: afdf247292089b79a17aa9d5b05f6d4077739e044aa0ef8125caa7030064bbb648c6f36b294546d66122ab2a8371af93d9fddfa768721ef40231b5e03b27f5ce
   languageName: node
   linkType: hard
 
@@ -483,6 +483,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@sapphire/async-queue@workspace:packages/async-queue"
   dependencies:
+    "@favware/cliff-jumper": ^1.8.5
     tsup: ^6.1.2
     typescript: ^4.7.4
   languageName: unknown
@@ -492,6 +493,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@sapphire/decorators@workspace:packages/decorators"
   dependencies:
+    "@favware/cliff-jumper": ^1.8.5
     "@sapphire/discord-utilities": "workspace:^"
     "@sapphire/discord.js-utilities": "workspace:^"
     "@sapphire/ratelimits": "workspace:^"
@@ -507,6 +509,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@sapphire/discord-utilities@workspace:packages/discord-utilities"
   dependencies:
+    "@favware/cliff-jumper": ^1.8.5
     tsup: ^6.1.2
     typescript: ^4.7.4
   languageName: unknown
@@ -516,11 +519,13 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@sapphire/discord.js-utilities@workspace:packages/discord.js-utilities"
   dependencies:
+    "@favware/cliff-jumper": ^1.8.5
     "@favware/rollup-type-bundler": ^1.0.9
     "@sapphire/discord-utilities": "workspace:^"
     "@sapphire/time-utilities": "workspace:^"
     "@sapphire/utilities": "workspace:^"
     tslib: ^2.4.0
+    tsup: ^6.1.2
     typescript: ^4.7.4
   languageName: unknown
   linkType: soft
@@ -544,6 +549,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@sapphire/event-iterator@workspace:packages/event-iterator"
   dependencies:
+    "@favware/cliff-jumper": ^1.8.5
     tslib: ^2.4.0
     tsup: ^6.1.2
     typescript: ^4.7.4
@@ -554,6 +560,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@sapphire/fetch@workspace:packages/fetch"
   dependencies:
+    "@favware/cliff-jumper": ^1.8.5
     cross-fetch: ^3.1.5
     tsup: ^6.1.2
     typescript: ^4.7.4
@@ -580,6 +587,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@sapphire/phisherman@workspace:packages/phisherman"
   dependencies:
+    "@favware/cliff-jumper": ^1.8.5
     "@sapphire/fetch": "workspace:^"
     tsup: ^6.1.2
     typescript: ^4.7.4
@@ -601,8 +609,10 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@sapphire/prettier-config@workspace:packages/prettier-config"
   dependencies:
+    "@favware/cliff-jumper": ^1.8.5
     prettier: ^2.7.1
     tsup: ^6.1.2
+    typescript: ^4.7.4
   languageName: unknown
   linkType: soft
 
@@ -610,23 +620,18 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@sapphire/ratelimits@workspace:packages/ratelimits"
   dependencies:
+    "@favware/cliff-jumper": ^1.8.5
     "@sapphire/time-utilities": "workspace:^"
     tsup: ^6.1.2
     typescript: ^4.7.4
   languageName: unknown
   linkType: soft
 
-"@sapphire/result@npm:^1.1.1":
-  version: 1.1.1
-  resolution: "@sapphire/result@npm:1.1.1"
-  checksum: ccb3fcd051523f439c5f9871a251273e10ffeebcb5d6817c1c7efb24b60d8866fd5a781e0c77fe15a66a2dd5c5831b00258e70c76b6a82bb43bb150e10598767
-  languageName: node
-  linkType: hard
-
-"@sapphire/result@workspace:^, @sapphire/result@workspace:packages/result":
+"@sapphire/result@^2.0.0, @sapphire/result@workspace:^, @sapphire/result@workspace:packages/result":
   version: 0.0.0-use.local
   resolution: "@sapphire/result@workspace:packages/result"
   dependencies:
+    "@favware/cliff-jumper": ^1.8.5
     tsup: ^6.1.2
     typescript: ^4.7.4
   languageName: unknown
@@ -643,6 +648,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@sapphire/snowflake@workspace:packages/snowflake"
   dependencies:
+    "@favware/cliff-jumper": ^1.8.5
     tsup: ^6.1.2
     typescript: ^4.7.4
   languageName: unknown
@@ -652,6 +658,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@sapphire/stopwatch@workspace:packages/stopwatch"
   dependencies:
+    "@favware/cliff-jumper": ^1.8.5
     tslib: ^2.4.0
     tsup: ^6.1.2
     typescript: ^4.7.4
@@ -662,6 +669,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@sapphire/time-utilities@workspace:packages/time-utilities"
   dependencies:
+    "@favware/cliff-jumper": ^1.8.5
     "@sapphire/utilities": "workspace:^"
     tsup: ^6.1.2
     typescript: ^4.7.4
@@ -681,6 +689,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@sapphire/utilities@workspace:packages/utilities"
   dependencies:
+    "@favware/cliff-jumper": ^1.8.5
     tsup: ^6.1.2
     typescript: ^4.7.4
   languageName: unknown
@@ -4835,7 +4844,7 @@ __metadata:
     "@commitlint/cli": ^17.0.3
     "@commitlint/config-conventional": ^17.0.3
     "@discordjs/collection": ^0.7.0
-    "@favware/cliff-jumper": ^1.8.3
+    "@favware/cliff-jumper": ^1.8.5
     "@favware/npm-deprecate": ^1.0.4
     "@favware/rollup-type-bundler": ^1.0.9
     "@sapphire/framework": ^2.5.1
@@ -5818,7 +5827,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:^4.6.4, typescript@npm:^4.7.3, typescript@npm:^4.7.4":
+"typescript@npm:^4.6.4, typescript@npm:^4.7.4":
   version: 4.7.4
   resolution: "typescript@npm:4.7.4"
   bin:
@@ -5828,7 +5837,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@^4.6.4#~builtin<compat/typescript>, typescript@patch:typescript@^4.7.3#~builtin<compat/typescript>, typescript@patch:typescript@^4.7.4#~builtin<compat/typescript>":
+"typescript@patch:typescript@^4.6.4#~builtin<compat/typescript>, typescript@patch:typescript@^4.7.4#~builtin<compat/typescript>":
   version: 4.7.4
   resolution: "typescript@patch:typescript@npm%3A4.7.4#~builtin<compat/typescript>::version=4.7.4&hash=7ad353"
   bin:

@@ -59,6 +59,7 @@
 		"access": "public"
 	},
 	"devDependencies": {
+		"@favware/cliff-jumper": "^1.8.5",
 		"tsup": "^6.1.2",
 		"typescript": "^4.7.4"
 	}
