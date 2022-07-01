@@ -98,6 +98,16 @@ export type NonNullableProperties<T = unknown> = {
 export type NonNullObject = {} & object;
 
 /**
+ * An object that can have any structure, this is an alternative to {@link NonNullObject} for situations where
+ * that leads to unexpected type resolutions.
+ *
+ * Note that this is still a strictly typed type, it is not simply aliasing `any`
+ */
+export type AnyObject<T> = {
+	[K in keyof T]: T[K];
+};
+
+/**
  * Gets all the keys (as a string union) from a type `T` that match value `V`
  * @example
  * ```typescript
