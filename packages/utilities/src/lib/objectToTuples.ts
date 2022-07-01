@@ -1,17 +1,19 @@
 import { isObject } from './isObject';
+import type { AnyObject } from './utilityTypes';
 
 /**
  * Convert an object to a tuple
- * @param value The object to convert
+ * @param obj The object to convert
  * @param prefix The prefix for the key
  */
-export function objectToTuples(original: Record<string, unknown>, prefix = ''): [string, unknown][] {
-	const entries: [string, unknown][] = [];
-	for (const [key, value] of Object.entries(original)) {
+export function objectToTuples<T>(obj: AnyObject<T>, prefix = ''): [keyof T, T[keyof T]][] {
+	const entries: [keyof T, T[keyof T]][] = [];
+
+	for (const [key, value] of Object.entries(obj)) {
 		if (isObject(value)) {
-			entries.push(...objectToTuples(value as Record<string, unknown>, `${prefix}${key}.`));
+			entries.push(...objectToTuples(value, `${prefix}${key}.`));
 		} else {
-			entries.push([`${prefix}${key}`, value]);
+			entries.push([`${prefix}${key}` as keyof T, value as T[keyof T]]);
 		}
 	}
 
