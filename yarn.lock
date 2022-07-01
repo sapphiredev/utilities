@@ -534,11 +534,12 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@sapphire/eslint-config@workspace:packages/eslint-config"
   dependencies:
-    "@typescript-eslint/eslint-plugin": ^5.29.0
-    "@typescript-eslint/parser": ^5.29.0
+    "@favware/cliff-jumper": ^1.8.5
+    "@typescript-eslint/eslint-plugin": ^5.30.0
+    "@typescript-eslint/parser": ^5.30.0
     eslint: ^8.18.0
     eslint-config-prettier: ^8.5.0
-    eslint-plugin-prettier: ^4.0.0
+    eslint-plugin-prettier: ^4.2.1
     prettier: ^2.7.1
     tsup: ^6.1.2
     typescript: ^4.7.4
@@ -834,7 +835,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/eslint-plugin@npm:^5.29.0":
+"@typescript-eslint/eslint-plugin@npm:^5.30.0":
   version: 5.30.0
   resolution: "@typescript-eslint/eslint-plugin@npm:5.30.0"
   dependencies:
@@ -857,7 +858,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/parser@npm:^5.29.0":
+"@typescript-eslint/parser@npm:^5.30.0":
   version: 5.30.0
   resolution: "@typescript-eslint/parser@npm:5.30.0"
   dependencies:
@@ -2305,7 +2306,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-prettier@npm:^4.0.0":
+"eslint-plugin-prettier@npm:^4.2.1":
   version: 4.2.1
   resolution: "eslint-plugin-prettier@npm:4.2.1"
   dependencies:
@@ -2910,7 +2911,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"glob@npm:^8.0.1, glob@npm:^8.0.3":
+"glob@npm:^8.0.1":
   version: 8.0.3
   resolution: "glob@npm:8.0.3"
   dependencies:
@@ -4114,7 +4115,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nock@npm:^13.2.7":
+"nock@npm:^13.2.8":
   version: 13.2.8
   resolution: "nock@npm:13.2.8"
   dependencies:
@@ -4850,28 +4851,28 @@ __metadata:
     "@types/lodash": ^4.14.182
     "@types/node": ^18.0.0
     "@types/ws": ^8.5.3
-    "@typescript-eslint/eslint-plugin": ^5.29.0
-    "@typescript-eslint/parser": ^5.29.0
+    "@typescript-eslint/eslint-plugin": ^5.30.0
+    "@typescript-eslint/parser": ^5.30.0
     c8: ^7.11.3
     cz-conventional-changelog: ^3.3.0
     discord-api-types: ^0.33.5
     discord.js: ^13.8.1
     eslint: ^8.18.0
     eslint-config-prettier: ^8.5.0
-    eslint-plugin-prettier: ^4.0.0
+    eslint-plugin-prettier: ^4.2.1
     husky: ^8.0.1
     lint-staged: ^13.0.3
     lodash: ^4.17.21
-    nock: ^13.2.7
+    nock: ^13.2.8
     prettier: ^2.7.1
     pretty-quick: ^3.1.3
     rimraf: ^3.0.2
     tslib: ^2.4.0
     tsup: ^6.1.2
     turbo: ^1.3.1
-    typedoc: ^0.22.18
-    typedoc-plugin-djs-links: ^1.0.4
-    typedoc-plugin-mdn-links: ^1.0.6
+    typedoc: ^0.23.2
+    typedoc-plugin-djs-links: ^1.2.0
+    typedoc-plugin-mdn-links: ^2.0.0
     typescript: ^4.7.4
     vitest: ^0.16.0
   languageName: unknown
@@ -5793,36 +5794,35 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typedoc-plugin-djs-links@npm:^1.0.4":
+"typedoc-plugin-djs-links@npm:^1.2.0":
   version: 1.2.0
   resolution: "typedoc-plugin-djs-links@npm:1.2.0"
   checksum: 0f54136a4efebbdc689273d933ac70fc4d36df7c7b67179a86077678a152e3add6be3bc7c0633f66bea1b32a69bd18ac49b8812ab7aeca57a66fd042ce6b5a91
   languageName: node
   linkType: hard
 
-"typedoc-plugin-mdn-links@npm:^1.0.6":
-  version: 1.0.6
-  resolution: "typedoc-plugin-mdn-links@npm:1.0.6"
+"typedoc-plugin-mdn-links@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "typedoc-plugin-mdn-links@npm:2.0.0"
   peerDependencies:
-    typedoc: 0.22.x
-  checksum: c88601e492b2993e9f6fc8f11bd4b7854c7fa98e27b0c77ecdf6ac3352cfb0f6e98c37ea490e5486f486cc9c92bdd9f170cd6d9e69adcf30542cf2112436e9d0
+    typedoc: 0.22.x || 0.23.x
+  checksum: 576cc61935f25f5e91ef0e9582822e9548336297b160e63d284d41f703d6fa8e000b1b9fc7083e35fecf8895d94213326f9513dbc761f3a60c228aedca488328
   languageName: node
   linkType: hard
 
-"typedoc@npm:^0.22.18":
-  version: 0.22.18
-  resolution: "typedoc@npm:0.22.18"
+"typedoc@npm:^0.23.2":
+  version: 0.23.2
+  resolution: "typedoc@npm:0.23.2"
   dependencies:
-    glob: ^8.0.3
     lunr: ^2.3.9
     marked: ^4.0.16
     minimatch: ^5.1.0
     shiki: ^0.10.1
   peerDependencies:
-    typescript: 4.0.x || 4.1.x || 4.2.x || 4.3.x || 4.4.x || 4.5.x || 4.6.x || 4.7.x
+    typescript: 4.6.x || 4.7.x
   bin:
     typedoc: bin/typedoc
-  checksum: b813d8129682f6ed5a4e96bacaf019e4da1d2744ca89fef850d6bb4c034616567ce67e6a7f5cfc5f00aac573f0b45d44b1427aafa262ab88dce6b460cb9e744c
+  checksum: 2c93349b5f1987d32171130a428d36ecbe31e215d87e06707d837f9465eced70b19eec669939c67e8ef0e02852faf4ee1f4ba113dab7fee980171af082e27583
   languageName: node
   linkType: hard
 
