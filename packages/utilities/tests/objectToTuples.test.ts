@@ -7,6 +7,7 @@ describe('objectToTuples', () => {
 			['a', 'Hello'],
 			['b', 420]
 		] as [string, unknown][];
+
 		expect(objectToTuples(source)).toEqual(expected);
 	});
 
@@ -17,6 +18,7 @@ describe('objectToTuples', () => {
 			['b', 420],
 			['deep.i', []]
 		] as [string, unknown][];
+
 		expect(objectToTuples(source)).toEqual(expected);
 	});
 });
