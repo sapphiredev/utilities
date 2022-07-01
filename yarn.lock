@@ -680,6 +680,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@sapphire/ts-config@workspace:packages/ts-config"
   dependencies:
+    "@favware/cliff-jumper": ^1.8.5
     tslib: ^2.4.0
     typescript: ^4.7.4
   languageName: unknown
