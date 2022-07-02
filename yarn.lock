@@ -584,6 +584,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@sapphire/lexure@workspace:packages/lexure":
+  version: 0.0.0-use.local
+  resolution: "@sapphire/lexure@workspace:packages/lexure"
+  dependencies:
+    "@sapphire/result": "workspace:^"
+    tsup: ^6.1.2
+    typescript: ^4.7.4
+  languageName: unknown
+  linkType: soft
+
 "@sapphire/phisherman@workspace:packages/phisherman":
   version: 0.0.0-use.local
   resolution: "@sapphire/phisherman@workspace:packages/phisherman"
