@@ -1,4 +1,7 @@
-import type { IOption } from '../Option/IOption';
+import type { Option } from '../Option';
+import type { Result } from '../Result';
+import type { Err } from './Err';
+import type { Ok } from './Ok';
 
 /**
  * A type used to express computations that can fail, it can be used for returning and propagating errors. This is a
@@ -27,7 +30,7 @@ export interface IResult<T, E> {
 	 *
 	 * @see {@link https://doc.rust-lang.org/std/result/enum.Result.html#method.is_ok}
 	 */
-	isOk(): boolean;
+	isOk(): this is Ok<T>;
 
 	/**
 	 * Returns `true` if the result is `Ok` and the value inside of it matches a predicate.
@@ -50,7 +53,7 @@ export interface IResult<T, E> {
 	 *
 	 * @see {@link https://doc.rust-lang.org/std/result/enum.Result.html#method.is_ok_and}
 	 */
-	isOkAnd(cb: (value: T) => boolean): boolean;
+	isOkAnd<R extends boolean>(cb: (value: T) => R): this is Ok<T> & R;
 
 	/**
 	 * Returns `true` if the result is `Err`.
@@ -68,7 +71,7 @@ export interface IResult<T, E> {
 	 *
 	 * @see {@link https://doc.rust-lang.org/std/result/enum.Result.html#method.is_err}
 	 */
-	isErr(): boolean;
+	isErr(): this is Err<E>;
 
 	/**
 	 * Returns `true` if the result is `Err` and the value inside of it matches a predicate.
@@ -92,7 +95,7 @@ export interface IResult<T, E> {
 	 *
 	 * @see {@link https://doc.rust-lang.org/std/result/enum.Result.html#method.is_err_and}
 	 */
-	isErrAnd(cb: (error: E) => boolean): boolean;
+	isErrAnd<R extends boolean>(cb: (error: E) => R): this is Err<E> & R;
 
 	/**
 	 * Converts from `Result<T, E>` to `Option<T>`.
@@ -112,7 +115,7 @@ export interface IResult<T, E> {
 	 *
 	 * @see {@link https://doc.rust-lang.org/std/result/enum.Result.html#method.ok}
 	 */
-	ok(): IOption<T>;
+	ok(): Option<T>;
 
 	/**
 	 * Converts from `Result<T, E>` to `Option<E>`.
@@ -132,7 +135,7 @@ export interface IResult<T, E> {
 	 *
 	 * @see {@link https://doc.rust-lang.org/std/result/enum.Result.html#method.err}
 	 */
-	err(): IOption<E>;
+	err(): Option<E>;
 
 	/**
 	 * Maps a `Result<T, E>` to `Result<U, E>` by applying a function to a contained `Ok` value, leaving an `Err` value
@@ -152,7 +155,7 @@ export interface IResult<T, E> {
 	 *
 	 * @see {@link https://doc.rust-lang.org/std/result/enum.Result.html#method.map}
 	 */
-	map<U>(cb: (value: T) => U): IResult<U, E>;
+	map<U>(cb: (value: T) => U): Result<U, E>;
 
 	/**
 	 * Returns the provided default (if `Err`), or applies a function to the contained value (if `Ok`),
@@ -220,7 +223,7 @@ export interface IResult<T, E> {
 	 *
 	 * @see {@link https://doc.rust-lang.org/std/result/enum.Result.html#method.map_err}
 	 */
-	mapErr<F>(cb: (error: E) => F): IResult<T, F>;
+	mapErr<F>(cb: (error: E) => F): Result<T, F>;
 
 	/**
 	 * Calls the provided closure with a reference to the contained value (if `Ok`).
@@ -449,7 +452,7 @@ export interface IResult<T, E> {
 	 *
 	 * @see {@link https://doc.rust-lang.org/std/result/enum.Result.html#method.and}
 	 */
-	and<U>(result: IResult<U, E>): IResult<U, E>;
+	and<U>(result: Result<U, E>): Result<U, E>;
 
 	/**
 	 * Calls `cb` if the result is `Ok`, otherwise returns the `Err` value of self.
@@ -470,7 +473,7 @@ export interface IResult<T, E> {
 	 *
 	 * @see {@link https://doc.rust-lang.org/std/result/enum.Result.html#method.and_then}
 	 */
-	andThen<U>(cb: (value: T) => IResult<U, E>): IResult<U, E>;
+	andThen<U>(cb: (value: T) => Result<U, E>): Result<U, E>;
 
 	/**
 	 * Return `result` if the result is `Err`, otherwise returns the `Ok` value of self.
@@ -506,7 +509,7 @@ export interface IResult<T, E> {
 	 *
 	 * @see {@link https://doc.rust-lang.org/std/result/enum.Result.html#method.or}
 	 */
-	or<F>(result: IResult<T, F>): IResult<T, F>;
+	or<F>(result: Result<T, F>): Result<T, F>;
 
 	/**
 	 * Calls `cb` if the result is `Err`, otherwise returns the `Ok` value of self.
@@ -527,7 +530,7 @@ export interface IResult<T, E> {
 	 *
 	 * @see {@link https://doc.rust-lang.org/std/result/enum.Result.html#method.or_else}
 	 */
-	orElse<F>(cb: (error: E) => IResult<T, F>): IResult<T, F>;
+	orElse<F>(cb: (error: E) => Result<T, F>): Result<T, F>;
 
 	/**
 	 * Returns `true` if the result is an `Ok` and the given value strict equals it.
@@ -591,7 +594,7 @@ export interface IResult<T, E> {
 	 *
 	 * @see {@link https://doc.rust-lang.org/std/result/enum.Result.html#method.transpose}
 	 */
-	transpose<IT>(this: IResult<IOption<IT>, E>): IOption<IResult<IT, E>>;
+	transpose<IT>(this: Result<Option<IT>, E>): Option<Result<IT, E>>;
 
 	/**
 	 * Converts from `Result<Result<T, E>, E>` to `Result<T, E>`.
@@ -614,7 +617,7 @@ export interface IResult<T, E> {
 	 *
 	 * @see {@link https://doc.rust-lang.org/std/result/enum.Result.html#method.flatten}
 	 */
-	flatten<IT>(this: IResult<IResult<IT, E>, E>): IResult<IT, E>;
+	flatten<IT>(this: Result<Result<IT, E>, E>): Result<IT, E>;
 
 	/**
 	 * Returns the `Ok` value if self is `Ok`, and the `Err` value if self is `Err`.
@@ -640,7 +643,7 @@ export interface IResult<T, E> {
 	 *
 	 * @see {@link https://doc.rust-lang.org/std/cmp/trait.PartialEq.html#tymethod.eq}
 	 */
-	eq(other: IResult<T, E>): boolean;
+	eq(other: Result<T, E>): boolean;
 
 	/**
 	 * Checks whether or not `other` doesn't equal with self.
@@ -648,7 +651,7 @@ export interface IResult<T, E> {
 	 *
 	 * @see {@link https://doc.rust-lang.org/std/cmp/trait.PartialEq.html#method.ne}
 	 */
-	ne(other: IResult<T, E>): boolean;
+	ne(other: Result<T, E>): boolean;
 
 	/**
 	 * Runs `ok` function if self is `Ok`, otherwise runs `err` function.
@@ -671,7 +674,7 @@ export interface IResult<T, E> {
 	 * assert.equal(result, 0);
 	 * ```
 	 */
-	match<U>(branches: { ok(value: T): U; err(error: E): U }): U;
+	match<OkValue, ErrValue>(branches: { ok(value: T): OkValue; err(error: E): ErrValue }): OkValue | ErrValue;
 
 	/**
 	 * Returns an iterator over the possibly contained value.

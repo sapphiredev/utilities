@@ -1,5 +1,6 @@
+import type { Option } from '../Option';
+import type { Result } from '../Result';
 import { err, type Err } from '../Result/Err';
-import type { IResult } from '../Result/IResult';
 import { ok, type Ok } from '../Result/Ok';
 import type { IOption } from './IOption';
 import { none, type None } from './None';
@@ -11,7 +12,7 @@ export class Some<T> implements IOption<T> {
 		this.value = value;
 	}
 
-	public isSome(): true {
+	public isSome(): this is Some<T> {
 		return true;
 	}
 
@@ -73,28 +74,28 @@ export class Some<T> implements IOption<T> {
 		yield this.value;
 	}
 
-	public and<R extends IOption<any>>(option: R): R {
+	public and<R extends Option<any>>(option: R): R {
 		return option;
 	}
 
-	public andThen<R extends IOption<any>>(cb: (value: T) => R): R {
+	public andThen<R extends Option<any>>(cb: (value: T) => R): R {
 		return cb(this.value);
 	}
 
-	public or(option: IOption<any>): this;
+	public or(option: Option<any>): this;
 	public or(): this {
 		return this;
 	}
 
-	public orElse(cb?: () => IOption<any>): this;
+	public orElse(cb?: () => Option<any>): this;
 	public orElse(): this {
 		return this;
 	}
 
 	public xor(option: Some<T>): None;
 	public xor(option: None): this;
-	public xor(option: IOption<T>): this | None;
-	public xor(option: IOption<T>): this | None {
+	public xor(option: Option<T>): this | None;
+	public xor(option: Option<T>): this | None {
 		return option.isSome() ? none : this;
 	}
 
@@ -111,15 +112,15 @@ export class Some<T> implements IOption<T> {
 
 	public zip(other: None): None;
 	public zip<U>(other: Some<U>): Some<[T, U]>;
-	public zip<U>(other: IOption<U>): IOption<[T, U]>;
-	public zip<U>(other: IOption<U>): IOption<[T, U]> {
-		return other.map((o) => [this.value, o]);
+	public zip<U>(other: Option<U>): Option<[T, U]>;
+	public zip<U>(other: Option<U>): Option<[T, U]> {
+		return other.map((o) => [this.value, o] as [T, U]);
 	}
 
 	public zipWith<U, R>(other: None, f: (s: T, o: U) => R): None;
 	public zipWith<U, R>(other: Some<U>, f: (s: T, o: U) => R): Some<R>;
-	public zipWith<U, R>(other: IOption<U>, f: (s: T, o: U) => R): IOption<R>;
-	public zipWith<U, R>(other: IOption<U>, f: (s: T, o: U) => R): IOption<R> {
+	public zipWith<U, R>(other: Option<U>, f: (s: T, o: U) => R): Option<R>;
+	public zipWith<U, R>(other: Option<U>, f: (s: T, o: U) => R): Option<R> {
 		return other.map((o) => f(this.value, o));
 	}
 
@@ -130,31 +131,31 @@ export class Some<T> implements IOption<T> {
 
 	public transpose<Inner>(this: Some<Ok<Inner>>): Ok<Some<Inner>>;
 	public transpose<Inner>(this: Some<Err<Inner>>): Err<Some<Inner>>;
-	public transpose<IT, E>(this: Some<IResult<IT, E>>): IResult<Some<IT>, E>;
-	public transpose<IT, E>(this: Some<IResult<IT, E>>): IResult<Some<IT>, E> {
+	public transpose<IT, E>(this: Some<Result<IT, E>>): Result<Some<IT>, E>;
+	public transpose<IT, E>(this: Some<Result<IT, E>>): Result<Some<IT>, E> {
 		return this.value.match({
-			ok: (v) => ok(some(v)) as any,
-			err: (e) => err(e) as any
+			ok: (v) => ok(some(v)),
+			err: (e) => err(e)
 		});
 	}
 
-	public flatten<Inner extends IOption<any>>(this: Some<Inner>): Inner {
+	public flatten<Inner extends Option<any>>(this: Some<Inner>): Inner {
 		return this.value;
 	}
 
 	public eq(other: None): false;
-	public eq(other: IOption<T>): boolean;
-	public eq(other: IOption<T>): boolean {
+	public eq(other: Option<T>): boolean;
+	public eq(other: Option<T>): boolean {
 		return other.isSomeAnd((value) => this.value === value);
 	}
 
 	public ne(other: None): true;
-	public ne(other: IOption<T>): boolean;
-	public ne(other: IOption<T>): boolean {
+	public ne(other: Option<T>): boolean;
+	public ne(other: Option<T>): boolean {
 		return !this.eq(other);
 	}
 
-	public match<U>(branches: { some(value: T): U; none(): U }): U {
+	public match<SomeValue, NoneValue>(branches: { some(value: T): SomeValue; none(): NoneValue }): SomeValue {
 		return branches.some(this.value);
 	}
 

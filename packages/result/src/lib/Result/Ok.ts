@@ -1,6 +1,7 @@
-import type { IOption } from '../Option/IOption';
+import type { Option } from '../Option';
 import { none, type None } from '../Option/None';
 import { some, type Some } from '../Option/Some';
+import type { Result } from '../Result';
 import type { Err } from './Err';
 import type { IResult } from './IResult';
 import { ResultError } from './ResultError';
@@ -12,7 +13,7 @@ export class Ok<T> implements IResult<T, any> {
 		this.value = value;
 	}
 
-	public isOk(): true {
+	public isOk(): this is Ok<T> {
 		return true;
 	}
 
@@ -95,20 +96,20 @@ export class Ok<T> implements IResult<T, any> {
 		return this.value;
 	}
 
-	public and<R extends IResult<any, any>>(result: R): R {
+	public and<R extends Result<any, any>>(result: R): R {
 		return result;
 	}
 
-	public andThen<R extends IResult<any, any>>(cb: (value: T) => R): R {
+	public andThen<R extends Result<any, any>>(cb: (value: T) => R): R {
 		return cb(this.value);
 	}
 
-	public or(result: IResult<T, any>): this;
+	public or(result: Result<T, any>): this;
 	public or(): this {
 		return this;
 	}
 
-	public orElse(cb: (error: never) => IResult<T, any>): this;
+	public orElse(cb: (error: never) => Result<T, any>): this;
 	public orElse(): this {
 		return this;
 	}
@@ -124,15 +125,15 @@ export class Ok<T> implements IResult<T, any> {
 
 	public transpose(this: Ok<None>): None;
 	public transpose<Inner>(this: Ok<Some<Inner>>): Some<Ok<Inner>>;
-	public transpose<Inner>(this: Ok<IOption<Inner>>): IOption<Ok<Inner>>;
-	public transpose<IT>(this: Ok<IOption<IT>>): IOption<Ok<IT>> {
+	public transpose<Inner>(this: Ok<Option<Inner>>): Option<Ok<Inner>>;
+	public transpose<IT>(this: Ok<Option<IT>>): Option<Ok<IT>> {
 		return this.value.match({
-			some: (value) => some(ok(value)) as any,
-			none: () => none as any
+			some: (value) => some(ok(value)),
+			none: () => none
 		});
 	}
 
-	public flatten<Inner extends IResult<any, any>>(this: Ok<Inner>): Inner {
+	public flatten<Inner extends Result<any, any>>(this: Ok<Inner>): Inner {
 		return this.value;
 	}
 
@@ -141,18 +142,18 @@ export class Ok<T> implements IResult<T, any> {
 	}
 
 	public eq(other: Err<any>): false;
-	public eq(other: IResult<T, any>): boolean;
-	public eq(other: IResult<T, any>): boolean {
+	public eq(other: Result<T, any>): boolean;
+	public eq(other: Result<T, any>): boolean {
 		return other.isOkAnd((value) => this.value === value);
 	}
 
 	public ne(other: Err<any>): true;
-	public ne(other: IResult<T, any>): boolean;
-	public ne(other: IResult<T, any>): boolean {
+	public ne(other: Result<T, any>): boolean;
+	public ne(other: Result<T, any>): boolean {
 		return !this.eq(other);
 	}
 
-	public match<U>(branches: { ok(value: T): U; err(error: any): U }): U {
+	public match<OkValue, ErrValue>(branches: { ok(value: T): OkValue; err(error: never): ErrValue }): OkValue {
 		return branches.ok(this.value);
 	}
 

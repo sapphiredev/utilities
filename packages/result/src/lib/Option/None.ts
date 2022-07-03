@@ -1,3 +1,4 @@
+import type { Option } from '../Option';
 import { err, type Err } from '../Result/Err';
 import { ok, type Ok } from '../Result/Ok';
 import type { IOption } from './IOption';
@@ -14,7 +15,7 @@ export class None implements IOption<any> {
 		return false;
 	}
 
-	public isNone(): true {
+	public isNone(): this is None {
 		return true;
 	}
 
@@ -66,27 +67,27 @@ export class None implements IOption<any> {
 		// Yields no values
 	}
 
-	public and(option: IOption<any>): this;
+	public and(option: Option<any>): this;
 	public and(): this {
 		return this;
 	}
 
-	public andThen(cb: (value: never) => IOption<any>): this;
+	public andThen(cb: (value: never) => Option<any>): this;
 	public andThen(): this {
 		return this;
 	}
 
-	public or<R extends IOption<any>>(option: R): R {
+	public or<R extends Option<any>>(option: R): R {
 		return option;
 	}
 
-	public orElse<R extends IOption<any>>(cb: () => R): R {
+	public orElse<R extends Option<any>>(cb: () => R): R {
 		return cb();
 	}
 
 	public xor<T>(option: None): None;
 	public xor<T>(option: Some<T>): Some<T>;
-	public xor<T>(option: IOption<T>): Some<T> | None;
+	public xor<T>(option: Option<T>): Some<T> | None;
 	public xor<T>(option: Some<T> | None): Some<T> | None {
 		return option.isSome() ? option : this;
 	}
@@ -101,12 +102,12 @@ export class None implements IOption<any> {
 		return false;
 	}
 
-	public zip(other: IOption<any>): None;
+	public zip(other: Option<any>): None;
 	public zip(): None {
 		return this;
 	}
 
-	public zipWith(other: IOption<any>, f: (s: never, o: never) => any): None;
+	public zipWith(other: Option<any>, f: (s: never, o: never) => any): None;
 	public zipWith(): None {
 		return this;
 	}
@@ -125,19 +126,19 @@ export class None implements IOption<any> {
 
 	public eq(other: None): true;
 	public eq(other: Some<any>): false;
-	public eq(other: IOption<any>): boolean;
-	public eq(other: IOption<any>): boolean {
+	public eq(other: Option<any>): boolean;
+	public eq(other: Option<any>): boolean {
 		return other.isNone();
 	}
 
 	public ne(other: None): false;
 	public ne(other: Some<any>): true;
-	public ne(other: IOption<any>): boolean;
-	public ne(other: IOption<any>): boolean {
+	public ne(other: Option<any>): boolean;
+	public ne(other: Option<any>): boolean {
 		return other.isSome();
 	}
 
-	public match<U>(branches: { some(value: any): U; none(): U }): U {
+	public match<SomeValue, NoneValue>(branches: { some(value: never): SomeValue; none(): NoneValue }): NoneValue {
 		return branches.none();
 	}
 
