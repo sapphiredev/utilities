@@ -1,5 +1,6 @@
 import { none, type None } from '../Option/None';
 import { some, type Some } from '../Option/Some';
+import type { Result } from '../Result';
 import type { IResult } from './IResult';
 import type { Ok } from './Ok';
 import { ResultError } from './ResultError';
@@ -94,21 +95,21 @@ export class Err<E> implements IResult<any, E> {
 		return op(this.error);
 	}
 
-	public and(result?: IResult<any, E>): this;
+	public and(result?: Result<any, E>): this;
 	public and(): this {
 		return this;
 	}
 
-	public andThen(cb?: (value: never) => IResult<any, E>): this;
+	public andThen(cb?: (value: never) => Result<any, E>): this;
 	public andThen(): this {
 		return this;
 	}
 
-	public or<R extends IResult<any, any>>(result: R): R {
+	public or<R extends Result<any, any>>(result: R): R {
 		return result;
 	}
 
-	public orElse<R extends IResult<any, any>>(cb: (error: E) => R): R {
+	public orElse<R extends Result<any, any>>(cb: (error: E) => R): R {
 		return cb(this.error);
 	}
 
@@ -134,18 +135,18 @@ export class Err<E> implements IResult<any, E> {
 	}
 
 	public eq(other: Ok<any>): false;
-	public eq(other: IResult<any, E>): boolean;
-	public eq(other: IResult<any, E>): boolean {
+	public eq(other: Result<any, E>): boolean;
+	public eq(other: Result<any, E>): boolean {
 		return other.isErrAnd((error) => this.error === error);
 	}
 
 	public ne(other: Ok<any>): true;
-	public ne(other: IResult<any, E>): boolean;
-	public ne(other: IResult<any, E>): boolean {
+	public ne(other: Result<any, E>): boolean;
+	public ne(other: Result<any, E>): boolean {
 		return !this.eq(other);
 	}
 
-	public match<U>(branches: { ok(value: any): U; err(error: E): U }): U {
+	public match<OkValue, ErrValue>(branches: { ok(value: never): OkValue; err(error: E): ErrValue }): ErrValue {
 		return branches.err(this.error);
 	}
 

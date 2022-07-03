@@ -1,4 +1,7 @@
-import type { IResult } from '../Result/IResult';
+import type { Option } from '../Option';
+import type { Result } from '../Result';
+import type { None } from './None';
+import type { Some } from './Some';
 
 export interface IOption<T> {
 	/**
@@ -17,7 +20,7 @@ export interface IOption<T> {
 	 *
 	 * @see {@link https://doc.rust-lang.org/std/option/enum.Option.html#method.is_some}
 	 */
-	isSome(): boolean;
+	isSome(): this is Some<T>;
 
 	/**
 	 * Returns `true` if the option is a `Some` and the value inside of it matches a predicate.
@@ -59,7 +62,7 @@ export interface IOption<T> {
 	 *
 	 * @see {@link https://doc.rust-lang.org/std/option/enum.Option.html#method.is_none}
 	 */
-	isNone(): boolean;
+	isNone(): this is None;
 
 	/**
 	 * Returns the contained `Some` value.
@@ -158,7 +161,7 @@ export interface IOption<T> {
 	 *
 	 * @see {@link https://doc.rust-lang.org/std/option/enum.Option.html#method.map}
 	 */
-	map<U>(cb: (value: T) => U): IOption<U>;
+	map<U>(cb: (value: T) => U): Option<U>;
 
 	/**
 	 * Returns the provided default result (if none), or applies a function to the contained value (if any).
@@ -242,7 +245,7 @@ export interface IOption<T> {
 	 *
 	 * @see {@link https://doc.rust-lang.org/std/option/enum.Option.html#method.ok_or}
 	 */
-	okOr<E>(err: E): IResult<T, E>;
+	okOr<E>(err: E): Result<T, E>;
 
 	/**
 	 * Transforms the `Option<T>` into a `Result<T, E>`, mapping `Some(v)` to `Ok(v)` and `None` to `Err(err())`.
@@ -261,7 +264,7 @@ export interface IOption<T> {
 	 *
 	 * @see {@link https://doc.rust-lang.org/std/option/enum.Option.html#method.ok_or_else}
 	 */
-	okOrElse<E>(cb: () => E): IResult<T, E>;
+	okOrElse<E>(cb: () => E): Result<T, E>;
 
 	/**
 	 * Returns an iterator over the possibly contained value.
@@ -285,7 +288,7 @@ export interface IOption<T> {
 	 * // Doesn't log
 	 * ```
 	 *
-	 * @see {@link IOption.iter}
+	 * @see {@link Option.iter}
 	 * @see {@link https://doc.rust-lang.org/std/option/enum.Option.html#method.iter}
 	 */
 	iter(): Generator<T>;
@@ -321,7 +324,7 @@ export interface IOption<T> {
 	 *
 	 * @see {@link https://doc.rust-lang.org/std/option/enum.Option.html#method.and}
 	 */
-	and<U>(option: IOption<U>): IOption<U>;
+	and<U>(option: Option<U>): Option<U>;
 
 	/**
 	 * Calls `cb` if the result is `Ok`, otherwise returns the `Err` value of self.
@@ -342,7 +345,7 @@ export interface IOption<T> {
 	 *
 	 * @see {@link https://doc.rust-lang.org/std/result/enum.Result.html#method.and_then}
 	 */
-	andThen<U>(cb: (value: T) => IOption<U>): IOption<U>;
+	andThen<U>(cb: (value: T) => Option<U>): Option<U>;
 
 	/**
 	 * Returns the option if it contains a value, otherwise returns `option`.
@@ -375,7 +378,7 @@ export interface IOption<T> {
 	 *
 	 * @see {@link https://doc.rust-lang.org/std/option/enum.Option.html#method.or}
 	 */
-	or(option: IOption<T>): IOption<T>;
+	or(option: Option<T>): Option<T>;
 
 	/**
 	 * Calls `cb` if the result is `Ok`, otherwise returns the `Err` value of self.
@@ -395,7 +398,7 @@ export interface IOption<T> {
 	 *
 	 * @see {@link https://doc.rust-lang.org/std/option/enum.Option.html#method.or_else}
 	 */
-	orElse(cb: () => IOption<T>): IOption<T>;
+	orElse(cb: () => Option<T>): Option<T>;
 
 	/**
 	 * Returns `Some` if exactly one of self or `option` is `Some`, otherwise returns `None`.
@@ -428,7 +431,7 @@ export interface IOption<T> {
 	 *
 	 * @see {@link https://doc.rust-lang.org/std/option/enum.Option.html#method.xor}
 	 */
-	xor(option: IOption<T>): IOption<T>;
+	xor(option: Option<T>): Option<T>;
 
 	/**
 	 * Returns None if the option is None, otherwise calls `predicate` with the wrapped value and returns:
@@ -450,7 +453,7 @@ export interface IOption<T> {
 	 *
 	 * @see {@link https://doc.rust-lang.org/std/option/enum.Option.html#method.filter}
 	 */
-	filter(predicate: (value: T) => boolean): IOption<T>;
+	filter(predicate: (value: T) => boolean): Option<T>;
 
 	/**
 	 * Returns `true` if the option is a `Some` value containing the given value.
@@ -494,7 +497,7 @@ export interface IOption<T> {
 	 *
 	 * @see {@link https://doc.rust-lang.org/std/option/enum.Option.html#method.zip}
 	 */
-	zip<U>(other: IOption<U>): IOption<[T, U]>;
+	zip<U>(other: Option<U>): Option<[T, U]>;
 
 	/**
 	 * Zips self and another `Option` with function `f`.
@@ -524,7 +527,7 @@ export interface IOption<T> {
 	 *
 	 * @see {@link https://doc.rust-lang.org/std/option/enum.Option.html#method.zip_with}
 	 */
-	zipWith<U, R>(other: IOption<U>, f: (s: T, o: U) => R): IOption<R>;
+	zipWith<U, R>(other: Option<U>, f: (s: T, o: U) => R): Option<R>;
 
 	/**
 	 * Unzips an option containing a tuple of two options.
@@ -544,7 +547,7 @@ export interface IOption<T> {
 	 *
 	 * @see {@link https://doc.rust-lang.org/std/option/enum.Option.html#method.unzip}
 	 */
-	unzip<Inner, U>(this: IOption<[Inner, U]>): [IOption<Inner>, IOption<U>];
+	unzip<Inner, U>(this: Option<readonly [Inner, U]>): [Option<Inner>, Option<U>];
 
 	/**
 	 * Transposes an `Option` of a `Result` into a `Result` of an `Option`.
@@ -560,7 +563,7 @@ export interface IOption<T> {
 	 *
 	 * @see {@link https://doc.rust-lang.org/std/option/enum.Option.html#method.transpose}
 	 */
-	transpose<IT, E>(this: IOption<IResult<IT, E>>): IResult<IOption<IT>, E>;
+	transpose<IT, E>(this: Option<Result<IT, E>>): Result<Option<IT>, E>;
 
 	/**
 	 * Converts from `Result<Result<T, E>, E>` to `Result<T, E>`.
@@ -583,7 +586,7 @@ export interface IOption<T> {
 	 *
 	 * @see {@link https://doc.rust-lang.org/std/result/enum.Result.html#method.flatten}
 	 */
-	flatten<IT>(this: IOption<IOption<IT>>): IOption<IT>;
+	flatten<IT>(this: Option<Option<IT>>): Option<IT>;
 
 	/**
 	 * Checks whether or not `other` equals with self.
@@ -591,7 +594,7 @@ export interface IOption<T> {
 	 *
 	 * @see {@link https://doc.rust-lang.org/std/cmp/trait.PartialEq.html#tymethod.eq}
 	 */
-	eq(other: IOption<T>): boolean;
+	eq(other: Option<T>): boolean;
 
 	/**
 	 * Checks whether or not `other` doesn't equal with self.
@@ -599,7 +602,7 @@ export interface IOption<T> {
 	 *
 	 * @see {@link https://doc.rust-lang.org/std/cmp/trait.PartialEq.html#method.ne}
 	 */
-	ne(other: IOption<T>): boolean;
+	ne(other: Option<T>): boolean;
 
 	/**
 	 * Runs `ok` function if self is `Ok`, otherwise runs `err` function.
@@ -622,7 +625,7 @@ export interface IOption<T> {
 	 * assert.equal(option, 0);
 	 * ```
 	 */
-	match<U>(branches: { some(value: T): U; none(): U }): U;
+	match<SomeValue, NoneValue>(branches: { some(value: T): SomeValue; none(): NoneValue }): SomeValue | NoneValue;
 
 	/**
 	 * Returns an iterator over the possibly contained value.
