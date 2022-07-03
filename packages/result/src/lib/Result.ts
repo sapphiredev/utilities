@@ -2,13 +2,17 @@ import { isFunction, type Awaitable } from './common/utils';
 import { Err, err as _err } from './Result/Err';
 import { Ok, ok as _ok } from './Result/Ok';
 
-export * from './Result/IResult';
 export * from './Result/ResultError';
 
 /**
- * The union of the two variations of `Result`.
+ * A type used to express computations that can fail, it can be used for returning and propagating errors. This is a
+ * type union with the variants `Ok(T)`, representing success and containing a value, and `Err(E)`, representing error
+ * and containing an error value.
+ *
  * @typeparam T The result's type.
  * @typeparam E The error's type.
+ *
+ * @see {@link https://doc.rust-lang.org/std/result/index.html}
  */
 export type Result<T, E> = Result.Ok<T> | Result.Err<E>;
 
