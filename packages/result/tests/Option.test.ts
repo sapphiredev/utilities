@@ -12,7 +12,7 @@ describe('Option', () => {
 		describe('isSome', () => {
 			test('GIVEN some THEN always returns true', () => {
 				const x = some(2);
-				expect<true>(x.isSome()).toBe(true);
+				expect<boolean>(x.isSome()).toBe(true);
 			});
 
 			test('GIVEN none THEN always returns false', () => {
@@ -59,7 +59,7 @@ describe('Option', () => {
 
 			test('GIVEN none THEN always returns true', () => {
 				const x = none;
-				expect<true>(x.isNone()).toBe(true);
+				expect<boolean>(x.isNone()).toBe(true);
 			});
 		});
 

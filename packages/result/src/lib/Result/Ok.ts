@@ -13,7 +13,7 @@ export class Ok<T> implements IResult<T, any> {
 		this.value = value;
 	}
 
-	public isOk(): true {
+	public isOk(): this is Ok<T> {
 		return true;
 	}
 

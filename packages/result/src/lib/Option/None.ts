@@ -15,7 +15,7 @@ export class None implements IOption<any> {
 		return false;
 	}
 
-	public isNone(): true {
+	public isNone(): this is None {
 		return true;
 	}
 

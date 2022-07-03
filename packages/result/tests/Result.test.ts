@@ -12,7 +12,7 @@ describe('Result', () => {
 		describe('isOk', () => {
 			test('GIVEN ok THEN always returns true', () => {
 				const x = ok(42);
-				expect<true>(x.isOk()).toBe(true);
+				expect<boolean>(x.isOk()).toBe(true);
 			});
 
 			test('GIVEN err THEN always returns false', () => {
@@ -59,7 +59,7 @@ describe('Result', () => {
 
 			test('GIVEN err THEN returns true', () => {
 				const x = err('Some error message');
-				expect<true>(x.isErr()).toBe(true);
+				expect<boolean>(x.isErr()).toBe(true);
 			});
 		});
 
@@ -701,7 +701,7 @@ describe('Result', () => {
 		test('GIVEN ok THEN returns { isOk->true, isErr->false }', () => {
 			const x = Result.ok(42);
 
-			expect<true>(x.isOk()).toBe(true);
+			expect<boolean>(x.isOk()).toBe(true);
 			expect<false>(x.isErr()).toBe(false);
 		});
 	});
@@ -711,7 +711,7 @@ describe('Result', () => {
 			const x = Result.err(new Error());
 
 			expect<false>(x.isOk()).toBe(false);
-			expect<true>(x.isErr()).toBe(true);
+			expect<boolean>(x.isErr()).toBe(true);
 		});
 	});
 

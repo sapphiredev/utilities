@@ -21,7 +21,7 @@ export class Err<E> implements IResult<any, E> {
 		return false;
 	}
 
-	public isErr(): true {
+	public isErr(): this is Err<E> {
 		return true;
 	}
 

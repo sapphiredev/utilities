@@ -12,7 +12,7 @@ export class Some<T> implements IOption<T> {
 		this.value = value;
 	}
 
-	public isSome(): true {
+	public isSome(): this is Some<T> {
 		return true;
 	}
 
