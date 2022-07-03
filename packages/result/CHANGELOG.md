@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/result@2.0.1](https://github.com/sapphiredev/utilities/compare/@sapphire/result@2.0.0...@sapphire/result@2.0.1) - (2022-07-03)
+
+## 🏠 Refactor
+
+- **result:** Fixed types (#391) ([a1934e1](https://github.com/sapphiredev/utilities/commit/a1934e10cc7d81c71354deb153a4f3bb83e50e65))
+
+## 🐛 Bug Fixes
+
+- **deps:** Update all non-major dependencies ([84af0db](https://github.com/sapphiredev/utilities/commit/84af0db2db749223b036aa99fe19a2e9af5681c6))
+
 # [@sapphire/result@2.0.0](https://github.com/sapphiredev/utilities/compare/@sapphire/result@1.1.1...@sapphire/result@2.0.0) - (2022-06-26)
 
 ## 🏠 Refactor
