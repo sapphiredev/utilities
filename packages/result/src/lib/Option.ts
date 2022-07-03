@@ -2,6 +2,7 @@ import { Awaitable, isFunction } from './common/utils';
 import { None, none as _none } from './Option/None';
 import { Some, some as _some } from './Option/Some';
 
+export * from './Option/IOption';
 export * from './Option/OptionError';
 
 /**
