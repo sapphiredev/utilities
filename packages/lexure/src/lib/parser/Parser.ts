@@ -6,7 +6,7 @@ import { EmptyStrategy } from './strategies/EmptyStrategy';
 export class Parser {
 	public strategy: IUnorderedStrategy;
 
-	public constructor(strategy: IUnorderedStrategy) {
+	public constructor(strategy?: IUnorderedStrategy) {
 		this.strategy = strategy ?? new EmptyStrategy();
 	}
 
