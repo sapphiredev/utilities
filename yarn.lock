@@ -5599,42 +5599,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tsup@npm:^6.1.3":
-  version: 6.1.3
-  resolution: "tsup@npm:6.1.3"
-  dependencies:
-    bundle-require: ^3.0.2
-    cac: ^6.7.12
-    chokidar: ^3.5.1
-    debug: ^4.3.1
-    esbuild: ^0.14.25
-    execa: ^5.0.0
-    globby: ^11.0.3
-    joycon: ^3.0.1
-    postcss-load-config: ^3.0.1
-    resolve-from: ^5.0.0
-    rollup: ^2.74.1
-    source-map: 0.8.0-beta.0
-    sucrase: ^3.20.3
-    tree-kill: ^1.2.2
-  peerDependencies:
-    "@swc/core": ^1
-    postcss: ^8.4.12
-    typescript: ^4.1.0
-  peerDependenciesMeta:
-    "@swc/core":
-      optional: true
-    postcss:
-      optional: true
-    typescript:
-      optional: true
-  bin:
-    tsup: dist/cli-default.js
-    tsup-node: dist/cli-node.js
-  checksum: c72639b76d4140cd0a6362196cf576ea486f9236384e3021ba7d4cdf394fbe55d1be408b3cc9c4432e3d4e7cb241c8bb65fd69773e61e011d5bf81129ad2cc00
-  languageName: node
-  linkType: hard
-
 "tsutils@npm:^3.21.0":
   version: 3.21.0
   resolution: "tsutils@npm:3.21.0"
