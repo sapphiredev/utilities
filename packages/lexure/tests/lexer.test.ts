@@ -34,4 +34,21 @@ describe('The lexer tests', () => {
 			new QuotedParameter([' '], { value: 'quotes', open: '"', close: '"' })
 		]);
 	});
+
+	it('GIVEN input with quotes set and one quote which spaces in THEN treat that thing as one parameter', () => {
+		const input = 'this is a test "with multi spaced quote" text';
+		const output = [
+			...new Lexer({
+				quotes: [['"', '"']]
+			}).run(input)
+		];
+		expect(output).toEqual([
+			new WordParameter([], { value: 'this' }),
+			new WordParameter([' '], { value: 'is' }),
+			new WordParameter([' '], { value: 'a' }),
+			new WordParameter([' '], { value: 'test' }),
+			new QuotedParameter([' '], { value: 'with multi spaced quote', open: '"', close: '"' }),
+			new WordParameter([' '], { value: 'text' })
+		]);
+	});
 });
