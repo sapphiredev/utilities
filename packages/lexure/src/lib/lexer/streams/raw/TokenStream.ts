@@ -38,8 +38,8 @@ export class TokenStream implements Iterable<Token> {
 			const end = this.input.indexOf(close, this.position + open.length);
 			if (end === -1) continue;
 
-			this.position = end + close.length;
 			const value = this.input.slice(this.position + open.length, end);
+			this.position = end + close.length;
 
 			return { type: TokenType.Quoted, value, open, close };
 		}
