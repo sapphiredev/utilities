@@ -37,7 +37,7 @@ export class PrefixedStrategy implements IUnorderedStrategy {
 			// If the separator is present, but has no value, return None:
 			if (index + separator.length === input.length) return Option.none;
 
-			const key = input.slice(0, index);
+			const key = input.slice(prefix.length, index);
 			const value = input.slice(index + separator.length);
 			return Option.some([key, value] as const);
 		}
