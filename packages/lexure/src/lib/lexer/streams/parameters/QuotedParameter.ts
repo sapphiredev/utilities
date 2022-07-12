@@ -6,7 +6,7 @@ export class QuotedParameter extends BaseParameter {
 	public readonly open: string;
 	public readonly close: string;
 
-	public constructor(separators: readonly string[], part: QuotedToken) {
+	public constructor(separators: readonly string[], part: Omit<QuotedToken, 'type'>) {
 		super(separators);
 		this.value = part.value;
 		this.open = part.open;
