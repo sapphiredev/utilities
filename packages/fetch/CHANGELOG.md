@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/fetch@2.4.1](https://github.com/sapphiredev/utilities/compare/@sapphire/fetch@2.4.0...@sapphire/fetch@2.4.1) - (2022-07-13)
+
+## 🏠 Refactor
+
+- Change `const enum` for regular `enum` (#394) ([960e973](https://github.com/sapphiredev/utilities/commit/960e973dc63aeccdc0012d72a4fef052bbd37b6f))
+
+## 🐛 Bug Fixes
+
+- **deps:** Update all non-major dependencies ([84af0db](https://github.com/sapphiredev/utilities/commit/84af0db2db749223b036aa99fe19a2e9af5681c6))
+
+## 🧪 Testing
+
+- Migrate to vitest (#380) ([075ec73](https://github.com/sapphiredev/utilities/commit/075ec73c7a8e3374fad3ada612d37eb4ac36ec8d))
+
 # [@sapphire/fetch@2.4.0](https://github.com/sapphiredev/utilities/compare/@sapphire/fetch@2.3.1...@sapphire/fetch@2.4.0) - (2022-06-05)
 
 ## 🐛 Bug Fixes
