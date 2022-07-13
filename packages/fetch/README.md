@@ -34,7 +34,7 @@
 
 -   Written in TypeScript
 -   Fully tested
--   Exported `const enum` for the common return data types.
+-   Exported `enum` for the common return data types.
 -   Throws distinctive errors when the API returns a "not ok" status code to make them easier to understand.
 -   Enforces casting the return type when requesting JSON data, to ensure your return data is strictly typed.
 -   Uses [cross-fetch] so this package can be used in NodeJS (where it uses [node-fetch]) and browser (where it uses [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API))
