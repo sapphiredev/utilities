@@ -185,7 +185,6 @@ describe('fetch', () => {
 
 describe('FetchMediaContentTypes', () => {
 	test('GIVEN Entries of FetchMediaContentTypes THEN returns expected entries', () => {
-		// @ts-expect-error TypeScript doesn't like this on const enum but because we have `--preserveConstEnums` it is actually possible
 		const MediaTypeEntries = [...Object.entries(FetchMediaContentTypes)];
 
 		expect(MediaTypeEntries).toHaveLength(31);

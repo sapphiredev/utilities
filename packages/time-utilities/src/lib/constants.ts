@@ -4,7 +4,7 @@ import type { DurationFormatAssetsTime, DurationFormatSeparators } from './Durat
 /**
  * The supported time types
  */
-export const enum TimeTypes {
+export enum TimeTypes {
 	Second = 'second',
 	Minute = 'minute',
 	Hour = 'hour',
@@ -14,7 +14,7 @@ export const enum TimeTypes {
 	Year = 'year'
 }
 
-export const enum Time {
+export enum Time {
 	Millisecond = 1,
 	Second = 1000,
 	Minute = 1000 * 60,

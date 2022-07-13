@@ -3,7 +3,7 @@ import { UserError } from '@sapphire/framework';
 import { Message, PermissionResolvable, Permissions } from 'discord.js';
 import { createFunctionPrecondition, FunctionFallback } from './utils';
 
-export const enum DecoratorIdentifiers {
+export enum DecoratorIdentifiers {
 	RequiresClientPermissionsGuildOnly = 'requiresClientPermissionsGuildOnly',
 	RequiresClientPermissionsMissingPermissions = 'requiresClientPermissionsMissingPermissions',
 	RequiresUserPermissionsGuildOnly = 'requiresUserPermissionsGuildOnly',

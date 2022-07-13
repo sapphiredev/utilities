@@ -1,7 +1,7 @@
 /**
  * The supported return types for the `fetch` method
  */
-export const enum FetchResultTypes {
+export enum FetchResultTypes {
 	/**
 	 * Returns only the body, as JSON. Similar to [`Body.json()`](https://developer.mozilla.org/en-US/docs/Web/API/Body/json).
 	 *
@@ -33,7 +33,7 @@ export const enum FetchResultTypes {
 /**
  * The list of [HTTP Methods](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods)
  */
-export const enum FetchMethods {
+export enum FetchMethods {
 	/**
 	 * The `GET` method requests a representation of the specified resource. Requests using `GET` should only retrieve data.
 	 * @see [MDN / Web / HTTP / Methods / GET](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/GET)
@@ -86,7 +86,7 @@ export const enum FetchMethods {
  * Media Content Types are also known as a Multipurpose Internet Mail Extensions or MIME type
  * Media Content Types are defined and standardized in IETF's [RFC 6838](https://datatracker.ietf.org/doc/html/rfc6838).
  */
-export const enum FetchMediaContentTypes {
+export enum FetchMediaContentTypes {
 	/**
 	 * The `audio/aac` media content type.
 	 * @see [Media-Types / audio / aac](https://www.iana.org/assignments/media-types/audio/aac)
