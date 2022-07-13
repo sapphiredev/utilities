@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/decorators@4.3.7](https://github.com/sapphiredev/utilities/compare/@sapphire/decorators@4.3.6...@sapphire/decorators@4.3.7) - (2022-07-13)
+
+## 🏠 Refactor
+
+- Change `const enum` for regular `enum` (#394) ([960e973](https://github.com/sapphiredev/utilities/commit/960e973dc63aeccdc0012d72a4fef052bbd37b6f))
+
+## 🐛 Bug Fixes
+
+- **deps:** Update all non-major dependencies ([84af0db](https://github.com/sapphiredev/utilities/commit/84af0db2db749223b036aa99fe19a2e9af5681c6))
+
+## 🧪 Testing
+
+- Migrate to vitest (#380) ([075ec73](https://github.com/sapphiredev/utilities/commit/075ec73c7a8e3374fad3ada612d37eb4ac36ec8d))
+
 # [@sapphire/decorators@4.3.5](https://github.com/sapphiredev/utilities/compare/@sapphire/decorators@4.3.4...@sapphire/decorators@4.3.5) - (2022-06-10)
 
 ## 🐛 Bug Fixes
