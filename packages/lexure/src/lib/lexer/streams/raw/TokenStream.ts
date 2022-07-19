@@ -55,7 +55,7 @@ export class TokenStream implements Iterable<Token> {
 	}
 }
 
-export const enum TokenType {
+export enum TokenType {
 	Parameter,
 	Quoted,
 	Separator

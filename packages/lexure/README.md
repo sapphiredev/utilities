@@ -43,6 +43,24 @@ npm install @sapphire/lexure
 
 **Note:** While this section uses `require`, the imports match 1:1 with ESM imports. For example `const { Parser } = require('@sapphire/lexure')` equals `import { Parser } from '@sapphire/lexure'`.
 
+```typescript
+const parser = new Parser(new PrefixedStrategy(['--', '/'], ['=', ':']));
+const lexer = new Lexer({
+	quotes: [
+		['"', '"'],
+		['“', '”'],
+		['「', '」']
+	]
+});
+
+const content = 'foo bar';
+const stream = new ArgumentStream(parser.run(lexer.run(content)));
+
+console.log(stream.single()); // Some { value: 'foo' }
+console.log(stream.single()); // Some { value: 'bar' }
+console.log(stream.single()); // None
+```
+
 ---
 
 ## Buy us some doughnuts
