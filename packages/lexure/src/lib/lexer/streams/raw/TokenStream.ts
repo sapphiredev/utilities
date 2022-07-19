@@ -7,8 +7,8 @@ export class TokenStream implements Iterable<Token> {
 	private position = 0;
 
 	public constructor(lexer: Lexer, input: string) {
-		this.quotes = lexer.quotes ?? [];
-		this.separator = lexer.separator ?? ' ';
+		this.quotes = lexer.quotes;
+		this.separator = lexer.separator;
 		this.input = input;
 	}
 

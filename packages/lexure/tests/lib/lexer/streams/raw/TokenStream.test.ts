@@ -40,7 +40,7 @@ describe('TokenStream', () => {
 		});
 	});
 
-	describe('default lexer', () => {
+	describe('configured lexer', () => {
 		const lexer = new Lexer({
 			quotes: [
 				['"', '"'],
@@ -81,6 +81,17 @@ describe('TokenStream', () => {
 			expect(tokens).toEqual<Token[]>([
 				{ type: TokenType.Separator, value: ' ' },
 				{ type: TokenType.Parameter, value: 'foo' }
+			]);
+		});
+
+		test('GIVEN word without quote pair THEN it does not yield a quoted token', () => {
+			const stream = new TokenStream(lexer, '"foo bar');
+			const tokens = [...stream];
+
+			expect(tokens).toEqual<Token[]>([
+				{ type: TokenType.Parameter, value: '"foo' },
+				{ type: TokenType.Separator, value: ' ' },
+				{ type: TokenType.Parameter, value: 'bar' }
 			]);
 		});
 	});
