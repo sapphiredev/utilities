@@ -15,7 +15,7 @@ export class Parser {
 		return this;
 	}
 
-	public run(input: Iterable<Parameter>) {
+	public run(input: Iterable<Parameter>): ParserResult {
 		return new ParserResult(this).parse(input);
 	}
 }

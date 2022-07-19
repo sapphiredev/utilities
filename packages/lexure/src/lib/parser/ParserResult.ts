@@ -16,6 +16,8 @@ export class ParserResult {
 		for (const parameter of parameters) {
 			this.parsePossibleFlag(parameter) || this.parsePossibleOptions(parameter) || this.parseOrdered(parameter);
 		}
+
+		return this;
 	}
 
 	private parsePossibleFlag(parameter: Parameter): boolean {
