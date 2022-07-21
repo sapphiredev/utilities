@@ -22,6 +22,6 @@ export class Lexer {
 export namespace Lexer {
 	export interface Options {
 		separator?: string;
-		quotes?: readonly [string, string][];
+		quotes?: readonly [open: string, close: string][];
 	}
 }
