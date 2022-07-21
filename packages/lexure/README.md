@@ -24,7 +24,7 @@ The code in this package has been greatly inspired by [lexure] from [1Computer1]
 -   Written in TypeScript
 -   Bundled with esbuild so it can be used in NodeJS and browsers
 -   Offers CommonJS, ESM and UMD bundles
--   ~~Fully tested~~ WIP
+-   Fully tested
 -   Parses quoted input with multiple quote styles
 -   Parses flags and options with a customizable strategy system
 -   Keeps leading whitespace
