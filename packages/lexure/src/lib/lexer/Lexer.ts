@@ -2,7 +2,7 @@ import { ParameterStream } from './streams/ParameterStream';
 import { TokenStream } from './streams/raw/TokenStream';
 
 export class Lexer {
-	public readonly quotes: readonly [string, string][];
+	public readonly quotes: readonly [open: string, close: string][];
 	public readonly separator: string;
 
 	public constructor(options: Lexer.Options = {}) {
