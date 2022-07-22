@@ -44,7 +44,7 @@ export const EmojiRegex = /^(?:<(?<animated>a)?:(?<name>\w{2,32}):)?(?<id>\d{17,
 /**
  * Regex that matches any animated or non-animated custom Discord emoji.
  * Unlike {@link EmojiRegex} It can be a substring of a larger string.
- * @raw `/<a?:\w{2,32}:\d{17,18}>/`
+ * @raw `/<a?:\w{2,32}:\d{17,19}>/`
  */
 export const FormattedCustomEmoji = /<a?:\w{2,32}:\d{17,19}>/;
 
@@ -79,7 +79,7 @@ export const MessageLinkRegex =
  * Regex that matches any animated or non-animated custom Discord emoji *without the wrapping `<...>` symbols.
  * This means that a string that matches this regex can directly be send inside a Discord message.
  * Other than this difference it is similar to {@link FormattedCustomEmoji}.
- * @raw `/a?:\w{2,32}:\d{17,18}/`
+ * @raw `/a?:\w{2,32}:\d{17,19}/`
  */
 export const ParsedCustomEmoji = /a?:\w{2,32}:\d{17,19}/;
 
