@@ -284,6 +284,13 @@
 			"avatar_url": "https://avatars.githubusercontent.com/u/85353424?v=4",
 			"profile": "https://github.com/EvolutionX-10",
 			"contributions": ["code"]
+		},
+		{
+			"login": "enxg",
+			"name": "Enes Genç",
+			"avatar_url": "https://avatars.githubusercontent.com/u/61084101?v=4",
+			"profile": "https://enes.ovh/",
+			"contributions": ["code"]
 		}
 	],
 	"contributorsPerLine": 7,
