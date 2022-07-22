@@ -291,6 +291,13 @@
 			"avatar_url": "https://avatars.githubusercontent.com/u/61084101?v=4",
 			"profile": "https://enes.ovh/",
 			"contributions": ["code"]
+		},
+		{
+			"login": "muchnameless",
+			"name": "muchnameless",
+			"avatar_url": "https://avatars.githubusercontent.com/u/12682826?v=4",
+			"profile": "https://github.com/muchnameless",
+			"contributions": ["code"]
 		}
 	],
 	"contributorsPerLine": 7,
