@@ -1,18 +1,18 @@
 /**
  * Regex that can capture the ID in Discord Channel mentions
- * @raw `/^<#(?<id>\d{17,19})>$/`
+ * @raw `/^<#(?<id>\d{17,20})>$/`
  * @remark Capture group 1 is the ID of the channel. It is named `id`.
  */
-export const ChannelMentionRegex = /^<#(?<id>\d{17,19})>$/;
+export const ChannelMentionRegex = /^<#(?<id>\d{17,20})>$/;
 
 /**
  * Regex that can capture the channel and message IDs in a channelId-messageId pattern
  * This pattern can be found when you hold Shift and hover over a message, and click the "ID" button
- * @raw `/^(?<channelId>\d{17,19})-(?<messageId>\d{17,19})$/`
+ * @raw `/^(?<channelId>\d{17,20})-(?<messageId>\d{17,20})$/`
  * @remark Capture group 1 is the ID of the channel, named `channelId`.
  * @remark Capture group 2 is the ID of the message, named `messageId`.
  */
-export const ChannelMessageRegex = /^(?<channelId>\d{17,19})-(?<messageId>\d{17,19})$/;
+export const ChannelMessageRegex = /^(?<channelId>\d{17,20})-(?<messageId>\d{17,20})$/;
 
 /**
  * Regex that matches links on the known Discord host names
@@ -44,19 +44,19 @@ export const EmojiRegex = /^(?:<(?<animated>a)?:(?<name>\w{2,32}):)?(?<id>\d{17,
 /**
  * Regex that matches any animated or non-animated custom Discord emoji.
  * Unlike {@link EmojiRegex} It can be a substring of a larger string.
- * @raw `/<a?:\w{2,32}:\d{17,19}>/`
+ * @raw `/<a?:\w{2,32}:\d{17,20}>/`
  */
-export const FormattedCustomEmoji = /<a?:\w{2,32}:\d{17,19}>/;
+export const FormattedCustomEmoji = /<a?:\w{2,32}:\d{17,20}>/;
 
 /**
  * Regex that can capture any animated or non-animated custom Discord emoji.
  * Similar to {@link FormattedCustomEmoji} and unlike {@link EmojiRegex} can also be a substring of a larger string.
- * @raw `/(?<animated>a?):(?<name>[^:]+):(?<id>\d{17,19})/`
+ * @raw `/(?<animated>a?):(?<name>[^:]+):(?<id>\d{17,20})/`
  * @remark Capture group 1 can be used to determine whether the emoji is animated or not. It is named `animated`.
  * @remark Capture group 2 is the name of the emoji as it is typed in a message. It is named `name`.
  * @remark Capture group 3 is the ID of the emoji. It is named `id`.
  */
-export const FormattedCustomEmojiWithGroups = /(?<animated>a?):(?<name>[^:]+):(?<id>\d{17,19})/;
+export const FormattedCustomEmojiWithGroups = /(?<animated>a?):(?<name>[^:]+):(?<id>\d{17,20})/;
 
 /**
  * Regex that matches any URL starting with `http` or `https`
@@ -67,46 +67,46 @@ export const HttpUrlRegex = /^https?:\/\//;
 
 /**
  * Regex that can capture the Guild, Channel, and Message ID based on a shareable Discord message link.
- * @raw `/^(?:https:\/\/)?(?:ptb\.|canary\.)?discord(?:app)?\.com\/channels\/(?<guildId>(?:\d{17,19}|@me))\/(?<channelId>\d{17,19})\/(?<messageId>\d{17,19})$/`
+ * @raw `/^(?:https:\/\/)?(?:ptb\.|canary\.)?discord(?:app)?\.com\/channels\/(?<guildId>(?:\d{17,20}|@me))\/(?<channelId>\d{17,20})\/(?<messageId>\d{17,20})$/`
  * @remark Capture group 1 is the ID of the guild the message was sent in. It is named `guildId`.
  * @remark Capture group 2 is the ID of the channel in that guild the message was sent in. It is named `channelId`.
  * @remark Capture group 3 is the ID of the message itself. It is named `messageId`.
  */
 export const MessageLinkRegex =
-	/^(?:https:\/\/)?(?:ptb\.|canary\.)?discord(?:app)?\.com\/channels\/(?<guildId>(?:\d{17,19}|@me))\/(?<channelId>\d{17,19})\/(?<messageId>\d{17,19})$/;
+	/^(?:https:\/\/)?(?:ptb\.|canary\.)?discord(?:app)?\.com\/channels\/(?<guildId>(?:\d{17,20}|@me))\/(?<channelId>\d{17,20})\/(?<messageId>\d{17,20})$/;
 
 /**
  * Regex that matches any animated or non-animated custom Discord emoji *without the wrapping `<...>` symbols.
  * This means that a string that matches this regex can directly be send inside a Discord message.
  * Other than this difference it is similar to {@link FormattedCustomEmoji}.
- * @raw `/a?:\w{2,32}:\d{17,19}/`
+ * @raw `/a?:\w{2,32}:\d{17,20}/`
  */
-export const ParsedCustomEmoji = /a?:\w{2,32}:\d{17,19}/;
+export const ParsedCustomEmoji = /a?:\w{2,32}:\d{17,20}/;
 
 /**
  * Regex that matches any animated or non-animated custom Discord emoji *without the wrapping `<...>` symbols.
  * This means that a string that matches this regex can directly be send inside a Discord message.
  * Other than this difference it is similar to {@link FormattedCustomEmojiWithGroups}.
- * @raw `/(?<animated>a?):(?<name>[^:]+):(?<id>\d{17,19})/`
+ * @raw `/(?<animated>a?):(?<name>[^:]+):(?<id>\d{17,20})/`
  * @remark Capture group 1 can be used to determine whether the emoji is animated or not. It is named `animated`.
  * @remark Capture group 2 is the name of the emoji as it is typed in a message. It is named `name`.
  * @remark Capture group 3 is the ID of the emoji. It is named `id`.
  */
-export const ParsedCustomEmojiWithGroups = /(?<animated>a?):(?<name>[^:]+):(?<id>\d{17,19})/;
+export const ParsedCustomEmojiWithGroups = /(?<animated>a?):(?<name>[^:]+):(?<id>\d{17,20})/;
 
 /**
  * Regex that can capture the ID in Discord Role mentions
- * @raw `/^<@&(?<id>\d{17,19})>$/`
+ * @raw `/^<@&(?<id>\d{17,20})>$/`
  * @remark Capture group 1 is the ID of the role. It is named `id`.
  */
-export const RoleMentionRegex = /^<@&(?<id>\d{17,19})>$/;
+export const RoleMentionRegex = /^<@&(?<id>\d{17,20})>$/;
 
 /**
  * Regex that can capture any Discord Snowflake ID
- * @raw `/^(?<id>\d{17,19})$/`
+ * @raw `/^(?<id>\d{17,20})$/`
  * @remark Capture group 1 is the Snowflake. It is named `id`.
  */
-export const SnowflakeRegex = /^(?<id>\d{17,19})$/;
+export const SnowflakeRegex = /^(?<id>\d{17,20})$/;
 
 /**
  * Regex that can capture a Discord Token
@@ -122,10 +122,10 @@ export const TokenRegex = /(?<mfaToken>mfa\.[a-z0-9_-]{20,})|(?<basicToken>[a-z0
 
 /**
  * Regex that can capture the ID of a user in Discord user mentions
- * @raw `/^<@!?(?<id>\d{17,19})>$/`
+ * @raw `/^<@!?(?<id>\d{17,20})>$/`
  * @remark Capture group 1 is the ID of the user. It is named `id`.
  */
-export const UserOrMemberMentionRegex = /^<@!?(?<id>\d{17,19})>$/;
+export const UserOrMemberMentionRegex = /^<@!?(?<id>\d{17,20})>$/;
 
 /**
  * Regex that matches any WebSocket URL starting with `ws` or `wss`
