@@ -1,0 +1,67 @@
+{
+	"name": "@sapphire/lexure",
+	"version": "1.0.0",
+	"description": "Parser and utilities for non-technical user input",
+	"author": "@sapphire",
+	"license": "MIT",
+	"main": "dist/index.js",
+	"module": "dist/index.mjs",
+	"browser": "dist/index.global.js",
+	"unpkg": "dist/index.global.js",
+	"types": "dist/index.d.ts",
+	"exports": {
+		"import": "./dist/index.mjs",
+		"require": "./dist/index.js",
+		"types": "./dist/index.d.ts"
+	},
+	"sideEffects": false,
+	"homepage": "https://github.com/sapphiredev/utilities/tree/main/packages/lexure",
+	"scripts": {
+		"test": "vitest run",
+		"lint": "eslint src tests --ext ts --fix -c ../../.eslintrc",
+		"build": "tsup && tsc -b src",
+		"prepack": "yarn build",
+		"bump": "cliff-jumper",
+		"check-update": "cliff-jumper --dry-run"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/sapphiredev/utilities.git",
+		"directory": "packages/lexure"
+	},
+	"files": [
+		"dist/**/*.js*",
+		"dist/**/*.mjs*",
+		"dist/**/*.d*"
+	],
+	"engines": {
+		"node": ">=v14.0.0",
+		"npm": ">=7.0.0"
+	},
+	"keywords": [
+		"@sapphire/lexure",
+		"bot",
+		"discord",
+		"lexure",
+		"promise",
+		"sapphire",
+		"standalone",
+		"ts",
+		"typescript",
+		"yarn"
+	],
+	"bugs": {
+		"url": "https://github.com/sapphiredev/utilities/issues"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"dependencies": {
+		"@sapphire/result": "workspace:^"
+	},
+	"devDependencies": {
+		"@favware/cliff-jumper": "^1.8.5",
+		"tsup": "^6.1.3",
+		"typescript": "^4.7.4"
+	}
+}
