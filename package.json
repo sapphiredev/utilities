@@ -19,7 +19,7 @@
 	"devDependencies": {
 		"@commitlint/cli": "^17.0.3",
 		"@commitlint/config-conventional": "^17.0.3",
-		"@discordjs/collection": "^0.7.0",
+		"@discordjs/collection": "^0.8.0",
 		"@favware/cliff-jumper": "^1.8.5",
 		"@favware/npm-deprecate": "^1.0.4",
 		"@favware/rollup-type-bundler": "^1.0.9",
@@ -32,7 +32,7 @@
 		"c8": "^7.12.0",
 		"cz-conventional-changelog": "^3.3.0",
 		"discord-api-types": "^0.33.5",
-		"discord.js": "^13.8.1",
+		"discord.js": "^13.9.1",
 		"eslint": "^8.20.0",
 		"eslint-config-prettier": "^8.5.0",
 		"eslint-plugin-prettier": "^4.2.1",
@@ -77,5 +77,5 @@
 		"ansi-regex": "^5.0.1",
 		"minimist": "^1.2.6"
 	},
-	"packageManager": "yarn@3.2.1"
+	"packageManager": "yarn@3.2.2"
 }

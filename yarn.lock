@@ -271,6 +271,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@discordjs/collection@npm:^0.8.0":
+  version: 0.8.0
+  resolution: "@discordjs/collection@npm:0.8.0"
+  checksum: f61f53be03b158a369579988ca6c3e2f4cce676798c5995d852d6be9d7b4a1b3ff024b6c5537b2871ef149293ec9182f88aa8a03026c004f0f330746bc18cc08
+  languageName: node
+  linkType: hard
+
 "@eslint/eslintrc@npm:^1.3.0":
   version: 1.3.0
   resolution: "@eslint/eslintrc@npm:1.3.0"
@@ -478,7 +485,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/async-queue@^1.3.1, @sapphire/async-queue@workspace:packages/async-queue":
+"@sapphire/async-queue@npm:^1.3.2":
+  version: 1.3.2
+  resolution: "@sapphire/async-queue@npm:1.3.2"
+  checksum: 348f35a278bff68cb6d5e2c2219b03ce66243162522003bb14426e5fdad251300bea8ef3883043eb034c181dddd52296a519e9f377075a5b31074807fe163e76
+  languageName: node
+  linkType: hard
+
+"@sapphire/async-queue@workspace:packages/async-queue":
   version: 0.0.0-use.local
   resolution: "@sapphire/async-queue@workspace:packages/async-queue"
   dependencies:
@@ -2011,20 +2025,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"discord.js@npm:^13.8.1":
-  version: 13.9.0
-  resolution: "discord.js@npm:13.9.0"
+"discord.js@npm:^13.9.1":
+  version: 13.9.1
+  resolution: "discord.js@npm:13.9.1"
   dependencies:
     "@discordjs/builders": ^0.16.0
     "@discordjs/collection": ^0.7.0
-    "@sapphire/async-queue": ^1.3.1
+    "@sapphire/async-queue": ^1.3.2
     "@types/node-fetch": ^2.6.2
     "@types/ws": ^8.5.3
     discord-api-types: ^0.33.3
     form-data: ^4.0.0
     node-fetch: ^2.6.7
     ws: ^8.8.1
-  checksum: e53c3f458c568dc1c0e76d0701ca7ca46ce832a9845c19164005aff0ef0e42e3a58018673f6b32e6623967a647cd910be255d76c098ed762727912efba5dffa4
+  checksum: 8c2b5d15d5981b05b55049ae667ec37c870105c6eae784f11e9755affca5299693cffc06b77cf8b2b5ee3c62cecb429179361aedc2e8422bc2c8cf63308b8100
   languageName: node
   linkType: hard
 
@@ -4894,7 +4908,7 @@ __metadata:
   dependencies:
     "@commitlint/cli": ^17.0.3
     "@commitlint/config-conventional": ^17.0.3
-    "@discordjs/collection": ^0.7.0
+    "@discordjs/collection": ^0.8.0
     "@favware/cliff-jumper": ^1.8.5
     "@favware/npm-deprecate": ^1.0.4
     "@favware/rollup-type-bundler": ^1.0.9
@@ -4907,7 +4921,7 @@ __metadata:
     c8: ^7.12.0
     cz-conventional-changelog: ^3.3.0
     discord-api-types: ^0.33.5
-    discord.js: ^13.8.1
+    discord.js: ^13.9.1
     eslint: ^8.20.0
     eslint-config-prettier: ^8.5.0
     eslint-plugin-prettier: ^4.2.1
@@ -5845,7 +5859,7 @@ __metadata:
 
 "typescript@patch:typescript@^4.6.4#~builtin<compat/typescript>, typescript@patch:typescript@^4.7.4#~builtin<compat/typescript>":
   version: 4.7.4
-  resolution: "typescript@patch:typescript@npm%3A4.7.4#~builtin<compat/typescript>::version=4.7.4&hash=7ad353"
+  resolution: "typescript@patch:typescript@npm%3A4.7.4#~builtin<compat/typescript>::version=4.7.4&hash=f456af"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
