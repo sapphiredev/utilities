@@ -2,8 +2,8 @@ import { ParameterStream } from './streams/ParameterStream';
 import { TokenStream } from './streams/raw/TokenStream';
 
 export class Lexer {
-	public readonly quotes: readonly [open: string, close: string][];
-	public readonly separator: string;
+	public quotes: readonly [open: string, close: string][];
+	public separator: string;
 
 	public constructor(options: Lexer.Options = {}) {
 		this.quotes = options.quotes ?? [];
