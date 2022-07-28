@@ -47,12 +47,21 @@ export class Some<T> implements IOption<T> {
 		return some(cb(this.value));
 	}
 
+	public mapInto<R extends Option<any>>(cb: (value: T) => R): R {
+		return cb(this.value);
+	}
+
 	public mapOr<U>(_: U, cb: (value: T) => U): U {
 		return cb(this.value);
 	}
 
 	public mapOrElse<U>(_: () => U, cb: (value: T) => U): U {
 		return cb(this.value);
+	}
+
+	public mapNoneInto(cb: () => Option<any>): this;
+	public mapNoneInto(): this {
+		return this;
 	}
 
 	public inspect(cb: (value: T) => void): this {

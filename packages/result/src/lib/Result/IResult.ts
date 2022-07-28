@@ -158,6 +158,37 @@ export interface IResult<T, E> {
 	map<U>(cb: (value: T) => U): Result<U, E>;
 
 	/**
+	 * Maps a `Result<T, E>` to `Result<T, F>` by applying a function to a contained `Ok` value, leaving an `Err` value
+	 * untouched.
+	 *
+	 * Unlike {@link map}, this method does not wrap the returned value inside `Ok`, but instead, it returns the
+	 * returned value.
+	 * @param cb The predicate.
+	 *
+	 * @example
+	 * ```typescript
+	 * const x: Result<number, string> = ok(2);
+	 * assert.equal(x.mapInto((value) => ok(value * value)), ok(4));
+	 * ```
+	 * @example
+	 * ```typescript
+	 * const x: Result<number, string> = ok(0);
+	 * assert.equal(
+	 *   x.mapInto((value) => (value === 0 ? err('zero is not divisible') : ok(1 / value))),
+	 *   err('zero is not divisible')
+	 * );
+	 * ```
+	 * @example
+	 * ```typescript
+	 * const x: Result<number, string> = err('Some error message');
+	 * assert.equal(x.mapInto((value) => ok(4)), err('Some error message'));
+	 * ```
+	 *
+	 * @note This is an extension not supported in Rust
+	 */
+	mapInto<IT>(cb: (value: T) => Result<IT, any>): Result<T | IT, E>;
+
+	/**
 	 * Returns the provided default (if `Err`), or applies a function to the contained value (if `Ok`),
 	 *
 	 * Arguments passed to `mapOr` are eagerly evaluated; if you are passing the result of a function call, it is
@@ -224,6 +255,36 @@ export interface IResult<T, E> {
 	 * @see {@link https://doc.rust-lang.org/std/result/enum.Result.html#method.map_err}
 	 */
 	mapErr<F>(cb: (error: E) => F): Result<T, F>;
+
+	/**
+	 * Maps a `Result<T, E>` to `Result<T, F>` by applying a function to a contained `Err` value, leaving an `Ok` value
+	 * untouched.
+	 *
+	 * This function can be used to pass through a successful result while handling an error.
+	 *
+	 * Unlike {@link mapErr}, this method does not wrap the returned value inside `Err`, but instead, it returns the
+	 * returned value.
+	 * @param cb The predicate.
+	 *
+	 * @example
+	 * ```typescript
+	 * const x: Result<number, Error> = ok(2);
+	 * assert.equal(x.mapErrInto((error) => err(error.message)), ok(2));
+	 * ```
+	 * @example
+	 * ```typescript
+	 * const x: Result<number, Error> = err(new Error('Some error message'));
+	 * assert.equal(x.mapErrInto((error) => err(error.message)), err('Some error message'));
+	 * ```
+	 * @example
+	 * ```typescript
+	 * const x: Result<number, Error> = err(new Error('Some error message'));
+	 * assert.equal(x.mapErrInto((error) => ok(4)), ok(4));
+	 * ```
+	 *
+	 * @note This is an extension not supported in Rust
+	 */
+	mapErrInto<IE>(cb: (error: E) => Result<any, IE>): Result<T, E | IE>;
 
 	/**
 	 * Calls the provided closure with a reference to the contained value (if `Ok`).
