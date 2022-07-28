@@ -140,7 +140,7 @@ describe('Option', () => {
 		});
 
 		describe('mapInto', () => {
-			test('GIVEN some THEN returns mapped value', () => {
+			test('GIVEN some THEN returns mapped option', () => {
 				const x = some('Hello, world!');
 				const op = vi.fn((value: string) => some(value.length));
 
@@ -150,7 +150,7 @@ describe('Option', () => {
 				expect(op).toHaveReturnedWith(some(13));
 			});
 
-			test('GIVEN none THEN returns self', () => {
+			test('GIVEN none THEN returns itself', () => {
 				const x = none;
 				const op = vi.fn((value: string) => some(value.length));
 
@@ -206,19 +206,19 @@ describe('Option', () => {
 		});
 
 		describe('mapNoneInto', () => {
-			test('GIVEN some THEN returns mapped value', () => {
+			test('GIVEN some THEN returns itself', () => {
 				const x = some('Hello, world!');
 				const op = vi.fn(() => some(13));
 
-				expect<Some<string>>(x.mapNoneInto(op)).toEqual(some('Hello, world!'));
+				expect<Some<string>>(x.mapNoneInto(op)).toBe(x);
 				expect(op).not.toHaveBeenCalled();
 			});
 
-			test('GIVEN none THEN returns self', () => {
+			test('GIVEN none THEN returns mapped option', () => {
 				const x = none;
 				const op = vi.fn(() => some(13));
 
-				expect<Some<number>>(x.mapNoneInto(op)).toBe(some(13));
+				expect<Some<number>>(x.mapNoneInto(op)).toEqual(some(13));
 				expect(op).toHaveBeenCalledTimes(1);
 				expect(op).toHaveReturnedWith(some(13));
 			});

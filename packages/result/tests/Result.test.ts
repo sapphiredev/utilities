@@ -144,7 +144,7 @@ describe('Result', () => {
 		});
 
 		describe('mapInto', () => {
-			test('GIVEN ok THEN returns ok with mapped value', () => {
+			test('GIVEN ok THEN returns mapped result', () => {
 				const x = ok(2);
 				const cb = vi.fn((value: number) => ok(value > 1));
 
@@ -154,11 +154,11 @@ describe('Result', () => {
 				expect(cb).toHaveReturnedWith(ok(true));
 			});
 
-			test('GIVEN err THEN returns err', () => {
+			test('GIVEN err THEN returns itself', () => {
 				const x = err('Some error message');
 				const cb = vi.fn((value: number) => ok(value > 1));
 
-				expect(x.mapInto(cb)).toEqual(err('Some error message'));
+				expect(x.mapInto(cb)).toBe(x);
 				expect(cb).not.toHaveBeenCalled();
 			});
 		});
@@ -230,19 +230,19 @@ describe('Result', () => {
 		});
 
 		describe('mapErrInto', () => {
-			test('GIVEN ok THEN returns ok', () => {
+			test('GIVEN ok THEN returns itself', () => {
 				const x = ok(2);
 				const cb = vi.fn((error: string) => ok(error.length));
 
-				expect<Result<number, number>>(x.mapErr(cb)).toEqual(ok(2));
+				expect<Result<number, number>>(x.mapErr(cb)).toBe(x);
 				expect(cb).not.toHaveBeenCalled();
 			});
 
-			test('GIVEN ok THEN returns err with mapped value', () => {
+			test('GIVEN err THEN returns mapped result', () => {
 				const x = err('Some error message');
 				const cb = vi.fn((error: string) => ok(error.length));
 
-				expect<Result<number, number>>(x.mapErrInto(cb)).toEqual(err(18));
+				expect<Result<number, number>>(x.mapErrInto(cb)).toEqual(ok(18));
 				expect(cb).toHaveBeenCalledTimes(1);
 				expect(cb).toHaveBeenCalledWith('Some error message');
 				expect(cb).toHaveReturnedWith(ok(18));
