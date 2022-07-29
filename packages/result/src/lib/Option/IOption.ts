@@ -185,7 +185,7 @@ export interface IOption<T> {
 	 *
 	 * @note This is an extension not supported in Rust
 	 */
-	mapInto<Inner>(cb: (value: T) => Option<Inner>): Option<T | Inner>;
+	mapInto<Inner>(cb: (value: T) => Option<Inner>): Option<Inner>;
 
 	/**
 	 * Returns the provided default result (if none), or applies a function to the contained value (if any).
