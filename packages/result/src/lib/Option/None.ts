@@ -40,6 +40,11 @@ export class None implements IOption<any> {
 		return this;
 	}
 
+	public mapInto(cb: (value: never) => Option<any>): this;
+	public mapInto(): this {
+		return this;
+	}
+
 	public mapOr<R>(defaultValue: R, cb?: (value: never) => R): R;
 	public mapOr<R>(defaultValue: R): R {
 		return defaultValue;
@@ -48,6 +53,10 @@ export class None implements IOption<any> {
 	public mapOrElse<R>(defaultValue: () => R, cb?: (value: never) => R): R;
 	public mapOrElse<R>(defaultValue: () => R): R {
 		return defaultValue();
+	}
+
+	public mapNoneInto<R extends Option<any>>(cb: () => R): R {
+		return cb();
 	}
 
 	public inspect(cb?: (value: never) => void): this;

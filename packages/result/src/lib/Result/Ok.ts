@@ -42,6 +42,10 @@ export class Ok<T> implements IResult<T, any> {
 		return ok(cb(this.value));
 	}
 
+	public mapInto<R extends Result<any, any>>(cb: (value: T) => R): R {
+		return cb(this.value);
+	}
+
 	public mapOr<U>(_: U, cb: (value: T) => U): U {
 		return cb(this.value);
 	}
@@ -52,6 +56,11 @@ export class Ok<T> implements IResult<T, any> {
 
 	public mapErr(cb?: (error: never) => any): this;
 	public mapErr(): this {
+		return this;
+	}
+
+	public mapErrInto(cb: (error: never) => Result<any, any>): this;
+	public mapErrInto(): this {
 		return this;
 	}
 

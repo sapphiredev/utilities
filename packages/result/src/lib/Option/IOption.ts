@@ -164,6 +164,30 @@ export interface IOption<T> {
 	map<U>(cb: (value: T) => U): Option<U>;
 
 	/**
+	 * Maps a `Some<T>` to the returned `Option<U>` by applying a function to a contained value, leaving `None`
+	 * untouched.
+	 * @param cb The predicate.
+	 *
+	 * @example
+	 * ```typescript
+	 * const input: Option<string> = some('Hello, world!');
+	 * const result = input.mapInto((value) => some(value.length));
+	 *
+	 * assert.equal(result, some(13));
+	 * ```
+	 * @example
+	 * ```typescript
+	 * const input: Option<string> = none;
+	 * const result = input.mapInto((value) => some(value.length));
+	 *
+	 * assert.equal(result, none);
+	 * ```
+	 *
+	 * @note This is an extension not supported in Rust
+	 */
+	mapInto<Inner>(cb: (value: T) => Option<Inner>): Option<T | Inner>;
+
+	/**
 	 * Returns the provided default result (if none), or applies a function to the contained value (if any).
 	 *
 	 * Arguments passed to `mapOr` are eagerly evaluated; if you are passing the result of a function call, it is
@@ -205,6 +229,30 @@ export interface IOption<T> {
 	 * @see {@link https://doc.rust-lang.org/std/option/enum.Option.html#method.map_or_else}
 	 */
 	mapOrElse<U>(defaultValue: () => U, cb: (value: T) => U): U;
+
+	/**
+	 * Maps a `None` to the returned `Option<U>` by applying a function to a contained value, leaving `Some<T>`
+	 * untouched.
+	 * @param cb The predicate.
+	 *
+	 * @example
+	 * ```typescript
+	 * const input: Option<string> = some('Hello, world!');
+	 * const result = input.mapNoneInto(() => some(13));
+	 *
+	 * assert.equal(result, some('Hello, world!'));
+	 * ```
+	 * @example
+	 * ```typescript
+	 * const input: Option<string> = none;
+	 * const result = input.mapNoneInto(() => some(13));
+	 *
+	 * assert.equal(result, some(13));
+	 * ```
+	 *
+	 * @note This is an extension not supported in Rust
+	 */
+	mapNoneInto<Inner>(cb: () => Option<Inner>): Option<T | Inner>;
 
 	/**
 	 * Calls the provided closure with a reference to the contained value (if `Some`).

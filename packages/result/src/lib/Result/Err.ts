@@ -42,6 +42,11 @@ export class Err<E> implements IResult<any, E> {
 		return this;
 	}
 
+	public mapInto(cb: (value: never) => Result<any, any>): this;
+	public mapInto(): this {
+		return this;
+	}
+
 	public mapOr<U>(defaultValue: U, cb?: (value: never) => U): U;
 	public mapOr<U>(defaultValue: U): U {
 		return defaultValue;
@@ -54,6 +59,10 @@ export class Err<E> implements IResult<any, E> {
 
 	public mapErr<F>(cb: (error: E) => F): Err<F> {
 		return err(cb(this.error));
+	}
+
+	public mapErrInto<R extends Result<any, any>>(cb: (error: E) => R): R {
+		return cb(this.error);
 	}
 
 	public inspect(cb?: (value: never) => void): this;
