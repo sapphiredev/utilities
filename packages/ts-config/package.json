@@ -68,6 +68,7 @@
 		"access": "public"
 	},
 	"devDependencies": {
-		"@favware/cliff-jumper": "^1.8.5"
+		"@favware/cliff-jumper": "^1.8.5",
+		"@sapphire/eslint-config": "workspace:^"
 	}
 }
