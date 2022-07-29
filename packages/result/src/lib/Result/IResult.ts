@@ -186,7 +186,7 @@ export interface IResult<T, E> {
 	 *
 	 * @note This is an extension not supported in Rust
 	 */
-	mapInto<IT>(cb: (value: T) => Result<IT, any>): Result<T | IT, E>;
+	mapInto<IT, IE>(cb: (value: T) => Result<IT, IE>): Result<IT, E | IE>;
 
 	/**
 	 * Returns the provided default (if `Err`), or applies a function to the contained value (if `Ok`),
@@ -284,7 +284,7 @@ export interface IResult<T, E> {
 	 *
 	 * @note This is an extension not supported in Rust
 	 */
-	mapErrInto<IE>(cb: (error: E) => Result<any, IE>): Result<T, E | IE>;
+	mapErrInto<IT, IE>(cb: (error: E) => Result<IT, IE>): Result<T | IT, IE>;
 
 	/**
 	 * Calls the provided closure with a reference to the contained value (if `Ok`).
