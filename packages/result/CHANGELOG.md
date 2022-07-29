@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/result@2.1.1](https://github.com/sapphiredev/utilities/compare/@sapphire/result@2.1.0...@sapphire/result@2.1.1) - (2022-07-29)
+
+## 🐛 Bug Fixes
+
+- **Result:** Type `IResult.mapInto`'s return correctly (#405) ([14ddf5f](https://github.com/sapphiredev/utilities/commit/14ddf5fc35d1186f9fdc78a3d2b3b465acbd36ac))
+
 # [@sapphire/result@2.1.0](https://github.com/sapphiredev/utilities/compare/@sapphire/result@2.0.1...@sapphire/result@2.1.0) - (2022-07-29)
 
 ## 📝 Documentation
