@@ -170,10 +170,17 @@ export interface IOption<T> {
 	 *
 	 * @example
 	 * ```typescript
-	 * const maybeSomeString = some('Hello, world!');
-	 * const maybeSomeLength = maybeSomeString.mapInto((value) => some(value.length));
+	 * const input: Option<string> = some('Hello, world!');
+	 * const result = input.mapInto((value) => some(value.length));
 	 *
-	 * assert.equal(maybeSomeLength, some(13));
+	 * assert.equal(result, some(13));
+	 * ```
+	 * @example
+	 * ```typescript
+	 * const input: Option<string> = none;
+	 * const result = input.mapInto((value) => some(value.length));
+	 *
+	 * assert.equal(result, none);
 	 * ```
 	 *
 	 * @note This is an extension not supported in Rust
@@ -230,10 +237,17 @@ export interface IOption<T> {
 	 *
 	 * @example
 	 * ```typescript
-	 * const maybeSomeString = some('Hello, world!');
-	 * const maybeSomeLength = maybeSomeString.map((value) => value.length);
+	 * const input: Option<string> = some('Hello, world!');
+	 * const result = input.mapNoneInto(() => some(13));
 	 *
-	 * assert.equal(maybeSomeLength, some(13));
+	 * assert.equal(result, some('Hello, world!'));
+	 * ```
+	 * @example
+	 * ```typescript
+	 * const input: Option<string> = none;
+	 * const result = input.mapNoneInto(() => some(13));
+	 *
+	 * assert.equal(result, some(13));
 	 * ```
 	 *
 	 * @note This is an extension not supported in Rust
