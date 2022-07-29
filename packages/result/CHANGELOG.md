@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/result@2.1.0](https://github.com/sapphiredev/utilities/compare/@sapphire/result@2.0.1...@sapphire/result@2.1.0) - (2022-07-29)
+
+## 📝 Documentation
+
+- Add @muchnameless as a contributor ([a1221fe](https://github.com/sapphiredev/utilities/commit/a1221fea68506e99591d5d00ec552a07c26833f9))
+- Add @enxg as a contributor ([d2382f0](https://github.com/sapphiredev/utilities/commit/d2382f04e3909cb4ad11798a0a10e683f6cf5383))
+- Add @EvolutionX-10 as a contributor ([efc3a32](https://github.com/sapphiredev/utilities/commit/efc3a320a72ae258996dd62866d206c33f8d4961))
+
+## 🚀 Features
+
+- **Result:** Add new convenience methods (#404) ([7c3ec61](https://github.com/sapphiredev/utilities/commit/7c3ec6168dde544578e5016120c9975009889391))
+
 # [@sapphire/result@2.0.1](https://github.com/sapphiredev/utilities/compare/@sapphire/result@2.0.0...@sapphire/result@2.0.1) - (2022-07-03)
 
 ## 🏠 Refactor
