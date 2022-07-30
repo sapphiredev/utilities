@@ -26,6 +26,7 @@ export * from './lib/isNumber';
 export * from './lib/isObject';
 export * from './lib/isPrimitive';
 export * from './lib/isThenable';
+export * from './lib/lazy';
 export * from './lib/makeObject';
 export * from './lib/mergeDefault';
 export * from './lib/mergeObjects';
