@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/utilities@3.8.0](https://github.com/sapphiredev/utilities/compare/@sapphire/utilities@3.7.0...@sapphire/utilities@3.8.0) - (2022-07-30)
+
+## 🐛 Bug Fixes
+
+- **deps:** Update all non-major dependencies ([84af0db](https://github.com/sapphiredev/utilities/commit/84af0db2db749223b036aa99fe19a2e9af5681c6))
+
+## 📝 Documentation
+
+- Add @muchnameless as a contributor ([a1221fe](https://github.com/sapphiredev/utilities/commit/a1221fea68506e99591d5d00ec552a07c26833f9))
+- Add @enxg as a contributor ([d2382f0](https://github.com/sapphiredev/utilities/commit/d2382f04e3909cb4ad11798a0a10e683f6cf5383))
+- Add @EvolutionX-10 as a contributor ([efc3a32](https://github.com/sapphiredev/utilities/commit/efc3a320a72ae258996dd62866d206c33f8d4961))
+
+## 🚀 Features
+
+- Add lazy (#406) ([80db17c](https://github.com/sapphiredev/utilities/commit/80db17cde4266a2a73639fde9670996a0814474b))
+
 # [@sapphire/utilities@3.7.0](https://github.com/sapphiredev/utilities/compare/@sapphire/utilities@3.6.2...@sapphire/utilities@3.7.0) - (2022-07-01)
 
 ## 🏠 Refactor
