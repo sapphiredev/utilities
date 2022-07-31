@@ -25,13 +25,13 @@
 		"tslib": "^2.4.0"
 	},
 	"devDependencies": {
-		"@favware/cliff-jumper": "^1.8.5",
+		"@favware/cliff-jumper": "^1.8.6",
 		"@sapphire/discord-utilities": "workspace:^",
 		"@sapphire/discord.js-utilities": "workspace:^",
 		"@sapphire/ratelimits": "workspace:^",
 		"@sapphire/result": "workspace:^",
 		"@sapphire/utilities": "workspace:^",
-		"tsup": "^6.1.3",
+		"tsup": "^6.2.1",
 		"typescript": "^4.7.4"
 	},
 	"repository": {

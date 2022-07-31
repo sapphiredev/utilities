@@ -54,7 +54,7 @@
 		"access": "public"
 	},
 	"devDependencies": {
-		"@favware/cliff-jumper": "^1.8.5",
-		"tsup": "^6.1.3"
+		"@favware/cliff-jumper": "^1.8.6",
+		"tsup": "^6.2.1"
 	}
 }
