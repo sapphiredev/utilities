@@ -59,6 +59,6 @@ export namespace Result {
 	export type Err<E> = import('./Result/Err').Err<E>;
 	export type Ok<T> = import('./Result/Ok').Ok<T>;
 
-	export type UnwrapOk<T> = T extends Result<infer S, unknown> ? S : never;
-	export type UnwrapErr<T> = T extends Result<unknown, infer S> ? S : never;
+	export type UnwrapOk<T extends Result<any, any>> = T extends Ok<infer S> ? S : never;
+	export type UnwrapErr<T extends Result<any, any>> = T extends Err<infer S> ? S : never;
 }
