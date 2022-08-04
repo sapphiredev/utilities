@@ -57,5 +57,5 @@ export namespace Option {
 	export type Some<T> = import('./Option/Some').Some<T>;
 	export type None = import('./Option/None').None;
 
-	export type UnwrapSome<T> = T extends Option<infer S> ? S : never;
+	export type UnwrapSome<T extends Option<any>> = T extends Some<infer S> ? S : never;
 }
