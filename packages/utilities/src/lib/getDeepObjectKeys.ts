@@ -11,7 +11,7 @@ import type { AnyObject } from './utilityTypes';
  */
 export function getDeepObjectKeys<T>(
 	obj: AnyObject<T>,
-	{ arrayKeysDottedIndex = true }: GetDeepObjectKeysOptions = { arrayKeysDottedIndex: true }
+	{ arrayKeysIndexStyle = 'dotted' }: GetDeepObjectKeysOptions = { arrayKeysIndexStyle: 'dotted' }
 ): string[] {
 	const keys: string[] = [];
 
@@ -21,11 +21,15 @@ export function getDeepObjectKeys<T>(
 				const arraySubKeys = getDeepObjectKeys(innerValue);
 				keys.push(
 					...arraySubKeys.map((arraySubKey) => {
-						if (arrayKeysDottedIndex) {
-							return `${key}.${index}.${arraySubKey}`;
+						switch (arrayKeysIndexStyle) {
+							case 'braces-with-dot':
+								return `${key}[${index}].${arraySubKey}`;
+							case 'braces':
+								return `${key}[${index}]${arraySubKey}`;
+							case 'dotted':
+							default:
+								return `${key}.${index}.${arraySubKey}`;
 						}
-
-						return `${key}[${index}]${arraySubKey}`;
 					})
 				);
 			}
@@ -45,8 +49,8 @@ export function getDeepObjectKeys<T>(
  */
 export interface GetDeepObjectKeysOptions {
 	/**
-	 * Whether to use `.${index}.` (`true`) or `[${index}]` (`false`) to separate array keys
-	 * @default true
+	 * Whether to use `.${index}.` (`'dotted'`), `[${index}].`, (`'braces-with-dot'`) or `[${index}]` (`'braces'`) to separate array keys
+	 * @default 'dotted'
 	 */
-	arrayKeysDottedIndex?: boolean;
+	arrayKeysIndexStyle?: 'dotted' | 'braces-with-dot' | 'braces';
 }

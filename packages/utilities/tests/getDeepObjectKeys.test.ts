@@ -7,8 +7,9 @@ describe('getDeepObjectKeys', () => {
 		[{ a: [[{ b: 0 }]] }, {}, ['a.0.0.b']],
 		[{ a: { b: 1, c: 2 }, d: 3 }, {}, ['a.b', 'a.c', 'd']],
 		[{ a: [{ b: 1, c: 2 }, { d: 3 }] }, {}, ['a.0.b', 'a.0.c', 'a.1.d']],
-		[{ a: [{ b: 1, c: 2 }, { d: 3 }] }, { arrayKeysDottedIndex: false }, ['a[0]b', 'a[0]c', 'a[1]d']],
-		[{ a: [{ b: 1, c: 2 }, { d: 3 }] }, { arrayKeysDottedIndex: true }, ['a.0.b', 'a.0.c', 'a.1.d']],
+		[{ a: [{ b: 1, c: 2 }, { d: 3 }] }, { arrayKeysIndexStyle: 'braces' }, ['a[0]b', 'a[0]c', 'a[1]d']],
+		[{ a: [{ b: 1, c: 2 }, { d: 3 }] }, { arrayKeysIndexStyle: 'braces-with-dot' }, ['a[0].b', 'a[0].c', 'a[1].d']],
+		[{ a: [{ b: 1, c: 2 }, { d: 3 }] }, { arrayKeysIndexStyle: 'dotted' }, ['a.0.b', 'a.0.c', 'a.1.d']],
 		[{ a: [{ b: 1, c: 2 }, { d: 3 }], e: 4, f: { g: { h: { i: { j: { k: 5 } } } } } }, {}, ['a.0.b', 'a.0.c', 'a.1.d', 'e', 'f.g.h.i.j.k']]
 	];
 
