@@ -1,11 +1,8 @@
-import { Option, OptionError, Result } from '../src/index';
+import { err, none, ok, Option, OptionError, some } from '../src/index';
 import type { None } from '../src/lib/Option/None';
 import type { Some } from '../src/lib/Option/Some';
 import type { Err } from '../src/lib/Result/Err';
 import type { Ok } from '../src/lib/Result/Ok';
-
-const { some, none, from } = Option;
-const { ok, err } = Result;
 
 describe('Option', () => {
 	describe('prototype', () => {
@@ -744,6 +741,8 @@ describe('Option', () => {
 	});
 
 	describe('from', () => {
+		const { from } = Option;
+
 		test('GIVEN from(T) THEN returns Some', () => {
 			const x = from(42);
 

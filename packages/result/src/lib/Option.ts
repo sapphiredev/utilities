@@ -4,6 +4,7 @@ import { Some, some as _some } from './Option/Some';
 
 export * from './Option/IOption';
 export * from './Option/OptionError';
+export { _some as some, _none as none };
 
 /**
  * The union of the two variations of `Option`.

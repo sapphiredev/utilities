@@ -4,7 +4,7 @@
 
 # @sapphire/result
 
-**Result wrappers for function try-catch code blocks**
+**A TypeScript port of Nightly Rust's Result and Option structs**
 
 [![GitHub](https://img.shields.io/github/license/sapphiredev/utilities)](https://github.com/sapphiredev/utilities/blob/main/LICENSE.md)
 [![codecov](https://codecov.io/gh/sapphiredev/utilities/branch/main/graph/badge.svg?token=OEGIV6RFDO)](https://codecov.io/gh/sapphiredev/utilities)
@@ -15,15 +15,14 @@
 
 ## Description
 
-When having many `try-catch` blocks after one another, or multiple `try-catch` blocks nested in one another then code can become very chaotic very quickly. To alleviate that issue we have made the `@sapphire/result` which offers simple wrappers around such code. This code has been branched off of `@sapphire/framework` into its own package after we saw great success with the code there. Furthermore we also have wrappers for other arbitrary values in `isMaybe`, `isSome`, and `isNone`.
-
-The code in this package has been greatly inspired by [lexure] from [1Computer1].
+When having many `try-catch` blocks after one another, or multiple `try-catch` blocks nested in one another then code can become very chaotic very quickly. To alleviate that issue we have made the `@sapphire/result` which offers two structures based on Rust's [`Result<T, E>`](https://doc.rust-lang.org/std/result/index.html) and [`Option<T>`](https://doc.rust-lang.org/std/option/enum.Option.html) with full Nightly coverage and extra convenience methods. This code has been branched off of `@sapphire/framework` into its own package after we saw great success with the code there.
 
 ## Features
 
 -   Written in TypeScript
 -   Bundled with esbuild so it can be used in NodeJS and browsers
 -   Offers CommonJS, ESM and UMD bundles
+-   Full feature parity with Nightly Rust's `Result<T, E>` and `Option<T>`
 -   Fully tested
 
 ## Installation
@@ -36,11 +35,11 @@ npm install @sapphire/result
 
 ## Usage
 
-**Note:** While this section uses `require`, the imports match 1:1 with ESM imports. For example `const { from } = require('@sapphire/result')` equals `import { from } from '@sapphire/result'`.
+**Note:** While this section uses `require`, the imports match 1:1 with ESM imports. For example `const { Result } = require('@sapphire/result')` equals `import { Result } from '@sapphire/result'`.
 
 ### Wrapping synchronous `try-catch` blocks
 
-**Old code without `from`:**
+**Old code without `Result.from`:**
 
 ```typescript
 try {
@@ -48,28 +47,28 @@ try {
 
 	return returnCode;
 } catch (error) {
-	// Handle the error, for example let it bubble up:
-	throw new Error(error);
+	// Handle the error:
+	console.error(error);
+	return null;
 }
 ```
 
-**New Code with `from`:**
+**New Code with `Result.from`:**
 
 ```typescript
-const { from, isErr } = require('@sapphire/result');
+const { Result } = require('@sapphire/result');
 
-const returnCode = from(() => someFunctionThatMightThrow());
+const returnCode = Result.from(() => someFunctionThatMightThrow());
 
-if (isErr(returnCode)) {
-	throw new Error(returnCode.error);
-}
-
-return returnCode.value;
+return returnCode.unwrapOrElse((error) => {
+	console.error(error);
+	return null;
+});
 ```
 
 ### Wrapping asynchronous `try-catch` blocks
 
-**Old code without `fromAsync`:**
+**Old code without `Result.fromAsync`:**
 
 ```typescript
 try {
@@ -77,23 +76,23 @@ try {
 
 	return returnCode;
 } catch (error) {
-	// Handle the error, for example let it bubble up:
-	throw new Error(error);
+	// Handle the error:
+	console.error(error);
+	return null;
 }
 ```
 
-**New Code with `fromAsync`:**
+**New Code with `Result.fromAsync`:**
 
 ```typescript
-const { fromAsync, isErr } = require('@sapphire/result');
+const { Result } = require('@sapphire/result');
 
-const returnCode = await fromAsync(async () => someFunctionThatReturnsAPromiseAndMightReject());
+const returnCode = await Result.fromAsync(async () => someFunctionThatReturnsAPromiseAndMightReject());
 
-if (isErr(returnCode)) {
-	throw new Error(returnCode.error);
-}
-
-return returnCode.value;
+return returnCode.unwrapOrElse((error) => {
+	console.error(error);
+	return null;
+});
 ```
 
 ---

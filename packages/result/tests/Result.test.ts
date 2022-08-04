@@ -1,11 +1,8 @@
-import { Option, Result, ResultError } from '../src/index';
+import { err, none, ok, Option, Result, ResultError, some } from '../src/index';
 import type { None } from '../src/lib/Option/None';
 import type { Some } from '../src/lib/Option/Some';
 import type { Err } from '../src/lib/Result/Err';
 import type { Ok } from '../src/lib/Result/Ok';
-
-const { ok, err, from, fromAsync } = Result;
-const { some, none } = Option;
 
 describe('Result', () => {
 	describe('prototype', () => {
@@ -756,6 +753,8 @@ describe('Result', () => {
 	});
 
 	describe('from', () => {
+		const { from } = Result;
+
 		test('GIVEN from(T) value THEN returns Ok', () => {
 			const x = from(42);
 
@@ -802,6 +801,8 @@ describe('Result', () => {
 	});
 
 	describe('fromAsync', () => {
+		const { fromAsync } = Result;
+
 		test('GIVEN fromAsync(T) THEN returns Ok', async () => {
 			const x = await fromAsync(42);
 
