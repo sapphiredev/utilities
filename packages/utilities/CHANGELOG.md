@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/utilities@3.9.0](https://github.com/sapphiredev/utilities/compare/@sapphire/utilities@3.8.0...@sapphire/utilities@3.9.0) - (2022-08-04)
+
+## 🚀 Features
+
+- **utilities:** Add getDeepObjectKeys (#413) ([b8b0883](https://github.com/sapphiredev/utilities/commit/b8b0883689e96df30767e4c9998b5f3403560779))
+
 # [@sapphire/utilities@3.8.0](https://github.com/sapphiredev/utilities/compare/@sapphire/utilities@3.7.0...@sapphire/utilities@3.8.0) - (2022-07-30)
 
 ## 🐛 Bug Fixes
