@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/result@2.2.0](https://github.com/sapphiredev/utilities/compare/@sapphire/result@2.1.1...@sapphire/result@2.2.0) - (2022-08-04)
+
+## 🐛 Bug Fixes
+
+- **result:** Resolve Unwrap type issues (#411) ([3c2159c](https://github.com/sapphiredev/utilities/commit/3c2159cac18df0925cd71393698ed7d9f98fd6ef))
+
+## 🚀 Features
+
+- **result:** Export `ok`, `err`, `some`, `none`, and improve docs (#412) ([c978864](https://github.com/sapphiredev/utilities/commit/c978864d91d950c611c073a5c34ef01311e9d8f0))
+
 # [@sapphire/result@2.1.1](https://github.com/sapphiredev/utilities/compare/@sapphire/result@2.1.0...@sapphire/result@2.1.1) - (2022-07-29)
 
 ## 🐛 Bug Fixes
