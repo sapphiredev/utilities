@@ -1,7 +1,7 @@
 {
 	"name": "@sapphire/result",
 	"version": "2.1.1",
-	"description": "Sapphire results package",
+	"description": "A TypeScript port of Nightly Rust's Result and Option structs",
 	"author": "@sapphire",
 	"license": "MIT",
 	"main": "dist/index.js",

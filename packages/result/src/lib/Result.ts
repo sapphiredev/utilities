@@ -4,6 +4,7 @@ import { Ok, ok as _ok } from './Result/Ok';
 
 export * from './Result/IResult';
 export * from './Result/ResultError';
+export { _ok as ok, _err as err };
 
 /**
  * The union of the two variations of `Result`.
