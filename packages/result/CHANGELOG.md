@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/result@2.3.1](https://github.com/sapphiredev/utilities/compare/@sapphire/result@2.3.0...@sapphire/result@2.3.1) - (2022-08-05)
+
+## 🐛 Bug Fixes
+
+- **result:** Make unwrap methods generic (#415) ([76e95b3](https://github.com/sapphiredev/utilities/commit/76e95b3c18ecdff53bfa07d541ed1bc1809c7f72))
+
 # [@sapphire/result@2.3.0](https://github.com/sapphiredev/utilities/compare/@sapphire/result@2.2.0...@sapphire/result@2.3.0) - (2022-08-05)
 
 ## 🚀 Features
