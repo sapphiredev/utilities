@@ -34,12 +34,12 @@ export class Some<T> implements IOption<T> {
 		return this.value;
 	}
 
-	public unwrapOr(defaultValue: any): T;
+	public unwrapOr(defaultValue: T): T;
 	public unwrapOr(): T {
 		return this.value;
 	}
 
-	public unwrapOrElse(cb: () => any): T;
+	public unwrapOrElse(cb: () => T): T;
 	public unwrapOrElse(): T {
 		return this.value;
 	}

@@ -130,7 +130,7 @@ export interface IOption<T> {
 	 *
 	 * @see {@link https://doc.rust-lang.org/std/option/enum.Option.html#method.unwrap_or}
 	 */
-	unwrapOr<V>(defaultValue: V): T | V;
+	unwrapOr(defaultValue: T): T;
 
 	/**
 	 * Returns the contained Some value or computes it from a closure.
@@ -146,7 +146,7 @@ export interface IOption<T> {
 	 *
 	 * @see {@link https://doc.rust-lang.org/std/option/enum.Option.html#method.unwrap_or_else}
 	 */
-	unwrapOrElse<V>(cb: () => V): T | V;
+	unwrapOrElse(cb: () => T): T;
 
 	/**
 	 * Maps an `Option<T>` to `Option<U>` by applying a function to a contained value.
