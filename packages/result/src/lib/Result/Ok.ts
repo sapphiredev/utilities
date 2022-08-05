@@ -106,12 +106,12 @@ export class Ok<T> implements IResult<T, any> {
 		throw new ResultError('Unwrap failed', this.value);
 	}
 
-	public unwrapOr(defaultValue: T): T;
+	public unwrapOr(defaultValue: any): T;
 	public unwrapOr(): T {
 		return this.value;
 	}
 
-	public unwrapOrElse(op: (error: any) => T): T;
+	public unwrapOrElse(op: (error: any) => any): T;
 	public unwrapOrElse(): T {
 		return this.value;
 	}

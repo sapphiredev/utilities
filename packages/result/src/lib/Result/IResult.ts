@@ -513,7 +513,7 @@ export interface IResult<T, E> {
 	 *
 	 * @see {@link https://doc.rust-lang.org/std/result/enum.Result.html#method.unwrap_or}
 	 */
-	unwrapOr(defaultValue: T): T;
+	unwrapOr<V>(defaultValue: V): T | V;
 
 	/**
 	 * Returns the contained `Ok` value or computes it from a closure.
@@ -529,7 +529,7 @@ export interface IResult<T, E> {
 	 *
 	 * @see {@link https://doc.rust-lang.org/std/result/enum.Result.html#method.unwrap_or_else}
 	 */
-	unwrapOrElse(op: (error: E) => T): T;
+	unwrapOrElse<V>(op: (error: E) => V): T | V;
 
 	/**
 	 * Returns `result` if the result is `Ok`, otherwise returns the `Err` value of itself.
