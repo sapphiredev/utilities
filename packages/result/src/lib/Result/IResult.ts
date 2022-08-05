@@ -1,3 +1,4 @@
+import type { Awaitable } from '../common/utils';
 import type { Option } from '../Option';
 import type { Result } from '../Result';
 import type { Err } from './Err';
@@ -289,6 +290,7 @@ export interface IResult<T, E> {
 	/**
 	 * Calls the provided closure with a reference to the contained value (if `Ok`).
 	 * @param cb The predicate.
+	 * @seealso {@link inspectAsync} for the awaitable version.
 	 *
 	 * @example
 	 * ```typescript
@@ -306,8 +308,29 @@ export interface IResult<T, E> {
 	inspect(cb: (value: T) => void): this;
 
 	/**
+	 * Calls the provided closure with a reference to the contained value (if `Ok`) and awaits it.
+	 * @param cb The predicate.
+	 * @seealso {@link inspect} for the sync version.
+	 *
+	 * @example
+	 * ```typescript
+	 * await ok(2).inspectAsync(console.log);
+	 * // Logs: 2
+	 * ```
+	 * @example
+	 * ```typescript
+	 * await err('Some error message').inspectAsync(console.log);
+	 * // Doesn't log
+	 * ```
+	 *
+	 * @note This is an extension not supported in Rust
+	 */
+	inspectAsync(cb: (value: T) => Awaitable<void>): Promise<this>;
+
+	/**
 	 * Calls the provided closure with a reference to the contained error (if `Err`).
 	 * @param cb The predicate.
+	 * @seealso {@link inspectErrAsync} for the awaitable version.
 	 *
 	 * @example
 	 * ```typescript
@@ -323,6 +346,26 @@ export interface IResult<T, E> {
 	 * @see {@link https://doc.rust-lang.org/std/result/enum.Result.html#method.inspect_err}
 	 */
 	inspectErr(cb: (error: E) => void): this;
+
+	/**
+	 * Calls the provided closure with a reference to the contained error (if `Err`) and awaits it.
+	 * @param cb The predicate.
+	 * @seealso {@link inspectErr} for the sync version.
+	 *
+	 * @example
+	 * ```typescript
+	 * await ok(2).inspectErrAsync(console.log);
+	 * // Doesn't log
+	 * ```
+	 * @example
+	 * ```typescript
+	 * await err('Some error message').inspectErrAsync(console.log);
+	 * // Logs: Some error message
+	 * ```
+	 *
+	 * @note This is an extension not supported in Rust
+	 */
+	inspectErrAsync(cb: (error: E) => Awaitable<void>): Promise<this>;
 
 	/**
 	 * Returns an iterator over the possibly contained value.

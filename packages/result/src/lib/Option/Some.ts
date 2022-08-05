@@ -1,3 +1,4 @@
+import type { Awaitable } from '../common/utils';
 import type { Option } from '../Option';
 import type { Result } from '../Result';
 import { err, type Err } from '../Result/Err';
@@ -66,6 +67,11 @@ export class Some<T> implements IOption<T> {
 
 	public inspect(cb: (value: T) => void): this {
 		cb(this.value);
+		return this;
+	}
+
+	public async inspectAsync(cb: (value: T) => Awaitable<unknown>): Promise<this> {
+		await cb(this.value);
 		return this;
 	}
 

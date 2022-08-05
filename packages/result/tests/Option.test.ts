@@ -1,3 +1,4 @@
+import { setTimeout as sleep } from 'node:timers/promises';
 import { err, none, ok, Option, OptionError, some } from '../src/index';
 import type { None } from '../src/lib/Option/None';
 import type { Some } from '../src/lib/Option/Some';
@@ -236,6 +237,27 @@ describe('Option', () => {
 				const cb = vi.fn();
 
 				expect<typeof x>(x.inspect(cb)).toBe(x);
+				expect(cb).not.toHaveBeenCalled();
+			});
+		});
+
+		describe('inspectAsync', () => {
+			test('GIVEN some THEN calls callback and returns self', async () => {
+				const x = some(2);
+				let finished = false;
+				const cb = vi.fn(() => sleep(5).then(() => (finished = true)));
+
+				await expect<Promise<typeof x>>(x.inspectAsync(cb)).resolves.toBe(x);
+				expect(cb).toHaveBeenCalledTimes(1);
+				expect(cb).toHaveBeenCalledWith(2);
+				expect(finished).toBe(true);
+			});
+
+			test('GIVEN none THEN returns self', async () => {
+				const x = none;
+				const cb = vi.fn();
+
+				await expect<Promise<typeof x>>(x.inspectAsync(cb)).resolves.toBe(x);
 				expect(cb).not.toHaveBeenCalled();
 			});
 		});

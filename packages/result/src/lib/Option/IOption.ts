@@ -1,3 +1,4 @@
+import type { Awaitable } from '../common/utils';
 import type { Option } from '../Option';
 import type { Result } from '../Result';
 import type { None } from './None';
@@ -257,6 +258,7 @@ export interface IOption<T> {
 	/**
 	 * Calls the provided closure with a reference to the contained value (if `Some`).
 	 * @param cb The predicate.
+	 * @seealso {@link inspectAsync} for the awaitable version.
 	 *
 	 * @example
 	 * ```typescript
@@ -272,6 +274,26 @@ export interface IOption<T> {
 	 * @see {@link https://doc.rust-lang.org/std/option/enum.Option.html#method.inspect}
 	 */
 	inspect(cb: (value: T) => void): this;
+
+	/**
+	 * Calls the provided closure with a reference to the contained value (if `Some`).
+	 * @param cb The predicate.
+	 * @seealso {@link inspect} for the sync version.
+	 *
+	 * @example
+	 * ```typescript
+	 * await some(2).inspectAsync(console.log);
+	 * // Logs: 2
+	 * ```
+	 * @example
+	 * ```typescript
+	 * await none.inspectAsync(console.log);
+	 * // Doesn't log
+	 * ```
+	 *
+	 * @note This is an extension not supported in Rust
+	 */
+	inspectAsync(cb: (value: T) => Awaitable<void>): Promise<this>;
 
 	/**
 	 * Transforms the `Option<T>` into a `Result<T, E>`, mapping `Some(v)` to `Ok(v)` and `None` to `Err(err)`.

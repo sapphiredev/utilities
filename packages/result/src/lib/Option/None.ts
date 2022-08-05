@@ -1,3 +1,4 @@
+import type { Awaitable } from '../common/utils';
 import type { Option } from '../Option';
 import { err, type Err } from '../Result/Err';
 import { ok, type Ok } from '../Result/Ok';
@@ -62,6 +63,11 @@ export class None implements IOption<any> {
 	public inspect(cb?: (value: never) => void): this;
 	public inspect(): this {
 		return this;
+	}
+
+	public inspectAsync(cb?: (value: never) => Awaitable<unknown>): Promise<this>;
+	public inspectAsync(): Promise<this> {
+		return Promise.resolve(this);
 	}
 
 	public okOr<E>(error: E): Err<E> {
