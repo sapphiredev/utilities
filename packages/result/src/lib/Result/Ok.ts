@@ -1,3 +1,4 @@
+import type { Awaitable } from '../common/utils';
 import type { Option } from '../Option';
 import { none, type None } from '../Option/None';
 import { some, type Some } from '../Option/Some';
@@ -69,9 +70,19 @@ export class Ok<T> implements IResult<T, any> {
 		return this;
 	}
 
+	public async inspectAsync(cb: (value: T) => Awaitable<unknown>): Promise<this> {
+		await cb(this.value);
+		return this;
+	}
+
 	public inspectErr(cb?: (error: never) => void): this;
 	public inspectErr(): this {
 		return this;
+	}
+
+	public inspectErrAsync(cb?: (error: never) => Awaitable<unknown>): Promise<this>;
+	public inspectErrAsync(): Promise<this> {
+		return Promise.resolve(this);
 	}
 
 	public *iter(): Generator<T> {

@@ -1,3 +1,4 @@
+import { setTimeout as sleep } from 'node:timers/promises';
 import { err, none, ok, Option, Result, ResultError, some } from '../src/index';
 import type { None } from '../src/lib/Option/None';
 import type { Some } from '../src/lib/Option/Some';
@@ -265,6 +266,27 @@ describe('Result', () => {
 			});
 		});
 
+		describe('inspectAsync', () => {
+			test('GIVEN ok THEN calls callback and returns self', async () => {
+				const x = ok(2);
+				let finished = false;
+				const cb = vi.fn(() => sleep(5).then(() => (finished = true)));
+
+				await expect<Promise<typeof x>>(x.inspectAsync(cb)).resolves.toBe(x);
+				expect(cb).toHaveBeenCalledTimes(1);
+				expect(cb).toHaveBeenCalledWith(2);
+				expect(finished).toBe(true);
+			});
+
+			test('GIVEN err THEN returns self', async () => {
+				const x = err('Some error message');
+				const cb = vi.fn();
+
+				await expect<Promise<typeof x>>(x.inspectAsync(cb)).resolves.toBe(x);
+				expect(cb).not.toHaveBeenCalled();
+			});
+		});
+
 		describe('inspectErr', () => {
 			test('GIVEN ok THEN calls callback and returns self', () => {
 				const x = ok(2);
@@ -281,6 +303,27 @@ describe('Result', () => {
 				expect<typeof x>(x.inspectErr(cb)).toBe(x);
 				expect(cb).toHaveBeenCalledTimes(1);
 				expect(cb).toHaveBeenCalledWith('Some error message');
+			});
+		});
+
+		describe('inspectErrAsync', () => {
+			test('GIVEN ok THEN calls callback and returns self', async () => {
+				const x = ok(2);
+				const cb = vi.fn();
+
+				await expect<Promise<typeof x>>(x.inspectErrAsync(cb)).resolves.toBe(x);
+				expect(cb).not.toHaveBeenCalled();
+			});
+
+			test('GIVEN err THEN returns self', async () => {
+				const x = err('Some error message');
+				let finished = false;
+				const cb = vi.fn(() => sleep(5).then(() => (finished = true)));
+
+				await expect<Promise<typeof x>>(x.inspectErrAsync(cb)).resolves.toBe(x);
+				expect(cb).toHaveBeenCalledTimes(1);
+				expect(cb).toHaveBeenCalledWith('Some error message');
+				expect(finished).toBe(true);
 			});
 		});
 

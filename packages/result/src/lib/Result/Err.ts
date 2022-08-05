@@ -1,3 +1,4 @@
+import type { Awaitable } from '../common/utils';
 import { none, type None } from '../Option/None';
 import { some, type Some } from '../Option/Some';
 import type { Result } from '../Result';
@@ -70,8 +71,18 @@ export class Err<E> implements IResult<any, E> {
 		return this;
 	}
 
+	public inspectAsync(cb?: (value: never) => Awaitable<unknown>): Promise<this>;
+	public inspectAsync(): Promise<this> {
+		return Promise.resolve(this);
+	}
+
 	public inspectErr(cb: (error: E) => void): this {
 		cb(this.error);
+		return this;
+	}
+
+	public async inspectErrAsync(cb: (error: E) => Awaitable<unknown>): Promise<this> {
+		await cb(this.error);
 		return this;
 	}
 
