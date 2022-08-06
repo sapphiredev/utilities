@@ -101,6 +101,12 @@ describe('Option', () => {
 
 				expect<5>(x.unwrapOr(5)).toBe(5);
 			});
+
+			test('GIVEN Option<T> THEN returns union', () => {
+				const x = some(2) as Option<number>;
+
+				expect<number | null>(x.unwrapOr(null)).toBe(2);
+			});
 		});
 
 		describe('unwrapOrElse', () => {
@@ -114,6 +120,12 @@ describe('Option', () => {
 				const x = none;
 
 				expect<5>(x.unwrapOrElse(() => 5)).toBe(5);
+			});
+
+			test('GIVEN Option<T> THEN returns union', () => {
+				const x = some(2) as Option<number>;
+
+				expect<number | null>(x.unwrapOrElse(() => null)).toBe(2);
 			});
 		});
 
@@ -828,6 +840,16 @@ describe('Option', () => {
 
 			expect(x.isSome()).toBe(false);
 			expect(x.isNone()).toBe(true);
+		});
+	});
+
+	describe('types', () => {
+		test('GIVEN Some<T> THEN assigns to Option<T>', () => {
+			expect<Option<string>>(some('foo'));
+		});
+
+		test('GIVEN None THEN assigns to Option<T>', () => {
+			expect<Option<string>>(none);
 		});
 	});
 });
