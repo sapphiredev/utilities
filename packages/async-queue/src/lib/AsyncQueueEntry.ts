@@ -1,5 +1,8 @@
 import type { AsyncQueue } from './AsyncQueue';
 
+/**
+ * @internal
+ */
 export class AsyncQueueEntry {
 	public readonly promise: Promise<void>;
 	private resolve!: () => void;

@@ -70,17 +70,23 @@ describe('AsyncQueue', () => {
 
 		const first = tester();
 		const second = tester({ signal: controller.signal });
-		expect(queue.remaining).toBe(2);
+		const third = tester();
+
+		expect(queue.remaining).toBe(3);
 		expect(queue['promises'][1]['signal']).toBe(controller.signal);
 		expect(queue['promises'][1]['signalListener']).not.toBe(null);
 
+		const thirdEntry = queue['promises'][2];
+
 		controller.abort();
-		expect(queue.remaining).toBe(1);
+		expect(queue.remaining).toBe(2);
+		expect(queue['promises'][1]).toBe(thirdEntry);
 
 		await expect(first).resolves.toBe(1);
 		expect(queue.remaining).toBe(0);
 
 		await expect(second).rejects.toThrowError('Request aborted manually');
+		await expect(third).resolves.toBe(2);
 	});
 
 	test('GIVEN non-head item with aborted AbortSignal THEN does not set an abort handler', async () => {

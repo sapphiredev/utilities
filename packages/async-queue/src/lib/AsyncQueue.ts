@@ -22,7 +22,7 @@ export class AsyncQueue {
 	 * ```typescript
 	 * const queue = new AsyncQueue();
 	 * async function request(url, options) {
-	 *     await queue.wait();
+	 *     await queue.wait({ signal: options.signal });
 	 *     try {
 	 *         const result = await fetch(url, options);
 	 *         // Do some operations with 'result'
@@ -70,5 +70,5 @@ export class AsyncQueue {
 }
 
 export interface AsyncQueueWaitOptions {
-	signal?: AbortSignal;
+	signal?: AbortSignal | undefined | null;
 }
