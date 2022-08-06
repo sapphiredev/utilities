@@ -28,7 +28,7 @@ export class AsyncQueue {
 	 *         // Do some operations with 'result'
 	 *     } finally {
 	 *         // Remove first entry from the queue and resolve for the next entry
-	 *         queue.unlock();
+	 *         queue.shift();
 	 *     }
 	 * }
 	 *
