@@ -232,7 +232,7 @@ describe('Result', () => {
 				const x = ok(2);
 				const cb = vi.fn((error: string) => ok(error.length));
 
-				expect<Result<number, number>>(x.mapErr(cb)).toBe(x);
+				expect<Result<number, number>>(x.mapErrInto(cb)).toBe(x);
 				expect(cb).not.toHaveBeenCalled();
 			});
 
@@ -409,6 +409,12 @@ describe('Result', () => {
 
 				expect<5>(x.unwrapOr(5)).toBe(5);
 			});
+
+			test('GIVEN Result<T, E> THEN returns union', () => {
+				const x = ok(2) as Result<number, string>;
+
+				expect<number | null>(x.unwrapOr(null)).toBe(2);
+			});
 		});
 
 		describe('unwrapOrElse', () => {
@@ -422,6 +428,12 @@ describe('Result', () => {
 				const x = err('Some error message');
 
 				expect<5>(x.unwrapOrElse(() => 5)).toBe(5);
+			});
+
+			test('GIVEN Result<T, E> THEN returns union', () => {
+				const x = ok(2) as Result<number, string>;
+
+				expect<number | null>(x.unwrapOrElse(() => null)).toBe(2);
 			});
 		});
 
@@ -905,6 +917,16 @@ describe('Result', () => {
 			expect(x.isOk()).toBe(false);
 			expect(x.isErr()).toBe(true);
 			expect(x.unwrapErr()).toBe(error);
+		});
+	});
+
+	describe('types', () => {
+		test('GIVEN Ok<T> THEN assigns to Result<T, E>', () => {
+			expect<Result<number, string>>(ok(4));
+		});
+
+		test('GIVEN Err<E> THEN assigns to Result<T, E>', () => {
+			expect<Result<number, string>>(err('foo'));
 		});
 	});
 });
