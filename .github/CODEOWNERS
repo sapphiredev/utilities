@@ -5,6 +5,7 @@
 /packages/eslint-config/**/*.ts @favna
 /packages/event-iterator/**/*.ts @kyranet @vladfrangu @favna
 /packages/fetch/**/*.ts @favna @kyranet @vladfrangu
+/packages/lexure/**/*.ts @kyranet @favna @vladfrangu
 /packages/phisherman/**/*.ts @undiedgamer @favna @vladfrangu
 /packages/prettier-config/**/*.ts @favna
 /packages/ratelimits/**/*.ts @kyranet @vladfrangu @favna
