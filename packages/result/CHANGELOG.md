@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/result@2.3.3](https://github.com/sapphiredev/utilities/compare/@sapphire/result@2.3.2...@sapphire/result@2.3.3) - (2022-08-06)
+
+## 🐛 Bug Fixes
+
+- **result:** Better `unwrapOr*`, added more tests (#416) ([ec088a8](https://github.com/sapphiredev/utilities/commit/ec088a88a878c7d230c51b148593a85d258075f9))
+
 # [@sapphire/result@2.3.2](https://github.com/sapphiredev/utilities/compare/@sapphire/result@2.3.1...@sapphire/result@2.3.2) - (2022-08-05)
 
 ## 🐛 Bug Fixes
