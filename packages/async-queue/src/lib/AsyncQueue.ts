@@ -1,3 +1,5 @@
+import { AsyncQueueEntry } from './AsyncQueueEntry';
+
 /**
  * The AsyncQueue class used to sequentialize burst requests
  */
@@ -12,7 +14,7 @@ export class AsyncQueue {
 	/**
 	 * The promises array
 	 */
-	private promises: InternalAsyncQueueDeferredPromise[] = [];
+	private promises: AsyncQueueEntry[] = [];
 
 	/**
 	 * Waits for last promise and queues a new one
@@ -26,7 +28,7 @@ export class AsyncQueue {
 	 *         // Do some operations with 'result'
 	 *     } finally {
 	 *         // Remove first entry from the queue and resolve for the next entry
-	 *         queue.shift();
+	 *         queue.unlock();
 	 *     }
 	 * }
 	 *
@@ -35,34 +37,38 @@ export class AsyncQueue {
 	 * request(someUrl3, someOptions3); // Will call fetch() after the second finished
 	 * ```
 	 */
-	public wait(): Promise<void> {
-		const next = this.promises.length ? this.promises[this.promises.length - 1].promise : Promise.resolve();
-		let resolve: () => void;
-		const promise = new Promise<void>((res) => {
-			resolve = res;
-		});
+	public wait(options?: Readonly<AsyncQueueWaitOptions>): Promise<void> {
+		const entry = new AsyncQueueEntry(this);
 
-		this.promises.push({
-			resolve: resolve!,
-			promise
-		});
+		if (this.promises.length === 0) {
+			this.promises.push(entry);
+			return Promise.resolve();
+		}
 
-		return next;
+		this.promises.push(entry);
+		if (options?.signal) entry.setSignal(options.signal);
+		return entry.promise;
 	}
 
 	/**
-	 * Frees the queue's lock for the next item to process
+	 * Unlocks the head lock and transfers the next lock (if any) to the head.
+	 * @returns Whether or not there was an element pending to process.
 	 */
 	public shift(): void {
-		const deferred = this.promises.shift();
-		if (typeof deferred !== 'undefined') deferred.resolve();
+		if (this.promises.length === 0) return;
+		if (this.promises.length === 1) {
+			// Remove the head entry.
+			this.promises.shift();
+			return;
+		}
+
+		// Remove the head entry, making the 2nd entry the new one.
+		// Then use the head entry, which will unlock the promise.
+		this.promises.shift();
+		this.promises[0].use();
 	}
 }
 
-/**
- * @internal
- */
-interface InternalAsyncQueueDeferredPromise {
-	resolve(): void;
-	promise: Promise<void>;
+export interface AsyncQueueWaitOptions {
+	signal?: AbortSignal;
 }
