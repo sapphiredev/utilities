@@ -22,7 +22,6 @@
 		"@discordjs/collection": "^1.0.1",
 		"@favware/cliff-jumper": "^1.8.6",
 		"@favware/npm-deprecate": "^1.0.5",
-		"@favware/rollup-type-bundler": "^1.0.10",
 		"@sapphire/framework": "^2.5.1",
 		"@types/lodash": "^4.14.182",
 		"@types/node": "^18.6.3",
