@@ -16,7 +16,7 @@
 	"homepage": "https://github.com/sapphiredev/utilities/tree/main/packages/discord.js-utilities",
 	"scripts": {
 		"lint": "eslint src --ext ts --fix -c ../../.eslintrc",
-		"build": "tsup",
+		"build": "tsup && tsc -b src",
 		"prepack": "yarn build",
 		"bump": "cliff-jumper",
 		"check-update": "cliff-jumper --dry-run"
