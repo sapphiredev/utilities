@@ -184,3 +184,16 @@ export type StrictRequired<T> = {
  * ```
  */
 export type ArrayElementType<T> = T extends (infer K)[] ? K : T extends readonly (infer RK)[] ? RK : T;
+
+// TODO: use it
+// type ArrayKeysIndexStyle = 'dotted' | 'braces-with-dot' | 'braces';
+
+type PathImpl<T, K extends keyof T> = K extends string
+	? T[K] extends Record<string, any>
+		? T[K] extends ArrayLike<any>
+			? `${K}.${PathImpl<T[K], Exclude<keyof T[K], keyof any[]>>}`
+			: `${K}.${PathImpl<T[K], keyof T[K]>}`
+		: K
+	: never;
+
+export type Path<T> = PathImpl<T, keyof T>;

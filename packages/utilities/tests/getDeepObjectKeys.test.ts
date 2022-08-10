@@ -16,6 +16,26 @@ describe('getDeepObjectKeys', () => {
 	test.each(scenarios)('GIVEN %j with %j THEN keys should equal %j', (inputObj, options, outputStrings) => {
 		expect(getDeepObjectKeys(inputObj, options)).toEqual(outputStrings);
 	});
+
+	test('GIVEN an object THEN return type of the function should match the returned value', () => {
+		expect<('a' | 'c.d' | 'c.e' | 'b' | 'd.1.d' | 'd.1.e' | 'd.0')[]>(
+			getDeepObjectKeys({
+				a: 'b',
+				c: {
+					d: 'a',
+					e: 1
+				},
+				b: 1,
+				d: [
+					1,
+					{
+						d: 'a',
+						e: 1
+					}
+				] as const
+			})
+		).toStrictEqual(['a', 'c.d', 'c.e', 'b', 'd.1.d', 'd.1.e', 'd.0']);
+	});
 });
 
 type Scenario = [NonNullObject, GetDeepObjectKeysOptions, string[]];

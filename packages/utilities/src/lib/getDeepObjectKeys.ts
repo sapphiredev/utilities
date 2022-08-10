@@ -1,5 +1,5 @@
 import { isObject } from './isObject';
-import type { AnyObject } from './utilityTypes';
+import type { AnyObject, Path } from './utilityTypes';
 
 /**
  * Flattens an object to a list of its keys, traversing deeply into nested objects and arrays of objects.
@@ -9,10 +9,7 @@ import type { AnyObject } from './utilityTypes';
  * @param obj The object of which to deeply retrieve its keys
  * @returns An array of strings holding the keys of the object
  */
-export function getDeepObjectKeys<T>(
-	obj: AnyObject<T>,
-	{ arrayKeysIndexStyle = 'dotted' }: GetDeepObjectKeysOptions = { arrayKeysIndexStyle: 'dotted' }
-): string[] {
+export function getDeepObjectKeys<T>(obj: AnyObject<T>, { arrayKeysIndexStyle = 'dotted' }: GetDeepObjectKeysOptions = {}): Path<typeof obj>[] {
 	const keys: string[] = [];
 
 	for (const [key, value] of Object.entries(obj)) {
@@ -41,7 +38,7 @@ export function getDeepObjectKeys<T>(
 		}
 	}
 
-	return keys;
+	return keys as any;
 }
 
 /**
