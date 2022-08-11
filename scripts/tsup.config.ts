@@ -6,6 +6,7 @@ export const createTsupConfig = ({
 	format = ['esm', 'cjs', 'iife'],
 	target = 'es2021',
 	sourcemap = true,
+	dts = true,
 	esbuildOptions = (options, context) => {
 		if (context.format === 'cjs') {
 			options.banner = {
@@ -16,7 +17,7 @@ export const createTsupConfig = ({
 }: ConfigOptions = {}) =>
 	defineConfig({
 		clean: true,
-		dts: false,
+		dts,
 		entry: ['src/index.ts'],
 		format,
 		minify: false,
@@ -29,4 +30,4 @@ export const createTsupConfig = ({
 		esbuildOptions
 	});
 
-type ConfigOptions = Pick<Options, 'esbuildOptions' | 'sourcemap' | 'target' | 'format' | 'globalName'>;
+type ConfigOptions = Pick<Options, 'esbuildOptions' | 'sourcemap' | 'target' | 'format' | 'globalName' | 'dts'>;
