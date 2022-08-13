@@ -1,11 +1,16 @@
 import type {
+	ButtonInteraction,
 	CategoryChannel,
 	Channel,
+	CommandInteraction,
+	ContextMenuInteraction,
 	DMChannel,
 	GuildChannel,
 	Message,
+	ModalSubmitInteraction,
 	NewsChannel,
 	PartialDMChannel,
+	SelectMenuInteraction,
 	StageChannel,
 	StoreChannel,
 	TextChannel,
@@ -63,3 +68,18 @@ export type GuildTextBasedChannelTypes = NonThreadGuildTextBasedChannelTypes | T
  * The types of a channel, with the addition of `'UNKNOWN'`
  */
 export type ChannelTypeString = ChannelTypes['type'] | 'UNKNOWN';
+
+/**
+ * A union of {@link CommandInteraction} and {@link ContextMenuInteraction}. Similar to {@link BaseCommandInteraction} class but as a type union.
+ */
+export type ChatInputOrContextMenuInteraction = CommandInteraction | ContextMenuInteraction;
+
+/**
+ * A union of {@link CommandInteraction}, {@link ContextMenuInteraction}, {@link SelectMenuInteraction}, {@link ButtonInteraction}, and {@link ModalSubmitInteraction};
+ */
+export type NonModalInteraction = ChatInputOrContextMenuInteraction | SelectMenuInteraction | ButtonInteraction;
+
+/**
+ * A union of {@link CommandInteraction}, {@link ContextMenuInteraction}, {@link SelectMenuInteraction}, {@link ButtonInteraction}, and {@link ModalSubmitInteraction};
+ */
+export type AnyInteraction = ChatInputOrContextMenuInteraction | SelectMenuInteraction | ButtonInteraction | ModalSubmitInteraction;
