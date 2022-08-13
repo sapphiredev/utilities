@@ -82,4 +82,4 @@ export type NonModalInteraction = ChatInputOrContextMenuInteraction | SelectMenu
 /**
  * A union of {@link CommandInteraction}, {@link ContextMenuInteraction}, {@link SelectMenuInteraction}, {@link ButtonInteraction}, and {@link ModalSubmitInteraction};
  */
-export type AnyInteraction = ChatInputOrContextMenuInteraction | SelectMenuInteraction | ButtonInteraction | ModalSubmitInteraction;
+export type AnyInteraction = NonModalInteraction | ModalSubmitInteraction;

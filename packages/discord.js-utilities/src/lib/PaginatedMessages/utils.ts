@@ -1,19 +1,7 @@
 import { chunk, partition } from '@sapphire/utilities';
-import type { APIMessage } from 'discord-api-types/v9';
-import {
-	Constants,
-	Message,
-	MessageActionRow,
-	type ButtonInteraction,
-	type CommandInteraction,
-	type ContextMenuInteraction,
-	type InteractionButtonOptions,
-	type MessageButton,
-	type MessageSelectMenu,
-	type MessageSelectMenuOptions,
-	type SelectMenuInteraction
-} from 'discord.js';
-import { isMessageInstance } from '../type-guards';
+import { Constants, InteractionButtonOptions, MessageActionRow, MessageButton, MessageSelectMenu, MessageSelectMenuOptions } from 'discord.js';
+import { deprecate } from 'node:util';
+import { isAnyInteraction, isMessageInstance } from '../type-guards';
 import type {
 	PaginatedMessageAction,
 	PaginatedMessageActionButton,
@@ -23,15 +11,17 @@ import type {
 } from './PaginatedMessageTypes';
 
 /**
- * Checks whether the PaginatedMessage runs on an {@link CommandInteraction}, {@link ContextMenuInteraction}, {@link SelectMenuInteraction} or {@link Message}
- * @param messageOrInteraction The message or interaction that the PaginatedMessage runs on
- * @returns `true` if the PaginatedMessage runs on an an {@link CommandInteraction}, {@link ContextMenuInteraction} or {@link SelectMenuInteraction}, `false` if it runs on a {@link Message}
+ * Checks whether the input `messageOrInteraction` is one of {@link Message} or one of {@link BaseCommandInteraction}, {@link CommandInteraction}, {@link ContextMenuInteraction}, or {@link SelectMenuInteraction}
+ * @deprecated Use {@link isAnyInteraction} instead, it is the same function but renamed.
+ * @param messageOrInteraction The message or interaction that should be checked.
+ * @returns `true` if the `messageOrInteraction` is **NOT** an instanceof {@link Message}, `false` if it is.
  */
-export function runsOnInteraction(
-	messageOrInteraction: APIMessage | Message | CommandInteraction | ContextMenuInteraction | SelectMenuInteraction | ButtonInteraction
-): messageOrInteraction is CommandInteraction | ContextMenuInteraction | SelectMenuInteraction | ButtonInteraction {
-	return !(messageOrInteraction instanceof Message);
-}
+export const runsOnInteraction = (...args: Parameters<typeof isAnyInteraction>) =>
+	deprecate(
+		() => isAnyInteraction(...args),
+		'runsOnInteraction is deprecated in favour of isAnyInteraction which has the same syntax but using a more descriptive and general name. runsOnInteraction will be removed in the next major version. Please change your imports and use isAnyInteraction instead.',
+		'DeprecationWarning'
+	);
 
 export function actionIsButtonOrMenu(action: PaginatedMessageAction): action is PaginatedMessageActionButton | PaginatedMessageActionMenu {
 	return (
@@ -79,7 +69,7 @@ export function createPartitionedMessageRow(components: (MessageButton | Message
  * @param parameters The parameters to create a safe reply to interaction parameters
  */
 export async function safelyReplyToInteraction<T extends 'edit' | 'reply'>(parameters: SafeReplyToInteractionParameters<T>) {
-	if (runsOnInteraction(parameters.messageOrInteraction)) {
+	if (isAnyInteraction(parameters.messageOrInteraction)) {
 		if (parameters.messageOrInteraction.replied || parameters.messageOrInteraction.deferred) {
 			await parameters.messageOrInteraction.editReply(parameters.interactionEditReplyContent);
 		} else if (parameters.messageOrInteraction.isMessageComponent()) {

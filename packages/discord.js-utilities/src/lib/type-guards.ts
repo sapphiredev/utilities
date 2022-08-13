@@ -1,8 +1,9 @@
 import { isNullish, Nullish } from '@sapphire/utilities';
-import type { APIGuildMember, APIInteractionGuildMember, APIMessage, APIInteractionDataResolvedGuildMember } from 'discord-api-types/v9';
+import type { APIGuildMember, APIInteractionDataResolvedGuildMember, APIInteractionGuildMember, APIMessage } from 'discord-api-types/v9';
 import {
 	GuildMember,
 	Message,
+	type BaseCommandInteraction,
 	type BaseGuildVoiceChannel,
 	type CategoryChannel,
 	type Channel,
@@ -16,7 +17,13 @@ import {
 	type ThreadChannel,
 	type VoiceChannel
 } from 'discord.js';
-import type { ChannelTypes, GuildTextBasedChannelTypes, NonThreadGuildTextBasedChannelTypes, TextBasedChannelTypes } from './utility-types';
+import type {
+	AnyInteraction,
+	ChannelTypes,
+	GuildTextBasedChannelTypes,
+	NonThreadGuildTextBasedChannelTypes,
+	TextBasedChannelTypes
+} from './utility-types';
 
 /**
  * Checks whether a given channel is a {@link CategoryChannel}
@@ -188,6 +195,17 @@ export function isNsfwChannel(channel: ChannelTypes | Nullish): boolean {
  */
 export function isMessageInstance(message: APIMessage | Message): message is Message {
 	return message instanceof Message;
+}
+
+/**
+ * Checks whether the input `messageOrInteraction` is one of {@link Message} or one of {@link BaseCommandInteraction}, {@link CommandInteraction}, {@link ContextMenuInteraction}, or {@link SelectMenuInteraction}
+ * @param messageOrInteraction The message or interaction that should be checked.
+ * @returns `true` if the `messageOrInteraction` is **NOT** an instanceof {@link Message}, `false` if it is.
+ */
+export function isAnyInteraction(
+	messageOrInteraction: APIMessage | Message | BaseCommandInteraction | AnyInteraction
+): messageOrInteraction is AnyInteraction {
+	return !(messageOrInteraction instanceof Message);
 }
 
 /**

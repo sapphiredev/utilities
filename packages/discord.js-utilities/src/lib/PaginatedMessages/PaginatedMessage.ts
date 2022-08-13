@@ -11,8 +11,6 @@ import {
 	MessageSelectMenu,
 	type ButtonInteraction,
 	type Collection,
-	type CommandInteraction,
-	type ContextMenuInteraction,
 	type Message,
 	type MessageComponentInteraction,
 	type MessageOptions,
@@ -24,7 +22,8 @@ import {
 } from 'discord.js';
 import { deprecate } from 'node:util';
 import { MessageBuilder } from '../builders/MessageBuilder';
-import { isGuildBasedChannel, isMessageInstance } from '../type-guards';
+import { isAnyInteraction, isGuildBasedChannel, isMessageInstance } from '../type-guards';
+import type { NonModalInteraction } from '../utility-types';
 import type {
 	PaginatedMessageAction,
 	PaginatedMessageEmbedResolvable,
@@ -35,7 +34,7 @@ import type {
 	PaginatedMessageSelectMenuOptionsFunction,
 	PaginatedMessageWrongUserInteractionReplyFunction
 } from './PaginatedMessageTypes';
-import { actionIsButtonOrMenu, createPartitionedMessageRow, isMessageButtonInteraction, runsOnInteraction, safelyReplyToInteraction } from './utils';
+import { actionIsButtonOrMenu, createPartitionedMessageRow, isMessageButtonInteraction, safelyReplyToInteraction } from './utils';
 
 /**
  * This is a {@link PaginatedMessage}, a utility to paginate messages (usually embeds).
@@ -127,7 +126,7 @@ export class PaginatedMessage {
 	/**
 	 * The response message used to edit on page changes.
 	 */
-	public response: APIMessage | Message | CommandInteraction | ContextMenuInteraction | SelectMenuInteraction | ButtonInteraction | null = null;
+	public response: APIMessage | Message | NonModalInteraction | null = null;
 
 	/**
 	 * The collector used for handling component interactions.
@@ -818,13 +817,10 @@ export class PaginatedMessage {
 	 * If `messageOrInteraction` is an instance of {@link Message} then this defaults to {@link Message.author messageOrInteraction.author},
 	 * and if it is an instance of {@link CommandInteraction} then it defaults to {@link CommandInteraction.user messageOrInteraction.user}.
 	 */
-	public async run(
-		messageOrInteraction: Message | CommandInteraction | ContextMenuInteraction | SelectMenuInteraction | ButtonInteraction,
-		target?: User
-	): Promise<this> {
+	public async run(messageOrInteraction: Message | NonModalInteraction, target?: User): Promise<this> {
 		// If there is no channel then exit early and potentially emit a warning
 		if (!messageOrInteraction.channel) {
-			const isInteraction = runsOnInteraction(messageOrInteraction);
+			const isInteraction = isAnyInteraction(messageOrInteraction);
 			let shouldEmitWarning = this.emitPartialDMChannelWarning;
 
 			// If we are to emit a warning,
@@ -886,7 +882,7 @@ export class PaginatedMessage {
 		}
 
 		// Assign the target based on whether a Message or CommandInteraction was passed in
-		target ??= runsOnInteraction(messageOrInteraction) ? messageOrInteraction.user : messageOrInteraction.author;
+		target ??= isAnyInteraction(messageOrInteraction) ? messageOrInteraction.user : messageOrInteraction.author;
 
 		// Try to get the previous PaginatedMessage for this user
 		const paginatedMessage = PaginatedMessage.handlers.get(target.id);
@@ -895,7 +891,7 @@ export class PaginatedMessage {
 		paginatedMessage?.collector?.stop();
 
 		// If the message was sent by a bot, then set the response as this one
-		if (runsOnInteraction(messageOrInteraction)) {
+		if (isAnyInteraction(messageOrInteraction)) {
 			if (messageOrInteraction.user.bot && messageOrInteraction.user.id === messageOrInteraction.client.user?.id) {
 				this.response = messageOrInteraction;
 			}
@@ -975,10 +971,7 @@ export class PaginatedMessage {
 	 *
 	 * @param targetUser The author the handler is for.
 	 */
-	protected async setUpMessage(
-		messageOrInteraction: Message | CommandInteraction | ContextMenuInteraction | SelectMenuInteraction | ButtonInteraction,
-		targetUser: User
-	): Promise<void> {
+	protected async setUpMessage(messageOrInteraction: Message | NonModalInteraction, targetUser: User): Promise<void> {
 		// Get the current page
 		let page = this.messages[this.index]!;
 
@@ -1016,7 +1009,7 @@ export class PaginatedMessage {
 		}
 
 		if (this.response) {
-			if (runsOnInteraction(this.response)) {
+			if (isAnyInteraction(this.response)) {
 				if (this.response.replied || this.response.deferred) {
 					await this.response.editReply(page as WebhookEditMessageOptions);
 				} else {
@@ -1025,7 +1018,7 @@ export class PaginatedMessage {
 			} else if (isMessageInstance(this.response)) {
 				await this.response.edit(page as WebhookEditMessageOptions);
 			}
-		} else if (runsOnInteraction(messageOrInteraction)) {
+		} else if (isAnyInteraction(messageOrInteraction)) {
 			if (messageOrInteraction.replied || messageOrInteraction.deferred) {
 				const editReplyResponse = await messageOrInteraction.editReply(page);
 				this.response = messageOrInteraction.ephemeral ? messageOrInteraction : editReplyResponse;
@@ -1058,7 +1051,7 @@ export class PaginatedMessage {
 
 				interactionType: Constants.InteractionTypes.MESSAGE_COMPONENT,
 
-				...(!isNullish(this.response) && !runsOnInteraction(this.response)
+				...(!isNullish(this.response) && !isAnyInteraction(this.response)
 					? {
 							message: this.response
 					  }
@@ -1199,15 +1192,15 @@ export class PaginatedMessage {
 	 * @returns A constructed {@link PaginatedMessageInternationalizationContext}
 	 */
 	protected resolvePaginatedMessageInternationalizationContext(
-		messageOrInteraction: Message | CommandInteraction | ContextMenuInteraction | SelectMenuInteraction | ButtonInteraction,
+		messageOrInteraction: Message | NonModalInteraction,
 		targetUser: User
 	): PaginatedMessageInternationalizationContext {
 		const context: PaginatedMessageInternationalizationContext = {
 			user: targetUser,
 			channel: messageOrInteraction.channel,
 			guild: isGuildBasedChannel(messageOrInteraction.channel) ? messageOrInteraction.channel.guild : null,
-			interactionGuildLocale: runsOnInteraction(messageOrInteraction) ? messageOrInteraction.guildLocale : undefined,
-			interactionLocale: runsOnInteraction(messageOrInteraction) ? messageOrInteraction.locale : undefined
+			interactionGuildLocale: isAnyInteraction(messageOrInteraction) ? messageOrInteraction.guildLocale : undefined,
+			interactionLocale: isAnyInteraction(messageOrInteraction) ? messageOrInteraction.locale : undefined
 		};
 
 		Object.defineProperty(context, 'author', {
