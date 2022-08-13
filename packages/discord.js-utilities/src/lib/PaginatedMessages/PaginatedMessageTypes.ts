@@ -3,7 +3,6 @@ import type { APIMessage } from 'discord-api-types/v9';
 import type {
 	ButtonInteraction,
 	CommandInteraction,
-	ContextMenuInteraction,
 	ExcludeEnum,
 	Guild,
 	Interaction,
@@ -28,6 +27,7 @@ import type {
 	WebhookEditMessageOptions
 } from 'discord.js';
 import type { MessageButtonStyles, MessageComponentTypes } from 'discord.js/typings/enums';
+import type { AnyInteraction } from '../utility-types';
 import type { PaginatedMessage } from './PaginatedMessage';
 
 export type PaginatedMessageAction = PaginatedMessageActionButton | PaginatedMessageActionLink | PaginatedMessageActionMenu;
@@ -196,7 +196,7 @@ export interface PaginatedMessageInternationalizationContext {
 }
 
 export interface SafeReplyToInteractionParameters<T extends 'edit' | 'reply' | never = never> {
-	messageOrInteraction: APIMessage | Message | CommandInteraction | ContextMenuInteraction | SelectMenuInteraction | ButtonInteraction;
+	messageOrInteraction: APIMessage | Message | AnyInteraction;
 	interactionEditReplyContent: WebhookEditMessageOptions;
 	interactionReplyContent: InteractionReplyOptions;
 	componentUpdateContent: InteractionUpdateOptions;
