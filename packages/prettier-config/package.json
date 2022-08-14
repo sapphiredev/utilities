@@ -55,6 +55,6 @@
 	},
 	"devDependencies": {
 		"@favware/cliff-jumper": "^1.8.6",
-		"tsup": "^6.2.1"
+		"tsup": "^6.2.2"
 	}
 }
