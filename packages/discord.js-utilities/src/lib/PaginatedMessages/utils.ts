@@ -1,6 +1,5 @@
 import { chunk, partition } from '@sapphire/utilities';
 import { Constants, InteractionButtonOptions, MessageActionRow, MessageButton, MessageSelectMenu, MessageSelectMenuOptions } from 'discord.js';
-import { deprecate } from 'node:util';
 import { isAnyInteraction, isMessageInstance } from '../type-guards';
 import type {
 	PaginatedMessageAction,
@@ -9,19 +8,6 @@ import type {
 	PaginatedMessageActionMenu,
 	SafeReplyToInteractionParameters
 } from './PaginatedMessageTypes';
-
-/**
- * Checks whether the input `messageOrInteraction` is one of {@link Message} or one of {@link BaseCommandInteraction}, {@link CommandInteraction}, {@link ContextMenuInteraction}, or {@link SelectMenuInteraction}
- * @deprecated Use {@link isAnyInteraction} instead, it is the same function but renamed.
- * @param messageOrInteraction The message or interaction that should be checked.
- * @returns `true` if the `messageOrInteraction` is **NOT** an instanceof {@link Message}, `false` if it is.
- */
-export const runsOnInteraction = (...args: Parameters<typeof isAnyInteraction>) =>
-	deprecate(
-		() => isAnyInteraction(...args),
-		'runsOnInteraction is deprecated in favour of isAnyInteraction which has the same syntax but using a more descriptive and general name. runsOnInteraction will be removed in the next major version. Please change your imports and use isAnyInteraction instead.',
-		'DeprecationWarning'
-	);
 
 export function actionIsButtonOrMenu(action: PaginatedMessageAction): action is PaginatedMessageActionButton | PaginatedMessageActionMenu {
 	return (

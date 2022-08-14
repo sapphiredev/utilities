@@ -20,7 +20,6 @@ import {
 	type User,
 	type WebhookEditMessageOptions
 } from 'discord.js';
-import { deprecate } from 'node:util';
 import { MessageBuilder } from '../builders/MessageBuilder';
 import { isAnyInteraction, isGuildBasedChannel, isMessageInstance } from '../type-guards';
 import type { NonModalInteraction } from '../utility-types';
@@ -1186,7 +1185,7 @@ export class PaginatedMessage {
 	}
 
 	/**
-	 * Constructs a {@link PaginatedMessageInternationalizationContext} including a deprecation notice for {@link PaginatedMessageInternationalizationContext.author}
+	 * Constructs a {@link PaginatedMessageInternationalizationContext}
 	 * @param messageOrInteraction The message or interaction for which the {@link PaginatedMessageInternationalizationContext} should be resolved.
 	 * @param targetUser The target user for whom this interaction is
 	 * @returns A constructed {@link PaginatedMessageInternationalizationContext}
@@ -1202,23 +1201,6 @@ export class PaginatedMessage {
 			interactionGuildLocale: isAnyInteraction(messageOrInteraction) ? messageOrInteraction.guildLocale : undefined,
 			interactionLocale: isAnyInteraction(messageOrInteraction) ? messageOrInteraction.locale : undefined
 		};
-
-		Object.defineProperty(context, 'author', {
-			get: deprecate(
-				() => {
-					return context.user;
-				},
-				"PaginatedMessageInternationalizationContext's `author` property is deprecated and will be removed in the next major version. Please use `PaginatedMessageInternationalizationContext.user` instead.",
-				'DeprecationWarning'
-			),
-			set: deprecate(
-				(val: PaginatedMessageInternationalizationContext['user']) => {
-					context.user = val;
-				},
-				"PaginatedMessageInternationalizationContext's `author` property is deprecated and will be removed in the next major version. Please use `PaginatedMessageInternationalizationContext.user` instead.",
-				'DeprecationWarning'
-			)
-		});
 
 		return context;
 	}

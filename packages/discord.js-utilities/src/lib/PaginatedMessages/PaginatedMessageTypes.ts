@@ -182,11 +182,6 @@ export interface PaginatedMessageInternationalizationContext {
 	guild: Guild | null;
 	/** The {@link DiscordChannel} object to fetch the preferred language for. */
 	channel: Message['channel'] | StoreChannel | StageChannel | VoiceChannel | null;
-	/**
-	 * @deprecated Use {@link InternationalizationContext.user} instead; this will be removed in the next major version.
-	 * The user to fetch the preferred language for.
-	 */
-	author?: User | null;
 	/** The user to fetch the preferred language for. */
 	user: User | null;
 	/** The {@link Interaction.guildLocale} provided by the Discord API */
