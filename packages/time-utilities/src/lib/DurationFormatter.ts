@@ -35,10 +35,10 @@ export class DurationFormatter {
 		if (negative) duration *= -1;
 
 		for (const [type, timeDuration] of kTimeDurations) {
-			const substraction = duration / timeDuration;
-			if (substraction < 1) continue;
+			const division = duration / timeDuration;
+			if (division < 1) continue;
 
-			const floored = Math.floor(substraction);
+			const floored = Math.floor(division);
 			duration -= floored * timeDuration;
 			output.push(addUnit(floored, this.units[type], leftSeparator!));
 

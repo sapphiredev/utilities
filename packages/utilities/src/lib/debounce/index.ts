@@ -28,21 +28,21 @@ export interface DebouncedFunc<FnArgumentsType extends any[], FnReturnType> {
 	 * If the debounced function can be run immediately, this calls it and returns its return
 	 * value.
 	 *
-	 * Otherwise, it returns the return value of the last invokation, or undefined if the debounced
+	 * Otherwise, it returns the return value of the last invocation, or undefined if the debounced
 	 * function was not invoked yet.
 	 */
 	(...args: FnArgumentsType): FnReturnType | undefined;
 
 	/**
-	 * Throw away any pending invokation of the debounced function.
+	 * Throw away any pending invocation of the debounced function.
 	 */
 	cancel(): void;
 
 	/**
-	 * If there is a pending invokation of the debounced function, invoke it immediately and return
+	 * If there is a pending invocation of the debounced function, invoke it immediately and return
 	 * its return value.
 	 *
-	 * Otherwise, return the value from the last invokation, or undefined if the debounced function
+	 * Otherwise, return the value from the last invocation, or undefined if the debounced function
 	 * was never invoked.
 	 */
 	flush(): FnReturnType | undefined;

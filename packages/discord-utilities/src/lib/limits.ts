@@ -43,7 +43,7 @@ export const EmbedLimits = {
 	MaximumFields: 25,
 
 	/**
-	 * Maximum characters allowed in the avlue of a field in an embed.
+	 * Maximum characters allowed in the value of a field in an embed.
 	 */
 	MaximumFieldValueLength: 1024,
 
