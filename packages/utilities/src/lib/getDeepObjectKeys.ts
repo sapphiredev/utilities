@@ -7,6 +7,7 @@ import type { AnyObject } from './utilityTypes';
  * @note By default Nested array values are flattened to `arrayKey.${index}.subKey`. This can be changed to `arrayKey[${index}].subKey` by setting `arrayKeysBracedIndex` to `true`.
  *
  * @param obj The object of which to deeply retrieve its keys
+ * @param options The options with which to customize the output of this function
  * @returns An array of strings holding the keys of the object
  */
 export function getDeepObjectKeys<T>(obj: AnyObject<T>, options?: GetDeepObjectKeysOptions): string[] {
