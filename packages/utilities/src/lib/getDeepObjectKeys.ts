@@ -4,7 +4,9 @@ import type { AnyObject } from './utilityTypes';
 /**
  * Flattens an object to a list of its keys, traversing deeply into nested objects and arrays of objects.
  *
- * @note By default Nested array values are flattened to `arrayKey.${index}.subKey`. This can be changed to `arrayKey[${index}].subKey` by setting `arrayKeysBracedIndex` to `true`.
+ * @note By default Nested array values are flattened to `arrayKey.${index}.subKey`.
+ * This can be changed to `arrayKey[${index}].subKey` by setting `options.arrayKeysIndexStyle` to `'braces-with-dot'`.
+ * Or it can also be changed to `arrayKey[${index}]subKey` by setting `options.arrayKeysIndexStyle` to `'braces'`.
  *
  * @param obj The object of which to deeply retrieve its keys
  * @param options The options with which to customize the output of this function
