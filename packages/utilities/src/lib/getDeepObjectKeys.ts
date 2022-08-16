@@ -13,7 +13,7 @@ export function getDeepObjectKeys<T>(obj: AnyObject<T>, options?: GetDeepObjectK
 	return [...getDeepObjectKeysGenerator(obj, options)];
 }
 
-export function* getDeepObjectKeysGenerator<T>(
+function* getDeepObjectKeysGenerator<T>(
 	obj: AnyObject<T>,
 	{ arrayKeysIndexStyle = 'dotted' }: GetDeepObjectKeysOptions = { arrayKeysIndexStyle: 'dotted' }
 ): Generator<string> {
