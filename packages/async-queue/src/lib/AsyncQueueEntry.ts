@@ -34,14 +34,23 @@ export class AsyncQueueEntry {
 	}
 
 	public use() {
+		this.dispose();
+		this.resolve();
+		return this;
+	}
+
+	public abort() {
+		this.dispose();
+		this.reject(new Error('Request aborted manually'));
+		return this;
+	}
+
+	private dispose() {
 		if (this.signal) {
 			this.signal.removeEventListener('abort', this.signalListener!);
 			this.signal = null;
 			this.signalListener = null;
 		}
-
-		this.resolve();
-		return this;
 	}
 }
 
