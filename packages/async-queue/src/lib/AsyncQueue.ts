@@ -5,10 +5,19 @@ import { AsyncQueueEntry } from './AsyncQueueEntry';
  */
 export class AsyncQueue {
 	/**
-	 * The remaining amount of queued promises
+	 * The amount of entries in the queue, including the head.
+	 * @seealso {@link queued} for the queued count.
 	 */
 	public get remaining(): number {
 		return this.promises.length;
+	}
+
+	/**
+	 * The amount of queued entries.
+	 * @seealso {@link remaining} for the count with the head.
+	 */
+	public get queued(): number {
+		return this.remaining === 0 ? 0 : this.remaining - 1;
 	}
 
 	/**
@@ -52,7 +61,6 @@ export class AsyncQueue {
 
 	/**
 	 * Unlocks the head lock and transfers the next lock (if any) to the head.
-	 * @returns Whether or not there was an element pending to process.
 	 */
 	public shift(): void {
 		if (this.promises.length === 0) return;
@@ -66,6 +74,23 @@ export class AsyncQueue {
 		// Then use the head entry, which will unlock the promise.
 		this.promises.shift();
 		this.promises[0].use();
+	}
+
+	/**
+	 * Aborts all the pending promises.
+	 * @note To avoid race conditions, this does **not** unlock the head lock.
+	 */
+	public abortAll(): void {
+		// If there are no queued entries, skip early.
+		if (this.queued === 0) return;
+
+		// Abort all the entries except the head, that is why the loop starts at
+		// 1 and not at 0.
+		for (let i = 1; i < this.promises.length; ++i) {
+			this.promises[i].abort();
+		}
+
+		this.promises.length = 1;
 	}
 }
 

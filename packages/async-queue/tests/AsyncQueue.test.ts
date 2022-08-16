@@ -120,4 +120,46 @@ describe('AsyncQueue', () => {
 		controller.abort();
 		await expect(second).resolves.toBe(2);
 	});
+
+	describe('abortAll', () => {
+		test('GIVEN empty queue THEN does no operation', () => {
+			const queue = new AsyncQueue();
+
+			expect(() => queue.abortAll()).not.toThrow();
+		});
+
+		test('GIVEN queue with only the head THEN does no operation', async () => {
+			const queue = new AsyncQueue();
+			const tester = genNumbers(queue);
+
+			const first = tester();
+			const firstSpy = vi.spyOn(queue['promises'][0], 'abort');
+
+			expect(() => queue.abortAll()).not.toThrow();
+			expect(firstSpy).not.toHaveBeenCalled();
+			await expect(first).resolves.toBe(1);
+		});
+
+		test('GIVEN queue with several entries THEN aborts all non-head entries', async () => {
+			const queue = new AsyncQueue();
+			const tester = genNumbers(queue);
+
+			const first = tester();
+			const second = tester();
+			const third = tester();
+
+			const firstSpy = vi.spyOn(queue['promises'][0], 'abort');
+			const secondSpy = vi.spyOn(queue['promises'][1], 'abort');
+			const thirdSpy = vi.spyOn(queue['promises'][2], 'abort');
+
+			expect(() => queue.abortAll()).not.toThrow();
+			expect(firstSpy).not.toHaveBeenCalled();
+			expect(secondSpy).toHaveBeenCalledOnce();
+			expect(thirdSpy).toHaveBeenCalledOnce();
+
+			await expect(first).resolves.toBe(1);
+			await expect(second).rejects.toThrowError('Request aborted manually');
+			await expect(third).rejects.toThrowError('Request aborted manually');
+		});
+	});
 });
