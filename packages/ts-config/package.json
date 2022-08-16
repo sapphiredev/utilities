@@ -69,6 +69,9 @@
 	},
 	"devDependencies": {
 		"@favware/cliff-jumper": "^1.8.6",
-		"@sapphire/eslint-config": "workspace:^"
+		"@sapphire/eslint-config": "workspace:^",
+		"@vitest/coverage-c8": "^0.22.0",
+		"c8": "^7.12.0",
+		"vitest": "^0.22.0"
 	}
 }
