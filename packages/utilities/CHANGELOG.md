@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/utilities@3.9.1](https://github.com/sapphiredev/utilities/compare/@sapphire/utilities@3.9.0...@sapphire/utilities@3.9.1) - (2022-08-16)
+
+## 🐛 Bug Fixes
+
+- **utilities:** Fixed `getDeepObjectKeys` not returning proper values for arrays of not-objects (#428) ([88f84e6](https://github.com/sapphiredev/utilities/commit/88f84e61a72e6682bfeb2b38a8a2c55de08c757e))
+- **deps:** Update all non-major dependencies ([2308bd7](https://github.com/sapphiredev/utilities/commit/2308bd74356b6b2e0c12995b25f4d8ade4803fe9))
+
+## 📝 Documentation
+
+- Fixed typos (#427) ([e840a97](https://github.com/sapphiredev/utilities/commit/e840a9795583b59ee3da9ffe0d325e0a3cfa0c14))
+
 # [@sapphire/utilities@3.9.0](https://github.com/sapphiredev/utilities/compare/@sapphire/utilities@3.8.0...@sapphire/utilities@3.9.0) - (2022-08-04)
 
 ## 🚀 Features
