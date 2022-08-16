@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/async-queue@1.5.0](https://github.com/sapphiredev/utilities/compare/@sapphire/async-queue@1.4.0...@sapphire/async-queue@1.5.0) - (2022-08-16)
+
+## 🐛 Bug Fixes
+
+- **deps:** Update all non-major dependencies ([2308bd7](https://github.com/sapphiredev/utilities/commit/2308bd74356b6b2e0c12995b25f4d8ade4803fe9))
+
+## 🚀 Features
+
+- Add `AsyncQueue#abortAll` (#429) ([b351e70](https://github.com/sapphiredev/utilities/commit/b351e70ebef329009daaebba89729ee84bb5704c))
+
 # [@sapphire/async-queue@1.4.0](https://github.com/sapphiredev/utilities/compare/@sapphire/async-queue@1.3.1...@sapphire/async-queue@1.4.0) - (2022-08-07)
 
 ## 🐛 Bug Fixes
