@@ -1,4 +1,4 @@
-import { isObject } from './isObject';
+import { isNullOrUndefinedOrEmpty } from './isNullOrUndefinedOrEmpty';
 import type { AnyObject } from './utilityTypes';
 
 /**
@@ -9,39 +9,50 @@ import type { AnyObject } from './utilityTypes';
  * @param obj The object of which to deeply retrieve its keys
  * @returns An array of strings holding the keys of the object
  */
-export function getDeepObjectKeys<T>(
+export function getDeepObjectKeys<T>(obj: AnyObject<T>, options?: GetDeepObjectKeysOptions): string[] {
+	return [...getDeepObjectKeysGenerator(obj, options)];
+}
+
+export function* getDeepObjectKeysGenerator<T>(
 	obj: AnyObject<T>,
 	{ arrayKeysIndexStyle = 'dotted' }: GetDeepObjectKeysOptions = { arrayKeysIndexStyle: 'dotted' }
-): string[] {
-	const keys: string[] = [];
-
-	for (const [key, value] of Object.entries(obj)) {
-		if (Array.isArray(value)) {
-			for (const [index, innerValue] of value.entries()) {
-				const arraySubKeys = getDeepObjectKeys(innerValue);
-				keys.push(
-					...arraySubKeys.map((arraySubKey) => {
-						switch (arrayKeysIndexStyle) {
-							case 'braces-with-dot':
-								return `${key}[${index}].${arraySubKey}`;
-							case 'braces':
-								return `${key}[${index}]${arraySubKey}`;
-							case 'dotted':
-							default:
-								return `${key}.${index}.${arraySubKey}`;
-						}
-					})
-				);
-			}
-		} else if (isObject(value)) {
-			const objectSubKeys = getDeepObjectKeys(value);
-			keys.push(...objectSubKeys.map((subKey) => `${key}.${subKey}`));
-		} else {
-			keys.push(key);
+): Generator<string> {
+	if (Array.isArray(obj)) {
+		for (const [index, value] of obj.entries()) {
+			const resolvedIndex = arrayKeysIndexStyle === 'dotted' ? `${index}` : arrayKeysIndexStyle === 'braces' ? `[${index}]` : `[${index}].`;
+			yield* getDeepObjectKeysRecursive(value, resolvedIndex, { arrayKeysIndexStyle });
+		}
+	} else {
+		for (const [key, value] of Object.entries(obj)) {
+			yield* getDeepObjectKeysRecursive(value, `${key}`, { arrayKeysIndexStyle });
 		}
 	}
+}
 
-	return keys;
+function* getDeepObjectKeysRecursive(obj: unknown, prefix: string, { arrayKeysIndexStyle }: GetDeepObjectKeysOptions): Generator<string> {
+	if (typeof obj !== 'object' || obj === null) {
+		yield prefix;
+		return;
+	}
+
+	if (Array.isArray(obj)) {
+		for (const [index, value] of obj.entries()) {
+			const resolvedPrefixedIndex = arrayKeysIndexStyle === 'dotted' ? `${prefix}.${index}` : `${prefix}[${index}]`;
+
+			yield* getDeepObjectKeysRecursive(value, resolvedPrefixedIndex, { arrayKeysIndexStyle });
+		}
+	} else {
+		const objectEntries = Object.entries(obj);
+		if (isNullOrUndefinedOrEmpty(objectEntries) && prefix) {
+			yield prefix;
+		} else {
+			for (const [key, value] of objectEntries) {
+				yield* getDeepObjectKeysRecursive(value, arrayKeysIndexStyle === 'braces' ? `${prefix}${key}` : `${prefix}.${key}`, {
+					arrayKeysIndexStyle
+				});
+			}
+		}
+	}
 }
 
 /**
