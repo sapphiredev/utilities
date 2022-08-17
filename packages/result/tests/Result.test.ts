@@ -674,6 +674,20 @@ describe('Result', () => {
 			});
 		});
 
+		describe('intoPromise', () => {
+			test('GIVEN ok(Promise(s)) THEN returns Promise(ok(s))', async () => {
+				const x = ok(Promise.resolve(3));
+
+				await expect<Promise<Ok<number>>>(x.intoPromise()).resolves.toEqual(ok(3));
+			});
+
+			test('GIVEN err(Promise(e)) THEN returns Promise(err(e))', async () => {
+				const x = err(Promise.resolve(3));
+
+				await expect<Promise<Err<number>>>(x.intoPromise()).resolves.toEqual(err(3));
+			});
+		});
+
 		describe('eq', () => {
 			test('GIVEN x=ok(s), y=ok(s) THEN returns true', () => {
 				const x = ok(3);

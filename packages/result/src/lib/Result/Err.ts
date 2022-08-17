@@ -154,6 +154,10 @@ export class Err<E> implements IResult<any, E> {
 		return this.error;
 	}
 
+	public async intoPromise(): Promise<Err<Awaited<E>>> {
+		return err(await this.error);
+	}
+
 	public eq(other: Ok<any>): false;
 	public eq(other: Result<any, E>): boolean;
 	public eq(other: Result<any, E>): boolean {

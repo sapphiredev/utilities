@@ -655,6 +655,20 @@ describe('Option', () => {
 			});
 		});
 
+		describe('intoPromise', () => {
+			test('GIVEN some(Promise(s)) THEN returns Promise(some(s))', async () => {
+				const x = some(Promise.resolve(3));
+
+				await expect<Promise<Some<number>>>(x.intoPromise()).resolves.toEqual(some(3));
+			});
+
+			test('GIVEN none THEN returns Promise(none)', async () => {
+				const x = none;
+
+				await expect<Promise<None>>(x.intoPromise()).resolves.toEqual(none);
+			});
+		});
+
 		describe('eq', () => {
 			test('GIVEN x=some(s), y=some(s) THEN returns true', () => {
 				const x = some(3);
