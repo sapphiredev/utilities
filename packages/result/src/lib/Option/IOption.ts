@@ -659,6 +659,19 @@ export interface IOption<T> {
 	flatten<IT>(this: Option<Option<IT>>): Option<IT>;
 
 	/**
+	 * Returns a `Promise` object with the awaited value (if `Some`).
+	 *
+	 * @example
+	 * ```typescript
+	 * let x = some(Promise.resolve(3));
+	 * assert.equal(await x.intoPromise(), some(3));
+	 * ```
+	 *
+	 * @note This is an extension not supported in Rust
+	 */
+	intoPromise(): Promise<Option<Awaited<T>>>;
+
+	/**
 	 * Checks whether or not `other` equals with self.
 	 * @param other The other option to compare.
 	 *

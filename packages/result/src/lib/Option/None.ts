@@ -139,6 +139,10 @@ export class None implements IOption<any> {
 		return this;
 	}
 
+	public intoPromise(): Promise<None> {
+		return Promise.resolve(none);
+	}
+
 	public eq(other: None): true;
 	public eq(other: Some<any>): false;
 	public eq(other: Option<any>): boolean;

@@ -161,6 +161,10 @@ export class Ok<T> implements IResult<T, any> {
 		return this.value;
 	}
 
+	public async intoPromise(): Promise<Ok<Awaited<T>>> {
+		return ok(await this.value);
+	}
+
 	public eq(other: Err<any>): false;
 	public eq(other: Result<T, any>): boolean;
 	public eq(other: Result<T, any>): boolean {

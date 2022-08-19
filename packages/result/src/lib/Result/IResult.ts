@@ -742,6 +742,19 @@ export interface IResult<T, E> {
 	intoOkOrErr(): T | E;
 
 	/**
+	 * Returns a `Promise` object with the awaited value (if `Ok`) or the awaited error (if `Err`).
+	 *
+	 * @example
+	 * ```typescript
+	 * let x = ok(Promise.resolve(3));
+	 * assert.equal(await x.intoPromise(), ok(3));
+	 * ```
+	 *
+	 * @note This is an extension not supported in Rust
+	 */
+	intoPromise(): Promise<Result<Awaited<T>, Awaited<E>>>;
+
+	/**
 	 * Checks whether or not `other` equals with self.
 	 * @param other The other result to compare.
 	 *

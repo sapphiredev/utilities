@@ -158,6 +158,10 @@ export class Some<T> implements IOption<T> {
 		return this.value;
 	}
 
+	public async intoPromise(): Promise<Some<Awaited<T>>> {
+		return some(await this.value);
+	}
+
 	public eq(other: None): false;
 	public eq(other: Option<T>): boolean;
 	public eq(other: Option<T>): boolean {
