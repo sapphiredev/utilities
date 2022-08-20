@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/eslint-config@4.3.8](https://github.com/sapphiredev/utilities/compare/@sapphire/eslint-config@4.3.7...@sapphire/eslint-config@4.3.8) - (2022-08-20)
+
+## 🐛 Bug Fixes
+
+- **eslint-config:** Bump deps ([d63c41e](https://github.com/sapphiredev/utilities/commit/d63c41e672035f31e8479f9560bcbe25d4a2a018))
+- **deps:** Update all non-major dependencies ([2308bd7](https://github.com/sapphiredev/utilities/commit/2308bd74356b6b2e0c12995b25f4d8ade4803fe9))
+- **eslint-config:** Bump dependencies ([04967b3](https://github.com/sapphiredev/utilities/commit/04967b311e04197bf17adc45f25d75746919ebe2))
+- **eslint-config:** Bump typescript eslint dependencies ([658f2d7](https://github.com/sapphiredev/utilities/commit/658f2d76a2d51b56dc689f077f608d5d8f3e9013))
+- **deps:** Update all non-major dependencies ([94ffa04](https://github.com/sapphiredev/utilities/commit/94ffa04dd42594019f3439f66ee2019cc40d402c))
+- **deps:** Update all non-major dependencies ([26774e0](https://github.com/sapphiredev/utilities/commit/26774e0f52ce063a327a50047e61aacb3503422b))
+- **deps:** Update all non-major dependencies ([84af0db](https://github.com/sapphiredev/utilities/commit/84af0db2db749223b036aa99fe19a2e9af5681c6))
+
+## 📝 Documentation
+
+- Add @muchnameless as a contributor ([a1221fe](https://github.com/sapphiredev/utilities/commit/a1221fea68506e99591d5d00ec552a07c26833f9))
+- Add @enxg as a contributor ([d2382f0](https://github.com/sapphiredev/utilities/commit/d2382f04e3909cb4ad11798a0a10e683f6cf5383))
+- Add @EvolutionX-10 as a contributor ([efc3a32](https://github.com/sapphiredev/utilities/commit/efc3a320a72ae258996dd62866d206c33f8d4961))
+
+## 🧪 Testing
+
+- Migrate to vitest (#380) ([075ec73](https://github.com/sapphiredev/utilities/commit/075ec73c7a8e3374fad3ada612d37eb4ac36ec8d))
+
 # [@sapphire/eslint-config@4.3.7](https://github.com/sapphiredev/utilities/compare/@sapphire/eslint-config@4.3.6...@sapphire/eslint-config@4.3.7) - (2022-06-13)
 
 ## 🐛 Bug Fixes
