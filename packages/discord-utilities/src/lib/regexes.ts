@@ -136,7 +136,7 @@ export const WebSocketUrlRegex = /^wss?:\/\//;
 
 /**
  * Regex that captures the Webhook ID and token from a Discord Webhook URL.
- * @raw `/(?<url>^https:\/\/(?:(?:canary|ptb).)?discordapp.com\/api\/webhooks\/(?<id>\d+)\/(?<token>[\w-]+)\/?$)/`
+ * @raw `/(?<url>^https:\/\/(?:(?:canary|ptb).)?discord(?:app)?.com\/api(?:\/v\d+)?\/webhooks\/(?<id>\d+)\/(?<token>[\w-]+)\/?$)/`
  * @remark Capture group 1 is the full URL of the Discord Webhook. It is named `url`.
  * @remark Capture group 2 is the ID of the Discord Webhook. It is named `id`.
  * @remark Capture group 3 is the token of the Discord Webhook. It is named `token`.
