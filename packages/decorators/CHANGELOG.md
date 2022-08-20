@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/decorators@5.0.0](https://github.com/sapphiredev/utilities/compare/@sapphire/decorators@4.3.8...@sapphire/decorators@5.0.0) - (2022-08-20)
+
+## 🐛 Bug Fixes
+
+- Manually set version to 5.0.0 to cover @sapphire/framework@3.0.0 ([48e083f](https://github.com/sapphiredev/utilities/commit/48e083f9d4cbdb7e6c204ce75a6d2d387662dfae))
+- **deps:** Update all non-major dependencies ([2308bd7](https://github.com/sapphiredev/utilities/commit/2308bd74356b6b2e0c12995b25f4d8ade4803fe9))
+
+## 📝 Documentation
+
+- Add @muchnameless as a contributor ([a1221fe](https://github.com/sapphiredev/utilities/commit/a1221fea68506e99591d5d00ec552a07c26833f9))
+- Add @enxg as a contributor ([d2382f0](https://github.com/sapphiredev/utilities/commit/d2382f04e3909cb4ad11798a0a10e683f6cf5383))
+- Add @EvolutionX-10 as a contributor ([efc3a32](https://github.com/sapphiredev/utilities/commit/efc3a320a72ae258996dd62866d206c33f8d4961))
+
 # [@sapphire/decorators@4.3.7](https://github.com/sapphiredev/utilities/compare/@sapphire/decorators@4.3.6...@sapphire/decorators@4.3.7) - (2022-07-13)
 
 ## 🏠 Refactor
