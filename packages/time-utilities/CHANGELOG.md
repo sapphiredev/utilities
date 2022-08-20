@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/time-utilities@1.7.6](https://github.com/sapphiredev/utilities/compare/@sapphire/time-utilities@1.7.5...@sapphire/time-utilities@1.7.6) - (2022-08-20)
+
+## 🐛 Bug Fixes
+
+- **deps:** Update all non-major dependencies ([2308bd7](https://github.com/sapphiredev/utilities/commit/2308bd74356b6b2e0c12995b25f4d8ade4803fe9))
+
+## 📝 Documentation
+
+- Fixed typos (#427) ([e840a97](https://github.com/sapphiredev/utilities/commit/e840a9795583b59ee3da9ffe0d325e0a3cfa0c14))
+- Add @muchnameless as a contributor ([a1221fe](https://github.com/sapphiredev/utilities/commit/a1221fea68506e99591d5d00ec552a07c26833f9))
+- Add @enxg as a contributor ([d2382f0](https://github.com/sapphiredev/utilities/commit/d2382f04e3909cb4ad11798a0a10e683f6cf5383))
+- Add @EvolutionX-10 as a contributor ([efc3a32](https://github.com/sapphiredev/utilities/commit/efc3a320a72ae258996dd62866d206c33f8d4961))
+
 # [@sapphire/time-utilities@1.7.5](https://github.com/sapphiredev/utilities/compare/@sapphire/time-utilities@1.7.4...@sapphire/time-utilities@1.7.5) - (2022-07-13)
 
 ## 🏠 Refactor
