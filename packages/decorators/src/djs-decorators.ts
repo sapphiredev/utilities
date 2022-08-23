@@ -59,29 +59,30 @@ const DMAvailableUserPermissions = new Permissions(
  * 		return message.channel.send('Showing!');
  * 	}
  *
- * 	(at)RequiresClientPermissions('BAN_MEMBERS') // This subcommand requires the client to be able to ban members.
+ * 	(at)RequiresClientPermissions(['BAN_MEMBERS']) // This subcommand requires the client to be able to ban members.
  * 	public async add(message: Message) {
  * 		return message.channel.send('Adding!');
  * 	}
  *
- * 	(at)RequiresClientPermissions('BAN_MEMBERS') // This subcommand requires the client to be able to ban members.
+ * 	(at)RequiresClientPermissions(['BAN_MEMBERS']) // This subcommand requires the client to be able to ban members.
  * 	public async remove(message: Message) {
  * 		return message.channel.send('Removing!');
  * 	}
  *
- * 	(at)RequiresClientPermissions('BAN_MEMBERS') // This subcommand requires the client to be able to ban members.
+ * 	(at)RequiresClientPermissions(['BAN_MEMBERS']) // This subcommand requires the client to be able to ban members.
  * 	public async reset(message: Message) {
  * 		return message.channel.send('Resetting!');
  * 	}
  * }
  * ```
  */
-export const RequiresClientPermissions = (...permissionsResolvable: PermissionResolvable[]): MethodDecorator => {
+export const RequiresClientPermissions = (permissionsResolvable: PermissionResolvable[], silent = false): MethodDecorator => {
 	const resolved = new Permissions(permissionsResolvable);
 	const resolvedIncludesServerPermissions = Boolean(resolved.bitfield & DMAvailablePermissions.bitfield);
 
 	return createFunctionPrecondition((message: Message) => {
 		if (resolvedIncludesServerPermissions && isDMChannel(message.channel)) {
+			if (silent) return false;
 			throw new UserError({
 				identifier: DecoratorIdentifiers.RequiresClientPermissionsGuildOnly,
 				message: 'Sorry, but that command can only be used in a server because I do not have sufficient permissions in DMs'
@@ -92,6 +93,7 @@ export const RequiresClientPermissions = (...permissionsResolvable: PermissionRe
 			const missingPermissions = message.channel.permissionsFor(message.guild!.me!).missing(resolved);
 
 			if (missingPermissions.length) {
+				if (silent) return false;
 				throw new UserError({
 					identifier: DecoratorIdentifiers.RequiresClientPermissionsMissingPermissions,
 					message: `Sorry, but I am not allowed to do that. I am missing the permissions: ${missingPermissions}`,
@@ -128,29 +130,30 @@ export const RequiresClientPermissions = (...permissionsResolvable: PermissionRe
  * 		return message.channel.send('Showing!');
  * 	}
  *
- * 	(at)RequiresUserPermissions('BAN_MEMBERS') // This subcommand requires the user of the command to be able to ban members.
+ * 	(at)RequiresUserPermissions(['BAN_MEMBERS']) // This subcommand requires the user of the command to be able to ban members.
  * 	public async add(message: Message) {
  * 		return message.channel.send('Adding!');
  * 	}
  *
- * 	(at)RequiresUserPermissions('BAN_MEMBERS') // This subcommand requires the user of the command to be able to ban members.
+ * 	(at)RequiresUserPermissions(['BAN_MEMBERS']) // This subcommand requires the user of the command to be able to ban members.
  * 	public async remove(message: Message) {
  * 		return message.channel.send('Removing!');
  * 	}
  *
- * 	(at)RequiresUserPermissions('BAN_MEMBERS') // This subcommand requires the user of the command to be able to ban members.
+ * 	(at)RequiresUserPermissions(['BAN_MEMBERS']) // This subcommand requires the user of the command to be able to ban members.
  * 	public async reset(message: Message) {
  * 		return message.channel.send('Resetting!');
  * 	}
  * }
  * ```
  */
-export const RequiresUserPermissions = (...permissionsResolvable: PermissionResolvable[]): MethodDecorator => {
+export const RequiresUserPermissions = (permissionsResolvable: PermissionResolvable[], silent = false): MethodDecorator => {
 	const resolved = new Permissions(permissionsResolvable);
 	const resolvedIncludesServerPermissions = Boolean(resolved.bitfield & DMAvailableUserPermissions.bitfield);
 
 	return createFunctionPrecondition((message: Message) => {
 		if (resolvedIncludesServerPermissions && isDMChannel(message.channel)) {
+			if (silent) return false;
 			throw new UserError({
 				identifier: DecoratorIdentifiers.RequiresUserPermissionsGuildOnly,
 				message: 'Sorry, but that command can only be used in a server because you do not have sufficient permissions in DMs'
@@ -161,6 +164,7 @@ export const RequiresUserPermissions = (...permissionsResolvable: PermissionReso
 			const missingPermissions = message.channel.permissionsFor(message.member!).missing(resolved);
 
 			if (missingPermissions.length) {
+				if (silent) return false;
 				throw new UserError({
 					identifier: DecoratorIdentifiers.RequiresUserPermissionsMissingPermissions,
 					message: `Sorry, but you are not allowed to do that. You are missing the permissions: ${missingPermissions}`,
