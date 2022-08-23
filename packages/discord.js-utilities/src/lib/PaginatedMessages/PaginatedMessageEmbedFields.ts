@@ -1,6 +1,6 @@
 import { EmbedLimits } from '@sapphire/discord-utilities';
 import { isFunction } from '@sapphire/utilities';
-import { MessageEmbed, type EmbedFieldData, type MessageEmbedOptions } from 'discord.js';
+import { EmbedBuilder, type EmbedData, type EmbedField } from 'discord.js';
 import { PaginatedMessage } from './PaginatedMessage';
 
 /**
@@ -27,16 +27,16 @@ import { PaginatedMessage } from './PaginatedMessage';
  * ```
  */
 export class PaginatedMessageEmbedFields extends PaginatedMessage {
-	private embedTemplate: MessageEmbed = new MessageEmbed();
+	private embedTemplate: EmbedBuilder = new EmbedBuilder();
 	private totalPages = 0;
-	private items: EmbedFieldData[] = [];
+	private items: EmbedField[] = [];
 	private itemsPerPage = 10;
 
 	/**
 	 * Set the items to paginate.
 	 * @param items The pages to set
 	 */
-	public setItems(items: EmbedFieldData[]): this {
+	public setItems(items: EmbedField[]): this {
 		this.items = items;
 		return this;
 	}
@@ -80,7 +80,7 @@ export class PaginatedMessageEmbedFields extends PaginatedMessage {
 	 * 	.run(message);
 	 * ```
 	 */
-	public setTemplate(template: MessageEmbed | MessageEmbedOptions | ((embed: MessageEmbed) => MessageEmbed)): this {
+	public setTemplate(template: EmbedBuilder | EmbedData | ((embed: EmbedBuilder) => EmbedBuilder)): this {
 		this.embedTemplate = this.resolveTemplate(template);
 		return this;
 	}
@@ -115,13 +115,13 @@ export class PaginatedMessageEmbedFields extends PaginatedMessage {
 	}
 
 	private generatePages(): void {
-		const template = this.embedTemplate instanceof MessageEmbed ? (this.embedTemplate.toJSON() as MessageEmbedOptions) : this.embedTemplate;
+		const template = this.embedTemplate instanceof EmbedBuilder ? this.embedTemplate.toJSON() : this.embedTemplate;
 		for (let i = 0; i < this.totalPages; i++) {
-			const clonedTemplate = new MessageEmbed(template);
-			const fieldsClone = this.embedTemplate.fields;
-			clonedTemplate.fields = [];
+			const clonedTemplate = new EmbedBuilder(template);
+			const fieldsClone = this.embedTemplate.data.fields ?? [];
+			clonedTemplate.data.fields = [];
 
-			if (!clonedTemplate.color) clonedTemplate.setColor('RANDOM');
+			if (!clonedTemplate.data.color) clonedTemplate.setColor('Random');
 
 			const data = this.paginateArray(this.items, i, this.itemsPerPage - fieldsClone.length);
 			this.addPage({
@@ -130,20 +130,20 @@ export class PaginatedMessageEmbedFields extends PaginatedMessage {
 		}
 	}
 
-	private paginateArray(items: EmbedFieldData[], currentPage: number, perPageItems: number): EmbedFieldData[] {
+	private paginateArray(items: EmbedField[], currentPage: number, perPageItems: number): EmbedField[] {
 		const offset = currentPage * perPageItems;
 		return items.slice(offset, offset + perPageItems);
 	}
 
-	private resolveTemplate(template: MessageEmbed | MessageEmbedOptions | ((embed: MessageEmbed) => MessageEmbed)) {
-		if (template instanceof MessageEmbed) {
+	private resolveTemplate(template: EmbedBuilder | EmbedData | ((embed: EmbedBuilder) => EmbedBuilder)) {
+		if (template instanceof EmbedBuilder) {
 			return template;
 		}
 
 		if (isFunction(template)) {
-			return template(new MessageEmbed());
+			return template(new EmbedBuilder());
 		}
 
-		return new MessageEmbed(template);
+		return new EmbedBuilder(template);
 	}
 }

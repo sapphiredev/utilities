@@ -1,24 +1,28 @@
-import { isNullish, type Nullish } from '@sapphire/utilities';
-import type { APIGuildMember, APIInteractionDataResolvedGuildMember, APIInteractionGuildMember, APIMessage } from 'discord-api-types/v9';
+import { isNullish, Nullish } from '@sapphire/utilities';
 import {
+	BaseInteraction,
+	ChannelType,
 	GuildMember,
 	Message,
-	type BaseCommandInteraction,
-	type BaseGuildVoiceChannel,
+	VoiceBasedChannel,
+	type APIGuildMember,
+	type APIInteractionDataResolvedGuildMember,
+	type APIInteractionGuildMember,
+	type APIMessage,
 	type CategoryChannel,
 	type Channel,
 	type DMChannel,
+	type Interaction,
 	type NewsChannel,
 	type PartialDMChannel,
 	type PartialGroupDMChannel,
 	type StageChannel,
-	type StoreChannel,
 	type TextChannel,
 	type ThreadChannel,
 	type VoiceChannel
 } from 'discord.js';
 import type {
-	AnyInteraction,
+	AnyInteractableInteraction,
 	ChannelTypes,
 	GuildTextBasedChannelTypes,
 	NonThreadGuildTextBasedChannelTypes,
@@ -30,7 +34,7 @@ import type {
  * @param channel The channel to check
  */
 export function isCategoryChannel(channel: ChannelTypes | Nullish): channel is CategoryChannel {
-	return channel?.type === 'GUILD_CATEGORY';
+	return channel?.type === ChannelType.GuildCategory;
 }
 
 /**
@@ -38,7 +42,7 @@ export function isCategoryChannel(channel: ChannelTypes | Nullish): channel is C
  * @param channel The channel to check
  */
 export function isDMChannel(channel: ChannelTypes | Nullish): channel is DMChannel | PartialDMChannel {
-	return channel?.type === 'DM';
+	return channel?.type === ChannelType.DM;
 }
 
 /**
@@ -46,7 +50,7 @@ export function isDMChannel(channel: ChannelTypes | Nullish): channel is DMChann
  * @param channel The channel to check
  */
 export function isGroupChannel(channel: Channel | PartialDMChannel | Nullish): channel is PartialGroupDMChannel {
-	return channel?.type === 'GROUP_DM';
+	return channel?.type === ChannelType.GroupDM;
 }
 
 /**
@@ -55,7 +59,7 @@ export function isGroupChannel(channel: Channel | PartialDMChannel | Nullish): c
  * @returns Whether or not the channel is guild-based.
  */
 export function isGuildBasedChannel(channel: ChannelTypes | Nullish): channel is GuildTextBasedChannelTypes {
-	return channel?.type !== 'DM';
+	return channel?.type !== ChannelType.DM;
 }
 
 /**
@@ -73,16 +77,7 @@ export function isGuildBasedChannelByGuildKey(channel: ChannelTypes | Nullish): 
  * @param channel The channel to check.
  */
 export function isNewsChannel(channel: ChannelTypes | Nullish): channel is NewsChannel {
-	return channel?.type === 'GUILD_NEWS';
-}
-
-/**
- * Checks whether a given channel is a {@link StoreChannel}
- * @param channel The channel to check
- * @deprecated See [Self-serve Game Selling Deprecation](https://support-dev.discord.com/hc/en-us/articles/4414590563479) for more information.
- */
-export function isStoreChannel(channel: ChannelTypes | Nullish): channel is StoreChannel {
-	return channel?.type === 'GUILD_STORE';
+	return channel?.type === ChannelType.GuildNews;
 }
 
 /**
@@ -90,7 +85,7 @@ export function isStoreChannel(channel: ChannelTypes | Nullish): channel is Stor
  * @param channel The channel to check.
  */
 export function isTextChannel(channel: ChannelTypes | Nullish): channel is TextChannel {
-	return channel?.type === 'GUILD_TEXT';
+	return channel?.type === ChannelType.GuildText;
 }
 
 /**
@@ -98,7 +93,7 @@ export function isTextChannel(channel: ChannelTypes | Nullish): channel is TextC
  * @param channel The channel to check
  */
 export function isVoiceChannel(channel: ChannelTypes | Nullish): channel is VoiceChannel {
-	return channel?.type === 'GUILD_VOICE';
+	return channel?.type === ChannelType.GuildVoice;
 }
 
 /**
@@ -106,7 +101,7 @@ export function isVoiceChannel(channel: ChannelTypes | Nullish): channel is Voic
  * @param channel The channel to check
  */
 export function isStageChannel(channel: ChannelTypes | Nullish): channel is StageChannel {
-	return channel?.type === 'GUILD_STAGE_VOICE';
+	return channel?.type === ChannelType.GuildStageVoice;
 }
 
 /**
@@ -122,7 +117,7 @@ export function isThreadChannel(channel: ChannelTypes | Nullish): channel is Thr
  * @param channel The channel to check.
  */
 export function isNewsThreadChannel(channel: ChannelTypes | Nullish): channel is ThreadChannel {
-	return channel?.type === 'GUILD_NEWS_THREAD';
+	return channel?.type === ChannelType.GuildNewsThread;
 }
 
 /**
@@ -130,7 +125,7 @@ export function isNewsThreadChannel(channel: ChannelTypes | Nullish): channel is
  * @param channel The channel to check.
  */
 export function isPublicThreadChannel(channel: ChannelTypes | Nullish): channel is ThreadChannel {
-	return channel?.type === 'GUILD_PUBLIC_THREAD';
+	return channel?.type === ChannelType.GuildPublicThread;
 }
 
 /**
@@ -138,7 +133,7 @@ export function isPublicThreadChannel(channel: ChannelTypes | Nullish): channel 
  * @param channel The channel to check.
  */
 export function isPrivateThreadChannel(channel: ChannelTypes | Nullish): channel is ThreadChannel {
-	return channel?.type === 'GUILD_PRIVATE_THREAD';
+	return channel?.type === ChannelType.GuildPrivateThread;
 }
 
 /**
@@ -152,13 +147,13 @@ export function isTextBasedChannel(channel: ChannelTypes | Nullish): channel is 
 }
 
 /**
- * Checks whether a given channel is a {@link BaseGuildVoiceChannel}.
+ * Checks whether a given channel is a {@link VoiceBasedChannel}.
  * @param channel: The channel to check.
  */
-export function isVoiceBasedChannel(channel: Channel | Nullish): channel is BaseGuildVoiceChannel {
+export function isVoiceBasedChannel(channel: Channel | Nullish): channel is VoiceBasedChannel {
 	if (isNullish(channel)) return false;
 
-	return channel.isVoice();
+	return channel.isVoiceBased();
 }
 
 /**
@@ -169,21 +164,20 @@ export function isNsfwChannel(channel: ChannelTypes | Nullish): boolean {
 	if (isNullish(channel)) return false;
 
 	switch (channel.type) {
-		case 'DM':
-		case 'GROUP_DM':
-		case 'GUILD_CATEGORY':
-		case 'GUILD_STAGE_VOICE':
-		case 'GUILD_STORE':
-		case 'GUILD_VOICE':
-		case 'GUILD_DIRECTORY':
-		case 'UNKNOWN':
+		case ChannelType.DM:
+		case ChannelType.GroupDM:
+		case ChannelType.GuildCategory:
+		case ChannelType.GuildStageVoice:
+		case ChannelType.GuildVoice:
+		case ChannelType.GuildDirectory:
 			return false;
-		case 'GUILD_NEWS':
-		case 'GUILD_TEXT':
+		case ChannelType.GuildNews:
+		case ChannelType.GuildText:
+		case ChannelType.GuildForum:
 			return (channel as Exclude<NonThreadGuildTextBasedChannelTypes, VoiceChannel>).nsfw;
-		case 'GUILD_NEWS_THREAD':
-		case 'GUILD_PRIVATE_THREAD':
-		case 'GUILD_PUBLIC_THREAD':
+		case ChannelType.GuildNewsThread:
+		case ChannelType.GuildPrivateThread:
+		case ChannelType.GuildPublicThread:
 			return Boolean((channel as ThreadChannel).parent?.nsfw);
 	}
 }
@@ -198,14 +192,22 @@ export function isMessageInstance(message: APIMessage | Message): message is Mes
 }
 
 /**
- * Checks whether the input `messageOrInteraction` is one of {@link Message} or one of {@link BaseCommandInteraction}, {@link CommandInteraction}, {@link ContextMenuInteraction}, or {@link SelectMenuInteraction}
+ * Checks whether the input `messageOrInteraction` is one of {@link Message} or one of {@link Interaction}, {@link CommandInteraction}, {@link ContextMenuInteraction}, or {@link SelectMenuInteraction}
  * @param messageOrInteraction The message or interaction that should be checked.
  * @returns `true` if the `messageOrInteraction` is **NOT** an instanceof {@link Message}, `false` if it is.
  */
-export function isAnyInteraction(
-	messageOrInteraction: APIMessage | Message | BaseCommandInteraction | AnyInteraction
-): messageOrInteraction is AnyInteraction {
-	return !(messageOrInteraction instanceof Message);
+export function isAnyInteraction(messageOrInteraction: APIMessage | Message | Interaction): messageOrInteraction is Interaction {
+	return messageOrInteraction instanceof BaseInteraction;
+}
+
+export function isAnyInteractableInteraction(
+	messageOrInteraction: APIMessage | Message | Interaction
+): messageOrInteraction is AnyInteractableInteraction {
+	if (messageOrInteraction instanceof BaseInteraction) {
+		return !messageOrInteraction.isAutocomplete();
+	}
+
+	return false;
 }
 
 /**

@@ -1,20 +1,27 @@
 import { Time } from '@sapphire/duration';
 import { deepClone, isFunction, isNullish, isObject } from '@sapphire/utilities';
-import type { APIMessage } from 'discord-api-types/v9';
 import {
-	Constants,
-	Formatters,
-	Intents,
+	ButtonBuilder,
+	ButtonStyle,
+	ComponentType,
+	EmbedBuilder,
+	GatewayIntentBits,
+	IntentsBitField,
 	InteractionCollector,
-	MessageButton,
-	MessageEmbed,
-	MessageSelectMenu,
+	InteractionType,
+	isJSONEncodable,
+	Partials,
+	StringSelectMenuBuilder,
+	StringSelectMenuInteraction,
+	userMention,
+	type APIEmbed,
+	type APIMessage,
+	type BaseMessageOptions,
 	type ButtonInteraction,
 	type Collection,
+	type InteractionReplyOptions,
+	type JSONEncodable,
 	type Message,
-	type MessageComponentInteraction,
-	type MessageOptions,
-	type SelectMenuInteraction,
 	type Snowflake,
 	type TextBasedChannel,
 	type User,
@@ -22,7 +29,7 @@ import {
 } from 'discord.js';
 import { MessageBuilder } from '../builders/MessageBuilder';
 import { isAnyInteraction, isGuildBasedChannel, isMessageInstance } from '../type-guards';
-import type { NonModalInteraction } from '../utility-types';
+import type { AnyInteractableInteraction } from '../utility-types';
 import type {
 	PaginatedMessageAction,
 	PaginatedMessageEmbedResolvable,
@@ -34,7 +41,7 @@ import type {
 	PaginatedMessageStopReasons,
 	PaginatedMessageWrongUserInteractionReplyFunction
 } from './PaginatedMessageTypes';
-import { actionIsButtonOrMenu, createPartitionedMessageRow, isMessageButtonInteraction, safelyReplyToInteraction } from './utils';
+import { actionIsButtonOrMenu, createPartitionedMessageRow, isMessageButtonInteractionData, safelyReplyToInteraction } from './utils';
 
 /**
  * This is a {@link PaginatedMessage}, a utility to paginate messages (usually embeds).
@@ -64,7 +71,7 @@ import { actionIsButtonOrMenu, createPartitionedMessageRow, isMessageButtonInter
  * });
  *
  * myPaginatedMessage.addPageBuilder((builder) => {
- *		const embed = new MessageEmbed()
+ *		const embed = new EmbedBuilder()
  *			.setColor('#FF0000')
  *			.setDescription('example description');
  *
@@ -78,7 +85,7 @@ import { actionIsButtonOrMenu, createPartitionedMessageRow, isMessageButtonInter
  * myPaginatedMessage.run(message)
  * ```
  *
- * @remark You can also provide a MessageEmbed template. This will be applied to every page.
+ * @remark You can also provide a EmbedBuilder template. This will be applied to every page.
  * If a page itself has an embed then the two will be merged, with the content of
  * the page's embed taking priority over the template.
  *
@@ -88,7 +95,7 @@ import { actionIsButtonOrMenu, createPartitionedMessageRow, isMessageButtonInter
  * @example
  * ```typescript
  * const myPaginatedMessage = new PaginatedMessage({
- * 	template: new MessageEmbed().setColor('#FF0000').setFooter('- Powered by Sapphire framework')
+ * 	template: new EmbedBuilder().setColor('#FF0000').setFooter('- Powered by Sapphire framework')
  * });
  * ```
  *
@@ -123,12 +130,12 @@ export class PaginatedMessage {
 	/**
 	 * The response message used to edit on page changes.
 	 */
-	public response: APIMessage | Message | NonModalInteraction | null = null;
+	public response: APIMessage | Message | AnyInteractableInteraction | null = null;
 
 	/**
 	 * The collector used for handling component interactions.
 	 */
-	public collector: InteractionCollector<MessageComponentInteraction> | null = null;
+	public collector: InteractionCollector<ButtonInteraction | StringSelectMenuInteraction> | null = null;
 
 	/**
 	 * The pages which were converted from {@link PaginatedMessage.pages}
@@ -482,11 +489,11 @@ export class PaginatedMessage {
 	 * @example
 	 * ```typescript
 	 * const { PaginatedMessage } = require('@sapphire/discord.js-utilities');
-	 * const { MessageEmbed } = require('discord.js');
+	 * const { EmbedBuilder } = require('discord.js');
 	 *
 	 * const paginatedMessage = new PaginatedMessage()
 	 * 	.addPageBuilder((builder) => {
-	 * 		const embed = new MessageEmbed()
+	 * 		const embed = new EmbedBuilder()
 	 * 			.setColor('#FF0000')
 	 * 			.setDescription('example description');
 	 *
@@ -497,10 +504,10 @@ export class PaginatedMessage {
 	 * ```
 	 * @example
 	 * ```typescript
-	 * const { MessageEmbed } = require('discord.js');
+	 * const { EmbedBuilder } = require('discord.js');
 	 * const { MessageBuilder, PaginatedMessage } = require('@sapphire/discord.js-utilities');
 	 *
-	 * const embed = new MessageEmbed()
+	 * const embed = new EmbedBuilder()
 	 * 	.setColor('#FF0000')
 	 * 	.setDescription('example description');
 	 *
@@ -522,13 +529,13 @@ export class PaginatedMessage {
 	 * @example
 	 * ```typescript
 	 * const { PaginatedMessage } = require('@sapphire/discord.js-utilities');
-	 * const { MessageEmbed } = require('discord.js');
+	 * const { EmbedBuilder } = require('discord.js');
 	 *
 	 * const paginatedMessage = new PaginatedMessage()
 	 * 	.addAsyncPageBuilder(async (builder) => {
 	 * 		const someRemoteData = await fetch('https://contoso.com/api/users');
 	 *
-	 * 		const embed = new MessageEmbed()
+	 * 		const embed = new EmbedBuilder()
 	 * 			.setColor('#FF0000')
 	 * 			.setDescription(someRemoteData.data);
 	 *
@@ -558,8 +565,8 @@ export class PaginatedMessage {
 	}
 
 	/**
-	 * Adds a page to the existing ones using a {@link MessageEmbed}. This wil be added as the last page.
-	 * @param embed Either a callback whose first parameter is `new MessageEmbed()`, or an already constructed {@link MessageEmbed}
+	 * Adds a page to the existing ones using a {@link EmbedBuilder}. This wil be added as the last page.
+	 * @param embed Either a callback whose first parameter is `new EmbedBuilder()`, or an already constructed {@link EmbedBuilder}
 	 * @example
 	 * ```typescript
 	 * const { PaginatedMessage } = require('@sapphire/discord.js-utilities');
@@ -577,7 +584,7 @@ export class PaginatedMessage {
 	 * ```typescript
 	 * const { PaginatedMessage } = require('@sapphire/discord.js-utilities');
 	 *
-	 * const embed = new MessageEmbed()
+	 * const embed = new EmbedBuilder()
 	 * 	.setColor('#FF0000')
 	 * 	.setDescription('example description');
 	 *
@@ -585,13 +592,13 @@ export class PaginatedMessage {
 	 * 	.addPageEmbed(embed);
 	 * ```
 	 */
-	public addPageEmbed(embed: MessageEmbed | ((embed: MessageEmbed) => MessageEmbed)): this {
-		return this.addPage({ embeds: isFunction(embed) ? [embed(new MessageEmbed())] : [embed] });
+	public addPageEmbed(embed: EmbedBuilder | ((embed: EmbedBuilder) => EmbedBuilder)): this {
+		return this.addPage({ embeds: isFunction(embed) ? [embed(new EmbedBuilder())] : [embed] });
 	}
 
 	/**
-	 * Adds a page to the existing ones asynchronously using a {@link MessageEmbed}. This wil be added as the last page.
-	 * @param embed Either a callback whose first parameter is `new MessageEmbed()`, or an already constructed {@link MessageEmbed}
+	 * Adds a page to the existing ones asynchronously using a {@link EmbedBuilder}. This wil be added as the last page.
+	 * @param embed Either a callback whose first parameter is `new EmbedBuilder()`, or an already constructed {@link EmbedBuilder}
 	 * @example
 	 * ```typescript
 	 * const { PaginatedMessage } = require('@sapphire/discord.js-utilities');
@@ -608,16 +615,16 @@ export class PaginatedMessage {
 	 * });
 	 * ```
 	 */
-	public addAsyncPageEmbed(embed: MessageEmbed | ((builder: MessageEmbed) => Promise<MessageEmbed>)): this {
-		return this.addPage(async () => ({ embeds: isFunction(embed) ? [await embed(new MessageEmbed())] : [embed] }));
+	public addAsyncPageEmbed(embed: EmbedBuilder | ((builder: EmbedBuilder) => Promise<EmbedBuilder>)): this {
+		return this.addPage(async () => ({ embeds: isFunction(embed) ? [await embed(new EmbedBuilder())] : [embed] }));
 	}
 
 	/**
-	 * Adds a page to the existing ones asynchronously using multiple {@link MessageEmbed}'s. This wil be added as the last page.
-	 * @remark When using this with a callback this will construct 10 {@link MessageEmbed}'s in the callback parameters, regardless of how many are actually used.
+	 * Adds a page to the existing ones asynchronously using multiple {@link EmbedBuilder}'s. This wil be added as the last page.
+	 * @remark When using this with a callback this will construct 10 {@link EmbedBuilder}'s in the callback parameters, regardless of how many are actually used.
 	 * If this a performance impact you do not want to cope with then it is recommended to use {@link PaginatedMessage.addPageBuilder} instead, which will let you add
 	 * as many embeds as you want, albeit manually
-	 * @param embeds Either a callback which receives 10 parameters of `new MessageEmbed()`, or an array of already constructed {@link MessageEmbed}'s
+	 * @param embeds Either a callback which receives 10 parameters of `new EmbedBuilder()`, or an array of already constructed {@link EmbedBuilder}'s
 	 * @example
 	 * ```typescript
 	 * const { PaginatedMessage } = require('@sapphire/discord.js-utilities');
@@ -643,15 +650,15 @@ export class PaginatedMessage {
 	 * ```typescript
 	 * const { PaginatedMessage } = require('@sapphire/discord.js-utilities');
 	 *
-	 * const embed1 = new MessageEmbed()
+	 * const embed1 = new EmbedBuilder()
 	 * 	.setColor('#FF0000')
 	 * 	.setDescription('example description 1');
 	 *
-	 * const embed2 = new MessageEmbed()
+	 * const embed2 = new EmbedBuilder()
 	 * 	.setColor('#00FF00')
 	 * 	.setDescription('example description 2');
 	 *
-	 * const embed3 = new MessageEmbed()
+	 * const embed3 = new EmbedBuilder()
 	 * 	.setColor('#0000FF')
 	 * 	.setDescription('example description 3');
 	 *
@@ -661,32 +668,32 @@ export class PaginatedMessage {
 	 */
 	public addPageEmbeds(
 		embeds:
-			| MessageEmbed[]
+			| EmbedBuilder[]
 			| ((
-					embed1: MessageEmbed,
-					embed2: MessageEmbed,
-					embed3: MessageEmbed,
-					embed4: MessageEmbed,
-					embed5: MessageEmbed,
-					embed6: MessageEmbed,
-					embed7: MessageEmbed,
-					embed8: MessageEmbed,
-					embed9: MessageEmbed,
-					embed10: MessageEmbed
-			  ) => MessageEmbed[])
+					embed1: EmbedBuilder,
+					embed2: EmbedBuilder,
+					embed3: EmbedBuilder,
+					embed4: EmbedBuilder,
+					embed5: EmbedBuilder,
+					embed6: EmbedBuilder,
+					embed7: EmbedBuilder,
+					embed8: EmbedBuilder,
+					embed9: EmbedBuilder,
+					embed10: EmbedBuilder
+			  ) => EmbedBuilder[])
 	): this {
 		let processedEmbeds = isFunction(embeds)
 			? embeds(
-					new MessageEmbed(),
-					new MessageEmbed(),
-					new MessageEmbed(),
-					new MessageEmbed(),
-					new MessageEmbed(),
-					new MessageEmbed(),
-					new MessageEmbed(),
-					new MessageEmbed(),
-					new MessageEmbed(),
-					new MessageEmbed()
+					new EmbedBuilder(),
+					new EmbedBuilder(),
+					new EmbedBuilder(),
+					new EmbedBuilder(),
+					new EmbedBuilder(),
+					new EmbedBuilder(),
+					new EmbedBuilder(),
+					new EmbedBuilder(),
+					new EmbedBuilder(),
+					new EmbedBuilder()
 			  )
 			: embeds;
 
@@ -698,11 +705,11 @@ export class PaginatedMessage {
 	}
 
 	/**
-	 * Adds a page to the existing ones using multiple {@link MessageEmbed}'s. This wil be added as the last page.
-	 * @remark When using this with a callback this will construct 10 {@link MessageEmbed}'s in the callback parameters, regardless of how many are actually used.
+	 * Adds a page to the existing ones using multiple {@link EmbedBuilder}'s. This wil be added as the last page.
+	 * @remark When using this with a callback this will construct 10 {@link EmbedBuilder}'s in the callback parameters, regardless of how many are actually used.
 	 * If this a performance impact you do not want to cope with then it is recommended to use {@link PaginatedMessage.addPageBuilder} instead, which will let you add
 	 * as many embeds as you want, albeit manually
-	 * @param embeds Either a callback which receives 10 parameters of `new MessageEmbed()`, or an array of already constructed {@link MessageEmbed}'s
+	 * @param embeds Either a callback which receives 10 parameters of `new EmbedBuilder()`, or an array of already constructed {@link EmbedBuilder}'s
 	 * @example
 	 * ```typescript
 	 * const { PaginatedMessage } = require('@sapphire/discord.js-utilities');
@@ -734,15 +741,15 @@ export class PaginatedMessage {
 	 * ```typescript
 	 * const { PaginatedMessage } = require('@sapphire/discord.js-utilities');
 	 *
-	 * const embed1 = new MessageEmbed()
+	 * const embed1 = new EmbedBuilder()
 	 * 	.setColor('#FF0000')
 	 * 	.setDescription('example description 1');
 	 *
-	 * const embed2 = new MessageEmbed()
+	 * const embed2 = new EmbedBuilder()
 	 * 	.setColor('#00FF00')
 	 * 	.setDescription('example description 2');
 	 *
-	 * const embed3 = new MessageEmbed()
+	 * const embed3 = new EmbedBuilder()
 	 * 	.setColor('#0000FF')
 	 * 	.setDescription('example description 3');
 	 *
@@ -752,33 +759,33 @@ export class PaginatedMessage {
 	 */
 	public addAsyncPageEmbeds(
 		embeds:
-			| MessageEmbed[]
+			| EmbedBuilder[]
 			| ((
-					embed1: MessageEmbed,
-					embed2: MessageEmbed,
-					embed3: MessageEmbed,
-					embed4: MessageEmbed,
-					embed5: MessageEmbed,
-					embed6: MessageEmbed,
-					embed7: MessageEmbed,
-					embed8: MessageEmbed,
-					embed9: MessageEmbed,
-					embed10: MessageEmbed
-			  ) => Promise<MessageEmbed[]>)
+					embed1: EmbedBuilder,
+					embed2: EmbedBuilder,
+					embed3: EmbedBuilder,
+					embed4: EmbedBuilder,
+					embed5: EmbedBuilder,
+					embed6: EmbedBuilder,
+					embed7: EmbedBuilder,
+					embed8: EmbedBuilder,
+					embed9: EmbedBuilder,
+					embed10: EmbedBuilder
+			  ) => Promise<EmbedBuilder[]>)
 	): this {
 		return this.addPage(async () => {
 			let processedEmbeds = isFunction(embeds)
 				? await embeds(
-						new MessageEmbed(),
-						new MessageEmbed(),
-						new MessageEmbed(),
-						new MessageEmbed(),
-						new MessageEmbed(),
-						new MessageEmbed(),
-						new MessageEmbed(),
-						new MessageEmbed(),
-						new MessageEmbed(),
-						new MessageEmbed()
+						new EmbedBuilder(),
+						new EmbedBuilder(),
+						new EmbedBuilder(),
+						new EmbedBuilder(),
+						new EmbedBuilder(),
+						new EmbedBuilder(),
+						new EmbedBuilder(),
+						new EmbedBuilder(),
+						new EmbedBuilder(),
+						new EmbedBuilder()
 				  )
 				: embeds;
 
@@ -810,14 +817,14 @@ export class PaginatedMessage {
 	 *
 	 * @param messageOrInteraction The message or interaction that triggered this {@link PaginatedMessage}.
 	 * Generally this will be the command message or an interaction
-	 * (either a {@link CommandInteraction}, a {@link ContextMenuInteraction}, a {@link SelectMenuInteraction} or a {@link ButtonInteraction}),
+	 * (either a {@link CommandInteraction}, a {@link ContextMenuInteraction}, a {@link StringSelectMenuInteraction} or a {@link ButtonInteraction}),
 	 * but it can also be another message from your client, i.e. to indicate a loading state.
 	 *
 	 * @param target The user who will be able to interact with the buttons of this {@link PaginatedMessage}.
 	 * If `messageOrInteraction` is an instance of {@link Message} then this defaults to {@link Message.author messageOrInteraction.author},
 	 * and if it is an instance of {@link CommandInteraction} then it defaults to {@link CommandInteraction.user messageOrInteraction.user}.
 	 */
-	public async run(messageOrInteraction: Message | NonModalInteraction, target?: User): Promise<this> {
+	public async run(messageOrInteraction: Message | AnyInteractableInteraction, target?: User): Promise<this> {
 		// If there is no channel then exit early and potentially emit a warning
 		if (!messageOrInteraction.channel) {
 			const isInteraction = isAnyInteraction(messageOrInteraction);
@@ -832,22 +839,22 @@ export class PaginatedMessage {
 
 			// If we are to emit a warning,
 			//   then check if the interaction is an interaction based command,
-			//   and check if the client has the `'CHANNEL'` partial,
+			//   and check if the client has the Partials.Channel partial,
 			//   in which case we don't want to emit a warning.
-			if (shouldEmitWarning && isInteraction && messageOrInteraction.client.options.partials?.includes('CHANNEL')) {
+			if (shouldEmitWarning && isInteraction && messageOrInteraction.client.options.partials?.includes(Partials.Channel)) {
 				shouldEmitWarning = false;
 			}
 
 			// IF we are to emit a warning,
 			//   then check if the interaction is a message based command,
-			//   and check if the client has the 'CHANNEL' partial,
+			//   and check if the client has the Partials.Channel partial,
 			//   and check if the client has the 'DIRECT_MESSAGE' intent',
 			//   in which case we don't want to emit a warning.
 			if (
 				shouldEmitWarning &&
 				!isInteraction &&
-				messageOrInteraction.client.options.partials?.includes('CHANNEL') &&
-				new Intents(messageOrInteraction.client.options.intents).has(Intents.FLAGS.DIRECT_MESSAGES)
+				messageOrInteraction.client.options.partials?.includes(Partials.Channel) &&
+				new IntentsBitField(messageOrInteraction.client.options.intents).has(GatewayIntentBits.DirectMessages)
 			) {
 				shouldEmitWarning = false;
 			}
@@ -966,12 +973,12 @@ export class PaginatedMessage {
 	 *
 	 * @param messageOrInteraction The message or interaction that triggered this {@link PaginatedMessage}.
 	 * Generally this will be the command message or an interaction
-	 * (either a {@link CommandInteraction}, a {@link ContextMenuInteraction}, a {@link SelectMenuInteraction} or a {@link ButtonInteraction}),
+	 * (either a {@link CommandInteraction}, a {@link ContextMenuInteraction}, a {@link StringSelectMenuInteraction} or a {@link ButtonInteraction}),
 	 * but it can also be another message from your client, i.e. to indicate a loading state.
 	 *
 	 * @param targetUser The author the handler is for.
 	 */
-	protected async setUpMessage(messageOrInteraction: Message | NonModalInteraction, targetUser: User): Promise<void> {
+	protected async setUpMessage(messageOrInteraction: Message | AnyInteractableInteraction, targetUser: User): Promise<void> {
 		// Get the current page
 		let page = this.messages[this.index]!;
 
@@ -984,10 +991,10 @@ export class PaginatedMessage {
 		// If we do not have more than 1 page then there is no reason to add message components
 		if (this.pages.length > 1) {
 			const messageComponents = await Promise.all(
-				[...this.actions.values()].map<Promise<MessageButton | MessageSelectMenu>>(async (interaction) => {
-					return isMessageButtonInteraction(interaction)
-						? new MessageButton(interaction)
-						: new MessageSelectMenu({
+				[...this.actions.values()].map<Promise<ButtonBuilder | StringSelectMenuBuilder>>(async (interaction) => {
+					return isMessageButtonInteractionData(interaction)
+						? new ButtonBuilder(interaction)
+						: new StringSelectMenuBuilder({
 								options: await Promise.all(
 									this.pages.map(async (_, index) => {
 										return {
@@ -1013,7 +1020,7 @@ export class PaginatedMessage {
 				if (this.response.replied || this.response.deferred) {
 					await this.response.editReply(page as WebhookEditMessageOptions);
 				} else {
-					await this.response.reply(page as WebhookEditMessageOptions);
+					await this.response.reply(page as InteractionReplyOptions);
 				}
 			} else if (isMessageInstance(this.response)) {
 				await this.response.edit(page as WebhookEditMessageOptions);
@@ -1023,10 +1030,10 @@ export class PaginatedMessage {
 				const editReplyResponse = await messageOrInteraction.editReply(page);
 				this.response = messageOrInteraction.ephemeral ? messageOrInteraction : editReplyResponse;
 			} else {
-				this.response = await messageOrInteraction.reply({ ...page, fetchReply: true, ephemeral: false });
+				this.response = await messageOrInteraction.reply({ ...(page as InteractionReplyOptions), fetchReply: true, ephemeral: false });
 			}
 		} else {
-			this.response = await messageOrInteraction.channel.send(page as MessageOptions);
+			this.response = await messageOrInteraction.channel.send(page as BaseMessageOptions);
 		}
 	}
 
@@ -1037,7 +1044,7 @@ export class PaginatedMessage {
 	 */
 	protected setUpCollector(channel: TextBasedChannel, targetUser: User): void {
 		if (this.pages.length > 1) {
-			this.collector = new InteractionCollector<MessageComponentInteraction>(targetUser.client, {
+			this.collector = new InteractionCollector<ButtonInteraction | StringSelectMenuInteraction>(targetUser.client, {
 				filter: (interaction) =>
 					!isNullish(this.response) && //
 					interaction.isMessageComponent() &&
@@ -1049,7 +1056,7 @@ export class PaginatedMessage {
 
 				channel,
 
-				interactionType: Constants.InteractionTypes.MESSAGE_COMPONENT,
+				interactionType: InteractionType.MessageComponent,
 
 				...(!isNullish(this.response) && !isAnyInteraction(this.response)
 					? {
@@ -1065,7 +1072,6 @@ export class PaginatedMessage {
 	/**
 	 * Handles the load of a page.
 	 * @param page The page to be loaded.
-	 * @param channel The channel the paginated message runs at.
 	 * @param index The index of the current page.
 	 */
 	protected async handlePageLoad(page: PaginatedMessagePage, index: number): Promise<PaginatedMessageMessageOptionsUnion> {
@@ -1091,7 +1097,7 @@ export class PaginatedMessage {
 	protected async handleCollect(
 		targetUser: User,
 		channel: Message['channel'],
-		interaction: ButtonInteraction | SelectMenuInteraction
+		interaction: ButtonInteraction | StringSelectMenuInteraction
 	): Promise<void> {
 		if (interaction.user.id === targetUser.id) {
 			// Update the response to the latest interaction
@@ -1144,7 +1150,7 @@ export class PaginatedMessage {
 	 * @param reason The reason for which the collector was ended.
 	 */
 	protected async handleEnd(
-		_: Collection<Snowflake, ButtonInteraction | SelectMenuInteraction>,
+		_: Collection<Snowflake, ButtonInteraction | StringSelectMenuInteraction>,
 		reason: PaginatedMessageStopReasons
 	): Promise<void> {
 		// Ensure no race condition can occur where interacting with the message when the paginated message closes would otherwise result in a DiscordAPIError
@@ -1189,10 +1195,22 @@ export class PaginatedMessage {
 		const idx = embedsWithFooterApplied.length - 1;
 		const lastEmbed = embedsWithFooterApplied[idx];
 		if (lastEmbed) {
-			lastEmbed.footer ??= { text: this.template.embeds?.[idx]?.footer?.text ?? this.template.embeds?.[0]?.footer?.text ?? '' };
-			lastEmbed.footer.text = `${this.pageIndexPrefix ? `${this.pageIndexPrefix} ` : ''}${index + 1} / ${this.pages.length}${
-				lastEmbed.footer.text ? ` ${this.embedFooterSeparator} ${lastEmbed.footer.text}` : ''
-			}`;
+			const jsonTemplateEmbed = isJSONEncodable(this.template.embeds?.[idx] ?? this.template.embeds?.[0])
+				? ((this.template.embeds?.[idx] ?? this.template.embeds?.[0]) as JSONEncodable<APIEmbed> | undefined)?.toJSON()
+				: ((this.template.embeds?.[idx] ?? this.template.embeds?.[0]) as APIEmbed | undefined);
+
+			if (isJSONEncodable(lastEmbed)) {
+				const casted = lastEmbed as EmbedBuilder;
+				casted.data.footer ??= { text: jsonTemplateEmbed?.footer?.text ?? '' };
+				casted.data.footer.text = `${this.pageIndexPrefix ? `${this.pageIndexPrefix} ` : ''}${index + 1} / ${this.pages.length}${
+					casted.data.footer.text ? ` ${this.embedFooterSeparator} ${casted.data.footer.text}` : ''
+				}`;
+			} else {
+				lastEmbed.footer ??= { text: jsonTemplateEmbed?.footer?.text ?? '' };
+				lastEmbed.footer.text = `${this.pageIndexPrefix ? `${this.pageIndexPrefix} ` : ''}${index + 1} / ${this.pages.length}${
+					lastEmbed.footer.text ? ` ${this.embedFooterSeparator} ${lastEmbed.footer.text}` : ''
+				}`;
+			}
 		}
 
 		return { ...message, embeds: embedsWithFooterApplied };
@@ -1205,7 +1223,7 @@ export class PaginatedMessage {
 	 * @returns A constructed {@link PaginatedMessageInternationalizationContext}
 	 */
 	protected resolvePaginatedMessageInternationalizationContext(
-		messageOrInteraction: Message | NonModalInteraction,
+		messageOrInteraction: Message | AnyInteractableInteraction,
 		targetUser: User
 	): PaginatedMessageInternationalizationContext {
 		const context: PaginatedMessageInternationalizationContext = {
@@ -1249,22 +1267,26 @@ export class PaginatedMessage {
 	): Exclude<PaginatedMessageEmbedResolvable, undefined> {
 		const mergedEmbeds: Exclude<PaginatedMessageEmbedResolvable, undefined> = [];
 
+		const jsonTemplate = isJSONEncodable(templateEmbed) ? templateEmbed.toJSON() : templateEmbed;
+
 		for (const pageEmbed of pageEmbeds) {
+			const pageJson = isJSONEncodable(pageEmbed) ? pageEmbed.toJSON() : pageEmbed;
+
 			mergedEmbeds.push({
-				title: pageEmbed.title ?? templateEmbed.title ?? undefined,
-				description: pageEmbed.description ?? templateEmbed.description ?? undefined,
-				url: pageEmbed.url ?? templateEmbed.url ?? undefined,
+				title: pageJson.title ?? jsonTemplate.title ?? undefined,
+				description: pageJson.description ?? jsonTemplate.description ?? undefined,
+				url: pageJson.url ?? jsonTemplate.url ?? undefined,
 				timestamp:
-					(typeof pageEmbed.timestamp === 'string' ? new Date(pageEmbed.timestamp) : pageEmbed.timestamp) ??
-					(typeof templateEmbed.timestamp === 'string' ? new Date(templateEmbed.timestamp) : templateEmbed.timestamp) ??
+					(typeof pageJson.timestamp === 'string' ? new Date(pageJson.timestamp).toISOString() : pageJson.timestamp) ??
+					(typeof jsonTemplate.timestamp === 'string' ? new Date(jsonTemplate.timestamp).toISOString() : jsonTemplate.timestamp) ??
 					undefined,
-				color: pageEmbed.color ?? templateEmbed.color ?? undefined,
-				fields: this.mergeArrays(templateEmbed.fields, pageEmbed.fields),
-				author: pageEmbed.author ?? templateEmbed.author ?? undefined,
-				thumbnail: pageEmbed.thumbnail ?? templateEmbed.thumbnail ?? undefined,
-				image: pageEmbed.image ?? templateEmbed.image ?? undefined,
-				video: pageEmbed.video ?? templateEmbed.video ?? undefined,
-				footer: pageEmbed.footer ?? templateEmbed.footer ?? undefined
+				color: pageJson.color ?? jsonTemplate.color ?? undefined,
+				fields: this.mergeArrays(jsonTemplate.fields, pageJson.fields),
+				author: pageJson.author ?? jsonTemplate.author ?? undefined,
+				thumbnail: pageJson.thumbnail ?? jsonTemplate.thumbnail ?? undefined,
+				image: pageJson.image ?? jsonTemplate.image ?? undefined,
+				video: pageJson.video ?? jsonTemplate.video ?? undefined,
+				footer: pageJson.footer ?? jsonTemplate.footer ?? undefined
 			});
 		}
 
@@ -1289,21 +1311,21 @@ export class PaginatedMessage {
 	public static defaultActions: PaginatedMessageAction[] = [
 		{
 			customId: '@sapphire/paginated-messages.goToPage',
-			type: Constants.MessageComponentTypes.SELECT_MENU,
+			type: ComponentType.SelectMenu,
 			run: ({ handler, interaction }) => interaction.isSelectMenu() && (handler.index = parseInt(interaction.values[0], 10))
 		},
 		{
 			customId: '@sapphire/paginated-messages.firstPage',
-			style: 'PRIMARY',
+			style: ButtonStyle.Primary,
 			emoji: '⏪',
-			type: Constants.MessageComponentTypes.BUTTON,
+			type: ComponentType.Button,
 			run: ({ handler }) => (handler.index = 0)
 		},
 		{
 			customId: '@sapphire/paginated-messages.previousPage',
-			style: 'PRIMARY',
+			style: ButtonStyle.Primary,
 			emoji: '◀️',
-			type: Constants.MessageComponentTypes.BUTTON,
+			type: ComponentType.Button,
 			run: ({ handler }) => {
 				if (handler.index === 0) {
 					handler.index = handler.pages.length - 1;
@@ -1314,9 +1336,9 @@ export class PaginatedMessage {
 		},
 		{
 			customId: '@sapphire/paginated-messages.nextPage',
-			style: 'PRIMARY',
+			style: ButtonStyle.Primary,
 			emoji: '▶️',
-			type: Constants.MessageComponentTypes.BUTTON,
+			type: ComponentType.Button,
 			run: ({ handler }) => {
 				if (handler.index === handler.pages.length - 1) {
 					handler.index = 0;
@@ -1327,16 +1349,16 @@ export class PaginatedMessage {
 		},
 		{
 			customId: '@sapphire/paginated-messages.goToLastPage',
-			style: 'PRIMARY',
+			style: ButtonStyle.Primary,
 			emoji: '⏩',
-			type: Constants.MessageComponentTypes.BUTTON,
+			type: ComponentType.Button,
 			run: ({ handler }) => (handler.index = handler.pages.length - 1)
 		},
 		{
 			customId: '@sapphire/paginated-messages.stop',
-			style: 'DANGER',
+			style: ButtonStyle.Danger,
 			emoji: '⏹️',
-			type: Constants.MessageComponentTypes.BUTTON,
+			type: ComponentType.Button,
 			run: ({ collector }) => {
 				collector.stop();
 			}
@@ -1422,11 +1444,11 @@ export class PaginatedMessage {
 	public static readonly handlers = new Map<string, PaginatedMessage>();
 
 	/**
-	 * A generator for {@link MessageSelectOption} that will be used to generate the options for the {@link MessageSelectMenu}.
+	 * A generator for {@link MessageSelectOption} that will be used to generate the options for the {@link StringSelectMenuBuilder}.
 	 * We do not allow overwriting the {@link MessageSelectOption#value} property with this, as it is vital to how we handle
 	 * select menu interactions.
 	 *
-	 * @param pageIndex The index of the page to add to the {@link MessageSelectMenu}. We will add 1 to this number because our pages are 0 based,
+	 * @param pageIndex The index of the page to add to the {@link StringSelectMenuBuilder}. We will add 1 to this number because our pages are 0 based,
 	 * so this will represent the pages as seen by the user.
 	 * @default
 	 * ```ts
@@ -1491,17 +1513,17 @@ export class PaginatedMessage {
 	 * ```
 	 */
 	public static wrongUserInteractionReply: PaginatedMessageWrongUserInteractionReplyFunction = (targetUser: User) => ({
-		content: `Please stop interacting with the components on this message. They are only for ${Formatters.userMention(targetUser.id)}.`,
+		content: `Please stop interacting with the components on this message. They are only for ${userMention(targetUser.id)}.`,
 		ephemeral: true,
 		allowedMentions: { users: [], roles: [] }
 	});
 
-	private static resolveTemplate(template?: MessageEmbed | MessageOptions): MessageOptions {
+	private static resolveTemplate(template?: EmbedBuilder | BaseMessageOptions): BaseMessageOptions {
 		if (template === undefined) {
 			return {};
 		}
 
-		if (template instanceof MessageEmbed) {
+		if (template instanceof EmbedBuilder) {
 			return { embeds: [template] };
 		}
 
