@@ -21,7 +21,6 @@ import {
 	type ButtonInteraction,
 	type Collection,
 	type Message,
-	type MessageComponentInteraction,
 	type MessageOptions,
 	type SelectMenuInteraction,
 	type Snowflake,
