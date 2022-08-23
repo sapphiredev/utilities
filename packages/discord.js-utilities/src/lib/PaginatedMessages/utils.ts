@@ -1,49 +1,41 @@
 import { chunk, partition } from '@sapphire/utilities';
-import { Constants, InteractionButtonOptions, MessageActionRow, MessageButton, MessageSelectMenu, MessageSelectMenuOptions } from 'discord.js';
-import { isAnyInteraction, isMessageInstance } from '../type-guards';
+import { ActionRowBuilder, ActionRowComponentOptions, ButtonBuilder, ButtonComponentData, ComponentType, SelectMenuBuilder } from 'discord.js';
+import { isAnyInteractableInteraction, isMessageInstance } from '../type-guards';
 import type {
 	PaginatedMessageAction,
 	PaginatedMessageActionButton,
-	PaginatedMessageActionLink,
 	PaginatedMessageActionMenu,
 	SafeReplyToInteractionParameters
 } from './PaginatedMessageTypes';
 
 export function actionIsButtonOrMenu(action: PaginatedMessageAction): action is PaginatedMessageActionButton | PaginatedMessageActionMenu {
-	return (
-		action.type === Constants.MessageComponentTypes.SELECT_MENU ||
-		action.type === 'SELECT_MENU' ||
-		((action as PaginatedMessageActionButton | PaginatedMessageActionLink).style !== 'LINK' &&
-			(action as PaginatedMessageActionButton | PaginatedMessageActionLink).style !== Constants.MessageButtonStyles.LINK)
-	);
+	return action.type === ComponentType.SelectMenu || action.type === ComponentType.Button;
 }
 
-export function isMessageButtonInteraction(
-	interaction: InteractionButtonOptions | MessageSelectMenuOptions
-): interaction is InteractionButtonOptions {
-	return interaction.type === Constants.MessageComponentTypes.BUTTON || interaction.type === 'BUTTON';
+export function isMessageButtonInteractionData(interaction: ActionRowComponentOptions): interaction is ButtonComponentData {
+	return interaction.type === ComponentType.Button;
 }
 
-export function isMessageButtonComponent(component: MessageButton | MessageSelectMenu): component is MessageButton {
-	return component.type === 'BUTTON';
+export function isButtonComponentBuilder(component: ButtonBuilder | SelectMenuBuilder): component is ButtonBuilder {
+	return component.data.type === ComponentType.Button;
 }
 
-export function createPartitionedMessageRow(components: (MessageButton | MessageSelectMenu)[]): MessageActionRow[] {
+export function createPartitionedMessageRow(components: (ButtonBuilder | SelectMenuBuilder)[]): ActionRowBuilder[] {
 	// Partition the components into two groups: buttons and select menus
-	const [messageButtons, selectMenus] = partition(components, isMessageButtonComponent);
+	const [messageButtons, selectMenus] = partition(components, isButtonComponentBuilder);
 
-	// Chunk the button components in sets of 5, the maximum of 1 MessageActionRow
+	// Chunk the button components in sets of 5, the maximum of 1 ActionRowBuilder
 	const chunkedButtonComponents = chunk(messageButtons, 5);
 
-	// Map all the button components to MessageActionRows
+	// Map all the button components to ActionRowBuilders
 	const messageButtonActionRows = chunkedButtonComponents.map((componentsChunk) =>
-		new MessageActionRow() //
+		new ActionRowBuilder() //
 			.setComponents(componentsChunk)
 	);
 
-	// Map all the select menu components to MessageActionRows
+	// Map all the select menu components to ActionRowBuilders
 	const selectMenuActionRows = selectMenus.map((component) =>
-		new MessageActionRow() //
+		new ActionRowBuilder() //
 			.setComponents(component)
 	);
 
@@ -55,7 +47,7 @@ export function createPartitionedMessageRow(components: (MessageButton | Message
  * @param parameters The parameters to create a safe reply to interaction parameters
  */
 export async function safelyReplyToInteraction<T extends 'edit' | 'reply'>(parameters: SafeReplyToInteractionParameters<T>) {
-	if (isAnyInteraction(parameters.messageOrInteraction)) {
+	if (isAnyInteractableInteraction(parameters.messageOrInteraction)) {
 		if (parameters.messageOrInteraction.replied || parameters.messageOrInteraction.deferred) {
 			await parameters.messageOrInteraction.editReply(parameters.interactionEditReplyContent);
 		} else if (parameters.messageOrInteraction.isMessageComponent()) {

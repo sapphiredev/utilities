@@ -1,4 +1,4 @@
-import { isNullish } from '@sapphire/utilities';
+import { ArgumentTypes, isNullish } from '@sapphire/utilities';
 import type { CollectorFilter, CollectorOptions, Message, User } from 'discord.js';
 import { isTextBasedChannel } from '../../type-guards';
 import type { MessagePrompterChannelTypes, MessagePrompterMessage } from '../constants';
@@ -29,7 +29,7 @@ export class MessagePrompterMessageStrategy extends MessagePrompterBaseStrategy 
 	): Promise<IMessagePrompterExplicitMessageReturn | Message> {
 		if (isTextBasedChannel(channel)) {
 			if (!isNullish(this.editMessage) && this.editMessage.editable) {
-				this.appliedMessage = await this.editMessage.edit(this.message);
+				this.appliedMessage = await this.editMessage.edit(this.message as ArgumentTypes<Message['edit']>[0]);
 			} else {
 				this.appliedMessage = await channel.send(this.message);
 			}

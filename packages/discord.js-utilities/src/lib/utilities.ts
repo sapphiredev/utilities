@@ -1,9 +1,9 @@
-import { isNullish, type Nullish } from '@sapphire/utilities';
-import { Permissions, type VoiceBasedChannel } from 'discord.js';
+import { isNullish, Nullish } from '@sapphire/utilities';
+import { PermissionFlagsBits, PermissionsBitField, type VoiceBasedChannel } from 'discord.js';
 import { isDMChannel, isGuildBasedChannel, isVoiceBasedChannel } from './type-guards';
 import type { ChannelTypes } from './utility-types';
 
-const canReadMessagesPermissions = new Permissions(['VIEW_CHANNEL']);
+const canReadMessagesPermissions = new PermissionsBitField([PermissionFlagsBits.ViewChannel]);
 
 /**
  * Determines whether or not we can read messages in a given channel.
@@ -17,7 +17,7 @@ export function canReadMessages(channel: ChannelTypes | Nullish): boolean {
 	return canDoUtility(channel, canReadMessagesPermissions);
 }
 
-const canSendMessagesPermissions = new Permissions([canReadMessagesPermissions, 'SEND_MESSAGES']);
+const canSendMessagesPermissions = new PermissionsBitField([canReadMessagesPermissions, PermissionFlagsBits.SendMessages]);
 
 /**
  * Determines whether or not we can send messages in a given channel.
@@ -32,7 +32,7 @@ export function canSendMessages(channel: ChannelTypes | Nullish): boolean {
 	return canDoUtility(channel, canSendMessagesPermissions);
 }
 
-const canSendEmbedsPermissions = new Permissions([canSendMessagesPermissions, 'EMBED_LINKS']);
+const canSendEmbedsPermissions = new PermissionsBitField([canSendMessagesPermissions, PermissionFlagsBits.EmbedLinks]);
 
 /**
  * Determines whether or not we can send embeds in a given channel.
@@ -47,7 +47,7 @@ export function canSendEmbeds(channel: ChannelTypes | Nullish): boolean {
 	return canDoUtility(channel, canSendEmbedsPermissions);
 }
 
-const canSendAttachmentsPermissions = new Permissions([canSendMessagesPermissions, 'ATTACH_FILES']);
+const canSendAttachmentsPermissions = new PermissionsBitField([canSendMessagesPermissions, PermissionFlagsBits.AttachFiles]);
 
 /**
  * Determines whether or not we can send attachments in a given channel.
@@ -62,7 +62,11 @@ export function canSendAttachments(channel: ChannelTypes | Nullish): boolean {
 	return canDoUtility(channel, canSendAttachmentsPermissions);
 }
 
-const canReactPermissions = new Permissions([canSendMessagesPermissions, 'READ_MESSAGE_HISTORY', 'ADD_REACTIONS']);
+const canReactPermissions = new PermissionsBitField([
+	canSendMessagesPermissions,
+	PermissionFlagsBits.ReadMessageHistory,
+	PermissionFlagsBits.AddReactions
+]);
 
 /**
  * Determines whether or not we can send react to messages in a given channel.
@@ -77,7 +81,11 @@ export function canReact(channel: ChannelTypes | Nullish) {
 	return canDoUtility(channel, canReactPermissions);
 }
 
-const canRemoveAllReactionsPermissions = new Permissions([canReadMessagesPermissions, 'READ_MESSAGE_HISTORY', 'MANAGE_MESSAGES']);
+const canRemoveAllReactionsPermissions = new PermissionsBitField([
+	canReadMessagesPermissions,
+	PermissionFlagsBits.ReadMessageHistory,
+	PermissionFlagsBits.ManageMessages
+]);
 
 /**
  * Determines whether or not we can remove reactions from messages in a given channel.
@@ -91,7 +99,7 @@ export function canRemoveAllReactions(channel: ChannelTypes | Nullish) {
 	return canDoUtility(channel, canRemoveAllReactionsPermissions);
 }
 
-const canJoinVoiceChannelPermissions = new Permissions(['CONNECT']);
+const canJoinVoiceChannelPermissions = new PermissionsBitField([PermissionFlagsBits.Connect]);
 
 /**
  * Determines whether the client can join the given voice based channel.
@@ -106,6 +114,6 @@ export function canJoinVoiceChannel(channel: VoiceBasedChannel | Nullish): boole
 	return canDoUtility(channel, canJoinVoiceChannelPermissions);
 }
 
-function canDoUtility(channel: ChannelTypes, permissionsToPass: Permissions) {
-	return isGuildBasedChannel(channel) ? channel.permissionsFor(channel.guild.me!)!.has(permissionsToPass) : true;
+function canDoUtility(channel: ChannelTypes, permissionsToPass: PermissionsBitField) {
+	return isGuildBasedChannel(channel) ? channel.permissionsFor(channel.guild.members.me!)!.has(permissionsToPass) : true;
 }
