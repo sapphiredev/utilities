@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/result@2.4.1](https://github.com/sapphiredev/utilities/compare/@sapphire/result@2.4.0...@sapphire/result@2.4.1) - (2022-08-29)
+
+## 🧪 Testing
+
+- **result:** Add full coverage (#436) ([3f06ac5](https://github.com/sapphiredev/utilities/commit/3f06ac500b8e96312a5fe04be2817753ce219d37))
+
+# [@sapphire/result@2.4.0](https://github.com/sapphiredev/utilities/compare/@sapphire/result@2.3.3...@sapphire/result@2.4.0) - (2022-08-19)
+
+## 🐛 Bug Fixes
+
+- **deps:** Update all non-major dependencies ([2308bd7](https://github.com/sapphiredev/utilities/commit/2308bd74356b6b2e0c12995b25f4d8ade4803fe9))
+
+## 🚀 Features
+
+- Add `intoPromise` (#430) ([715315e](https://github.com/sapphiredev/utilities/commit/715315eb8c3e6bc8e47379a486bac7c737620f92))
+
 # [@sapphire/result@2.4.0](https://github.com/sapphiredev/utilities/compare/@sapphire/result@2.3.3...@sapphire/result@2.4.0) - (2022-08-19)
 
 ## 🐛 Bug Fixes
