@@ -58,8 +58,8 @@
 	"devDependencies": {
 		"@favware/cliff-jumper": "^1.8.7",
 		"@vitest/coverage-c8": "^0.22.1",
-		"tsup": "^6.2.2",
-		"typescript": "^4.7.4",
+		"tsup": "^6.2.3",
+		"typescript": "^4.8.2",
 		"vitest": "^0.22.1"
 	}
 }
