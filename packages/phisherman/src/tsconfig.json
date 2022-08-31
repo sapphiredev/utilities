@@ -1,6 +1,7 @@
 {
 	"extends": "../../ts-config/extra-strict-without-decorators.json",
 	"compilerOptions": {
+		"lib": ["ESNext", "DOM"],
 		"rootDir": "./",
 		"outDir": "../dist",
 		"incremental": false
