@@ -7,6 +7,10 @@ on:
     tags:
       - '**'
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build:
     name: Build Documentation
@@ -48,25 +52,24 @@ jobs:
     name: Upload Documentation
     needs: build
     strategy:
+      max-parallel: 1
       fail-fast: false
       matrix:
         package:
-          [
-            'async-queue',
-            'decorators',
-            'discord-utilities',
-            'discord.js-utilities',
-            'event-iterator',
-            'fetch',
-            'lexure',
-            'phisherman',
-            'ratelimits',
-            'result',
-            'snowflake',
-            'stopwatch',
-            'time-utilities',
-            'utilities'
-          ]
+          - async-queue
+          - decorators
+          - discord-utilities
+          - discord.js-utilities
+          - event-iterator
+          - fetch
+          - lexure
+          - phisherman
+          - ratelimits
+          - result
+          - snowflake
+          - stopwatch
+          - time-utilities
+          - utilities
     runs-on: ubuntu-latest
     env:
       NAME: ${{ needs.build.outputs.NAME }}
@@ -108,15 +111,15 @@ jobs:
           PACKAGE: ${{ steps.extract-tag.outputs.package }}
           SEMVER: ${{ steps.extract-tag.outputs.semver }}
         run: |
-          mkdir -p out/docs/${PACKAGE}
-          mv docs/${PACKAGE}/docs/api.json out/docs/${PACKAGE}/${SEMVER}.json
+          mkdir -p out/docs/utilities/${PACKAGE}
+          mv docs/${PACKAGE}/docs/api.json out/docs/utilities/${PACKAGE}/${SEMVER}.json
       - name: Move Documentation
         if: ${{ env.TYPE == 'branch' }}
         env:
           PACKAGE: ${{ matrix.package }}
         run: |
-          mkdir -p out/docs/${PACKAGE}
-          mv docs/${PACKAGE}/docs/api.json out/docs/${PACKAGE}/${NAME}.json
+          mkdir -p out/docs/utilities/${PACKAGE}
+          mv docs/${PACKAGE}/docs/api.json out/docs/utilities/${PACKAGE}/${NAME}.json
 
       - name: Commit & Push
         env:
