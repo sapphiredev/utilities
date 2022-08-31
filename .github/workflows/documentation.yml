@@ -108,14 +108,14 @@ jobs:
           PACKAGE: ${{ steps.extract-tag.outputs.package }}
           SEMVER: ${{ steps.extract-tag.outputs.semver }}
         run: |
-          mkdir -p out/${PACKAGE}
+          mkdir -p out/docs/${PACKAGE}
           mv docs/${PACKAGE}/docs/api.json out/docs/${PACKAGE}/${SEMVER}.json
       - name: Move Documentation
         if: ${{ env.TYPE == 'branch' }}
         env:
           PACKAGE: ${{ matrix.package }}
         run: |
-          mkdir -p out/${PACKAGE}
+          mkdir -p out/docs/${PACKAGE}
           mv docs/${PACKAGE}/docs/api.json out/docs/${PACKAGE}/${NAME}.json
 
       - name: Commit & Push
