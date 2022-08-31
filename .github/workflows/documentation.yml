@@ -56,22 +56,20 @@ jobs:
       fail-fast: false
       matrix:
         package:
-          [
-            'async-queue',
-            'decorators',
-            'discord-utilities',
-            'discord.js-utilities',
-            'event-iterator',
-            'fetch',
-            'lexure',
-            'phisherman',
-            'ratelimits',
-            'result',
-            'snowflake',
-            'stopwatch',
-            'time-utilities',
-            'utilities'
-          ]
+          - async-queue
+          - decorators
+          - discord-utilities
+          - discord.js-utilities
+          - event-iterator
+          - fetch
+          - lexure
+          - phisherman
+          - ratelimits
+          - result
+          - snowflake
+          - stopwatch
+          - time-utilities
+          - utilities
     runs-on: ubuntu-latest
     env:
       NAME: ${{ needs.build.outputs.NAME }}
