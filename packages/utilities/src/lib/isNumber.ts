@@ -4,5 +4,5 @@
  */
 export function isNumber(input: unknown): input is number {
 	if (typeof input === 'string') input = Number(input);
-	return typeof input === 'number' && !isNaN(input) && Number.isFinite(input);
+	return typeof input === 'number' && !Number.isNaN(input) && Number.isFinite(input);
 }
