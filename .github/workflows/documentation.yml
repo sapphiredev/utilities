@@ -104,15 +104,15 @@ jobs:
         uses: ./scripts/formatTag
         with:
           tag: ${{ env.NAME }}
-
       - name: Move Documentation
-        if: ${{ env.TYPE == 'tag' }}
+        if: ${{ env.TYPE == 'tag' && matrix.package == steps.extract-tag.outputs.package }}
         env:
           PACKAGE: ${{ steps.extract-tag.outputs.package }}
           SEMVER: ${{ steps.extract-tag.outputs.semver }}
         run: |
           mkdir -p out/docs/utilities/${PACKAGE}
           mv docs/${PACKAGE}/docs/api.json out/docs/utilities/${PACKAGE}/${SEMVER}.json
+
       - name: Move Documentation
         if: ${{ env.TYPE == 'branch' }}
         env:
@@ -123,7 +123,7 @@ jobs:
 
       - name: Commit & Push
         env:
-          PACKAGE: ${{ matrix.package }}
+          PACKAGE: ${{ steps.extract-tag.outputs.package || matrix.package }}
         run: |
           cd out
           git config user.name github-actions[bot]
