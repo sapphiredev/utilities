@@ -6,6 +6,5 @@
 		"tsBuildInfoFile": "../test-dist/.tsbuildinfo",
 		"types": ["vitest/globals"]
 	},
-	"include": ["./"],
-	"references": [{ "path": "../src" }]
+	"include": ["./"]
 }
