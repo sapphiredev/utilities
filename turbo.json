@@ -21,7 +21,7 @@
 			"outputs": []
 		},
 		"docs": {
-			"dependsOn": [],
+			"dependsOn": ["@sapphire/discord.js-utilities#build", "@sapphire/fetch#build", "@sapphire/result#build", "@sapphire/utilities#build"],
 			"outputs": ["docs/**"]
 		}
 	}
