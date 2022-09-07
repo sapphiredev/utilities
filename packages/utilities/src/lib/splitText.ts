@@ -3,7 +3,7 @@
  * @param str The text to split.
  * @param length The length of the desired string.
  * @param char The character to split with
- * @copyright 2019 Antonio Román
+ * @copyright 2019 Aura Román
  * @license Apache-2.0
  */
 export function splitText(str: string, length: number, char = ' ') {
