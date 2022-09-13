@@ -759,6 +759,17 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@sapphire/string-store@workspace:packages/string-store":
+  version: 0.0.0-use.local
+  resolution: "@sapphire/string-store@workspace:packages/string-store"
+  dependencies:
+    "@favware/cliff-jumper": ^1.8.5
+    tslib: ^2.4.0
+    tsup: ^6.1.3
+    typescript: ^4.7.4
+  languageName: unknown
+  linkType: soft
+
 "@sapphire/time-utilities@workspace:^, @sapphire/time-utilities@workspace:packages/time-utilities":
   version: 0.0.0-use.local
   resolution: "@sapphire/time-utilities@workspace:packages/time-utilities"

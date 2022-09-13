@@ -2,42 +2,80 @@
 
 ![Sapphire Logo](https://cdn.skyra.pw/gh-assets/sapphire-banner.png)
 
-# Sapphire Utilities
+# @sapphire/stopwatch
 
-**Common NodeJS packages for Sapphire Repositories and others.**
+**Conveniently store a lot of data into a very small payload**
 
 [![GitHub](https://img.shields.io/github/license/sapphiredev/utilities)](https://github.com/sapphiredev/utilities/blob/main/LICENSE.md)
 [![codecov](https://codecov.io/gh/sapphiredev/utilities/branch/main/graph/badge.svg?token=OEGIV6RFDO)](https://codecov.io/gh/sapphiredev/utilities)
-
-**Packages**
-
-[![npm](https://img.shields.io/npm/v/@sapphire/async-queue?color=crimson&logo=npm&style=flat-square&label=@sapphire/async-queue)](https://www.npmjs.com/package/@sapphire/async-queue)
-[![npm](https://img.shields.io/npm/v/@sapphire/decorators?color=crimson&logo=npm&style=flat-square&label=@sapphire/decorators)](https://www.npmjs.com/package/@sapphire/decorators)
-[![npm](https://img.shields.io/npm/v/@sapphire/discord-utilities?color=crimson&logo=npm&style=flat-square&label=@sapphire/discord-utilities)](https://www.npmjs.com/package/@sapphire/discord-utilities)
-[![npm](https://img.shields.io/npm/v/@sapphire/discord.js-utilities?color=crimson&logo=npm&style=flat-square&label=@sapphire/discord.js-utilities)](https://www.npmjs.com/package/@sapphire/discord.js-utilities)
-[![npm](https://img.shields.io/npm/v/@sapphire/eslint-config?color=crimson&logo=npm&style=flat-square&label=@sapphire/eslint-config)](https://www.npmjs.com/package/@sapphire/eslint-config)
-[![npm](https://img.shields.io/npm/v/@sapphire/event-iterator?color=crimson&logo=npm&style=flat-square&label=@sapphire/event-iterator)](https://www.npmjs.com/package/@sapphire/event-iterator)
-[![npm](https://img.shields.io/npm/v/@sapphire/phisherman?color=crimson&logo=npm&style=flat-square&label=@sapphire/phisherman)](https://www.npmjs.com/package/@sapphire/phisherman)
-[![npm](https://img.shields.io/npm/v/@sapphire/prettier-config?color=crimson&logo=npm&style=flat-square&label=@sapphire/prettier-config)](https://www.npmjs.com/package/@sapphire/prettier-config)
-[![npm](https://img.shields.io/npm/v/@sapphire/fetch?color=crimson&logo=npm&style=flat-square&label=@sapphire/fetch)](https://www.npmjs.com/package/@sapphire/fetch)
-[![npm](https://img.shields.io/npm/v/@sapphire/ratelimits?color=crimson&logo=npm&style=flat-square&label=@sapphire/ratelimits)](https://www.npmjs.com/package/@sapphire/ratelimits)
-[![npm](https://img.shields.io/npm/v/@sapphire/result?color=crimson&logo=npm&style=flat-square&label=@sapphire/result)](https://www.npmjs.com/package/@sapphire/result)
-[![npm](https://img.shields.io/npm/v/@sapphire/stopwatch?color=crimson&logo=npm&style=flat-square&label=@sapphire/stopwatch)](https://www.npmjs.com/package/@sapphire/stopwatch)
-[![npm](https://img.shields.io/npm/v/@sapphire/snowflake?color=crimson&logo=npm&style=flat-square&label=@sapphire/snowflake)](https://www.npmjs.com/package/@sapphire/snowflake)
-[![npm](https://img.shields.io/npm/v/@sapphire/string-store?color=crimson&logo=npm&style=flat-square&label=@sapphire/string-store)](https://www.npmjs.com/package/@sapphire/string-store)
-[![npm](https://img.shields.io/npm/v/@sapphire/time-utilities?color=crimson&logo=npm&style=flat-square&label=@sapphire/time-utilities)](https://www.npmjs.com/package/@sapphire/time-utilities)
-[![npm](https://img.shields.io/npm/v/@sapphire/ts-config?color=crimson&logo=npm&style=flat-square&label=@sapphire/ts-config)](https://www.npmjs.com/package/@sapphire/ts-config)
-[![npm](https://img.shields.io/npm/v/@sapphire/utilities?color=crimson&logo=npm&style=flat-square&label=@sapphire/utilities)](https://www.npmjs.com/package/@sapphire/utilities)
-[![npm](https://img.shields.io/npm/v/@sapphire/phisherman?color=crimson&logo=npm&style=flat-square&label=@sapphire/phisherman)](https://www.npmjs.com/package/@sapphire/phisherman)
-[![npm](https://img.shields.io/npm/v/@sapphire/lexure?color=crimson&logo=npm&style=flat-square&label=@sapphire/lexure)](https://www.npmjs.com/package/@sapphire/lexure)
+[![npm bundle size](https://img.shields.io/bundlephobia/min/@sapphire/stopwatch?logo=webpack&style=flat-square)](https://bundlephobia.com/result?p=@sapphire/stopwatch)
+[![npm](https://img.shields.io/npm/v/@sapphire/stopwatch?color=crimson&logo=npm&style=flat-square)](https://www.npmjs.com/package/@sapphire/stopwatch)
 
 </div>
+
+**Table of Contents**
+
+-   [Description](#description)
+-   [Features](#features)
+-   [Installation](#installation)
+-   [Usage](#usage)
+    -   [Basic Usage](#basic-usage)
+-   [Buy us some doughnuts](#buy-us-some-doughnuts)
+-   [Contributors ✨](#contributors-%E2%9C%A8)
+
+## Description
+
+When working on Discord bots you often want to send a message with interactions and attach a `customId` to that
+interaction. You can use this `customId` to identify the interaction. However because Discord does not offer a way to
+pass custom metadata to such an interaction, we are forced to store it somewhere else. At the same time, the `customId`
+is limited to 100 characters. Because of all of these factors we have made `@sapphire/string-store`. You can use this
+package to compress your metadata into a string and send it with the `customId`. `@sapphire/string-store` is designed to
+give you an extremely efficient string so you are very unlikely to exceed the 100 character limit.
+
+## Features
+
+-   Written in TypeScript
+-   Fully tested
+-   Extremely efficient compression
+
+## Installation
+
+You can use the following command to install this package, or replace `npm install` with your package manager of choice.
+
+```sh
+npm install @sapphire/stopwatch
+```
+
+## Usage
+
+**Note:** While this section uses `require`, the imports match 1:1 with ESM imports. For example `const { StringStore } = require('@sapphire/string-store')` equals `import { StringStore } from '@sapphire/string-store'`.
+
+### Basic Usage
+
+```ts
+// Import the StringStore class
+const { StringStore, Types } = require('@sapphire/string-store');
+
+// Create a new StringStore
+const store = new StringStore()
+	.add('pair', (builder) => builder.add('user', Types.Snowflake).add('target', Types.Snowflake))
+	.add('connect-four', (builder) => builder.add('user', Types.Snowflake).add('target', Types.Snowflake).add('board', Types.Array(Types.Bit2, 42)));
+
+const raw = store.serialize('pair', '242043489611808770', '266624760782258187');
+console.log(raw.length);
+// -> 17
+
+const value = store.deserialize(raw);
+// -> { type: 'pair', user: '242043489611808770', target: '266624760782258187' }
+```
+
+---
 
 ## Buy us some doughnuts
 
 Sapphire Community is and always will be open source, even if we don't get donations. That being said, we know there are amazing people who may still want to donate just to show their appreciation. Thank you very much in advance!
 
-We accept donations through Open Collective, Ko-fi, Paypal, Patreon and GitHub Sponsorships. You can use the buttons below to donate through your method of choice.
+We accept donations through Open Collective, Ko-fi, PayPal, Patreon and GitHub Sponsorships. You can use the buttons below to donate through your method of choice.
 
 |   Donate With   |                       Address                       |
 | :-------------: | :-------------------------------------------------: |
@@ -56,7 +94,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <table>
   <tr>
     <td align="center"><a href="https://favware.tech/"><img src="https://avatars3.githubusercontent.com/u/4019718?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Jeroen Claassens</b></sub></a><br /><a href="https://github.com/sapphiredev/utilities/commits?author=favna" title="Code">💻</a> <a href="#infra-favna" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#projectManagement-favna" title="Project Management">📆</a> <a href="https://github.com/sapphiredev/utilities/commits?author=favna" title="Documentation">📖</a> <a href="https://github.com/sapphiredev/utilities/commits?author=favna" title="Tests">⚠️</a></td>
-    <td align="center"><a href="https://github.com/kyranet"><img src="https://avatars0.githubusercontent.com/u/24852502?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Aura Román</b></sub></a><br /><a href="https://github.com/sapphiredev/utilities/commits?author=kyranet" title="Code">💻</a> <a href="#projectManagement-kyranet" title="Project Management">📆</a> <a href="https://github.com/sapphiredev/utilities/pulls?q=is%3Apr+reviewed-by%3Akyranet" title="Reviewed Pull Requests">👀</a> <a href="https://github.com/sapphiredev/utilities/commits?author=kyranet" title="Tests">⚠️</a></td>
+    <td align="center"><a href="https://github.com/kyranet"><img src="https://avatars0.githubusercontent.com/u/24852502?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Antonio Román</b></sub></a><br /><a href="https://github.com/sapphiredev/utilities/commits?author=kyranet" title="Code">💻</a> <a href="#projectManagement-kyranet" title="Project Management">📆</a> <a href="https://github.com/sapphiredev/utilities/pulls?q=is%3Apr+reviewed-by%3Akyranet" title="Reviewed Pull Requests">👀</a> <a href="https://github.com/sapphiredev/utilities/commits?author=kyranet" title="Tests">⚠️</a></td>
     <td align="center"><a href="https://github.com/PyroTechniac"><img src="https://avatars2.githubusercontent.com/u/39341355?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Gryffon Bellish</b></sub></a><br /><a href="https://github.com/sapphiredev/utilities/commits?author=PyroTechniac" title="Code">💻</a> <a href="https://github.com/sapphiredev/utilities/pulls?q=is%3Apr+reviewed-by%3APyroTechniac" title="Reviewed Pull Requests">👀</a> <a href="https://github.com/sapphiredev/utilities/commits?author=PyroTechniac" title="Tests">⚠️</a></td>
     <td align="center"><a href="https://github.com/vladfrangu"><img src="https://avatars3.githubusercontent.com/u/17960496?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Vlad Frangu</b></sub></a><br /><a href="https://github.com/sapphiredev/utilities/commits?author=vladfrangu" title="Code">💻</a> <a href="https://github.com/sapphiredev/utilities/issues?q=author%3Avladfrangu" title="Bug reports">🐛</a> <a href="https://github.com/sapphiredev/utilities/pulls?q=is%3Apr+reviewed-by%3Avladfrangu" title="Reviewed Pull Requests">👀</a> <a href="#userTesting-vladfrangu" title="User Testing">📓</a> <a href="https://github.com/sapphiredev/utilities/commits?author=vladfrangu" title="Tests">⚠️</a></td>
     <td align="center"><a href="https://github.com/Stitch07"><img src="https://avatars0.githubusercontent.com/u/29275227?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Stitch07</b></sub></a><br /><a href="https://github.com/sapphiredev/utilities/commits?author=Stitch07" title="Code">💻</a> <a href="#projectManagement-Stitch07" title="Project Management">📆</a> <a href="https://github.com/sapphiredev/utilities/commits?author=Stitch07" title="Tests">⚠️</a></td>
@@ -66,7 +104,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   <tr>
     <td align="center"><a href="https://github.com/Nytelife26"><img src="https://avatars1.githubusercontent.com/u/22531310?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Tyler J Russell</b></sub></a><br /><a href="https://github.com/sapphiredev/utilities/commits?author=Nytelife26" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/Alcremie"><img src="https://avatars0.githubusercontent.com/u/54785334?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Ivan Lieder</b></sub></a><br /><a href="https://github.com/sapphiredev/utilities/commits?author=Alcremie" title="Code">💻</a> <a href="https://github.com/sapphiredev/utilities/issues?q=author%3AAlcremie" title="Bug reports">🐛</a></td>
-    <td align="center"><a href="https://github.com/RealShadowNova"><img src="https://avatars3.githubusercontent.com/u/46537907?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Hezekiah Hendry</b></sub></a><br /><a href="https://github.com/sapphiredev/utilities/commits?author=RealShadowNova" title="Code">💻</a> <a href="#tool-RealShadowNova" title="Tools">🔧</a></td>
+    <td align="center"><a href="https://github.com/RealShadowNova"><img src="https://avatars3.githubusercontent.com/u/46537907?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Hezekiah Hendry</b></sub></a><br /><a href="https://github.com/sapphiredev/utilities/commits?author=RealShadowNova" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/Vetlix"><img src="https://avatars.githubusercontent.com/u/31412314?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Vetlix</b></sub></a><br /><a href="https://github.com/sapphiredev/utilities/commits?author=Vetlix" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/ethamitc"><img src="https://avatars.githubusercontent.com/u/27776796?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Ethan Mitchell</b></sub></a><br /><a href="https://github.com/sapphiredev/utilities/commits?author=ethamitc" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/noftaly"><img src="https://avatars.githubusercontent.com/u/34779161?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Elliot</b></sub></a><br /><a href="https://github.com/sapphiredev/utilities/commits?author=noftaly" title="Code">💻</a></td>

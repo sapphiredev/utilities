@@ -1,0 +1,64 @@
+{
+	"name": "@sapphire/string-store",
+	"version": "0.0.1",
+	"description": "Conveniently store a lot of data in a tiny payload.",
+	"author": "@sapphire",
+	"license": "MIT",
+	"main": "dist/index.js",
+	"module": "dist/index.mjs",
+	"types": "dist/index.d.ts",
+	"exports": {
+		"import": "./dist/index.mjs",
+		"require": "./dist/index.js",
+		"types": "./dist/index.d.ts"
+	},
+	"sideEffects": false,
+	"homepage": "https://github.com/sapphiredev/utilities/tree/main/packages/string-store",
+	"scripts": {
+		"test": "vitest run",
+		"lint": "eslint src tests --ext ts --fix -c ../../.eslintrc",
+		"build": "tsup && tsc -b src",
+		"prepack": "yarn build",
+		"bump": "cliff-jumper",
+		"check-update": "cliff-jumper --dry-run"
+	},
+	"dependencies": {
+		"tslib": "^2.4.0"
+	},
+	"devDependencies": {
+		"@favware/cliff-jumper": "^1.8.5",
+		"tsup": "^6.1.3",
+		"typescript": "^4.7.4"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/sapphiredev/utilities.git",
+		"directory": "packages/string-store"
+	},
+	"files": [
+		"dist/**/*.js*",
+		"dist/**/*.mjs*",
+		"dist/**/*.d*"
+	],
+	"engines": {
+		"node": ">=v14.0.0",
+		"npm": ">=7.0.0"
+	},
+	"keywords": [
+		"@sapphire/string-store",
+		"bot",
+		"typescript",
+		"ts",
+		"yarn",
+		"discord",
+		"sapphire",
+		"standalone",
+		"compression"
+	],
+	"bugs": {
+		"url": "https://github.com/sapphiredev/utilities/issues"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
+}
