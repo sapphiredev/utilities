@@ -10,7 +10,7 @@ export const createTsupConfig = (options: Options = {}) =>
 		minify: false,
 		skipNodeModulesBundle: true,
 		sourcemap: true,
-		target: '2021',
+		target: 'es2021',
 		tsconfig: relative(__dirname, resolveDir(process.cwd(), 'src', 'tsconfig.json')),
 		keepNames: true,
 		treeshake: true,
