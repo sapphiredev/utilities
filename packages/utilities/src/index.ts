@@ -43,6 +43,6 @@ export * from './lib/regExpEsc';
 export * from './lib/roundNumber';
 export * from './lib/sleep';
 export * from './lib/splitText';
-export { toTitleCase, ToTitleCaseOptions } from './lib/toTitleCase';
+export { toTitleCase, type ToTitleCaseOptions } from './lib/toTitleCase';
 export * from './lib/tryParse';
 export * from './lib/utilityTypes';
