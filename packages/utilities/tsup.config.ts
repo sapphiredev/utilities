@@ -5,5 +5,6 @@ export default createTsupConfig({
 	legacyOutput: true,
 	bundle: false,
 	entry: ['src/**/*.ts'],
-	format: ['esm', 'cjs']
+	format: ['esm', 'cjs'],
+	dts: false
 });
