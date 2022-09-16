@@ -5,12 +5,12 @@
 	"author": "@sapphire",
 	"license": "MIT",
 	"main": "dist/index.js",
-	"module": "dist/index.mjs",
-	"browser": "dist/index.global.js",
-	"unpkg": "dist/index.global.js",
+	"module": "dist/esm/index.js",
+	"browser": "dist/iife/index.js",
+	"unpkg": "dist/iife/index.js",
 	"types": "dist/index.d.ts",
 	"exports": {
-		"import": "./dist/index.mjs",
+		"import": "./dist/esm/index.js",
 		"require": "./dist/index.js",
 		"types": "./dist/index.d.ts"
 	},
@@ -19,7 +19,7 @@
 	"scripts": {
 		"test": "vitest run",
 		"lint": "eslint src tests --ext ts --fix -c ../../.eslintrc",
-		"build": "tsup",
+		"build": "tsup && tsup --config tsup.config.iife.ts",
 		"docs": "typedoc-json-parser",
 		"prepack": "yarn build",
 		"bump": "cliff-jumper",

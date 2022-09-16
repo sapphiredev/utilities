@@ -1,33 +1,18 @@
 import { relative, resolve as resolveDir } from 'node:path';
 import { defineConfig, type Options } from 'tsup';
 
-export const createTsupConfig = ({
-	globalName = undefined,
-	format = ['esm', 'cjs', 'iife'],
-	target = 'es2021',
-	sourcemap = true,
-	dts = true,
-	esbuildOptions = (options, context) => {
-		if (context.format === 'cjs') {
-			options.banner = {
-				js: '"use strict";'
-			};
-		}
-	}
-}: ConfigOptions = {}) =>
+export const createTsupConfig = (options: Options = {}) =>
 	defineConfig({
 		clean: true,
-		dts,
+		dts: true,
 		entry: ['src/index.ts'],
-		format,
+		format: ['esm', 'cjs', 'iife'],
 		minify: false,
 		skipNodeModulesBundle: true,
-		sourcemap,
-		target,
+		sourcemap: true,
+		target: '2021',
 		tsconfig: relative(__dirname, resolveDir(process.cwd(), 'src', 'tsconfig.json')),
 		keepNames: true,
-		globalName,
-		esbuildOptions
+		treeshake: true,
+		...options
 	});
-
-type ConfigOptions = Pick<Options, 'esbuildOptions' | 'sourcemap' | 'target' | 'format' | 'globalName' | 'dts'>;
