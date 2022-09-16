@@ -8,7 +8,7 @@
 	"module": "dist/esm/index.js",
 	"browser": "dist/iife/index.js",
 	"unpkg": "dist/iife/index.js",
-	"types": "dist/index.d.ts",
+	"types": "dist/types/index.d.ts",
 	"exports": {
 		"import": "./dist/esm/index.js",
 		"require": "./dist/index.js",
@@ -222,7 +222,6 @@
 	},
 	"files": [
 		"dist/**/*.js*",
-		"dist/**/*.mjs*",
 		"dist/**/*.d*"
 	],
 	"engines": {
