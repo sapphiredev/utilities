@@ -57,9 +57,11 @@ jobs:
       matrix:
         package:
           - async-queue
+          - cron
           - decorators
           - discord-utilities
           - discord.js-utilities
+          - duration
           - event-iterator
           - fetch
           - lexure
@@ -69,6 +71,8 @@ jobs:
           - snowflake
           - stopwatch
           - time-utilities
+          - timer-manager
+          - timestamp
           - utilities
     runs-on: ubuntu-latest
     env:

@@ -25,7 +25,7 @@ jobs:
       - name: Install Dependencies
         run: yarn --immutable
       - name: Build ESLint, Prettier and Utilities
-        run: yarn turbo run build --filter=@sapphire/eslint-config --filter=@sapphire/prettier-config --filter=@sapphire/utilities --no-deps
+        run: yarn turbo run build --filter=@sapphire/eslint-config --filter=@sapphire/prettier-config --filter=@sapphire/utilities --filter=@sapphire/duration --no-deps
       - name: Run ESLint
         run: yarn lint --fix=false
 
@@ -47,7 +47,7 @@ jobs:
       - name: Install Dependencies
         run: yarn --immutable
       - name: Build test dependencies
-        run: yarn turbo run build --filter=@sapphire/async-queue --filter=@sapphire/*utilities --filter=@sapphire/ratelimits --filter=@sapphire/fetch --filter=@sapphire/result --filter=@sapphire/lexure --no-deps
+        run: yarn turbo run build --filter=@sapphire/async-queue --filter=@sapphire/*utilities --filter=@sapphire/duration --filter=@sapphire/fetch --filter=@sapphire/lexure --filter=@sapphire/ratelimits --filter=@sapphire/result --filter=@sapphire/timer-manager --no-deps
       - name: Run tests
         run: yarn test
       - name: Store code coverage report

@@ -523,6 +523,21 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@sapphire/cron@workspace:^, @sapphire/cron@workspace:packages/cron":
+  version: 0.0.0-use.local
+  resolution: "@sapphire/cron@workspace:packages/cron"
+  dependencies:
+    "@favware/cliff-jumper": ^1.8.7
+    "@sapphire/utilities": "workspace:^"
+    "@vitest/coverage-c8": ^0.23.4
+    tsup: ^6.2.3
+    typedoc: ^0.23.14
+    typedoc-json-parser: ^4.0.0
+    typescript: ^4.8.3
+    vitest: ^0.23.4
+  languageName: unknown
+  linkType: soft
+
 "@sapphire/decorators@workspace:packages/decorators":
   version: 0.0.0-use.local
   resolution: "@sapphire/decorators@workspace:packages/decorators"
@@ -562,13 +577,27 @@ __metadata:
     "@favware/cliff-jumper": ^1.8.7
     "@favware/rollup-type-bundler": ^1.0.11
     "@sapphire/discord-utilities": "workspace:^"
-    "@sapphire/time-utilities": "workspace:^"
+    "@sapphire/duration": "workspace:^"
     "@sapphire/utilities": "workspace:^"
     tslib: ^2.4.0
     tsup: ^6.2.3
     typedoc: ^0.23.14
     typedoc-json-parser: ^4.0.0
     typescript: ^4.8.3
+  languageName: unknown
+  linkType: soft
+
+"@sapphire/duration@workspace:^, @sapphire/duration@workspace:packages/duration":
+  version: 0.0.0-use.local
+  resolution: "@sapphire/duration@workspace:packages/duration"
+  dependencies:
+    "@favware/cliff-jumper": ^1.8.7
+    "@vitest/coverage-c8": ^0.23.4
+    tsup: ^6.2.3
+    typedoc: ^0.23.14
+    typedoc-json-parser: ^4.0.0
+    typescript: ^4.8.3
+    vitest: ^0.23.4
   languageName: unknown
   linkType: soft
 
@@ -696,7 +725,7 @@ __metadata:
   resolution: "@sapphire/ratelimits@workspace:packages/ratelimits"
   dependencies:
     "@favware/cliff-jumper": ^1.8.7
-    "@sapphire/time-utilities": "workspace:^"
+    "@sapphire/timer-manager": "workspace:^"
     "@vitest/coverage-c8": ^0.23.4
     tsup: ^6.2.3
     typedoc: ^0.23.14
@@ -759,12 +788,41 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@sapphire/time-utilities@workspace:^, @sapphire/time-utilities@workspace:packages/time-utilities":
+"@sapphire/time-utilities@workspace:packages/time-utilities":
   version: 0.0.0-use.local
   resolution: "@sapphire/time-utilities@workspace:packages/time-utilities"
   dependencies:
     "@favware/cliff-jumper": ^1.8.7
-    "@sapphire/utilities": "workspace:^"
+    "@sapphire/cron": "workspace:^"
+    "@sapphire/duration": "workspace:^"
+    "@sapphire/timer-manager": "workspace:^"
+    "@sapphire/timestamp": "workspace:^"
+    tsup: ^6.2.3
+    typedoc: ^0.23.14
+    typedoc-json-parser: ^4.0.0
+    typescript: ^4.8.3
+  languageName: unknown
+  linkType: soft
+
+"@sapphire/timer-manager@workspace:^, @sapphire/timer-manager@workspace:packages/timer-manager":
+  version: 0.0.0-use.local
+  resolution: "@sapphire/timer-manager@workspace:packages/timer-manager"
+  dependencies:
+    "@favware/cliff-jumper": ^1.8.7
+    "@vitest/coverage-c8": ^0.23.4
+    tsup: ^6.2.3
+    typedoc: ^0.23.14
+    typedoc-json-parser: ^4.0.0
+    typescript: ^4.8.3
+    vitest: ^0.23.4
+  languageName: unknown
+  linkType: soft
+
+"@sapphire/timestamp@workspace:^, @sapphire/timestamp@workspace:packages/timestamp":
+  version: 0.0.0-use.local
+  resolution: "@sapphire/timestamp@workspace:packages/timestamp"
+  dependencies:
+    "@favware/cliff-jumper": ^1.8.7
     "@vitest/coverage-c8": ^0.23.4
     tsup: ^6.2.3
     typedoc: ^0.23.14
