@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/time-utilities@1.7.8](https://github.com/sapphiredev/utilities/compare/@sapphire/time-utilities@1.7.7...@sapphire/time-utilities@1.7.8) - (2022-09-18)
+
+## 🐛 Bug Fixes
+
+- **time-utilities:** Use type-only exports for interfaces ([a6e20f0](https://github.com/sapphiredev/utilities/commit/a6e20f0592c87fd2abe8e9130fef0b8089e1ca86))
+
 # [@sapphire/time-utilities@1.7.7](https://github.com/sapphiredev/utilities/compare/@sapphire/time-utilities@1.7.6...@sapphire/time-utilities@1.7.7) - (2022-09-18)
 
 ## 🏠 Refactor
