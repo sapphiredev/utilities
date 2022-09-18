@@ -523,6 +523,21 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@sapphire/cron@workspace:^, @sapphire/cron@workspace:packages/cron":
+  version: 0.0.0-use.local
+  resolution: "@sapphire/cron@workspace:packages/cron"
+  dependencies:
+    "@favware/cliff-jumper": ^1.8.7
+    "@sapphire/utilities": "workspace:^"
+    "@vitest/coverage-c8": ^0.23.2
+    tsup: ^6.2.3
+    typedoc: ^0.23.14
+    typedoc-json-parser: ^3.2.0
+    typescript: ^4.8.3
+    vitest: ^0.23.2
+  languageName: unknown
+  linkType: soft
+
 "@sapphire/decorators@workspace:packages/decorators":
   version: 0.0.0-use.local
   resolution: "@sapphire/decorators@workspace:packages/decorators"
@@ -764,6 +779,7 @@ __metadata:
   resolution: "@sapphire/time-utilities@workspace:packages/time-utilities"
   dependencies:
     "@favware/cliff-jumper": ^1.8.7
+    "@sapphire/cron": "workspace:^"
     "@sapphire/utilities": "workspace:^"
     "@vitest/coverage-c8": ^0.23.2
     tsup: ^6.2.3
