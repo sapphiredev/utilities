@@ -517,7 +517,7 @@ __metadata:
     "@vitest/coverage-c8": ^0.23.2
     tsup: ^6.2.3
     typedoc: ^0.23.14
-    typedoc-json-parser: ^3.2.0
+    typedoc-json-parser: ^4.0.0
     typescript: ^4.8.3
     vitest: ^0.23.2
   languageName: unknown
@@ -537,7 +537,7 @@ __metadata:
     tslib: ^2.4.0
     tsup: ^6.2.3
     typedoc: ^0.23.14
-    typedoc-json-parser: ^3.2.0
+    typedoc-json-parser: ^4.0.0
     typescript: ^4.8.3
     vitest: ^0.23.2
   languageName: unknown
@@ -550,7 +550,7 @@ __metadata:
     "@favware/cliff-jumper": ^1.8.7
     tsup: ^6.2.3
     typedoc: ^0.23.14
-    typedoc-json-parser: ^3.2.0
+    typedoc-json-parser: ^4.0.0
     typescript: ^4.8.3
   languageName: unknown
   linkType: soft
@@ -567,7 +567,7 @@ __metadata:
     tslib: ^2.4.0
     tsup: ^6.2.3
     typedoc: ^0.23.14
-    typedoc-json-parser: ^3.2.0
+    typedoc-json-parser: ^4.0.0
     typescript: ^4.8.3
   languageName: unknown
   linkType: soft
@@ -599,7 +599,7 @@ __metadata:
     tslib: ^2.4.0
     tsup: ^6.2.3
     typedoc: ^0.23.14
-    typedoc-json-parser: ^3.2.0
+    typedoc-json-parser: ^4.0.0
     typescript: ^4.8.3
     vitest: ^0.23.2
   languageName: unknown
@@ -614,7 +614,7 @@ __metadata:
     cross-fetch: ^3.1.5
     tsup: ^6.2.3
     typedoc: ^0.23.14
-    typedoc-json-parser: ^3.2.0
+    typedoc-json-parser: ^4.0.0
     typescript: ^4.8.3
     vitest: ^0.23.2
   languageName: unknown
@@ -649,7 +649,7 @@ __metadata:
     "@vitest/coverage-c8": ^0.23.2
     tsup: ^6.2.3
     typedoc: ^0.23.14
-    typedoc-json-parser: ^3.2.0
+    typedoc-json-parser: ^4.0.0
     typescript: ^4.8.3
     vitest: ^0.23.2
   languageName: unknown
@@ -663,7 +663,7 @@ __metadata:
     "@sapphire/fetch": "workspace:^"
     tsup: ^6.2.3
     typedoc: ^0.23.14
-    typedoc-json-parser: ^3.2.0
+    typedoc-json-parser: ^4.0.0
     typescript: ^4.8.3
   languageName: unknown
   linkType: soft
@@ -700,7 +700,7 @@ __metadata:
     "@vitest/coverage-c8": ^0.23.2
     tsup: ^6.2.3
     typedoc: ^0.23.14
-    typedoc-json-parser: ^3.2.0
+    typedoc-json-parser: ^4.0.0
     typescript: ^4.8.3
     vitest: ^0.23.2
   languageName: unknown
@@ -714,7 +714,7 @@ __metadata:
     "@vitest/coverage-c8": ^0.23.2
     tsup: ^6.2.3
     typedoc: ^0.23.14
-    typedoc-json-parser: ^3.2.0
+    typedoc-json-parser: ^4.0.0
     typescript: ^4.8.3
     vitest: ^0.23.2
   languageName: unknown
@@ -738,7 +738,7 @@ __metadata:
     "@vitest/coverage-c8": ^0.23.2
     tsup: ^6.2.3
     typedoc: ^0.23.14
-    typedoc-json-parser: ^3.2.0
+    typedoc-json-parser: ^4.0.0
     typescript: ^4.8.3
     vitest: ^0.23.2
   languageName: unknown
@@ -753,7 +753,7 @@ __metadata:
     tslib: ^2.4.0
     tsup: ^6.2.3
     typedoc: ^0.23.14
-    typedoc-json-parser: ^3.2.0
+    typedoc-json-parser: ^4.0.0
     typescript: ^4.8.3
     vitest: ^0.23.2
   languageName: unknown
@@ -768,7 +768,7 @@ __metadata:
     "@vitest/coverage-c8": ^0.23.2
     tsup: ^6.2.3
     typedoc: ^0.23.14
-    typedoc-json-parser: ^3.2.0
+    typedoc-json-parser: ^4.0.0
     typescript: ^4.8.3
     vitest: ^0.23.2
   languageName: unknown
@@ -795,7 +795,7 @@ __metadata:
     "@vitest/coverage-c8": ^0.23.2
     tsup: ^6.2.3
     typedoc: ^0.23.14
-    typedoc-json-parser: ^3.2.0
+    typedoc-json-parser: ^4.0.0
     typescript: ^4.8.3
     vitest: ^0.23.2
   languageName: unknown
@@ -6082,9 +6082,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typedoc-json-parser@npm:^3.2.0":
-  version: 3.2.0
-  resolution: "typedoc-json-parser@npm:3.2.0"
+"typedoc-json-parser@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "typedoc-json-parser@npm:4.0.0"
   dependencies:
     "@favware/colorette-spinner": ^1.0.1
     colorette: ^2.0.19
@@ -6094,7 +6094,7 @@ __metadata:
     typedoc: ^0.23.14
   bin:
     typedoc-json-parser: ./dist/bin/index.js
-  checksum: dbcfc2def2eaf2b3595f7a91ea85b940925cbf75d07de4ff9a698612142803cd01f2fc811d9cbe2e0e3078d23ec57cd9ce2266a6d65c5b5548133b35a3895f4c
+  checksum: 6f76c76af0a2424593a269a290540c99052f9f5e29eb76c59eee41b7bf8a4461fe68c86ba921e9eb70db6dbb6262d34a2f76b03838021e81d57edf9b44fb110c
   languageName: node
   linkType: hard
 
