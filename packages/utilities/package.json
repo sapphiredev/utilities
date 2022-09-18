@@ -58,12 +58,27 @@
 			"require": "./dist/filterNullAndUndefined.js",
 			"types": "./dist/types/filterNullAndUndefined.d.ts"
 		},
+		"filterNullish": {
+			"import": "./dist/esm/filterNullAndUndefined.js",
+			"require": "./dist/filterNullAndUndefined.js",
+			"types": "./dist/types/filterNullAndUndefined.d.ts"
+		},
 		"filterNullAndUndefinedAndEmpty": {
 			"import": "./dist/esm/filterNullAndUndefinedAndEmpty.js",
 			"require": "./dist/filterNullAndUndefinedAndEmpty.js",
 			"types": "./dist/types/filterNullAndUndefinedEmpty.d.ts"
 		},
+		"filterNullishOrEmpty": {
+			"import": "./dist/esm/filterNullAndUndefinedAndEmpty.js",
+			"require": "./dist/filterNullAndUndefinedAndEmpty.js",
+			"types": "./dist/types/filterNullAndUndefinedEmpty.d.ts"
+		},
 		"filterNullAndUndefinedAndZero": {
+			"import": "./dist/esm/filterNullAndUndefinedAndZero.js",
+			"require": "./dist/filterNullAndUndefinedAndZero.js",
+			"types": "./dist/types/filterNullAndUndefinedAndZero.d.ts"
+		},
+		"filterNullishOrZero": {
 			"import": "./dist/esm/filterNullAndUndefinedAndZero.js",
 			"require": "./dist/filterNullAndUndefinedAndZero.js",
 			"types": "./dist/types/filterNullAndUndefinedAndZero.d.ts"
@@ -98,12 +113,27 @@
 			"require": "./dist/isNullOrUndefined.js",
 			"types": "./dist/types/isNullOrUndefined.d.ts"
 		},
+		"isNullish": {
+			"import": "./dist/esm/isNullOrUndefined.js",
+			"require": "./dist/isNullOrUndefined.js",
+			"types": "./dist/types/isNullOrUndefined.d.ts"
+		},
 		"isNullOrUndefinedOrEmpty": {
 			"import": "./dist/esm/isNullOrUndefinedOrEmpty.js",
 			"require": "./dist/isNullOrUndefinedOrEmpty.js",
 			"types": "./dist/types/isNullOrUndefinedOrEmpty.d.ts"
 		},
+		"isNullishOrEmpty": {
+			"import": "./dist/esm/isNullOrUndefinedOrEmpty.js",
+			"require": "./dist/isNullOrUndefinedOrEmpty.js",
+			"types": "./dist/types/isNullOrUndefinedOrEmpty.d.ts"
+		},
 		"isNullOrUndefinedOrZero": {
+			"import": "./dist/esm/isNullOrUndefinedOrZero.js",
+			"require": "./dist/isNullOrUndefinedOrZero.js",
+			"types": "./dist/types/isNullOrUndefinedOrZero.d.ts"
+		},
+		"isNullishOrZero": {
 			"import": "./dist/esm/isNullOrUndefinedOrZero.js",
 			"require": "./dist/isNullOrUndefinedOrZero.js",
 			"types": "./dist/types/isNullOrUndefinedOrZero.d.ts"
