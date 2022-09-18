@@ -1,4 +1,4 @@
-import { TimerManager } from '@sapphire/time-utilities';
+import { TimerManager } from '@sapphire/timer-manager';
 import { setTimeout as sleep } from 'timers/promises';
 import { RateLimitManager } from '../../src';
 

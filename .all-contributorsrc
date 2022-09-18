@@ -5,9 +5,11 @@
 	"repoHost": "https://github.com",
 	"files": [
 		"packages/async-queue/README.md",
+		"packages/cron/README.md",
 		"packages/decorators/README.md",
 		"packages/discord-utilities/README.md",
 		"packages/discord.js-utilities/README.md",
+		"packages/duration/README.md",
 		"packages/eslint-config/README.md",
 		"packages/event-iterator/README.md",
 		"packages/fetch/README.md",
@@ -19,6 +21,8 @@
 		"packages/snowflake/README.md",
 		"packages/stopwatch/README.md",
 		"packages/time-utilities/README.md",
+		"packages/timer-manager/README.md",
+		"packages/timestamp/README.md",
 		"packages/ts-config/README.md",
 		"packages/utilities/README.md",
 		"README.md"

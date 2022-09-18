@@ -27,6 +27,8 @@
 
 Working with Time and Duration can be a huge chore in any programming language. There are various time parsing libraries on the NPM registry but we are of the opinion that none of them meet the code quality that we desire to use. For this reason we have decided to make this package.
 
+Note that this package only re-exports everything from the four packages `@sapphire/cron`, `@sapphire/duration`, `@sapphire/timer-manager`, and `@sapphire/timestamp`. Those packages can also be installed individually if you only need a subset of the functionality.
+
 ## Features
 
 -   Written in TypeScript

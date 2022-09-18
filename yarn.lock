@@ -577,7 +577,7 @@ __metadata:
     "@favware/cliff-jumper": ^1.8.7
     "@favware/rollup-type-bundler": ^1.0.11
     "@sapphire/discord-utilities": "workspace:^"
-    "@sapphire/time-utilities": "workspace:^"
+    "@sapphire/duration": "workspace:^"
     "@sapphire/utilities": "workspace:^"
     tslib: ^2.4.0
     tsup: ^6.2.3
@@ -725,7 +725,7 @@ __metadata:
   resolution: "@sapphire/ratelimits@workspace:packages/ratelimits"
   dependencies:
     "@favware/cliff-jumper": ^1.8.7
-    "@sapphire/time-utilities": "workspace:^"
+    "@sapphire/timer-manager": "workspace:^"
     "@vitest/coverage-c8": ^0.23.4
     tsup: ^6.2.3
     typedoc: ^0.23.14
@@ -788,7 +788,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@sapphire/time-utilities@workspace:^, @sapphire/time-utilities@workspace:packages/time-utilities":
+"@sapphire/time-utilities@workspace:packages/time-utilities":
   version: 0.0.0-use.local
   resolution: "@sapphire/time-utilities@workspace:packages/time-utilities"
   dependencies:
@@ -801,7 +801,6 @@ __metadata:
     typedoc: ^0.23.14
     typedoc-json-parser: ^4.0.0
     typescript: ^4.8.3
-    vitest: ^0.23.4
   languageName: unknown
   linkType: soft
 

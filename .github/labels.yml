@@ -40,11 +40,15 @@
   color: '24853c'
 - name: packages:async-queue
   color: 'fbca04'
+- name: packages:cron
+  color: 'fbca04'
 - name: packages:decorators
   color: 'fbca04'
 - name: packages:discord-utilities
   color: 'fbca04'
 - name: packages:discord.js-utilities
+  color: 'fbca04'
+- name: packages:duration
   color: 'fbca04'
 - name: packages:eslint-config
   color: 'fbca04'
@@ -69,6 +73,10 @@
 - name: packages:string-store
   color: 'fbca04'
 - name: packages:time-utilities
+  color: 'fbca04'
+- name: packages:timer-manager
+  color: 'fbca04'
+- name: packages:timestamp
   color: 'fbca04'
 - name: packages:ts-config
   color: 'fbca04'

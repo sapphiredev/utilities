@@ -40,7 +40,7 @@
 		"npm": ">=7.0.0"
 	},
 	"keywords": [
-		"@sapphire/time-utilities",
+		"@sapphire/duration",
 		"duration",
 		"bot",
 		"typescript",
