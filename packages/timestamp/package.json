@@ -1,7 +1,7 @@
 {
 	"name": "@sapphire/timestamp",
 	"version": "0.0.0",
-	"description": "A timer manager utility library for JavaScript.",
+	"description": "A timestamp utility library for JavaScript.",
 	"author": "@sapphire",
 	"license": "MIT",
 	"main": "dist/index.js",
@@ -27,7 +27,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/sapphiredev/timestamp.git",
+		"url": "git+https://github.com/sapphiredev/utilities.git",
 		"directory": "packages/timestamp"
 	},
 	"files": [
@@ -55,9 +55,6 @@
 	},
 	"publishConfig": {
 		"access": "public"
-	},
-	"dependencies": {
-		"@sapphire/utilities": "workspace:^"
 	},
 	"devDependencies": {
 		"@favware/cliff-jumper": "^1.8.7",

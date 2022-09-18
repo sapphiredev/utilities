@@ -1,3 +1,3 @@
-name: timer-manager
+name: timestamp
 org: sapphire
-packagePath: packages/timer-manager
+packagePath: packages/timestamp
