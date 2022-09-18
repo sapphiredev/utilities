@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-import type { DurationFormatAssetsTime, DurationFormatSeparators } from './DurationFormatter';
+import type { DurationFormatAssetsTime, DurationFormatSeparators } from '@sapphire/duration';
 
 /**
  * The supported time types

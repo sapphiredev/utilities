@@ -1,7 +1,7 @@
 {
-	"name": "@sapphire/time-utilities",
-	"version": "1.7.6",
-	"description": "A time utility library for JavaScript.",
+	"name": "@sapphire/duration",
+	"version": "0.0.0",
+	"description": "A time duration utility library for JavaScript.",
 	"author": "@sapphire",
 	"license": "MIT",
 	"main": "dist/index.js",
@@ -15,7 +15,7 @@
 		"types": "./dist/index.d.ts"
 	},
 	"sideEffects": false,
-	"homepage": "https://github.com/sapphiredev/utilities/tree/main/packages/time-utilities",
+	"homepage": "https://github.com/sapphiredev/utilities/tree/main/packages/duration",
 	"scripts": {
 		"test": "vitest run",
 		"lint": "eslint src tests --ext ts --fix -c ../../.eslintrc",
@@ -28,7 +28,7 @@
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/sapphiredev/utilities.git",
-		"directory": "packages/time-utilities"
+		"directory": "packages/duration"
 	},
 	"files": [
 		"dist/**/*.js*",
@@ -41,6 +41,7 @@
 	},
 	"keywords": [
 		"@sapphire/time-utilities",
+		"duration",
 		"bot",
 		"typescript",
 		"ts",
@@ -56,8 +57,6 @@
 		"access": "public"
 	},
 	"dependencies": {
-		"@sapphire/cron": "workspace:^",
-		"@sapphire/duration": "workspace:^",
 		"@sapphire/utilities": "workspace:^"
 	},
 	"devDependencies": {

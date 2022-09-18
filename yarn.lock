@@ -587,6 +587,21 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@sapphire/duration@workspace:^, @sapphire/duration@workspace:packages/duration":
+  version: 0.0.0-use.local
+  resolution: "@sapphire/duration@workspace:packages/duration"
+  dependencies:
+    "@favware/cliff-jumper": ^1.8.7
+    "@sapphire/utilities": "workspace:^"
+    "@vitest/coverage-c8": ^0.23.2
+    tsup: ^6.2.3
+    typedoc: ^0.23.14
+    typedoc-json-parser: ^3.2.0
+    typescript: ^4.8.3
+    vitest: ^0.23.2
+  languageName: unknown
+  linkType: soft
+
 "@sapphire/eslint-config@workspace:^, @sapphire/eslint-config@workspace:packages/eslint-config":
   version: 0.0.0-use.local
   resolution: "@sapphire/eslint-config@workspace:packages/eslint-config"
@@ -780,6 +795,7 @@ __metadata:
   dependencies:
     "@favware/cliff-jumper": ^1.8.7
     "@sapphire/cron": "workspace:^"
+    "@sapphire/duration": "workspace:^"
     "@sapphire/utilities": "workspace:^"
     "@vitest/coverage-c8": ^0.23.2
     tsup: ^6.2.3

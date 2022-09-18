@@ -1,0 +1,11 @@
+{
+	"extends": "../../ts-config/extra-strict-without-decorators.json",
+	"compilerOptions": {
+		"target": "ES2020",
+		"rootDir": "./",
+		"outDir": "./build",
+		"tsBuildInfoFile": "./build/.tsbuildinfo",
+		"types": ["vitest/globals"]
+	},
+	"include": ["./"]
+}

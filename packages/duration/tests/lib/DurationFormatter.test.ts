@@ -1,5 +1,11 @@
 /* eslint-disable @typescript-eslint/restrict-plus-operands, @typescript-eslint/naming-convention */
-import { DurationFormatter, Time } from '../../../src';
+import { DurationFormatter } from '../../src';
+
+enum Time {
+	Minute = 1000 * 60,
+	Hour = 1000 * 60 * 60,
+	Day = 1000 * 60 * 60 * 24
+}
 
 const formatter = new DurationFormatter();
 
