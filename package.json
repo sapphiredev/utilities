@@ -26,7 +26,7 @@
 		"@favware/rollup-type-bundler": "^1.0.11",
 		"@sapphire/framework": "^3.1.1",
 		"@types/lodash": "^4.14.185",
-		"@types/node": "^18.7.14",
+		"@types/node": "^18.7.18",
 		"@types/ws": "^8.5.3",
 		"@typescript-eslint/eslint-plugin": "^5.37.0",
 		"@typescript-eslint/parser": "^5.37.0",

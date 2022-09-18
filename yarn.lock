@@ -517,7 +517,7 @@ __metadata:
     "@vitest/coverage-c8": ^0.23.4
     tsup: ^6.2.3
     typedoc: ^0.23.14
-    typedoc-json-parser: ^3.2.0
+    typedoc-json-parser: ^4.0.0
     typescript: ^4.8.3
     vitest: ^0.23.4
   languageName: unknown
@@ -537,7 +537,7 @@ __metadata:
     tslib: ^2.4.0
     tsup: ^6.2.3
     typedoc: ^0.23.14
-    typedoc-json-parser: ^3.2.0
+    typedoc-json-parser: ^4.0.0
     typescript: ^4.8.3
     vitest: ^0.23.4
   languageName: unknown
@@ -550,7 +550,7 @@ __metadata:
     "@favware/cliff-jumper": ^1.8.7
     tsup: ^6.2.3
     typedoc: ^0.23.14
-    typedoc-json-parser: ^3.2.0
+    typedoc-json-parser: ^4.0.0
     typescript: ^4.8.3
   languageName: unknown
   linkType: soft
@@ -567,7 +567,7 @@ __metadata:
     tslib: ^2.4.0
     tsup: ^6.2.3
     typedoc: ^0.23.14
-    typedoc-json-parser: ^3.2.0
+    typedoc-json-parser: ^4.0.0
     typescript: ^4.8.3
   languageName: unknown
   linkType: soft
@@ -599,7 +599,7 @@ __metadata:
     tslib: ^2.4.0
     tsup: ^6.2.3
     typedoc: ^0.23.14
-    typedoc-json-parser: ^3.2.0
+    typedoc-json-parser: ^4.0.0
     typescript: ^4.8.3
     vitest: ^0.23.4
   languageName: unknown
@@ -614,7 +614,7 @@ __metadata:
     cross-fetch: ^3.1.5
     tsup: ^6.2.3
     typedoc: ^0.23.14
-    typedoc-json-parser: ^3.2.0
+    typedoc-json-parser: ^4.0.0
     typescript: ^4.8.3
     vitest: ^0.23.4
   languageName: unknown
@@ -649,7 +649,7 @@ __metadata:
     "@vitest/coverage-c8": ^0.23.4
     tsup: ^6.2.3
     typedoc: ^0.23.14
-    typedoc-json-parser: ^3.2.0
+    typedoc-json-parser: ^4.0.0
     typescript: ^4.8.3
     vitest: ^0.23.4
   languageName: unknown
@@ -663,7 +663,7 @@ __metadata:
     "@sapphire/fetch": "workspace:^"
     tsup: ^6.2.3
     typedoc: ^0.23.14
-    typedoc-json-parser: ^3.2.0
+    typedoc-json-parser: ^4.0.0
     typescript: ^4.8.3
   languageName: unknown
   linkType: soft
@@ -700,7 +700,7 @@ __metadata:
     "@vitest/coverage-c8": ^0.23.4
     tsup: ^6.2.3
     typedoc: ^0.23.14
-    typedoc-json-parser: ^3.2.0
+    typedoc-json-parser: ^4.0.0
     typescript: ^4.8.3
     vitest: ^0.23.4
   languageName: unknown
@@ -714,7 +714,7 @@ __metadata:
     "@vitest/coverage-c8": ^0.23.4
     tsup: ^6.2.3
     typedoc: ^0.23.14
-    typedoc-json-parser: ^3.2.0
+    typedoc-json-parser: ^4.0.0
     typescript: ^4.8.3
     vitest: ^0.23.4
   languageName: unknown
@@ -738,7 +738,7 @@ __metadata:
     "@vitest/coverage-c8": ^0.23.4
     tsup: ^6.2.3
     typedoc: ^0.23.14
-    typedoc-json-parser: ^3.2.0
+    typedoc-json-parser: ^4.0.0
     typescript: ^4.8.3
     vitest: ^0.23.4
   languageName: unknown
@@ -753,7 +753,7 @@ __metadata:
     tslib: ^2.4.0
     tsup: ^6.2.3
     typedoc: ^0.23.14
-    typedoc-json-parser: ^3.2.0
+    typedoc-json-parser: ^4.0.0
     typescript: ^4.8.3
     vitest: ^0.23.4
   languageName: unknown
@@ -768,7 +768,7 @@ __metadata:
     "@vitest/coverage-c8": ^0.23.4
     tsup: ^6.2.3
     typedoc: ^0.23.14
-    typedoc-json-parser: ^3.2.0
+    typedoc-json-parser: ^4.0.0
     typescript: ^4.8.3
     vitest: ^0.23.4
   languageName: unknown
@@ -795,7 +795,7 @@ __metadata:
     "@vitest/coverage-c8": ^0.23.4
     tsup: ^6.2.3
     typedoc: ^0.23.14
-    typedoc-json-parser: ^3.2.0
+    typedoc-json-parser: ^4.0.0
     typescript: ^4.8.3
     vitest: ^0.23.4
   languageName: unknown
@@ -897,10 +897,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^18.7.14":
-  version: 18.7.14
-  resolution: "@types/node@npm:18.7.14"
-  checksum: 99cf28ff854100158de875cca23c7acc3cc01dfee526a52b90b7f36767c821bcbaf2be0a98a70f06f3b78f3c60639168ff949d725b61e2e124f9f71f1fb8043d
+"@types/node@npm:*, @types/node@npm:^18.7.18":
+  version: 18.7.18
+  resolution: "@types/node@npm:18.7.18"
+  checksum: 8aec61f0f96e2a69ce51f1f40f949ca578bbb4fe05d7c0b8ce3aeeb848e90f755837f17f6ac132ca404d974fe9b2974150ad3b4984fc9dc7c3ceddb10bae0167
   languageName: node
   linkType: hard
 
@@ -5188,7 +5188,7 @@ __metadata:
     "@favware/rollup-type-bundler": ^1.0.11
     "@sapphire/framework": ^3.1.1
     "@types/lodash": ^4.14.185
-    "@types/node": ^18.7.14
+    "@types/node": ^18.7.18
     "@types/ws": ^8.5.3
     "@typescript-eslint/eslint-plugin": ^5.37.0
     "@typescript-eslint/parser": ^5.37.0
@@ -6089,9 +6089,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typedoc-json-parser@npm:^3.2.0":
-  version: 3.2.0
-  resolution: "typedoc-json-parser@npm:3.2.0"
+"typedoc-json-parser@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "typedoc-json-parser@npm:4.0.0"
   dependencies:
     "@favware/colorette-spinner": ^1.0.1
     colorette: ^2.0.19
@@ -6101,7 +6101,7 @@ __metadata:
     typedoc: ^0.23.14
   bin:
     typedoc-json-parser: ./dist/bin/index.js
-  checksum: dbcfc2def2eaf2b3595f7a91ea85b940925cbf75d07de4ff9a698612142803cd01f2fc811d9cbe2e0e3078d23ec57cd9ce2266a6d65c5b5548133b35a3895f4c
+  checksum: 6f76c76af0a2424593a269a290540c99052f9f5e29eb76c59eee41b7bf8a4461fe68c86ba921e9eb70db6dbb6262d34a2f76b03838021e81d57edf9b44fb110c
   languageName: node
   linkType: hard
 
@@ -6121,17 +6121,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:^4.6.4, typescript@npm:^4.7.4":
-  version: 4.8.2
-  resolution: "typescript@npm:4.8.2"
-  bin:
-    tsc: bin/tsc
-    tsserver: bin/tsserver
-  checksum: 7f5b81d0d558c9067f952c7af52ab7f19c2e70a916817929e4a5b256c93990bf3178eccb1ac8a850bc75df35f6781b6f4cb3370ce20d8b1ded92ed462348f628
-  languageName: node
-  linkType: hard
-
-"typescript@npm:^4.8.3":
+"typescript@npm:^4.6.4, typescript@npm:^4.7.4, typescript@npm:^4.8.3":
   version: 4.8.3
   resolution: "typescript@npm:4.8.3"
   bin:
@@ -6141,17 +6131,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@^4.6.4#~builtin<compat/typescript>, typescript@patch:typescript@^4.7.4#~builtin<compat/typescript>":
-  version: 4.8.2
-  resolution: "typescript@patch:typescript@npm%3A4.8.2#~builtin<compat/typescript>::version=4.8.2&hash=a1c5e5"
-  bin:
-    tsc: bin/tsc
-    tsserver: bin/tsserver
-  checksum: 5cb0f02f414f5405f4b0e7ee1fd7fa9177b6a8783c9017b6cad85f56ce4c4f93e0e6f2ce37e863cb597d44227cd009474c9fbd85bf7a50004e5557426cb58079
-  languageName: node
-  linkType: hard
-
-"typescript@patch:typescript@^4.8.3#~builtin<compat/typescript>":
+"typescript@patch:typescript@^4.6.4#~builtin<compat/typescript>, typescript@patch:typescript@^4.7.4#~builtin<compat/typescript>, typescript@patch:typescript@^4.8.3#~builtin<compat/typescript>":
   version: 4.8.3
   resolution: "typescript@patch:typescript@npm%3A4.8.3#~builtin<compat/typescript>::version=4.8.3&hash=a1c5e5"
   bin:
