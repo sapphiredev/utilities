@@ -1,4 +1,4 @@
-import { Timestamp } from '../../../src';
+import { Timestamp } from '../../src';
 
 // Saturday 9th March 2019, at 16:20:35:500
 const date = new Date(2019, 2, 9, 16, 20, 35, 1);

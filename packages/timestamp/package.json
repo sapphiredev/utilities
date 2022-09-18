@@ -1,7 +1,7 @@
 {
-	"name": "@sapphire/time-utilities",
-	"version": "1.7.6",
-	"description": "A time utility library for JavaScript.",
+	"name": "@sapphire/timestamp",
+	"version": "0.0.0",
+	"description": "A timer manager utility library for JavaScript.",
 	"author": "@sapphire",
 	"license": "MIT",
 	"main": "dist/index.js",
@@ -15,7 +15,7 @@
 		"types": "./dist/index.d.ts"
 	},
 	"sideEffects": false,
-	"homepage": "https://github.com/sapphiredev/utilities/tree/main/packages/time-utilities",
+	"homepage": "https://github.com/sapphiredev/utilities/tree/main/packages/timestamp",
 	"scripts": {
 		"test": "vitest run",
 		"lint": "eslint src tests --ext ts --fix -c ../../.eslintrc",
@@ -27,8 +27,8 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/sapphiredev/utilities.git",
-		"directory": "packages/time-utilities"
+		"url": "git+https://github.com/sapphiredev/timestamp.git",
+		"directory": "packages/timestamp"
 	},
 	"files": [
 		"dist/**/*.js*",
@@ -41,6 +41,7 @@
 	},
 	"keywords": [
 		"@sapphire/time-utilities",
+		"timestamp",
 		"bot",
 		"typescript",
 		"ts",
@@ -56,16 +57,15 @@
 		"access": "public"
 	},
 	"dependencies": {
-		"@sapphire/cron": "workspace:^",
-		"@sapphire/duration": "workspace:^",
-		"@sapphire/timer-manager": "workspace:^",
-		"@sapphire/timestamp": "workspace:^"
+		"@sapphire/utilities": "workspace:^"
 	},
 	"devDependencies": {
 		"@favware/cliff-jumper": "^1.8.7",
+		"@vitest/coverage-c8": "^0.23.2",
 		"tsup": "^6.2.3",
 		"typedoc": "^0.23.14",
 		"typedoc-json-parser": "^3.2.0",
-		"typescript": "^4.8.3"
+		"typescript": "^4.8.3",
+		"vitest": "^0.23.2"
 	}
 }
