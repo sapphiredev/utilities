@@ -1,4 +1,4 @@
-import type { NonNullObject } from '@sapphire/utilities/utilityTypes';
+import type { NonNullObject } from '@sapphire/utilities/types';
 import { createMethodDecorator } from './utils';
 
 /**

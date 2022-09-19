@@ -1,4 +1,4 @@
-import type { ArgumentTypes } from '@sapphire/utilities/utilityTypes';
+import type { ArgumentTypes } from '@sapphire/utilities/types';
 import type { CategoryChannel, PartialTextBasedChannelFields, StoreChannel } from 'discord.js';
 import type { ChannelTypes, VoiceBasedChannelTypes } from '../utility-types';
 

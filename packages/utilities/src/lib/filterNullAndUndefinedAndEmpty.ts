@@ -1,5 +1,5 @@
 import { isNullOrUndefinedOrEmpty } from './isNullOrUndefinedOrEmpty';
-import type { Nullish } from './utilityTypes';
+import type { Nullish } from './types';
 
 /**
  * Checks whether a value is not `null` nor `undefined` nor `''` (empty string).

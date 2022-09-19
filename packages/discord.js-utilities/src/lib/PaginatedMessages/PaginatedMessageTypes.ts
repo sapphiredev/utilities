@@ -1,4 +1,4 @@
-import type { Awaitable } from '@sapphire/utilities/utilityTypes';
+import type { Awaitable } from '@sapphire/utilities/types';
 import type { APIMessage } from 'discord-api-types/v9';
 import type {
 	ButtonInteraction,

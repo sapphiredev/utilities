@@ -1,4 +1,4 @@
-import type { Nullish } from '@sapphire/utilities/utilityTypes';
+import type { Nullish } from '@sapphire/utilities/types';
 import { isNullish } from '@sapphire/utilities/isNullish';
 import type { APIGuildMember, APIInteractionDataResolvedGuildMember, APIInteractionGuildMember, APIMessage } from 'discord-api-types/v9';
 import {

@@ -1,4 +1,4 @@
-import type { Ctor } from './utilityTypes';
+import type { Ctor } from './types';
 
 /**
  * Verify if the input is a class constructor.

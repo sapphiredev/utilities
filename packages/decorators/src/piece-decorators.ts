@@ -1,6 +1,6 @@
 import { container, type Piece } from '@sapphire/framework';
 import type { Container } from '@sapphire/pieces';
-import type { Ctor } from '@sapphire/utilities/utilityTypes';
+import type { Ctor } from '@sapphire/utilities/types';
 import { createClassDecorator, createProxy } from './utils';
 
 /**

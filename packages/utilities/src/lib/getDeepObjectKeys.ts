@@ -1,5 +1,5 @@
 import { isNullOrUndefinedOrEmpty } from './isNullOrUndefinedOrEmpty';
-import type { AnyObject } from './utilityTypes';
+import type { AnyObject } from './types';
 
 /**
  * Flattens an object to a list of its keys, traversing deeply into nested objects and arrays of objects.

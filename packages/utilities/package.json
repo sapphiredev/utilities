@@ -226,10 +226,10 @@
 			"import": "./dist/lib/tryParse.mjs",
 			"require": "./dist/lib/tryParse.js"
 		},
-		"./utilityTypes": {
-			"types": "./dist/lib/utilityTypes.d.ts",
-			"import": "./dist/lib/utilityTypes.mjs",
-			"require": "./dist/lib/utilityTypes.js"
+		"./types": {
+			"types": "./dist/lib/types.d.ts",
+			"import": "./dist/lib/types.mjs",
+			"require": "./dist/lib/types.js"
 		}
 	},
 	"main": "dist/index.js",
@@ -256,6 +256,7 @@
 	},
 	"files": [
 		"dist/**/*.js*",
+		"dist/**/*.mjs*",
 		"dist/**/*.d*"
 	],
 	"engines": {
