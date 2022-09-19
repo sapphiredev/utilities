@@ -3,7 +3,8 @@
 	"compilerOptions": {
 		"rootDir": "./",
 		"outDir": "../dist",
-		"incremental": false
+		"incremental": false,
+		"moduleResolution": "nodenext"
 	},
 	"include": ["."]
 }

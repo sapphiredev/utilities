@@ -1,5 +1,8 @@
 import { Time } from '@sapphire/duration';
-import { deepClone, isFunction, isNullish, isObject } from '@sapphire/utilities';
+import { deepClone } from '@sapphire/utilities/deepClone';
+import { isFunction } from '@sapphire/utilities/isFunction';
+import { isNullish } from '@sapphire/utilities/isNullish';
+import { isObject } from '@sapphire/utilities/isObject';
 import type { APIMessage } from 'discord-api-types/v9';
 import {
 	Constants,
@@ -538,6 +541,7 @@ export class PaginatedMessage {
 	 * ```
 	 */
 	public addAsyncPageBuilder(builder: MessageBuilder | ((builder: MessageBuilder) => Promise<MessageBuilder>)): this {
+		// eslint-disable-next-line @typescript-eslint/require-await
 		return this.addPage(async () => (isFunction(builder) ? builder(new MessageBuilder()) : builder));
 	}
 

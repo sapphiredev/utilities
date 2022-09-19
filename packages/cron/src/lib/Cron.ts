@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/restrict-plus-operands */
-import { range } from '@sapphire/utilities';
+import { range } from '@sapphire/utilities/range';
 import { allowedNum, cronTokens, partRegex, predefined, Time, tokensRegex, wildcardRegex } from './constants';
 
 /**

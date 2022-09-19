@@ -1,4 +1,5 @@
-import { chunk, partition } from '@sapphire/utilities';
+import { chunk } from '@sapphire/utilities/chunk';
+import { partition } from '@sapphire/utilities/partition';
 import { Constants, InteractionButtonOptions, MessageActionRow, MessageButton, MessageSelectMenu, MessageSelectMenuOptions } from 'discord.js';
 import { isAnyInteraction, isMessageInstance } from '../type-guards';
 import type {

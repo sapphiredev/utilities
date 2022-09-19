@@ -1,4 +1,4 @@
-import { isNullish } from '@sapphire/utilities';
+import { isNullish } from '@sapphire/utilities/isNullish';
 import type { CollectorFilter, CollectorOptions, Message, User } from 'discord.js';
 import { isTextBasedChannel } from '../../type-guards';
 import type { MessagePrompterChannelTypes, MessagePrompterMessage } from '../constants';

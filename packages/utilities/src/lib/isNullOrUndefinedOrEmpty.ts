@@ -1,4 +1,4 @@
-import { isNullOrUndefined } from './isNullOrUndefined';
+import { isNullish } from './isNullOrUndefined';
 import type { Nullish } from './utilityTypes';
 
 /**
@@ -6,5 +6,7 @@ import type { Nullish } from './utilityTypes';
  * @param value The value to check
  */
 export function isNullOrUndefinedOrEmpty(value: unknown): value is Nullish | '' {
-	return isNullOrUndefined(value) || (value as string | unknown[]).length === 0;
+	return isNullish(value) || (value as string | unknown[]).length === 0;
 }
+
+export { isNullOrUndefinedOrEmpty as isNullishOrEmpty };

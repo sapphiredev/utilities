@@ -1,4 +1,5 @@
-import { Awaitable, isNullish } from '@sapphire/utilities';
+import type { Awaitable } from '@sapphire/utilities/utilityTypes';
+import { isNullish } from '@sapphire/utilities/isNullish';
 import type { CollectorFilter, CollectorOptions, EmojiIdentifierResolvable, Message, MessageReaction, User } from 'discord.js';
 import { isTextBasedChannel } from '../../type-guards';
 import type { MessagePrompterChannelTypes, MessagePrompterMessage } from '../constants';

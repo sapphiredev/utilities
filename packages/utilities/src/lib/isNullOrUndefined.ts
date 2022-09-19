@@ -7,3 +7,5 @@ import type { Nullish } from './utilityTypes';
 export function isNullOrUndefined(value: unknown): value is Nullish {
 	return value === undefined || value === null;
 }
+
+export { isNullOrUndefined as isNullish };
