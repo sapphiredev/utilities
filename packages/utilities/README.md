@@ -44,7 +44,7 @@ import { isFunction } from '@sapphire/utilities/isFunction';
 import { isFunction } from '@sapphire/utilities';
 ```
 
-**Note:** For typescript users, subpath import are only supported in --moduleResolution node16 and --moduleResolution nodenext. More information can be found [here](https://github.com/microsoft/TypeScript/issues/50794).
+**Note:** For typescript users, subpath import are only supported in `--moduleResolution node16` and `--moduleResolution nodenext`. More information can be found [in this issue on the microsoft/TypeScript repository](https://github.com/microsoft/TypeScript/issues/50794).
 
 ---
 
