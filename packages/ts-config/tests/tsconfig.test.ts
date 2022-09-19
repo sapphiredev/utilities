@@ -1,4 +1,4 @@
-import { testBuild } from '.';
+import { testBuild } from './fixture';
 
 describe('TSConfig Test Build', () => {
 	test('should return param if instanceof string', () => {
