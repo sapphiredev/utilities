@@ -56,17 +56,7 @@
 			"import": "./dist/lib/filterNullAndUndefined.mjs",
 			"require": "./dist/lib/filterNullAndUndefined.js"
 		},
-		"./filterNullish": {
-			"types": "./dist/lib/filterNullAndUndefined.d.ts",
-			"import": "./dist/lib/filterNullAndUndefined.mjs",
-			"require": "./dist/lib/filterNullAndUndefined.js"
-		},
 		"./filterNullAndUndefinedAndEmpty": {
-			"types": "./dist/lib/filterNullAndUndefinedAndEmpty.d.ts",
-			"import": "./dist/lib/filterNullAndUndefinedAndEmpty.mjs",
-			"require": "./dist/lib/filterNullAndUndefinedAndEmpty.js"
-		},
-		"./filterNullishOrEmpty": {
 			"types": "./dist/lib/filterNullAndUndefinedAndEmpty.d.ts",
 			"import": "./dist/lib/filterNullAndUndefinedAndEmpty.mjs",
 			"require": "./dist/lib/filterNullAndUndefinedAndEmpty.js"
@@ -75,6 +65,16 @@
 			"types": "./dist/lib/filterNullAndUndefinedAndZero.d.ts",
 			"import": "./dist/lib/filterNullAndUndefinedAndZero.mjs",
 			"require": "./dist/lib/filterNullAndUndefinedAndZero.js"
+		},
+		"./filterNullish": {
+			"types": "./dist/lib/filterNullAndUndefined.d.ts",
+			"import": "./dist/lib/filterNullAndUndefined.mjs",
+			"require": "./dist/lib/filterNullAndUndefined.js"
+		},
+		"./filterNullishOrEmpty": {
+			"types": "./dist/lib/filterNullAndUndefinedAndEmpty.d.ts",
+			"import": "./dist/lib/filterNullAndUndefinedAndEmpty.mjs",
+			"require": "./dist/lib/filterNullAndUndefinedAndEmpty.js"
 		},
 		"./filterNullishOrZero": {
 			"types": "./dist/lib/filterNullAndUndefinedAndZero.d.ts",
@@ -106,12 +106,22 @@
 			"import": "./dist/lib/isFunction.mjs",
 			"require": "./dist/lib/isFunction.js"
 		},
-		"./isNullOrUndefined": {
+		"./isNullish": {
 			"types": "./dist/lib/isNullOrUndefined.d.ts",
 			"import": "./dist/lib/isNullOrUndefined.mjs",
 			"require": "./dist/lib/isNullOrUndefined.js"
 		},
-		"./isNullish": {
+		"./isNullishOrEmpty": {
+			"types": "./dist/lib/isNullOrUndefinedOrEmpty.d.ts",
+			"import": "./dist/lib/isNullOrUndefinedOrEmpty.mjs",
+			"require": "./dist/lib/isNullOrUndefinedOrEmpty.js"
+		},
+		"./isNullishOrZero": {
+			"types": "./dist/lib/isNullOrUndefinedOrZero.d.ts",
+			"import": "./dist/lib/isNullOrUndefinedOrZero.mjs",
+			"require": "./dist/lib/isNullOrUndefinedOrZero.js"
+		},
+		"./isNullOrUndefined": {
 			"types": "./dist/lib/isNullOrUndefined.d.ts",
 			"import": "./dist/lib/isNullOrUndefined.mjs",
 			"require": "./dist/lib/isNullOrUndefined.js"
@@ -121,17 +131,7 @@
 			"import": "./dist/lib/isNullOrUndefinedOrEmpty.mjs",
 			"require": "./dist/lib/isNullOrUndefinedOrEmpty.js"
 		},
-		"./isNullishOrEmpty": {
-			"types": "./dist/lib/isNullOrUndefinedOrEmpty.d.ts",
-			"import": "./dist/lib/isNullOrUndefinedOrEmpty.mjs",
-			"require": "./dist/lib/isNullOrUndefinedOrEmpty.js"
-		},
 		"./isNullOrUndefinedOrZero": {
-			"types": "./dist/lib/isNullOrUndefinedOrZero.d.ts",
-			"import": "./dist/lib/isNullOrUndefinedOrZero.mjs",
-			"require": "./dist/lib/isNullOrUndefinedOrZero.js"
-		},
-		"./isNullishOrZero": {
 			"types": "./dist/lib/isNullOrUndefinedOrZero.d.ts",
 			"import": "./dist/lib/isNullOrUndefinedOrZero.mjs",
 			"require": "./dist/lib/isNullOrUndefinedOrZero.js"

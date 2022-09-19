@@ -60,7 +60,7 @@ for await (const file of walk(new URL(`../packages/${packageName}/src/lib`, impo
 	}
 }
 
-const exportObj = Object.fromEntries(exportMap);
+const exportObj = Object.fromEntries([...exportMap.entries()].sort((a, b) => a[0].localeCompare(b[0])));
 
 const { default: packageJSON } = await import(`../packages/${packageName}/package.json`, {
 	assert: {
