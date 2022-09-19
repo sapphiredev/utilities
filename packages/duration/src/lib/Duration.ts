@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/restrict-plus-operands */
 const tokens = new Map([
 	['nanosecond', 1 / 1e6],
 	['nanoseconds', 1 / 1e6],

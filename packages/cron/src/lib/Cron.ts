@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/restrict-plus-operands */
 import { range } from '@sapphire/utilities/range';
 import { allowedNum, cronTokens, partRegex, predefined, Time, tokensRegex, wildcardRegex } from './constants';
 
@@ -105,7 +104,6 @@ export class Cron {
 			return [...new Set(res)].sort((a, b) => a - b);
 		}
 
-		// eslint-disable-next-line prefer-const
 		const [, wild, minStr, maxStr, step] = partRegex.exec(cronPart)!;
 		let [min, max] = [parseInt(minStr, 10), parseInt(maxStr, 10)];
 

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/restrict-plus-operands, @typescript-eslint/naming-convention */
 import { DurationFormatter } from '../../src';
 
 enum Time {

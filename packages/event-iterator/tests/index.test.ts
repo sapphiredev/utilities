@@ -80,7 +80,6 @@ describe('EventIterator', () => {
 
 		const iter = emitter.createPeopleIterator({ idle: 500 });
 
-		// eslint-disable-next-line @typescript-eslint/no-unused-vars
 		for await (const {} of iter) {
 			// Give always false expectation to make this always throw
 			expect(false).toBe(true);

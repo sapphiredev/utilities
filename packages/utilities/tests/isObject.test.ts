@@ -12,7 +12,6 @@ describe('isObject', () => {
 	});
 
 	test('GIVEN bigint THEN returns false', () => {
-		// eslint-disable-next-line no-undef
 		const value = BigInt(420);
 		expect(isObject(value)).toBe(false);
 	});

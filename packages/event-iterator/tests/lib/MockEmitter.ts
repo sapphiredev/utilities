@@ -20,11 +20,9 @@ export class PeopleEmitter extends EventEmitter {
 			if (this.#emitted === this.#people.length) {
 				clearInterval(this.#timeout!);
 				this.#timeout = null;
-				// eslint-disable-next-line no-unused-expressions
 				this.#iterator?.end();
 				this.#iterator = null;
 			} else {
-				// eslint-disable-next-line no-unused-expressions
 				this.emit('testEvent', this.#people[this.#emitted++]);
 			}
 		}, 1000);

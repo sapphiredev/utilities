@@ -66,7 +66,6 @@ export interface DurationFormatSeparators {
 }
 
 export interface DurationFormatAssetsUnit extends Record<number, string> {
-	// eslint-disable-next-line @typescript-eslint/naming-convention
 	DEFAULT: string;
 }
 

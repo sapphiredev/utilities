@@ -541,8 +541,7 @@ export class PaginatedMessage {
 	 * ```
 	 */
 	public addAsyncPageBuilder(builder: MessageBuilder | ((builder: MessageBuilder) => Promise<MessageBuilder>)): this {
-		// eslint-disable-next-line @typescript-eslint/require-await
-		return this.addPage(async () => (isFunction(builder) ? builder(new MessageBuilder()) : builder));
+		return this.addPage(() => (isFunction(builder) ? builder(new MessageBuilder()) : builder));
 	}
 
 	/**

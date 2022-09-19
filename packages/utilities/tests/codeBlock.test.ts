@@ -1,4 +1,3 @@
-/* eslint-disable no-irregular-whitespace */
 import { codeBlock } from '../src';
 
 const zeroWidthSpace = String.fromCharCode(8203);
