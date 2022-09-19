@@ -1,7 +1,8 @@
+import { green, red } from 'colorette';
 import { opendir, writeFile } from 'node:fs/promises';
-import { join, basename } from 'node:path';
+import { basename, join } from 'node:path';
 import { format } from 'prettier';
-import { red, green } from 'colorette';
+import prettierConfig from '../packages/prettier-config/dist/index.js';
 
 const packageName = process.argv[2];
 const check = process.argv[3] === '--check';
@@ -68,21 +69,13 @@ const { default: packageJSON } = await import(`../packages/${packageName}/packag
 	}
 });
 
-const newPackageJSON = format(
-	JSON.stringify({
-		...packageJSON,
-		...{
-			exports: exportObj
-		}
-	}),
-	{
-		filepath: `../packages/${packageName}/package.json`
-	}
-);
-
-const oldPackageJSON = format(JSON.stringify(packageJSON, null, '\t'), {
-	filepath: `../packages/${packageName}/package.json`
+const newPackageJSON = JSON.stringify({
+	...packageJSON,
+	exports: exportObj
 });
+
+const oldPackageJSON = JSON.stringify(packageJSON);
+
 if (oldPackageJSON === newPackageJSON) {
 	console.log(green(`The package.json file for ${packageName} is up to date!`));
 	process.exit(0);
@@ -93,5 +86,7 @@ if (check) {
 	process.exit(1);
 }
 
-await writeFile(new URL(`../packages/${packageName}/package.json`, import.meta.url), newPackageJSON);
+const formattedNewPackageJSON = format(newPackageJSON, { ...prettierConfig, parser: 'json-stringify' });
+await writeFile(new URL(`../packages/${packageName}/package.json`, import.meta.url), formattedNewPackageJSON);
+
 console.log(green(`The package.json file for ${packageName} is updated successfully!`));
