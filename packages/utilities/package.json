@@ -11,11 +11,6 @@
 			"require": "./dist/index.js",
 			"browser": "./dist/index.global.js"
 		},
-		"./debounce": {
-			"types": "./dist/lib/debounce/index.d.ts",
-			"import": "./dist/lib/debounce/index.mjs",
-			"require": "./dist/lib/debounce/index.js"
-		},
 		"./arrayStrictEquals": {
 			"types": "./dist/lib/arrayStrictEquals.d.ts",
 			"import": "./dist/lib/arrayStrictEquals.mjs",
@@ -46,6 +41,11 @@
 			"import": "./dist/lib/cutText.mjs",
 			"require": "./dist/lib/cutText.js"
 		},
+		"./debounce": {
+			"types": "./dist/lib/debounce/debounce.d.ts",
+			"import": "./dist/lib/debounce/debounce.mjs",
+			"require": "./dist/lib/debounce/debounce.js"
+		},
 		"./deepClone": {
 			"types": "./dist/lib/deepClone.d.ts",
 			"import": "./dist/lib/deepClone.mjs",
@@ -62,12 +62,12 @@
 			"require": "./dist/lib/filterNullAndUndefined.js"
 		},
 		"./filterNullAndUndefinedAndEmpty": {
-			"types": "./dist/lib/filterNullAndUndefinedEmpty.d.ts",
+			"types": "./dist/lib/filterNullAndUndefinedAndEmpty.d.ts",
 			"import": "./dist/lib/filterNullAndUndefinedAndEmpty.mjs",
 			"require": "./dist/lib/filterNullAndUndefinedAndEmpty.js"
 		},
 		"./filterNullishOrEmpty": {
-			"types": "./dist/lib/filterNullAndUndefinedEmpty.d.ts",
+			"types": "./dist/lib/filterNullAndUndefinedAndEmpty.d.ts",
 			"import": "./dist/lib/filterNullAndUndefinedAndEmpty.mjs",
 			"require": "./dist/lib/filterNullAndUndefinedAndEmpty.js"
 		},
@@ -181,10 +181,10 @@
 			"import": "./dist/lib/noop.mjs",
 			"require": "./dist/lib/noop.js"
 		},
-		"./objectToTuple": {
-			"types": "./dist/lib/objectToTuple.d.ts",
-			"import": "./dist/lib/objectToTuple.mjs",
-			"require": "./dist/lib/objectToTuple.js"
+		"./objectToTuples": {
+			"types": "./dist/lib/objectToTuples.d.ts",
+			"import": "./dist/lib/objectToTuples.mjs",
+			"require": "./dist/lib/objectToTuples.js"
 		},
 		"./parseUrl": {
 			"types": "./dist/lib/parseUrl.d.ts",
@@ -244,9 +244,10 @@
 		"lint": "eslint src tests --ext ts --fix -c ../../.eslintrc",
 		"build": "tsup && tsup --config tsup.config.iife.ts && tsc -b src",
 		"docs": "typedoc-json-parser",
-		"prepack": "yarn build",
+		"prepack": "yarn build && yarn check-subpath",
 		"bump": "cliff-jumper",
-		"check-update": "cliff-jumper --dry-run"
+		"check-update": "cliff-jumper --dry-run",
+		"check-subpath": "node ../../scripts/subpath-updater.mjs utilities"
 	},
 	"repository": {
 		"type": "git",

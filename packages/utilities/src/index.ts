@@ -4,7 +4,7 @@ export * from './lib/chunk';
 export * from './lib/classExtends';
 export * from './lib/codeBlock';
 export * from './lib/cutText';
-export { debounce, type DebouncedFunc, type DebounceSettings } from './lib/debounce';
+export { debounce, type DebouncedFunc, type DebounceSettings } from './lib/debounce/debounce';
 export * from './lib/deepClone';
 export * from './lib/filterNullAndUndefined';
 export * from './lib/filterNullAndUndefinedAndEmpty';
