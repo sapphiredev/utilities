@@ -16,12 +16,18 @@ const check = process.argv[3] === '--check';
 async function* walk(path, ext) {
 	try {
 		const dir = await opendir(path);
+
 		for await (const item of dir) {
-			if (item.isFile() && (!ext || item.name.endsWith(ext))) yield join(dir.path, item.name);
-			else if (item.isDirectory()) yield* walk(join(dir.path, item.name), ext);
+			if (item.isFile() && (!ext || item.name.endsWith(ext))) {
+				yield join(dir.path, item.name);
+			} else if (item.isDirectory()) {
+				yield* walk(join(dir.path, item.name), ext);
+			}
 		}
 	} catch (error) {
-		if (error.code !== 'ENOENT') console.error(error);
+		if (error.code !== 'ENOENT') {
+			console.error(error);
+		}
 	}
 }
 
