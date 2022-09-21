@@ -1,4 +1,4 @@
-import type { Ctor } from '@sapphire/utilities/types';
+import type { Ctor } from '@sapphire/utilities';
 import type { CollectorFilter, EmojiResolvable, Message, MessageReaction, User } from 'discord.js';
 import type { MessagePrompterChannelTypes, MessagePrompterMessage } from './constants';
 import type {

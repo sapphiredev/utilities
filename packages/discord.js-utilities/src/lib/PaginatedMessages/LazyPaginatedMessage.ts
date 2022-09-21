@@ -1,4 +1,4 @@
-import { isFunction } from '@sapphire/utilities/isFunction';
+import { isFunction } from '@sapphire/utilities';
 import { MessageEmbed } from 'discord.js';
 import { MessageBuilder } from '../builders/MessageBuilder';
 import { PaginatedMessage } from './PaginatedMessage';

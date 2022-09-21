@@ -1,4 +1,4 @@
-import { range } from '@sapphire/utilities/range';
+import { range } from '@sapphire/utilities';
 import { allowedNum, cronTokens, partRegex, predefined, Time, tokensRegex, wildcardRegex } from './constants';
 
 /**
