@@ -12,6 +12,7 @@ export * from './lib/filterNullAndUndefinedAndEmpty';
 export { filterNullAndUndefinedAndEmpty as filterNullishOrEmpty } from './lib/filterNullAndUndefinedAndEmpty';
 export * from './lib/filterNullAndUndefinedAndZero';
 export { filterNullAndUndefinedAndZero as filterNullishOrZero } from './lib/filterNullAndUndefinedAndZero';
+export * from './lib/findFilesRecursively';
 export * from './lib/getDeepObjectKeys';
 export * from './lib/hasAtLeastOneKeyInMap';
 export * from './lib/inlineCodeBlock';
