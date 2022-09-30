@@ -13,13 +13,14 @@ describe('findFilesRecursively', () => {
 		for await (const file of findFilesRecursively(path.join(__dirname, 'findFilesRecursivelyDemoFiles'))) {
 			files.push(file);
 		}
-		expect(files.length).toBe(4);
+		expect(files.length).toBe(5);
 		// sort is required because the order of the files is not same in all OS
 		expect(files.sort((a, b) => a.localeCompare(b))).toStrictEqual([
 			path.join(__dirname, 'findFilesRecursivelyDemoFiles', 'a.txt'),
 			path.join(__dirname, 'findFilesRecursivelyDemoFiles', 'file1.txt'),
 			path.join(__dirname, 'findFilesRecursivelyDemoFiles', 'file2.csv'),
-			path.join(__dirname, 'findFilesRecursivelyDemoFiles', 'file3.xml')
+			path.join(__dirname, 'findFilesRecursivelyDemoFiles', 'file3.xml'),
+			path.join(__dirname, 'findFilesRecursivelyDemoFiles', 'nested', 'b.txt')
 		]);
 	});
 });
@@ -45,10 +46,11 @@ describe('findFilesRecursivelyStringEndsWith', () => {
 		for await (const file of findFilesRecursivelyStringEndsWith(path.join(__dirname, 'findFilesRecursivelyDemoFiles'), 'txt')) {
 			files.push(file);
 		}
-		expect(files.length).toBe(2);
+		expect(files.length).toBe(3);
 		expect(files.sort((a, b) => a.localeCompare(b))).toStrictEqual([
 			path.join(__dirname, 'findFilesRecursivelyDemoFiles', 'a.txt'),
-			path.join(__dirname, 'findFilesRecursivelyDemoFiles', 'file1.txt')
+			path.join(__dirname, 'findFilesRecursivelyDemoFiles', 'file1.txt'),
+			path.join(__dirname, 'findFilesRecursivelyDemoFiles', 'nested', 'b.txt')
 		]);
 	});
 });
