@@ -1,6 +1,6 @@
 import { fetch, FetchResultTypes } from '@sapphire/fetch';
-import { Time, Timestamp } from '@sapphire/time-utilities';
-import { green, red, yellow } from 'colorette';
+import { Time, Timestamp } from '@sapphire/timestamp';
+import { green, yellow } from 'colorette';
 import { rm, writeFile } from 'node:fs/promises';
 import { URL } from 'node:url';
 

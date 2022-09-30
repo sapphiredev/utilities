@@ -1,4 +1,4 @@
-import { Time } from '@sapphire/time-utilities';
+import { Time } from '@sapphire/duration';
 import { deepClone, isFunction, isNullish, isObject } from '@sapphire/utilities';
 import type { APIMessage } from 'discord-api-types/v9';
 import {

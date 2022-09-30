@@ -4,6 +4,7 @@ import type { None } from '../src/lib/Option/None';
 import type { Some } from '../src/lib/Option/Some';
 import type { Err } from '../src/lib/Result/Err';
 import type { Ok } from '../src/lib/Result/Ok';
+import { error, makeThrow } from './shared';
 
 describe('Result', () => {
 	describe('prototype', () => {
@@ -805,7 +806,7 @@ describe('Result', () => {
 
 	describe('ok', () => {
 		test('GIVEN ok THEN returns { isOk->true, isErr->false }', () => {
-			const x = Result.ok(42);
+			const x = ok(42);
 
 			expect<boolean>(x.isOk()).toBe(true);
 			expect<false>(x.isErr()).toBe(false);
@@ -814,7 +815,7 @@ describe('Result', () => {
 
 	describe('err', () => {
 		test('GIVEN err THEN returns { isOk->false, isErr->true }', () => {
-			const x = Result.err(new Error());
+			const x = err(new Error());
 
 			expect<false>(x.isOk()).toBe(false);
 			expect<boolean>(x.isErr()).toBe(true);
@@ -824,113 +825,56 @@ describe('Result', () => {
 	describe('from', () => {
 		const { from } = Result;
 
-		test('GIVEN from(T) value THEN returns Ok', () => {
-			const x = from(42);
+		test.each([
+			['T', 42],
+			['Ok(T)', ok(42)],
+			['() => T', () => 42],
+			['() => Ok(T)', () => ok(42)]
+		])('GIVEN from(%s) THEN returns Ok(T)', (_, cb) => {
+			const x = from(cb);
 
-			expect(x.isOk()).toBe(true);
-			expect(x.isErr()).toBe(false);
-			expect(x.unwrap()).toBe(42);
+			expect(x).toStrictEqual(ok(42));
 		});
 
-		test('GIVEN from(Ok) value THEN returns Ok', () => {
-			const x = from(Result.ok(42));
+		test.each([
+			['Err(E)', err(error)],
+			['() => Err(E)', () => err(error)],
+			['() => throw E', makeThrow]
+		])('GIVEN from(%s) THEN returns Err(E)', (_, resolvable) => {
+			const x = from(resolvable);
 
-			expect(x.isOk()).toBe(true);
-			expect(x.isErr()).toBe(false);
-			expect(x.unwrap()).toBe(42);
-		});
-
-		test('GIVEN from(Err) error THEN returns Err', () => {
-			const error = new Error('thrown');
-			const x = from(Result.err(error));
-
-			expect(x.isOk()).toBe(false);
-			expect(x.isErr()).toBe(true);
-			expect(x.unwrapErr()).toBe(error);
-		});
-
-		test('GIVEN from(() => T) THEN returns Ok', () => {
-			const x = from(() => 42);
-
-			expect(x.isOk()).toBe(true);
-			expect(x.isErr()).toBe(false);
-			expect(x.unwrap()).toBe(42);
-		});
-
-		test('GIVEN from(() => throw) THEN returns Err with thrown error', () => {
-			const error = new Error('thrown');
-			const x = from(() => {
-				throw error;
-			});
-
-			expect(x.isOk()).toBe(false);
-			expect(x.isErr()).toBe(true);
-			expect(x.unwrapErr()).toBe(error);
+			expect(x).toStrictEqual(err(error));
 		});
 	});
 
 	describe('fromAsync', () => {
 		const { fromAsync } = Result;
 
-		test('GIVEN fromAsync(T) THEN returns Ok', async () => {
-			const x = await fromAsync(42);
+		test.each([
+			['T', 42],
+			['Promise.resolve(T)', Promise.resolve(42)],
+			['Ok(T)', ok(42)],
+			['Promise.resolve(Ok(T))', Promise.resolve(ok(42))],
+			['() => T', () => 42],
+			['() => Promise.resolve(T)', () => Promise.resolve(42)],
+			['() => Ok(T)', () => ok(42)],
+			['() => Promise.resolve(Ok(T))', () => Promise.resolve(ok(42))]
+		])('GIVEN fromAsync(%s) THEN returns Ok(T)', async (_, cb) => {
+			const x = await fromAsync(cb);
 
-			expect(x.isOk()).toBe(true);
-			expect(x.isErr()).toBe(false);
-			expect(x.unwrap()).toBe(42);
+			expect(x).toStrictEqual(ok(42));
 		});
 
-		test('GIVEN fromAsync(() => T) THEN returns Ok', async () => {
-			const x = await fromAsync(() => 42);
+		test.each([
+			['Err(E)', err(error)],
+			['() => throw E', makeThrow],
+			['() => Promise.reject(E)', () => Promise.reject(error)],
+			['() => Err(E)', () => err(error)],
+			['() => Promise.reject(Err(E))', () => Promise.reject(err(error))]
+		])('GIVEN fromAsync(%s) THEN returns Err(E)', async (_, resolvable) => {
+			const x = await fromAsync(resolvable);
 
-			expect(x.isOk()).toBe(true);
-			expect(x.isErr()).toBe(false);
-			expect(x.unwrap()).toBe(42);
-		});
-
-		test('GIVEN fromAsync(Promise.resolve(T)) THEN returns Ok', async () => {
-			const x = await fromAsync(Promise.resolve(42));
-
-			expect(x.isOk()).toBe(true);
-			expect(x.isErr()).toBe(false);
-			expect(x.unwrap()).toBe(42);
-		});
-
-		test('GIVEN fromAsync(() => Promise.resolve(T)) THEN returns Ok', async () => {
-			const x = await fromAsync(() => Promise.resolve(42));
-
-			expect(x.isOk()).toBe(true);
-			expect(x.isErr()).toBe(false);
-			expect(x.unwrap()).toBe(42);
-		});
-
-		test('GIVEN fromAsync(() => throw) THEN returns Err with thrown error', async () => {
-			const error = new Error('thrown');
-			const x = await fromAsync(() => {
-				throw error;
-			});
-
-			expect(x.isOk()).toBe(false);
-			expect(x.isErr()).toBe(true);
-			expect(x.unwrapErr()).toBe(error);
-		});
-
-		test('GIVEN fromAsync(Promise.reject) THEN returns Err', async () => {
-			const error = new Error('thrown');
-			const x = await fromAsync(Promise.reject(error));
-
-			expect(x.isOk()).toBe(false);
-			expect(x.isErr()).toBe(true);
-			expect(x.unwrapErr()).toBe(error);
-		});
-
-		test('GIVEN fromAsync(() => Promise.reject) THEN returns Err', async () => {
-			const error = new Error('thrown');
-			const x = await fromAsync(() => Promise.reject(error));
-
-			expect(x.isOk()).toBe(false);
-			expect(x.isErr()).toBe(true);
-			expect(x.unwrapErr()).toBe(error);
+			expect(x).toStrictEqual(err(error));
 		});
 	});
 

@@ -10,3 +10,4 @@ export * from './lib/parser/ParserResult';
 export * from './lib/parser/strategies/EmptyStrategy';
 export * from './lib/parser/strategies/IUnorderedStrategy';
 export * from './lib/parser/strategies/PrefixedStrategy';
+export * from './lib/util/util';

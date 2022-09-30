@@ -17,7 +17,6 @@ node_modules/
 
 # Build Artifacts
 dist/
-build/
 docs/
 test_out/
 *.tsbuildinfo

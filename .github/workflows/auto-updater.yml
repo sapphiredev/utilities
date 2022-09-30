@@ -22,7 +22,7 @@ jobs:
       - name: Install Dependencies
         run: yarn --immutable
       - name: Build packages for script
-        run: yarn turbo run build --filter=@sapphire/time-utilities --filter=@sapphire/fetch --filter=@sapphire/prettier-config
+        run: yarn turbo run build --filter=@sapphire/timestamp --filter=@sapphire/fetch --filter=@sapphire/prettier-config
       - name: Run updater
         run: node --experimental-json-modules scripts/twemoji-regex-updater.mjs
       - name: Run prettier on the code
