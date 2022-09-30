@@ -115,6 +115,11 @@ export class Err<E> implements IResult<any, E> {
 		return op(this.error);
 	}
 
+	public unwrapRaw(): never {
+		// eslint-disable-next-line @typescript-eslint/no-throw-literal
+		throw this.error;
+	}
+
 	public and(result?: Result<any, E>): this;
 	public and(): this {
 		return this;

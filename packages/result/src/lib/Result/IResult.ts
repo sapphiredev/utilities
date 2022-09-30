@@ -532,6 +532,31 @@ export interface IResult<T, E> {
 	unwrapOrElse<V>(op: (error: E) => V): T | V;
 
 	/**
+	 * Returns the contained `Ok` value.
+	 *
+	 * If the value is an `Err`, it throws the contained error.
+	 * @seealso {@link unwrap}
+	 * @seealso {@link unwrapOr}
+	 * @seealso {@link unwrapOrElse}
+	 *
+	 * @example
+	 * ```typescript
+	 * const x = ok(2);
+	 * assert.equal(x.unwrapRaw(), 2);
+	 * ```
+	 * @example
+	 * ```typescript
+	 * const x = err('Emergency failure');
+	 * assert.throws(() => x.unwrapRaw(), {
+	 *   name: 'Error',
+	 *   message: 'Unwrap failed',
+	 *   value: 'Emergency failure'
+	 * });
+	 * ```
+	 */
+	unwrapRaw(): T | never;
+
+	/**
 	 * Returns `result` if the result is `Ok`, otherwise returns the `Err` value of itself.
 	 * @param result The result to check.
 	 *

@@ -438,6 +438,28 @@ describe('Result', () => {
 			});
 		});
 
+		describe('unwrapRaw', () => {
+			test('GIVEN ok THEN returns value', () => {
+				const x = ok(2);
+
+				expect<number>(x.unwrapRaw()).toBe(2);
+			});
+
+			test('GIVEN err THEN throws Error', () => {
+				const x = err(new Error('Some error message'));
+
+				try {
+					x.unwrapRaw();
+				} catch (raw) {
+					const error = raw as Error;
+
+					expect(error).toBeInstanceOf(Error);
+					expect<string>(error.name).toBe('Error');
+					expect<string>(error.message).toBe('Some error message');
+				}
+			});
+		});
+
 		describe('and', () => {
 			test('GIVEN x=ok and y=ok THEN returns y', () => {
 				const x = ok(2);
