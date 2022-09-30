@@ -14,8 +14,8 @@ import type {
 	Message,
 	MessageComponentInteraction,
 	MessageEditOptions,
-	MessageOptions,
-	ReplyMessageOptions,
+	BaseMessageOptions,
+	MessageReplyOptions,
 	SelectMenuComponentData,
 	SelectMenuComponentOptionData,
 	SelectMenuInteraction,
@@ -100,7 +100,7 @@ export interface PaginatedMessageOptions {
 	/**
 	 * The {@link EmbedBuilder} or {@link MessageOptions} options to apply to the entire {@link PaginatedMessage}
 	 */
-	template?: EmbedBuilder | MessageOptions;
+	template?: EmbedBuilder | BaseMessageOptions;
 	/**
 	 * @seealso {@link PaginatedMessage.pageIndexPrefix}
 	 */
@@ -156,9 +156,9 @@ export type PaginatedMessageWrongUserInteractionReplyFunction = (
 	internationalizationContext: PaginatedMessageInternationalizationContext
 ) => Awaitable<Parameters<MessageComponentInteraction['reply']>[0]>;
 
-export type PaginatedMessageEmbedResolvable = MessageOptions['embeds'];
+export type PaginatedMessageEmbedResolvable = BaseMessageOptions['embeds'];
 
-export type PaginatedMessageMessageOptionsUnion = Omit<MessageOptions, 'flags'> | WebhookEditMessageOptions;
+export type PaginatedMessageMessageOptionsUnion = Omit<BaseMessageOptions, 'flags'> | WebhookEditMessageOptions;
 
 /**
  * @internal This is a duplicate of the same interface in `@sapphire/plugin-i18next`
@@ -186,5 +186,5 @@ export interface SafeReplyToInteractionParameters<T extends 'edit' | 'reply' | n
 	interactionReplyContent: InteractionReplyOptions;
 	componentUpdateContent: InteractionUpdateOptions;
 	messageMethod?: T;
-	messageMethodContent?: T extends 'reply' ? ReplyMessageOptions : MessageEditOptions;
+	messageMethodContent?: T extends 'reply' ? MessageReplyOptions : MessageEditOptions;
 }

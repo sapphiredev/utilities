@@ -21,7 +21,7 @@ import {
 	type ButtonInteraction,
 	type Collection,
 	type Message,
-	type MessageOptions,
+	type BaseMessageOptions,
 	type SelectMenuInteraction,
 	type Snowflake,
 	type TextBasedChannel,
@@ -1036,7 +1036,7 @@ export class PaginatedMessage {
 				this.response = await messageOrInteraction.reply({ ...page, fetchReply: true, ephemeral: false });
 			}
 		} else {
-			this.response = await messageOrInteraction.channel.send(page as MessageOptions);
+			this.response = await messageOrInteraction.channel.send(page as BaseMessageOptions);
 		}
 	}
 
@@ -1508,7 +1508,7 @@ export class PaginatedMessage {
 		allowedMentions: { users: [], roles: [] }
 	});
 
-	private static resolveTemplate(template?: EmbedBuilder | MessageOptions): MessageOptions {
+	private static resolveTemplate(template?: EmbedBuilder | BaseMessageOptions): BaseMessageOptions {
 		if (template === undefined) {
 			return {};
 		}
