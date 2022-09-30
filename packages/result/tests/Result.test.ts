@@ -446,17 +446,10 @@ describe('Result', () => {
 			});
 
 			test('GIVEN err THEN throws Error', () => {
-				const x = err(new Error('Some error message'));
+				const error = new Error('Some error message');
+				const x = err(error);
 
-				try {
-					x.unwrapRaw();
-				} catch (raw) {
-					const error = raw as Error;
-
-					expect(error).toBeInstanceOf(Error);
-					expect<string>(error.name).toBe('Error');
-					expect<string>(error.message).toBe('Some error message');
-				}
+				expect(() => x.unwrapRaw()).toThrowError(error);
 			});
 		});
 
