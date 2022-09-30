@@ -14,7 +14,8 @@ describe('findFilesRecursively', () => {
 			files.push(file);
 		}
 		expect(files.length).toBe(4);
-		expect(files).toStrictEqual([
+		// sort is required because the order of the files is not same in all OS
+		expect(files.sort((a, b) => a.localeCompare(b))).toStrictEqual([
 			path.join(__dirname, 'findFilesRecursivelyDemoFiles', 'a.txt'),
 			path.join(__dirname, 'findFilesRecursivelyDemoFiles', 'file1.txt'),
 			path.join(__dirname, 'findFilesRecursivelyDemoFiles', 'file2.csv'),
@@ -30,7 +31,7 @@ describe('findFilesRecursivelyStringStartsWith', () => {
 			files.push(file);
 		}
 		expect(files.length).toBe(3);
-		expect(files).toStrictEqual([
+		expect(files.sort((a, b) => a.localeCompare(b))).toStrictEqual([
 			path.join(__dirname, 'findFilesRecursivelyDemoFiles', 'file1.txt'),
 			path.join(__dirname, 'findFilesRecursivelyDemoFiles', 'file2.csv'),
 			path.join(__dirname, 'findFilesRecursivelyDemoFiles', 'file3.xml')
@@ -45,7 +46,7 @@ describe('findFilesRecursivelyStringEndsWith', () => {
 			files.push(file);
 		}
 		expect(files.length).toBe(2);
-		expect(files).toStrictEqual([
+		expect(files.sort((a, b) => a.localeCompare(b))).toStrictEqual([
 			path.join(__dirname, 'findFilesRecursivelyDemoFiles', 'a.txt'),
 			path.join(__dirname, 'findFilesRecursivelyDemoFiles', 'file1.txt')
 		]);
@@ -59,7 +60,7 @@ describe('findFilesRecursivelyStringIncludes', () => {
 			files.push(file);
 		}
 		expect(files.length).toBe(1);
-		expect(files).toStrictEqual([path.join(__dirname, 'findFilesRecursivelyDemoFiles', 'file1.txt')]);
+		expect(files.sort((a, b) => a.localeCompare(b))).toStrictEqual([path.join(__dirname, 'findFilesRecursivelyDemoFiles', 'file1.txt')]);
 	});
 });
 
@@ -70,7 +71,7 @@ describe('findFilesRecursivelyRegex', () => {
 			files.push(file);
 		}
 		expect(files.length).toBe(2);
-		expect(files).toStrictEqual([
+		expect(files.sort((a, b) => a.localeCompare(b))).toStrictEqual([
 			path.join(__dirname, 'findFilesRecursivelyDemoFiles', 'file1.txt'),
 			path.join(__dirname, 'findFilesRecursivelyDemoFiles', 'file2.csv')
 		]);
