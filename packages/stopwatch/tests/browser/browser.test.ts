@@ -31,12 +31,12 @@ describe('browser-bundle-test', () => {
 	});
 
 	test('Stopwatch should be available in browser', () => {
-		expect(new window.Stopwatch.Stopwatch().stop().toString()).toBeDefined();
+		expect(new window.SapphireStopwatch.Stopwatch().stop().toString()).toBeDefined();
 	});
 });
 
 declare global {
 	interface Window {
-		Stopwatch: typeof import('../../src');
+		SapphireStopwatch: typeof import('../../src');
 	}
 }

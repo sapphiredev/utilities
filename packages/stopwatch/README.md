@@ -15,13 +15,14 @@
 
 **Table of Contents**
 
--   [Description](#description)
--   [Features](#features)
--   [Installation](#installation)
--   [Usage](#usage)
-    -   [Basic Usage](#basic-usage)
--   [Buy us some doughnuts](#buy-us-some-doughnuts)
--   [Contributors ✨](#contributors-%E2%9C%A8)
+-   [@sapphire/stopwatch](#sapphirestopwatch)
+    -   [Description](#description)
+    -   [Features](#features)
+    -   [Installation](#installation)
+    -   [Usage](#usage)
+        -   [Basic Usage](#basic-usage)
+    -   [Buy us some doughnuts](#buy-us-some-doughnuts)
+    -   [Contributors ✨](#contributors-)
 
 ## Description
 
@@ -30,6 +31,7 @@ Provides a set of methods and properties that you can use to accurately measure 
 ## Features
 
 -   Written in TypeScript
+-   Offers CommonJS, ESM and UMD bundles
 -   Fully tested
 
 ## Installation
