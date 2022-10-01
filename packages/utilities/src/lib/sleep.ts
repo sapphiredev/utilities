@@ -1,11 +1,9 @@
-export interface Abortable {
+export interface SleepOptions {
 	/**
 	 * When provided the corresponding `AbortController` can be used to cancel an asynchronous action.
 	 */
 	signal?: AbortSignal | undefined;
-}
 
-export interface TimerOptions extends Abortable {
 	/**
 	 * Set to `false` to indicate that the scheduled `Timeout`
 	 * should not require the Node.js event loop to remain active.
@@ -29,11 +27,11 @@ export class AbortError extends Error {
 	}
 }
 
-const DOMException: typeof globalThis.DOMException =
+export const DOMException: typeof globalThis.DOMException =
 	globalThis.DOMException ??
 	(() => {
 		// DOMException was only made a global in Node v17.0.0,
-		// but we support >= v14.
+		// but we support >= v14
 		try {
 			atob('~');
 		} catch (err) {
@@ -47,7 +45,7 @@ const DOMException: typeof globalThis.DOMException =
  * @param value A value with which the promise is fulfilled.
  * @see {@link sleepSync} for a synchronous version.
  */
-export function sleep<T = undefined>(ms: number, value?: T, options?: TimerOptions): Promise<T> {
+export function sleep<T = undefined>(ms: number, value?: T, options?: SleepOptions): Promise<T> {
 	return new Promise((resolve, reject) => {
 		const timer: NodeJS.Timeout | number = setTimeout(() => resolve(value!), ms);
 		if (options?.signal) {

@@ -1,16 +1,17 @@
-import { sleep, sleepSync } from '../src';
+import { AbortError, DOMException, sleep, sleepSync } from '../src';
+import { expectError } from './util/macros/comparators';
 
 describe('sleep', () => {
 	test('GIVEN a number of ms THEN resolve the promise after that time', async () => {
 		const start = Date.now();
-		await sleep(100);
-		expect(Date.now() - start).toBeGreaterThanOrEqual(100);
+		await sleep(1000);
+		expect(Date.now() - start).toBeGreaterThanOrEqual(1000);
 	});
 
 	test('GIVEN a number of ms and a value THEN resolve the promise after that time with the value', async () => {
 		const start = Date.now();
-		const value = await sleep(100, 'test');
-		expect(Date.now() - start).toBeGreaterThanOrEqual(100);
+		const value = await sleep(1000, 'test');
+		expect(Date.now() - start).toBeGreaterThanOrEqual(1000);
 		expect<string>(value).toBe('test');
 	});
 
@@ -18,21 +19,26 @@ describe('sleep', () => {
 		const controller = new AbortController();
 		const promise = sleep(1000, 'test', { signal: controller.signal });
 		controller.abort();
-		await expect(promise).rejects.toThrow('The operation was aborted');
+		await expectError(
+			() => promise,
+			new AbortError('The operation was aborted', {
+				cause: new DOMException('The operation was aborted', 'AbortError')
+			})
+		);
 	});
 });
 
 describe('sleepSync', () => {
 	test('GIVEN a number of ms THEN return after that time', () => {
 		const start = Date.now();
-		sleepSync(100);
-		expect(Date.now() - start).toBeGreaterThanOrEqual(100);
+		sleepSync(1000);
+		expect(Date.now() - start).toBeGreaterThanOrEqual(1000);
 	});
 
 	test('GIVEN a number of ms and a value THEN return after that time with the value', () => {
 		const start = Date.now();
-		const value = sleepSync(100, 'test');
-		expect(Date.now() - start).toBeGreaterThanOrEqual(100);
+		const value = sleepSync(1000, 'test');
+		expect(Date.now() - start).toBeGreaterThanOrEqual(1000);
 		expect<string>(value).toBe('test');
 	});
 });
