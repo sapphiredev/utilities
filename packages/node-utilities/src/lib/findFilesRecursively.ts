@@ -28,19 +28,13 @@ import { join } from 'node:path';
  * ```
  */
 export async function* findFilesRecursively(path: PathLike, predicate: (filePath: string) => boolean = () => true): AsyncIterableIterator<string> {
-	try {
-		const dir = await opendir(path);
+	const dir = await opendir(path);
 
-		for await (const item of dir) {
-			if (item.isFile() && predicate(item.name)) {
-				yield join(dir.path, item.name);
-			} else if (item.isDirectory()) {
-				yield* findFilesRecursively(join(dir.path, item.name), predicate);
-			}
-		}
-	} catch (error) {
-		if ((error as any).code !== 'ENOENT') {
-			console.error(error);
+	for await (const item of dir) {
+		if (item.isFile() && predicate(item.name)) {
+			yield join(dir.path, item.name);
+		} else if (item.isDirectory()) {
+			yield* findFilesRecursively(join(dir.path, item.name), predicate);
 		}
 	}
 }

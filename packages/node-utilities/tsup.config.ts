@@ -1,3 +1,3 @@
 import { createTsupConfig } from '../../scripts/tsup.config';
 
-export default createTsupConfig({ target: 'es2019', format: ['cjs', 'esm'] });
+export default createTsupConfig({ format: ['cjs', 'esm'] });
