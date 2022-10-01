@@ -1,5 +1,5 @@
 import type { NonNullObject } from './utilityTypes';
 
-export function objectKeys<T extends NonNullObject>(obj: T): T extends ArrayLike<any> ? number[] : (keyof T)[] {
-	return Object.keys(obj) as T extends ArrayLike<any> ? number[] : (keyof T)[];
+export function objectKeys<T extends NonNullObject>(obj: T): T extends ArrayLike<any> ? `${number}`[] : (keyof T)[] {
+	return Object.keys(obj) as T extends ArrayLike<any> ? `${number}`[] : (keyof T)[];
 }
