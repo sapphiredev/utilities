@@ -1,18 +1,10 @@
 import { UserError } from '@sapphire/framework';
-import {
-	ChannelType,
-	Message as DJSMessage,
-	PermissionFlagsBits,
-	PermissionResolvable,
-	Permissions,
-	PermissionsBitField,
-	PermissionsString
-} from 'discord.js';
+import { ChannelType, Message as DJSMessage, PermissionFlagsBits, PermissionResolvable, PermissionsBitField, PermissionsString } from 'discord.js';
 import diff from 'lodash/difference';
 import { DecoratorIdentifiers, RequiresUserPermissions } from '../../src';
 
 interface BitField {
-	missing(resolvedPermissions: Permissions): PermissionsString[];
+	missing(resolvedPermissions: PermissionsBitField): PermissionsString[];
 }
 
 interface Message {
@@ -25,15 +17,15 @@ interface Message {
 	};
 }
 
-function buildMissing(resolvedPermissions: Permissions, ...givenPermissions: PermissionResolvable[]) {
-	return diff(new PermissionsBitField(resolvedPermissions).toArray(), new PermissionsBitField(givenPermissions).toArray());
+function buildMissing(resolvedPermissions: PermissionsBitField, ...givenPermissions: PermissionResolvable[]) {
+	return diff(resolvedPermissions.toArray(), new PermissionsBitField(givenPermissions).toArray());
 }
 
 function buildMessage(channelType: DJSMessage['channel']['type'], ...givenPermissions: PermissionResolvable[]): Message {
 	return {
 		channel: {
 			type: channelType,
-			permissionsFor: () => ({ missing: (resolvedPermissions: Permissions) => buildMissing(resolvedPermissions, givenPermissions) })
+			permissionsFor: () => ({ missing: (resolvedPermissions: PermissionsBitField) => buildMissing(resolvedPermissions, givenPermissions) })
 		},
 		guild: {
 			me: ''
