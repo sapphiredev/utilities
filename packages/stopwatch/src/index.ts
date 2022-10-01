@@ -1,5 +1,3 @@
-import { performance } from 'node:perf_hooks';
-
 /**
  * Stopwatch class, uses native node to replicate/extend performance-now dependency.
  */
