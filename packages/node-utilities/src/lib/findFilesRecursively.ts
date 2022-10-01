@@ -5,11 +5,9 @@ import { join } from 'node:path';
 /**
  *
  * @param path The path in which to find files.
- * @param filter A function that takes a path and returns true if the path should be included in the results.
- * Ideally this is a file extension, however you can also provide more parts of the end of the file.
+ * @param predicate A predicate function receives the path as a parameter. Truthy values will have the path included, falsey values will have the file excluded.
  *
- * @return An {@link AsyncIterableIterator<string>} of all the files. To loop over these use `for await (const file of findFilesRecursively(path, filter)) {}`
- *
+ * @return An {@link AsyncIterableIterator<string>} of all the files. To loop over these use `for await (const file of findFilesRecursively(path, predicate)) {}`
  *
  * @example
  * ```typescript
@@ -29,15 +27,15 @@ import { join } from 'node:path';
  * }
  * ```
  */
-export async function* findFilesRecursively(path: PathLike, filter: (filePath: string) => boolean = () => true): AsyncIterableIterator<string> {
+export async function* findFilesRecursively(path: PathLike, predicate: (filePath: string) => boolean = () => true): AsyncIterableIterator<string> {
 	try {
 		const dir = await opendir(path);
 
 		for await (const item of dir) {
-			if (item.isFile() && filter(item.name)) {
+			if (item.isFile() && predicate(item.name)) {
 				yield join(dir.path, item.name);
 			} else if (item.isDirectory()) {
-				yield* findFilesRecursively(join(dir.path, item.name), filter);
+				yield* findFilesRecursively(join(dir.path, item.name), predicate);
 			}
 		}
 	} catch (error) {
@@ -49,7 +47,7 @@ export async function* findFilesRecursively(path: PathLike, filter: (filePath: s
 
 /**
  *
- * @param path The path in which to find files. This can be a string, buffer or {@link URL}.
+ * @param path The path in which to find files. This can be a string, buffer, or {@link URL}.
  * @param fileStartsWith The string pattern with which the file name must start.
  *
  * Note that we do **not** support a full globby pattern using asterisk for wildcards. It has to be an exact match with {@link String.startsWith}
@@ -62,7 +60,7 @@ export function findFilesRecursivelyStringStartsWith(path: PathLike, fileStartsW
 
 /**
  *
- * @param path The path in which to find files. This can be a string, buffer or {@link URL}.
+ * @param path The path in which to find files. This can be a string, buffer, or {@link URL}.
  * @param fileEndsWith The string pattern with which the file name must end.
  * Ideally this is a file extension, however you can also provide more parts of the end of the file.
  *
@@ -75,7 +73,7 @@ export function findFilesRecursivelyStringEndsWith(path: PathLike, fileEndsWith:
 }
 
 /**
- * @param path The path in which to find files. This can be a string, buffer or {@link URL}.
+ * @param path The path in which to find files. This can be a string, buffer, or {@link URL}.
  * @param include The string pattern which must be present in the file name.
  *
  * Note that we do **not** support a full globby pattern using asterisk for wildcards. It has to be an exact match with {@link String.includes}
@@ -87,7 +85,7 @@ export function findFilesRecursivelyStringIncludes(path: PathLike, include: stri
 }
 
 /**
- * @param path The path in which to find files. This can be a string, buffer or {@link URL}.
+ * @param path The path in which to find files. This can be a string, buffer, or {@link URL}.
  * @param regex The regex pattern that the file name must match.
  *
  * @return An {@link AsyncIterableIterator<string>} of all the files. To loop over these use `for await (const file of findFilesRecursivelyRegex(path, fileNameEndsWith)) {}`

@@ -10,6 +10,7 @@ package:
   - '@sapphire/eslint-config'
   - '@sapphire/event-iterator'
   - '@sapphire/fetch'
+  - '@sapphire/node-utilities'
   - '@sapphire/phisherman'
   - '@sapphire/prettier-config'
   - '@sapphire/ratelimits'

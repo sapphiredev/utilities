@@ -14,7 +14,7 @@ describe('findFilesRecursively', () => {
 			files.push(file);
 		}
 		expect(files.length).toBe(5);
-		// sort is required because the order of the files is not same in all OS
+		// sort is required because the order of the files is not same on all operating systems
 		expect(files.sort((a, b) => a.localeCompare(b))).toStrictEqual([
 			path.join(__dirname, 'findFilesRecursivelyDemoFiles', 'a.txt'),
 			path.join(__dirname, 'findFilesRecursivelyDemoFiles', 'file1.txt'),

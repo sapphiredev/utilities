@@ -65,6 +65,7 @@ jobs:
           - event-iterator
           - fetch
           - lexure
+          - node-utilities
           - phisherman
           - ratelimits
           - result

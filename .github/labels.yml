@@ -58,6 +58,8 @@
   color: 'fbca04'
 - name: packages:lexure
   color: 'fbca04'
+- name: packages:node-utilities
+  color: 'fbca04'
 - name: packages:phisherman
   color: 'fbca04'
 - name: packages:prettier-config
