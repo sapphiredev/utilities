@@ -4,5 +4,6 @@ export const aliasStore = new Map([
 	['filterNullAndUndefinedAndZero', 'filterNullishOrZero'],
 	['isNullOrUndefined', 'isNullish'],
 	['isNullOrUndefinedOrEmpty', 'isNullishOrEmpty'],
-	['isNullOrUndefinedOrZero', 'isNullishOrZero']
+	['isNullOrUndefinedOrZero', 'isNullishOrZero'],
+	['sleep', 'sleepSync']
 ]);

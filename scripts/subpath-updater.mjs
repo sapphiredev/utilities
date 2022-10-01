@@ -1,35 +1,12 @@
 import { green, red } from 'colorette';
-import { opendir, writeFile } from 'node:fs/promises';
-import { basename, join } from 'node:path';
+import { writeFile } from 'node:fs/promises';
+import { basename } from 'node:path';
 import { format } from 'prettier';
+import { findFilesRecursivelyStringEndsWith } from '../packages/node-utilities/dist/index.mjs';
 import prettierConfig from '../packages/prettier-config/dist/index.js';
 
 const packageName = process.argv[2];
 const check = process.argv[3] === '--check';
-
-/**
- *
- * @param {PathLike} path
- * @param {string} [ext]
- * @return {AsyncIterableIterator<string>}
- */
-async function* walk(path, ext) {
-	try {
-		const dir = await opendir(path);
-
-		for await (const item of dir) {
-			if (item.isFile() && (!ext || item.name.endsWith(ext))) {
-				yield join(dir.path, item.name);
-			} else if (item.isDirectory()) {
-				yield* walk(join(dir.path, item.name), ext);
-			}
-		}
-	} catch (error) {
-		if (error.code !== 'ENOENT') {
-			console.error(error);
-		}
-	}
-}
 
 const { aliasStore } = await import(`./aliases/${packageName}.mjs`);
 
@@ -45,7 +22,7 @@ const exportMap = new Map([
 	]
 ]);
 
-for await (const file of walk(new URL(`../packages/${packageName}/src/lib`, import.meta.url), '.ts')) {
+for await (const file of findFilesRecursivelyStringEndsWith(new URL(`../packages/${packageName}/src/lib`, import.meta.url), '.ts')) {
 	const name = basename(file).replace(/\.ts$/, '');
 	const splitted = file.split('lib');
 	splitted.shift();

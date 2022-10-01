@@ -186,10 +186,25 @@
 			"import": "./dist/lib/noop.mjs",
 			"require": "./dist/lib/noop.js"
 		},
+		"./objectEntries": {
+			"types": "./dist/lib/objectEntries.d.ts",
+			"import": "./dist/lib/objectEntries.mjs",
+			"require": "./dist/lib/objectEntries.js"
+		},
+		"./objectKeys": {
+			"types": "./dist/lib/objectKeys.d.ts",
+			"import": "./dist/lib/objectKeys.mjs",
+			"require": "./dist/lib/objectKeys.js"
+		},
 		"./objectToTuples": {
 			"types": "./dist/lib/objectToTuples.d.ts",
 			"import": "./dist/lib/objectToTuples.mjs",
 			"require": "./dist/lib/objectToTuples.js"
+		},
+		"./objectValues": {
+			"types": "./dist/lib/objectValues.d.ts",
+			"import": "./dist/lib/objectValues.mjs",
+			"require": "./dist/lib/objectValues.js"
 		},
 		"./parseUrl": {
 			"types": "./dist/lib/parseUrl.d.ts",
@@ -215,6 +230,16 @@
 			"types": "./dist/lib/roundNumber.d.ts",
 			"import": "./dist/lib/roundNumber.mjs",
 			"require": "./dist/lib/roundNumber.js"
+		},
+		"./sleep": {
+			"types": "./dist/lib/sleep.d.ts",
+			"import": "./dist/lib/sleep.mjs",
+			"require": "./dist/lib/sleep.js"
+		},
+		"./sleepSync": {
+			"types": "./dist/lib/sleep.d.ts",
+			"import": "./dist/lib/sleep.mjs",
+			"require": "./dist/lib/sleep.js"
 		},
 		"./splitText": {
 			"types": "./dist/lib/splitText.d.ts",
