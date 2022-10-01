@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/result@2.5.0](https://github.com/sapphiredev/utilities/compare/@sapphire/result@2.4.1...@sapphire/result@2.5.0) - (2022-10-01)
+
+## 🏠 Refactor
+
+- Split `@sapphire/time-utilities` into 4 sub-packages (#462) ([574299a](https://github.com/sapphiredev/utilities/commit/574299a99e658f6500a2a7efa587a0919b2d1313))
+
+## 🐛 Bug Fixes
+
+- **deps:** Update all non-major dependencies (#466) ([dc08606](https://github.com/sapphiredev/utilities/commit/dc08606a97154e47c65536123ac5f8b1262f7bd2))
+- **deps:** Update all non-major dependencies ([e20f299](https://github.com/sapphiredev/utilities/commit/e20f29906e83cee000aaba9c6827e3bec5173d28))
+
+## 📝 Documentation
+
+- Change name of @kyranet (#451) ([df4fdef](https://github.com/sapphiredev/utilities/commit/df4fdefce18659975a4ebc224723638507d02d35))
+- Update @RealShadowNova as a contributor ([a869ba0](https://github.com/sapphiredev/utilities/commit/a869ba0abfad041610b9115187d426aebe671af6))
+
+## 🚀 Features
+
+- **result:** Add `Result.unwrapRaw` (#475) ([82fe79e](https://github.com/sapphiredev/utilities/commit/82fe79ec6bff4979be615f322b6d1392016d9622))
+
 # [@sapphire/result@2.4.1](https://github.com/sapphiredev/utilities/compare/@sapphire/result@2.4.0...@sapphire/result@2.4.1) - (2022-08-29)
 
 ## 🧪 Testing
