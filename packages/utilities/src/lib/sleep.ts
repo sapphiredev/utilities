@@ -13,17 +13,16 @@ export interface SleepOptions {
 }
 
 export class AbortError extends Error {
-	public code: string;
+	public readonly code: string;
 	public constructor(
 		message?: string,
 		options?: {
 			cause?: unknown;
-			code?: string;
 		}
 	) {
 		super(message, options);
 		this.name = 'AbortError';
-		this.code = options?.code ?? 'ERR_ABORT';
+		this.code = 'ERR_ABORT';
 	}
 }
 
@@ -36,12 +35,13 @@ export class AbortError extends Error {
 export function sleep<T = undefined>(ms: number, value?: T, options?: SleepOptions): Promise<T> {
 	return new Promise((resolve, reject) => {
 		const timer: NodeJS.Timeout | number = setTimeout(() => resolve(value!), ms);
-		if (options?.signal) {
-			options.signal.addEventListener('abort', () => {
+		const signal = options?.signal;
+		if (signal) {
+			signal.addEventListener('abort', () => {
 				clearTimeout(timer);
 				reject(
 					new AbortError('The operation was aborted', {
-						cause: options.signal!.reason
+						cause: signal.reason
 					})
 				);
 			});

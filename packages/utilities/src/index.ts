@@ -39,7 +39,7 @@ export * from './lib/range';
 export * from './lib/regExpEsc';
 export * from './lib/roundNumber';
 export * from './lib/splitText';
-export { AbortError, sleep, sleepSync, type SleepOptions } from './lib/sleep';
+export * from './lib/sleep';
 export { toTitleCase, ToTitleCaseOptions } from './lib/toTitleCase';
 export * from './lib/tryParse';
 export * from './lib/utilityTypes';
