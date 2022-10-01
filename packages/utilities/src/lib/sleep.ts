@@ -27,18 +27,6 @@ export class AbortError extends Error {
 	}
 }
 
-export const DOMException: typeof globalThis.DOMException =
-	globalThis.DOMException ??
-	(() => {
-		// DOMException was only made a global in Node v17.0.0,
-		// but we support >= v14
-		try {
-			atob('~');
-		} catch (err) {
-			return Object.getPrototypeOf(err).constructor;
-		}
-	})();
-
 /**
  * Sleeps for the specified number of milliseconds.
  * @param ms The number of milliseconds to sleep.
@@ -53,7 +41,7 @@ export function sleep<T = undefined>(ms: number, value?: T, options?: SleepOptio
 				clearTimeout(timer);
 				reject(
 					new AbortError('The operation was aborted', {
-						cause: new DOMException('The operation was aborted', 'AbortError')
+						cause: options.signal!.reason
 					})
 				);
 			});
