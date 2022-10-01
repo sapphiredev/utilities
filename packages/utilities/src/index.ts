@@ -33,6 +33,7 @@ export * from './lib/mergeDefault';
 export * from './lib/mergeObjects';
 export * from './lib/noop';
 export * from './lib/objectToTuples';
+export * from './lib/objectValues';
 export * from './lib/parseUrl';
 export * from './lib/partition';
 export * from './lib/range';
