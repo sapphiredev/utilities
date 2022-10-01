@@ -14,6 +14,7 @@
 		"packages/event-iterator/README.md",
 		"packages/fetch/README.md",
 		"packages/lexure/README.md",
+		"packages/node-utilities/README.md",
 		"packages/phisherman/README.md",
 		"packages/prettier-config/README.md",
 		"packages/ratelimits/README.md",

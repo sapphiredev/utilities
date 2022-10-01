@@ -12,6 +12,7 @@
 		"packages/event-iterator/src/index.ts",
 		"packages/fetch/src/index.ts",
 		"packages/lexure/src/index.ts",
+		"packages/node-utilities/src/index.ts",
 		"packages/phisherman/src/index.ts",
 		"packages/prettier-config/src/index.ts",
 		"packages/ratelimits/src/index.ts",
