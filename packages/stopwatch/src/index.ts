@@ -1,3 +1,6 @@
+// eslint-disable-next-line spaced-comment
+/// <reference lib="dom" />
+
 /**
  * Stopwatch class, uses native node to replicate/extend performance-now dependency.
  */
