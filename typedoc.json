@@ -3,9 +3,11 @@
 	"entryPointStrategy": "resolve",
 	"entryPoints": [
 		"packages/async-queue/src/index.ts",
+		"packages/cron/src/index.ts",
 		"packages/decorators/src/index.ts",
 		"packages/discord-utilities/src/index.ts",
 		"packages/discord.js-utilities/src/index.ts",
+		"packages/duration/src/index.ts",
 		"packages/eslint-config/src/index.ts",
 		"packages/event-iterator/src/index.ts",
 		"packages/fetch/src/index.ts",
@@ -17,6 +19,8 @@
 		"packages/snowflake/src/index.ts",
 		"packages/stopwatch/src/index.ts",
 		"packages/time-utilities/src/index.ts",
+		"packages/timer-manager/src/index.ts",
+		"packages/timestamp/src/index.ts",
 		"packages/utilities/src/index.ts"
 	],
 	"intentionallyNotExported": [

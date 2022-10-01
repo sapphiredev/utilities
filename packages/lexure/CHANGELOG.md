@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/lexure@1.1.0](https://github.com/sapphiredev/utilities/compare/@sapphire/lexure@1.0.2...@sapphire/lexure@1.1.0) - (2022-09-18)
+
+## 🏠 Refactor
+
+- Split `@sapphire/time-utilities` into 4 sub-packages (#462) ([574299a](https://github.com/sapphiredev/utilities/commit/574299a99e658f6500a2a7efa587a0919b2d1313))
+
+## 🐛 Bug Fixes
+
+- **deps:** Update all non-major dependencies ([e20f299](https://github.com/sapphiredev/utilities/commit/e20f29906e83cee000aaba9c6827e3bec5173d28))
+
+## 📝 Documentation
+
+- Change name of @kyranet (#451) ([df4fdef](https://github.com/sapphiredev/utilities/commit/df4fdefce18659975a4ebc224723638507d02d35))
+- Update @RealShadowNova as a contributor ([a869ba0](https://github.com/sapphiredev/utilities/commit/a869ba0abfad041610b9115187d426aebe671af6))
+
+## 🚀 Features
+
+- Add `join` and `joinRaw` (#458) ([4dc8e53](https://github.com/sapphiredev/utilities/commit/4dc8e533cae7fc89faaf972aef0047638c696ff4))
+
+# [@sapphire/lexure@1.0.2](https://github.com/sapphiredev/utilities/compare/@sapphire/lexure@1.0.1...@sapphire/lexure@1.0.2) - (2022-08-29)
+
+## 🐛 Bug Fixes
+
+- **deps:** Update all non-major dependencies ([2308bd7](https://github.com/sapphiredev/utilities/commit/2308bd74356b6b2e0c12995b25f4d8ade4803fe9))
+
 # [@sapphire/lexure@1.0.0](https://github.com/sapphiredev/utilities/tree/@sapphire/lexure@1.0.0) - (2022-07-22)
 
 ## 🚀 Features

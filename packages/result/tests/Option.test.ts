@@ -4,6 +4,7 @@ import type { None } from '../src/lib/Option/None';
 import type { Some } from '../src/lib/Option/Some';
 import type { Err } from '../src/lib/Result/Err';
 import type { Ok } from '../src/lib/Result/Ok';
+import { error, makeThrow } from './shared';
 
 describe('Option', () => {
 	describe('prototype', () => {
@@ -772,7 +773,7 @@ describe('Option', () => {
 
 	describe('some', () => {
 		test('GIVEN some THEN returns Some', () => {
-			const x = Option.some(42);
+			const x = some(42);
 
 			expect(x.isSome()).toBe(true);
 			expect(x.isNone()).toBe(false);
@@ -781,7 +782,7 @@ describe('Option', () => {
 
 	describe('none', () => {
 		test('GIVEN none THEN returns None', () => {
-			const x = Option.none;
+			const x = none;
 
 			expect(x.isSome()).toBe(false);
 			expect(x.isNone()).toBe(true);
@@ -791,69 +792,61 @@ describe('Option', () => {
 	describe('from', () => {
 		const { from } = Option;
 
-		test('GIVEN from(T) THEN returns Some', () => {
-			const x = from(42);
+		test.each([
+			['T', 42],
+			['Some(T)', some(42)],
+			['() => T', () => 42],
+			['() => Some(T)', () => some(42)]
+		])('GIVEN from(%s) THEN returns Some(T)', (_, cb) => {
+			const x = from(cb);
 
-			expect(x.isSome()).toBe(true);
-			expect(x.isNone()).toBe(false);
+			expect(x).toStrictEqual(some(42));
 		});
 
-		test('GIVEN from(Some(T)) THEN returns Some', () => {
-			const x = from(Option.some(42));
+		test.each([
+			['null', null],
+			['None', none],
+			['() => null', () => null],
+			['() => None', () => none],
+			['() => throw', makeThrow]
+		])('GIVEN from(%s) THEN returns None', (_, resolvable) => {
+			const x = from(resolvable);
 
-			expect(x.isSome()).toBe(true);
-			expect(x.isNone()).toBe(false);
+			expect(x).toStrictEqual(none);
+		});
+	});
+
+	describe('fromAsync', () => {
+		const { fromAsync } = Option;
+
+		test.each([
+			['T', 42],
+			['Promise.resolve(T)', Promise.resolve(42)],
+			['Some(T)', some(42)],
+			['Promise.resolve(Some(T))', Promise.resolve(some(42))],
+			['() => T', () => 42],
+			['() => Some(T)', () => some(42)],
+			['() => Promise.resolve(T)', () => Promise.resolve(42)],
+			['() => Promise.resolve(Some(T))', () => Promise.resolve(some(42))]
+		])('GIVEN fromAsync(%s) THEN returns Some(T)', async (_, cb) => {
+			const x = await fromAsync(cb);
+
+			expect(x).toStrictEqual(some(42));
 		});
 
-		test('GIVEN from(null) WITH value as null THEN returns None', () => {
-			const x = from(null);
+		test.each([
+			['null', null],
+			['None', none],
+			['() => null', () => null],
+			['() => Promise.resolve(null)', () => Promise.resolve(null)],
+			['() => None', () => none],
+			['() => Promise.resolve(None)', () => Promise.resolve(none)],
+			['() => throw', makeThrow],
+			['() => Promise.reject(error)', () => Promise.reject(error)]
+		])('GIVEN fromAsync(%s) THEN returns None', async (_, resolvable) => {
+			const x = await fromAsync(resolvable);
 
-			expect(x.isSome()).toBe(false);
-			expect(x.isNone()).toBe(true);
-		});
-
-		test('GIVEN from(None) WITH value as isMaybe result THEN returns None', () => {
-			const x = from(Option.none);
-
-			expect(x.isSome()).toBe(false);
-			expect(x.isNone()).toBe(true);
-		});
-
-		test('GIVEN from(() => T) THEN returns Some', () => {
-			const x = from(() => 42);
-
-			expect(x.isSome()).toBe(true);
-			expect(x.isNone()).toBe(false);
-		});
-
-		test('GIVEN from(() => Some(T)) THEN returns Some', () => {
-			const x = from(() => Option.some(42));
-
-			expect(x.isSome()).toBe(true);
-			expect(x.isNone()).toBe(false);
-		});
-
-		test('GIVEN from(() => null) WITH value as null THEN returns None', () => {
-			const x = from(() => null);
-
-			expect(x.isSome()).toBe(false);
-			expect(x.isNone()).toBe(true);
-		});
-
-		test('GIVEN from(() => None) WITH value as isMaybe result THEN returns None', () => {
-			const x = from(() => Option.none);
-
-			expect(x.isSome()).toBe(false);
-			expect(x.isNone()).toBe(true);
-		});
-
-		test('GIVEN from(() => throw) WITH value as isMaybe result THEN returns None', () => {
-			const x = from(() => {
-				throw new Error('throws');
-			});
-
-			expect(x.isSome()).toBe(false);
-			expect(x.isNone()).toBe(true);
+			expect(x).toStrictEqual(none);
 		});
 	});
 

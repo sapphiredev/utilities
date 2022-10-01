@@ -1,4 +1,4 @@
-import { TimerManager } from '@sapphire/time-utilities';
+import { TimerManager } from '@sapphire/timer-manager';
 import { RateLimit } from './RateLimit';
 
 export class RateLimitManager<K = string> extends Map<K, RateLimit<K>> {

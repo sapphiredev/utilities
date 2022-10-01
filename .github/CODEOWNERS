@@ -1,3 +1,7 @@
+/package/cron/**/*.ts @favna @kyranet @vladfrangu
+/package/duration/**/*.ts @favna @kyranet @vladfrangu
+/package/timer-manager/**/*.ts @favna @kyranet @vladfrangu
+/package/timestamp/**/*.ts @favna @kyranet @vladfrangu
 /packages/async-queue/**/*.ts @vladfrangu @kyranet @favna
 /packages/decorators/**/*.ts @vladfrangu @kyranet @favna
 /packages/discord-utilities/**/*.ts @favna
@@ -11,7 +15,7 @@
 /packages/ratelimits/**/*.ts @kyranet @vladfrangu @favna
 /packages/result/**/*.ts @kyranet @vladfrangu @favna
 /packages/snowflake/**/*.ts @favna @vladfrangu @kyranet
-/packages/stopwatch/**/*.ts @Stitch07 @kyranet @vladfrangu
-/packages/time-utilities/**/*.ts @favna @Stitch07 @kyranet @vladfrangu
+/packages/stopwatch/**/*.ts @kyranet @vladfrangu
+/packages/time-utilities/**/*.ts @favna @kyranet @vladfrangu
 /packages/ts-config/**/*.ts @favna
 /packages/utilities/**/*.ts @favna @kyranet @vladfrangu

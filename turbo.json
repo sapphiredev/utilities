@@ -2,14 +2,30 @@
 	"pipeline": {
 		"build": {
 			"dependsOn": ["^build"],
-			"outputs": ["dist/**", "build/**"]
+			"outputs": ["dist/**"]
 		},
 		"lint": {
-			"dependsOn": ["@sapphire/prettier-config#build", "@sapphire/eslint-config#build"],
+			"dependsOn": [
+				"@sapphire/prettier-config#build",
+				"@sapphire/eslint-config#build",
+				"@sapphire/utilities#build",
+				"@sapphire/duration#build"
+			],
 			"outputs": []
 		},
 		"test": {
-			"dependsOn": ["@sapphire/time-utilities#build", "@sapphire/fetch#build"],
+			"dependsOn": [
+				"@sapphire/async-queue#build",
+				"@sapphire/discord-utilities#build",
+				"@sapphire/discord.js-utilities#build",
+				"@sapphire/duration#build",
+				"@sapphire/fetch#build",
+				"@sapphire/lexure#build",
+				"@sapphire/ratelimits#build",
+				"@sapphire/result#build",
+				"@sapphire/timer-manager#build",
+				"@sapphire/utilities#build"
+			],
 			"outputs": ["coverage/**"]
 		},
 		"bump": {
@@ -19,6 +35,19 @@
 		"check-update": {
 			"dependsOn": [],
 			"outputs": []
+		},
+		"docs": {
+			"dependsOn": [
+				"@sapphire/cron#build",
+				"@sapphire/discord.js-utilities#build",
+				"@sapphire/fetch#build",
+				"@sapphire/lexure#build",
+				"@sapphire/ratelimits#build",
+				"@sapphire/result#build",
+				"@sapphire/timestamp#build",
+				"@sapphire/utilities#build"
+			],
+			"outputs": ["docs/**"]
 		}
 	}
 }

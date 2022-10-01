@@ -1,46 +1,48 @@
-import type { MessageOptions } from 'discord.js';
+import type { MessageCreateOptions } from 'discord.js';
 
-export type MessageBuilderFileResolvable = NonNullable<MessageOptions['files']>[number];
-export type MessageBuilderResolvable = Omit<MessageOptions, 'embed' | 'disableMentions' | 'reply'> & { embeds?: MessageOptions['embeds'] };
+export type MessageBuilderFileResolvable = NonNullable<MessageCreateOptions['files']>[number];
+export type MessageBuilderResolvable = Omit<MessageCreateOptions, 'embed' | 'disableMentions' | 'reply'> & {
+	embeds?: MessageCreateOptions['embeds'];
+};
 
 /**
- * A message builder class, it implements the {@link MessageOptions} interface.
+ * A message builder class, it implements the {@link MessageCreateOptions} interface.
  */
-export class MessageBuilder implements MessageOptions {
+export class MessageBuilder implements MessageCreateOptions {
 	/**
 	 * Whether or not the message should be spoken aloud.
 	 * @default false
 	 */
-	public tts?: MessageOptions['tts'];
+	public tts?: MessageCreateOptions['tts'];
 
 	/**
 	 * The nonce for the message.
 	 * @default ''
 	 */
-	public nonce?: MessageOptions['nonce'];
+	public nonce?: MessageCreateOptions['nonce'];
 
 	/**
 	 * The content for the message. If set to undefined and the builder is used to edit, the content will not be
 	 * replaced.
 	 */
-	public content?: MessageOptions['content'];
+	public content?: MessageCreateOptions['content'];
 
 	/**
 	 * The embeds for the message. If set to undefined and the builder is used to edit, the embed will not be replaced.
 	 * @remark There is a maximum of 10 embeds in 1 message
 	 */
-	public embeds?: MessageOptions['embeds'];
+	public embeds?: MessageCreateOptions['embeds'];
 
 	/**
 	 * Which mentions should be parsed from the message content.
 	 */
-	public allowedMentions?: MessageOptions['allowedMentions'];
+	public allowedMentions?: MessageCreateOptions['allowedMentions'];
 
 	/**
 	 * Files to send with the message. This should not be set when editing a message, as Discord does not support
 	 * editing file attachments.
 	 */
-	public files?: MessageOptions['files'];
+	public files?: MessageCreateOptions['files'];
 
 	public constructor(options?: MessageBuilderResolvable) {
 		this.tts = options?.tts ?? MessageBuilder.defaults.tts;
@@ -85,7 +87,7 @@ export class MessageBuilder implements MessageOptions {
 	 * replaced. There is a maximum of 10 embeds per message
 	 * @remark When providing more than 10 embeds, the array will automatically be sliced down to the first 10.
 	 */
-	public setEmbeds(embeds?: MessageOptions['embeds']): this {
+	public setEmbeds(embeds?: MessageCreateOptions['embeds']): this {
 		// Ensure no more than 10 embeds are ever set
 		if (embeds && embeds.length > 10) {
 			embeds = embeds.slice(0, 10);
@@ -99,7 +101,7 @@ export class MessageBuilder implements MessageOptions {
 	 * Sets the value for the {@link MessageBuilder.allowedMentions} field.
 	 * @param allowedMentions Which mentions should be parsed from the message content.
 	 */
-	public setAllowedMentions(allowedMentions?: MessageOptions['allowedMentions']): this {
+	public setAllowedMentions(allowedMentions?: MessageCreateOptions['allowedMentions']): this {
 		this.allowedMentions = allowedMentions;
 		return this;
 	}

@@ -2,9 +2,8 @@
 	"extends": "../extra-strict-without-decorators.json",
 	"compilerOptions": {
 		"lib": ["ESNext", "DOM"],
-		"outDir": "../build",
-		"rootDir": "./",
-		"tsBuildInfoFile": "../build/test.tsbuildinfo",
+		"noEmit": true,
+		"incremental": false,
 		"types": ["vitest/globals"]
 	},
 	"include": ["./"]

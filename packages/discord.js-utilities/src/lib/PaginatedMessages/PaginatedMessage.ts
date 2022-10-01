@@ -1,4 +1,4 @@
-import { Time } from '@sapphire/time-utilities';
+import { Time } from '@sapphire/duration';
 import { deepClone, isFunction, isNullish, isObject } from '@sapphire/utilities';
 import type { APIMessage } from 'discord-api-types/v9';
 import {
@@ -21,12 +21,13 @@ import {
 	type ButtonInteraction,
 	type Collection,
 	type Message,
-	type MessageOptions,
+	type BaseMessageOptions,
 	type SelectMenuInteraction,
 	type Snowflake,
 	type TextBasedChannel,
 	type User,
-	type WebhookEditMessageOptions
+	type WebhookEditMessageOptions,
+	InteractionReplyOptions
 } from 'discord.js';
 import { MessageBuilder } from '../builders/MessageBuilder';
 import { isAnyInteraction, isGuildBasedChannel, isMessageInstance } from '../type-guards';
@@ -1023,7 +1024,7 @@ export class PaginatedMessage {
 				if (this.response.replied || this.response.deferred) {
 					await this.response.editReply(page as WebhookEditMessageOptions);
 				} else {
-					await this.response.reply(page as WebhookEditMessageOptions);
+					await this.response.reply(page as InteractionReplyOptions);
 				}
 			} else if (isMessageInstance(this.response)) {
 				await this.response.edit(page as WebhookEditMessageOptions);
@@ -1033,10 +1034,10 @@ export class PaginatedMessage {
 				const editReplyResponse = await messageOrInteraction.editReply(page);
 				this.response = messageOrInteraction.ephemeral ? messageOrInteraction : editReplyResponse;
 			} else {
-				this.response = await messageOrInteraction.reply({ ...page, fetchReply: true, ephemeral: false });
+				this.response = await messageOrInteraction.reply({ ...(page as InteractionReplyOptions), fetchReply: true, ephemeral: false });
 			}
 		} else {
-			this.response = await messageOrInteraction.channel.send(page as MessageOptions);
+			this.response = await messageOrInteraction.channel.send(page as BaseMessageOptions);
 		}
 	}
 
@@ -1508,7 +1509,7 @@ export class PaginatedMessage {
 		allowedMentions: { users: [], roles: [] }
 	});
 
-	private static resolveTemplate(template?: EmbedBuilder | MessageOptions): MessageOptions {
+	private static resolveTemplate(template?: EmbedBuilder | BaseMessageOptions): BaseMessageOptions {
 		if (template === undefined) {
 			return {};
 		}

@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/time-utilities@1.7.8](https://github.com/sapphiredev/utilities/compare/@sapphire/time-utilities@1.7.7...@sapphire/time-utilities@1.7.8) - (2022-09-18)
+
+## 🐛 Bug Fixes
+
+- **time-utilities:** Use type-only exports for interfaces ([a6e20f0](https://github.com/sapphiredev/utilities/commit/a6e20f0592c87fd2abe8e9130fef0b8089e1ca86))
+
+# [@sapphire/time-utilities@1.7.7](https://github.com/sapphiredev/utilities/compare/@sapphire/time-utilities@1.7.6...@sapphire/time-utilities@1.7.7) - (2022-09-18)
+
+## 🏠 Refactor
+
+- Split `@sapphire/time-utilities` into 4 sub-packages (#462) ([574299a](https://github.com/sapphiredev/utilities/commit/574299a99e658f6500a2a7efa587a0919b2d1313))
+
+## 🐛 Bug Fixes
+
+- **deps:** Update all non-major dependencies ([e20f299](https://github.com/sapphiredev/utilities/commit/e20f29906e83cee000aaba9c6827e3bec5173d28))
+
+## 📝 Documentation
+
+- Change name of @kyranet (#451) ([df4fdef](https://github.com/sapphiredev/utilities/commit/df4fdefce18659975a4ebc224723638507d02d35))
+- Update @RealShadowNova as a contributor ([a869ba0](https://github.com/sapphiredev/utilities/commit/a869ba0abfad041610b9115187d426aebe671af6))
+
 # [@sapphire/time-utilities@1.7.6](https://github.com/sapphiredev/utilities/compare/@sapphire/time-utilities@1.7.5...@sapphire/time-utilities@1.7.6) - (2022-08-20)
 
 ## 🐛 Bug Fixes

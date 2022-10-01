@@ -1,6 +1,6 @@
 {
 	"name": "@sapphire/time-utilities",
-	"version": "1.7.6",
+	"version": "1.7.8",
 	"description": "A time utility library for JavaScript.",
 	"author": "@sapphire",
 	"license": "MIT",
@@ -17,9 +17,9 @@
 	"sideEffects": false,
 	"homepage": "https://github.com/sapphiredev/utilities/tree/main/packages/time-utilities",
 	"scripts": {
-		"test": "vitest run",
-		"lint": "eslint src tests --ext ts --fix -c ../../.eslintrc",
+		"lint": "eslint src --ext ts --fix -c ../../.eslintrc",
 		"build": "tsup",
+		"docs": "typedoc-json-parser",
 		"prepack": "yarn build",
 		"bump": "cliff-jumper",
 		"check-update": "cliff-jumper --dry-run"
@@ -55,13 +55,16 @@
 		"access": "public"
 	},
 	"dependencies": {
-		"@sapphire/utilities": "workspace:^"
+		"@sapphire/cron": "workspace:^",
+		"@sapphire/duration": "workspace:^",
+		"@sapphire/timer-manager": "workspace:^",
+		"@sapphire/timestamp": "workspace:^"
 	},
 	"devDependencies": {
 		"@favware/cliff-jumper": "^1.8.7",
-		"@vitest/coverage-c8": "^0.22.1",
-		"tsup": "^6.2.2",
-		"typescript": "^4.7.4",
-		"vitest": "^0.22.1"
+		"tsup": "^6.2.3",
+		"typedoc": "^0.23.15",
+		"typedoc-json-parser": "^5.0.0",
+		"typescript": "^4.8.3"
 	}
 }

@@ -1,11 +1,9 @@
 {
 	"extends": "../../ts-config/extra-strict.json",
 	"compilerOptions": {
-		"rootDir": ".",
-		"outDir": "../test-dist",
-		"tsBuildInfoFile": "../test-dist/.tsbuildinfo",
+		"noEmit": true,
+		"incremental": false,
 		"types": ["vitest/globals"]
 	},
-	"include": [".", "../src/**/*"],
-	"references": [{ "path": "../src" }]
+	"include": ["."]
 }
