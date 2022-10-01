@@ -37,7 +37,7 @@
 			"outputs": []
 		},
 		"check-subpath": {
-			"dependsOn": ["@sapphire/prettier-config#build", "@sapphire/node-utility#build"],
+			"dependsOn": ["@sapphire/prettier-config#build", "@sapphire/node-utilities#build"],
 			"outputs": ["package.json"]
 		},
 		"docs": {
