@@ -59,7 +59,7 @@ export function sleep<T = undefined>(ms: number, value?: T, options?: SleepOptio
  * @see {@link sleep} for an asynchronous version.
  */
 export function sleepSync<T = undefined>(ms: number, value?: T): T {
-	const start = Date.now();
-	while (Date.now() - start <= ms) continue;
+	const end = Date.now() + ms;
+	while (Date.now() <= end) continue;
 	return value!;
 }
