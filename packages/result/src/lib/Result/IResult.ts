@@ -449,6 +449,8 @@ export interface IResult<T, E> {
 	 * If the value is an `Err`, it throws a {@link ResultError} with the message, and the content of the `Err`.
 	 * @seealso {@link unwrapOr}
 	 * @seealso {@link unwrapOrElse}
+	 * @seealso {@link unwrapErr}
+	 * @seealso {@link unwrapRaw}
 	 *
 	 * @example
 	 * ```typescript
@@ -473,6 +475,10 @@ export interface IResult<T, E> {
 	 * Returns the contained `Err` value.
 	 *
 	 * If the value is an `Ok`, it throws a {@link ResultError} with the message, and the content of the `Ok`.
+	 * @seealso {@link unwrap}
+	 * @seealso {@link unwrapOr}
+	 * @seealso {@link unwrapOrElse}
+	 * @seealso {@link unwrapRaw}
 	 *
 	 * @example
 	 * ```typescript
@@ -498,6 +504,11 @@ export interface IResult<T, E> {
 	 *
 	 * Arguments passed to `unwrapOr` are eagerly evaluated; if you are passing the result of a function call, it is
 	 * recommended to use {@link unwrapOrElse}, which is lazily evaluated.
+	 * @seealso {@link unwrap}
+	 * @seealso {@link unwrapOrElse}
+	 * @seealso {@link unwrapErr}
+	 * @seealso {@link unwrapRaw}
+	 *
 	 * @param defaultValue The default value.
 	 *
 	 * @example
@@ -517,6 +528,11 @@ export interface IResult<T, E> {
 
 	/**
 	 * Returns the contained `Ok` value or computes it from a closure.
+	 * @seealso {@link unwrap}
+	 * @seealso {@link unwrapOr}
+	 * @seealso {@link unwrapErr}
+	 * @seealso {@link unwrapRaw}
+	 *
 	 * @param op The predicate.
 	 *
 	 * @example
@@ -530,6 +546,32 @@ export interface IResult<T, E> {
 	 * @see {@link https://doc.rust-lang.org/std/result/enum.Result.html#method.unwrap_or_else}
 	 */
 	unwrapOrElse<V>(op: (error: E) => V): T | V;
+
+	/**
+	 * Returns the contained `Ok` value.
+	 *
+	 * If the value is an `Err`, it throws the contained error.
+	 * @seealso {@link unwrap}
+	 * @seealso {@link unwrapOr}
+	 * @seealso {@link unwrapOrElse}
+	 * @seealso {@link unwrapErr}
+	 *
+	 * @example
+	 * ```typescript
+	 * const x = ok(2);
+	 * assert.equal(x.unwrapRaw(), 2);
+	 * ```
+	 * @example
+	 * ```typescript
+	 * const x = err('Emergency failure');
+	 * assert.throws(() => x.unwrapRaw(), {
+	 *   name: 'Error',
+	 *   message: 'Unwrap failed',
+	 *   value: 'Emergency failure'
+	 * });
+	 * ```
+	 */
+	unwrapRaw(): T | never;
 
 	/**
 	 * Returns `result` if the result is `Ok`, otherwise returns the `Err` value of itself.

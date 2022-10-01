@@ -116,6 +116,10 @@ export class Ok<T> implements IResult<T, any> {
 		return this.value;
 	}
 
+	public unwrapRaw(): T {
+		return this.value;
+	}
+
 	public and<R extends Result<any, any>>(result: R): R {
 		return result;
 	}

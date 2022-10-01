@@ -438,6 +438,21 @@ describe('Result', () => {
 			});
 		});
 
+		describe('unwrapRaw', () => {
+			test('GIVEN ok THEN returns value', () => {
+				const x = ok(2);
+
+				expect<number>(x.unwrapRaw()).toBe(2);
+			});
+
+			test('GIVEN err THEN throws Error', () => {
+				const error = new Error('Some error message');
+				const x = err(error);
+
+				expect(() => x.unwrapRaw()).toThrowError(error);
+			});
+		});
+
 		describe('and', () => {
 			test('GIVEN x=ok and y=ok THEN returns y', () => {
 				const x = ok(2);
