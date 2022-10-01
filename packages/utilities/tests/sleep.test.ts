@@ -13,6 +13,13 @@ describe('sleep', () => {
 		expect(Date.now() - start).toBeGreaterThanOrEqual(100);
 		expect<string>(value).toBe('test');
 	});
+
+	test('GIVEN a abort signal THEN reject the promise', async () => {
+		const controller = new AbortController();
+		const promise = sleep(1000, 'test', { signal: controller.signal });
+		controller.abort();
+		await expect(promise).rejects.toThrow('The operation was aborted');
+	});
 });
 
 describe('sleepSync', () => {
