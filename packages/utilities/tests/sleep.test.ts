@@ -1,4 +1,5 @@
-import { AbortError, DOMException, sleep, sleepSync } from '../src';
+import { AbortError, sleep, sleepSync } from '../src';
+import { DOMException } from '../src/lib/sleep';
 import { expectError } from './util/macros/comparators';
 
 describe('sleep', () => {

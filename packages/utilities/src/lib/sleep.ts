@@ -1,5 +1,3 @@
-// eslint-disable-next-line spaced-comment
-/// <reference lib="dom" />
 export interface SleepOptions {
 	/**
 	 * When provided the corresponding `AbortController` can be used to cancel an asynchronous action.
