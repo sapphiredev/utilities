@@ -35,7 +35,7 @@ export * from './lib/partition';
 export * from './lib/range';
 export * from './lib/regExpEsc';
 export * from './lib/roundNumber';
-export { sleep, sleepSync, type SleepOptions } from './lib/sleep';
+export { sleep, sleepSync, AbortError, type SleepOptions } from './lib/sleep';
 export * from './lib/splitText';
 export { toTitleCase, type ToTitleCaseOptions } from './lib/toTitleCase';
 export * from './lib/tryParse';
