@@ -35,12 +35,23 @@ for await (const file of findFilesRecursivelyStringEndsWith(new URL(`../packages
 		require: `${filePath}.js`
 	});
 
-	if (aliasStore.has(name)) {
-		exportMap.set(`./${aliasStore.get(name)}`, {
-			types: `${filePath}.d.ts`,
-			import: `${filePath}.mjs`,
-			require: `${filePath}.js`
-		});
+	const aliasStoreEntry = aliasStore.get(name);
+	if (aliasStoreEntry) {
+		if (Array.isArray(aliasStoreEntry)) {
+			for (const entry of aliasStoreEntry) {
+				exportMap.set(`./${entry}`, {
+					types: `${filePath}.d.ts`,
+					import: `${filePath}.mjs`,
+					require: `${filePath}.js`
+				});
+			}
+		} else {
+			exportMap.set(`./${aliasStoreEntry}`, {
+				types: `${filePath}.d.ts`,
+				import: `${filePath}.mjs`,
+				require: `${filePath}.js`
+			});
+		}
 	}
 }
 

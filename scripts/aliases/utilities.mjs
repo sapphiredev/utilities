@@ -1,7 +1,7 @@
 export const aliasStore = new Map([
 	['filterNullAndUndefined', 'filterNullish'],
-	['filterNullAndUndefinedAndEmpty', 'filterNullishOrEmpty'],
-	['filterNullAndUndefinedAndZero', 'filterNullishOrZero'],
+	['filterNullAndUndefinedAndEmpty', ['filterNullishAndEmpty', 'filterNullishOrEmpty']],
+	['filterNullAndUndefinedAndZero', ['filterNullishAndZero', 'filterNullishOrZero']],
 	['isNullOrUndefined', 'isNullish'],
 	['isNullOrUndefinedOrEmpty', 'isNullishOrEmpty'],
 	['isNullOrUndefinedOrZero', 'isNullishOrZero'],

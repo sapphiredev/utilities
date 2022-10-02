@@ -76,6 +76,16 @@
 			"import": "./dist/lib/filterNullAndUndefined.mjs",
 			"require": "./dist/lib/filterNullAndUndefined.js"
 		},
+		"./filterNullishAndEmpty": {
+			"types": "./dist/lib/filterNullAndUndefinedAndEmpty.d.ts",
+			"import": "./dist/lib/filterNullAndUndefinedAndEmpty.mjs",
+			"require": "./dist/lib/filterNullAndUndefinedAndEmpty.js"
+		},
+		"./filterNullishAndZero": {
+			"types": "./dist/lib/filterNullAndUndefinedAndZero.d.ts",
+			"import": "./dist/lib/filterNullAndUndefinedAndZero.mjs",
+			"require": "./dist/lib/filterNullAndUndefinedAndZero.js"
+		},
 		"./filterNullishOrEmpty": {
 			"types": "./dist/lib/filterNullAndUndefinedAndEmpty.d.ts",
 			"import": "./dist/lib/filterNullAndUndefinedAndEmpty.mjs",
