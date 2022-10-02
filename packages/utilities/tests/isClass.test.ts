@@ -12,7 +12,6 @@ describe('isClass', () => {
 	});
 
 	test('GIVEN BigInt THEN returns false', () => {
-		// eslint-disable-next-line no-undef
 		const value = BigInt(420);
 		expect(isClass(value)).toBe(false);
 	});

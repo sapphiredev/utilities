@@ -1,4 +1,4 @@
-import type { Constructor, NonNullObject } from './utilityTypes';
+import type { Constructor, NonNullObject } from './types';
 
 /**
  * Verify if the input is an object literal (or class).

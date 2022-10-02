@@ -36,6 +36,10 @@
 			"dependsOn": [],
 			"outputs": []
 		},
+		"check-subpath": {
+			"dependsOn": ["@sapphire/prettier-config#build", "@sapphire/node-utilities#build"],
+			"outputs": ["package.json"]
+		},
 		"docs": {
 			"dependsOn": [
 				"@sapphire/cron#build",

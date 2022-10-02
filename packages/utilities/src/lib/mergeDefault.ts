@@ -1,6 +1,6 @@
 import { deepClone } from './deepClone';
 import { isObject } from './isObject';
-import type { DeepRequired, NonNullObject } from './utilityTypes';
+import type { DeepRequired, NonNullObject } from './types';
 
 /**
  * Deep merges 2 objects. Properties from the second parameter are applied to the first.

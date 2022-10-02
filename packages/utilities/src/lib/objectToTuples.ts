@@ -1,5 +1,5 @@
 import { isObject } from './isObject';
-import type { AnyObject } from './utilityTypes';
+import type { AnyObject } from './types';
 
 /**
  * Convert an object to a tuple

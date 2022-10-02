@@ -34,6 +34,20 @@ npm install @sapphire/utilities
 
 ---
 
+## Usage
+
+You can import individual utility function from subpath like: @sapphire/utility/isFunction or the entire library.
+
+```ts
+import { isFunction } from '@sapphire/utilities/isFunction';
+// or
+import { isFunction } from '@sapphire/utilities';
+```
+
+**Note:** For typescript users, subpath import are only supported in `--moduleResolution node16` and `--moduleResolution nodenext`. More information can be found [in this issue on the microsoft/TypeScript repository](https://github.com/microsoft/TypeScript/issues/50794).
+
+---
+
 ## Buy us some doughnuts
 
 Sapphire Community is and always will be open source, even if we don't get donations. That being said, we know there are amazing people who may still want to donate just to show their appreciation. Thank you very much in advance!

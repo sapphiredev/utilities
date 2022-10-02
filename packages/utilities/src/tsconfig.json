@@ -4,7 +4,7 @@
 		"lib": ["dom", "esnext"],
 		"rootDir": "./",
 		"outDir": "../dist",
-		"incremental": false
+		"emitDeclarationOnly": true
 	},
 	"include": ["."]
 }

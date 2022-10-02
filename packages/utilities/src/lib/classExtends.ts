@@ -1,4 +1,4 @@
-import type { Ctor } from './utilityTypes';
+import type { Ctor } from './types';
 
 /**
  * Checks whether or not the value class extends the base class.

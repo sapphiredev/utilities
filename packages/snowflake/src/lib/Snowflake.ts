@@ -30,7 +30,7 @@ export class Snowflake {
 	/**
 	 * Alias for {@link deconstruct}
 	 */
-	// eslint-disable-next-line @typescript-eslint/unbound-method, @typescript-eslint/no-invalid-this
+	// eslint-disable-next-line @typescript-eslint/unbound-method
 	public decode = this.deconstruct;
 
 	/**

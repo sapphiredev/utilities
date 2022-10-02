@@ -89,7 +89,6 @@ export function createFunctionPrecondition(precondition: FunctionPrecondition, f
  * @param handler The handler function to modify the constructor behavior for the target
  * @hidden
  */
-// eslint-disable-next-line @typescript-eslint/ban-types
 export function createProxy<T extends object>(target: T, handler: Omit<ProxyHandler<T>, 'get'>): T {
 	return new Proxy(target, {
 		...handler,

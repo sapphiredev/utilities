@@ -10,20 +10,269 @@
 	"unpkg": "dist/index.global.js",
 	"types": "dist/index.d.ts",
 	"exports": {
-		"import": "./dist/index.mjs",
-		"require": "./dist/index.js",
-		"types": "./dist/index.d.ts"
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.mjs",
+			"require": "./dist/index.js",
+			"browser": "./dist/index.global.js"
+		},
+		"./arrayStrictEquals": {
+			"types": "./dist/lib/arrayStrictEquals.d.ts",
+			"import": "./dist/lib/arrayStrictEquals.mjs",
+			"require": "./dist/lib/arrayStrictEquals.js"
+		},
+		"./cast": {
+			"types": "./dist/lib/cast.d.ts",
+			"import": "./dist/lib/cast.mjs",
+			"require": "./dist/lib/cast.js"
+		},
+		"./chunk": {
+			"types": "./dist/lib/chunk.d.ts",
+			"import": "./dist/lib/chunk.mjs",
+			"require": "./dist/lib/chunk.js"
+		},
+		"./classExtends": {
+			"types": "./dist/lib/classExtends.d.ts",
+			"import": "./dist/lib/classExtends.mjs",
+			"require": "./dist/lib/classExtends.js"
+		},
+		"./codeBlock": {
+			"types": "./dist/lib/codeBlock.d.ts",
+			"import": "./dist/lib/codeBlock.mjs",
+			"require": "./dist/lib/codeBlock.js"
+		},
+		"./cutText": {
+			"types": "./dist/lib/cutText.d.ts",
+			"import": "./dist/lib/cutText.mjs",
+			"require": "./dist/lib/cutText.js"
+		},
+		"./debounce": {
+			"types": "./dist/lib/debounce/debounce.d.ts",
+			"import": "./dist/lib/debounce/debounce.mjs",
+			"require": "./dist/lib/debounce/debounce.js"
+		},
+		"./deepClone": {
+			"types": "./dist/lib/deepClone.d.ts",
+			"import": "./dist/lib/deepClone.mjs",
+			"require": "./dist/lib/deepClone.js"
+		},
+		"./filterNullAndUndefined": {
+			"types": "./dist/lib/filterNullAndUndefined.d.ts",
+			"import": "./dist/lib/filterNullAndUndefined.mjs",
+			"require": "./dist/lib/filterNullAndUndefined.js"
+		},
+		"./filterNullAndUndefinedAndEmpty": {
+			"types": "./dist/lib/filterNullAndUndefinedAndEmpty.d.ts",
+			"import": "./dist/lib/filterNullAndUndefinedAndEmpty.mjs",
+			"require": "./dist/lib/filterNullAndUndefinedAndEmpty.js"
+		},
+		"./filterNullAndUndefinedAndZero": {
+			"types": "./dist/lib/filterNullAndUndefinedAndZero.d.ts",
+			"import": "./dist/lib/filterNullAndUndefinedAndZero.mjs",
+			"require": "./dist/lib/filterNullAndUndefinedAndZero.js"
+		},
+		"./filterNullish": {
+			"types": "./dist/lib/filterNullAndUndefined.d.ts",
+			"import": "./dist/lib/filterNullAndUndefined.mjs",
+			"require": "./dist/lib/filterNullAndUndefined.js"
+		},
+		"./filterNullishOrEmpty": {
+			"types": "./dist/lib/filterNullAndUndefinedAndEmpty.d.ts",
+			"import": "./dist/lib/filterNullAndUndefinedAndEmpty.mjs",
+			"require": "./dist/lib/filterNullAndUndefinedAndEmpty.js"
+		},
+		"./filterNullishOrZero": {
+			"types": "./dist/lib/filterNullAndUndefinedAndZero.d.ts",
+			"import": "./dist/lib/filterNullAndUndefinedAndZero.mjs",
+			"require": "./dist/lib/filterNullAndUndefinedAndZero.js"
+		},
+		"./getDeepObjectKeys": {
+			"types": "./dist/lib/getDeepObjectKeys.d.ts",
+			"import": "./dist/lib/getDeepObjectKeys.mjs",
+			"require": "./dist/lib/getDeepObjectKeys.js"
+		},
+		"./hasAtLeastOneKeyInMap": {
+			"types": "./dist/lib/hasAtLeastOneKeyInMap.d.ts",
+			"import": "./dist/lib/hasAtLeastOneKeyInMap.mjs",
+			"require": "./dist/lib/hasAtLeastOneKeyInMap.js"
+		},
+		"./inlineCodeBlock": {
+			"types": "./dist/lib/inlineCodeBlock.d.ts",
+			"import": "./dist/lib/inlineCodeBlock.mjs",
+			"require": "./dist/lib/inlineCodeBlock.js"
+		},
+		"./isClass": {
+			"types": "./dist/lib/isClass.d.ts",
+			"import": "./dist/lib/isClass.mjs",
+			"require": "./dist/lib/isClass.js"
+		},
+		"./isFunction": {
+			"types": "./dist/lib/isFunction.d.ts",
+			"import": "./dist/lib/isFunction.mjs",
+			"require": "./dist/lib/isFunction.js"
+		},
+		"./isNullish": {
+			"types": "./dist/lib/isNullOrUndefined.d.ts",
+			"import": "./dist/lib/isNullOrUndefined.mjs",
+			"require": "./dist/lib/isNullOrUndefined.js"
+		},
+		"./isNullishOrEmpty": {
+			"types": "./dist/lib/isNullOrUndefinedOrEmpty.d.ts",
+			"import": "./dist/lib/isNullOrUndefinedOrEmpty.mjs",
+			"require": "./dist/lib/isNullOrUndefinedOrEmpty.js"
+		},
+		"./isNullishOrZero": {
+			"types": "./dist/lib/isNullOrUndefinedOrZero.d.ts",
+			"import": "./dist/lib/isNullOrUndefinedOrZero.mjs",
+			"require": "./dist/lib/isNullOrUndefinedOrZero.js"
+		},
+		"./isNullOrUndefined": {
+			"types": "./dist/lib/isNullOrUndefined.d.ts",
+			"import": "./dist/lib/isNullOrUndefined.mjs",
+			"require": "./dist/lib/isNullOrUndefined.js"
+		},
+		"./isNullOrUndefinedOrEmpty": {
+			"types": "./dist/lib/isNullOrUndefinedOrEmpty.d.ts",
+			"import": "./dist/lib/isNullOrUndefinedOrEmpty.mjs",
+			"require": "./dist/lib/isNullOrUndefinedOrEmpty.js"
+		},
+		"./isNullOrUndefinedOrZero": {
+			"types": "./dist/lib/isNullOrUndefinedOrZero.d.ts",
+			"import": "./dist/lib/isNullOrUndefinedOrZero.mjs",
+			"require": "./dist/lib/isNullOrUndefinedOrZero.js"
+		},
+		"./isNumber": {
+			"types": "./dist/lib/isNumber.d.ts",
+			"import": "./dist/lib/isNumber.mjs",
+			"require": "./dist/lib/isNumber.js"
+		},
+		"./isObject": {
+			"types": "./dist/lib/isObject.d.ts",
+			"import": "./dist/lib/isObject.mjs",
+			"require": "./dist/lib/isObject.js"
+		},
+		"./isPrimitive": {
+			"types": "./dist/lib/isPrimitive.d.ts",
+			"import": "./dist/lib/isPrimitive.mjs",
+			"require": "./dist/lib/isPrimitive.js"
+		},
+		"./isThenable": {
+			"types": "./dist/lib/isThenable.d.ts",
+			"import": "./dist/lib/isThenable.mjs",
+			"require": "./dist/lib/isThenable.js"
+		},
+		"./lazy": {
+			"types": "./dist/lib/lazy.d.ts",
+			"import": "./dist/lib/lazy.mjs",
+			"require": "./dist/lib/lazy.js"
+		},
+		"./makeObject": {
+			"types": "./dist/lib/makeObject.d.ts",
+			"import": "./dist/lib/makeObject.mjs",
+			"require": "./dist/lib/makeObject.js"
+		},
+		"./mergeDefault": {
+			"types": "./dist/lib/mergeDefault.d.ts",
+			"import": "./dist/lib/mergeDefault.mjs",
+			"require": "./dist/lib/mergeDefault.js"
+		},
+		"./mergeObjects": {
+			"types": "./dist/lib/mergeObjects.d.ts",
+			"import": "./dist/lib/mergeObjects.mjs",
+			"require": "./dist/lib/mergeObjects.js"
+		},
+		"./noop": {
+			"types": "./dist/lib/noop.d.ts",
+			"import": "./dist/lib/noop.mjs",
+			"require": "./dist/lib/noop.js"
+		},
+		"./objectEntries": {
+			"types": "./dist/lib/objectEntries.d.ts",
+			"import": "./dist/lib/objectEntries.mjs",
+			"require": "./dist/lib/objectEntries.js"
+		},
+		"./objectKeys": {
+			"types": "./dist/lib/objectKeys.d.ts",
+			"import": "./dist/lib/objectKeys.mjs",
+			"require": "./dist/lib/objectKeys.js"
+		},
+		"./objectToTuples": {
+			"types": "./dist/lib/objectToTuples.d.ts",
+			"import": "./dist/lib/objectToTuples.mjs",
+			"require": "./dist/lib/objectToTuples.js"
+		},
+		"./objectValues": {
+			"types": "./dist/lib/objectValues.d.ts",
+			"import": "./dist/lib/objectValues.mjs",
+			"require": "./dist/lib/objectValues.js"
+		},
+		"./parseUrl": {
+			"types": "./dist/lib/parseUrl.d.ts",
+			"import": "./dist/lib/parseUrl.mjs",
+			"require": "./dist/lib/parseUrl.js"
+		},
+		"./partition": {
+			"types": "./dist/lib/partition.d.ts",
+			"import": "./dist/lib/partition.mjs",
+			"require": "./dist/lib/partition.js"
+		},
+		"./range": {
+			"types": "./dist/lib/range.d.ts",
+			"import": "./dist/lib/range.mjs",
+			"require": "./dist/lib/range.js"
+		},
+		"./regExpEsc": {
+			"types": "./dist/lib/regExpEsc.d.ts",
+			"import": "./dist/lib/regExpEsc.mjs",
+			"require": "./dist/lib/regExpEsc.js"
+		},
+		"./roundNumber": {
+			"types": "./dist/lib/roundNumber.d.ts",
+			"import": "./dist/lib/roundNumber.mjs",
+			"require": "./dist/lib/roundNumber.js"
+		},
+		"./sleep": {
+			"types": "./dist/lib/sleep.d.ts",
+			"import": "./dist/lib/sleep.mjs",
+			"require": "./dist/lib/sleep.js"
+		},
+		"./sleepSync": {
+			"types": "./dist/lib/sleep.d.ts",
+			"import": "./dist/lib/sleep.mjs",
+			"require": "./dist/lib/sleep.js"
+		},
+		"./splitText": {
+			"types": "./dist/lib/splitText.d.ts",
+			"import": "./dist/lib/splitText.mjs",
+			"require": "./dist/lib/splitText.js"
+		},
+		"./toTitleCase": {
+			"types": "./dist/lib/toTitleCase.d.ts",
+			"import": "./dist/lib/toTitleCase.mjs",
+			"require": "./dist/lib/toTitleCase.js"
+		},
+		"./tryParse": {
+			"types": "./dist/lib/tryParse.d.ts",
+			"import": "./dist/lib/tryParse.mjs",
+			"require": "./dist/lib/tryParse.js"
+		},
+		"./types": {
+			"types": "./dist/lib/types.d.ts",
+			"import": "./dist/lib/types.mjs",
+			"require": "./dist/lib/types.js"
+		}
 	},
 	"sideEffects": false,
 	"homepage": "https://github.com/sapphiredev/utilities/tree/main/packages/utilities",
 	"scripts": {
 		"test": "vitest run",
 		"lint": "eslint src tests --ext ts --fix -c ../../.eslintrc",
-		"build": "tsup",
+		"build": "tsup && tsup --config tsup.config.iife.ts && tsc -b src",
 		"docs": "typedoc-json-parser",
-		"prepack": "yarn build",
+		"prepack": "yarn build && yarn check-subpath",
 		"bump": "cliff-jumper",
-		"check-update": "cliff-jumper --dry-run"
+		"check-update": "cliff-jumper --dry-run",
+		"check-subpath": "node ../../scripts/subpath-updater.mjs utilities"
 	},
 	"repository": {
 		"type": "git",
