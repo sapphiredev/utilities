@@ -262,7 +262,9 @@
 			"require": "./dist/lib/types.js"
 		}
 	},
-	"sideEffects": false,
+	"sideEffects": [
+		"./dist/chunk*.mjs"
+	],
 	"homepage": "https://github.com/sapphiredev/utilities/tree/main/packages/utilities",
 	"scripts": {
 		"test": "vitest run",
