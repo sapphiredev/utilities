@@ -8,7 +8,7 @@ export default createTsupConfig({
 	dts: false,
 	esbuildPlugins: [
 		{
-			name: 'add-mjs-to-file-imports-and-exports',
+			name: 'add-extension-to-file-imports-and-exports',
 			setup(build) {
 				const isEsm = build.initialOptions.define?.TSUP_FORMAT === '"esm"';
 				build.onResolve({ filter: /.*/ }, (args) => {
