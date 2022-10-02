@@ -18,6 +18,8 @@ export default createTsupConfig({
 							external: true
 						};
 					}
+
+					return undefined;
 				});
 			}
 		}
