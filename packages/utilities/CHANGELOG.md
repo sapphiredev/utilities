@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/utilities@3.10.0](https://github.com/sapphiredev/utilities/compare/@sapphire/utilities@3.9.3...@sapphire/utilities@3.10.0) - (2022-10-02)
+
+## 🏠 Refactor
+
+- Split `@sapphire/time-utilities` into 4 sub-packages (#462) ([574299a](https://github.com/sapphiredev/utilities/commit/574299a99e658f6500a2a7efa587a0919b2d1313))
+
+## 🐛 Bug Fixes
+
+- **utilities:** Fixed output file extensions (#480) ([99a011d](https://github.com/sapphiredev/utilities/commit/99a011db82cb0b012974eb26951195cf8d00b672))
+- **utilities:** Specify chunk file as side effect ([7b34a81](https://github.com/sapphiredev/utilities/commit/7b34a81673f8c0e86fab40b956bffc903aa28a8f))
+- **deps:** Update all non-major dependencies (#466) ([dc08606](https://github.com/sapphiredev/utilities/commit/dc08606a97154e47c65536123ac5f8b1262f7bd2))
+- **deps:** Update all non-major dependencies ([e20f299](https://github.com/sapphiredev/utilities/commit/e20f29906e83cee000aaba9c6827e3bec5173d28))
+
+## 📝 Documentation
+
+- Change name of @kyranet (#451) ([df4fdef](https://github.com/sapphiredev/utilities/commit/df4fdefce18659975a4ebc224723638507d02d35))
+
+## 🚀 Features
+
+- **utilities:** Add possibility to import single functions by appending them to the import path. (#454) ([374c145](https://github.com/sapphiredev/utilities/commit/374c145a5dd329cfc1a867ed6720abf408683a88))
+- **utilities:** Add `objectKeys` function (#472) ([384ff84](https://github.com/sapphiredev/utilities/commit/384ff845115c37aaeb20b0b23051954f75f1d0bf))
+- **utilities:** Add `objectEntries` function (#471) ([84c1418](https://github.com/sapphiredev/utilities/commit/84c1418a1b60dcc61c0e74f54f4c9825ac735962))
+- **utilities:** Add `objectValues` function (#474) ([90c2409](https://github.com/sapphiredev/utilities/commit/90c2409e3103575aff1dd00e0d1b5c1c10c74140))
+- **utilities:** Add `sleep` and `sleepSync` (#469) ([8cd1293](https://github.com/sapphiredev/utilities/commit/8cd129382f1958e00166a8248f4d864480562829))
+
 # [@sapphire/utilities@3.9.3](https://github.com/sapphiredev/utilities/compare/@sapphire/utilities@3.9.2...@sapphire/utilities@3.9.3) - (2022-09-02)
 
 ## 🐛 Bug Fixes
