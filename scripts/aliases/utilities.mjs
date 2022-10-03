@@ -6,5 +6,6 @@ export const aliasStore = new Map([
 	['isNullOrUndefinedOrEmpty', 'isNullishOrEmpty'],
 	['isNullOrUndefinedOrZero', 'isNullishOrZero'],
 	['sleep', 'sleepSync'],
-	['tryParseJSON', 'tryParse']
+	['tryParseJSON', 'tryParse'],
+	['tryParseURL', 'parseURL']
 ]);
