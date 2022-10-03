@@ -37,6 +37,7 @@ export * from './lib/regExpEsc';
 export * from './lib/roundNumber';
 export { sleep, sleepSync, AbortError, type SleepOptions } from './lib/sleep';
 export * from './lib/splitText';
-export { toTitleCase, type ToTitleCaseOptions } from './lib/toTitleCase';
+export * from './lib/throttle';
+export { toTitleCase, ToTitleCaseOptions } from './lib/toTitleCase';
 export * from './lib/tryParse';
 export * from './lib/types';
