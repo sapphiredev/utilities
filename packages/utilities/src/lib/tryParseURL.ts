@@ -10,3 +10,16 @@ export function tryParseURL(value: string): URL | null {
 		return null;
 	}
 }
+
+/**
+ * Parses an URL, returns null if invalid.
+ * @param url The url to parse
+ * @deprecated Use {@link tryParseURL} instead
+ */
+export function parseURL(url: string): URL | null {
+	try {
+		return new URL(url);
+	} catch {
+		return null;
+	}
+}

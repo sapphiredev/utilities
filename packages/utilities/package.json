@@ -216,11 +216,6 @@
 			"import": "./dist/lib/objectValues.mjs",
 			"require": "./dist/lib/objectValues.js"
 		},
-		"./parseUrl": {
-			"types": "./dist/lib/parseUrl.d.ts",
-			"import": "./dist/lib/parseUrl.mjs",
-			"require": "./dist/lib/parseUrl.js"
-		},
 		"./partition": {
 			"types": "./dist/lib/partition.d.ts",
 			"import": "./dist/lib/partition.mjs",
