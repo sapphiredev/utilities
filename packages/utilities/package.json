@@ -256,6 +256,11 @@
 			"import": "./dist/lib/splitText.mjs",
 			"require": "./dist/lib/splitText.js"
 		},
+		"./throttle": {
+			"types": "./dist/lib/throttle.d.ts",
+			"import": "./dist/lib/throttle.mjs",
+			"require": "./dist/lib/throttle.js"
+		},
 		"./toTitleCase": {
 			"types": "./dist/lib/toTitleCase.d.ts",
 			"import": "./dist/lib/toTitleCase.mjs",
