@@ -262,9 +262,19 @@
 			"require": "./dist/lib/toTitleCase.js"
 		},
 		"./tryParse": {
-			"types": "./dist/lib/tryParse.d.ts",
-			"import": "./dist/lib/tryParse.mjs",
-			"require": "./dist/lib/tryParse.js"
+			"types": "./dist/lib/tryParseJSON.d.ts",
+			"import": "./dist/lib/tryParseJSON.mjs",
+			"require": "./dist/lib/tryParseJSON.js"
+		},
+		"./tryParseJSON": {
+			"types": "./dist/lib/tryParseJSON.d.ts",
+			"import": "./dist/lib/tryParseJSON.mjs",
+			"require": "./dist/lib/tryParseJSON.js"
+		},
+		"./tryParseURL": {
+			"types": "./dist/lib/tryParseURL.d.ts",
+			"import": "./dist/lib/tryParseURL.mjs",
+			"require": "./dist/lib/tryParseURL.js"
 		},
 		"./types": {
 			"types": "./dist/lib/types.d.ts",
