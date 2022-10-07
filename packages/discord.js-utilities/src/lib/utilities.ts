@@ -1,4 +1,4 @@
-import { isNullish, Nullish } from '@sapphire/utilities';
+import { isNullish, type Nullish } from '@sapphire/utilities';
 import { PermissionFlagsBits, PermissionsBitField, type VoiceBasedChannel } from 'discord.js';
 import { isDMChannel, isGuildBasedChannel, isVoiceBasedChannel } from './type-guards';
 import type { ChannelTypes } from './utility-types';

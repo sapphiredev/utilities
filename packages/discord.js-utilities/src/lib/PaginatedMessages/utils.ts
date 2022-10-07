@@ -1,5 +1,12 @@
 import { chunk, partition } from '@sapphire/utilities';
-import { ActionRowBuilder, ActionRowComponentOptions, ButtonBuilder, ButtonComponentData, ComponentType, SelectMenuBuilder } from 'discord.js';
+import {
+	ActionRowBuilder,
+	ButtonBuilder,
+	ComponentType,
+	SelectMenuBuilder,
+	type ActionRowComponentOptions,
+	type ButtonComponentData
+} from 'discord.js';
 import { isAnyInteractableInteraction, isMessageInstance } from '../type-guards';
 import type {
 	PaginatedMessageAction,

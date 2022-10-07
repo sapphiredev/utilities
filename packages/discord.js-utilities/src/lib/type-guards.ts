@@ -1,14 +1,14 @@
 import { isNullish, Nullish } from '@sapphire/utilities';
 import {
-	APIGuildMember,
-	APIInteractionDataResolvedGuildMember,
-	APIInteractionGuildMember,
-	APIMessage,
 	BaseInteraction,
 	ChannelType,
 	GuildMember,
 	Message,
 	VoiceBasedChannel,
+	type APIGuildMember,
+	type APIInteractionDataResolvedGuildMember,
+	type APIInteractionGuildMember,
+	type APIMessage,
 	type CategoryChannel,
 	type Channel,
 	type DMChannel,
