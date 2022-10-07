@@ -1,9 +1,9 @@
 import { Time } from '@sapphire/duration';
 import { deepClone, isFunction, isNullish, isObject } from '@sapphire/utilities';
-import type { APIMessage } from 'discord-api-types/v9';
 import {
 	APIActionRowComponent,
 	APIEmbed,
+	APIMessage,
 	APIMessageActionRowComponent,
 	ButtonBuilder,
 	ButtonStyle,
@@ -12,22 +12,22 @@ import {
 	GatewayIntentBits,
 	IntentsBitField,
 	InteractionCollector,
+	InteractionReplyOptions,
 	InteractionType,
 	isJSONEncodable,
 	JSONEncodable,
 	Partials,
 	SelectMenuBuilder,
 	userMention,
+	type BaseMessageOptions,
 	type ButtonInteraction,
 	type Collection,
 	type Message,
-	type BaseMessageOptions,
 	type SelectMenuInteraction,
 	type Snowflake,
 	type TextBasedChannel,
 	type User,
-	type WebhookEditMessageOptions,
-	InteractionReplyOptions
+	type WebhookEditMessageOptions
 } from 'discord.js';
 import { MessageBuilder } from '../builders/MessageBuilder';
 import { isAnyInteraction, isGuildBasedChannel, isMessageInstance } from '../type-guards';

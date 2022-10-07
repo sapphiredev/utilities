@@ -1,6 +1,7 @@
 import type { Awaitable } from '@sapphire/utilities';
-import type { APIMessage } from 'discord-api-types/v9';
 import type {
+	APIMessage,
+	BaseMessageOptions,
 	ButtonInteraction,
 	CommandInteraction,
 	EmbedBuilder,
@@ -14,7 +15,6 @@ import type {
 	Message,
 	MessageComponentInteraction,
 	MessageEditOptions,
-	BaseMessageOptions,
 	MessageReplyOptions,
 	SelectMenuComponentData,
 	SelectMenuComponentOptionData,

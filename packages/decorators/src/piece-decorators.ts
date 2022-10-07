@@ -30,7 +30,7 @@ import { createClassDecorator, createProxy } from './utils';
  * ```typescript
  * import { ApplyOptions } from '@sapphire/decorators';
  * import { Listener } from '@sapphire/framework';
- * import { GatewayDispatchEvents, GatewayMessageDeleteDispatch } from 'discord-api-types/v9';
+ * import { GatewayDispatchEvents, GatewayMessageDeleteDispatch } from 'discord-api-types/v10';
  *
  * @ApplyOptions<Listener.Options>(({ container }) => ({
  *   description: 'Handle Raw Message Delete events',

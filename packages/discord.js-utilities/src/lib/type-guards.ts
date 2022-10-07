@@ -1,7 +1,11 @@
 import { isNullish, Nullish } from '@sapphire/utilities';
-import { APIGuildMember, APIInteractionDataResolvedGuildMember, APIInteractionGuildMember, APIMessage, ChannelType } from 'discord-api-types/v10';
 import {
+	APIGuildMember,
+	APIInteractionDataResolvedGuildMember,
+	APIInteractionGuildMember,
+	APIMessage,
 	BaseInteraction,
+	ChannelType,
 	GuildMember,
 	Message,
 	VoiceBasedChannel,
