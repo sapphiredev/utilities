@@ -48,6 +48,7 @@
 				"@sapphire/lexure#build",
 				"@sapphire/ratelimits#build",
 				"@sapphire/result#build",
+				"@sapphire/snowflake#build",
 				"@sapphire/timestamp#build",
 				"@sapphire/utilities#build"
 			],
