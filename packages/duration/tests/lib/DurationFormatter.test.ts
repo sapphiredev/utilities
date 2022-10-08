@@ -1,10 +1,4 @@
-import { DurationFormatter } from '../../src';
-
-enum Time {
-	Minute = 1000 * 60,
-	Hour = 1000 * 60 * 60,
-	Day = 1000 * 60 * 60 * 24
-}
+import { DurationFormatter, Time } from '../../src';
 
 const formatter = new DurationFormatter();
 
