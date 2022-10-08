@@ -226,6 +226,11 @@
 			"import": "./dist/lib/partition.mjs",
 			"require": "./dist/lib/partition.js"
 		},
+		"./pickRandom": {
+			"types": "./dist/lib/pickRandom.d.ts",
+			"import": "./dist/lib/pickRandom.mjs",
+			"require": "./dist/lib/pickRandom.js"
+		},
 		"./range": {
 			"types": "./dist/lib/range.d.ts",
 			"import": "./dist/lib/range.mjs",
