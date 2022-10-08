@@ -10,11 +10,4 @@ export function tryParseJSON(value: string): object | string | number {
 	}
 }
 
-/**
- * Try parse a stringified JSON string.
- * @param value The value to parse
- * @deprecated Use {@link tryParseJSON} instead
- */
-export function tryParse(value: string): object | string | number {
-	return tryParseJSON(value);
-}
+export { tryParseJSON as tryParse };
