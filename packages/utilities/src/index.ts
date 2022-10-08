@@ -31,6 +31,7 @@ export * from './lib/objectKeys';
 export * from './lib/objectToTuples';
 export * from './lib/objectValues';
 export * from './lib/partition';
+export * from './lib/pickRandom';
 export * from './lib/range';
 export * from './lib/regExpEsc';
 export * from './lib/roundNumber';
