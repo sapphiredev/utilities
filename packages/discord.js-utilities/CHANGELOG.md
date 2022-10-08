@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/discord.js-utilities@5.1.0](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@5.0.1...@sapphire/discord.js-utilities@5.1.0) - (2022-10-08)
+
+## 🐛 Bug Fixes
+
+- **utilities:** Race condition issue for closed paginated message (#484) ([8c9c9b7](https://github.com/sapphiredev/utilities/commit/8c9c9b750408ac2fb4c034385dae1e55b6ce6ccf))
+- **deps:** Update all non-major dependencies (#466) ([dc08606](https://github.com/sapphiredev/utilities/commit/dc08606a97154e47c65536123ac5f8b1262f7bd2))
+
+## 📝 Documentation
+
+- Add @r-priyam as a contributor ([fb278ba](https://github.com/sapphiredev/utilities/commit/fb278bacf627ec6fc88752eafeb12df5f3177a2c))
+
+## 🚀 Features
+
+- **utilities:** Add possibility to import single functions by appending them to the import path. (#454) ([374c145](https://github.com/sapphiredev/utilities/commit/374c145a5dd329cfc1a867ed6720abf408683a88))
+
 # [@sapphire/discord.js-utilities@5.0.1](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@5.0.0...@sapphire/discord.js-utilities@5.0.1) - (2022-09-18)
 
 ## 🏠 Refactor
