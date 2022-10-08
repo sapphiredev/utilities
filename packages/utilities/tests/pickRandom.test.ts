@@ -14,8 +14,8 @@ describe('pickRandom', () => {
 	test('GIVEN count of two THEN picks two random elements', () => {
 		const array = ['a', 'b', 'c'];
 		const picked = pickRandom(array, 2);
-		expect(array).toContain(picked[0]);
-		expect(array).toContain(picked[1]);
+
 		expect(picked).toHaveLength(2);
+		expect(array).toEqual(expect.arrayContaining(picked));
 	});
 });
