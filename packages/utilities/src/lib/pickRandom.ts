@@ -5,10 +5,8 @@
 export function pickRandom<T>(array: readonly T[], count?: 1): T;
 export function pickRandom<T>(array: readonly T[], count: number): T[];
 export function pickRandom<T>(array: readonly T[], count = 1): T | T[] {
-	const picked: T[] = [];
-	for (let i = 0; i < count; i++) {
-		picked.push(array[Math.floor(Math.random() * array.length)]);
-	}
-
-	return count === 1 ? picked[0] : picked;
+	const arr = [...array];
+	if (typeof count === 'undefined') return arr[Math.floor(Math.random() * arr.length)];
+	if (!arr.length || !count) return [];
+	return Array.from({ length: Math.min(count, arr.length) }, (): T => arr.splice(Math.floor(Math.random() * arr.length), 1)[0]!);
 }
