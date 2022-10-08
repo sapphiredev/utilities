@@ -1143,9 +1143,10 @@ export class PaginatedMessage {
 	 * @param reason The reason for which the collector was ended.
 	 */
 	protected async handleEnd(_: Collection<Snowflake, ButtonInteraction | SelectMenuInteraction>, reason: string): Promise<void> {
-		// Fix a race condition bug where interacting with the message when the paginated message closes will result in a DiscordAPIError
-		if (this.response !== null && isAnyInteraction(this.response) && this.response.isMessageComponent())
+		// Ensure no race condition can occur where interacting with the message when the paginated message closes would otherwise result in a DiscordAPIError
+		if (this.response !== null && isAnyInteraction(this.response) && this.response.isMessageComponent()) {
 			this.response.message = await this.response.fetchReply();
+		}
 
 		// Remove all listeners from the collector:
 		this.collector?.removeAllListeners();
