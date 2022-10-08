@@ -10,4 +10,9 @@ export function tryParseJSON(value: string): object | string | number {
 	}
 }
 
-export { tryParseJSON as tryParse };
+export {
+	/**
+	 * @deprecated Will be removed in the next major version, switch to {@link tryParseJSON}.
+	 */
+	tryParseJSON as tryParse
+};

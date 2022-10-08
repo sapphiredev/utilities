@@ -11,4 +11,9 @@ export function tryParseURL(value: string): URL | null {
 	}
 }
 
-export { tryParseURL as parseURL };
+export {
+	/**
+	 * @deprecated Will be removed in the next major version, switch to {@link tryParseURL}.
+	 */
+	tryParseURL as parseURL
+};

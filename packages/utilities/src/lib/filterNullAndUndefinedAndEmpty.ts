@@ -22,7 +22,9 @@ export function filterNullAndUndefinedAndEmpty<TValue>(value: TValue | Nullish |
 
 export { filterNullAndUndefinedAndEmpty as filterNullishAndEmpty };
 
-/**
- * @deprecated Will be removed in the next major version, switch to either `filterNullishAndEmpty` or `filterNullAndUndefinedAndEmpty`.
- */
-export const filterNullishOrEmpty = filterNullAndUndefinedAndEmpty;
+export {
+	/**
+	 * @deprecated Will be removed in the next major version, switch to either `filterNullishAndEmpty` or {@link filterNullAndUndefinedAndEmpty}.
+	 */
+	filterNullAndUndefinedAndEmpty as filterNullishOrEmpty
+};
