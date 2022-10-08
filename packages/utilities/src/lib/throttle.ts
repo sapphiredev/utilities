@@ -1,3 +1,5 @@
+export type ThrottleFn<T extends (...args: any[]) => any> = T & { flush: () => void };
+
 /**
  * Creates a throttled function that only invokes `func` at most once per
  * every `wait` milliseconds. The throttled function comes with a `flush` method to
@@ -8,7 +10,7 @@
  *
  * @returns Returns the new throttled function.
  */
-export function throttle<T extends (...args: any[]) => any>(func: T, wait: number): T & { flush: () => void } {
+export function throttle<T extends (...args: any[]) => any>(func: T, wait: number): ThrottleFn<T> {
 	let prev = 0;
 	let prevValue: ReturnType<T>;
 
@@ -27,5 +29,5 @@ export function throttle<T extends (...args: any[]) => any>(func: T, wait: numbe
 				prev = 0;
 			}
 		}
-	) as T & { flush: () => void };
+	) as ThrottleFn<T>;
 }
