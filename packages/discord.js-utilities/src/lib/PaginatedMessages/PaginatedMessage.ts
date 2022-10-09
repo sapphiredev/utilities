@@ -9,7 +9,6 @@ import {
 	IntentsBitField,
 	InteractionCollector,
 	InteractionType,
-	isJSONEncodable,
 	Partials,
 	SelectMenuBuilder,
 	userMention,
@@ -29,6 +28,7 @@ import {
 	type User,
 	type WebhookEditMessageOptions
 } from 'discord.js';
+import { isJSONEncodable } from '@discordjs/builders';
 import { MessageBuilder } from '../builders/MessageBuilder';
 import { isAnyInteraction, isGuildBasedChannel, isMessageInstance } from '../type-guards';
 import type { AnyInteractableInteraction } from '../utility-types';
