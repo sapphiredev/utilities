@@ -134,6 +134,7 @@ new Timestamp('ZZ').display(date); // -05:00
 ```
 
 </details>
+
 ## Buy us some doughnuts
 
 Sapphire Community is and always will be open source, even if we don't get donations. That being said, we know there are amazing people who may still want to donate just to show their appreciation. Thank you very much in advance!
