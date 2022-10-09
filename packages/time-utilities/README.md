@@ -18,8 +18,6 @@
 -   [Description](#description)
 -   [Features](#features)
 -   [Installation](#installation)
--   [Usage](#usage)
-    -   [Basic Usage](#basic-usage)
 -   [Buy us some doughnuts](#buy-us-some-doughnuts)
 -   [Contributors ✨](#contributors-%E2%9C%A8)
 
@@ -27,7 +25,7 @@
 
 Working with Time and Duration can be a huge chore in any programming language. There are various time parsing libraries on the NPM registry but we are of the opinion that none of them meet the code quality that we desire to use. For this reason we have decided to make this package.
 
-Note that this package only re-exports everything from the four packages `@sapphire/cron`, `@sapphire/duration`, `@sapphire/timer-manager`, and `@sapphire/timestamp`. Those packages can also be installed individually if you only need a subset of the functionality.
+Note that this package only re-exports everything from the four packages [`@sapphire/cron`][cron-readme], [`@sapphire/duration`][duration-readme], [`@sapphire/timer-manager`][timer-manager-readme], and [`@sapphire/timestamp`][timestamp-readme]. Those packages should be cited individually for documentation and can be installed by themselves if you only need a subset of the functionality.
 
 ## Features
 
@@ -125,3 +123,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
+
+
+[cron-readme]: ../cron/#readme
+[duration-readme]: ../duration#readme
+[timer-manager-readme]: ../timer-manager#readme
+[timestamp-readme]: ../timestamp#readme
