@@ -37,6 +37,28 @@ You can use the following command to install this package, or replace `npm insta
 npm install @sapphire/timer-manager
 ```
 
+## Usage
+
+**Note:** While this section uses `require`, the imports match 1:1 with ESM imports. For example `const { TimerManager } = require('@sapphire/timer-manager')` equals `import { TimerManager } from '@sapphire/timer-manager'`.
+
+### Basic Usage
+
+```typescript
+// Import the TimerManager class
+const { TimerManager } = require('@sapphire/timer-manager');
+
+// Use the class for timeouts
+const timeout = TimerManager.setTimeout(() => console.log('Hello, world!'), 1000);
+TimerManager.clearTimeout(timeout);
+
+// Use the class for intervals
+const interval = TimerManager.setInterval(() => console.log('Hello, world!'), 1000);
+TimerManager.clearInterval(interval);
+
+// Destroy all running timeouts and intervals so that NodeJS can gracefully exit
+TimerManager.destroy();
+```
+
 ## Buy us some doughnuts
 
 Sapphire Community is and always will be open source, even if we don't get donations. That being said, we know there are amazing people who may still want to donate just to show their appreciation. Thank you very much in advance!
