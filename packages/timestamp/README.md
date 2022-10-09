@@ -73,7 +73,7 @@ const { Timestamp } = require('@sapphire/timestamp');
 // Saturday 9th March 2019, at 16:20:35:500
 const date = new Date(2019, 2, 9, 16, 20, 35, 1);
 
-// Format the date with tokens (use brackets to escape)
+// Format the date with tokens (use square brackets to escape)
 const timestamp = new Timestamp('MMMM d YYYY[, at ]HH:mm:ss:SSS');
 timestamp.display(date); // March 9th 2019, at 16:20:35:001
 ```
@@ -134,9 +134,6 @@ new Timestamp('ZZ').display(date); // -05:00
 ```
 
 </details>
-
-<br />
-
 ## Buy us some doughnuts
 
 Sapphire Community is and always will be open source, even if we don't get donations. That being said, we know there are amazing people who may still want to donate just to show their appreciation. Thank you very much in advance!
