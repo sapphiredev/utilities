@@ -52,12 +52,15 @@ named enum members to make it easier to read.
 ```typescript
 // Import the Time enum
 const { Time } = require('@sapphire/duration');
+
 setTimeout(() => {
 	// Do something in half a second
 }, Time.Second / 2 /* 500 */);
+
 setTimeout(() => {
 	// Do something in 6 hours
 }, Time.Hour * 6 /* 21600000 */);
+
 setTimeout(() => {
 	// Do something in 1 day
 }, Time.Day /* 86400000 */);
@@ -65,7 +68,7 @@ setTimeout(() => {
 
 ### Parsing a Duration
 
-```ts
+```typescript
 // Import the Duration class
 const { Duration } = require('@sapphire/duration');
 
@@ -75,6 +78,7 @@ new Duration('1 day, 3h & 15m, some extra characters, and another 3 seconds').of
 
 // The date from now after the specified duration
 new Duration('1d3h15m3s').fromNow;
+
 // Or use a specific date
 new Duration('1d3h15m3s').dateFrom(new Date('2020-01-01T00:00:00.000Z'));
 ```
@@ -137,7 +141,7 @@ new Duration('1 y').offset; // 31557600000
 
 ### Serializing a Duration
 
-```ts
+```typescript
 // Import the DurationFormatter class
 const { DurationFormatter } = require('@sapphire/duration');
 
@@ -153,7 +157,7 @@ formatter.format(98103000, 2); // 1 day 3 hours
 
 ### Localizing with Durations
 
-```ts
+```typescript
 // Import the DurationFormatter class
 const { DurationFormatter, TimeTypes } = require('@sapphire/duration');
 
