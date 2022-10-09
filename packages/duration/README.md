@@ -135,8 +135,6 @@ new Duration('1 y').offset; // 31557600000
 
 </details>
 
-<br />
-
 ### Serializing a Duration
 
 ```ts
