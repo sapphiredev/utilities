@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/discord.js-utilities@5.1.1](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@5.1.0...@sapphire/discord.js-utilities@5.1.1) - (2022-10-09)
+
+## 🐛 Bug Fixes
+
+- **discord.js-utilities:** Fixed stop button crashing bots ([d5a9fc6](https://github.com/sapphiredev/utilities/commit/d5a9fc6329e03eb601e66bfc775c9754d9719a3c))
+
 # [@sapphire/discord.js-utilities@5.1.0](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@5.0.1...@sapphire/discord.js-utilities@5.1.0) - (2022-10-08)
 
 ## 🐛 Bug Fixes
