@@ -198,3 +198,15 @@ export interface SafeReplyToInteractionParameters<T extends 'edit' | 'reply' | n
 	messageMethod?: T;
 	messageMethodContent?: T extends 'reply' ? ReplyMessageOptions : MessageEditOptions;
 }
+
+export type PaginatedMessageStopReasons =
+	| 'time'
+	| 'idle'
+	| 'user'
+	| 'messageDelete'
+	| 'channelDelete'
+	| 'threadDelete'
+	| 'guildDelete'
+	| 'limit'
+	| 'componentLimit'
+	| 'userLimit';
