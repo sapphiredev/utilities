@@ -76,5 +76,8 @@
 		"ansi-regex": "^5.0.1",
 		"minimist": "^1.2.6"
 	},
-	"packageManager": "yarn@3.2.3"
+	"packageManager": "yarn@3.2.3",
+	"dependencies": {
+		"@discordjs/util": "^0.1.0"
+	}
 }
