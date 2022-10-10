@@ -893,6 +893,54 @@ describe('Result', () => {
 		});
 	});
 
+	describe('all', () => {
+		test('GIVEN empty array THEN returns Result<[], never>', () => {
+			expect<Result<[], never>>(Result.all([])).toEqual(ok([]));
+		});
+
+		type Expected = Result<[number, boolean, bigint], string>;
+
+		test('GIVEN array of Ok THEN returns Ok', () => {
+			const a: Result<number, string> = ok(5);
+			const b: Result<boolean, string> = ok(true);
+			const c: Result<bigint, string> = ok(1n);
+
+			expect<Expected>(Result.all([a, b, c])).toEqual(ok([5, true, 1n]));
+		});
+
+		test('GIVEN array of Ok with one Err THEN returns Err', () => {
+			const a: Result<number, string> = ok(5);
+			const b: Result<boolean, string> = ok(true);
+			const c: Result<bigint, string> = err('Error!');
+
+			expect<Expected>(Result.all([a, b, c])).toBe(c);
+		});
+	});
+
+	describe('any', () => {
+		test('GIVEN empty array THEN returns Result<[], never>', () => {
+			expect<Result<never, []>>(Result.any([])).toEqual(err([]));
+		});
+
+		type Expected = Result<number | boolean | bigint, [string, string, string]>;
+
+		test('GIVEN array with at least one Ok THEN returns first Ok', () => {
+			const a: Result<number, string> = ok(5);
+			const b: Result<boolean, string> = ok(true);
+			const c: Result<bigint, string> = err('Error!');
+
+			expect<Expected>(Result.any([a, b, c])).toBe(a);
+		});
+
+		test('GIVEN array of Ok with one Err THEN returns Err', () => {
+			const a: Result<number, string> = err('Not a number!');
+			const b: Result<boolean, string> = err('Not a boolean!');
+			const c: Result<bigint, string> = err('Error!');
+
+			expect<Expected>(Result.any([a, b, c])).toEqual(err(['Not a number!', 'Not a boolean!', 'Error!']));
+		});
+	});
+
 	describe('types', () => {
 		test('GIVEN Ok<T> THEN assigns to Result<T, E>', () => {
 			expect<Result<number, string>>(ok(4));
