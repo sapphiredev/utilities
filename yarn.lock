@@ -608,6 +608,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@sapphire/discord.js-utilities@workspace:packages/discord.js-utilities"
   dependencies:
+    "@discordjs/util": ^0.1.0
     "@favware/cliff-jumper": ^1.8.8
     "@favware/rollup-type-bundler": ^1.0.11
     "@sapphire/discord-utilities": "workspace:^"
@@ -5345,7 +5346,6 @@ __metadata:
     "@commitlint/cli": ^17.1.2
     "@commitlint/config-conventional": ^17.1.0
     "@discordjs/collection": ^1.1.0
-    "@discordjs/util": ^0.1.0
     "@favware/cliff-jumper": ^1.8.8
     "@favware/npm-deprecate": ^1.0.5
     "@favware/rollup-type-bundler": ^1.0.11

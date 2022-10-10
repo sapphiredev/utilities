@@ -54,6 +54,7 @@
 		"access": "public"
 	},
 	"dependencies": {
+		"@discordjs/util": "^0.1.0",
 		"@sapphire/discord-utilities": "workspace:^",
 		"@sapphire/duration": "workspace:^",
 		"@sapphire/utilities": "workspace:^",
