@@ -89,7 +89,7 @@
             -   [`StrictRequired`](#strictrequired)
             -   [`ArrayElementType`](#arrayelementtype)
 -   [Buy us some doughnuts](#buy-us-some-doughnuts)
--   [Contributors ✨](#contributors-%E2%9C%A8)
+-   [Contributors ✨](#contributors-)
 
 ## Description
 
