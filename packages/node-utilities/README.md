@@ -4,7 +4,7 @@
 
 # @sapphire/node-utilities
 
-**Common JavaScript utilities for the Sapphire Community.**
+**Common NodeJS utilities for the Sapphire Community.**
 
 [![GitHub](https://img.shields.io/github/license/sapphiredev/utilities)](https://github.com/sapphiredev/utilities/blob/main/LICENSE.md)
 [![codecov](https://codecov.io/gh/sapphiredev/utilities/branch/main/graph/badge.svg?token=OEGIV6RFDO)](https://codecov.io/gh/sapphiredev/utilities)
@@ -12,6 +12,15 @@
 [![npm](https://img.shields.io/npm/v/@sapphire/node-utilities?color=crimson&logo=npm&style=flat-square)](https://www.npmjs.com/package/@sapphire/node-utilities)
 
 </div>
+
+**Table of Contents**
+
+-   [Features](#features)
+-   [Installation](#installation)
+-   [Usage](#usage)
+    -   [`findFilesRecursively`](#findfilesrecursively)
+-   [Buy us some doughnuts](#buy-us-some-doughnuts)
+-   [Contributors ✨](#contributors-)
 
 ## Features
 
@@ -25,6 +34,32 @@ You can use the following command to install this package, or replace `npm insta
 
 ```sh
 npm install @sapphire/node-utilities
+```
+
+## Usage
+
+### `findFilesRecursively`
+
+Recursively searches for files in a directory and returns an [`AsyncIterableIterator`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#the_async_iterator_and_async_iterable_protocols) of the found paths.
+
+```ts
+import { findFilesRecursively } from '@sapphire/node-utilities';
+
+const files = findFilesRecursively('./src');
+for await (const file of files) {
+	console.log(file);
+}
+
+// This, for example, could log:
+// /root/src/index.js
+// /root/src/database.csv
+// /root/src/lib/utils/constants.json
+
+// Alternate forms:
+const files = findFilesRecursivelyStringStartsWith('./src', 'index'); // filename starts with "index"
+const files = findFilesRecursivelyStringEndsWith('./src', '.js'); // filename ends with ".js"
+const files = findFilesRecursivelyStringIncludes('./src', 'database'); // filename includes "database"
+const files = findFilesRecursivelyRegex('./src', /\.[tj]sx?$/); // filename matches the regex
 ```
 
 ---
