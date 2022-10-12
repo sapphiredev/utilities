@@ -850,6 +850,54 @@ describe('Option', () => {
 		});
 	});
 
+	describe('all', () => {
+		test('GIVEN empty array THEN returns Option<[]>', () => {
+			expect<Option<[]>>(Option.all([])).toEqual(some([]));
+		});
+
+		type Expected = Option<[number, boolean, bigint]>;
+
+		test('GIVEN array of Some THEN returns Some', () => {
+			const a: Option<number> = some(5);
+			const b: Option<boolean> = some(true);
+			const c: Option<bigint> = some(1n);
+
+			expect<Expected>(Option.all([a, b, c])).toEqual(some([5, true, 1n]));
+		});
+
+		test('GIVEN array of Some with one None THEN returns None', () => {
+			const a: Option<number> = some(5);
+			const b: Option<boolean> = some(true);
+			const c: Option<bigint> = none;
+
+			expect<Expected>(Option.all([a, b, c])).toBe(none);
+		});
+	});
+
+	describe('any', () => {
+		test('GIVEN empty array THEN returns Option<never>', () => {
+			expect<Option<never>>(Option.any([])).toBe(none);
+		});
+
+		type Expected = Option<number | boolean | bigint>;
+
+		test('GIVEN array with at least one Some THEN returns first Some', () => {
+			const a: Option<number> = some(5);
+			const b: Option<boolean> = some(true);
+			const c: Option<bigint> = none;
+
+			expect<Expected>(Option.any([a, b, c])).toBe(a);
+		});
+
+		test('GIVEN array of None THEN returns None', () => {
+			const a: Option<number> = none;
+			const b: Option<boolean> = none;
+			const c: Option<bigint> = none;
+
+			expect<Expected>(Option.any([a, b, c])).toBe(none);
+		});
+	});
+
 	describe('types', () => {
 		test('GIVEN Some<T> THEN assigns to Option<T>', () => {
 			expect<Option<string>>(some('foo'));

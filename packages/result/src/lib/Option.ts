@@ -52,6 +52,40 @@ export namespace Option {
 		}
 	}
 
+	/**
+	 * Creates a {@link Some} that is the combination of all collected {@link Some} values as an array, or the first
+	 * {@link None} encountered.
+	 * @param options An array of {@link Option}s.
+	 * @returns A new {@link Option}.
+	 */
+	export function all<T extends readonly Option<any>[]>(options: [...T]): Option<UnwrapSomeArray<T>> {
+		const values: unknown[] = [];
+		for (const option of options) {
+			if (option.isNone()) {
+				return option;
+			}
+
+			values.push(option.unwrap());
+		}
+
+		return some(values as UnwrapSomeArray<T>);
+	}
+
+	/**
+	 * Returns the first encountered {@link Some}, or a {@link None} if none was found.
+	 * @param options An array of {@link Option}s.
+	 * @returns A new {@link Option}.
+	 */
+	export function any<T extends readonly Option<any>[]>(options: [...T]): Option<UnwrapSomeArray<T>[number]> {
+		for (const result of options) {
+			if (result.isSome()) {
+				return result;
+			}
+		}
+
+		return none;
+	}
+
 	export const none = _none;
 	export const some = _some;
 
@@ -59,4 +93,7 @@ export namespace Option {
 	export type None = import('./Option/None').None;
 
 	export type UnwrapSome<T extends Option<any>> = T extends Some<infer S> ? S : never;
+	export type UnwrapSomeArray<T extends readonly Option<any>[] | []> = {
+		-readonly [P in keyof T]: UnwrapSome<T[P]>;
+	};
 }
