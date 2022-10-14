@@ -13,7 +13,6 @@
 
 [![npm](https://img.shields.io/npm/v/@sapphire/async-queue?color=crimson&logo=npm&style=flat-square&label=@sapphire/async-queue)](https://www.npmjs.com/package/@sapphire/async-queue)
 [![npm](https://img.shields.io/npm/v/@sapphire/bitfield?color=crimson&logo=npm&style=flat-square&label=@sapphire/bitfield)](https://www.npmjs.com/package/@sapphire/bitfield)
-[![npm](https://img.shields.io/npm/v/@sapphire/bitfield?color=crimson&logo=npm&style=flat-square&label=@sapphire/bitfield)](https://www.npmjs.com/package/@sapphire/bitfield)
 [![npm](https://img.shields.io/npm/v/@sapphire/cron?color=crimson&logo=npm&style=flat-square&label=@sapphire/cron)](https://www.npmjs.com/package/@sapphire/cron)
 [![npm](https://img.shields.io/npm/v/@sapphire/decorators?color=crimson&logo=npm&style=flat-square&label=@sapphire/decorators)](https://www.npmjs.com/package/@sapphire/decorators)
 [![npm](https://img.shields.io/npm/v/@sapphire/discord-utilities?color=crimson&logo=npm&style=flat-square&label=@sapphire/discord-utilities)](https://www.npmjs.com/package/@sapphire/discord-utilities)

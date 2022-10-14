@@ -61,14 +61,14 @@ export class BitField<Flags extends Record<string, number> | Record<string, bigi
 		switch (typeof resolvable) {
 			case 'string':
 				if ((resolvable as string) in this.flags) return this.flags[resolvable as keyof Flags] as any;
-				throw new TypeError('Received an object value that is not an Array');
+				throw new RangeError('Received a name that could not be resolved to a property of flags');
 			case this.type:
-				return resolvable as ValueType<this>;
+				return ((resolvable as ValueType<this>) & this.mask) as any;
 			case 'object':
 				if (Array.isArray(resolvable)) return resolvable.reduce((acc, value) => this.resolve(value) | acc, this.zero);
 				throw new TypeError('Received an object value that is not an Array');
 			default:
-				throw new RangeError(`Received a value that is not either type "string", type "${this.type}", or an Array`);
+				throw new TypeError(`Received a value that is not either type "string", type "${this.type}", or an Array`);
 		}
 	}
 
