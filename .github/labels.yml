@@ -40,6 +40,8 @@
   color: '24853c'
 - name: packages:async-queue
   color: 'fbca04'
+- name: packages:bitfield
+  color: 'fbca04'
 - name: packages:cron
   color: 'fbca04'
 - name: packages:decorators

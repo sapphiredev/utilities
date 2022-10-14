@@ -16,6 +16,7 @@
 		"test": {
 			"dependsOn": [
 				"@sapphire/async-queue#build",
+				"@sapphire/bitfield#build",
 				"@sapphire/discord-utilities#build",
 				"@sapphire/discord.js-utilities#build",
 				"@sapphire/duration#build",

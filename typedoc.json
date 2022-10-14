@@ -3,6 +3,7 @@
 	"entryPointStrategy": "resolve",
 	"entryPoints": [
 		"packages/async-queue/src/index.ts",
+		"packages/bitfield/src/index.ts",
 		"packages/cron/src/index.ts",
 		"packages/decorators/src/index.ts",
 		"packages/discord-utilities/src/index.ts",

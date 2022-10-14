@@ -187,25 +187,23 @@ export class BitField<Flags extends Record<string, number> | Record<string, bigi
 	/**
 	 * Computes the symmetric difference, denoted as `A ⊖ B` or `A Δ B`, which is the disjunctive union, or the set of
 	 * elements which are in either of the sets, but not in their intersection. As such, this is the result of
-	 * `(A ∖ B) ∪ (B ∖ A)`, or `union(difference(a, b), difference(b, a))`.
+	 * `(A ∖ B) ∪ (B ∖ A)`, `union(difference(a, b), difference(b, a))`, or `a ⊕ b`.
 	 * @remarks The empty set (`∅`) is neutral, as such, `A Δ ∅ = A` and `A Δ A = ∅`
 	 * @param a The first field.
 	 * @param b The second field.
 	 * @returns The result of computing `a Δ b`.
 	 * @example
 	 * ```typescript
-	 * bitfield.difference(0b1100, 0b0011);
+	 * bitfield.symmetricDifference(0b1100, 0b0011);
 	 * // 0b1111
 	 *
-	 * bitfield.difference(0b1101, 0b1011);
+	 * bitfield.symmetricDifference(0b1101, 0b1011);
 	 * // 0b0110
 	 * ```
 	 * @seealso {@link https://en.wikipedia.org/wiki/Symmetric_difference}
 	 */
 	public symmetricDifference(a: ValueResolvable<this>, b: ValueResolvable<this>): ValueType<this> {
-		a = this.resolve(a);
-		b = this.resolve(b);
-		return this.union(this.difference(a, b), this.difference(b, a));
+		return (this.resolve(a) ^ this.resolve(b)) as ValueType<this>;
 	}
 
 	/**
