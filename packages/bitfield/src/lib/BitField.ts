@@ -248,7 +248,7 @@ export class BitField<Flags extends Record<string, number> | Record<string, bigi
 	 * 	Delete: 0b1000
 	 * });
 	 *
-	 * bitfield.complement(0b0101);
+	 * bitfield.toObject(0b0101);
 	 * // {
 	 * // 	Read: true,
 	 * // 	Write: false,
