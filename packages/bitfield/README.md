@@ -70,7 +70,7 @@ const DetailedPermissionsFlags = {
 const DetailedPermissionsBitField = new BitField(DetailedPermissionsFlags);
 ```
 
-> **Note**: An exception will be thrown in the constructor if a non-object, null, empty object, or objects with types that aren't all numbers or all bigints.
+> **Note**: An exception will be thrown in the constructor if a non-object, null, empty object, or objects with values that aren't all numbers or all bigints.
 
 ### Resolving
 
