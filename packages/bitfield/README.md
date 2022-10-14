@@ -216,10 +216,10 @@ PermissionsBitField.toObject(PermissionFlags.Read | PermissionFlags.Write);
 PermissionsBitField.toObject([PermissionFlags.Read, PermissionFlags.Write]);
 PermissionsBitField.toObject(['Read', 'Write']);
 // {
-// 	Read: true,
-// 	Write: true,
-// 	Edit: false,
-// 	Delete: false
+//   Read: true,
+//   Write: true,
+//   Edit: false,
+//   Delete: false
 // }
 ```
 
