@@ -16,7 +16,7 @@ export class BitField<Flags extends Record<string, number> | Record<string, bigi
 
 		const type = typeof entries[0][1];
 		if (type !== 'number' && type !== 'bigint') {
-			throw new TypeError('type must be either "number" or "bigint"');
+			throw new TypeError('A bitfield can only use numbers or bigints for its values');
 		}
 
 		this.type = type as any;

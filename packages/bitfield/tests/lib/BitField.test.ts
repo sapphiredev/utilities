@@ -57,7 +57,7 @@ describe('BitField', () => {
 
 		test.each([true, {}, undefined, null, 'foo'])('GIVEN a null object THEN throws TypeError', (value) => {
 			const given = () => new BitField({ Read: value } as any);
-			const expected = 'type must be either "number" or "bigint"';
+			const expected = 'A bitfield can only use numbers or bigints for its values';
 
 			expect(given).toThrowError(expected);
 		});
