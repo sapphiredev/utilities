@@ -116,8 +116,8 @@ export class BitField<Flags extends Record<string, number> | Record<string, bigi
 	}
 
 	/**
-	 * Makes the union of all bits.
-	 * @param fields The bits to create an union of.
+	 * Makes a union of all the bits.
+	 * @param fields The bits to create a union of.
 	 * @returns The result of combining all bits together, also denoted as `∅ ⋃ fields`.
 	 * @example
 	 * ```typescript
@@ -139,7 +139,7 @@ export class BitField<Flags extends Record<string, number> | Record<string, bigi
 	}
 
 	/**
-	 * Makes the intersection of all bits.
+	 * Makes an intersection of all the bits.
 	 * @param bitfield The first field.
 	 * @param fields The bits to intersect with `bitfield`.
 	 * @returns The result of intersecting `bitfield` with all of the `fields`, also denoted as `A ⋂ fields`.
@@ -166,7 +166,7 @@ export class BitField<Flags extends Record<string, number> | Record<string, bigi
 	}
 
 	/**
-	 * Removes from `a` the bits from `b`.
+	 * Removes from `a` the bits that exist in `b`.
 	 * @param a The first field.
 	 * @param b The bits to create an union of.
 	 * @returns The result of `a ∖ b`.

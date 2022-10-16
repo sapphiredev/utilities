@@ -27,7 +27,7 @@
     -   [Getting the symmetric difference between different fields](#getting-the-symmetric-difference-between-different-fields)
     -   [Formatting a field](#formatting-a-field)
 -   [Buy us some doughnuts](#buy-us-some-doughnuts)
--   [Contributors ✨](#contributors-%E2%9C%A8)
+-   [Contributors ✨](#contributors-)
 
 ## Features
 
@@ -49,7 +49,7 @@ npm install @sapphire/bitfield
 **Note:** While this section uses `require`, the imports match 1:1 with ESM imports. For example `const { BitField } = require('@sapphire/bitfield')` equals `import { BitField } from '@sapphire/bitfield'`.
 
 ```typescript
-// Import the BitField class
+// Require the BitField class
 const { BitField } = require('@sapphire/bitfield');
 
 const PermissionFlags = {
