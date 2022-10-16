@@ -61,7 +61,7 @@
 	},
 	"devDependencies": {
 		"@favware/cliff-jumper": "^1.8.8",
-		"@favware/rollup-type-bundler": "^1.0.11",
+		"@favware/rollup-type-bundler": "^2.0.0",
 		"tsup": "^6.2.3",
 		"typedoc": "^0.23.16",
 		"typedoc-json-parser": "^5.2.0",
