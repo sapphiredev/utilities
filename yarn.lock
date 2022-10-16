@@ -502,7 +502,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/async-queue@^1.5.0, @sapphire/async-queue@workspace:packages/async-queue":
+"@sapphire/async-queue@npm:^1.5.0":
+  version: 1.5.0
+  resolution: "@sapphire/async-queue@npm:1.5.0"
+  checksum: 983dbd1fd1b1798496e5edb6a0db7e4d90015160e1028f20475eab0a92625513f1e8d938bc0305811a9cec461c94e01b1e4191615ff03ba49356f568f3255250
+  languageName: node
+  linkType: hard
+
+"@sapphire/async-queue@workspace:packages/async-queue":
   version: 0.0.0-use.local
   resolution: "@sapphire/async-queue@workspace:packages/async-queue"
   dependencies:
@@ -565,7 +572,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@sapphire/discord-utilities@^2.11.6, @sapphire/discord-utilities@workspace:^, @sapphire/discord-utilities@workspace:packages/discord-utilities":
+"@sapphire/discord-utilities@npm:^2.11.6":
+  version: 2.11.6
+  resolution: "@sapphire/discord-utilities@npm:2.11.6"
+  checksum: aaabbb3558fa9255ab7fd874c6dba845caa6b5b2cbfccc96c6365d828888fc50b95c4fc9cb5f4aa6a7c904d7d9a95e61b80018a90e55bcc5d3779f2fb57926f1
+  languageName: node
+  linkType: hard
+
+"@sapphire/discord-utilities@workspace:^, @sapphire/discord-utilities@workspace:packages/discord-utilities":
   version: 0.0.0-use.local
   resolution: "@sapphire/discord-utilities@workspace:packages/discord-utilities"
   dependencies:
@@ -577,7 +591,19 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@sapphire/discord.js-utilities@^5.0.1, @sapphire/discord.js-utilities@workspace:^, @sapphire/discord.js-utilities@workspace:packages/discord.js-utilities":
+"@sapphire/discord.js-utilities@npm:^5.0.1":
+  version: 5.1.1
+  resolution: "@sapphire/discord.js-utilities@npm:5.1.1"
+  dependencies:
+    "@sapphire/discord-utilities": ^2.11.6
+    "@sapphire/duration": ^1.0.0
+    "@sapphire/utilities": ^3.11.0
+    tslib: ^2.4.0
+  checksum: 9abe09dfd06af739fb103eef954a8c3c9516651612e72ad78f5573cc482b41871267f1780ca4437d55e42f25525f01093ef654809e501e7d887f392e0f9c0005
+  languageName: node
+  linkType: hard
+
+"@sapphire/discord.js-utilities@workspace:^, @sapphire/discord.js-utilities@workspace:packages/discord.js-utilities":
   version: 0.0.0-use.local
   resolution: "@sapphire/discord.js-utilities@workspace:packages/discord.js-utilities"
   dependencies:
@@ -593,6 +619,13 @@ __metadata:
     typescript: ^4.8.4
   languageName: unknown
   linkType: soft
+
+"@sapphire/duration@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "@sapphire/duration@npm:1.0.0"
+  checksum: dadf3b5742742b5f724d1d78b0c59fd468ffe3ac817da2ba84361ac310528cb8c43f3d9d6032ff08f0f22fcaf61b495fb29b87800748e14abb0b780e86afda75
+  languageName: node
+  linkType: hard
 
 "@sapphire/duration@workspace:^, @sapphire/duration@workspace:packages/duration":
   version: 0.0.0-use.local
@@ -641,7 +674,16 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@sapphire/fetch@^2.4.1, @sapphire/fetch@workspace:^, @sapphire/fetch@workspace:packages/fetch":
+"@sapphire/fetch@npm:^2.4.1":
+  version: 2.4.1
+  resolution: "@sapphire/fetch@npm:2.4.1"
+  dependencies:
+    cross-fetch: ^3.1.5
+  checksum: f8ab0baa59dfcb931729a46957073e4e26377b6b5e3bdbbed921ae793c0848a240545ed157efd5db13342d68eed84dc73c6fe83038a5e62af9daa3715326c4a9
+  languageName: node
+  linkType: hard
+
+"@sapphire/fetch@workspace:^, @sapphire/fetch@workspace:packages/fetch":
   version: 0.0.0-use.local
   resolution: "@sapphire/fetch@workspace:packages/fetch"
   dependencies:
@@ -674,7 +716,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/lexure@^1.1.1, @sapphire/lexure@workspace:packages/lexure":
+"@sapphire/lexure@npm:^1.1.1":
+  version: 1.1.2
+  resolution: "@sapphire/lexure@npm:1.1.2"
+  dependencies:
+    "@sapphire/result": ^2.6.0
+  checksum: fe25476ba0189ff8c55c6bdb58ef81b0092f46882c59181e712d68adb68c9d86742365cfcb77e2d6dfb08267752894c9da51615718a1ab77ee3ff3609d93b240
+  languageName: node
+  linkType: hard
+
+"@sapphire/lexure@workspace:packages/lexure":
   version: 0.0.0-use.local
   resolution: "@sapphire/lexure@workspace:packages/lexure"
   dependencies:
@@ -689,7 +740,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@sapphire/node-utilities@^1.0.0, @sapphire/node-utilities@workspace:packages/node-utilities":
+"@sapphire/node-utilities@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "@sapphire/node-utilities@npm:1.0.0"
+  checksum: 80b99bd4f0fdcbccc289d1fc165321b82d421896355259ec54b733a72cb3e50635c00f126a9e4d56a0247a54aa77a1a96e1d6e99c4c8815dc061e53a39e87c4e
+  languageName: node
+  linkType: hard
+
+"@sapphire/node-utilities@workspace:packages/node-utilities":
   version: 0.0.0-use.local
   resolution: "@sapphire/node-utilities@workspace:packages/node-utilities"
   dependencies:
@@ -739,7 +797,16 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@sapphire/ratelimits@^2.4.5, @sapphire/ratelimits@workspace:^, @sapphire/ratelimits@workspace:packages/ratelimits":
+"@sapphire/ratelimits@npm:^2.4.5":
+  version: 2.4.5
+  resolution: "@sapphire/ratelimits@npm:2.4.5"
+  dependencies:
+    "@sapphire/timer-manager": ^1.0.0
+  checksum: e987d285c974e600222298e2c5e9523581c024059b3ec93cdfc71fc704b2dca5a55f126b897ee71b8bd82d2516e1d6c17c22355f329f43ead7bc001d9fbd9118
+  languageName: node
+  linkType: hard
+
+"@sapphire/ratelimits@workspace:^, @sapphire/ratelimits@workspace:packages/ratelimits":
   version: 0.0.0-use.local
   resolution: "@sapphire/ratelimits@workspace:packages/ratelimits"
   dependencies:
@@ -754,7 +821,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@sapphire/result@^2.5.0, @sapphire/result@workspace:^, @sapphire/result@workspace:packages/result":
+"@sapphire/result@npm:^2.5.0, @sapphire/result@npm:^2.6.0":
+  version: 2.6.0
+  resolution: "@sapphire/result@npm:2.6.0"
+  checksum: bab9e963c85c7ea0a410c36617b7d32fca8749739b7fbb61bf7a2eff566d002af78606c379b1a71f2857bf9c04d3f5f1af67f02278da75ac660f2f6ddfef26b5
+  languageName: node
+  linkType: hard
+
+"@sapphire/result@workspace:^, @sapphire/result@workspace:packages/result":
   version: 0.0.0-use.local
   resolution: "@sapphire/result@workspace:packages/result"
   dependencies:
@@ -792,7 +866,16 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@sapphire/stopwatch@^1.5.0, @sapphire/stopwatch@workspace:packages/stopwatch":
+"@sapphire/stopwatch@npm:^1.5.0":
+  version: 1.5.0
+  resolution: "@sapphire/stopwatch@npm:1.5.0"
+  dependencies:
+    tslib: ^2.4.0
+  checksum: 23c013598d87d2fcc797efe5d2409ae6836b9221d79eacc10b7c2a95f9d694b562b7ad027dc49e9e8125095417199385a15317520fec371bdb8cc7622085e3af
+  languageName: node
+  linkType: hard
+
+"@sapphire/stopwatch@workspace:packages/stopwatch":
   version: 0.0.0-use.local
   resolution: "@sapphire/stopwatch@workspace:packages/stopwatch"
   dependencies:
@@ -824,6 +907,13 @@ __metadata:
     typescript: ^4.8.4
   languageName: unknown
   linkType: soft
+
+"@sapphire/timer-manager@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "@sapphire/timer-manager@npm:1.0.0"
+  checksum: 2f131c2bf1882528c80e6a4aa8f0d3078ae1e2e3d1afc054878fbdb946dc987073d037dad5122e67d20b98e0ec6a37a8e4da7f9c0a91b9711819ad54bbedd6a4
+  languageName: node
+  linkType: hard
 
 "@sapphire/timer-manager@workspace:^, @sapphire/timer-manager@workspace:packages/timer-manager":
   version: 0.0.0-use.local
@@ -866,7 +956,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@sapphire/utilities@^3.10.0, @sapphire/utilities@^3.11.0, @sapphire/utilities@^3.8.0, @sapphire/utilities@^3.9.3, @sapphire/utilities@workspace:^, @sapphire/utilities@workspace:packages/utilities":
+"@sapphire/utilities@npm:^3.10.0, @sapphire/utilities@npm:^3.11.0, @sapphire/utilities@npm:^3.8.0, @sapphire/utilities@npm:^3.9.3":
+  version: 3.11.0
+  resolution: "@sapphire/utilities@npm:3.11.0"
+  checksum: 3c8521038b8879524e8114f39eefc8b3b06cf825995f709684238b5cb14bd7df06d232a26a88f79160df290a66f9aa3133f5ce4ff8e2398033db9f301ad31e0d
+  languageName: node
+  linkType: hard
+
+"@sapphire/utilities@workspace:^, @sapphire/utilities@workspace:packages/utilities":
   version: 0.0.0-use.local
   resolution: "@sapphire/utilities@workspace:packages/utilities"
   dependencies:
@@ -987,7 +1084,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^18.7.23":
+"@types/node@npm:*, @types/node@npm:^18.11.0":
   version: 18.11.0
   resolution: "@types/node@npm:18.11.0"
   checksum: f27f899ab428e5732f04fadadc9203f44bdf3abf56474540ee27da90e4f2ba133faf87263cada4d2271955f92ee6a142bd50683c86290fe5070c19aac44fd654
@@ -5301,7 +5398,7 @@ __metadata:
     "@favware/rollup-type-bundler": ^2.0.0
     "@sapphire/framework": ^3.1.3
     "@types/lodash": ^4.14.186
-    "@types/node": ^18.7.23
+    "@types/node": ^18.11.0
     "@types/ws": ^8.5.3
     "@typescript-eslint/eslint-plugin": ^5.40.0
     "@typescript-eslint/parser": ^5.40.0
