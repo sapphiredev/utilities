@@ -168,7 +168,7 @@ export class BitField<Flags extends Record<string, number> | Record<string, bigi
 	/**
 	 * Removes from `a` the bits that exist in `b`.
 	 * @param a The first field.
-	 * @param b The bits to create an union of.
+	 * @param b The bits to remove from `a`.
 	 * @returns The result of `a ∖ b`.
 	 * @example
 	 * ```typescript
