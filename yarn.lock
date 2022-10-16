@@ -517,7 +517,7 @@ __metadata:
     "@vitest/coverage-c8": ^0.24.3
     tsup: ^6.2.3
     typedoc: ^0.23.16
-    typedoc-json-parser: ^5.2.0
+    typedoc-json-parser: ^6.0.0
     typescript: ^4.8.4
     vitest: ^0.24.3
   languageName: unknown
@@ -531,7 +531,7 @@ __metadata:
     "@vitest/coverage-c8": ^0.24.3
     tsup: ^6.2.3
     typedoc: ^0.23.16
-    typedoc-json-parser: ^5.2.0
+    typedoc-json-parser: ^6.0.0
     typescript: ^4.8.4
     vitest: ^0.24.3
   languageName: unknown
@@ -546,7 +546,7 @@ __metadata:
     "@vitest/coverage-c8": ^0.24.3
     tsup: ^6.2.3
     typedoc: ^0.23.16
-    typedoc-json-parser: ^5.2.0
+    typedoc-json-parser: ^6.0.0
     typescript: ^4.8.4
     vitest: ^0.24.3
   languageName: unknown
@@ -566,7 +566,7 @@ __metadata:
     tslib: ^2.4.0
     tsup: ^6.2.3
     typedoc: ^0.23.16
-    typedoc-json-parser: ^5.2.0
+    typedoc-json-parser: ^6.0.0
     typescript: ^4.8.4
     vitest: ^0.24.3
   languageName: unknown
@@ -579,7 +579,7 @@ __metadata:
     "@favware/cliff-jumper": ^1.8.8
     tsup: ^6.2.3
     typedoc: ^0.23.16
-    typedoc-json-parser: ^5.2.0
+    typedoc-json-parser: ^6.0.0
     typescript: ^4.8.4
   languageName: unknown
   linkType: soft
@@ -596,7 +596,7 @@ __metadata:
     tslib: ^2.4.0
     tsup: ^6.2.3
     typedoc: ^0.23.16
-    typedoc-json-parser: ^5.2.0
+    typedoc-json-parser: ^6.0.0
     typescript: ^4.8.4
   languageName: unknown
   linkType: soft
@@ -609,7 +609,7 @@ __metadata:
     "@vitest/coverage-c8": ^0.24.3
     tsup: ^6.2.3
     typedoc: ^0.23.16
-    typedoc-json-parser: ^5.2.0
+    typedoc-json-parser: ^6.0.0
     typescript: ^4.8.4
     vitest: ^0.24.3
   languageName: unknown
@@ -642,7 +642,7 @@ __metadata:
     tslib: ^2.4.0
     tsup: ^6.2.3
     typedoc: ^0.23.16
-    typedoc-json-parser: ^5.2.0
+    typedoc-json-parser: ^6.0.0
     typescript: ^4.8.4
     vitest: ^0.24.3
   languageName: unknown
@@ -657,7 +657,7 @@ __metadata:
     cross-fetch: ^3.1.5
     tsup: ^6.2.3
     typedoc: ^0.23.16
-    typedoc-json-parser: ^5.2.0
+    typedoc-json-parser: ^6.0.0
     typescript: ^4.8.4
     vitest: ^0.24.3
   languageName: unknown
@@ -690,13 +690,13 @@ __metadata:
     "@vitest/coverage-c8": ^0.24.3
     tsup: ^6.2.3
     typedoc: ^0.23.16
-    typedoc-json-parser: ^5.2.0
+    typedoc-json-parser: ^6.0.0
     typescript: ^4.8.4
     vitest: ^0.24.3
   languageName: unknown
   linkType: soft
 
-"@sapphire/node-utilities@workspace:packages/node-utilities":
+"@sapphire/node-utilities@^1.0.0, @sapphire/node-utilities@workspace:packages/node-utilities":
   version: 0.0.0-use.local
   resolution: "@sapphire/node-utilities@workspace:packages/node-utilities"
   dependencies:
@@ -704,7 +704,7 @@ __metadata:
     "@vitest/coverage-c8": ^0.24.3
     tsup: ^6.2.3
     typedoc: ^0.23.16
-    typedoc-json-parser: ^5.2.0
+    typedoc-json-parser: ^6.0.0
     typescript: ^4.8.4
     vitest: ^0.24.3
   languageName: unknown
@@ -718,7 +718,7 @@ __metadata:
     "@sapphire/fetch": "workspace:^"
     tsup: ^6.2.3
     typedoc: ^0.23.16
-    typedoc-json-parser: ^5.2.0
+    typedoc-json-parser: ^6.0.0
     typescript: ^4.8.4
   languageName: unknown
   linkType: soft
@@ -755,7 +755,7 @@ __metadata:
     "@vitest/coverage-c8": ^0.24.3
     tsup: ^6.2.3
     typedoc: ^0.23.16
-    typedoc-json-parser: ^5.2.0
+    typedoc-json-parser: ^6.0.0
     typescript: ^4.8.4
     vitest: ^0.24.3
   languageName: unknown
@@ -769,7 +769,7 @@ __metadata:
     "@vitest/coverage-c8": ^0.24.3
     tsup: ^6.2.3
     typedoc: ^0.23.16
-    typedoc-json-parser: ^5.2.0
+    typedoc-json-parser: ^6.0.0
     typescript: ^4.8.4
     vitest: ^0.24.3
   languageName: unknown
@@ -793,7 +793,7 @@ __metadata:
     "@vitest/coverage-c8": ^0.24.3
     tsup: ^6.2.3
     typedoc: ^0.23.16
-    typedoc-json-parser: ^5.2.0
+    typedoc-json-parser: ^6.0.0
     typescript: ^4.8.4
     vitest: ^0.24.3
   languageName: unknown
@@ -810,7 +810,7 @@ __metadata:
     tslib: ^2.4.0
     tsup: ^6.2.3
     typedoc: ^0.23.16
-    typedoc-json-parser: ^5.2.0
+    typedoc-json-parser: ^6.0.0
     typescript: ^4.8.4
     vitest: ^0.24.3
   languageName: unknown
@@ -827,7 +827,7 @@ __metadata:
     "@sapphire/timestamp": "workspace:^"
     tsup: ^6.2.3
     typedoc: ^0.23.16
-    typedoc-json-parser: ^5.2.0
+    typedoc-json-parser: ^6.0.0
     typescript: ^4.8.4
   languageName: unknown
   linkType: soft
@@ -840,7 +840,7 @@ __metadata:
     "@vitest/coverage-c8": ^0.24.3
     tsup: ^6.2.3
     typedoc: ^0.23.16
-    typedoc-json-parser: ^5.2.0
+    typedoc-json-parser: ^6.0.0
     typescript: ^4.8.4
     vitest: ^0.24.3
   languageName: unknown
@@ -854,7 +854,7 @@ __metadata:
     "@vitest/coverage-c8": ^0.24.3
     tsup: ^6.2.3
     typedoc: ^0.23.16
-    typedoc-json-parser: ^5.2.0
+    typedoc-json-parser: ^6.0.0
     typescript: ^4.8.4
     vitest: ^0.24.3
   languageName: unknown
@@ -881,7 +881,7 @@ __metadata:
     "@vitest/coverage-c8": ^0.24.3
     tsup: ^6.2.3
     typedoc: ^0.23.16
-    typedoc-json-parser: ^5.2.0
+    typedoc-json-parser: ^6.0.0
     typescript: ^4.8.4
     vitest: ^0.24.3
   languageName: unknown
@@ -6184,11 +6184,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typedoc-json-parser@npm:^5.2.0":
-  version: 5.2.0
-  resolution: "typedoc-json-parser@npm:5.2.0"
+"typedoc-json-parser@npm:^6.0.0":
+  version: 6.0.0
+  resolution: "typedoc-json-parser@npm:6.0.0"
   dependencies:
     "@favware/colorette-spinner": ^1.0.1
+    "@sapphire/node-utilities": ^1.0.0
     colorette: ^2.0.19
     commander: ^9.4.1
     js-yaml: ^4.1.0
@@ -6196,7 +6197,7 @@ __metadata:
     typedoc: ^0.23.15
   bin:
     typedoc-json-parser: ./dist/bin/index.js
-  checksum: 3ff37c891758b012a010c8d327477b7bfe8a821d255dbfa1025ba7a4722d8936b408c2d05025082d116ae2b42bd6aa0c58c1e97dad08e090b8e08ab282197efd
+  checksum: 495bba44d013059c860d7968e2eea17a4a411495d675607ed674bf3572d94e6c8f66e41f3b4a3f640555f4247bd9e63d71d86d99578023636e293303b2286819
   languageName: node
   linkType: hard
 
