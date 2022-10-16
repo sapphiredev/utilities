@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/result@2.6.0](https://github.com/sapphiredev/utilities/compare/@sapphire/result@2.5.0...@sapphire/result@2.6.0) - (2022-10-16)
+
+## 🐛 Bug Fixes
+
+- **deps:** Update all non-major dependencies (#505) ([6178296](https://github.com/sapphiredev/utilities/commit/617829649e1e4deeee02b14533b5377cd5bc1fb3))
+
+## 📝 Documentation
+
+- Add @r-priyam as a contributor ([fb278ba](https://github.com/sapphiredev/utilities/commit/fb278bacf627ec6fc88752eafeb12df5f3177a2c))
+
+## 🚀 Features
+
+- Add `{Option,Result}.{any,all}` (#501) ([4c349bf](https://github.com/sapphiredev/utilities/commit/4c349bf6b3577ad85a1895f90c775c92c4016fa3))
+
 # [@sapphire/result@2.5.0](https://github.com/sapphiredev/utilities/compare/@sapphire/result@2.4.1...@sapphire/result@2.5.0) - (2022-10-01)
 
 ## 🏠 Refactor
