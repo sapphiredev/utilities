@@ -46,6 +46,7 @@
 				"@sapphire/discord.js-utilities#build",
 				"@sapphire/fetch#build",
 				"@sapphire/lexure#build",
+				"@sapphire/node-utilities#build",
 				"@sapphire/ratelimits#build",
 				"@sapphire/result#build",
 				"@sapphire/timestamp#build",
