@@ -5,6 +5,7 @@
 	"repoHost": "https://github.com",
 	"files": [
 		"packages/async-queue/README.md",
+		"packages/bitfield/README.md",
 		"packages/cron/README.md",
 		"packages/decorators/README.md",
 		"packages/discord-utilities/README.md",

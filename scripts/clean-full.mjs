@@ -10,6 +10,7 @@ const paths = [
 
 	// Nested node_modules folders
 	new URL('async-queue/node_modules/', packagesDir),
+	new URL('bitfield/node_modules/', packagesDir),
 	new URL('cron/node_modules/', packagesDir),
 	new URL('decorators/node_modules/', packagesDir),
 	new URL('discord-utilities/node_modules/', packagesDir),
@@ -34,6 +35,7 @@ const paths = [
 
 	// Dist folders
 	new URL('async-queue/dist/', packagesDir),
+	new URL('bitfield/dist/', packagesDir),
 	new URL('cron/dist/', packagesDir),
 	new URL('decorators/dist/', packagesDir),
 	new URL('discord-utilities/dist/', packagesDir),

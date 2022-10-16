@@ -57,6 +57,7 @@ jobs:
       matrix:
         package:
           - async-queue
+          - bitfield
           - cron
           - decorators
           - discord-utilities
