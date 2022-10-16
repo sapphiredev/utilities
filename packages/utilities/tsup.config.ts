@@ -1,3 +1,4 @@
+import { esbuildPluginFilePathExtensions } from 'esbuild-plugin-file-path-extensions';
 import { createTsupConfig } from '../../scripts/tsup.config';
 
 export default createTsupConfig({
@@ -6,22 +7,5 @@ export default createTsupConfig({
 	entry: ['src/**/*.ts', '!src/**/*.d.ts'],
 	format: ['esm', 'cjs'],
 	dts: false,
-	esbuildPlugins: [
-		{
-			name: 'add-extension-to-file-imports-and-exports',
-			setup(build) {
-				const isEsm = build.initialOptions.define?.TSUP_FORMAT === '"esm"';
-				build.onResolve({ filter: /.*/ }, (args) => {
-					if (args.importer) {
-						return {
-							path: `${args.path}.${isEsm ? 'mjs' : 'js'}`,
-							external: true
-						};
-					}
-
-					return undefined;
-				});
-			}
-		}
-	]
+	esbuildPlugins: [esbuildPluginFilePathExtensions()]
 });
