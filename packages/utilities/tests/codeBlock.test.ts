@@ -4,8 +4,8 @@ const zeroWidthSpace = String.fromCharCode(8203);
 
 describe('codeBlock', () => {
 	test('GIVEN expression w/o length THEN returns wrapped ZeroWidthSpace', () => {
-		expect(codeBlock('md', '')).toStrictEqual(`\`\`\`
-${zeroWidthSpace}
+		expect(codeBlock('md', '')).toStrictEqual(`\`\`\`md
+
 \`\`\``);
 	});
 
@@ -65,7 +65,7 @@ ${zeroWidthSpace}
 	test('GIVEN expression of falsey type THEN returns wrapped expression', () => {
 		// @ts-expect-error Checking for invalid input
 		expect(codeBlock('md', false)).toStrictEqual(`\`\`\`md
-${zeroWidthSpace}
+false
 \`\`\``);
 	});
 });
