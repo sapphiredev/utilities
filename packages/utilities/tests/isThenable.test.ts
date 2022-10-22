@@ -31,22 +31,22 @@ describe('isThenable', () => {
 		expect(isThenable(value)).toBe(false);
 	});
 
-	test('GIVEN object-null THEN returns false', () => {
+	test('GIVEN null THEN returns false', () => {
 		const value = null;
 		expect(isThenable(value)).toBe(false);
 	});
 
-	test('GIVEN promise-constructor THEN returns false', () => {
+	test('GIVEN promise-constructor THEN returns true', () => {
 		const value = new Promise((resolve): void => resolve(true));
 		expect(isThenable(value)).toBe(true);
 	});
 
-	test('GIVEN promise-resolve THEN returns false', () => {
+	test('GIVEN promise-resolve THEN returns true', () => {
 		const value = Promise.resolve(true);
 		expect(isThenable(value)).toBe(true);
 	});
 
-	test('GIVEN promise-like THEN returns false', () => {
+	test('GIVEN promise-like THEN returns true', () => {
 		const value = {
 			then(): boolean {
 				return true;
