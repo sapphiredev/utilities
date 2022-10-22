@@ -250,9 +250,9 @@ export const MessageLimits = {
 
 	/**
 	 * Maximum upload size for a nitro user, in any guild or in DMs.
-	 * Size is in bytes, and correspond to 10MB.
+	 * Size is in bytes, and correspond to 500MB.
 	 */
-	MaximumNitroUploadSize: 100_000_000,
+	MaximumNitroUploadSize: 5_000_000_000,
 
 	/**
 	 * Maximum upload size for a free user for all different boost levels available in a guild.
