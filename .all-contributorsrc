@@ -319,6 +319,13 @@
 			"avatar_url": "https://avatars.githubusercontent.com/u/69213593?v=4",
 			"profile": "https://github.com/legendhimslef",
 			"contributions": ["code"]
+		},
+		{
+			"login": "CitTheDev",
+			"name": "Cit The Dev",
+			"avatar_url": "https://avatars.githubusercontent.com/u/94020875?v=4",
+			"profile": "https://github.com/CitTheDev",
+			"contributions": ["code"]
 		}
 	],
 	"contributorsPerLine": 7,
