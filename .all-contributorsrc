@@ -312,6 +312,13 @@
 			"avatar_url": "https://avatars.githubusercontent.com/u/50884372?v=4",
 			"profile": "https://github.com/r-priyam",
 			"contributions": ["code"]
+		},
+		{
+			"login": "legendhimslef",
+			"name": "Voxelli",
+			"avatar_url": "https://avatars.githubusercontent.com/u/69213593?v=4",
+			"profile": "https://github.com/legendhimslef",
+			"contributions": ["code"]
 		}
 	],
 	"contributorsPerLine": 7,
