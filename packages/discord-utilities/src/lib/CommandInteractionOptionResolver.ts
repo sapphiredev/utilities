@@ -1,6 +1,5 @@
 import {
 	APIApplicationCommandInteraction,
-	APIMessageComponentInteraction,
 	APIApplicationCommandAutocompleteInteraction,
 	APIModalSubmitInteraction,
 	APIApplicationCommandInteractionDataOption,
@@ -131,7 +130,6 @@ export class CommandInteractionOptionResolver {
 	}
 
 	public getBoolean(name: string, required: boolean | false): boolean | null;
-
 	public getBoolean(name: string, required: true): boolean;
 
 	/**
@@ -145,7 +143,6 @@ export class CommandInteractionOptionResolver {
 	}
 
 	public getChannel(name: string, required: boolean | false): APIInteractionDataResolvedChannel | null;
-
 	public getChannel(name: string, required: true): APIInteractionDataResolvedChannel;
 
 	/**
@@ -159,7 +156,6 @@ export class CommandInteractionOptionResolver {
 	}
 
 	public getString(name: string, required: boolean | false): string | null;
-
 	public getString(name: string, required: true): string;
 
 	/**
@@ -173,7 +169,6 @@ export class CommandInteractionOptionResolver {
 	}
 
 	public getInteger(name: string, required: boolean | false): number | null;
-
 	public getInteger(name: string, required: true): number;
 
 	/**
@@ -187,7 +182,6 @@ export class CommandInteractionOptionResolver {
 	}
 
 	public getNumber(name: string, required: boolean | false): number | null;
-
 	public getNumber(name: string, required: true): number;
 
 	/**
@@ -201,7 +195,6 @@ export class CommandInteractionOptionResolver {
 	}
 
 	public getUser(name: string, required: boolean | false): APIUser | null;
-
 	public getUser(name: string, required: true): APIUser;
 
 	/**
@@ -215,7 +208,6 @@ export class CommandInteractionOptionResolver {
 	}
 
 	public getMember(name: string, required: boolean | false): APIInteractionDataResolvedGuildMember | null;
-
 	public getMember(name: string, required: true): APIInteractionDataResolvedGuildMember;
 
 	/**
@@ -229,7 +221,6 @@ export class CommandInteractionOptionResolver {
 	}
 
 	public getRole(name: string, required: boolean | false): APIRole | null;
-
 	public getRole(name: string, required: true): APIRole;
 
 	/**
@@ -243,7 +234,6 @@ export class CommandInteractionOptionResolver {
 	}
 
 	public getAttachment(name: string, required: boolean | false): APIAttachment | null;
-
 	public getAttachment(name: string, required: true): APIAttachment;
 
 	/**
@@ -257,7 +247,6 @@ export class CommandInteractionOptionResolver {
 	}
 
 	public getMentionable(name: string, required: boolean | false): APIUser | APIInteractionDataResolvedGuildMember | APIRole | null;
-
 	public getMentionable(name: string, required: true): APIUser | APIInteractionDataResolvedGuildMember | APIRole;
 
 	/**
