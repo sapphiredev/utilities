@@ -570,6 +570,7 @@ __metadata:
   resolution: "@sapphire/discord-utilities@workspace:packages/discord-utilities"
   dependencies:
     "@favware/cliff-jumper": ^1.8.8
+    discord-api-types: ^0.37.14
     tsup: ^6.3.0
     typedoc: ^0.23.19
     typedoc-json-parser: ^7.0.1
@@ -2251,6 +2252,13 @@ __metadata:
   version: 0.36.3
   resolution: "discord-api-types@npm:0.36.3"
   checksum: 3089c0fb37425dc5df03c76d82988d43fcc272699b06a02fc830d0a3bef550009aaebdf6d646529e8a7ccea76ae3f43b099d736ea5ef37a0be143142ab49871d
+  languageName: node
+  linkType: hard
+
+"discord-api-types@npm:^0.37.14":
+  version: 0.37.14
+  resolution: "discord-api-types@npm:0.37.14"
+  checksum: 8f45f202e66acfd7b25624c8f4d225b363d9d8991d766959bcf246761548b99e21c12d9f7eafe00903913af66058595e5e56329dfb219eab8bb75a84f6413983
   languageName: node
   linkType: hard
 
