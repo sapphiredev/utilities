@@ -168,6 +168,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/muchnameless"><img src="https://avatars.githubusercontent.com/u/12682826?v=4?s=100" width="100px;" alt=""/><br /><sub><b>muchnameless</b></sub></a><br /><a href="https://github.com/sapphiredev/utilities/commits?author=muchnameless" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/r-priyam"><img src="https://avatars.githubusercontent.com/u/50884372?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Priyam</b></sub></a><br /><a href="https://github.com/sapphiredev/utilities/commits?author=r-priyam" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/legendhimslef"><img src="https://avatars.githubusercontent.com/u/69213593?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Voxelli</b></sub></a><br /><a href="https://github.com/sapphiredev/utilities/commits?author=legendhimslef" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/CitTheDev"><img src="https://avatars.githubusercontent.com/u/94020875?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Cit The Dev</b></sub></a><br /><a href="https://github.com/sapphiredev/utilities/commits?author=CitTheDev" title="Code">💻</a></td>
   </tr>
 </table>
 
