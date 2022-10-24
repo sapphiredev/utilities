@@ -326,6 +326,13 @@
 			"avatar_url": "https://avatars.githubusercontent.com/u/94020875?v=4",
 			"profile": "https://github.com/CitTheDev",
 			"contributions": ["code"]
+		},
+		{
+			"login": "goestav",
+			"name": "Goestav",
+			"avatar_url": "https://avatars.githubusercontent.com/u/27970303?v=4",
+			"profile": "https://www.goestav.com/",
+			"contributions": ["code"]
 		}
 	],
 	"contributorsPerLine": 7,
