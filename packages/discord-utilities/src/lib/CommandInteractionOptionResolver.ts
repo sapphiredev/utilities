@@ -27,11 +27,7 @@ import {
  * Based on @raw {@linkplain https://github.com/discordjs/discord.js/blob/main/packages/discord.js/src/structures/CommandInteractionOptionResolver.js}
  */
 export class CommandInteractionOptionResolver {
-	private readonly interaction:
-		| APIApplicationCommandInteraction
-		| APIMessageComponentInteraction
-		| APIApplicationCommandAutocompleteInteraction
-		| APIModalSubmitInteraction;
+	private readonly interaction: APIApplicationCommandInteraction | APIApplicationCommandAutocompleteInteraction | APIModalSubmitInteraction;
 
 	/**
 	 * The interaction options array
@@ -63,13 +59,7 @@ export class CommandInteractionOptionResolver {
 	 */
 	private readonly subcommand: string | null = null;
 
-	public constructor(
-		interaction:
-			| APIApplicationCommandInteraction
-			| APIMessageComponentInteraction
-			| APIApplicationCommandAutocompleteInteraction
-			| APIModalSubmitInteraction
-	) {
+	public constructor(interaction: APIApplicationCommandInteraction | APIApplicationCommandAutocompleteInteraction | APIModalSubmitInteraction) {
 		this.interaction = interaction;
 
 		this.data = 'options' in interaction.data ? interaction.data.options ?? null : null;
