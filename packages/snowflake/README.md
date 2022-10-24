@@ -219,6 +219,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/legendhimslef"><img src="https://avatars.githubusercontent.com/u/69213593?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Voxelli</b></sub></a><br /><a href="https://github.com/sapphiredev/utilities/commits?author=legendhimslef" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/CitTheDev"><img src="https://avatars.githubusercontent.com/u/94020875?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Cit The Dev</b></sub></a><br /><a href="https://github.com/sapphiredev/utilities/commits?author=CitTheDev" title="Code">💻</a></td>
   </tr>
+  <tr>
+    <td align="center"><a href="https://www.goestav.com/"><img src="https://avatars.githubusercontent.com/u/27970303?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Goestav</b></sub></a><br /><a href="https://github.com/sapphiredev/utilities/commits?author=goestav" title="Code">💻</a></td>
+  </tr>
 </table>
 
 <!-- markdownlint-restore -->
