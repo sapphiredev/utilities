@@ -1,29 +1,29 @@
 import {
-	type APIApplicationCommandInteraction,
-	type APIApplicationCommandAutocompleteInteraction,
-	type APIModalSubmitInteraction,
-	type APIApplicationCommandInteractionDataOption,
 	ApplicationCommandOptionType,
-	type APIChatInputApplicationCommandInteractionDataResolved,
-	type APIUserApplicationCommandInteractionDataResolved,
-	type APIMessageApplicationCommandInteractionDataResolved,
+	ApplicationCommandType,
+	InteractionType,
+	type APIApplicationCommandAutocompleteInteraction,
+	type APIApplicationCommandInteraction,
 	type APIApplicationCommandInteractionDataBasicOption,
-	type APIInteractionDataResolvedChannel,
-	type APIUser,
-	type APIRole,
+	type APIApplicationCommandInteractionDataIntegerOption,
+	type APIApplicationCommandInteractionDataNumberOption,
+	type APIApplicationCommandInteractionDataOption,
+	type APIApplicationCommandInteractionDataStringOption,
 	type APIAttachment,
+	type APIChatInputApplicationCommandInteractionDataResolved,
+	type APIInteractionDataResolvedChannel,
 	type APIInteractionDataResolvedGuildMember,
 	type APIMessage,
-	InteractionType,
-	ApplicationCommandType,
-	type APIApplicationCommandInteractionDataStringOption,
-	type APIApplicationCommandInteractionDataIntegerOption,
-	type APIApplicationCommandInteractionDataNumberOption
+	type APIMessageApplicationCommandInteractionDataResolved,
+	type APIModalSubmitInteraction,
+	type APIRole,
+	type APIUser,
+	type APIUserApplicationCommandInteractionDataResolved
 } from 'discord-api-types/v10';
 
 /**
  * Utility class for resolving command interaction options while working with the raw API.
- * Based on @raw {@linkplain https://github.com/discordjs/discord.js/blob/main/packages/discord.js/src/structures/CommandInteractionOptionResolver.js}
+ * Based on {@linkplain https://github.com/discordjs/discord.js/blob/main/packages/discord.js/src/structures/CommandInteractionOptionResolver.js}
  */
 export class CommandInteractionOptionResolver {
 	private readonly interaction: APIApplicationCommandInteraction | APIApplicationCommandAutocompleteInteraction | APIModalSubmitInteraction;
@@ -94,8 +94,10 @@ export class CommandInteractionOptionResolver {
 			if (required) {
 				throw new Error(`Missing required option "${name}"`);
 			}
+
 			return null;
 		}
+
 		return option;
 	}
 
@@ -256,6 +258,7 @@ export class CommandInteractionOptionResolver {
 	 */
 	public getMentionable(name: string, required = false): APIUser | APIInteractionDataResolvedGuildMember | APIRole | null {
 		const option = this.getTypedOption(name, ApplicationCommandOptionType.Mentionable, required);
+
 		if (!option || !this.resolved) {
 			return null;
 		}
@@ -299,6 +302,7 @@ export class CommandInteractionOptionResolver {
 		}
 
 		const member = (this.resolved as APIUserApplicationCommandInteractionDataResolved).members?.[this.interaction.data.target_id] ?? null;
+
 		if (!member && required) {
 			throw new Error('Member data is not present');
 		}
@@ -337,6 +341,7 @@ export class CommandInteractionOptionResolver {
 		}
 
 		const { focused, ...option } = focusedOption;
+
 		return option;
 	}
 
@@ -366,10 +371,11 @@ export class CommandInteractionOptionResolver {
 
 type BasicApplicationCommandOptionType = APIApplicationCommandInteractionDataBasicOption['type'];
 
-// This extra type is required because apparently just inling what `_TypeToOptionMap` does into `TypeToOptionMap` does not behave the same
+// This extra type is required because apparently just inlining what `_TypeToOptionMap` does into `TypeToOptionMap` does not behave the same
 type _TypeToOptionMap = {
 	[Option in BasicApplicationCommandOptionType]: APIApplicationCommandInteractionDataBasicOption & { type: Option };
 };
+
 type TypeToOptionMap = {
 	[Option in keyof _TypeToOptionMap]: _TypeToOptionMap[Option];
 };
