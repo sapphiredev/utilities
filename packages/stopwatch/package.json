@@ -60,9 +60,9 @@
 		"@favware/cliff-jumper": "^1.8.8",
 		"@types/jsdom": "^20.0.0",
 		"@vitest/coverage-c8": "^0.24.3",
-		"jsdom": "^20.0.1",
+		"jsdom": "^20.0.2",
 		"tsup": "^6.3.0",
-		"typedoc": "^0.23.17",
+		"typedoc": "^0.23.19",
 		"typedoc-json-parser": "^7.0.1",
 		"typescript": "^4.8.4",
 		"vitest": "^0.24.3"
