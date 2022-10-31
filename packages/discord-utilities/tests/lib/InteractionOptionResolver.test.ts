@@ -10,7 +10,7 @@ import {
 	ApplicationCommandType,
 	InteractionType
 } from 'discord-api-types/v10';
-import { CommandInteractionOptionResolver } from '../../src';
+import { InteractionOptionResolver } from '../../src';
 
 describe('chat input interaction', () => {
 	test('it can resolve basic options of all types', () => {
@@ -92,7 +92,7 @@ describe('chat input interaction', () => {
 			}
 		} as unknown as APIChatInputApplicationCommandInteraction;
 
-		const resolver = new CommandInteractionOptionResolver(mockInteraction);
+		const resolver = new InteractionOptionResolver(mockInteraction);
 
 		expect(resolver.getString('string')).toBe('foo');
 		expect(resolver.getInteger('integer')).toBe(1);
@@ -130,7 +130,7 @@ describe('chat input interaction', () => {
 			}
 		} as unknown as APIChatInputApplicationCommandInteraction;
 
-		const resolver = new CommandInteractionOptionResolver(mockInteraction);
+		const resolver = new InteractionOptionResolver(mockInteraction);
 
 		expect(resolver.getSubcommandGroup()).toBe('subcommand-group');
 		expect(resolver.getSubcommand()).toBe('subcommand');
@@ -144,7 +144,7 @@ describe('chat input interaction', () => {
 			}
 		} as unknown as APIChatInputApplicationCommandInteraction;
 
-		const resolver = new CommandInteractionOptionResolver(mockInteraction);
+		const resolver = new InteractionOptionResolver(mockInteraction);
 
 		expect(() => resolver.getString('string', true)).toThrow();
 	});
@@ -162,7 +162,7 @@ describe('chat input interaction', () => {
 			}
 		} as unknown as APIChatInputApplicationCommandInteraction;
 
-		const resolver = new CommandInteractionOptionResolver(mockInteraction);
+		const resolver = new InteractionOptionResolver(mockInteraction);
 		expect(() => resolver.getInteger('string')).toThrow();
 	});
 });
@@ -184,7 +184,7 @@ describe('user context menu', () => {
 			}
 		} as unknown as APIApplicationCommandInteraction;
 
-		const resolver = new CommandInteractionOptionResolver(mockInteraction);
+		const resolver = new InteractionOptionResolver(mockInteraction);
 
 		expect(resolver.getTargetUser().id).toBe('123');
 	});
@@ -197,7 +197,7 @@ describe('user context menu', () => {
 			}
 		} as unknown as APIApplicationCommandInteraction;
 
-		const resolver = new CommandInteractionOptionResolver(mockInteraction);
+		const resolver = new InteractionOptionResolver(mockInteraction);
 
 		expect(() => resolver.getTargetUser()).toThrow();
 	});
@@ -220,7 +220,7 @@ describe('message context menu', () => {
 			}
 		} as unknown as APIApplicationCommandInteraction;
 
-		const resolver = new CommandInteractionOptionResolver(mockInteraction);
+		const resolver = new InteractionOptionResolver(mockInteraction);
 
 		expect(resolver.getTargetMessage().id).toBe('123');
 	});
@@ -233,7 +233,7 @@ describe('message context menu', () => {
 			}
 		} as unknown as APIApplicationCommandInteraction;
 
-		const resolver = new CommandInteractionOptionResolver(mockInteraction);
+		const resolver = new InteractionOptionResolver(mockInteraction);
 
 		expect(() => resolver.getTargetMessage()).toThrow();
 	});
@@ -255,7 +255,7 @@ describe('autocomplete', () => {
 			}
 		} as unknown as APIApplicationCommandInteraction;
 
-		const resolver = new CommandInteractionOptionResolver(mockInteraction);
+		const resolver = new InteractionOptionResolver(mockInteraction);
 
 		expect(resolver.getFocusedOption().value).toEqual('foo');
 	});
