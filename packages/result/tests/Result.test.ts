@@ -28,7 +28,7 @@ describe('Result', () => {
 				expect(x.isOkAnd(cb)).toBe(true);
 				expect(cb).toHaveBeenCalledTimes(1);
 				expect(cb).toHaveBeenCalledWith(2);
-				expect(cb).toHaveReturnedWith(true);
+				expect(cb).toHaveLastReturnedWith(true);
 			});
 
 			test('GIVEN ok AND false-returning callback THEN returns false', () => {
@@ -38,7 +38,7 @@ describe('Result', () => {
 				expect(x.isOkAnd(cb)).toBe(false);
 				expect(cb).toHaveBeenCalledTimes(1);
 				expect(cb).toHaveBeenCalledWith(0);
-				expect(cb).toHaveReturnedWith(false);
+				expect(cb).toHaveLastReturnedWith(false);
 			});
 
 			test('GIVEN err THEN always returns false', () => {
@@ -79,7 +79,7 @@ describe('Result', () => {
 				expect(x.isErrAnd(cb)).toBe(false);
 				expect(cb).toHaveBeenCalledTimes(1);
 				expect(cb).toHaveBeenCalledWith(error);
-				expect(cb).toHaveReturnedWith(false);
+				expect(cb).toHaveLastReturnedWith(false);
 			});
 
 			test('GIVEN err AND true-returning callback THEN returns false', () => {
@@ -90,7 +90,7 @@ describe('Result', () => {
 				expect(x.isErrAnd(cb)).toBe(true);
 				expect(cb).toHaveBeenCalledTimes(1);
 				expect(cb).toHaveBeenCalledWith(error);
-				expect(cb).toHaveReturnedWith(true);
+				expect(cb).toHaveLastReturnedWith(true);
 			});
 		});
 
@@ -130,7 +130,7 @@ describe('Result', () => {
 				expect<Ok<boolean>>(x.map(cb)).toEqual(ok(true));
 				expect(cb).toHaveBeenCalledTimes(1);
 				expect(cb).toHaveBeenCalledWith(2);
-				expect(cb).toHaveReturnedWith(true);
+				expect(cb).toHaveLastReturnedWith(true);
 			});
 
 			test('GIVEN err THEN returns err', () => {
@@ -150,7 +150,7 @@ describe('Result', () => {
 				expect<Ok<boolean>>(x.mapInto(cb)).toEqual(ok(true));
 				expect(cb).toHaveBeenCalledTimes(1);
 				expect(cb).toHaveBeenCalledWith(2);
-				expect(cb).toHaveReturnedWith(ok(true));
+				expect(cb).toHaveLastReturnedWith(ok(true));
 			});
 
 			test('GIVEN err THEN returns itself', () => {
@@ -170,7 +170,7 @@ describe('Result', () => {
 				expect<boolean>(x.mapOr(false, cb)).toEqual(true);
 				expect(cb).toHaveBeenCalledTimes(1);
 				expect(cb).toHaveBeenCalledWith(2);
-				expect(cb).toHaveReturnedWith(true);
+				expect(cb).toHaveLastReturnedWith(true);
 			});
 
 			test('GIVEN err THEN returns err', () => {
@@ -192,7 +192,7 @@ describe('Result', () => {
 				expect(op).not.toHaveBeenCalled();
 				expect(cb).toHaveBeenCalledTimes(1);
 				expect(cb).toHaveBeenCalledWith(2);
-				expect(cb).toHaveReturnedWith(true);
+				expect(cb).toHaveLastReturnedWith(true);
 			});
 
 			test('GIVEN err THEN returns err', () => {
@@ -203,7 +203,7 @@ describe('Result', () => {
 				expect<boolean>(x.mapOrElse(op, cb)).toEqual(false);
 				expect(op).toHaveBeenCalledTimes(1);
 				expect(op).toHaveBeenCalledWith('Some error message');
-				expect(op).toHaveReturnedWith(false);
+				expect(op).toHaveLastReturnedWith(false);
 				expect(cb).not.toHaveBeenCalled();
 			});
 		});
@@ -224,7 +224,7 @@ describe('Result', () => {
 				expect<Result<number, number>>(x.mapErr(cb)).toEqual(err(18));
 				expect(cb).toHaveBeenCalledTimes(1);
 				expect(cb).toHaveBeenCalledWith('Some error message');
-				expect(cb).toHaveReturnedWith(18);
+				expect(cb).toHaveLastReturnedWith(18);
 			});
 		});
 
@@ -244,7 +244,7 @@ describe('Result', () => {
 				expect<Result<number, number>>(x.mapErrInto(cb)).toEqual(ok(18));
 				expect(cb).toHaveBeenCalledTimes(1);
 				expect(cb).toHaveBeenCalledWith('Some error message');
-				expect(cb).toHaveReturnedWith(ok(18));
+				expect(cb).toHaveLastReturnedWith(ok(18));
 			});
 		});
 
@@ -493,7 +493,7 @@ describe('Result', () => {
 				expect<Result<number, string>>(x.andThen(op)).toEqual(ok(1));
 				expect(op).toHaveBeenCalledTimes(1);
 				expect(op).toHaveBeenCalledWith(4);
-				expect(op).toHaveReturnedWith(ok(1));
+				expect(op).toHaveLastReturnedWith(ok(1));
 			});
 
 			test('GIVEN ok AND err-returning callback THEN returns err', () => {
@@ -503,7 +503,7 @@ describe('Result', () => {
 				expect<Result<number, string>>(x.andThen(op)).toEqual(err('overflowed'));
 				expect(op).toHaveBeenCalledTimes(1);
 				expect(op).toHaveBeenCalledWith(0);
-				expect(op).toHaveReturnedWith(err('overflowed'));
+				expect(op).toHaveLastReturnedWith(err('overflowed'));
 			});
 
 			test('GIVEN err THEN always returns err', () => {
@@ -577,7 +577,7 @@ describe('Result', () => {
 				expect<Ok<number>>(x.orElse(a).orElse(b)).toEqual(ok(9));
 				expect(a).toHaveBeenCalledTimes(1);
 				expect(a).toHaveBeenCalledWith(3);
-				expect(a).toHaveReturnedWith(ok(9));
+				expect(a).toHaveLastReturnedWith(ok(9));
 				expect(b).not.toHaveBeenCalled();
 			});
 
@@ -589,10 +589,10 @@ describe('Result', () => {
 				expect<Err<number>>(x.orElse(a).orElse(b)).toEqual(err(3));
 				expect(a).toHaveBeenCalledTimes(1);
 				expect(a).toHaveBeenCalledWith(3);
-				expect(a).toHaveReturnedWith(err(3));
+				expect(a).toHaveLastReturnedWith(err(3));
 				expect(b).toHaveBeenCalledTimes(1);
 				expect(b).toHaveBeenCalledWith(3);
-				expect(b).toHaveReturnedWith(err(3));
+				expect(b).toHaveLastReturnedWith(err(3));
 			});
 		});
 
@@ -801,7 +801,7 @@ describe('Result', () => {
 				expect<number>(x.match({ ok, err })).toBe(4);
 				expect(ok).toHaveBeenCalledTimes(1);
 				expect(ok).toHaveBeenCalledWith(2);
-				expect(ok).toHaveReturnedWith(4);
+				expect(ok).toHaveLastReturnedWith(4);
 				expect(err).not.toHaveBeenCalled();
 			});
 
@@ -814,7 +814,7 @@ describe('Result', () => {
 				expect(ok).not.toHaveBeenCalled();
 				expect(err).toHaveBeenCalledTimes(1);
 				expect(err).toHaveBeenCalledWith('Some error message');
-				expect(err).toHaveReturnedWith(18);
+				expect(err).toHaveLastReturnedWith(18);
 			});
 		});
 	});

@@ -28,7 +28,7 @@ describe('Option', () => {
 				expect(x.isSomeAnd(cb)).toBe(true);
 				expect(cb).toHaveBeenCalledTimes(1);
 				expect(cb).toHaveBeenCalledWith(2);
-				expect(cb).toHaveReturnedWith(true);
+				expect(cb).toHaveLastReturnedWith(true);
 			});
 
 			test('GIVEN some AND false-returning callback THEN returns false', () => {
@@ -38,7 +38,7 @@ describe('Option', () => {
 				expect(x.isSomeAnd(cb)).toBe(false);
 				expect(cb).toHaveBeenCalledTimes(1);
 				expect(cb).toHaveBeenCalledWith(0);
-				expect(cb).toHaveReturnedWith(false);
+				expect(cb).toHaveLastReturnedWith(false);
 			});
 
 			test('GIVEN none THEN always returns false', () => {
@@ -138,7 +138,7 @@ describe('Option', () => {
 				expect<Some<number>>(x.map(op)).toEqual(some(13));
 				expect(op).toHaveBeenCalledTimes(1);
 				expect(op).toHaveBeenCalledWith('Hello, world!');
-				expect(op).toHaveReturnedWith(13);
+				expect(op).toHaveLastReturnedWith(13);
 			});
 
 			test('GIVEN none THEN returns self', () => {
@@ -158,7 +158,7 @@ describe('Option', () => {
 				expect<Some<number>>(x.mapInto(op)).toEqual(some(13));
 				expect(op).toHaveBeenCalledTimes(1);
 				expect(op).toHaveBeenCalledWith('Hello, world!');
-				expect(op).toHaveReturnedWith(some(13));
+				expect(op).toHaveLastReturnedWith(some(13));
 			});
 
 			test('GIVEN none THEN returns itself', () => {
@@ -178,7 +178,7 @@ describe('Option', () => {
 				expect<number>(x.mapOr(5, op)).toEqual(13);
 				expect(op).toHaveBeenCalledTimes(1);
 				expect(op).toHaveBeenCalledWith('Hello, world!');
-				expect(op).toHaveReturnedWith(13);
+				expect(op).toHaveLastReturnedWith(13);
 			});
 
 			test('GIVEN none THEN returns default value', () => {
@@ -199,7 +199,7 @@ describe('Option', () => {
 				expect<number>(x.mapOrElse(df, op)).toEqual(13);
 				expect(op).toHaveBeenCalledTimes(1);
 				expect(op).toHaveBeenCalledWith('Hello, world!');
-				expect(op).toHaveReturnedWith(13);
+				expect(op).toHaveLastReturnedWith(13);
 				expect(df).not.toHaveBeenCalled();
 			});
 
@@ -211,7 +211,7 @@ describe('Option', () => {
 				expect<number>(x.mapOrElse(df, op)).toBe(5);
 				expect(df).toHaveBeenCalledTimes(1);
 				expect(df).toHaveBeenCalledWith();
-				expect(df).toHaveReturnedWith(5);
+				expect(df).toHaveLastReturnedWith(5);
 				expect(op).not.toHaveBeenCalled();
 			});
 		});
@@ -231,7 +231,7 @@ describe('Option', () => {
 
 				expect<Some<number>>(x.mapNoneInto(op)).toEqual(some(13));
 				expect(op).toHaveBeenCalledTimes(1);
-				expect(op).toHaveReturnedWith(some(13));
+				expect(op).toHaveLastReturnedWith(some(13));
 			});
 		});
 
@@ -305,7 +305,7 @@ describe('Option', () => {
 				expect<Err<number>>(x.okOrElse(op)).toEqual(err(0));
 				expect(op).toHaveBeenCalledTimes(1);
 				expect(op).toHaveBeenCalledWith();
-				expect(op).toHaveReturnedWith(0);
+				expect(op).toHaveLastReturnedWith(0);
 			});
 		});
 
@@ -363,7 +363,7 @@ describe('Option', () => {
 				expect<Option<number>>(x.andThen(op)).toEqual(some(1));
 				expect(op).toHaveBeenCalledTimes(1);
 				expect(op).toHaveBeenCalledWith(4);
-				expect(op).toHaveReturnedWith(some(1));
+				expect(op).toHaveLastReturnedWith(some(1));
 			});
 
 			test('GIVEN some AND none-returning callback THEN returns none', () => {
@@ -373,7 +373,7 @@ describe('Option', () => {
 				expect<Option<number>>(x.andThen(op)).toEqual(none);
 				expect(op).toHaveBeenCalledTimes(1);
 				expect(op).toHaveBeenCalledWith(0);
-				expect(op).toHaveReturnedWith(none);
+				expect(op).toHaveLastReturnedWith(none);
 			});
 
 			test('GIVEN none THEN always returns none', () => {
@@ -434,7 +434,7 @@ describe('Option', () => {
 				expect<Some<string>>(x.orElse(op)).toEqual(some('vikings'));
 				expect(op).toHaveBeenCalledTimes(1);
 				expect(op).toHaveBeenCalledWith();
-				expect(op).toHaveReturnedWith(some('vikings'));
+				expect(op).toHaveLastReturnedWith(some('vikings'));
 			});
 
 			test('GIVEN none AND none-returning callback THEN returns none', () => {
@@ -444,7 +444,7 @@ describe('Option', () => {
 				expect<None>(x.orElse(op)).toEqual(none);
 				expect(op).toHaveBeenCalledTimes(1);
 				expect(op).toHaveBeenCalledWith();
-				expect(op).toHaveReturnedWith(none);
+				expect(op).toHaveLastReturnedWith(none);
 			});
 		});
 
@@ -488,7 +488,7 @@ describe('Option', () => {
 				expect(x.filter(op)).toBe(x);
 				expect(op).toHaveBeenCalledTimes(1);
 				expect(op).toHaveBeenCalledWith(4);
-				expect(op).toHaveReturnedWith(true);
+				expect(op).toHaveLastReturnedWith(true);
 			});
 
 			test('GIVEN some(s) AND none-returning callback THEN returns none', () => {
@@ -498,7 +498,7 @@ describe('Option', () => {
 				expect(x.filter(op)).toEqual(none);
 				expect(op).toHaveBeenCalledTimes(1);
 				expect(op).toHaveBeenCalledWith(3);
-				expect(op).toHaveReturnedWith(false);
+				expect(op).toHaveLastReturnedWith(false);
 			});
 
 			test('GIVEN none THEN always returns none', () => {
@@ -571,7 +571,7 @@ describe('Option', () => {
 				expect<Some<number>>(x.zipWith(y, op)).toEqual(some(8));
 				expect(op).toHaveBeenCalledTimes(1);
 				expect(op).toHaveBeenCalledWith(2, 4);
-				expect(op).toHaveReturnedWith(8);
+				expect(op).toHaveLastReturnedWith(8);
 			});
 
 			test('GIVEN x=some, y=none THEN always returns none', () => {
@@ -753,7 +753,7 @@ describe('Option', () => {
 				expect<number>(x.match({ some, none })).toBe(4);
 				expect(some).toHaveBeenCalledTimes(1);
 				expect(some).toHaveBeenCalledWith(2);
-				expect(some).toHaveReturnedWith(4);
+				expect(some).toHaveLastReturnedWith(4);
 				expect(none).not.toHaveBeenCalled();
 			});
 
@@ -766,7 +766,7 @@ describe('Option', () => {
 				expect(some).not.toHaveBeenCalled();
 				expect(none).toHaveBeenCalledTimes(1);
 				expect(none).toHaveBeenCalledWith();
-				expect(none).toHaveReturnedWith(0);
+				expect(none).toHaveLastReturnedWith(0);
 			});
 		});
 	});
