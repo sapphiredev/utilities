@@ -70,7 +70,7 @@
 	"devDependencies": {
 		"@favware/cliff-jumper": "^1.8.8",
 		"@sapphire/eslint-config": "workspace:^",
-		"@vitest/coverage-c8": "^0.24.5",
-		"vitest": "^0.24.5"
+		"@vitest/coverage-c8": "^0.25.1",
+		"vitest": "^0.25.1"
 	}
 }
