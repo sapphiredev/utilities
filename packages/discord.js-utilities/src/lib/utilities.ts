@@ -107,5 +107,15 @@ export function canJoinVoiceChannel(channel: VoiceBasedChannel | Nullish): boole
 }
 
 function canDoUtility(channel: ChannelTypes, permissionsToPass: Permissions) {
-	return isGuildBasedChannel(channel) ? channel.permissionsFor(channel.guild.me!)!.has(permissionsToPass) : true;
+	if (!isGuildBasedChannel(channel)) {
+		return true;
+	}
+
+	const { me } = channel.guild;
+	if (!me) return false;
+
+	const permissionsFor = channel.permissionsFor(me);
+	if (!permissionsFor) return false;
+
+	return permissionsFor.has(permissionsToPass);
 }
