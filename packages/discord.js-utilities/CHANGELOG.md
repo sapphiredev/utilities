@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/discord.js-utilities@5.1.2](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@5.1.1...@sapphire/discord.js-utilities@5.1.2) - (2022-11-19)
+
+## 🐛 Bug Fixes
+
+- **discord.js-utilities:** Added null checks for permission checks (#523) ([1abc270](https://github.com/sapphiredev/utilities/commit/1abc27035cd7a0792bd27dff405275abcc834f78))
+- **deps:** Update all non-major dependencies (#514) ([21b07d5](https://github.com/sapphiredev/utilities/commit/21b07d5db529a0d982647a60de98e46f36f1ac93))
+- **deps:** Update all non-major dependencies (#505) ([6178296](https://github.com/sapphiredev/utilities/commit/617829649e1e4deeee02b14533b5377cd5bc1fb3))
+
+## 📝 Documentation
+
+- Add @didinele as a contributor ([42ef7b6](https://github.com/sapphiredev/utilities/commit/42ef7b656c48fd0e720119db1d622c8bba2791e9))
+- Add @goestav as a contributor ([0e56a92](https://github.com/sapphiredev/utilities/commit/0e56a92a4e2d0942bfa207f81a8cb03b32312034))
+- Add @CitTheDev as a contributor ([34169ea](https://github.com/sapphiredev/utilities/commit/34169eae1dc0476ccf5a6c4f36e28602a204829e))
+- Add @legendhimslef as a contributor ([059b6f1](https://github.com/sapphiredev/utilities/commit/059b6f1ab5362d46d58624d06c1aa39192b0716f))
+
 # [@sapphire/discord.js-utilities@5.1.1](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@5.1.0...@sapphire/discord.js-utilities@5.1.1) - (2022-10-09)
 
 ## 🐛 Bug Fixes
