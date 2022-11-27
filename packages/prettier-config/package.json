@@ -20,7 +20,7 @@
 		"check-update": "cliff-jumper --dry-run"
 	},
 	"dependencies": {
-		"prettier": "^2.7.1"
+		"prettier": "^2.8.0"
 	},
 	"repository": {
 		"type": "git",
@@ -54,8 +54,8 @@
 	},
 	"devDependencies": {
 		"@favware/cliff-jumper": "^1.9.0",
-		"@vitest/coverage-c8": "^0.25.2",
+		"@vitest/coverage-c8": "^0.25.3",
 		"tsup": "^6.5.0",
-		"vitest": "^0.25.2"
+		"vitest": "^0.25.3"
 	}
 }
