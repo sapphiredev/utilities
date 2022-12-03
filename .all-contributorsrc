@@ -340,6 +340,13 @@
 			"avatar_url": "https://avatars.githubusercontent.com/u/27137376?v=4",
 			"profile": "https://github.com/didinele",
 			"contributions": ["code"]
+		},
+		{
+			"login": "06000208",
+			"name": "amber",
+			"avatar_url": "https://avatars.githubusercontent.com/u/52764066?v=4",
+			"profile": "https://steamcommunity.com/id/06000208",
+			"contributions": ["code"]
 		}
 	],
 	"contributorsPerLine": 7,
