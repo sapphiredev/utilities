@@ -12,7 +12,7 @@ describe('Twitter Snowflakes', () => {
 
 	describe('Generate', () => {
 		test('GIVEN basic code THEN generates snowflake', () => {
-			const testId = '1823945883910148096';
+			const testId = '1212161512043450368';
 			const snow = TwitterSnowflake.generate();
 
 			expect(snow.toString()).toBe(testId);
@@ -25,11 +25,11 @@ describe('Twitter Snowflakes', () => {
 
 			expect(flake).toStrictEqual<DeconstructedSnowflake>({
 				id: 1823945883910279168n,
-				timestamp: 1577836800000n,
+				timestamp: 1723697560657n,
 				workerId: 1n,
 				processId: 1n,
 				increment: 0n,
-				epoch: 1142974214000n
+				epoch: 1288834974657n
 			});
 		});
 
@@ -38,11 +38,11 @@ describe('Twitter Snowflakes', () => {
 
 			expect(flake).toStrictEqual<DeconstructedSnowflake>({
 				id: 1823945883910279168n,
-				timestamp: 1577836800000n,
+				timestamp: 1723697560657n,
 				workerId: 1n,
 				processId: 1n,
 				increment: 0n,
-				epoch: 1142974214000n
+				epoch: 1288834974657n
 			});
 		});
 	});
