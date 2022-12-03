@@ -2,6 +2,46 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/snowflake@3.3.0](https://github.com/sapphiredev/utilities/compare/@sapphire/snowflake@3.2.2...@sapphire/snowflake@3.3.0) - (2022-12-03)
+
+## 🏠 Refactor
+
+- Split `@sapphire/time-utilities` into 4 sub-packages (#462) ([574299a](https://github.com/sapphiredev/utilities/commit/574299a99e658f6500a2a7efa587a0919b2d1313))
+
+## 🐛 Bug Fixes
+
+- **snowflake:** TwitterSnowflake using incorrect epoch (#522) ([4ad4117](https://github.com/sapphiredev/utilities/commit/4ad41170488161b2998bd72da5a8b7fea10539a0))
+- **deps:** Update all non-major dependencies (#514) ([21b07d5](https://github.com/sapphiredev/utilities/commit/21b07d5db529a0d982647a60de98e46f36f1ac93))
+- **deps:** Update all non-major dependencies (#505) ([6178296](https://github.com/sapphiredev/utilities/commit/617829649e1e4deeee02b14533b5377cd5bc1fb3))
+- **deps:** Update all non-major dependencies (#466) ([dc08606](https://github.com/sapphiredev/utilities/commit/dc08606a97154e47c65536123ac5f8b1262f7bd2))
+- **deps:** Update all non-major dependencies ([e20f299](https://github.com/sapphiredev/utilities/commit/e20f29906e83cee000aaba9c6827e3bec5173d28))
+- **deps:** Update all non-major dependencies ([2308bd7](https://github.com/sapphiredev/utilities/commit/2308bd74356b6b2e0c12995b25f4d8ade4803fe9))
+- **deps:** Update all non-major dependencies ([84af0db](https://github.com/sapphiredev/utilities/commit/84af0db2db749223b036aa99fe19a2e9af5681c6))
+- **deps:** Update all non-major dependencies ([50cd8de](https://github.com/sapphiredev/utilities/commit/50cd8dea593b6f5ae75571209456b3421e2ca59a))
+
+## 📝 Documentation
+
+- Add @didinele as a contributor ([42ef7b6](https://github.com/sapphiredev/utilities/commit/42ef7b656c48fd0e720119db1d622c8bba2791e9))
+- Add @goestav as a contributor ([0e56a92](https://github.com/sapphiredev/utilities/commit/0e56a92a4e2d0942bfa207f81a8cb03b32312034))
+- Add @CitTheDev as a contributor ([34169ea](https://github.com/sapphiredev/utilities/commit/34169eae1dc0476ccf5a6c4f36e28602a204829e))
+- Add @legendhimslef as a contributor ([059b6f1](https://github.com/sapphiredev/utilities/commit/059b6f1ab5362d46d58624d06c1aa39192b0716f))
+- Add @r-priyam as a contributor ([fb278ba](https://github.com/sapphiredev/utilities/commit/fb278bacf627ec6fc88752eafeb12df5f3177a2c))
+- Change name of @kyranet (#451) ([df4fdef](https://github.com/sapphiredev/utilities/commit/df4fdefce18659975a4ebc224723638507d02d35))
+- Update @RealShadowNova as a contributor ([a869ba0](https://github.com/sapphiredev/utilities/commit/a869ba0abfad041610b9115187d426aebe671af6))
+- Add @muchnameless as a contributor ([a1221fe](https://github.com/sapphiredev/utilities/commit/a1221fea68506e99591d5d00ec552a07c26833f9))
+- Add @enxg as a contributor ([d2382f0](https://github.com/sapphiredev/utilities/commit/d2382f04e3909cb4ad11798a0a10e683f6cf5383))
+- Add @EvolutionX-10 as a contributor ([efc3a32](https://github.com/sapphiredev/utilities/commit/efc3a320a72ae258996dd62866d206c33f8d4961))
+- Add @MajesticString as a contributor ([295b3e9](https://github.com/sapphiredev/utilities/commit/295b3e9849a4b0fe64074bae02f6426378a303c3))
+- Add @Mzato0001 as a contributor ([c790ef2](https://github.com/sapphiredev/utilities/commit/c790ef25df2d7e22888fa9f8169167aa555e9e19))
+
+## 🚀 Features
+
+- **utilities:** Add possibility to import single functions by appending them to the import path. (#454) ([374c145](https://github.com/sapphiredev/utilities/commit/374c145a5dd329cfc1a867ed6720abf408683a88))
+
+## 🧪 Testing
+
+- Migrate to vitest (#380) ([075ec73](https://github.com/sapphiredev/utilities/commit/075ec73c7a8e3374fad3ada612d37eb4ac36ec8d))
+
 # [@sapphire/snowflake@3.2.2](https://github.com/sapphiredev/utilities/compare/@sapphire/snowflake@3.2.1...@sapphire/snowflake@3.2.2) - (2022-04-24)
 
 ## Bug Fixes
