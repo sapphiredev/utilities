@@ -222,6 +222,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   <tr>
     <td align="center"><a href="https://www.goestav.com/"><img src="https://avatars.githubusercontent.com/u/27970303?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Goestav</b></sub></a><br /><a href="https://github.com/sapphiredev/utilities/commits?author=goestav" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/didinele"><img src="https://avatars.githubusercontent.com/u/27137376?v=4?s=100" width="100px;" alt=""/><br /><sub><b>DD</b></sub></a><br /><a href="https://github.com/sapphiredev/utilities/commits?author=didinele" title="Code">💻</a></td>
+    <td align="center"><a href="https://steamcommunity.com/id/06000208"><img src="https://avatars.githubusercontent.com/u/52764066?v=4?s=100" width="100px;" alt=""/><br /><sub><b>amber</b></sub></a><br /><a href="https://github.com/sapphiredev/utilities/commits?author=06000208" title="Code">💻</a></td>
   </tr>
 </table>
 
