@@ -114,9 +114,6 @@ import { actionIsButtonOrMenu, createPartitionedMessageRow, isMessageButtonInter
  * ```
  */
 export class PaginatedMessage {
-	/** The response we send when someone gets into an invalid flow */
-	#thisMazeWasNotMeantForYouContent = { content: "This maze wasn't meant for you...what did you do." };
-
 	// #region public class properties
 	/**
 	 * The pages to be converted to {@link PaginatedMessage.messages}
@@ -215,6 +212,9 @@ export class PaginatedMessage {
 	protected hasEmittedPartialDMChannelWarning = false;
 
 	// #endregion
+
+	/** The response we send when someone gets into an invalid flow */
+	#thisMazeWasNotMeantForYouContent = { content: "This maze wasn't meant for you...what did you do." };
 
 	/**
 	 * Constructor for the {@link PaginatedMessage} class
