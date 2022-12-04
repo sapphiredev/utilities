@@ -16,6 +16,12 @@ const WorkerId = 0n;
  */
 export class Snowflake {
 	/**
+	 * Alias for {@link deconstruct}
+	 */
+	// eslint-disable-next-line @typescript-eslint/unbound-method
+	public decode = this.deconstruct;
+
+	/**
 	 * Internal incrementor for generating snowflakes
 	 * @internal
 	 */
@@ -26,12 +32,6 @@ export class Snowflake {
 	 * @internal
 	 */
 	#epoch: bigint;
-
-	/**
-	 * Alias for {@link deconstruct}
-	 */
-	// eslint-disable-next-line @typescript-eslint/unbound-method
-	public decode = this.deconstruct;
 
 	/**
 	 * @param epoch the epoch to use
