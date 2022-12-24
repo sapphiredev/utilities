@@ -106,6 +106,29 @@ export class Snowflake {
 	public timestampFrom(id: string | bigint): number {
 		return Number((BigInt(id) >> 22n) + this.#epoch);
 	}
+
+	/**
+	 * Returns a number indicating whether a reference snowflake comes before, or after, or is same as the given
+	 * snowflake in sort order.
+	 * @param a The first snowflake to compare.
+	 * @param b The second snowflake to compare.
+	 * @returns `-1` if `a` is older than `b`, `0` if `a` and `b` are equals, `1` if `a` is newer than `b`.
+	 * @example
+	 * ```typescript
+	 * const ids = ['737141877803057244', '1056191128120082432', '254360814063058944'];
+	 * console.log(ids.sort(a, b) => Snowflake.compare(a, b));
+	 * // → ['254360814063058944', '737141877803057244', '1056191128120082432'];
+	 * ```
+	 */
+	public static compare(a: string | bigint, b: string | bigint): -1 | 0 | 1 {
+		if (typeof a === 'bigint' || typeof b === 'bigint') {
+			if (typeof a === 'string') a = BigInt(a);
+			else if (typeof b === 'string') b = BigInt(b);
+			return a === b ? 0 : a < b ? -1 : 1;
+		}
+
+		return a === b ? 0 : a.length < b.length ? -1 : a.length > b.length ? 1 : a < b ? -1 : 1;
+	}
 }
 
 /**
