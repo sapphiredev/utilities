@@ -113,11 +113,17 @@ export class Snowflake {
 	 * @param a The first snowflake to compare.
 	 * @param b The second snowflake to compare.
 	 * @returns `-1` if `a` is older than `b`, `0` if `a` and `b` are equals, `1` if `a` is newer than `b`.
-	 * @example
+	 * @example Sort snowflakes in ascending order
 	 * ```typescript
 	 * const ids = ['737141877803057244', '1056191128120082432', '254360814063058944'];
-	 * console.log(ids.sort(a, b) => Snowflake.compare(a, b));
+	 * console.log(ids.sort((a, b) => Snowflake.compare(a, b)));
 	 * // → ['254360814063058944', '737141877803057244', '1056191128120082432'];
+	 * ```
+	 * @example Sort snowflakes in descending order
+	 * ```typescript
+	 * const ids = ['737141877803057244', '1056191128120082432', '254360814063058944'];
+	 * console.log(ids.sort((a, b) => -Snowflake.compare(a, b)));
+	 * // → ['1056191128120082432', '737141877803057244', '254360814063058944'];
 	 * ```
 	 */
 	public static compare(a: string | bigint, b: string | bigint): -1 | 0 | 1 {
