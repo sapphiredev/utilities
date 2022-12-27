@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/snowflake@3.4.0](https://github.com/sapphiredev/utilities/compare/@sapphire/snowflake@3.3.0...@sapphire/snowflake@3.4.0) - (2022-12-27)
+
+## 🐛 Bug Fixes
+
+- **deps:** Update all non-major dependencies (#532) ([8033d1f](https://github.com/sapphiredev/utilities/commit/8033d1ff7a5a1974134c61f424f171cccb2915e1))
+
+## 📝 Documentation
+
+- Add @06000208 as a contributor ([fa3349e](https://github.com/sapphiredev/utilities/commit/fa3349e55ce4ad008785211dec7bf8e2b5d933df))
+
+## 🚀 Features
+
+- **snowflake:** Added `Snowflake.compare` (#531) ([6accd6d](https://github.com/sapphiredev/utilities/commit/6accd6d15eab12e312034f8ef43cff032835c972))
+
 # [@sapphire/snowflake@3.3.0](https://github.com/sapphiredev/utilities/compare/@sapphire/snowflake@3.2.2...@sapphire/snowflake@3.3.0) - (2022-12-03)
 
 ## 🏠 Refactor
