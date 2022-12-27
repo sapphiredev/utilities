@@ -181,4 +181,21 @@ describe('Snowflake', () => {
 			});
 		});
 	});
+
+	describe.each([
+		[String, String],
+		[String, BigInt],
+		[BigInt, String],
+		[BigInt, BigInt]
+	])('Compare', (ctorA, ctorB) => {
+		test.each([
+			[ctorA(737141877803057244n), ctorB(254360814063058944n), 1],
+			[ctorA(1737141877803057244n), ctorB(254360814063058944n), 1],
+			[ctorA(737141877803057244n), ctorB(737141877803057244n), 0],
+			[ctorA(254360814063058944n), ctorB(737141877803057244n), -1],
+			[ctorA(254360814063058944n), ctorB(1737141877803057244n), -1]
+		])('GIVEN %o and %o THEN returns %d', (a, b, expected) => {
+			expect(Snowflake.compare(a, b)).toBe(expected);
+		});
+	});
 });
