@@ -492,23 +492,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@favware/cliff-jumper@npm:^1.9.0":
-  version: 1.9.0
-  resolution: "@favware/cliff-jumper@npm:1.9.0"
+"@favware/cliff-jumper@npm:^1.10.0":
+  version: 1.10.0
+  resolution: "@favware/cliff-jumper@npm:1.10.0"
   dependencies:
+    "@favware/conventional-changelog-angular": ^5.0.14
     "@sapphire/result": ^2.6.0
     "@sapphire/utilities": 3.11.0
     colorette: ^2.0.19
-    commander: ^9.4.1
-    conventional-changelog-angular: ^5.0.13
+    commander: ^9.5.0
     conventional-recommended-bump: ^6.1.0
     js-yaml: ^4.1.0
     semver: ^7.3.8
-    typescript: ^4.8.4
+    typescript: ^4.9.4
   bin:
     cj: ./dist/cli.js
     cliff-jumper: ./dist/cli.js
-  checksum: 4218704159a44b25fed0bbe71babc37d26b63231b72343f580fa22cd132e5d1dba6717bd6d53365b49b1e8acd8906f1d391d6b8cc0fe0b59541c43d3aa82765e
+  checksum: 27cf33b0e363dd5ba1f7087dea167114aa70e95e92592c4b0bc4225ad14c91be17eb9a177c9c2a57d8ffa30cab9df8eb4d09b2a39e139e3bcd25f055e9cc6f06
   languageName: node
   linkType: hard
 
@@ -518,6 +518,16 @@ __metadata:
   dependencies:
     colorette: "*"
   checksum: 839bfa3bd4480da4ce1c5cf34fe617769ed8c0298ceab440401d5849020d9cf95537a634c33e22f452390cd68034b818cf92c471e360cab0e68be45c954cd636
+  languageName: node
+  linkType: hard
+
+"@favware/conventional-changelog-angular@npm:^5.0.14":
+  version: 5.0.14
+  resolution: "@favware/conventional-changelog-angular@npm:5.0.14"
+  dependencies:
+    compare-func: ^2.0.0
+    q: ^1.5.1
+  checksum: 32293091dff8a3dc3b3dadd2cb9697efdef51e05165d5c22255b72d6202c3ac156fcbf9526dc073001450343885b39f597ddb7304c9eb37ffc512445a9f10d99
   languageName: node
   linkType: hard
 
@@ -691,7 +701,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@sapphire/async-queue@workspace:packages/async-queue"
   dependencies:
-    "@favware/cliff-jumper": ^1.9.0
+    "@favware/cliff-jumper": ^1.10.0
     "@vitest/coverage-c8": ^0.26.3
     tsup: ^6.5.0
     typedoc: ^0.23.24
@@ -705,7 +715,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@sapphire/bitfield@workspace:packages/bitfield"
   dependencies:
-    "@favware/cliff-jumper": ^1.9.0
+    "@favware/cliff-jumper": ^1.10.0
     "@vitest/coverage-c8": ^0.26.3
     tsup: ^6.5.0
     typedoc: ^0.23.24
@@ -719,7 +729,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@sapphire/cron@workspace:packages/cron"
   dependencies:
-    "@favware/cliff-jumper": ^1.9.0
+    "@favware/cliff-jumper": ^1.10.0
     "@sapphire/utilities": "workspace:^"
     "@vitest/coverage-c8": ^0.26.3
     tsup: ^6.5.0
@@ -734,7 +744,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@sapphire/decorators@workspace:packages/decorators"
   dependencies:
-    "@favware/cliff-jumper": ^1.9.0
+    "@favware/cliff-jumper": ^1.10.0
     "@sapphire/discord-utilities": "workspace:^"
     "@sapphire/discord.js-utilities": "workspace:^"
     "@sapphire/ratelimits": "workspace:^"
@@ -754,7 +764,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@sapphire/discord-utilities@workspace:packages/discord-utilities"
   dependencies:
-    "@favware/cliff-jumper": ^1.9.0
+    "@favware/cliff-jumper": ^1.10.0
     "@vitest/coverage-c8": ^0.26.3
     discord-api-types: ^0.37.25
     tsup: ^6.5.0
@@ -790,7 +800,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@sapphire/discord.js-utilities@workspace:packages/discord.js-utilities"
   dependencies:
-    "@favware/cliff-jumper": ^1.9.0
+    "@favware/cliff-jumper": ^1.10.0
     "@favware/rollup-type-bundler": ^2.0.0
     "@sapphire/discord-utilities": "workspace:^"
     "@sapphire/duration": "workspace:^"
@@ -807,7 +817,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@sapphire/duration@workspace:packages/duration"
   dependencies:
-    "@favware/cliff-jumper": ^1.9.0
+    "@favware/cliff-jumper": ^1.10.0
     "@vitest/coverage-c8": ^0.26.3
     tsup: ^6.5.0
     typedoc: ^0.23.24
@@ -821,7 +831,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@sapphire/eslint-config@workspace:packages/eslint-config"
   dependencies:
-    "@favware/cliff-jumper": ^1.9.0
+    "@favware/cliff-jumper": ^1.10.0
     "@typescript-eslint/eslint-plugin": ^5.48.0
     "@typescript-eslint/parser": ^5.48.0
     "@vitest/coverage-c8": ^0.26.3
@@ -839,7 +849,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@sapphire/event-iterator@workspace:packages/event-iterator"
   dependencies:
-    "@favware/cliff-jumper": ^1.9.0
+    "@favware/cliff-jumper": ^1.10.0
     "@vitest/coverage-c8": ^0.26.3
     tslib: ^2.4.1
     tsup: ^6.5.0
@@ -854,7 +864,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@sapphire/fetch@workspace:packages/fetch"
   dependencies:
-    "@favware/cliff-jumper": ^1.9.0
+    "@favware/cliff-jumper": ^1.10.0
     "@vitest/coverage-c8": ^0.26.3
     cross-fetch: ^3.1.5
     tsup: ^6.5.0
@@ -886,7 +896,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@sapphire/lexure@workspace:packages/lexure"
   dependencies:
-    "@favware/cliff-jumper": ^1.9.0
+    "@favware/cliff-jumper": ^1.10.0
     "@sapphire/result": "workspace:^"
     "@vitest/coverage-c8": ^0.26.3
     tsup: ^6.5.0
@@ -901,7 +911,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@sapphire/node-utilities@workspace:packages/node-utilities"
   dependencies:
-    "@favware/cliff-jumper": ^1.9.0
+    "@favware/cliff-jumper": ^1.10.0
     "@vitest/coverage-c8": ^0.26.3
     tsup: ^6.5.0
     typedoc: ^0.23.24
@@ -915,7 +925,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@sapphire/phisherman@workspace:packages/phisherman"
   dependencies:
-    "@favware/cliff-jumper": ^1.9.0
+    "@favware/cliff-jumper": ^1.10.0
     "@sapphire/fetch": "workspace:^"
     tsup: ^6.5.0
     typedoc: ^0.23.24
@@ -939,7 +949,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@sapphire/prettier-config@workspace:packages/prettier-config"
   dependencies:
-    "@favware/cliff-jumper": ^1.9.0
+    "@favware/cliff-jumper": ^1.10.0
     "@vitest/coverage-c8": ^0.26.3
     prettier: ^2.8.2
     tsup: ^6.5.0
@@ -951,7 +961,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@sapphire/ratelimits@workspace:packages/ratelimits"
   dependencies:
-    "@favware/cliff-jumper": ^1.9.0
+    "@favware/cliff-jumper": ^1.10.0
     "@sapphire/timer-manager": "workspace:^"
     "@vitest/coverage-c8": ^0.26.3
     tsup: ^6.5.0
@@ -966,7 +976,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@sapphire/result@workspace:packages/result"
   dependencies:
-    "@favware/cliff-jumper": ^1.9.0
+    "@favware/cliff-jumper": ^1.10.0
     "@vitest/coverage-c8": ^0.26.3
     tsup: ^6.5.0
     typedoc: ^0.23.24
@@ -990,7 +1000,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@sapphire/snowflake@workspace:packages/snowflake"
   dependencies:
-    "@favware/cliff-jumper": ^1.9.0
+    "@favware/cliff-jumper": ^1.10.0
     "@vitest/coverage-c8": ^0.26.3
     tsup: ^6.5.0
     typedoc: ^0.23.24
@@ -1004,7 +1014,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@sapphire/stopwatch@workspace:packages/stopwatch"
   dependencies:
-    "@favware/cliff-jumper": ^1.9.0
+    "@favware/cliff-jumper": ^1.10.0
     "@types/jsdom": ^20.0.1
     "@vitest/coverage-c8": ^0.26.3
     jsdom: ^21.0.0
@@ -1021,7 +1031,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@sapphire/time-utilities@workspace:packages/time-utilities"
   dependencies:
-    "@favware/cliff-jumper": ^1.9.0
+    "@favware/cliff-jumper": ^1.10.0
     "@sapphire/cron": "workspace:^"
     "@sapphire/duration": "workspace:^"
     "@sapphire/timer-manager": "workspace:^"
@@ -1037,7 +1047,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@sapphire/timer-manager@workspace:packages/timer-manager"
   dependencies:
-    "@favware/cliff-jumper": ^1.9.0
+    "@favware/cliff-jumper": ^1.10.0
     "@vitest/coverage-c8": ^0.26.3
     tsup: ^6.5.0
     typedoc: ^0.23.24
@@ -1051,7 +1061,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@sapphire/timestamp@workspace:packages/timestamp"
   dependencies:
-    "@favware/cliff-jumper": ^1.9.0
+    "@favware/cliff-jumper": ^1.10.0
     "@vitest/coverage-c8": ^0.26.3
     tsup: ^6.5.0
     typedoc: ^0.23.24
@@ -1065,7 +1075,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@sapphire/ts-config@workspace:packages/ts-config"
   dependencies:
-    "@favware/cliff-jumper": ^1.9.0
+    "@favware/cliff-jumper": ^1.10.0
     "@sapphire/eslint-config": "workspace:^"
     "@vitest/coverage-c8": ^0.26.3
     tslib: ^2.4.1
@@ -1078,7 +1088,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@sapphire/utilities@workspace:packages/utilities"
   dependencies:
-    "@favware/cliff-jumper": ^1.9.0
+    "@favware/cliff-jumper": ^1.10.0
     "@vitest/coverage-c8": ^0.26.3
     esbuild-plugin-file-path-extensions: ^1.0.0
     tsup: ^6.5.0
@@ -2070,7 +2080,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"commander@npm:^9.4.1":
+"commander@npm:^9.4.1, commander@npm:^9.5.0":
   version: 9.5.0
   resolution: "commander@npm:9.5.0"
   checksum: c7a3e27aa59e913b54a1bafd366b88650bc41d6651f0cbe258d4ff09d43d6a7394232a4dadd0bf518b3e696fdf595db1028a0d82c785b88bd61f8a440cecfade
@@ -2139,7 +2149,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"conventional-changelog-angular@npm:^5.0.11, conventional-changelog-angular@npm:^5.0.13":
+"conventional-changelog-angular@npm:^5.0.11":
   version: 5.0.13
   resolution: "conventional-changelog-angular@npm:5.0.13"
   dependencies:
@@ -5752,7 +5762,7 @@ __metadata:
     "@commitlint/cli": ^17.4.0
     "@commitlint/config-conventional": ^17.4.0
     "@discordjs/collection": ^1.3.0
-    "@favware/cliff-jumper": ^1.9.0
+    "@favware/cliff-jumper": ^1.10.0
     "@favware/npm-deprecate": ^1.0.7
     "@favware/rollup-type-bundler": ^2.0.0
     "@sapphire/framework": pr-512
