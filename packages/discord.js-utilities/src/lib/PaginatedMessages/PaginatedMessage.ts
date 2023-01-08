@@ -1481,8 +1481,10 @@ export class PaginatedMessage {
 	 * @param interactionUser The {@link User} that actually clicked the button.
 	 * @default
 	 * ```ts
+	 * import { userMention } from 'discord.js';
+	 *
 	 * {
-	 * 	content: `Please stop interacting with the components on this message. They are only for ${Formatters.userMention(targetUser.id)}.`,
+	 * 	content: `Please stop interacting with the components on this message. They are only for ${userMention(targetUser.id)}.`,
 	 * 	ephemeral: true,
 	 * 	allowedMentions: { users: [], roles: [] }
 	 * }
@@ -1492,19 +1494,20 @@ export class PaginatedMessage {
 	 * @example
 	 * ```typescript
 	 * import { PaginatedMessage } from '@sapphire/discord.js-utilities';
+	 * import { userMention } from 'discord.js';
 	 *
 	 * // We  will add ephemeral and no allowed mention for string only overwrites
 	 * PaginatedMessage.wrongUserInteractionReply = (targetUser) =>
-	 *     `These buttons are only for ${Formatters.userMention(targetUser.id)}. Press them as much as you want, but I won't do anything with your clicks.`;
+	 *     `These buttons are only for ${userMention(targetUser.id)}. Press them as much as you want, but I won't do anything with your clicks.`;
 	 * ```
 	 *
 	 * @example
 	 * ```typescript
 	 * import { PaginatedMessage } from '@sapphire/discord.js-utilities';
-	 * import { Formatters } from 'discord.js';
+	 * import { userMention } from 'discord.js';
 	 *
 	 * PaginatedMessage.wrongUserInteractionReply = (targetUser) => ({
-	 * 	content: `These buttons are only for ${Formatters.userMention(
+	 * 	content: `These buttons are only for ${userMention(
 	 * 		targetUser.id
 	 * 	)}. Press them as much as you want, but I won't do anything with your clicks.`,
 	 * 	ephemeral: true,

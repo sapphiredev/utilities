@@ -59,10 +59,10 @@ export class PaginatedMessageEmbedFields extends PaginatedMessage {
 	 * @example
 	 * ```typescript
 	 * import { PaginatedMessageEmbedFields } from '@sapphire/discord.js-utilities';
-	 * import { MessageEmbed } from 'discord.js';
+	 * import { EmbedBuilder } from 'discord.js';
 	 *
 	 * new PaginatedMessageEmbedFields()
-	 * 	.setTemplate(new MessageEmbed().setColor('#006080').setTitle('Test pager embed'))
+	 * 	.setTemplate(new EmbedBuilder().setColor('#006080').setTitle('Test pager embed'))
 	 * 	.setItems([{ name: 'My field', value: 'The field\'s value' }])
 	 * 	.make()
 	 * 	.run(message);
@@ -71,7 +71,6 @@ export class PaginatedMessageEmbedFields extends PaginatedMessage {
 	 * @example
 	 * ```typescript
 	 * import { PaginatedMessageEmbedFields } from '@sapphire/discord.js-utilities';
-	 * import { MessageEmbed } from 'discord.js';
 	 *
 	 * new PaginatedMessageEmbedFields()
 	 * 	.setTemplate({ title: 'Test pager embed', color: '#006080' })

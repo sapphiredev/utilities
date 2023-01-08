@@ -45,15 +45,15 @@ const DMAvailableUserPermissions = new PermissionsBitField(
  * @example
  * ```typescript
  * import { ApplyOptions, RequiresClientPermissions } from '@sapphire/decorators';
- * import { SubCommandPluginCommand, SubCommandPluginCommandOptions } from '@sapphire/plugin-subcommands';
+ * import { Subcommand } from '@sapphire/plugin-subcommands';
  * import type { Message } from 'discord.js';
  *
- * (at)ApplyOptions<SubCommandPluginCommandOptions>({
+ * (at)ApplyOptions<Subcommand.Options>({
  * 	aliases: ['cws'],
  * 	description: 'A basic command with some subcommands',
  * 	subCommands: ['add', 'remove', 'reset', { input: 'show', default: true }]
  * })
- * export default class extends SubCommandPluginCommand {
+ * export default class extends Subcommand {
  *     // Anyone should be able to view the result, but not modify
  * 	public async show(message: Message) {
  * 		return message.channel.send('Showing!');
@@ -114,15 +114,15 @@ export const RequiresClientPermissions = (...permissionsResolvable: PermissionRe
  * @example
  * ```typescript
  * import { ApplyOptions, RequiresUserPermissions } from '@sapphire/decorators';
- * import { SubCommandPluginCommand, SubCommandPluginCommandOptions } from '@sapphire/plugin-subcommands';
+ * import { Subcommand } from '@sapphire/plugin-subcommands';
  * import type { Message } from 'discord.js';
  *
- * (at)ApplyOptions<SubCommandPluginCommandOptions>({
+ * (at)ApplyOptions<Subcommand.Options>({
  * 	aliases: ['cws'],
  * 	description: 'A basic command with some subcommands',
  * 	subCommands: ['add', 'remove', 'reset', { input: 'show', default: true }]
  * })
- * export default class extends SubCommandPluginCommand {
+ * export default class extends Subcommand {
  *     // Anyone should be able to view the result, but not modify
  * 	public async show(message: Message) {
  * 		return message.channel.send('Showing!');

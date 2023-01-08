@@ -63,22 +63,21 @@ export class PaginatedFieldMessageEmbed<T> extends PaginatedMessage {
 	}
 
 	/**
-	 * Sets the template to be used to display the embed fields as pages. This template can either be set from a template {@link MessageEmbed} instance or an object with embed options.
+	 * Sets the template to be used to display the embed fields as pages. This template can either be set from a template {@link EmbedBuilder} instance or an object with embed options.
 	 *
-	 * @param template MessageEmbed
+	 * @param template EmbedBuilder
 	 *
 	 * @example
 	 * ```typescript
 	 * import { PaginatedFieldMessageEmbed } from '@sapphire/discord.js-utilities';
-	 * import { MessageEmbed } from 'discord.js';
+	 * import { EmbedBuilder } from 'discord.js';
 	 *
-	 * new PaginatedFieldMessageEmbed().setTemplate(new MessageEmbed().setTitle('Test pager embed')).make().run(message);
+	 * new PaginatedFieldMessageEmbed().setTemplate(new EmbedBuilder().setTitle('Test pager embed')).make().run(message);
 	 * ```
 	 *
 	 * @example
 	 * ```typescript
 	 * import { PaginatedFieldMessageEmbed } from '@sapphire/discord.js-utilities';
-	 * import { MessageEmbed } from 'discord.js';
 	 *
 	 * new PaginatedFieldMessageEmbed().setTemplate({ title: 'Test pager embed' }).make().run(message);
 	 * ```
@@ -117,7 +116,7 @@ export class PaginatedFieldMessageEmbed<T> extends PaginatedMessage {
 	/**
 	 * Build the pages of the given array.
 	 *
-	 * You must call the [[PaginatedFieldMessageEmbed.make]] and [[PaginatedFieldMessageEmbed.run]] methods last, in that order, for the pagination to work.
+	 * You must call the {@link PaginatedFieldMessageEmbed.make} and {@link PaginatedFieldMessageEmbed.run} methods last, in that order, for the pagination to work.
 	 *
 	 * @example
 	 * ```typescript
