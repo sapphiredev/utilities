@@ -1,33 +1,30 @@
 import type { Awaitable } from '@sapphire/utilities';
-import type { APIMessage } from 'discord-api-types/v9';
 import type {
+	APIMessage,
+	BaseMessageOptions,
 	ButtonInteraction,
 	CommandInteraction,
-	ExcludeEnum,
+	EmbedBuilder,
 	Guild,
 	Interaction,
-	InteractionButtonOptions,
+	InteractionButtonComponentData,
 	InteractionCollector,
 	InteractionReplyOptions,
 	InteractionUpdateOptions,
-	LinkButtonOptions,
+	LinkButtonComponentData,
 	Message,
 	MessageComponentInteraction,
 	MessageEditOptions,
-	MessageEmbed,
-	MessageOptions,
-	MessageSelectMenuOptions,
-	MessageSelectOptionData,
-	ReplyMessageOptions,
-	SelectMenuInteraction,
+	MessageReplyOptions,
+	SelectMenuComponentOptionData,
 	StageChannel,
-	StoreChannel,
+	StringSelectMenuComponentData,
+	StringSelectMenuInteraction,
 	User,
 	VoiceChannel,
 	WebhookEditMessageOptions
 } from 'discord.js';
-import type { MessageButtonStyles, MessageComponentTypes } from 'discord.js/typings/enums';
-import type { AnyInteraction } from '../utility-types';
+import type { AnyInteractableInteraction } from '../utility-types';
 import type { PaginatedMessage } from './PaginatedMessage';
 
 export type PaginatedMessageAction = PaginatedMessageActionButton | PaginatedMessageActionLink | PaginatedMessageActionMenu;
@@ -45,10 +42,7 @@ export type PaginatedMessageAction = PaginatedMessageActionButton | PaginatedMes
  * }
  * ```
  */
-export interface PaginatedMessageActionButton extends Omit<InteractionButtonOptions, 'customId' | 'style'> {
-	customId: string;
-	type: ExcludeEnum<typeof MessageComponentTypes, 'SELECT_MENU' | 'ACTION_ROW'>;
-	style: ExcludeEnum<typeof MessageButtonStyles, 'LINK'>;
+export interface PaginatedMessageActionButton extends InteractionButtonComponentData {
 	run(context: PaginatedMessageActionContext): Awaitable<unknown>;
 }
 
@@ -65,9 +59,7 @@ export interface PaginatedMessageActionButton extends Omit<InteractionButtonOpti
  * }
  * ```
  */
-export interface PaginatedMessageActionLink extends LinkButtonOptions {
-	type: ExcludeEnum<typeof MessageComponentTypes, 'SELECT_MENU' | 'ACTION_ROW'>;
-}
+export interface PaginatedMessageActionLink extends LinkButtonComponentData {}
 
 /**
  * To utilize Select Menus you can pass an object with the structure of {@link PaginatedMessageActionMenu} to {@link PaginatedMessage} actions.
@@ -80,9 +72,7 @@ export interface PaginatedMessageActionLink extends LinkButtonOptions {
  * }
  * ```
  */
-export interface PaginatedMessageActionMenu extends Omit<MessageSelectMenuOptions, 'customId'> {
-	customId: string;
-	type: ExcludeEnum<typeof MessageComponentTypes, 'BUTTON' | 'ACTION_ROW'>;
+export interface PaginatedMessageActionMenu extends StringSelectMenuComponentData {
 	run(context: PaginatedMessageActionContext): Awaitable<unknown>;
 }
 
@@ -90,12 +80,12 @@ export interface PaginatedMessageActionMenu extends Omit<MessageSelectMenuOption
  * The context to be used in {@link PaginatedMessageActionButton}.
  */
 export interface PaginatedMessageActionContext {
-	interaction: ButtonInteraction | SelectMenuInteraction;
+	interaction: ButtonInteraction | StringSelectMenuInteraction;
 	handler: PaginatedMessage;
 	author: User;
 	channel: Message['channel'];
-	response: APIMessage | Message | CommandInteraction | SelectMenuInteraction | ButtonInteraction;
-	collector: InteractionCollector<MessageComponentInteraction>;
+	response: APIMessage | Message | CommandInteraction | StringSelectMenuInteraction | ButtonInteraction;
+	collector: InteractionCollector<ButtonInteraction | StringSelectMenuInteraction>;
 }
 
 export interface PaginatedMessageOptions {
@@ -108,9 +98,9 @@ export interface PaginatedMessageOptions {
 	 */
 	actions?: PaginatedMessageAction[];
 	/**
-	 * The {@link MessageEmbed} or {@link MessageOptions} options to apply to the entire {@link PaginatedMessage}
+	 * The {@link EmbedBuilder} or {@link MessageOptions} options to apply to the entire {@link PaginatedMessage}
 	 */
-	template?: MessageEmbed | MessageOptions;
+	template?: EmbedBuilder | BaseMessageOptions;
 	/**
 	 * @seealso {@link PaginatedMessage.pageIndexPrefix}
 	 */
@@ -155,7 +145,7 @@ export type PaginatedMessagePage =
 export type PaginatedMessageSelectMenuOptionsFunction = (
 	pageIndex: number,
 	internationalizationContext: PaginatedMessageInternationalizationContext
-) => Awaitable<Omit<MessageSelectOptionData, 'value'>>;
+) => Awaitable<Omit<SelectMenuComponentOptionData, 'value'>>;
 
 /**
  * The type of the custom function that can be set for the {@link PaginatedMessage.wrongUserInteractionReply}
@@ -166,9 +156,9 @@ export type PaginatedMessageWrongUserInteractionReplyFunction = (
 	internationalizationContext: PaginatedMessageInternationalizationContext
 ) => Awaitable<Parameters<MessageComponentInteraction['reply']>[0]>;
 
-export type PaginatedMessageEmbedResolvable = MessageOptions['embeds'];
+export type PaginatedMessageEmbedResolvable = BaseMessageOptions['embeds'];
 
-export type PaginatedMessageMessageOptionsUnion = Omit<MessageOptions, 'flags'> | WebhookEditMessageOptions;
+export type PaginatedMessageMessageOptionsUnion = Omit<BaseMessageOptions, 'flags'> | WebhookEditMessageOptions;
 
 /**
  * @internal This is a duplicate of the same interface in `@sapphire/plugin-i18next`
@@ -181,7 +171,7 @@ export interface PaginatedMessageInternationalizationContext {
 	/** The {@link Guild} object to fetch the preferred language for, or `null` if the language is to be fetched in a DM. */
 	guild: Guild | null;
 	/** The {@link DiscordChannel} object to fetch the preferred language for. */
-	channel: Message['channel'] | StoreChannel | StageChannel | VoiceChannel | null;
+	channel: Message['channel'] | StageChannel | VoiceChannel | null;
 	/** The user to fetch the preferred language for. */
 	user: User | null;
 	/** The {@link Interaction.guildLocale} provided by the Discord API */
@@ -191,12 +181,12 @@ export interface PaginatedMessageInternationalizationContext {
 }
 
 export interface SafeReplyToInteractionParameters<T extends 'edit' | 'reply' | never = never> {
-	messageOrInteraction: APIMessage | Message | AnyInteraction;
+	messageOrInteraction: APIMessage | Message | AnyInteractableInteraction;
 	interactionEditReplyContent: WebhookEditMessageOptions;
 	interactionReplyContent: InteractionReplyOptions;
 	componentUpdateContent: InteractionUpdateOptions;
 	messageMethod?: T;
-	messageMethodContent?: T extends 'reply' ? ReplyMessageOptions : MessageEditOptions;
+	messageMethodContent?: T extends 'reply' ? MessageReplyOptions : MessageEditOptions;
 }
 
 export type PaginatedMessageStopReasons =

@@ -47,7 +47,7 @@ jobs:
       - name: Install Dependencies
         run: yarn --immutable
       - name: Build test dependencies
-        run: yarn turbo run build --filter="@sapphire/async-queue" --filter="@sapphire/*utilities" --filter="@sapphire/duration" --filter="@sapphire/fetch" --filter="@sapphire/lexure" --filter="@sapphire/ratelimits" --filter="@sapphire/result" --filter="@sapphire/timer-manager"  --filter="@sapphire/stopwatch" --no-deps
+        run: yarn turbo run build --filter="@sapphire/async-queue" --filter="@sapphire/*utilities" --filter="@sapphire/duration" --filter="@sapphire/fetch" --filter="@sapphire/lexure" --filter="@sapphire/ratelimits" --filter="@sapphire/result" --filter="@sapphire/timer-manager"  --filter="@sapphire/stopwatch" --filter="@sapphire/snowflake" --no-deps
       - name: Run tests
         run: yarn test
       - name: Store code coverage report

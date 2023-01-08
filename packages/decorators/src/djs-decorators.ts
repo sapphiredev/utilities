@@ -1,6 +1,6 @@
 import { isDMChannel, isGuildBasedChannel } from '@sapphire/discord.js-utilities';
 import { UserError } from '@sapphire/framework';
-import { Message, PermissionResolvable, Permissions } from 'discord.js';
+import { Message, PermissionFlagsBits, PermissionResolvable, PermissionsBitField } from 'discord.js';
 import { createFunctionPrecondition, FunctionFallback } from './utils';
 
 export enum DecoratorIdentifiers {
@@ -10,31 +10,31 @@ export enum DecoratorIdentifiers {
 	RequiresUserPermissionsMissingPermissions = 'requiresUserPermissionsMissingPermissions'
 }
 
-const DMAvailablePermissions = new Permissions(
-	~new Permissions([
+const DMAvailablePermissions = new PermissionsBitField(
+	~new PermissionsBitField([
 		//
-		'ADD_REACTIONS',
-		'ATTACH_FILES',
-		'EMBED_LINKS',
-		'READ_MESSAGE_HISTORY',
-		'SEND_MESSAGES',
-		'USE_EXTERNAL_EMOJIS',
-		'VIEW_CHANNEL'
-	]).bitfield & Permissions.ALL
+		PermissionFlagsBits.AddReactions,
+		PermissionFlagsBits.AttachFiles,
+		PermissionFlagsBits.EmbedLinks,
+		PermissionFlagsBits.ReadMessageHistory,
+		PermissionFlagsBits.SendMessages,
+		PermissionFlagsBits.UseExternalEmojis,
+		PermissionFlagsBits.ViewChannel
+	]).bitfield & PermissionsBitField.All
 );
 
-const DMAvailableUserPermissions = new Permissions(
-	~new Permissions([
-		'ADD_REACTIONS',
-		'ATTACH_FILES',
-		'EMBED_LINKS',
-		'READ_MESSAGE_HISTORY',
-		'SEND_MESSAGES',
-		'USE_EXTERNAL_EMOJIS',
-		'VIEW_CHANNEL',
-		'USE_EXTERNAL_STICKERS',
-		'MENTION_EVERYONE'
-	]).bitfield & Permissions.ALL
+const DMAvailableUserPermissions = new PermissionsBitField(
+	~new PermissionsBitField([
+		PermissionFlagsBits.AddReactions,
+		PermissionFlagsBits.AttachFiles,
+		PermissionFlagsBits.EmbedLinks,
+		PermissionFlagsBits.ReadMessageHistory,
+		PermissionFlagsBits.SendMessages,
+		PermissionFlagsBits.UseExternalEmojis,
+		PermissionFlagsBits.ViewChannel,
+		PermissionFlagsBits.UseExternalStickers,
+		PermissionFlagsBits.MentionEveryone
+	]).bitfield & PermissionsBitField.All
 );
 
 /**
@@ -45,15 +45,15 @@ const DMAvailableUserPermissions = new Permissions(
  * @example
  * ```typescript
  * import { ApplyOptions, RequiresClientPermissions } from '@sapphire/decorators';
- * import { SubCommandPluginCommand, SubCommandPluginCommandOptions } from '@sapphire/plugin-subcommands';
+ * import { Subcommand } from '@sapphire/plugin-subcommands';
  * import type { Message } from 'discord.js';
  *
- * (at)ApplyOptions<SubCommandPluginCommandOptions>({
+ * (at)ApplyOptions<Subcommand.Options>({
  * 	aliases: ['cws'],
  * 	description: 'A basic command with some subcommands',
  * 	subCommands: ['add', 'remove', 'reset', { input: 'show', default: true }]
  * })
- * export default class extends SubCommandPluginCommand {
+ * export default class extends Subcommand {
  *     // Anyone should be able to view the result, but not modify
  * 	public async show(message: Message) {
  * 		return message.channel.send('Showing!');
@@ -77,7 +77,7 @@ const DMAvailableUserPermissions = new Permissions(
  * ```
  */
 export const RequiresClientPermissions = (...permissionsResolvable: PermissionResolvable[]): MethodDecorator => {
-	const resolved = new Permissions(permissionsResolvable);
+	const resolved = new PermissionsBitField(permissionsResolvable);
 	const resolvedIncludesServerPermissions = Boolean(resolved.bitfield & DMAvailablePermissions.bitfield);
 
 	return createFunctionPrecondition((message: Message) => {
@@ -89,7 +89,7 @@ export const RequiresClientPermissions = (...permissionsResolvable: PermissionRe
 		}
 
 		if (isGuildBasedChannel(message.channel)) {
-			const missingPermissions = message.channel.permissionsFor(message.guild!.me!).missing(resolved);
+			const missingPermissions = message.channel.permissionsFor(message.guild!.members.me!).missing(resolved);
 
 			if (missingPermissions.length) {
 				throw new UserError({
@@ -114,15 +114,15 @@ export const RequiresClientPermissions = (...permissionsResolvable: PermissionRe
  * @example
  * ```typescript
  * import { ApplyOptions, RequiresUserPermissions } from '@sapphire/decorators';
- * import { SubCommandPluginCommand, SubCommandPluginCommandOptions } from '@sapphire/plugin-subcommands';
+ * import { Subcommand } from '@sapphire/plugin-subcommands';
  * import type { Message } from 'discord.js';
  *
- * (at)ApplyOptions<SubCommandPluginCommandOptions>({
+ * (at)ApplyOptions<Subcommand.Options>({
  * 	aliases: ['cws'],
  * 	description: 'A basic command with some subcommands',
  * 	subCommands: ['add', 'remove', 'reset', { input: 'show', default: true }]
  * })
- * export default class extends SubCommandPluginCommand {
+ * export default class extends Subcommand {
  *     // Anyone should be able to view the result, but not modify
  * 	public async show(message: Message) {
  * 		return message.channel.send('Showing!');
@@ -146,7 +146,7 @@ export const RequiresClientPermissions = (...permissionsResolvable: PermissionRe
  * ```
  */
 export const RequiresUserPermissions = (...permissionsResolvable: PermissionResolvable[]): MethodDecorator => {
-	const resolved = new Permissions(permissionsResolvable);
+	const resolved = new PermissionsBitField(permissionsResolvable);
 	const resolvedIncludesServerPermissions = Boolean(resolved.bitfield & DMAvailableUserPermissions.bitfield);
 
 	return createFunctionPrecondition((message: Message) => {

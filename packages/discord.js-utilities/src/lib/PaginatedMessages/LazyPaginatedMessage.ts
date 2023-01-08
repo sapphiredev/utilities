@@ -1,5 +1,5 @@
 import { isFunction } from '@sapphire/utilities';
-import { MessageEmbed } from 'discord.js';
+import { EmbedBuilder } from 'discord.js';
 import { MessageBuilder } from '../builders/MessageBuilder';
 import { PaginatedMessage } from './PaginatedMessage';
 import type { PaginatedMessagePage } from './PaginatedMessageTypes';
@@ -36,39 +36,39 @@ export class LazyPaginatedMessage extends PaginatedMessage {
 		return this.addPage(() => ({ content }));
 	}
 
-	public override addPageEmbed(embed: MessageEmbed | ((builder: MessageEmbed) => MessageEmbed)): this {
-		return this.addPage(() => ({ embeds: typeof embed === 'function' ? [embed(new MessageEmbed())] : [embed] }));
+	public override addPageEmbed(embed: EmbedBuilder | ((builder: EmbedBuilder) => EmbedBuilder)): this {
+		return this.addPage(() => ({ embeds: typeof embed === 'function' ? [embed(new EmbedBuilder())] : [embed] }));
 	}
 
 	public override addPageEmbeds(
 		embeds:
-			| MessageEmbed[]
+			| EmbedBuilder[]
 			| ((
-					embed1: MessageEmbed,
-					embed2: MessageEmbed,
-					embed3: MessageEmbed,
-					embed4: MessageEmbed,
-					embed5: MessageEmbed,
-					embed6: MessageEmbed,
-					embed7: MessageEmbed,
-					embed8: MessageEmbed,
-					embed9: MessageEmbed,
-					embed10: MessageEmbed
-			  ) => MessageEmbed[])
+					embed1: EmbedBuilder,
+					embed2: EmbedBuilder,
+					embed3: EmbedBuilder,
+					embed4: EmbedBuilder,
+					embed5: EmbedBuilder,
+					embed6: EmbedBuilder,
+					embed7: EmbedBuilder,
+					embed8: EmbedBuilder,
+					embed9: EmbedBuilder,
+					embed10: EmbedBuilder
+			  ) => EmbedBuilder[])
 	): this {
 		return this.addPage(() => {
 			let processedEmbeds = isFunction(embeds)
 				? embeds(
-						new MessageEmbed(),
-						new MessageEmbed(),
-						new MessageEmbed(),
-						new MessageEmbed(),
-						new MessageEmbed(),
-						new MessageEmbed(),
-						new MessageEmbed(),
-						new MessageEmbed(),
-						new MessageEmbed(),
-						new MessageEmbed()
+						new EmbedBuilder(),
+						new EmbedBuilder(),
+						new EmbedBuilder(),
+						new EmbedBuilder(),
+						new EmbedBuilder(),
+						new EmbedBuilder(),
+						new EmbedBuilder(),
+						new EmbedBuilder(),
+						new EmbedBuilder(),
+						new EmbedBuilder()
 				  )
 				: embeds;
 
