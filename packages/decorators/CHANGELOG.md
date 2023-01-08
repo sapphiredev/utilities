@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/decorators@6.0.0](https://github.com/sapphiredev/utilities/compare/@sapphire/decorators@5.0.0...@sapphire/decorators@6.0.0) - (2023-01-08)
+
+## 🚀 Features
+
+- **deps:** Support for djs v14 (#434) ([2e2c3e9](https://github.com/sapphiredev/utilities/commit/2e2c3e93c90e20895c49e944796d4244823cc078))
+
 # [@sapphire/decorators@5.0.0](https://github.com/sapphiredev/utilities/compare/@sapphire/decorators@4.3.8...@sapphire/decorators@5.0.0) - (2022-08-20)
 
 ## 🐛 Bug Fixes
