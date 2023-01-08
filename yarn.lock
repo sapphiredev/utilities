@@ -854,7 +854,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@sapphire/framework@npm:4.0.0":
+"@sapphire/framework@npm:^4.0.0":
   version: 4.0.0
   resolution: "@sapphire/framework@npm:4.0.0"
   dependencies:
@@ -5744,7 +5744,7 @@ __metadata:
     "@favware/cliff-jumper": ^1.10.0
     "@favware/npm-deprecate": ^1.0.7
     "@favware/rollup-type-bundler": ^2.0.0
-    "@sapphire/framework": 4.0.0
+    "@sapphire/framework": ^4.0.0
     "@types/lodash": ^4.14.191
     "@types/node": ^18.11.18
     "@types/ws": ^8.5.4
