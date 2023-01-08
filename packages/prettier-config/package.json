@@ -53,7 +53,7 @@
 		"access": "public"
 	},
 	"devDependencies": {
-		"@favware/cliff-jumper": "^1.9.0",
+		"@favware/cliff-jumper": "^1.10.0",
 		"@vitest/coverage-c8": "^0.26.3",
 		"tsup": "^6.5.0",
 		"vitest": "^0.26.3"
