@@ -1,10 +1,10 @@
 import { UserError } from '@sapphire/framework';
-import { Message as DJSMessage, PermissionResolvable, Permissions, PermissionString } from 'discord.js';
+import { ChannelType, Message as DJSMessage, PermissionFlagsBits, PermissionResolvable, PermissionsBitField, PermissionsString } from 'discord.js';
 import diff from 'lodash/difference';
 import { DecoratorIdentifiers, RequiresUserPermissions } from '../../src';
 
 interface BitField {
-	missing(resolvedPermissions: Permissions): PermissionString[];
+	missing(resolvedPermissions: PermissionsBitField): PermissionsString[];
 }
 
 interface Message {
@@ -17,15 +17,15 @@ interface Message {
 	};
 }
 
-function buildMissing(resolvedPermissions: Permissions, ...givenPermissions: PermissionResolvable[]) {
-	return diff(resolvedPermissions.toArray(), new Permissions(givenPermissions).toArray());
+function buildMissing(resolvedPermissions: PermissionsBitField, ...givenPermissions: PermissionResolvable[]) {
+	return diff(resolvedPermissions.toArray(), new PermissionsBitField(givenPermissions).toArray());
 }
 
 function buildMessage(channelType: DJSMessage['channel']['type'], ...givenPermissions: PermissionResolvable[]): Message {
 	return {
 		channel: {
 			type: channelType,
-			permissionsFor: () => ({ missing: (resolvedPermissions: Permissions) => buildMissing(resolvedPermissions, givenPermissions) })
+			permissionsFor: () => ({ missing: (resolvedPermissions: PermissionsBitField) => buildMissing(resolvedPermissions, givenPermissions) })
 		},
 		guild: {
 			me: ''
@@ -36,7 +36,7 @@ function buildMessage(channelType: DJSMessage['channel']['type'], ...givenPermis
 describe('RequiresUserPermissions', () => {
 	describe('WITH DM-compatible permissions', () => {
 		class Test {
-			@RequiresUserPermissions(['SEND_MESSAGES', 'ATTACH_FILES'])
+			@RequiresUserPermissions([PermissionFlagsBits.SendMessages, PermissionFlagsBits.AttachFiles])
 			public getValue(_message: Message) {
 				return Promise.resolve('Resolved');
 			}
@@ -44,36 +44,38 @@ describe('RequiresUserPermissions', () => {
 
 		const instance = new Test();
 
-		describe('WITH channel === GUILD_TEXT', () => {
+		describe('WITH channel === GuildText', () => {
 			test('GIVEN has permission THEN returns resolved', async () => {
-				const result = await instance.getValue(buildMessage('GUILD_TEXT', 'SEND_MESSAGES', 'ATTACH_FILES'));
+				const result = await instance.getValue(
+					buildMessage(ChannelType.GuildText, PermissionFlagsBits.SendMessages, PermissionFlagsBits.AttachFiles)
+				);
 
 				expect(result).toBe('Resolved');
 			});
 
 			test('GIVEN lacking 1 permission THEN throws UserError', async () => {
-				const result = instance.getValue(buildMessage('GUILD_TEXT', 'SEND_MESSAGES'));
+				const result = instance.getValue(buildMessage(ChannelType.GuildText, PermissionFlagsBits.SendMessages));
 
 				await expect(result).rejects.toThrowError(
 					new UserError({
 						identifier: DecoratorIdentifiers.RequiresUserPermissionsMissingPermissions,
-						message: 'Sorry, but you are not allowed to do that. You are missing the permissions: ATTACH_FILES',
+						message: 'Sorry, but you are not allowed to do that. You are missing the permissions: AttachFiles',
 						context: {
-							missing: ['ATTACH_FILES']
+							missing: ['AttachFiles']
 						}
 					})
 				);
 			});
 
 			test('GIVEN lacking 2 permissions THEN throws UserError', async () => {
-				const result = instance.getValue(buildMessage('GUILD_TEXT'));
+				const result = instance.getValue(buildMessage(ChannelType.GuildText));
 
 				await expect(result).rejects.toThrowError(
 					new UserError({
 						identifier: DecoratorIdentifiers.RequiresUserPermissionsMissingPermissions,
-						message: 'Sorry, but you are not allowed to do that. You are missing the permissions: SEND_MESSAGES,ATTACH_FILES',
+						message: 'Sorry, but you are not allowed to do that. You are missing the permissions: SendMessages,AttachFiles',
 						context: {
-							missing: ['SEND_MESSAGES', 'ATTACH_FILES']
+							missing: [PermissionFlagsBits.SendMessages, PermissionFlagsBits.AttachFiles]
 						}
 					})
 				);
@@ -82,7 +84,7 @@ describe('RequiresUserPermissions', () => {
 
 		describe('WITH channel === DM', () => {
 			test('GIVEN no additional permissions THEN resolves', async () => {
-				const result = await instance.getValue(buildMessage('DM'));
+				const result = await instance.getValue(buildMessage(ChannelType.DM));
 
 				expect(result).toBe('Resolved');
 			});
@@ -91,7 +93,7 @@ describe('RequiresUserPermissions', () => {
 
 	describe('WITH DM-incompatible permissions', () => {
 		class Test {
-			@RequiresUserPermissions(['MANAGE_MESSAGES', 'ADD_REACTIONS', 'EMBED_LINKS'])
+			@RequiresUserPermissions([PermissionFlagsBits.ManageMessages, PermissionFlagsBits.AddReactions, PermissionFlagsBits.AddReactions])
 			public getValue(_message: Message) {
 				return Promise.resolve('Resolved');
 			}
@@ -101,7 +103,7 @@ describe('RequiresUserPermissions', () => {
 
 		describe('WITH channel === DM', () => {
 			test('GIVEN no additional permissions THEN resolves', async () => {
-				const result = instance.getValue(buildMessage('DM'));
+				const result = instance.getValue(buildMessage(ChannelType.DM));
 
 				await expect(result).rejects.toThrowError(
 					new UserError({

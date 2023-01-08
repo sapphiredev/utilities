@@ -1,5 +1,5 @@
 import { isFunction } from '@sapphire/utilities';
-import { MessageEmbed, type MessageEmbedOptions } from 'discord.js';
+import { EmbedBuilder, type EmbedData } from 'discord.js';
 import { PaginatedMessage } from './PaginatedMessage';
 
 /**
@@ -29,7 +29,7 @@ import { PaginatedMessage } from './PaginatedMessage';
  * ```
  */
 export class PaginatedFieldMessageEmbed<T> extends PaginatedMessage {
-	private embedTemplate: MessageEmbed = new MessageEmbed();
+	private embedTemplate: EmbedBuilder = new EmbedBuilder();
 	private totalPages = 0;
 	private items: T[] = [];
 	private itemsPerPage = 10;
@@ -63,27 +63,26 @@ export class PaginatedFieldMessageEmbed<T> extends PaginatedMessage {
 	}
 
 	/**
-	 * Sets the template to be used to display the embed fields as pages. This template can either be set from a template {@link MessageEmbed} instance or an object with embed options.
+	 * Sets the template to be used to display the embed fields as pages. This template can either be set from a template {@link EmbedBuilder} instance or an object with embed options.
 	 *
-	 * @param template MessageEmbed
+	 * @param template EmbedBuilder
 	 *
 	 * @example
 	 * ```typescript
 	 * import { PaginatedFieldMessageEmbed } from '@sapphire/discord.js-utilities';
-	 * import { MessageEmbed } from 'discord.js';
+	 * import { EmbedBuilder } from 'discord.js';
 	 *
-	 * new PaginatedFieldMessageEmbed().setTemplate(new MessageEmbed().setTitle('Test pager embed')).make().run(message);
+	 * new PaginatedFieldMessageEmbed().setTemplate(new EmbedBuilder().setTitle('Test pager embed')).make().run(message);
 	 * ```
 	 *
 	 * @example
 	 * ```typescript
 	 * import { PaginatedFieldMessageEmbed } from '@sapphire/discord.js-utilities';
-	 * import { MessageEmbed } from 'discord.js';
 	 *
 	 * new PaginatedFieldMessageEmbed().setTemplate({ title: 'Test pager embed' }).make().run(message);
 	 * ```
 	 */
-	public setTemplate(template: MessageEmbedOptions | MessageEmbed | ((embed: MessageEmbed) => MessageEmbed)) {
+	public setTemplate(template: EmbedData | EmbedBuilder | ((embed: EmbedBuilder) => EmbedBuilder)) {
 		this.embedTemplate = this.resolveTemplate(template);
 		return this;
 	}
@@ -107,7 +106,7 @@ export class PaginatedFieldMessageEmbed<T> extends PaginatedMessage {
 	 *    .make()
 	 *    .run(message);
 	 * ```
-	 * @param value The formatter callback to be applied to each embed item
+	 * @param formatter The formatter callback to be applied to each embed item
 	 */
 	public formatItems(formatter: (item: T, index: number, array: T[]) => any) {
 		this.items = this.items.map(formatter);
@@ -117,7 +116,7 @@ export class PaginatedFieldMessageEmbed<T> extends PaginatedMessage {
 	/**
 	 * Build the pages of the given array.
 	 *
-	 * You must call the [[PaginatedFieldMessageEmbed.make]] and [[PaginatedFieldMessageEmbed.run]] methods last, in that order, for the pagination to work.
+	 * You must call the {@link PaginatedFieldMessageEmbed.make} and {@link PaginatedFieldMessageEmbed.run} methods last, in that order, for the pagination to work.
 	 *
 	 * @example
 	 * ```typescript
@@ -147,17 +146,17 @@ export class PaginatedFieldMessageEmbed<T> extends PaginatedMessage {
 	}
 
 	private generatePages() {
-		const template = this.embedTemplate instanceof MessageEmbed ? (this.embedTemplate.toJSON() as MessageEmbedOptions) : this.embedTemplate;
+		const template = this.embedTemplate instanceof EmbedBuilder ? this.embedTemplate.toJSON() : this.embedTemplate;
 		for (let i = 0; i < this.totalPages; i++) {
-			const clonedTemplate = new MessageEmbed(template);
-			const fieldsClone = this.embedTemplate.fields;
-			clonedTemplate.fields = [];
+			const clonedTemplate = new EmbedBuilder(template);
+			const fieldsClone = this.embedTemplate.data.fields ?? [];
+			clonedTemplate.data.fields = [];
 
-			if (!clonedTemplate.color) clonedTemplate.setColor('RANDOM');
+			if (!clonedTemplate.data.color) clonedTemplate.setColor('Random');
 
 			const data = this.paginateArray(this.items, i, this.itemsPerPage);
 			this.addPage({
-				embeds: [clonedTemplate.addField(this.fieldTitle, data.join('\n'), false).addFields(fieldsClone)]
+				embeds: [clonedTemplate.addFields({ name: this.fieldTitle, value: data.join('\n'), inline: false }).addFields(fieldsClone)]
 			});
 		}
 	}
@@ -167,15 +166,15 @@ export class PaginatedFieldMessageEmbed<T> extends PaginatedMessage {
 		return items.slice(offset, offset + perPageItems);
 	}
 
-	private resolveTemplate(template: MessageEmbed | MessageEmbedOptions | ((embed: MessageEmbed) => MessageEmbed)) {
-		if (template instanceof MessageEmbed) {
+	private resolveTemplate(template: EmbedBuilder | EmbedData | ((embed: EmbedBuilder) => EmbedBuilder)) {
+		if (template instanceof EmbedBuilder) {
 			return template;
 		}
 
 		if (isFunction(template)) {
-			return template(new MessageEmbed());
+			return template(new EmbedBuilder());
 		}
 
-		return new MessageEmbed(template);
+		return new EmbedBuilder(template);
 	}
 }

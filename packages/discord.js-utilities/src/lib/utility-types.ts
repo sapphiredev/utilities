@@ -1,20 +1,21 @@
 import type {
+	AutocompleteInteraction,
 	ButtonInteraction,
 	CategoryChannel,
 	Channel,
-	CommandInteraction,
-	ContextMenuInteraction,
+	ChatInputCommandInteraction,
 	DMChannel,
 	GuildChannel,
+	Interaction,
 	Message,
-	ModalSubmitInteraction,
+	MessageContextMenuCommandInteraction,
 	NewsChannel,
 	PartialDMChannel,
 	SelectMenuInteraction,
 	StageChannel,
-	StoreChannel,
 	TextChannel,
 	ThreadChannel,
+	UserContextMenuCommandInteraction,
 	VoiceChannel
 } from 'discord.js';
 
@@ -27,7 +28,6 @@ export type ChannelTypes =
 	| PartialDMChannel
 	| NewsChannel
 	| StageChannel
-	| StoreChannel
 	| TextChannel
 	| ThreadChannel
 	| VoiceChannel
@@ -70,16 +70,24 @@ export type GuildTextBasedChannelTypes = NonThreadGuildTextBasedChannelTypes | T
 export type ChannelTypeString = ChannelTypes['type'] | 'UNKNOWN';
 
 /**
- * A union of {@link CommandInteraction} and {@link ContextMenuInteraction}. Similar to {@link BaseCommandInteraction} class but as a type union.
+ * A union of {@link ChatInputCommandInteraction}, {@link UserContextMenuCommandInteraction} and {@link MessageContextMenuCommandInteraction}. Similar to {@link CommandInteraction} class but as a type union.
  */
-export type ChatInputOrContextMenuInteraction = CommandInteraction | ContextMenuInteraction;
+export type ChatInputOrContextMenuCommandInteraction =
+	| ChatInputCommandInteraction
+	| UserContextMenuCommandInteraction
+	| MessageContextMenuCommandInteraction;
 
 /**
- * A union of {@link CommandInteraction}, {@link ContextMenuInteraction}, {@link SelectMenuInteraction}, {@link ButtonInteraction}, and {@link ModalSubmitInteraction};
+ * A union of {@link ChatInputCommandInteraction}{@link UserContextMenuCommandInteraction}, {@link MessageContextMenuCommandInteraction}, {@link AutocompleteInteraction}, {@link SelectMenuInteraction} and {@link ButtonInteraction}
  */
-export type NonModalInteraction = ChatInputOrContextMenuInteraction | SelectMenuInteraction | ButtonInteraction;
+export type NonModalInteraction = ChatInputOrContextMenuCommandInteraction | AutocompleteInteraction | SelectMenuInteraction | ButtonInteraction;
 
 /**
- * A union of {@link CommandInteraction}, {@link ContextMenuInteraction}, {@link SelectMenuInteraction}, {@link ButtonInteraction}, and {@link ModalSubmitInteraction};
+ * A union of {@link ChatInputCommandInteraction}{@link UserContextMenuCommandInteraction}, {@link MessageContextMenuCommandInteraction}, {@link AutocompleteInteraction}, {@link SelectMenuInteraction}, {@link ButtonInteraction}, and {@link ModalSubmitInteraction}
  */
-export type AnyInteraction = NonModalInteraction | ModalSubmitInteraction;
+export type AnyInteraction = Interaction;
+
+/**
+ * A union of {@link ChatInputCommandInteraction}{@link UserContextMenuCommandInteraction}, {@link MessageContextMenuCommandInteraction}, {@link SelectMenuInteraction}, {@link ButtonInteraction}, and {@link ModalSubmitInteraction}
+ */
+export type AnyInteractableInteraction = Exclude<AnyInteraction, AutocompleteInteraction>;
