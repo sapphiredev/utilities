@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/discord.js-utilities@6.0.0](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@5.1.2...@sapphire/discord.js-utilities@6.0.0) - (2023-01-08)
+
+## 📝 Documentation
+
+- Add @06000208 as a contributor ([fa3349e](https://github.com/sapphiredev/utilities/commit/fa3349e55ce4ad008785211dec7bf8e2b5d933df))
+
+## 🚀 Features
+
+- **deps:** Support for djs v14 (#434) ([2e2c3e9](https://github.com/sapphiredev/utilities/commit/2e2c3e93c90e20895c49e944796d4244823cc078))
+
 # [@sapphire/discord.js-utilities@5.1.2](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@5.1.1...@sapphire/discord.js-utilities@5.1.2) - (2022-11-19)
 
 ## 🐛 Bug Fixes
