@@ -2,6 +2,134 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/discord-utilities@3.0.0](https://github.com/sapphiredev/utilities/compare/@sapphire/discord-utilities@2.12.0...@sapphire/discord-utilities@3.0.0) - (2023-01-08)
+
+## 🐛 Bug Fixes
+
+- **deps:** Update all non-major dependencies (#532) ([8033d1f](https://github.com/sapphiredev/utilities/commit/8033d1ff7a5a1974134c61f424f171cccb2915e1))
+
+## 📝 Documentation
+
+- Add @06000208 as a contributor ([fa3349e](https://github.com/sapphiredev/utilities/commit/fa3349e55ce4ad008785211dec7bf8e2b5d933df))
+- Add @didinele as a contributor ([42ef7b6](https://github.com/sapphiredev/utilities/commit/42ef7b656c48fd0e720119db1d622c8bba2791e9))
+
+## 🚀 Features
+
+- **deps:** Support for djs v14 (#434) ([2e2c3e9](https://github.com/sapphiredev/utilities/commit/2e2c3e93c90e20895c49e944796d4244823cc078))
+
+# [@sapphire/discord-utilities@2.12.0](https://github.com/sapphiredev/utilities/compare/@sapphire/discord-utilities@2.11.7...@sapphire/discord-utilities@2.12.0) - (2022-11-01)
+
+## 🐛 Bug Fixes
+
+- **deps:** Update all non-major dependencies (#514) ([21b07d5](https://github.com/sapphiredev/utilities/commit/21b07d5db529a0d982647a60de98e46f36f1ac93))
+
+## 📝 Documentation
+
+- Add @goestav as a contributor ([0e56a92](https://github.com/sapphiredev/utilities/commit/0e56a92a4e2d0942bfa207f81a8cb03b32312034))
+- Add @CitTheDev as a contributor ([34169ea](https://github.com/sapphiredev/utilities/commit/34169eae1dc0476ccf5a6c4f36e28602a204829e))
+- Add @legendhimslef as a contributor ([059b6f1](https://github.com/sapphiredev/utilities/commit/059b6f1ab5362d46d58624d06c1aa39192b0716f))
+
+## 🚀 Features
+
+- **discord-utilities:** Interaction option resolver (#515) ([f3911e9](https://github.com/sapphiredev/utilities/commit/f3911e9b6a541946f1dbed7bb00c0ad956875ff7))
+
+# [@sapphire/discord-utilities@2.11.7](https://github.com/sapphiredev/utilities/compare/@sapphire/discord-utilities@2.11.6...@sapphire/discord-utilities@2.11.7) - (2022-10-22)
+
+## 🐛 Bug Fixes
+
+- **discord-utilities:** Fix nitro upload limit (#509) ([89290d6](https://github.com/sapphiredev/utilities/commit/89290d6012974ee340f8c6f9af93db8a9962d38c))
+- **deps:** Update all non-major dependencies (#505) ([6178296](https://github.com/sapphiredev/utilities/commit/617829649e1e4deeee02b14533b5377cd5bc1fb3))
+- **deps:** Update all non-major dependencies (#466) ([dc08606](https://github.com/sapphiredev/utilities/commit/dc08606a97154e47c65536123ac5f8b1262f7bd2))
+- **deps:** Update all non-major dependencies ([e20f299](https://github.com/sapphiredev/utilities/commit/e20f29906e83cee000aaba9c6827e3bec5173d28))
+
+## 📝 Documentation
+
+- Add @r-priyam as a contributor ([fb278ba](https://github.com/sapphiredev/utilities/commit/fb278bacf627ec6fc88752eafeb12df5f3177a2c))
+- Change name of @kyranet (#451) ([df4fdef](https://github.com/sapphiredev/utilities/commit/df4fdefce18659975a4ebc224723638507d02d35))
+- Update @RealShadowNova as a contributor ([a869ba0](https://github.com/sapphiredev/utilities/commit/a869ba0abfad041610b9115187d426aebe671af6))
+- **discord-utilities:** Update raw for `WebhookRegex` ([aa93847](https://github.com/sapphiredev/utilities/commit/aa93847dc67193e3b827db91560190b6e43b9df0))
+
+# [@sapphire/discord-utilities@2.11.6](https://github.com/sapphiredev/utilities/compare/@sapphire/discord-utilities@2.11.5...@sapphire/discord-utilities@2.11.6) - (2022-08-20)
+
+## 🐛 Bug Fixes
+
+- **deps:** Update all non-major dependencies ([2308bd7](https://github.com/sapphiredev/utilities/commit/2308bd74356b6b2e0c12995b25f4d8ade4803fe9))
+
+## 📝 Documentation
+
+- Fixed typos (#427) ([e840a97](https://github.com/sapphiredev/utilities/commit/e840a9795583b59ee3da9ffe0d325e0a3cfa0c14))
+
+# [@sapphire/discord-utilities@2.11.5](https://github.com/sapphiredev/utilities/compare/@sapphire/discord-utilities@2.11.4...@sapphire/discord-utilities@2.11.5) - (2022-07-22)
+
+## 🐛 Bug Fixes
+
+- **discord-utilities:** Update regexes for 20 digit IDs (#398) ([45e6329](https://github.com/sapphiredev/utilities/commit/45e6329762138d35699c70ec32af16d7c62f0821))
+- **deps:** Update all non-major dependencies ([84af0db](https://github.com/sapphiredev/utilities/commit/84af0db2db749223b036aa99fe19a2e9af5681c6))
+
+## 📝 Documentation
+
+- Add @muchnameless as a contributor ([a1221fe](https://github.com/sapphiredev/utilities/commit/a1221fea68506e99591d5d00ec552a07c26833f9))
+- Add @enxg as a contributor ([d2382f0](https://github.com/sapphiredev/utilities/commit/d2382f04e3909cb4ad11798a0a10e683f6cf5383))
+- Add @EvolutionX-10 as a contributor ([efc3a32](https://github.com/sapphiredev/utilities/commit/efc3a320a72ae258996dd62866d206c33f8d4961))
+
+# [@sapphire/discord-utilities@2.11.4](https://github.com/sapphiredev/utilities/compare/@sapphire/discord-utilities@2.11.2...@sapphire/discord-utilities@2.11.4) - (2022-07-01)
+
+## 🐛 Bug Fixes
+
+- **limits:** Align with ddev docs (#386) ([335b903](https://github.com/sapphiredev/utilities/commit/335b903195de0a0f7e36979222990659925216a1))
+
+## 🧪 Testing
+
+- Migrate to vitest (#380) ([075ec73](https://github.com/sapphiredev/utilities/commit/075ec73c7a8e3374fad3ada612d37eb4ac36ec8d))
+
+# [@sapphire/discord-utilities@2.11.2](https://github.com/sapphiredev/utilities/compare/@sapphire/discord-utilities@2.11.1...@sapphire/discord-utilities@2.11.2) - (2022-06-10)
+
+## 🐛 Bug Fixes
+
+- **discord-utilities:** Fixed the export of TwemojiRegex (#376) ([3c4800d](https://github.com/sapphiredev/utilities/commit/3c4800d8cdbb5b2c7b2263fe133a75d7fa66cc84))
+
+# [@sapphire/discord-utilities@2.11.1](https://github.com/sapphiredev/utilities/compare/@sapphire/discord-utilities@2.11.0...@sapphire/discord-utilities@2.11.1) - (2022-06-01)
+
+## 🐛 Bug Fixes
+
+- **discord-utilities:** Update invite link regex (#354) ([910de28](https://github.com/sapphiredev/utilities/commit/910de28f2934f8e1ea8aa78f1e846909f14da959))
+- **deps:** Update all non-major dependencies ([50cd8de](https://github.com/sapphiredev/utilities/commit/50cd8dea593b6f5ae75571209456b3421e2ca59a))
+
+## 📝 Documentation
+
+- **discord-utilities:** Fix `label` typo (#356) ([dba9ad2](https://github.com/sapphiredev/utilities/commit/dba9ad2f46d433fc78e0ffe6047be8935c0e15d6))
+
+# [@sapphire/discord-utilities@2.11.0](https://github.com/sapphiredev/utilities/compare/@sapphire/discord-utilities@2.10.3...@sapphire/discord-utilities@2.11.0) - (2022-05-21)
+
+## 📝 Documentation
+
+- Add @MajesticString as a contributor ([295b3e9](https://github.com/sapphiredev/utilities/commit/295b3e9849a4b0fe64074bae02f6426378a303c3))
+- Add @Mzato0001 as a contributor ([c790ef2](https://github.com/sapphiredev/utilities/commit/c790ef25df2d7e22888fa9f8169167aa555e9e19))
+- **discord-utilities:** Fix changelog file ([c1b6337](https://github.com/sapphiredev/utilities/commit/c1b6337113aa07665dbf5c1aedb7f432db3f8e3b))
+- Add @NotKaskus as a contributor ([00da8f1](https://github.com/sapphiredev/utilities/commit/00da8f199137b9277119823f322d1f2d168d928a))
+- Add @imranbarbhuiya as a contributor ([fb674c2](https://github.com/sapphiredev/utilities/commit/fb674c2c5594d41e71662263553dcb4bac9e37f4))
+- Add @axisiscool as a contributor ([ce1aa31](https://github.com/sapphiredev/utilities/commit/ce1aa316871a88d3663efbdf2a42d3d8dfe6a27f))
+- Add @dhruv-kaushikk as a contributor ([ebbf43f](https://github.com/sapphiredev/utilities/commit/ebbf43f63617daba96e72c50a234bf8b64f6ddc4))
+- Add @Commandtechno as a contributor ([f1d69fa](https://github.com/sapphiredev/utilities/commit/f1d69fabe1ee0abe4be08b19e63dbec03102f7ce))
+- **discord-utilities:** Fix changelog format ([1114e5c](https://github.com/sapphiredev/utilities/commit/1114e5c04dae2c8311d6544750dac94aa3c34e39))
+- Fix typedoc causing OOM crashes ([63ba41c](https://github.com/sapphiredev/utilities/commit/63ba41c4b6678554b1c7043a22d3296db4f59360))
+
+## 🚀 Features
+
+- **discord-utilities:** Add modal limits (#355) ([f2a69ec](https://github.com/sapphiredev/utilities/commit/f2a69ec141997fa0722161b9905c9fbc8033af7a))
+
+# [@sapphire/discord-utilities@2.10.2](https://github.com/sapphiredev/utilities/compare/@sapphire/discord-utilities@2.10.1...@sapphire/discord-utilities@2.10.2) - (2022-03-20)
+
+## 🐛 Bug Fixes
+
+- **deps:** Update dependency twemoji-parser to v14 (#315) ([3a659a7](https://github.com/sapphiredev/utilities/commit/3a659a7242e397f351bbeea4be404ca81eab93d6))
+
+# [@sapphire/discord-utilities@2.10.0](https://github.com/sapphiredev/utilities/compare/@sapphire/discord-utilities@2.9.0...@sapphire/discord-utilities@2.10.0) - (2022-03-06)
+
+## 🚀 Features
+
+- Allow module: NodeNext (#306) ([9dc6dd6](https://github.com/sapphiredev/utilities/commit/9dc6dd619efab879bb2b0b3c9e64304e10a67ed6))
+
 # [@sapphire/discord-utilities@2.12.0](https://github.com/sapphiredev/utilities/compare/@sapphire/discord-utilities@2.11.7...@sapphire/discord-utilities@2.12.0) - (2022-11-01)
 
 ## 🐛 Bug Fixes
