@@ -6,12 +6,6 @@ exports[`Prettier Config > should export rules 1`] = `
   "endOfLine": "lf",
   "overrides": [
     {
-      "files": ".all-contributorsrc",
-      "options": {
-        "parser": "json",
-      },
-    },
-    {
       "files": "*.yml",
       "options": {
         "tabWidth": 2,
