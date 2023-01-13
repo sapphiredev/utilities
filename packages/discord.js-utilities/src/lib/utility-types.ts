@@ -11,8 +11,8 @@ import type {
 	MessageContextMenuCommandInteraction,
 	NewsChannel,
 	PartialDMChannel,
-	SelectMenuInteraction,
 	StageChannel,
+	StringSelectMenuInteraction,
 	TextChannel,
 	ThreadChannel,
 	UserContextMenuCommandInteraction,
@@ -78,16 +78,20 @@ export type ChatInputOrContextMenuCommandInteraction =
 	| MessageContextMenuCommandInteraction;
 
 /**
- * A union of {@link ChatInputCommandInteraction}{@link UserContextMenuCommandInteraction}, {@link MessageContextMenuCommandInteraction}, {@link AutocompleteInteraction}, {@link SelectMenuInteraction} and {@link ButtonInteraction}
+ * A union of {@link ChatInputCommandInteraction}{@link UserContextMenuCommandInteraction}, {@link MessageContextMenuCommandInteraction}, {@link AutocompleteInteraction}, {@link StringSelectMenuInteraction} and {@link ButtonInteraction}
  */
-export type NonModalInteraction = ChatInputOrContextMenuCommandInteraction | AutocompleteInteraction | SelectMenuInteraction | ButtonInteraction;
+export type NonModalInteraction =
+	| ChatInputOrContextMenuCommandInteraction
+	| AutocompleteInteraction
+	| StringSelectMenuInteraction
+	| ButtonInteraction;
 
 /**
- * A union of {@link ChatInputCommandInteraction}{@link UserContextMenuCommandInteraction}, {@link MessageContextMenuCommandInteraction}, {@link AutocompleteInteraction}, {@link SelectMenuInteraction}, {@link ButtonInteraction}, and {@link ModalSubmitInteraction}
+ * A union of {@link ChatInputCommandInteraction}{@link UserContextMenuCommandInteraction}, {@link MessageContextMenuCommandInteraction}, {@link AutocompleteInteraction}, {@link StringSelectMenuInteraction}, {@link ButtonInteraction}, and {@link ModalSubmitInteraction}
  */
 export type AnyInteraction = Interaction;
 
 /**
- * A union of {@link ChatInputCommandInteraction}{@link UserContextMenuCommandInteraction}, {@link MessageContextMenuCommandInteraction}, {@link SelectMenuInteraction}, {@link ButtonInteraction}, and {@link ModalSubmitInteraction}
+ * A union of {@link ChatInputCommandInteraction}{@link UserContextMenuCommandInteraction}, {@link MessageContextMenuCommandInteraction}, {@link StringSelectMenuInteraction}, {@link ButtonInteraction}, and {@link ModalSubmitInteraction}
  */
 export type AnyInteractableInteraction = Exclude<AnyInteraction, AutocompleteInteraction>;
