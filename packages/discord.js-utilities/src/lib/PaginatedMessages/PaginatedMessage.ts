@@ -1312,7 +1312,7 @@ export class PaginatedMessage {
 		{
 			customId: '@sapphire/paginated-messages.goToPage',
 			type: ComponentType.SelectMenu,
-			run: ({ handler, interaction }) => interaction.isSelectMenu() && (handler.index = parseInt(interaction.values[0], 10))
+			run: ({ handler, interaction }) => interaction.isStringSelectMenu() && (handler.index = parseInt(interaction.values[0], 10))
 		},
 		{
 			customId: '@sapphire/paginated-messages.firstPage',
