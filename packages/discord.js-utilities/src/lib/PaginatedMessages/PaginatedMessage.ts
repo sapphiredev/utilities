@@ -1311,8 +1311,8 @@ export class PaginatedMessage {
 	public static defaultActions: PaginatedMessageAction[] = [
 		{
 			customId: '@sapphire/paginated-messages.goToPage',
-			type: ComponentType.SelectMenu,
-			run: ({ handler, interaction }) => interaction.isSelectMenu() && (handler.index = parseInt(interaction.values[0], 10))
+			type: ComponentType.StringSelect,
+			run: ({ handler, interaction }) => interaction.isStringSelectMenu() && (handler.index = parseInt(interaction.values[0], 10))
 		},
 		{
 			customId: '@sapphire/paginated-messages.firstPage',
