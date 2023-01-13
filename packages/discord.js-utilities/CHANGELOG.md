@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/discord.js-utilities@6.0.1](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@6.0.0...@sapphire/discord.js-utilities@6.0.1) - (2023-01-13)
+
+## 🐛 Bug Fixes
+
+- **discord.js-utilities:** Fixed deprecated code ([b5d55e9](https://github.com/sapphiredev/utilities/commit/b5d55e938d2aff84cba5f64955358f00d6f87fc7))
+
 # [@sapphire/discord.js-utilities@6.0.0](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@5.1.2...@sapphire/discord.js-utilities@6.0.0) - (2023-01-08)
 
 ## 📝 Documentation
