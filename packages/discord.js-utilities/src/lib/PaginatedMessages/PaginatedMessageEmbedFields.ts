@@ -120,8 +120,6 @@ export class PaginatedMessageEmbedFields extends PaginatedMessage {
 			const fieldsClone = this.embedTemplate.data.fields ?? [];
 			clonedTemplate.data.fields = [];
 
-			if (!clonedTemplate.data.color) clonedTemplate.setColor('Random');
-
 			const data = this.paginateArray(this.items, i, this.itemsPerPage - fieldsClone.length);
 			this.addPage({
 				embeds: [clonedTemplate.addFields(...data, ...fieldsClone)]
