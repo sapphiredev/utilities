@@ -776,19 +776,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@sapphire/discord.js-utilities@npm:6.0.0":
-  version: 6.0.0
-  resolution: "@sapphire/discord.js-utilities@npm:6.0.0"
-  dependencies:
-    "@sapphire/discord-utilities": ^3.0.0
-    "@sapphire/duration": ^1.0.0
-    "@sapphire/utilities": ^3.11.0
-    tslib: ^2.4.1
-  checksum: 00752fe7c79666db905e3b1a8d0a20c968b62d1b5279081da2de530c8370b2d3124579cf0a186f5ac4145bb1d107e0bc75988d1f9d1700fe1f5622367c57c37d
-  languageName: node
-  linkType: hard
-
-"@sapphire/discord.js-utilities@workspace:^, @sapphire/discord.js-utilities@workspace:packages/discord.js-utilities":
+"@sapphire/discord.js-utilities@6.0.1, @sapphire/discord.js-utilities@workspace:^, @sapphire/discord.js-utilities@workspace:packages/discord.js-utilities":
   version: 0.0.0-use.local
   resolution: "@sapphire/discord.js-utilities@workspace:packages/discord.js-utilities"
   dependencies:
@@ -805,7 +793,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@sapphire/duration@^1.0.0, @sapphire/duration@workspace:^, @sapphire/duration@workspace:packages/duration":
+"@sapphire/duration@workspace:^, @sapphire/duration@workspace:packages/duration":
   version: 0.0.0-use.local
   resolution: "@sapphire/duration@workspace:packages/duration"
   dependencies:
@@ -867,20 +855,20 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@sapphire/framework@npm:^4.0.1":
-  version: 4.0.1
-  resolution: "@sapphire/framework@npm:4.0.1"
+"@sapphire/framework@npm:^4.0.2":
+  version: 4.0.2
+  resolution: "@sapphire/framework@npm:4.0.2"
   dependencies:
     "@discordjs/builders": ^1.4.0
     "@sapphire/discord-utilities": ^3.0.0
-    "@sapphire/discord.js-utilities": 6.0.0
+    "@sapphire/discord.js-utilities": 6.0.1
     "@sapphire/lexure": ^1.1.2
     "@sapphire/pieces": ^3.6.0
     "@sapphire/ratelimits": ^2.4.5
     "@sapphire/result": ^2.6.0
     "@sapphire/stopwatch": ^1.5.0
     "@sapphire/utilities": ^3.11.0
-  checksum: 97cda09441c9911924493e6f3ad3c554713c0383166373af03e2a4acf1f547dfe421eaa52422298ebf1abb847a62e59c53cf74b48d5bb5ad54ba9973fdc3efaf
+  checksum: 4af8a83ff072107e035b37fa3d80aad83b55c3fdeb61fc0d06ff7b2d27b60b1792b23105b9bf253f0f588040249e84c06c7a529f0de19eaa4b84624d8ab959c1
   languageName: node
   linkType: hard
 
@@ -5766,7 +5754,7 @@ __metadata:
     "@favware/cliff-jumper": ^1.10.0
     "@favware/npm-deprecate": ^1.0.7
     "@favware/rollup-type-bundler": ^2.0.0
-    "@sapphire/framework": ^4.0.1
+    "@sapphire/framework": ^4.0.2
     "@types/lodash": ^4.14.191
     "@types/node": ^18.11.18
     "@types/ws": ^8.5.4
