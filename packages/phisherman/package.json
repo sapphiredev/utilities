@@ -58,8 +58,8 @@
 	},
 	"devDependencies": {
 		"@favware/cliff-jumper": "^1.10.0",
-		"tsup": "^6.5.0",
-		"typedoc": "^0.23.24",
+		"tsup": "^6.6.0",
+		"typedoc": "^0.23.25",
 		"typedoc-json-parser": "^7.1.0",
 		"typescript": "^4.9.5"
 	}
