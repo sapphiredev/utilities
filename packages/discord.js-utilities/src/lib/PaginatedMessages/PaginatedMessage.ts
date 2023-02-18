@@ -28,7 +28,7 @@ import {
 	type WebhookEditMessageOptions
 } from 'discord.js';
 import { MessageBuilder } from '../builders/MessageBuilder';
-import { isAnyInteraction, isGuildBasedChannel, isMessageInstance } from '../type-guards';
+import { isAnyInteraction, isGuildBasedChannel, isMessageInstance, isStageChannel } from '../type-guards';
 import type { AnyInteractableInteraction } from '../utility-types';
 import type {
 	PaginatedMessageAction,
@@ -1032,7 +1032,7 @@ export class PaginatedMessage {
 			} else {
 				this.response = await messageOrInteraction.reply({ ...(page as InteractionReplyOptions), fetchReply: true, ephemeral: false });
 			}
-		} else {
+		} else if (!isStageChannel(messageOrInteraction.channel)) {
 			this.response = await messageOrInteraction.channel.send(page as BaseMessageOptions);
 		}
 	}
