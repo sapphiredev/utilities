@@ -141,9 +141,9 @@ export function isPrivateThreadChannel(channel: ChannelTypes | Nullish): channel
  * @param channel The channel to check.
  */
 export function isTextBasedChannel(channel: ChannelTypes | Nullish): channel is TextBasedChannelTypes {
-	if (isNullish(channel)) return false;
+	if (isNullish(channel) || isStageChannel(channel)) return false;
 
-	return !isNullish((channel as TextBasedChannelTypes).send);
+	return !isNullish((channel as Exclude<TextBasedChannelTypes, StageChannel>).send);
 }
 
 /**
@@ -174,7 +174,7 @@ export function isNsfwChannel(channel: ChannelTypes | Nullish): boolean {
 		case ChannelType.GuildNews:
 		case ChannelType.GuildText:
 		case ChannelType.GuildForum:
-			return (channel as Exclude<NonThreadGuildTextBasedChannelTypes, VoiceChannel>).nsfw;
+			return (channel as Exclude<NonThreadGuildTextBasedChannelTypes, VoiceChannel | StageChannel>).nsfw;
 		case ChannelType.GuildNewsThread:
 		case ChannelType.GuildPrivateThread:
 		case ChannelType.GuildPublicThread:

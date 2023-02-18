@@ -1,6 +1,6 @@
 import { isNullish, type ArgumentTypes, type Awaitable } from '@sapphire/utilities';
 import type { CollectorFilter, CollectorOptions, EmojiIdentifierResolvable, Message, MessageReaction, User } from 'discord.js';
-import { isTextBasedChannel } from '../../type-guards';
+import { isStageChannel, isTextBasedChannel } from '../../type-guards';
 import type { MessagePrompterChannelTypes, MessagePrompterMessage } from '../constants';
 import type { IMessagePrompterExplicitReturnBase } from '../ExplicitReturnTypes';
 import type { IMessagePrompterStrategyOptions } from '../strategyOptions';
@@ -56,7 +56,7 @@ export abstract class MessagePrompterBaseStrategy {
 		authorOrFilter: User | CollectorFilter<[MessageReaction, User]>,
 		reactions: string[] | EmojiIdentifierResolvable[]
 	): Promise<IMessagePrompterExplicitReturnBase> {
-		if (isTextBasedChannel(channel)) {
+		if (isTextBasedChannel(channel) && !isStageChannel(channel)) {
 			if (!isNullish(this.editMessage) && this.editMessage.editable) {
 				this.appliedMessage = await this.editMessage.edit(this.message as ArgumentTypes<Message['edit']>[0]);
 			} else {
