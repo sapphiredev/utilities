@@ -1,6 +1,6 @@
 import { isNullish, type ArgumentTypes } from '@sapphire/utilities';
 import type { CollectorFilter, CollectorOptions, Message, User } from 'discord.js';
-import { isTextBasedChannel } from '../../type-guards';
+import { isStageChannel, isTextBasedChannel } from '../../type-guards';
 import type { MessagePrompterChannelTypes, MessagePrompterMessage } from '../constants';
 import type { IMessagePrompterExplicitMessageReturn } from '../ExplicitReturnTypes';
 import type { IMessagePrompterStrategyOptions } from '../strategyOptions';
@@ -27,7 +27,7 @@ export class MessagePrompterMessageStrategy extends MessagePrompterBaseStrategy 
 		channel: MessagePrompterChannelTypes,
 		authorOrFilter: User | CollectorFilter<[Message]>
 	): Promise<IMessagePrompterExplicitMessageReturn | Message> {
-		if (isTextBasedChannel(channel)) {
+		if (isTextBasedChannel(channel) && !isStageChannel(channel)) {
 			if (!isNullish(this.editMessage) && this.editMessage.editable) {
 				this.appliedMessage = await this.editMessage.edit(this.message as ArgumentTypes<Message['edit']>[0]);
 			} else {
