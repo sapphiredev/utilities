@@ -14,6 +14,13 @@ ruleTester.run('no-discard-result', noDiscordResultRule, {
 				const complex = foo() && (((Math.random() > 0.5 ? foo() : await bar()) || foo()) ?? await bar());
 			`,
 			name: 'Result is not discared'
+		},
+		{
+			code: `import { Result } from '@sapphire/result';
+				function foo(): Result<string, string> {}
+				void foo();
+			`,
+			name: 'Result is intentionally discarded'
 		}
 	],
 	invalid: [

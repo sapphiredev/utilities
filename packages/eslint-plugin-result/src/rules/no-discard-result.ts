@@ -53,6 +53,11 @@ function functionHasResultLikeReturnType(service: ParserServices, checker: ts.Ty
 }
 
 function isDiscardedResult(callExpressionNode: TSESTree.Node): boolean {
+	// `void foo();` is explicit and allowed
+	if (callExpressionNode.parent?.type === AST_NODE_TYPES.UnaryExpression && callExpressionNode.parent.operator === 'void') {
+		return false;
+	}
+
 	// Check for a variable declaration
 	if (callExpressionNode.parent?.type === AST_NODE_TYPES.VariableDeclarator) {
 		return false;
