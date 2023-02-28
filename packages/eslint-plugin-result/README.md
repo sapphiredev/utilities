@@ -67,5 +67,3 @@ Thank you to all the people who already contributed to Sapphire!
 </a>
 
 [contributing]: https://github.com/sapphiredev/.github/blob/main/.github/CONTRIBUTING.md
-[lexure]: https://github.com/1Computer1/lexure
-[1computer1]: https://github.com/1Computer1
