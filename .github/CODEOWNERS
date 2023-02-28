@@ -8,6 +8,7 @@
 /packages/discord-utilities/**/*.ts @favna
 /packages/discord.js-utilities/src/**/*.ts @kyranet @vladfrangu @realshadownova @favna
 /packages/eslint-config/**/*.ts @favna
+/packages/eslint-plugin-result/**/*.ts @didinele
 /packages/event-iterator/**/*.ts @kyranet @vladfrangu @favna
 /packages/fetch/**/*.ts @favna @kyranet @vladfrangu
 /packages/lexure/**/*.ts @kyranet @favna @vladfrangu
