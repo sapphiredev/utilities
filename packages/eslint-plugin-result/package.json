@@ -1,6 +1,6 @@
 {
 	"name": "@sapphire/eslint-plugin-result",
-	"version": "0.1.0",
+	"version": "1.0.0",
 	"description": "A TypeScript ESLint plugin for @sapphire/result",
 	"author": "@sapphire",
 	"license": "MIT",
@@ -36,17 +36,12 @@
 	},
 	"keywords": [
 		"@sapphire/eslint-plugin-result",
-		"bot",
-		"discord",
-		"lexure",
-		"promise",
 		"sapphire",
-		"standalone",
-		"try catch",
 		"ts",
 		"typescript",
-		"wrapper",
-		"yarn"
+		"eslint",
+		"eslintPlugin",
+		"result"
 	],
 	"bugs": {
 		"url": "https://github.com/sapphiredev/utilities/issues"

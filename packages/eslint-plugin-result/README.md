@@ -43,6 +43,15 @@ Somewhere in your `.eslintrc.json`:
 }
 ```
 
+Or
+
+```json
+{
+	"plugins": ["@sapphire/eslint-plugin-result"],
+	"extends": ["@sapphire/eslint-plugin-result/recommended"]
+}
+```
+
 ## Buy us some doughnuts
 
 Sapphire Community is and always will be open source, even if we don't get donations. That being said, we know there are amazing people who may still want to donate just to show their appreciation. Thank you very much in advance!
