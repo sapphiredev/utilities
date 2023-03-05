@@ -60,7 +60,7 @@
 		"tslib": "^2.5.0"
 	},
 	"devDependencies": {
-		"@favware/cliff-jumper": "^1.10.0",
+		"@favware/cliff-jumper": "^2.0.0",
 		"@favware/rollup-type-bundler": "^2.0.0",
 		"tsup": "^6.6.3",
 		"typedoc": "^0.23.26",
