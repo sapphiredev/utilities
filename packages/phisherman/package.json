@@ -57,7 +57,7 @@
 		"access": "public"
 	},
 	"devDependencies": {
-		"@favware/cliff-jumper": "^1.10.0",
+		"@favware/cliff-jumper": "^2.0.0",
 		"tsup": "^6.6.3",
 		"typedoc": "^0.23.26",
 		"typedoc-json-parser": "^7.2.0",
