@@ -92,6 +92,6 @@ export type NonModalInteraction =
 export type AnyInteraction = Interaction;
 
 /**
- * A union of {@link ChatInputCommandInteraction}{@link UserContextMenuCommandInteraction}, {@link MessageContextMenuCommandInteraction}, {@link StringSelectMenuInteraction}, {@link ButtonInteraction}, and {@link ModalSubmitInteraction}
+ * A union of {@link ChatInputCommandInteraction}, {@link UserContextMenuCommandInteraction}, {@link MessageContextMenuCommandInteraction}, {@link StringSelectMenuInteraction}, {@link ButtonInteraction}, and {@link ModalSubmitInteraction}
  */
 export type AnyInteractableInteraction = Exclude<AnyInteraction, AutocompleteInteraction>;
