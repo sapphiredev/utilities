@@ -1,4 +1,3 @@
-import { TimerManager } from '@sapphire/timer-manager';
 import { RateLimit } from './RateLimit';
 
 export class RateLimitManager<K = string> extends Map<K, RateLimit<K>> {
@@ -52,7 +51,7 @@ export class RateLimitManager<K = string> extends Map<K, RateLimit<K>> {
 	 * @param value The {@link RateLimit} to set
 	 */
 	public override set(id: K, value: RateLimit<K>): this {
-		this.sweepInterval ??= TimerManager.setInterval(this.sweep.bind(this), RateLimitManager.sweepIntervalDuration);
+		this.sweepInterval ??= setInterval(this.sweep.bind(this), RateLimitManager.sweepIntervalDuration);
 		return super.set(id, value);
 	}
 
@@ -64,8 +63,8 @@ export class RateLimitManager<K = string> extends Map<K, RateLimit<K>> {
 			if (value.expired) this.delete(id);
 		}
 
-		if (this.size === 0) {
-			TimerManager.clearInterval(this.sweepInterval!);
+		if (this.size === 0 && this.sweepInterval !== null) {
+			clearInterval(this.sweepInterval);
 			this.sweepInterval = null;
 		}
 	}
