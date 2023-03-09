@@ -47,7 +47,6 @@ Or
 
 ```json
 {
-	"plugins": ["@sapphire/eslint-plugin-result"],
 	"extends": ["@sapphire/eslint-plugin-result/recommended"]
 }
 ```
