@@ -1089,7 +1089,6 @@ __metadata:
   resolution: "@sapphire/ratelimits@workspace:packages/ratelimits"
   dependencies:
     "@favware/cliff-jumper": ^2.0.0
-    "@sapphire/timer-manager": "workspace:^"
     "@vitest/coverage-c8": ^0.29.2
     tsup: ^6.6.3
     typedoc: ^0.23.26
