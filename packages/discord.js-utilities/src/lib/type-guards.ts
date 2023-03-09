@@ -196,14 +196,14 @@ export function isMessageInstance(message: APIMessage | Message): message is Mes
  * @param messageOrInteraction The message or interaction that should be checked.
  * @returns `true` if the `messageOrInteraction` is **NOT** an instanceof {@link Message}, `false` if it is.
  */
-export function isAnyInteraction(messageOrInteraction: APIMessage | Message | Interaction): messageOrInteraction is Interaction {
+export function isAnyInteraction(messageOrInteraction: APIMessage | Message | BaseInteraction): messageOrInteraction is BaseInteraction {
 	return messageOrInteraction instanceof BaseInteraction;
 }
 
 export function isAnyInteractableInteraction(
-	messageOrInteraction: APIMessage | Message | Interaction
+	messageOrInteraction: APIMessage | Message | BaseInteraction
 ): messageOrInteraction is AnyInteractableInteraction {
-	if (messageOrInteraction instanceof BaseInteraction) {
+	if (isAnyInteraction(messageOrInteraction)) {
 		return !messageOrInteraction.isAutocomplete();
 	}
 
