@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/discord.js-utilities@6.0.3](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@6.0.2...@sapphire/discord.js-utilities@6.0.3) - (2023-03-09)
+
+## 🐛 Bug Fixes
+
+- **discord.js-utilities:** Fixed `isAnyInteraction` types (#559) ([334c16c](https://github.com/sapphiredev/utilities/commit/334c16c690e65f4d62c6d1442ab65b3d65122eae))
+
 # [@sapphire/discord.js-utilities@6.0.2](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@6.0.0...@sapphire/discord.js-utilities@6.0.2) - (2023-02-18)
 
 ## 🐛 Bug Fixes
