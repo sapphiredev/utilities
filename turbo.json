@@ -48,6 +48,7 @@
 				"@sapphire/lexure#build",
 				"@sapphire/node-utilities#build",
 				"@sapphire/ratelimits#build",
+				"@sapphire/timer-manager#build",
 				"@sapphire/result#build",
 				"@sapphire/snowflake#build",
 				"@sapphire/timestamp#build",
