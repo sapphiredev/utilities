@@ -1,11 +1,14 @@
 export enum Time {
+	Nanosecond = 1 / 1_000_000,
+	Microsecond = 1 / 1000,
 	Millisecond = 1,
 	Second = 1000,
-	Minute = 1000 * 60,
-	Hour = 1000 * 60 * 60,
-	Day = 1000 * 60 * 60 * 24,
-	Month = 1000 * 60 * 60 * 24 * (365 / 12),
-	Year = 1000 * 60 * 60 * 24 * 365
+	Minute = Second * 60,
+	Hour = Minute * 60,
+	Day = Hour * 24,
+	Week = Day * 7,
+	Month = Day * (365 / 12),
+	Year = Day * 365
 }
 
 export const partRegex = /^(?:(\*)|(\d+)(?:-(\d+))?)(?:\/(\d+))?$/;
