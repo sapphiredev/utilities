@@ -32,14 +32,11 @@ npm install @sapphire/eslint-plugin-result
 
 ## Usage
 
-Somewhere in your `.eslintrc.json`:
+Somewhere in your ESLint configuration:
 
 ```json
 {
-	"plugins": ["@sapphire/eslint-plugin-result"],
-	"rules": {
-		"@sapphire/result/no-discard-result": "error"
-	}
+	"extends": ["plugin:@sapphire/result/recommended"]
 }
 ```
 
@@ -47,7 +44,10 @@ Or
 
 ```json
 {
-	"extends": ["@sapphire/eslint-plugin-result/recommended"]
+	"plugins": ["@sapphire/result"],
+	"rules": {
+		"@sapphire/result/no-discard-result": "error"
+	}
 }
 ```
 
