@@ -21,6 +21,14 @@ ruleTester.run('no-discard-result', noDiscordResultRule, {
 				void foo();
 			`,
 			name: 'Result is intentionally discarded'
+		},
+		{
+			code: `import { Result } from '@sapphire/result';
+				function foo(): Result<string, string> {}
+				function bar(result: Result<string, string>) {}
+				void bar(foo());
+			`,
+			name: 'Result is passed into another function'
 		}
 	],
 	invalid: [

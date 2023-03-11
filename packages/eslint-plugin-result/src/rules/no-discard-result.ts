@@ -24,8 +24,19 @@ function getSapphireResultType(service: ParserServices, checker: ts.TypeChecker)
 
 function unwrapPotentialPromiseType(checker: ts.TypeChecker, node: ts.CallExpression, type = checker.getTypeAtLocation(node)): ts.Type {
 	if (isUnionType(type)) {
-		type.types = type.types.map((type) => unwrapPotentialPromiseType(checker, node, type));
-		return type;
+		// Don't want to actually mutate, it can cause issues for other callers
+		const { ...copy } = type;
+
+		// We can end up with null-ish values in the union type, so we filter them out
+		copy.types = type.types.filter((subtype) => Boolean(subtype));
+
+		// There's some odd cases where the union type is just a single type that is sort of itself, so we unwrap that
+		if (copy.types.length === 1) {
+			return unwrapPotentialPromiseType(checker, node, copy.types[0]);
+		}
+
+		copy.types = copy.types.map((subtype) => unwrapPotentialPromiseType(checker, node, subtype));
+		return copy;
 	}
 
 	if (isThenableType(checker, node)) {
@@ -65,6 +76,11 @@ function isDiscardedResult(callExpressionNode: TSESTree.Node): boolean {
 
 	// Check for assignment
 	if (callExpressionNode.parent?.type === AST_NODE_TYPES.AssignmentExpression) {
+		return false;
+	}
+
+	// check for foo(functionReturningResult())
+	if (callExpressionNode.parent?.type === AST_NODE_TYPES.CallExpression) {
 		return false;
 	}
 
