@@ -9,6 +9,7 @@ package:
   - '@sapphire/discord.js-utilities'
   - '@sapphire/duration'
   - '@sapphire/eslint-config'
+  - '@sapphire/eslint-plugin-result'
   - '@sapphire/event-iterator'
   - '@sapphire/fetch'
   - '@sapphire/node-utilities'
