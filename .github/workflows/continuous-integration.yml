@@ -25,7 +25,15 @@ jobs:
       - name: Install Dependencies
         run: yarn --immutable
       - name: Build ESLint, Prettier and Utilities
-        run: yarn turbo run build --filter=@sapphire/eslint-config --filter=@sapphire/prettier-config --filter=@sapphire/utilities --filter=@sapphire/duration --no-deps
+        run: |
+          yarn workspaces foreach \
+            --parallel \
+            --include @sapphire/eslint-config \
+            --include @sapphire/prettier-config \
+            --include @sapphire/eslint-plugin-result \
+            --include @sapphire/result \
+            --include @sapphire/utilities \
+            run build
       - name: Run ESLint
         run: yarn lint --fix=false
 

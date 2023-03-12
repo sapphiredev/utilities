@@ -54,6 +54,8 @@
   color: 'fbca04'
 - name: packages:eslint-config
   color: 'fbca04'
+- name: packages:eslint-plugin-result
+  color: 'fbca04'
 - name: packages:event-iterator
   color: 'fbca04'
 - name: packages:fetch

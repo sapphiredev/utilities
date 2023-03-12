@@ -1,0 +1,64 @@
+{
+	"name": "@sapphire/eslint-plugin-result",
+	"version": "1.0.0",
+	"description": "A TypeScript ESLint plugin for @sapphire/result",
+	"author": "@sapphire",
+	"license": "MIT",
+	"main": "dist/index.js",
+	"module": "dist/index.mjs",
+	"exports": {
+		"import": "./dist/index.mjs",
+		"require": "./dist/index.js"
+	},
+	"sideEffects": false,
+	"homepage": "https://github.com/sapphiredev/utilities/tree/main/packages/eslint-plugin-result",
+	"scripts": {
+		"test": "vitest run",
+		"lint": "eslint src tests --ext ts --fix -c ../../.eslintrc",
+		"build": "tsup && tsc -b src",
+		"prepack": "yarn build",
+		"bump": "cliff-jumper",
+		"check-update": "cliff-jumper --dry-run"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/sapphiredev/utilities.git",
+		"directory": "packages/eslint-plugin-result"
+	},
+	"files": [
+		"dist/**/*.js*",
+		"dist/**/*.mjs*",
+		"dist/**/*.d*"
+	],
+	"engines": {
+		"node": ">=v14.0.0",
+		"npm": ">=7.0.0"
+	},
+	"keywords": [
+		"@sapphire/eslint-plugin-result",
+		"sapphire",
+		"ts",
+		"typescript",
+		"eslint",
+		"eslintPlugin",
+		"result"
+	],
+	"bugs": {
+		"url": "https://github.com/sapphiredev/utilities/issues"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"devDependencies": {
+		"@favware/cliff-jumper": "^1.10.0",
+		"@vitest/coverage-c8": "^0.28.5",
+		"tsup": "^6.6.3",
+		"vitest": "^0.28.5"
+	},
+	"dependencies": {
+		"@sapphire/result": "workspace:^",
+		"@typescript-eslint/utils": "^5.53.0",
+		"tsutils": "^3.21.0",
+		"typescript": "^4.9.5"
+	}
+}
