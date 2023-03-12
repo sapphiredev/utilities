@@ -1000,7 +1000,7 @@ __metadata:
     "@typescript-eslint/eslint-plugin": ^5.54.1
     "@typescript-eslint/parser": ^5.54.1
     "@vitest/coverage-c8": ^0.29.2
-    eslint: ^8.35.0
+    eslint: ^8.36.0
     eslint-config-prettier: ^8.7.0
     eslint-plugin-prettier: ^4.2.1
     prettier: ^2.8.4
@@ -1055,7 +1055,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@sapphire/framework@npm:^4.2.0":
+"@sapphire/framework@npm:^4.2.1":
   version: 4.2.1
   resolution: "@sapphire/framework@npm:4.2.1"
   dependencies:
@@ -1383,7 +1383,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^18.14.6":
+"@types/node@npm:*, @types/node@npm:^18.15.0":
   version: 18.15.0
   resolution: "@types/node@npm:18.15.0"
   checksum: d81372276dd5053b1743338b61a2178ff9722dc609189d01fc7d1c2acd539414039e0e4780678730514390dad3f29c366a28c29e8dbd5b0025651181f6dd6669
@@ -3178,7 +3178,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint@npm:^8.35.0":
+"eslint@npm:^8.36.0":
   version: 8.36.0
   resolution: "eslint@npm:8.36.0"
   dependencies:
@@ -4521,7 +4521,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lint-staged@npm:^13.1.4":
+"lint-staged@npm:^13.2.0":
   version: 13.2.0
   resolution: "lint-staged@npm:13.2.0"
   dependencies:
@@ -6075,9 +6075,9 @@ __metadata:
     "@favware/cliff-jumper": ^2.0.0
     "@favware/npm-deprecate": ^1.0.7
     "@favware/rollup-type-bundler": ^2.0.0
-    "@sapphire/framework": ^4.2.0
+    "@sapphire/framework": ^4.2.1
     "@types/lodash": ^4.14.191
-    "@types/node": ^18.14.6
+    "@types/node": ^18.15.0
     "@types/ws": ^8.5.4
     "@typescript-eslint/eslint-plugin": ^5.54.1
     "@typescript-eslint/parser": ^5.54.1
@@ -6085,11 +6085,11 @@ __metadata:
     cz-conventional-changelog: ^3.3.0
     discord-api-types: ^0.37.35
     discord.js: ^14.7.1
-    eslint: ^8.35.0
+    eslint: ^8.36.0
     eslint-config-prettier: ^8.7.0
     eslint-plugin-prettier: ^4.2.1
     husky: ^8.0.3
-    lint-staged: ^13.1.4
+    lint-staged: ^13.2.0
     lodash: ^4.17.21
     nock: ^13.3.0
     prettier: ^2.8.4
