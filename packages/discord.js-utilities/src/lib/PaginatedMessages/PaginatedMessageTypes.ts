@@ -22,7 +22,7 @@ import type {
 	StringSelectMenuInteraction,
 	User,
 	VoiceChannel,
-	WebhookEditMessageOptions
+	WebhookMessageEditOptions
 } from 'discord.js';
 import type { AnyInteractableInteraction } from '../utility-types';
 import type { PaginatedMessage } from './PaginatedMessage';
@@ -158,7 +158,7 @@ export type PaginatedMessageWrongUserInteractionReplyFunction = (
 
 export type PaginatedMessageEmbedResolvable = BaseMessageOptions['embeds'];
 
-export type PaginatedMessageMessageOptionsUnion = Omit<BaseMessageOptions, 'flags'> | WebhookEditMessageOptions;
+export type PaginatedMessageMessageOptionsUnion = Omit<BaseMessageOptions, 'flags'> | WebhookMessageEditOptions;
 
 /**
  * @internal This is a duplicate of the same interface in `@sapphire/plugin-i18next`
@@ -182,7 +182,7 @@ export interface PaginatedMessageInternationalizationContext {
 
 export interface SafeReplyToInteractionParameters<T extends 'edit' | 'reply' | never = never> {
 	messageOrInteraction: APIMessage | Message | AnyInteractableInteraction;
-	interactionEditReplyContent: WebhookEditMessageOptions;
+	interactionEditReplyContent: WebhookMessageEditOptions;
 	interactionReplyContent: InteractionReplyOptions;
 	componentUpdateContent: InteractionUpdateOptions;
 	messageMethod?: T;
