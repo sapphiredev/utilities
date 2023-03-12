@@ -37,12 +37,13 @@ jobs:
       - name: Run ESLint
         run: yarn lint --fix=false
 
-  Testing:
-    name: Unit Tests
+  BuildingAndTesting:
+    name: Building and Testing with node v${{ matrix.node }}
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
-        node: [16, 18]
+        node: [14, 16, 18]
     steps:
       - name: Checkout Project
         uses: actions/checkout@v3
@@ -54,35 +55,17 @@ jobs:
           registry-url: https://registry.yarnpkg.org/
       - name: Install Dependencies
         run: yarn --immutable
-      - name: Build test dependencies
-        run: yarn turbo run build --filter="@sapphire/async-queue" --filter="@sapphire/*utilities" --filter="@sapphire/duration" --filter="@sapphire/fetch" --filter="@sapphire/lexure" --filter="@sapphire/ratelimits" --filter="@sapphire/result" --filter="@sapphire/timer-manager"  --filter="@sapphire/stopwatch" --filter="@sapphire/snowflake" --no-deps
+      - name: Build Code
+        run: yarn build
       - name: Run tests
         run: yarn test
-      - name: Store code coverage report
-        if: ${{ matrix.node == '18' }}
-        uses: actions/upload-artifact@v3
+      - name: Codecov Upload ${{ matrix.node }}
+        uses: codecov/codecov-action@v3
         with:
-          name: coverage
-          path: coverage/
-
-  Building:
-    name: Compile source code
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Project
-        uses: actions/checkout@v3
-      - name: Add problem matcher
-        run: echo "::add-matcher::.github/problemMatchers/tsc.json"
-      - name: Use Node.js v16
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16
-          cache: yarn
-          registry-url: https://registry.yarnpkg.org/
-      - name: Install Dependencies
-        run: yarn --immutable
-      - name: Compile Projects
-        run: yarn build
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: coverage/cobertura-coverage.xml
+          flags: ${{ matrix.node }}
+          fail_ci_if_error: true
 
   docs:
     name: Generate Documentation
@@ -100,27 +83,6 @@ jobs:
         run: yarn --immutable
       - name: Generate Documentation
         run: yarn docs
-
-  Upload_Coverage_Report:
-    name: Upload coverage report to codecov
-    needs: [Testing]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Project
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 2
-      - name: Download Coverage report
-        uses: actions/download-artifact@v3
-        with:
-          name: coverage
-          path: coverage/
-      - name: Codecov Upload
-        uses: codecov/codecov-action@v3
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          directory: coverage/
-          fail_ci_if_error: true
 
   Check_SubPath:
     name: Check SubPath
