@@ -25,7 +25,7 @@ import {
 	type Snowflake,
 	type TextBasedChannel,
 	type User,
-	type WebhookEditMessageOptions
+	type WebhookMessageEditOptions
 } from 'discord.js';
 import { MessageBuilder } from '../builders/MessageBuilder';
 import { isAnyInteraction, isGuildBasedChannel, isMessageInstance, isStageChannel } from '../type-guards';
@@ -1018,12 +1018,12 @@ export class PaginatedMessage {
 		if (this.response) {
 			if (isAnyInteraction(this.response)) {
 				if (this.response.replied || this.response.deferred) {
-					await this.response.editReply(page as WebhookEditMessageOptions);
+					await this.response.editReply(page as WebhookMessageEditOptions);
 				} else {
 					await this.response.reply(page as InteractionReplyOptions);
 				}
 			} else if (isMessageInstance(this.response)) {
-				await this.response.edit(page as WebhookEditMessageOptions);
+				await this.response.edit(page as WebhookMessageEditOptions);
 			}
 		} else if (isAnyInteraction(messageOrInteraction)) {
 			if (messageOrInteraction.replied || messageOrInteraction.deferred) {
