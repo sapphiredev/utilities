@@ -1,51 +1,71 @@
+import { Time } from './constants';
+
 const tokens = new Map([
-	['nanosecond', 1 / 1e6],
-	['nanoseconds', 1 / 1e6],
-	['ns', 1 / 1e6],
+	['nanosecond', Time.Nanosecond],
+	['nanoseconds', Time.Nanosecond],
+	['ns', Time.Nanosecond],
 
-	['millisecond', 1],
-	['milliseconds', 1],
-	['ms', 1],
+	['microsecond', Time.Microsecond],
+	['microseconds', Time.Microsecond],
+	['μs', Time.Microsecond],
+	['us', Time.Microsecond],
 
-	['second', 1000],
-	['seconds', 1000],
-	['sec', 1000],
-	['secs', 1000],
-	['s', 1000],
+	['millisecond', Time.Millisecond],
+	['milliseconds', Time.Millisecond],
+	['ms', Time.Millisecond],
 
-	['minute', 1000 * 60],
-	['minutes', 1000 * 60],
-	['min', 1000 * 60],
-	['mins', 1000 * 60],
-	['m', 1000 * 60],
+	['second', Time.Second],
+	['seconds', Time.Second],
+	['sec', Time.Second],
+	['secs', Time.Second],
+	['s', Time.Second],
 
-	['hour', 1000 * 60 * 60],
-	['hours', 1000 * 60 * 60],
-	['hr', 1000 * 60 * 60],
-	['hrs', 1000 * 60 * 60],
-	['h', 1000 * 60 * 60],
+	['minute', Time.Minute],
+	['minutes', Time.Minute],
+	['min', Time.Minute],
+	['mins', Time.Minute],
+	['m', Time.Minute],
 
-	['day', 1000 * 60 * 60 * 24],
-	['days', 1000 * 60 * 60 * 24],
-	['d', 1000 * 60 * 60 * 24],
+	['hour', Time.Hour],
+	['hours', Time.Hour],
+	['hr', Time.Hour],
+	['hrs', Time.Hour],
+	['h', Time.Hour],
 
-	['week', 1000 * 60 * 60 * 24 * 7],
-	['weeks', 1000 * 60 * 60 * 24 * 7],
-	['wk', 1000 * 60 * 60 * 24 * 7],
-	['wks', 1000 * 60 * 60 * 24 * 7],
-	['w', 1000 * 60 * 60 * 24 * 7],
+	['day', Time.Day],
+	['days', Time.Day],
+	['d', Time.Day],
 
-	['month', 1000 * 60 * 60 * 24 * (365.25 / 12)],
-	['months', 1000 * 60 * 60 * 24 * (365.25 / 12)],
-	['b', 1000 * 60 * 60 * 24 * (365.25 / 12)],
-	['mo', 1000 * 60 * 60 * 24 * (365.25 / 12)],
+	['week', Time.Week],
+	['weeks', Time.Week],
+	['wk', Time.Week],
+	['wks', Time.Week],
+	['w', Time.Week],
 
-	['year', 1000 * 60 * 60 * 24 * 365.25],
-	['years', 1000 * 60 * 60 * 24 * 365.25],
-	['yr', 1000 * 60 * 60 * 24 * 365.25],
-	['yrs', 1000 * 60 * 60 * 24 * 365.25],
-	['y', 1000 * 60 * 60 * 24 * 365.25]
+	['month', Time.Month],
+	['months', Time.Month],
+	['b', Time.Month],
+	['mo', Time.Month],
+
+	['year', Time.Year],
+	['years', Time.Year],
+	['yr', Time.Year],
+	['yrs', Time.Year],
+	['y', Time.Year]
 ]);
+
+const mappings = new Map([
+	[Time.Nanosecond, 'nanoseconds'],
+	[Time.Microsecond, 'microseconds'],
+	[Time.Millisecond, 'milliseconds'],
+	[Time.Second, 'seconds'],
+	[Time.Minute, 'minutes'],
+	[Time.Hour, 'hours'],
+	[Time.Day, 'days'],
+	[Time.Week, 'weeks'],
+	[Time.Month, 'months'],
+	[Time.Year, 'years']
+] as const);
 
 /**
  * Converts duration strings into ms and future dates
@@ -57,11 +77,82 @@ export class Duration {
 	public offset: number;
 
 	/**
+	 * The amount of nanoseconds extracted from the text.
+	 */
+	public nanoseconds = 0;
+
+	/**
+	 * The amount of microseconds extracted from the text.
+	 */
+	public microseconds = 0;
+
+	/**
+	 * The amount of milliseconds extracted from the text.
+	 */
+	public milliseconds = 0;
+
+	/**
+	 * The amount of seconds extracted from the text.
+	 */
+	public seconds = 0;
+
+	/**
+	 * The amount of minutes extracted from the text.
+	 */
+	public minutes = 0;
+
+	/**
+	 * The amount of hours extracted from the text.
+	 */
+	public hours = 0;
+
+	/**
+	 * The amount of days extracted from the text.
+	 */
+	public days = 0;
+
+	/**
+	 * The amount of weeks extracted from the text.
+	 */
+	public weeks = 0;
+
+	/**
+	 * The amount of months extracted from the text.
+	 */
+	public months = 0;
+
+	/**
+	 * The amount of years extracted from the text.
+	 */
+	public years = 0;
+
+	/**
 	 * Create a new Duration instance
 	 * @param pattern The string to parse
 	 */
 	public constructor(pattern: string) {
-		this.offset = Duration.parse(pattern.toLowerCase());
+		let result = 0;
+		let valid = false;
+
+		pattern
+			.toLowerCase()
+			// ignore commas
+			.replace(Duration.commaRegex, '')
+			// a / an = 1
+			.replace(Duration.aAndAnRegex, '1')
+			// do math
+			.replace(Duration.patternRegex, (_, i, units) => {
+				const token = tokens.get(units);
+				if (token !== undefined) {
+					const n = Number(i);
+					result += n * token;
+					this[mappings.get(token)!] += n;
+					valid = true;
+				}
+				return '';
+			});
+
+		this.offset = valid ? result : NaN;
 	}
 
 	/**
@@ -82,41 +173,15 @@ export class Duration {
 	/**
 	 * The RegExp used for the pattern parsing
 	 */
-	private static readonly kPatternRegex = /(-?\d*\.?\d+(?:e[-+]?\d+)?)\s*([a-zμ]*)/gi;
+	private static readonly patternRegex = /(-?\d*\.?\d+(?:e[-+]?\d+)?)\s*([a-zμ]*)/gi;
 
 	/**
 	 * The RegExp used for removing commas
 	 */
-	private static readonly kCommaRegex = /,/g;
+	private static readonly commaRegex = /,/g;
 
 	/**
 	 * The RegExp used for replacing a/an with 1
 	 */
-	private static readonly kAanRegex = /\ban?\b/gi;
-
-	/**
-	 * Parse the pattern
-	 * @param pattern The pattern to parse
-	 */
-	private static parse(pattern: string): number {
-		let result = 0;
-		let valid = false;
-
-		pattern
-			// ignore commas
-			.replace(Duration.kCommaRegex, '')
-			// a / an = 1
-			.replace(Duration.kAanRegex, '1')
-			// do math
-			.replace(Duration.kPatternRegex, (_, i, units) => {
-				const token = tokens.get(units);
-				if (token !== undefined) {
-					result += Number(i) * token;
-					valid = true;
-				}
-				return '';
-			});
-
-		return valid ? result : NaN;
-	}
+	private static readonly aAndAnRegex = /\ban?\b/gi;
 }
