@@ -134,6 +134,7 @@ jobs:
         with:
           max_attempts: 3
           retry_on: error
+          timeout_minutes: 1
           command: |
             cd out
             git add .
