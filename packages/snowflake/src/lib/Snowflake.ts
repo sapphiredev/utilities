@@ -129,7 +129,8 @@ export class Snowflake {
 	public static compare(a: string | bigint, b: string | bigint): -1 | 0 | 1 {
 		if (typeof a === 'bigint' || typeof b === 'bigint') {
 			if (typeof a === 'string') a = BigInt(a);
-			else if (typeof b === 'string') b = BigInt(b);
+			if (typeof b === 'string') b = BigInt(b);
+
 			return a === b ? 0 : a < b ? -1 : 1;
 		}
 
