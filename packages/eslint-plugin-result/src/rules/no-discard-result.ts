@@ -1,4 +1,4 @@
-import { AST_NODE_TYPES, ESLintUtils, ParserServices, TSESTree } from '@typescript-eslint/utils';
+import { AST_NODE_TYPES, ESLintUtils, TSESTree, type ParserServices } from '@typescript-eslint/utils';
 import { isThenableType, isUnionType } from 'tsutils';
 import ts from 'typescript';
 
