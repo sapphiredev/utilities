@@ -11,10 +11,6 @@
 			"import": "./tsconfig.json",
 			"require": "./tsconfig.json"
 		},
-		"./without-decorators": {
-			"import": "./without-decorators.json",
-			"require": "./without-decorators.json"
-		},
 		"./extra-strict": {
 			"import": "./extra-strict.json",
 			"require": "./extra-strict.json"
