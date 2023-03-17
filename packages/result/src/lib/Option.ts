@@ -1,6 +1,6 @@
-import { Awaitable, isFunction } from './common/utils';
-import { None, none as _none } from './Option/None';
-import { Some, some as _some } from './Option/Some';
+import { isFunction, type Awaitable } from './common/utils';
+import { none as _none, None } from './Option/None';
+import { some as _some, Some } from './Option/Some';
 
 export * from './Option/IOption';
 export * from './Option/OptionError';
