@@ -1,10 +1,10 @@
-import { isNullish, Nullish } from '@sapphire/utilities';
+import { isNullish, type Nullish } from '@sapphire/utilities';
 import {
 	BaseInteraction,
 	ChannelType,
 	GuildMember,
 	Message,
-	VoiceBasedChannel,
+	type VoiceBasedChannel,
 	type APIGuildMember,
 	type APIInteractionDataResolvedGuildMember,
 	type APIInteractionGuildMember,
