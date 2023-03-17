@@ -1,5 +1,5 @@
-import type { QuotedToken } from '../raw/TokenStream';
-import { BaseParameter } from './BaseParameter';
+import type { QuotedToken } from '../raw/TokenStream.js';
+import { BaseParameter } from './BaseParameter.js';
 
 export class QuotedParameter extends BaseParameter {
 	public readonly value: string;

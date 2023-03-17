@@ -1,5 +1,5 @@
-import { AbortError, sleep, sleepSync } from '../src';
-import { expectError } from './util/macros/comparators';
+import { AbortError, sleep, sleepSync } from '../src/index.js';
+import { expectError } from './util/macros/comparators.js';
 
 const DOMException: typeof globalThis.DOMException =
 	globalThis.DOMException ??

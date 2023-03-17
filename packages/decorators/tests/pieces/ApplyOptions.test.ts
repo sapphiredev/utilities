@@ -1,5 +1,5 @@
-import { Command, type CommandOptions, CommandStore, container } from '@sapphire/framework';
-import { ApplyOptions } from '../../src';
+import { Command, CommandStore, container, type CommandOptions } from '@sapphire/framework';
+import { ApplyOptions } from '../../src/index.js';
 
 describe('ApplyOptions', () => {
 	beforeAll(() => {

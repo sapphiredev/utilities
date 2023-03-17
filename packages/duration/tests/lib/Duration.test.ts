@@ -1,4 +1,4 @@
-import { Duration, Time } from '../../src';
+import { Duration, Time } from '../../src/index.js';
 
 describe('Duration', () => {
 	describe('units', () => {

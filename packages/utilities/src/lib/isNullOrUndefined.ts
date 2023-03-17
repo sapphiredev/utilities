@@ -1,4 +1,4 @@
-import type { Nullish } from './types';
+import type { Nullish } from './types.js';
 
 /**
  * Checks whether or not a value is `null` or `undefined`

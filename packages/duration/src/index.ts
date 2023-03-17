@@ -1,3 +1,3 @@
-export * from './lib/constants';
-export * from './lib/Duration';
-export * from './lib/DurationFormatter';
+export * from './lib/constants.js';
+export * from './lib/Duration.js';
+export * from './lib/DurationFormatter.js';

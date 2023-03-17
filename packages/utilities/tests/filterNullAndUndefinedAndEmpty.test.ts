@@ -1,4 +1,4 @@
-import { filterNullAndUndefinedAndEmpty } from '../src';
+import { filterNullAndUndefinedAndEmpty } from '../src/index.js';
 
 describe('filterNullAndUndefinedAndEmpty', () => {
 	test('GIVEN empty array THEN returns same array', () => {

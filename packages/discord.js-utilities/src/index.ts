@@ -1,9 +1,9 @@
 import 'tslib';
 
 export * from '@sapphire/discord-utilities';
-export * from './lib/MessagePrompter';
-export * from './lib/PaginatedMessages';
-export * from './lib/builders/MessageBuilder';
-export * from './lib/type-guards';
-export * from './lib/utilities';
-export * from './lib/utility-types';
+export * from './lib/MessagePrompter/index.js';
+export * from './lib/PaginatedMessages/index.js';
+export * from './lib/builders/MessageBuilder.js';
+export * from './lib/type-guards.js';
+export * from './lib/utilities.js';
+export * from './lib/utility-types.js';

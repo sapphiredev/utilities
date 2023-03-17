@@ -1,7 +1,7 @@
 import { EmbedLimits } from '@sapphire/discord-utilities';
 import { isFunction } from '@sapphire/utilities';
 import { EmbedBuilder, type EmbedData, type EmbedField } from 'discord.js';
-import { PaginatedMessage } from './PaginatedMessage';
+import { PaginatedMessage } from './PaginatedMessage.js';
 
 /**
  * This is a utility of {@link PaginatedMessage}, except it exclusively paginates the fields of an embed.

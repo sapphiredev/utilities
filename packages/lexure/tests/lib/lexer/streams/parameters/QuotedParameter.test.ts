@@ -1,4 +1,4 @@
-import { QuotedParameter } from '../../../../../src';
+import { QuotedParameter } from '../../../../../src/index.js';
 
 describe('QuotedParameter', () => {
 	const parameter = new QuotedParameter([' ', ' '], { value: 'Hello World', open: '"', close: '"' });

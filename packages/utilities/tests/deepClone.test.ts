@@ -1,4 +1,4 @@
-import { deepClone } from '../src';
+import { deepClone } from '../src/index.js';
 
 describe('deepClone', () => {
 	test('GIVEN null THEN returns same', () => {

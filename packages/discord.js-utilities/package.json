@@ -4,19 +4,20 @@
 	"description": "Discord.js specific utilities for your JavaScript/TypeScript bots",
 	"author": "@sapphire",
 	"license": "MIT",
-	"main": "dist/index.js",
-	"module": "dist/index.mjs",
+	"main": "dist/index.cjs",
+	"module": "dist/index.js",
 	"types": "dist/index.d.ts",
+	"type": "module",
 	"exports": {
-		"import": "./dist/index.mjs",
-		"require": "./dist/index.js",
+		"import": "./dist/index.js",
+		"require": "./dist/index.cjs",
 		"types": "./dist/index.d.ts"
 	},
 	"sideEffects": false,
 	"homepage": "https://github.com/sapphiredev/utilities/tree/main/packages/discord.js-utilities",
 	"scripts": {
 		"lint": "eslint src --ext ts --fix -c ../../.eslintrc",
-		"build": "tsup && tsc -b src",
+		"build": "tsup",
 		"docs": "typedoc-json-parser",
 		"prepack": "rollup-type-bundler -e @sapphire/discord-utilities @sapphire/time-utilities @sapphire/utilities discord.js",
 		"bump": "cliff-jumper",
@@ -28,9 +29,7 @@
 		"directory": "packages/discord.js-utilities"
 	},
 	"files": [
-		"dist/**/*.js*",
-		"dist/**/*.mjs*",
-		"dist/**/*.d*"
+		"dist/"
 	],
 	"engines": {
 		"node": ">=16.6.0",

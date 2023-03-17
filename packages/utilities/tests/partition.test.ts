@@ -1,4 +1,4 @@
-import { partition } from '../src';
+import { partition } from '../src/index.js';
 
 describe('partition', () => {
 	test('GIVEN input not an array THEN throws TypeError', () => {

@@ -1,8 +1,8 @@
-import type { Awaitable } from '../common/utils';
-import type { Option } from '../Option';
-import type { Result } from '../Result';
-import type { ResultErr } from './Err';
-import type { ResultOk } from './Ok';
+import type { Awaitable } from '../common/utils.js';
+import type { Option } from '../Option.js';
+import type { Result } from '../Result.js';
+import type { ResultErr } from './Err.js';
+import type { ResultOk } from './Ok.js';
 
 /**
  * A type used to express computations that can fail, it can be used for returning and propagating errors. This is a

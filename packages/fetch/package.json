@@ -4,14 +4,15 @@
 	"description": "Tiny wrapper around cross-fetch (for NodeJS) and window.fetch (for Browsers) for improved TypeScript and data type support",
 	"author": "@sapphire",
 	"license": "MIT",
-	"main": "dist/index.js",
-	"module": "dist/index.mjs",
+	"main": "dist/index.cjs",
+	"module": "dist/index.js",
 	"browser": "dist/index.global.js",
 	"unpkg": "dist/index.global.js",
 	"types": "dist/index.d.ts",
+	"type": "module",
 	"exports": {
-		"import": "./dist/index.mjs",
-		"require": "./dist/index.js",
+		"import": "./dist/index.js",
+		"require": "./dist/index.cjs",
 		"types": "./dist/index.d.ts"
 	},
 	"sideEffects": false,
@@ -34,9 +35,7 @@
 		"directory": "packages/fetch"
 	},
 	"files": [
-		"dist/**/*.js*",
-		"dist/**/*.mjs*",
-		"dist/**/*.d*"
+		"dist/"
 	],
 	"engines": {
 		"node": ">=v14.0.0",

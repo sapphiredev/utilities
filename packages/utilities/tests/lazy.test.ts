@@ -1,4 +1,4 @@
-import { lazy } from '../src';
+import { lazy } from '../src/index.js';
 
 describe('lazy', () => {
 	test('GIVEN string callback THEN returns the same', () => {

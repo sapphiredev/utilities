@@ -1,8 +1,8 @@
-import type { Awaitable } from '../common/utils';
-import type { Option } from '../Option';
-import type { Result } from '../Result';
-import type { OptionNone } from './None';
-import type { OptionSome } from './Some';
+import type { Awaitable } from '../common/utils.js';
+import type { Option } from '../Option.js';
+import type { Result } from '../Result.js';
+import type { OptionNone } from './None.js';
+import type { OptionSome } from './Some.js';
 
 export interface IOption<T> {
 	/**

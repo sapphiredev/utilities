@@ -1,9 +1,9 @@
-import { isFunction, type Awaitable } from './common/utils';
-import { createNone, OptionNone } from './Option/None';
-import { createSome, OptionSome } from './Option/Some';
+import { isFunction, type Awaitable } from './common/utils.js';
+import { createNone, OptionNone } from './Option/None.js';
+import { createSome, OptionSome } from './Option/Some.js';
 
-export type * from './Option/IOption';
-export * from './Option/OptionError';
+export type * from './Option/IOption.js';
+export * from './Option/OptionError.js';
 export { createSome as some, createNone as none, type OptionNone as None, type OptionSome as Some };
 
 /**

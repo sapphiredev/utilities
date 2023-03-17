@@ -1,4 +1,4 @@
-import { splitText } from './splitText';
+import { splitText } from './splitText.js';
 
 /**
  * Split a text by its latest space character in a range from the character 0 to the selected one.

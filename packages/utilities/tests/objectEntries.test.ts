@@ -1,4 +1,4 @@
-import { objectEntries } from '../src';
+import { objectEntries } from '../src/index.js';
 
 describe('objectEntries', () => {
 	test('GIVEN basic readonly THEN returns expected', () => {

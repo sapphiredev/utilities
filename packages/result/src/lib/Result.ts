@@ -1,9 +1,9 @@
-import { isFunction, type Awaitable } from './common/utils';
-import { createErr, ResultErr } from './Result/Err';
-import { createOk, ResultOk } from './Result/Ok';
+import { isFunction, type Awaitable } from './common/utils.js';
+import { createErr, ResultErr } from './Result/Err.js';
+import { createOk, ResultOk } from './Result/Ok.js';
 
-export type * from './Result/IResult';
-export * from './Result/ResultError';
+export type * from './Result/IResult.js';
+export * from './Result/ResultError.js';
 export { createOk as ok, createErr as err, type ResultOk as Ok, type ResultErr as Err };
 
 /**

@@ -1,4 +1,4 @@
-import { makeObject } from '../src';
+import { makeObject } from '../src/index.js';
 
 describe('makeObject', () => {
 	test('GIVEN basic THEN returns expected', () => {

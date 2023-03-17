@@ -1,4 +1,4 @@
-import { EnumerableMethod } from '../../src';
+import { EnumerableMethod } from '../../src/index.js';
 
 describe('enumerable', () => {
 	test('GIVEN enumerable=false THEN should not be enumerable', () => {

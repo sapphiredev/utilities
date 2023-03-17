@@ -1,4 +1,4 @@
-import { Parser, ParserResult, PrefixedStrategy, WordParameter } from '../../../src';
+import { Parser, ParserResult, PrefixedStrategy, WordParameter } from '../../../src/index.js';
 
 describe('ParserResult', () => {
 	const parser = new Parser(new PrefixedStrategy(['--', '/'], ['=', ':']));

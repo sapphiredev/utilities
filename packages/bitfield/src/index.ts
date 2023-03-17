@@ -1,2 +1,2 @@
-export * from './lib/BitField';
-export * from './lib/utilities';
+export * from './lib/BitField.js';
+export * from './lib/utilities.js';

@@ -1,5 +1,5 @@
-import { ParameterStream } from './streams/ParameterStream';
-import { TokenStream } from './streams/raw/TokenStream';
+import { ParameterStream } from './streams/ParameterStream.js';
+import { TokenStream } from './streams/raw/TokenStream.js';
 
 export class Lexer {
 	public readonly quotes: readonly [open: string, close: string][];

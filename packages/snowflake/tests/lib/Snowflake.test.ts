@@ -1,4 +1,4 @@
-import { Snowflake, type DeconstructedSnowflake } from '../../src';
+import { Snowflake, type DeconstructedSnowflake } from '../../src/index.js';
 
 // 2020-01-01
 const sampleEpoch = 1577836800000n;

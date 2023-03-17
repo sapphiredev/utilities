@@ -1,4 +1,4 @@
-import { Lexer, TokenStream, TokenType, type Token } from '../../../../../src';
+import { Lexer, TokenStream, TokenType, type Token } from '../../../../../src/index.js';
 
 describe('TokenStream', () => {
 	describe('default lexer', () => {

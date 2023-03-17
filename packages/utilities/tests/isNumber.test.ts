@@ -1,4 +1,4 @@
-import { isNumber } from '../src';
+import { isNumber } from '../src/index.js';
 
 describe('isNumber', () => {
 	test('GIVEN string THEN returns false', () => {

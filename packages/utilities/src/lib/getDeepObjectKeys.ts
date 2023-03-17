@@ -1,5 +1,5 @@
-import { isNullOrUndefinedOrEmpty } from './isNullOrUndefinedOrEmpty';
-import type { AnyObject } from './types';
+import { isNullOrUndefinedOrEmpty } from './isNullOrUndefinedOrEmpty.js';
+import type { AnyObject } from './types.js';
 
 /**
  * Flattens an object to a list of its keys, traversing deeply into nested objects and arrays of objects.

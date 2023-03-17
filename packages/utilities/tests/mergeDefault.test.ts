@@ -1,4 +1,4 @@
-import { mergeDefault } from '../src';
+import { mergeDefault } from '../src/index.js';
 
 describe('mergeDefault', () => {
 	test('GIVEN empty overwrites THEN returns base', () => {

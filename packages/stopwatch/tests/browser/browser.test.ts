@@ -37,6 +37,6 @@ describe('browser-bundle-test', () => {
 
 declare global {
 	interface Window {
-		SapphireStopwatch: typeof import('../../src');
+		SapphireStopwatch: typeof import('../../src/index.js');
 	}
 }

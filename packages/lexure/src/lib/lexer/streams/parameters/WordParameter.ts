@@ -1,5 +1,5 @@
-import type { WordToken } from '../raw/TokenStream';
-import { BaseParameter } from './BaseParameter';
+import type { WordToken } from '../raw/TokenStream.js';
+import { BaseParameter } from './BaseParameter.js';
 
 export class WordParameter extends BaseParameter {
 	public readonly value: string;

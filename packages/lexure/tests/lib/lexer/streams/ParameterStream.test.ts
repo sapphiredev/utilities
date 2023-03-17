@@ -1,4 +1,4 @@
-import { Lexer, ParameterStream, QuotedParameter, TokenStream, WordParameter, type Parameter } from '../../../../src';
+import { Lexer, ParameterStream, QuotedParameter, TokenStream, WordParameter, type Parameter } from '../../../../src/index.js';
 
 describe('ParameterStream', () => {
 	describe('default lexer', () => {

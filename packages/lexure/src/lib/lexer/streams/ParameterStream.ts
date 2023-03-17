@@ -1,6 +1,6 @@
-import { QuotedParameter } from './parameters/QuotedParameter';
-import { WordParameter } from './parameters/WordParameter';
-import { TokenType, type Token } from './raw/TokenStream';
+import { QuotedParameter } from './parameters/QuotedParameter.js';
+import { WordParameter } from './parameters/WordParameter.js';
+import { TokenType, type Token } from './raw/TokenStream.js';
 
 export class ParameterStream {
 	private readonly stream: Iterable<Token>;

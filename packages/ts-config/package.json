@@ -5,6 +5,8 @@
 	"author": "@sapphire",
 	"license": "MIT",
 	"main": "tsconfig.json",
+	"typedocMain": "tests/index.ts",
+	"type": "module",
 	"exports": {
 		".": {
 			"import": "./tsconfig.json",
@@ -28,7 +30,7 @@
 	"scripts": {
 		"test": "vitest run",
 		"lint": "eslint tests --ext mjs,ts --fix -c ../../.eslintrc",
-		"build": "yarn lint && tsc -b tests",
+		"build": "echo \"\"",
 		"bump": "cliff-jumper",
 		"check-update": "cliff-jumper --dry-run"
 	},

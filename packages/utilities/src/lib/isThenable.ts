@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-types */
-import { isFunction } from './isFunction';
+import { isFunction } from './isFunction.js';
 
 export interface Thenable {
 	then: Function;

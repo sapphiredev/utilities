@@ -1,1 +1,1 @@
-export * from './lib/AsyncQueue';
+export * from './lib/AsyncQueue.js';

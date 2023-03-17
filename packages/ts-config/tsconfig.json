@@ -13,7 +13,7 @@
 		"incremental": true,
 		"lib": ["esnext"],
 		"module": "Node16",
-		"moduleResolution": "Node",
+		"moduleResolution": "node16",
 		"newLine": "lf",
 		"noEmitHelpers": true,
 		"noFallthroughCasesInSwitch": true,

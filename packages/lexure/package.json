@@ -4,14 +4,15 @@
 	"description": "Parser and utilities for non-technical user input",
 	"author": "@sapphire",
 	"license": "MIT",
-	"main": "dist/index.js",
-	"module": "dist/index.mjs",
+	"main": "dist/index.cjs",
+	"module": "dist/index.js",
 	"browser": "dist/index.global.js",
 	"unpkg": "dist/index.global.js",
 	"types": "dist/index.d.ts",
+	"type": "module",
 	"exports": {
-		"import": "./dist/index.mjs",
-		"require": "./dist/index.js",
+		"import": "./dist/index.js",
+		"require": "./dist/index.cjs",
 		"types": "./dist/index.d.ts"
 	},
 	"sideEffects": false,
@@ -31,9 +32,7 @@
 		"directory": "packages/lexure"
 	},
 	"files": [
-		"dist/**/*.js*",
-		"dist/**/*.mjs*",
-		"dist/**/*.d*"
+		"dist/"
 	],
 	"engines": {
 		"node": ">=v14.0.0",

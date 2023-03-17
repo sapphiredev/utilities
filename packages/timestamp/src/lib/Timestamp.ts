@@ -1,4 +1,4 @@
-import { days, months, Time, tokens } from './constants';
+import { days, months, Time, tokens } from './constants.js';
 
 interface TokenResolver {
 	(time: Date): string;

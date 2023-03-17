@@ -1,4 +1,4 @@
-import { DEFAULT_SEPARATORS, DEFAULT_UNITS, TimeTypes } from './constants';
+import { DEFAULT_SEPARATORS, DEFAULT_UNITS, TimeTypes } from './constants.js';
 
 /**
  * The duration of each time type in milliseconds

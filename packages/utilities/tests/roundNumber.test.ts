@@ -1,4 +1,4 @@
-import { roundNumber } from '../src';
+import { roundNumber } from '../src/index.js';
 
 describe('roundNumber', () => {
 	test('GIVEN number without decimals THEN returns number', () => {

@@ -1,8 +1,8 @@
 // eslint-disable-next-line spaced-comment
 /// <reference lib="dom" />
 
-import { QueryError } from './QueryError';
-import { FetchResultTypes, type RequestOptions } from './types';
+import { QueryError } from './QueryError.js';
+import { FetchResultTypes, type RequestOptions } from './types.js';
 
 /**
  * Performs an HTTP(S) fetch

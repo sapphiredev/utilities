@@ -1,4 +1,4 @@
-import { isNullOrUndefinedOrZero } from '../src';
+import { isNullOrUndefinedOrZero } from '../src/index.js';
 
 describe('isNullOrUndefinedOrZero', () => {
 	test('GIVEN empty string THEN returns false', () => {

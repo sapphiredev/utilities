@@ -1175,7 +1175,6 @@ __metadata:
   dependencies:
     "@favware/cliff-jumper": ^2.0.0
     "@vitest/coverage-c8": ^0.30.1
-    esbuild-plugin-file-path-extensions: ^1.0.0
     tsup: ^6.7.0
     typedoc: ^0.24.6
     typedoc-json-parser: ^7.3.2
@@ -2779,13 +2778,6 @@ __metadata:
   dependencies:
     is-arrayish: ^0.2.1
   checksum: c1c2b8b65f9c91b0f9d75f0debaa7ec5b35c266c2cac5de412c1a6de86d4cbae04ae44e510378cb14d032d0645a36925d0186f8bb7367bcc629db256b743a001
-  languageName: node
-  linkType: hard
-
-"esbuild-plugin-file-path-extensions@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "esbuild-plugin-file-path-extensions@npm:1.0.0"
-  checksum: 4e844b7822cf444c5e50bef81d59df0b04c4f1377970698679e0b562d5b3b7a3e415108511bbba37c0c394220faea31ec90c1c9fea048b45f218655507236ca7
   languageName: node
   linkType: hard
 

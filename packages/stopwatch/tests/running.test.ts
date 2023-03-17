@@ -1,4 +1,4 @@
-import { Stopwatch } from '../src';
+import { Stopwatch } from '../src/index.js';
 
 describe('Running', () => {
 	test('stopped', () => {

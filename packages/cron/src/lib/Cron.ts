@@ -1,5 +1,5 @@
 import { range } from '@sapphire/utilities';
-import { allowedNum, cronTokens, partRegex, predefined, Time, tokensRegex, wildcardRegex } from './constants';
+import { allowedNum, cronTokens, partRegex, predefined, Time, tokensRegex, wildcardRegex } from './constants.js';
 
 /**
  * Handles Cron strings and generates dates based on the cron string provided.

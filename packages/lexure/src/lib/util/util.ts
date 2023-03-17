@@ -1,4 +1,4 @@
-import type { Parameter } from '../lexer/streams/ParameterStream';
+import type { Parameter } from '../lexer/streams/ParameterStream.js';
 
 /**
  * Joins the parameters by their `leading` value, using the `value` property.

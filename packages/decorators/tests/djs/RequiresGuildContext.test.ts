@@ -1,4 +1,4 @@
-import { RequiresGuildContext } from '../../src';
+import { RequiresGuildContext } from '../../src/index.js';
 
 describe('RequiresGuildContext', () => {
 	interface Message {

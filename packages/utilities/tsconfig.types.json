@@ -1,0 +1,10 @@
+{
+	"extends": "../ts-config/extra-strict-without-decorators.json",
+	"compilerOptions": {
+		"emitDeclarationOnly": true,
+		"outDir": "dist/types",
+		"declarationDir": "dist/types",
+		"target": "ES2019"
+	},
+	"include": ["src"]
+}

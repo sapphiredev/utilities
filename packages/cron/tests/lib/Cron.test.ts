@@ -1,4 +1,4 @@
-import { Cron } from '../../src';
+import { Cron } from '../../src/index.js';
 
 describe('Cron', () => {
 	test('pre-defined @hourly', () => {

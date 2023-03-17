@@ -1,4 +1,4 @@
-import { isThenable } from '../src';
+import { isThenable } from '../src/index.js';
 
 describe('isThenable', () => {
 	test('GIVEN string THEN returns false', () => {

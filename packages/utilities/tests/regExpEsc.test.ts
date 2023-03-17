@@ -1,4 +1,4 @@
-import { regExpEsc } from '../src';
+import { regExpEsc } from '../src/index.js';
 
 describe('regExpEsc', () => {
 	test('GIVEN hyphen THEN returns expected', () => {

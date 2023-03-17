@@ -5,7 +5,7 @@ import {
 	findFilesRecursivelyStringIncludes,
 	findFilesRecursivelyStringStartsWith,
 	findFilesRecursivelyRegex
-} from '../src';
+} from '../src/index.js';
 
 describe('findFilesRecursively', () => {
 	test('GIVEN a directory name THEN returns all files in that directory', async () => {

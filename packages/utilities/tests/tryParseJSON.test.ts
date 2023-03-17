@@ -1,4 +1,4 @@
-import { tryParseJSON } from '../src';
+import { tryParseJSON } from '../src/index.js';
 
 describe('tryParseJSON', () => {
 	test('GIVEN basic THEN returns expected', () => {

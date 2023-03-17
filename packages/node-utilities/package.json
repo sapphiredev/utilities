@@ -4,12 +4,13 @@
 	"description": "Node specific JavaScript utilities for the Sapphire Community",
 	"author": "@sapphire",
 	"license": "MIT",
-	"main": "dist/index.js",
-	"module": "dist/index.mjs",
+	"main": "dist/index.cjs",
+	"module": "dist/index.js",
 	"types": "dist/index.d.ts",
+	"type": "module",
 	"exports": {
-		"import": "./dist/index.mjs",
-		"require": "./dist/index.js",
+		"import": "./dist/index.js",
+		"require": "./dist/index.cjs",
 		"types": "./dist/index.d.ts"
 	},
 	"sideEffects": false,
@@ -29,9 +30,7 @@
 		"directory": "packages/node-utilities"
 	},
 	"files": [
-		"dist/**/*.js*",
-		"dist/**/*.mjs*",
-		"dist/**/*.d*"
+		"dist/"
 	],
 	"engines": {
 		"node": ">=v16.0.0",
