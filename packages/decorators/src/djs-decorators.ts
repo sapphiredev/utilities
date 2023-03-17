@@ -1,7 +1,7 @@
 import { isDMChannel, isGuildBasedChannel } from '@sapphire/discord.js-utilities';
 import { UserError } from '@sapphire/framework';
-import { Message, PermissionFlagsBits, PermissionResolvable, PermissionsBitField } from 'discord.js';
-import { createFunctionPrecondition, FunctionFallback } from './utils';
+import { Message, PermissionFlagsBits, PermissionsBitField, type PermissionResolvable } from 'discord.js';
+import { createFunctionPrecondition, type FunctionFallback } from './utils';
 
 export enum DecoratorIdentifiers {
 	RequiresClientPermissionsGuildOnly = 'requiresClientPermissionsGuildOnly',
