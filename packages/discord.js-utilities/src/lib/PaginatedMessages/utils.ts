@@ -1,17 +1,17 @@
 import { chunk, partition } from '@sapphire/utilities';
 import {
 	ActionRowBuilder,
-	ActionRowData,
-	APIActionRowComponent,
-	APIButtonComponent,
-	APIStringSelectComponent,
 	ButtonBuilder,
 	ComponentType,
-	JSONEncodable,
 	StringSelectMenuBuilder,
-	StringSelectMenuComponentData,
+	type APIActionRowComponent,
+	type APIButtonComponent,
+	type APIStringSelectComponent,
 	type ActionRowComponentOptions,
-	type ButtonComponentData
+	type ActionRowData,
+	type ButtonComponentData,
+	type JSONEncodable,
+	type StringSelectMenuComponentData
 } from 'discord.js';
 import { isAnyInteractableInteraction, isMessageInstance } from '../type-guards';
 import type {
