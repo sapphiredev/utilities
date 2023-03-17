@@ -12,7 +12,7 @@
 		"verbatimModuleSyntax": true,
 		"incremental": true,
 		"lib": ["esnext"],
-		"module": "CommonJS",
+		"module": "Node16",
 		"moduleResolution": "Node",
 		"newLine": "lf",
 		"noEmitHelpers": true,
