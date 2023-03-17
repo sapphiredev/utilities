@@ -75,7 +75,9 @@
 	},
 	"resolutions": {
 		"ansi-regex": "^5.0.1",
-		"minimist": "^1.2.8"
+		"minimist": "^1.2.8",
+		"@sapphire/shapeshift": "pr-253",
+		"@discordjs/rest@^1.6.0": "patch:@discordjs/rest@npm%3A1.6.0#./.yarn/patches/@discordjs-rest-npm-1.6.0-ecd934f96e.patch"
 	},
 	"packageManager": "yarn@3.5.0"
 }
