@@ -58,13 +58,13 @@
 	},
 	"devDependencies": {
 		"@favware/cliff-jumper": "^2.0.0",
-		"@types/jsdom": "^21.1.0",
-		"@vitest/coverage-c8": "^0.29.3",
+		"@types/jsdom": "^21.1.1",
+		"@vitest/coverage-c8": "^0.29.7",
 		"jsdom": "^21.1.1",
 		"tsup": "^6.7.0",
-		"typedoc": "^0.23.27",
+		"typedoc": "^0.23.28",
 		"typedoc-json-parser": "^7.2.0",
 		"typescript": "^4.9.5",
-		"vitest": "^0.29.3"
+		"vitest": "^0.29.7"
 	}
 }
