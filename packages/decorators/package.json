@@ -1,6 +1,6 @@
 {
 	"name": "@sapphire/decorators",
-	"version": "6.0.1",
+	"version": "6.0.0",
 	"description": "Useful TypeScript decorators for Sapphire Framework Discord bots",
 	"author": "@sapphire",
 	"license": "MIT",
@@ -32,12 +32,12 @@
 		"@sapphire/ratelimits": "workspace:^",
 		"@sapphire/result": "workspace:^",
 		"@sapphire/utilities": "workspace:^",
-		"@vitest/coverage-c8": "^0.30.1",
+		"@vitest/coverage-c8": "^0.29.8",
 		"tsup": "^6.7.0",
-		"typedoc": "0.23.28",
+		"typedoc": "^0.23.28",
 		"typedoc-json-parser": "^7.2.0",
-		"typescript": "^5.0.4",
-		"vitest": "^0.30.1"
+		"typescript": "^5.0.3",
+		"vitest": "^0.29.8"
 	},
 	"repository": {
 		"type": "git",
