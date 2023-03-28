@@ -1,7 +1,5 @@
-import { container, type Piece } from '@sapphire/framework';
-import type { Container } from '@sapphire/pieces';
-import type { Ctor } from '@sapphire/utilities';
-import { createClassDecorator, createProxy } from './utils';
+import { Piece, container } from '@sapphire/framework';
+import type { ApplyOptionsCallbackParameters, PieceConstructor, SyntheticClassDecoratorReturn } from './types';
 
 /**
  * Decorator function that applies given options to any Sapphire piece
@@ -12,7 +10,7 @@ import { createClassDecorator, createProxy } from './utils';
  * import { Command } from '@sapphire/framework';
  * import type { Message } from 'discord.js';
  *
- * @ApplyOptions<Command.Options>({
+ * (at)ApplyOptions<Command.Options>({
  *   description: 'ping pong',
  *   enabled: true
  * })
@@ -32,7 +30,7 @@ import { createClassDecorator, createProxy } from './utils';
  * import { Listener } from '@sapphire/framework';
  * import { GatewayDispatchEvents, GatewayMessageDeleteDispatch } from 'discord.js';
  *
- * @ApplyOptions<Listener.Options>(({ container }) => ({
+ * (at)ApplyOptions<Listener.Options>(({ container }) => ({
  *   description: 'Handle Raw Message Delete events',
  *   emitter: container.client.ws,
  *   event: GatewayDispatchEvents.MessageDelete
@@ -49,19 +47,16 @@ import { createClassDecorator, createProxy } from './utils';
  * }
  * ```
  */
-export function ApplyOptions<T extends Piece.Options>(optionsOrFn: T | ((parameters: ApplyOptionsCallbackParameters) => T)): ClassDecorator {
-	return createClassDecorator((target: Ctor<ConstructorParameters<typeof Piece>, Piece>) =>
-		createProxy(target, {
-			construct: (ctor, [context, baseOptions = {}]: [Piece.Context, Piece.Options]) =>
-				new ctor(context, {
-					...baseOptions,
-					...(typeof optionsOrFn === 'function' ? optionsOrFn({ container, context }) : optionsOrFn)
-				})
-		})
-	);
-}
+export function ApplyOptions<T extends Piece.Options>(
+	optionsOrFn: T | ((parameters: ApplyOptionsCallbackParameters) => T)
+): SyntheticClassDecoratorReturn<PieceConstructor, ClassDecoratorContext, any> {
+	return (DecoratedClass: PieceConstructor, _context: ClassDecoratorContext) =>
+		function replacementClass(...[context, baseOptions]: ConstructorParameters<typeof Piece>) {
+			const classInstance = new DecoratedClass(context, {
+				...baseOptions,
+				...(typeof optionsOrFn === 'function' ? optionsOrFn({ container, context }) : optionsOrFn)
+			});
 
-export interface ApplyOptionsCallbackParameters {
-	container: Container;
-	context: Piece.Context;
+			return classInstance;
+		};
 }

@@ -1,7 +1,8 @@
 import { isDMChannel, isGuildBasedChannel } from '@sapphire/discord.js-utilities';
 import { UserError } from '@sapphire/framework';
 import { Message, PermissionFlagsBits, PermissionsBitField, type PermissionResolvable } from 'discord.js';
-import { createFunctionPrecondition, type FunctionFallback } from './utils';
+import type { ClassMethodDecorator, ClassMethodDecoratorTarget, FunctionFallback, StrictClassMethodDecoratorContext } from './types';
+import { createFunctionPrecondition } from './utils';
 
 export enum DecoratorIdentifiers {
 	RequiresClientPermissionsGuildOnly = 'requiresClientPermissionsGuildOnly',
@@ -23,7 +24,7 @@ const DMAvailablePermissions = new PermissionsBitField(
 	]).bitfield & PermissionsBitField.All
 );
 
-const DMAvailableUserPermissions = new PermissionsBitField(
+export const DMAvailableUserPermissions = new PermissionsBitField(
 	~new PermissionsBitField([
 		PermissionFlagsBits.AddReactions,
 		PermissionFlagsBits.AttachFiles,
@@ -39,8 +40,9 @@ const DMAvailableUserPermissions = new PermissionsBitField(
 
 /**
  * Allows you to set permissions required for individual methods. This is particularly useful for subcommands that require specific permissions.
+ * @remark The precondition should never return a promise as that is currently not supported by ECMAScript.
  * @remark This decorator applies to the client that is to execute the command. For setting permissions required user of the command see {@link RequiresUserPermissions}
- * @remark This decorator makes the decorated function asynchronous, so any result should be `await`ed.
+ * @remark The precondition will throw a {@link UserError} if the client does not have the required permissions.
  * @param permissionsResolvable Permissions that the method should have.
  * @example
  * ```typescript
@@ -76,40 +78,44 @@ const DMAvailableUserPermissions = new PermissionsBitField(
  * }
  * ```
  */
-export const RequiresClientPermissions = (...permissionsResolvable: PermissionResolvable[]): MethodDecorator => {
+export function RequiresClientPermissions<This, Args extends [message: Message], Return>(
+	...permissionsResolvable: PermissionResolvable[]
+): ClassMethodDecorator<This, Args, Return> {
 	const resolved = new PermissionsBitField(permissionsResolvable);
 	const resolvedIncludesServerPermissions = Boolean(resolved.bitfield & DMAvailablePermissions.bitfield);
 
-	return createFunctionPrecondition((message: Message) => {
-		if (resolvedIncludesServerPermissions && isDMChannel(message.channel)) {
-			throw new UserError({
-				identifier: DecoratorIdentifiers.RequiresClientPermissionsGuildOnly,
-				message: 'Sorry, but that command can only be used in a server because I do not have sufficient permissions in DMs'
-			});
-		}
-
-		if (isGuildBasedChannel(message.channel)) {
-			const missingPermissions = message.channel.permissionsFor(message.guild!.members.me!).missing(resolved);
-
-			if (missingPermissions.length) {
+	return (target: ClassMethodDecoratorTarget<This, Args, Return>, context: StrictClassMethodDecoratorContext<This, Args, Return>) =>
+		createFunctionPrecondition(target, context, (message: Message) => {
+			if (resolvedIncludesServerPermissions && isDMChannel(message.channel)) {
 				throw new UserError({
-					identifier: DecoratorIdentifiers.RequiresClientPermissionsMissingPermissions,
-					message: `Sorry, but I am not allowed to do that. I am missing the permissions: ${missingPermissions}`,
-					context: {
-						missing: missingPermissions
-					}
+					identifier: DecoratorIdentifiers.RequiresClientPermissionsGuildOnly,
+					message: 'Sorry, but that command can only be used in a server because I do not have sufficient permissions in DMs'
 				});
 			}
-		}
 
-		return true;
-	});
-};
+			if (isGuildBasedChannel(message.channel)) {
+				const missingPermissions = message.channel.permissionsFor(message.guild!.members.me!).missing(resolved);
+
+				if (missingPermissions.length) {
+					throw new UserError({
+						identifier: DecoratorIdentifiers.RequiresClientPermissionsMissingPermissions,
+						message: `Sorry, but I am not allowed to do that. I am missing the permissions: ${missingPermissions}`,
+						context: {
+							missing: missingPermissions
+						}
+					});
+				}
+			}
+
+			return true;
+		});
+}
 
 /**
  * Allows you to set permissions required for individual methods. This is particularly useful for subcommands that require specific permissions.
+ * @remark The precondition should never return a promise as that is currently not supported by ECMAScript.
  * @remark This decorator applies to the user of the command. For setting permissions required for the client see {@link RequiresClientPermissions}
- * @remark This decorator makes the decorated function asynchronous, so any result should be `await`ed.
+ * @remark The precondition will throw a {@link UserError} if the client does not have the required permissions.
  * @param permissionsResolvable Permissions that the method should have.
  * @example
  * ```typescript
@@ -145,50 +151,59 @@ export const RequiresClientPermissions = (...permissionsResolvable: PermissionRe
  * }
  * ```
  */
-export const RequiresUserPermissions = (...permissionsResolvable: PermissionResolvable[]): MethodDecorator => {
+export function RequiresUserPermissions<This, Args extends [message: Message], Return>(
+	...permissionsResolvable: PermissionResolvable[]
+): ClassMethodDecorator<This, Args, Return> {
 	const resolved = new PermissionsBitField(permissionsResolvable);
 	const resolvedIncludesServerPermissions = Boolean(resolved.bitfield & DMAvailableUserPermissions.bitfield);
 
-	return createFunctionPrecondition((message: Message) => {
-		if (resolvedIncludesServerPermissions && isDMChannel(message.channel)) {
-			throw new UserError({
-				identifier: DecoratorIdentifiers.RequiresUserPermissionsGuildOnly,
-				message: 'Sorry, but that command can only be used in a server because you do not have sufficient permissions in DMs'
-			});
-		}
-
-		if (isGuildBasedChannel(message.channel)) {
-			const missingPermissions = message.channel.permissionsFor(message.member!).missing(resolved);
-
-			if (missingPermissions.length) {
+	return (target: ClassMethodDecoratorTarget<This, Args, Return>, context: StrictClassMethodDecoratorContext<This, Args, Return>) =>
+		createFunctionPrecondition(target, context, (message: Message) => {
+			if (resolvedIncludesServerPermissions && isDMChannel(message.channel)) {
 				throw new UserError({
-					identifier: DecoratorIdentifiers.RequiresUserPermissionsMissingPermissions,
-					message: `Sorry, but you are not allowed to do that. You are missing the permissions: ${missingPermissions}`,
-					context: {
-						missing: missingPermissions
-					}
+					identifier: DecoratorIdentifiers.RequiresUserPermissionsGuildOnly,
+					message: 'Sorry, but that command can only be used in a server because you do not have sufficient permissions in DMs'
 				});
 			}
-		}
 
-		return true;
-	});
-};
+			if (isGuildBasedChannel(message.channel)) {
+				const missingPermissions = message.channel.permissionsFor(message.member!).missing(resolved);
 
-/**
- * Requires the message to be run in a guild context, this decorator requires the first argument to be a `Message` instance
- * @since 1.0.0
- * @param fallback The fallback value passed to `createFunctionInhibitor`
- */
-export function RequiresGuildContext(fallback: FunctionFallback = (): void => undefined): MethodDecorator {
-	return createFunctionPrecondition((message: Message) => message.guild !== null, fallback);
+				if (missingPermissions.length) {
+					throw new UserError({
+						identifier: DecoratorIdentifiers.RequiresUserPermissionsMissingPermissions,
+						message: `Sorry, but you are not allowed to do that. You are missing the permissions: ${missingPermissions}`,
+						context: {
+							missing: missingPermissions
+						}
+					});
+				}
+			}
+
+			return true;
+		});
 }
 
 /**
- * Requires the message to be run in a dm context, this decorator requires the first argument to be a `Message` instance
+ * Requires the message to be run in a guild context, this decorator requires the first argument of the decorated method to be a {@link Message} instance
  * @since 1.0.0
- * @param fallback The fallback value passed to `createFunctionInhibitor`
+ * @param fallback The fallback value passed to {@link createFunctionInhibitor}
  */
-export function RequiresDMContext(fallback: FunctionFallback = (): void => undefined): MethodDecorator {
-	return createFunctionPrecondition((message: Message) => message.guild === null, fallback);
+export function RequiresGuildContext<This, Args extends [message: Message], Return>(
+	fallback: FunctionFallback<This, Args, Return> = (): Return => undefined as Return
+): ClassMethodDecorator<This, Args, Return> {
+	return (target: ClassMethodDecoratorTarget<This, Args, Return>, context: StrictClassMethodDecoratorContext<This, Args, Return>) =>
+		createFunctionPrecondition(target, context, (message: Message) => message.inGuild(), fallback);
+}
+
+/**
+ * Requires the message to be run in a dm context, this decorator requires the first argument of the decorated method to be a {@link Message} instance
+ * @since 1.0.0
+ * @param fallback The fallback value passed to {@link createFunctionInhibitor}
+ */
+export function RequiresDMContext<This, Args extends [message: Message], Return>(
+	fallback: FunctionFallback<This, Args, Return> = (): Return => undefined as Return
+): ClassMethodDecorator<This, Args, Return> {
+	return (target: ClassMethodDecoratorTarget<This, Args, Return>, context: StrictClassMethodDecoratorContext<This, Args, Return>) =>
+		createFunctionPrecondition(target, context, (message: Message) => !message.inGuild(), fallback);
 }

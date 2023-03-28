@@ -1,47 +1,37 @@
-/**
- * The function precondition interface.
- */
-export interface FunctionPrecondition {
-	/**
-	 * The arguments passed to the function or class' method.
-	 */
-	(...args: any[]): boolean | Promise<boolean>;
-}
+import type {
+	ClassMethodDecoratorTarget,
+	FunctionFallback,
+	FunctionPrecondition,
+	MethodDecoratorModifier,
+	StrictClassMethodDecoratorContext
+} from './types';
 
 /**
- * The fallback interface, this is called when the function precondition returns or resolves with a falsy value.
- */
-export interface FunctionFallback {
-	/**
-	 * The arguments passed to the function or class' method.
-	 */
-	(...args: any[]): unknown;
-}
-
-/**
- * Utility to make a method decorator with lighter syntax and inferred types.
+ * Utility to make a class method decorator with lighter syntax.
  *
+ * @param target The method to decorate
+ * @param context The context of the method
+ * @param value Whether the method should be enumerable or not
+ *
+ * @example
  * ```typescript
- * // Enumerable function
- *	function enumerableMethod(value: boolean) {
- *		return createMethodDecorator((_target, _propertyKey, descriptor) => {
- *			descriptor.enumerable = value;
- *		});
- *	}
+ * export function MyDecorator<This, Args extends unknown[], Return>(myArgs: unknown): ClassMethodDecorator<This, Args, Return> {
+ *   return (target: ClassMethodDecoratorTarget<This, Args, Return>, context: StrictClassMethodDecoratorContext<This, Args, Return>) =>
+ *     createMethodDecorator(target, () => {
+ *       // myModifyingCodeHere
+ *     });
+ * }
  * ```
- * @param fn The method to decorate
  */
-export function createMethodDecorator(fn: MethodDecorator): MethodDecorator {
-	return fn;
-}
+export function createMethodDecorator<This, Args extends unknown[], Return>(
+	target: ClassMethodDecoratorTarget<This, Args, Return>,
+	methodModifier: MethodDecoratorModifier
+): ClassMethodDecoratorTarget<This, Args, Return> {
+	methodModifier();
 
-/**
- * Utility to make a class decorator with lighter syntax and inferred types.
- * @param fn The class to decorate
- * @see {@link ApplyOptions}
- */
-export function createClassDecorator<TFunction extends (...args: any[]) => void>(fn: TFunction): ClassDecorator {
-	return fn;
+	return function replacementMethod(this: This, ...args: Args) {
+		return target.call(this, ...args);
+	};
 }
 
 /**
@@ -67,34 +57,19 @@ export function createClassDecorator<TFunction extends (...args: any[]) => void>
  * }
  * ```
  * @since 1.0.0
+ * @param target The method to decorate
+ * @param _context The context of the method
  * @param precondition The function that defines whether or not the function should be run, returning the returned value from fallback
  * @param fallback The fallback value that defines what the method should return in case the precondition fails
  */
-export function createFunctionPrecondition(precondition: FunctionPrecondition, fallback: FunctionFallback = (): void => undefined): MethodDecorator {
-	return createMethodDecorator((_target, _propertyKey, descriptor) => {
-		const method = descriptor.value;
-		if (!method) throw new Error('Function preconditions require a [[value]].');
-		if (typeof method !== 'function') throw new Error('Function preconditions can only be applied to functions.');
-
-		descriptor.value = async function descriptorValue(this: (...args: any[]) => any, ...args: any[]) {
-			const canRun = await precondition(...args);
-			return canRun ? method.call(this, ...args) : fallback.call(this, ...args);
-		} as unknown as undefined;
-	});
-}
-
-/**
- * Creates a new proxy to efficiently add properties to class without creating subclasses
- * @param target The constructor of the class to modify
- * @param handler The handler function to modify the constructor behavior for the target
- * @hidden
- */
-export function createProxy<T extends object>(target: T, handler: Omit<ProxyHandler<T>, 'get'>): T {
-	return new Proxy(target, {
-		...handler,
-		get: (target, property) => {
-			const value = Reflect.get(target, property);
-			return typeof value === 'function' ? (...args: readonly unknown[]) => value.apply(target, args) : value;
-		}
-	});
+export function createFunctionPrecondition<This, Args extends unknown[], Return>(
+	target: ClassMethodDecoratorTarget<This, Args, Return>,
+	_context: StrictClassMethodDecoratorContext<This, Args, Return>,
+	precondition: FunctionPrecondition<Args>,
+	fallback: FunctionFallback<This, Args, Return> = (): Return => undefined as Return
+): ClassMethodDecoratorTarget<This, Args, Return> {
+	return function replacementMethod(this: This, ...args: Args): Return {
+		const canRun = precondition(...args);
+		return canRun ? target.call(this, ...args) : fallback.call(this, ...args);
+	};
 }
