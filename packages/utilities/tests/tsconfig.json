@@ -1,5 +1,5 @@
 {
-	"extends": "../../ts-config/extra-strict.json",
+	"extends": "../../ts-config/extra-strict-without-decorators.json",
 	"compilerOptions": {
 		"lib": ["dom", "esnext"],
 		"noEmit": true,

@@ -1,5 +1,5 @@
 {
-	"extends": "../extra-strict.json",
+	"extends": "../extra-strict-without-decorators.json",
 	"compilerOptions": {
 		"lib": ["ESNext", "DOM"],
 		"noEmit": true,
