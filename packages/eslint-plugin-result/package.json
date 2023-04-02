@@ -60,6 +60,6 @@
 		"@sapphire/result": "workspace:^",
 		"@typescript-eslint/utils": "^5.57.1",
 		"tsutils": "^3.21.0",
-		"typescript": "^5.0.2"
+		"typescript": "^5.0.3"
 	}
 }
