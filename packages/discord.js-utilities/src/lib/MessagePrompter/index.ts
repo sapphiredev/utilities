@@ -1,5 +1,5 @@
 export type { MessagePrompterChannelTypes, MessagePrompterMessage } from './constants';
-export type * from './ExplicitReturnTypes';
+export * from './ExplicitReturnTypes';
 export * from './MessagePrompter';
 export * from './strategies/MessagePrompterBaseStrategy';
 export * from './strategies/MessagePrompterConfirmStrategy';
