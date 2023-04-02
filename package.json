@@ -33,7 +33,7 @@
 		"@typescript-eslint/parser": "^5.57.0",
 		"@vitest/coverage-c8": "^0.29.8",
 		"cz-conventional-changelog": "^3.3.0",
-		"discord-api-types": "^0.37.36",
+		"discord-api-types": "^0.37.37",
 		"discord.js": "^14.9.0",
 		"eslint": "^8.37.0",
 		"eslint-config-prettier": "^8.8.0",
