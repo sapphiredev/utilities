@@ -1,5 +1,12 @@
 import { UserError } from '@sapphire/framework';
-import { ChannelType, Message as DJSMessage, PermissionFlagsBits, PermissionResolvable, PermissionsBitField, PermissionsString } from 'discord.js';
+import {
+	ChannelType,
+	Message as DJSMessage,
+	PermissionFlagsBits,
+	PermissionsBitField,
+	type PermissionResolvable,
+	type PermissionsString
+} from 'discord.js';
 import diff from 'lodash/difference';
 import { DecoratorIdentifiers, RequiresClientPermissions } from '../../src';
 
@@ -9,7 +16,7 @@ interface BitField {
 
 interface Message {
 	channel: {
-		type: DJSMessage['channel']['type'];
+		type: ChannelType;
 		permissionsFor(): BitField;
 	};
 	guild: {
@@ -36,6 +43,7 @@ function buildMessage(channelType: DJSMessage['channel']['type'], ...givenPermis
 describe('RequiresClientPermissions', () => {
 	describe('WITH DM-compatible permissions', () => {
 		class Test {
+			// @ts-expect-error the signature is correct but the typings fail because of the mocked Message class
 			@RequiresClientPermissions(['SendMessages', 'AttachFiles'])
 			public getValue(_message: Message) {
 				return Promise.resolve('Resolved');
@@ -93,6 +101,7 @@ describe('RequiresClientPermissions', () => {
 
 	describe('WITH DM-incompatible permissions', () => {
 		class Test {
+			// @ts-expect-error the signature is correct but the typings fail because of the mocked Message class
 			@RequiresClientPermissions([PermissionFlagsBits.ManageMessages, PermissionFlagsBits.AddReactions, PermissionFlagsBits.EmbedLinks])
 			public getValue(_message: Message) {
 				return Promise.resolve('Resolved');

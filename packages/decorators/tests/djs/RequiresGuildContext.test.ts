@@ -3,6 +3,8 @@ import { RequiresGuildContext } from '../../src';
 describe('RequiresGuildContext', () => {
 	interface Message {
 		guild: { name: string } | null;
+
+		inGuild(): boolean;
 	}
 
 	test('GIVEN no guild THEN returns fallback', async () => {
@@ -14,7 +16,7 @@ describe('RequiresGuildContext', () => {
 		}
 
 		const instance = new Test();
-		const result = await instance.getValue({ guild: null });
+		const result = await instance.getValue({ guild: null, inGuild: () => false });
 		expect(result).toBe('Fallback!');
 	});
 
@@ -27,7 +29,7 @@ describe('RequiresGuildContext', () => {
 		}
 
 		const instance = new Test();
-		const result = await instance.getValue({ guild: { name: 'World!' } });
+		const result = await instance.getValue({ guild: { name: 'World!' }, inGuild: () => true });
 		expect(result).toBe('World!');
 	});
 
@@ -40,7 +42,7 @@ describe('RequiresGuildContext', () => {
 		}
 
 		const instance = new Test();
-		const result = await instance.getValue({ guild: null });
+		const result = await instance.getValue({ guild: null, inGuild: () => false });
 		expect(result).toBeUndefined();
 	});
 });

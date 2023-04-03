@@ -1,4 +1,4 @@
-import { Command, CommandOptions, CommandStore, container } from '@sapphire/framework';
+import { Command, CommandStore, container, type CommandOptions } from '@sapphire/framework';
 import { ApplyOptions } from '../../src';
 
 describe('ApplyOptions', () => {
@@ -17,17 +17,16 @@ describe('ApplyOptions', () => {
 				return this.name;
 			}
 
-			public async messageRun() {
+			public override async messageRun() {
 				// noop
 			}
 		}
 
-		// @ts-expect-error Access to the constructor should be bypassed
 		const instance = new TestPiece(
 			{
 				name: 'something',
 				path: __filename,
-				extras: {},
+				root: __dirname,
 				store: new CommandStore()
 			},
 			{ name: 'test' }
@@ -49,16 +48,15 @@ describe('ApplyOptions', () => {
 				return this.name;
 			}
 
-			public async messageRun() {
+			public override async messageRun() {
 				// noop
 			}
 		}
 
-		// @ts-expect-error Access to the constructor should be bypassed
 		const instance = new TestPiece({
 			name: 'something',
 			path: __filename,
-			extras: {},
+			root: __dirname,
 			store: new CommandStore()
 		});
 
@@ -78,17 +76,16 @@ describe('ApplyOptions', () => {
 				return this.name;
 			}
 
-			public async messageRun() {
+			public override async messageRun() {
 				// noop
 			}
 		}
 
-		// @ts-expect-error Access to the constructor should be bypassed
 		const instance = new TestPiece(
 			{
 				name: 'something',
 				path: __filename,
-				extras: {},
+				root: __dirname,
 				store: new CommandStore()
 			},
 			{ name: 'test' }
