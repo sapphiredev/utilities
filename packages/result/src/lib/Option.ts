@@ -1,9 +1,9 @@
-import { isFunction, type Awaitable } from './common/utils';
-import { none as _none, None } from './Option/None';
-import { some as _some, Some } from './Option/Some';
+import { isFunction, type Awaitable } from './common/utils.js';
+import { none as _none, None } from './Option/None.js';
+import { some as _some, Some } from './Option/Some.js';
 
-export * from './Option/IOption';
-export * from './Option/OptionError';
+export * from './Option/IOption.js';
+export * from './Option/OptionError.js';
 export { _some as some, _none as none };
 
 /**
@@ -89,8 +89,8 @@ export namespace Option {
 	export const none = _none;
 	export const some = _some;
 
-	export type Some<T> = import('./Option/Some').Some<T>;
-	export type None = import('./Option/None').None;
+	export type Some<T> = import('./Option/Some.js').Some<T>;
+	export type None = import('./Option/None.js').None;
 
 	export type UnwrapSome<T extends Option<any>> = T extends Some<infer S> ? S : never;
 	export type UnwrapSomeArray<T extends readonly Option<any>[] | []> = {

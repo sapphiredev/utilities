@@ -1,4 +1,4 @@
-import { isFunction } from './isFunction';
+import { isFunction } from './isFunction.js';
 
 /**
  * Partitions `array` into a tuple of two arrays,

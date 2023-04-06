@@ -1,4 +1,4 @@
-import { mergeObjects } from '../src';
+import { mergeObjects } from '../src/index.js';
 
 describe('mergeObjects', () => {
 	test('GIVEN basic THEN returns expected', () => {

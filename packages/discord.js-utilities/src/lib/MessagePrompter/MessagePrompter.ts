@@ -1,23 +1,23 @@
 import type { Ctor } from '@sapphire/utilities';
 import type { CollectorFilter, EmojiResolvable, Message, MessageReaction, User } from 'discord.js';
-import type { MessagePrompterChannelTypes, MessagePrompterMessage } from './constants';
+import type { MessagePrompterChannelTypes, MessagePrompterMessage } from './constants.js';
 import type {
 	IMessagePrompterExplicitConfirmReturn,
 	IMessagePrompterExplicitMessageReturn,
 	IMessagePrompterExplicitNumberReturn,
 	IMessagePrompterExplicitReturnBase
-} from './ExplicitReturnTypes';
-import { MessagePrompterBaseStrategy } from './strategies/MessagePrompterBaseStrategy';
-import { MessagePrompterConfirmStrategy } from './strategies/MessagePrompterConfirmStrategy';
-import { MessagePrompterMessageStrategy } from './strategies/MessagePrompterMessageStrategy';
-import { MessagePrompterNumberStrategy } from './strategies/MessagePrompterNumberStrategy';
-import { MessagePrompterReactionStrategy } from './strategies/MessagePrompterReactionStrategy';
+} from './ExplicitReturnTypes.js';
+import { MessagePrompterBaseStrategy } from './strategies/MessagePrompterBaseStrategy.js';
+import { MessagePrompterConfirmStrategy } from './strategies/MessagePrompterConfirmStrategy.js';
+import { MessagePrompterMessageStrategy } from './strategies/MessagePrompterMessageStrategy.js';
+import { MessagePrompterNumberStrategy } from './strategies/MessagePrompterNumberStrategy.js';
+import { MessagePrompterReactionStrategy } from './strategies/MessagePrompterReactionStrategy.js';
 import type {
 	IMessagePrompterConfirmStrategyOptions,
 	IMessagePrompterNumberStrategyOptions,
 	IMessagePrompterReactionStrategyOptions,
 	IMessagePrompterStrategyOptions
-} from './strategyOptions';
+} from './strategyOptions.js';
 
 export interface StrategyReturns {
 	confirm: IMessagePrompterExplicitConfirmReturn | boolean;

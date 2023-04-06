@@ -1,5 +1,5 @@
 import { fetch, FetchMethods, FetchResultTypes, QueryError } from '@sapphire/fetch';
-import type { PhishermanInfoType, PhishermanReportType, PhishermanReturnType } from './PhishermanTypes';
+import type { PhishermanInfoType, PhishermanReportType, PhishermanReturnType } from './PhishermanTypes.js';
 import os from 'node:os';
 
 const agent = `Sapphire Phisherman/1.0.0 (node-fetch) ${os.platform()}/${os.release()} (https://github.com/sapphiredev/utilities/tree/main/packages/phisherman)`;

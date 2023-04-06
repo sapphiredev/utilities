@@ -1,4 +1,4 @@
-import { isFunction, isPromise } from '../../src/lib/common/utils';
+import { isFunction, isPromise } from '../../src/lib/common/utils.js';
 
 describe('utils', () => {
 	describe('isFunction', () => {

@@ -1,7 +1,7 @@
-import type { Parameter } from '../lexer/streams/ParameterStream';
-import type { IUnorderedStrategy } from './strategies/IUnorderedStrategy';
-import { ParserResult } from './ParserResult';
-import { EmptyStrategy } from './strategies/EmptyStrategy';
+import type { Parameter } from '../lexer/streams/ParameterStream.js';
+import type { IUnorderedStrategy } from './strategies/IUnorderedStrategy.js';
+import { ParserResult } from './ParserResult.js';
+import { EmptyStrategy } from './strategies/EmptyStrategy.js';
 
 export class Parser {
 	public strategy: IUnorderedStrategy;

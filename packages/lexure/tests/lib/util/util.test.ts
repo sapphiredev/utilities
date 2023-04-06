@@ -1,4 +1,4 @@
-import { join, joinRaw, QuotedParameter, WordParameter, type Parameter } from '../../../src';
+import { join, joinRaw, QuotedParameter, WordParameter, type Parameter } from '../../../src/index.js';
 
 describe('util', () => {
 	describe('join', () => {

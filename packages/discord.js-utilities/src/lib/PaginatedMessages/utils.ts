@@ -13,13 +13,13 @@ import {
 	type JSONEncodable,
 	type StringSelectMenuComponentData
 } from 'discord.js';
-import { isAnyInteractableInteraction, isMessageInstance } from '../type-guards';
+import { isAnyInteractableInteraction, isMessageInstance } from '../type-guards.js';
 import type {
 	PaginatedMessageAction,
 	PaginatedMessageActionButton,
 	PaginatedMessageActionMenu,
 	SafeReplyToInteractionParameters
-} from './PaginatedMessageTypes';
+} from './PaginatedMessageTypes.js';
 
 export function actionIsButtonOrMenu(action: PaginatedMessageAction): action is PaginatedMessageActionButton | PaginatedMessageActionMenu {
 	return action.type === ComponentType.SelectMenu || action.type === ComponentType.Button;

@@ -1,4 +1,4 @@
-import { objectKeys } from '../src';
+import { objectKeys } from '../src/index.js';
 
 describe('objectKeys', () => {
 	test('GIVEN basic readonly THEN returns expected', () => {

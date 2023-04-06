@@ -1,6 +1,6 @@
 import { TimerManager } from '@sapphire/timer-manager';
-import { setTimeout as sleep } from 'timers/promises';
-import { RateLimitManager } from '../../src';
+import { setTimeout as sleep } from 'node:timers/promises';
+import { RateLimitManager } from '../../src/index.js';
 
 describe('RateLimitManager', () => {
 	afterEach(() => TimerManager.destroy());

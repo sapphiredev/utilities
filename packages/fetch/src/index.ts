@@ -1,3 +1,3 @@
-export * from './lib/fetch';
-export * from './lib/QueryError';
-export * from './lib/types';
+export * from './lib/fetch.js';
+export * from './lib/QueryError.js';
+export * from './lib/types.js';

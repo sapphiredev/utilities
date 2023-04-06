@@ -1,4 +1,4 @@
-import { objectToTuples } from '../src';
+import { objectToTuples } from '../src/index.js';
 
 describe('objectToTuples', () => {
 	test('GIVEN basic THEN returns expected', () => {

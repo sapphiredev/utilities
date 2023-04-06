@@ -1,6 +1,6 @@
 import type { EmojiIdentifierResolvable, GuildEmoji, Message, ReactionEmoji } from 'discord.js';
-import type { MessagePrompterMessage } from './constants';
-import type { MessagePrompterBaseStrategy } from './strategies/MessagePrompterBaseStrategy';
+import type { MessagePrompterMessage } from './constants.js';
+import type { MessagePrompterBaseStrategy } from './strategies/MessagePrompterBaseStrategy.js';
 
 export interface IMessagePrompterExplicitReturnBase {
 	emoji?: GuildEmoji | ReactionEmoji;

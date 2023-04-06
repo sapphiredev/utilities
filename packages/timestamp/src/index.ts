@@ -1,2 +1,2 @@
-export * from './lib/constants';
-export * from './lib/Timestamp';
+export * from './lib/constants.js';
+export * from './lib/Timestamp.js';

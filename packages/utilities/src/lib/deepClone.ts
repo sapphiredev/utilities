@@ -1,4 +1,4 @@
-import { isPrimitive } from './isPrimitive';
+import { isPrimitive } from './isPrimitive.js';
 
 /**
  * Deep clone an object

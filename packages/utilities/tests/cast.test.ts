@@ -1,4 +1,4 @@
-import { cast } from '../src';
+import { cast } from '../src/index.js';
 
 describe('cast', () => {
 	test('GIVEN single generic type parameter THEN gives cast type back', () => {

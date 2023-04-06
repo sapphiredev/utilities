@@ -1,10 +1,10 @@
 import { isNullish, type ArgumentTypes } from '@sapphire/utilities';
 import type { CollectorFilter, CollectorOptions, Message, User } from 'discord.js';
-import { isStageChannel, isTextBasedChannel } from '../../type-guards';
-import type { MessagePrompterChannelTypes, MessagePrompterMessage } from '../constants';
-import type { IMessagePrompterExplicitMessageReturn } from '../ExplicitReturnTypes';
-import type { IMessagePrompterStrategyOptions } from '../strategyOptions';
-import { MessagePrompterBaseStrategy } from './MessagePrompterBaseStrategy';
+import { isStageChannel, isTextBasedChannel } from '../../type-guards.js';
+import type { MessagePrompterChannelTypes, MessagePrompterMessage } from '../constants.js';
+import type { IMessagePrompterExplicitMessageReturn } from '../ExplicitReturnTypes.js';
+import type { IMessagePrompterStrategyOptions } from '../strategyOptions.js';
+import { MessagePrompterBaseStrategy } from './MessagePrompterBaseStrategy.js';
 
 export class MessagePrompterMessageStrategy extends MessagePrompterBaseStrategy implements IMessagePrompterStrategyOptions {
 	/**

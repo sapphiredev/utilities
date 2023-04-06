@@ -1,4 +1,4 @@
-import { Snowflake } from './Snowflake';
+import { Snowflake } from './Snowflake.js';
 
 /**
  * A class for parsing snowflake ids using Discord's snowflake epoch

@@ -24,8 +24,8 @@ import type {
 	VoiceChannel,
 	WebhookMessageEditOptions
 } from 'discord.js';
-import type { AnyInteractableInteraction } from '../utility-types';
-import type { PaginatedMessage } from './PaginatedMessage';
+import type { AnyInteractableInteraction } from '../utility-types.js';
+import type { PaginatedMessage } from './PaginatedMessage.js';
 
 export type PaginatedMessageAction = PaginatedMessageActionButton | PaginatedMessageActionLink | PaginatedMessageActionMenu;
 

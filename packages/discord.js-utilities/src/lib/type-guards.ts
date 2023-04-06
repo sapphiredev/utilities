@@ -27,7 +27,7 @@ import type {
 	GuildTextBasedChannelTypes,
 	NonThreadGuildTextBasedChannelTypes,
 	TextBasedChannelTypes
-} from './utility-types';
+} from './utility-types.js';
 
 /**
  * Checks whether a given channel is a {@link CategoryChannel}

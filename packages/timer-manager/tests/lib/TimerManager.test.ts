@@ -1,4 +1,4 @@
-import { TimerManager } from '../../src';
+import { TimerManager } from '../../src/index.js';
 
 describe('TimerManager', () => {
 	afterEach(() => {

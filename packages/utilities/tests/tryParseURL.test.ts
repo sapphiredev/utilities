@@ -1,5 +1,5 @@
 import { URL } from 'node:url';
-import { tryParseURL } from '../src';
+import { tryParseURL } from '../src/index.js';
 
 describe('tryParseURL', () => {
 	test('GIVEN valid URL THEN returns URL', () => {

@@ -1,4 +1,4 @@
-import { pickRandom } from '../src';
+import { pickRandom } from '../src/index.js';
 
 describe('pickRandom', () => {
 	test('GIVEN array THEN picks one random element', () => {

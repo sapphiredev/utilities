@@ -1,5 +1,5 @@
-import { isObject } from './isObject';
-import type { AnyObject } from './types';
+import { isObject } from './isObject.js';
+import type { AnyObject } from './types.js';
 
 /**
  * Convert an object to a tuple

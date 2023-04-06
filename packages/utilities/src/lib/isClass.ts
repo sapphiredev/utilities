@@ -1,4 +1,4 @@
-import type { Ctor } from './types';
+import type { Ctor } from './types.js';
 
 /**
  * Verify if the input is a class constructor.

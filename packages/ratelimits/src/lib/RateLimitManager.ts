@@ -1,4 +1,4 @@
-import { RateLimit } from './RateLimit';
+import { RateLimit } from './RateLimit.js';
 
 export class RateLimitManager<K = string> extends Map<K, RateLimit<K>> {
 	/**

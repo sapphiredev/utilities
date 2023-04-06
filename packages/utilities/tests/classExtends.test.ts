@@ -1,4 +1,4 @@
-import { classExtends } from '../src';
+import { classExtends } from '../src/index.js';
 
 describe('classExtends', () => {
 	class BaseClass {

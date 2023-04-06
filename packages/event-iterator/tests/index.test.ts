@@ -1,7 +1,7 @@
 import { setTimeout as sleep } from 'node:timers/promises';
-import { EventIterator } from '../src';
-import { people, PeopleEmitter } from './lib/MockEmitter';
-import type { Person } from './lib/Person';
+import { EventIterator } from '../src/index.js';
+import { people, PeopleEmitter } from './lib/MockEmitter.js';
+import type { Person } from './lib/Person.js';
 
 describe('EventIterator', () => {
 	test('PeopleIterator is an instanceof EventIterator', () => {

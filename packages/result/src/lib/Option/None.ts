@@ -1,10 +1,10 @@
-import type { Awaitable } from '../common/utils';
-import type { Option } from '../Option';
-import { err, type Err } from '../Result/Err';
-import { ok, type Ok } from '../Result/Ok';
-import type { IOption } from './IOption';
-import { OptionError } from './OptionError';
-import type { Some } from './Some';
+import type { Awaitable } from '../common/utils.js';
+import type { Option } from '../Option.js';
+import { err, type Err } from '../Result/Err.js';
+import { ok, type Ok } from '../Result/Ok.js';
+import type { IOption } from './IOption.js';
+import { OptionError } from './OptionError.js';
+import type { Some } from './Some.js';
 
 export class None implements IOption<any> {
 	public isSome(): false {

@@ -1,4 +1,4 @@
-import { toTitleCase } from '../src';
+import { toTitleCase } from '../src/index.js';
 
 describe('toTitleCase', () => {
 	test('GIVEN basic THEN returns expected', () => {

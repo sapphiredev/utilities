@@ -10,7 +10,7 @@ import {
 	type APIRole,
 	type APIUser
 } from 'discord-api-types/v10';
-import { InteractionOptionResolver } from '../../src';
+import { InteractionOptionResolver } from '../../src/index.js';
 
 describe('chat input interaction', () => {
 	test('it can resolve basic options of all types', () => {

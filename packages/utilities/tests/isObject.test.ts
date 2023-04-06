@@ -1,4 +1,4 @@
-import { isObject } from '../src';
+import { isObject } from '../src/index.js';
 
 describe('isObject', () => {
 	test('GIVEN string THEN returns false', () => {

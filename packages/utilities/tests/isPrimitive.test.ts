@@ -1,4 +1,4 @@
-import { isPrimitive } from '../src';
+import { isPrimitive } from '../src/index.js';
 
 describe('isPrimitive', () => {
 	test('GIVEN string THEN returns false', () => {

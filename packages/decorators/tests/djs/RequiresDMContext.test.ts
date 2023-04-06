@@ -1,4 +1,4 @@
-import { RequiresDMContext } from '../../src';
+import { RequiresDMContext } from '../../src/index.js';
 
 describe('RequiresDMContext', () => {
 	interface Message {

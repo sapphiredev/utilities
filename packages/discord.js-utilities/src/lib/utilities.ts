@@ -1,7 +1,7 @@
 import { isNullish, type Nullish } from '@sapphire/utilities';
 import { PermissionFlagsBits, PermissionsBitField, type VoiceBasedChannel } from 'discord.js';
-import { isDMChannel, isGuildBasedChannel, isVoiceBasedChannel } from './type-guards';
-import type { ChannelTypes } from './utility-types';
+import { isDMChannel, isGuildBasedChannel, isVoiceBasedChannel } from './type-guards.js';
+import type { ChannelTypes } from './utility-types.js';
 
 const canReadMessagesPermissions = new PermissionsBitField([PermissionFlagsBits.ViewChannel]);
 

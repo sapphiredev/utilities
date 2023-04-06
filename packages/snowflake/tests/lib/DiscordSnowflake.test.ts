@@ -1,4 +1,4 @@
-import { DiscordSnowflake, type DeconstructedSnowflake } from '../../src';
+import { DiscordSnowflake, type DeconstructedSnowflake } from '../../src/index.js';
 
 describe('Discord Snowflakes', () => {
 	beforeAll(() => {

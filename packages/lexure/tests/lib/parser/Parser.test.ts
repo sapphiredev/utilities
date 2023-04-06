@@ -1,4 +1,4 @@
-import { EmptyStrategy, Parser, PrefixedStrategy, WordParameter } from '../../../src';
+import { EmptyStrategy, Parser, PrefixedStrategy, WordParameter } from '../../../src/index.js';
 
 describe('Parser', () => {
 	describe('constructor', () => {

@@ -1,4 +1,4 @@
-import type { Ctor } from './types';
+import type { Ctor } from './types.js';
 
 /**
  * Checks whether or not the value class extends the base class.

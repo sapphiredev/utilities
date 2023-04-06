@@ -1,5 +1,5 @@
-import { sleep } from './shared';
-import { Stopwatch } from '../src';
+import { sleep } from './shared.js';
+import { Stopwatch } from '../src/index.js';
 
 describe('Chainables', () => {
 	test('restart', async () => {

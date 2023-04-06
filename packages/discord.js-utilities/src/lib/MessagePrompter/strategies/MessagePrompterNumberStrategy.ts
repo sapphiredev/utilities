@@ -1,8 +1,8 @@
 import type { CollectorFilter, EmojiIdentifierResolvable, MessageReaction, User } from 'discord.js';
-import type { MessagePrompterChannelTypes, MessagePrompterMessage } from '../constants';
-import type { IMessagePrompterExplicitNumberReturn } from '../ExplicitReturnTypes';
-import type { IMessagePrompterNumberStrategyOptions } from '../strategyOptions';
-import { MessagePrompterBaseStrategy } from './MessagePrompterBaseStrategy';
+import type { MessagePrompterChannelTypes, MessagePrompterMessage } from '../constants.js';
+import type { IMessagePrompterExplicitNumberReturn } from '../ExplicitReturnTypes.js';
+import type { IMessagePrompterNumberStrategyOptions } from '../strategyOptions.js';
+import { MessagePrompterBaseStrategy } from './MessagePrompterBaseStrategy.js';
 
 export class MessagePrompterNumberStrategy extends MessagePrompterBaseStrategy implements IMessagePrompterNumberStrategyOptions {
 	/**

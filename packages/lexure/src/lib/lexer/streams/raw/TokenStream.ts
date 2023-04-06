@@ -1,4 +1,4 @@
-import type { Lexer } from '../../Lexer';
+import type { Lexer } from '../../Lexer.js';
 
 export class TokenStream implements Iterable<Token> {
 	private readonly input: string;

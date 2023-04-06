@@ -1,6 +1,6 @@
-import type { Parameter } from '../lexer/streams/ParameterStream';
-import type { Parser } from './Parser';
-import type { IUnorderedStrategy } from './strategies/IUnorderedStrategy';
+import type { Parameter } from '../lexer/streams/ParameterStream.js';
+import type { Parser } from './Parser.js';
+import type { IUnorderedStrategy } from './strategies/IUnorderedStrategy.js';
 
 export class ParserResult {
 	public readonly ordered: Parameter[] = [];

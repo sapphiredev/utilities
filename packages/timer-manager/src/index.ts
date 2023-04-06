@@ -1,1 +1,1 @@
-export * from './lib/TimerManager';
+export * from './lib/TimerManager.js';

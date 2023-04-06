@@ -1,2 +1,2 @@
-export * from './lib/Phisherman';
-export type { CheckReturnType, PhishermanOptions, PhishermanReportType, PhishermanReturnType } from './lib/PhishermanTypes';
+export * from './lib/Phisherman.js';
+export type { CheckReturnType, PhishermanOptions, PhishermanReportType, PhishermanReturnType } from './lib/PhishermanTypes.js';

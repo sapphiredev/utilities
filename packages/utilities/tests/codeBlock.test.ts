@@ -1,4 +1,4 @@
-import { codeBlock } from '../src';
+import { codeBlock } from '../src/index.js';
 
 const zeroWidthSpace = String.fromCharCode(8203);
 
@@ -33,7 +33,7 @@ describe('codeBlock', () => {
 			\`${zeroWidthSpace}\`\`js
 				if (sapphireCommunityIsCool) return 'awesome!';
 			\`\`\`
-		
+
 \`\`\``
 		);
 	});
@@ -51,7 +51,7 @@ describe('codeBlock', () => {
 
 			# Header
 			\`const sapphireCommunityIsCool = true\`
-		
+
 \`\`\``);
 	});
 

@@ -1,4 +1,4 @@
-import { splitText } from '../src';
+import { splitText } from '../src/index.js';
 
 describe('splitText', () => {
 	test('GIVEN text without spaces THEN hard cuts off', () => {

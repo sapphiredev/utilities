@@ -1,11 +1,11 @@
-import type { Awaitable } from '../common/utils';
-import type { Option } from '../Option';
-import { none, type None } from '../Option/None';
-import { some, type Some } from '../Option/Some';
-import type { Result } from '../Result';
-import type { Err } from './Err';
-import type { IResult } from './IResult';
-import { ResultError } from './ResultError';
+import type { Awaitable } from '../common/utils.js';
+import type { Option } from '../Option.js';
+import { none, type None } from '../Option/None.js';
+import { some, type Some } from '../Option/Some.js';
+import type { Result } from '../Result.js';
+import type { Err } from './Err.js';
+import type { IResult } from './IResult.js';
+import { ResultError } from './ResultError.js';
 
 export class Ok<T> implements IResult<T, any> {
 	private readonly value: T;

@@ -1,5 +1,5 @@
 import { Option } from '@sapphire/result';
-import type { IUnorderedStrategy } from './IUnorderedStrategy';
+import type { IUnorderedStrategy } from './IUnorderedStrategy.js';
 
 export class PrefixedStrategy implements IUnorderedStrategy {
 	public readonly prefixes: readonly string[];

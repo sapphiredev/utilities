@@ -1,4 +1,4 @@
-import { cutText } from '../src';
+import { cutText } from '../src/index.js';
 
 describe('cutText', () => {
 	test('GIVEN length much smaller than fist word THEN cuts up string', () => {

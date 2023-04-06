@@ -1,10 +1,10 @@
-import type { Awaitable } from '../common/utils';
-import type { Option } from '../Option';
-import type { Result } from '../Result';
-import { err, type Err } from '../Result/Err';
-import { ok, type Ok } from '../Result/Ok';
-import type { IOption } from './IOption';
-import { none, type None } from './None';
+import type { Awaitable } from '../common/utils.js';
+import type { Option } from '../Option.js';
+import type { Result } from '../Result.js';
+import { err, type Err } from '../Result/Err.js';
+import { ok, type Ok } from '../Result/Ok.js';
+import type { IOption } from './IOption.js';
+import { none, type None } from './None.js';
 
 export class Some<T> implements IOption<T> {
 	private readonly value: T;

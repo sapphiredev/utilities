@@ -1,4 +1,4 @@
-import { isFunction } from '../src';
+import { isFunction } from '../src/index.js';
 
 describe('isFunction', () => {
 	test('GIVEN string THEN returns false', () => {

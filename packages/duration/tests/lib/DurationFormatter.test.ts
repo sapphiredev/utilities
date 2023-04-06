@@ -1,4 +1,4 @@
-import { DurationFormatter, Time } from '../../src';
+import { DurationFormatter, Time } from '../../src/index.js';
 
 const formatter = new DurationFormatter();
 

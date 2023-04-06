@@ -1,4 +1,4 @@
-import { Time } from './constants';
+import { Time } from './constants.js';
 
 const tokens = new Map([
 	['nanosecond', Time.Nanosecond],

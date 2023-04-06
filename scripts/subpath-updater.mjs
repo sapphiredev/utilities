@@ -15,8 +15,8 @@ const exportMap = new Map([
 		'.',
 		{
 			types: './dist/index.d.ts',
-			import: './dist/index.mjs',
-			require: './dist/index.js',
+			import: './dist/index.js',
+			require: './dist/index.cjs',
 			browser: './dist/index.global.js'
 		}
 	]
@@ -31,8 +31,8 @@ for await (const file of findFilesRecursivelyStringEndsWith(new URL(`../packages
 
 	exportMap.set(`./${name}`, {
 		types: `${filePath}.d.ts`,
-		import: `${filePath}.mjs`,
-		require: `${filePath}.js`
+		import: `${filePath}.js`,
+		require: `${filePath}.cjs`
 	});
 
 	const aliasStoreEntry = aliasStore.get(name);
@@ -41,15 +41,15 @@ for await (const file of findFilesRecursivelyStringEndsWith(new URL(`../packages
 			for (const entry of aliasStoreEntry) {
 				exportMap.set(`./${entry}`, {
 					types: `${filePath}.d.ts`,
-					import: `${filePath}.mjs`,
-					require: `${filePath}.js`
+					import: `${filePath}.js`,
+					require: `${filePath}.cjs`
 				});
 			}
 		} else {
 			exportMap.set(`./${aliasStoreEntry}`, {
 				types: `${filePath}.d.ts`,
-				import: `${filePath}.mjs`,
-				require: `${filePath}.js`
+				import: `${filePath}.js`,
+				require: `${filePath}.cjs`
 			});
 		}
 	}

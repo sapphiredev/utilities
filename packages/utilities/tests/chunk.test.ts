@@ -1,4 +1,4 @@
-import { chunk } from '../src';
+import { chunk } from '../src/index.js';
 
 describe('chunk', () => {
 	test('GIVEN input not an array THEN throws TypeError', () => {

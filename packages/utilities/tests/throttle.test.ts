@@ -1,4 +1,4 @@
-import { throttle, sleep } from '../src';
+import { sleep, throttle } from '../src/index.js';
 
 describe('throttle', () => {
 	test('GIVEN number callback THEN returns the same output until the delay', async () => {

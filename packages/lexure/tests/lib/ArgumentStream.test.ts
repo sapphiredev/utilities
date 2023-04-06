@@ -1,5 +1,5 @@
 import { Option, Result } from '@sapphire/result';
-import { ArgumentStream, Lexer, Parser, PrefixedStrategy, WordParameter, type Parameter } from '../../src';
+import { ArgumentStream, Lexer, Parser, PrefixedStrategy, WordParameter, type Parameter } from '../../src/index.js';
 
 describe('ArgumentStream', () => {
 	const parser = new Parser(new PrefixedStrategy(['--', '/'], ['=', ':']));

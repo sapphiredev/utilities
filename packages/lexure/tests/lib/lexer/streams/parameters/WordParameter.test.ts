@@ -1,4 +1,4 @@
-import { WordParameter } from '../../../../../src';
+import { WordParameter } from '../../../../../src/index.js';
 
 describe('WordParameter', () => {
 	const parameter = new WordParameter([' ', ' '], { value: 'foo' });

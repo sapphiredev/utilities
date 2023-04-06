@@ -1,4 +1,4 @@
-import { isClass } from '../src';
+import { isClass } from '../src/index.js';
 
 describe('isClass', () => {
 	test('GIVEN string THEN returns false', () => {

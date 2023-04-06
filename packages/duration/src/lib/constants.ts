@@ -1,4 +1,4 @@
-import type { DurationFormatAssetsTime, DurationFormatSeparators } from './DurationFormatter';
+import type { DurationFormatAssetsTime, DurationFormatSeparators } from './DurationFormatter.js';
 
 export enum Time {
 	Nanosecond = 1 / 1_000_000,

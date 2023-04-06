@@ -1,5 +1,5 @@
-import { isNullish } from './isNullOrUndefined';
-import type { Nullish } from './types';
+import { isNullish } from './isNullOrUndefined.js';
+import type { Nullish } from './types.js';
 
 /**
  * Checks whether or not a value is `null`, `undefined` or `0`

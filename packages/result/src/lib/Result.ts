@@ -1,9 +1,9 @@
-import { isFunction, type Awaitable } from './common/utils';
-import { Err, err as _err } from './Result/Err';
-import { Ok, ok as _ok } from './Result/Ok';
+import { isFunction, type Awaitable } from './common/utils.js';
+import { Err, err as _err } from './Result/Err.js';
+import { Ok, ok as _ok } from './Result/Ok.js';
 
-export * from './Result/IResult';
-export * from './Result/ResultError';
+export * from './Result/IResult.js';
+export * from './Result/ResultError.js';
 export { _ok as ok, _err as err };
 
 /**
@@ -94,8 +94,8 @@ export namespace Result {
 	export const err = _err;
 	export const ok = _ok;
 
-	export type Err<E> = import('./Result/Err').Err<E>;
-	export type Ok<T> = import('./Result/Ok').Ok<T>;
+	export type Err<E> = import('./Result/Err.js').Err<E>;
+	export type Ok<T> = import('./Result/Ok.js').Ok<T>;
 
 	export type UnwrapOk<T extends Result<any, any>> = T extends Ok<infer S> ? S : never;
 	export type UnwrapErr<T extends Result<any, any>> = T extends Err<infer S> ? S : never;

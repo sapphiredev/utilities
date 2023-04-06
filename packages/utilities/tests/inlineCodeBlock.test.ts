@@ -1,4 +1,4 @@
-import { inlineCodeBlock } from '../src';
+import { inlineCodeBlock } from '../src/index.js';
 
 describe('inlineCodeblock', () => {
 	test('GIVEN text THEN converts to inline codeblock', () => {

@@ -1,6 +1,6 @@
 import { Option, Result } from '@sapphire/result';
-import type { Parameter } from './lexer/streams/ParameterStream';
-import type { ParserResult } from './parser/ParserResult';
+import type { Parameter } from './lexer/streams/ParameterStream.js';
+import type { ParserResult } from './parser/ParserResult.js';
 
 export class ArgumentStream {
 	public readonly results: ParserResult;

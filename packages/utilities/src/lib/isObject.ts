@@ -1,4 +1,4 @@
-import type { Constructor, NonNullObject } from './types';
+import type { Constructor, NonNullObject } from './types.js';
 
 /**
  * Verify if the input is an object literal (or class).

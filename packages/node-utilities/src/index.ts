@@ -1,1 +1,1 @@
-export * from './lib/findFilesRecursively';
+export * from './lib/findFilesRecursively.js';

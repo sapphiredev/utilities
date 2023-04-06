@@ -1,4 +1,4 @@
-import { arrayStrictEquals } from '../src';
+import { arrayStrictEquals } from '../src/index.js';
 
 describe('arrayStrictEquals', () => {
 	test('GIVEN same array THEN returns true', () => {

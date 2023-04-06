@@ -1,4 +1,4 @@
-import { BitField } from '../../src';
+import { BitField } from '../../src/index.js';
 
 describe('BitField', () => {
 	const NumberFlags = {

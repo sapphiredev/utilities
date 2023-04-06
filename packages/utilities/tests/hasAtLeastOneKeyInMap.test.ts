@@ -1,4 +1,4 @@
-import { hasAtLeastOneKeyInMap } from '../src';
+import { hasAtLeastOneKeyInMap } from '../src/index.js';
 
 const mapWithKey = new Map([
 	['one', 'one'],

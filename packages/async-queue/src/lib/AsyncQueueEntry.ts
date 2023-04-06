@@ -1,4 +1,4 @@
-import type { AsyncQueue } from './AsyncQueue';
+import type { AsyncQueue } from './AsyncQueue.js';
 
 /**
  * @internal

@@ -1,7 +1,7 @@
 import { container, type Piece } from '@sapphire/framework';
 import type { Container } from '@sapphire/pieces';
 import type { Ctor } from '@sapphire/utilities';
-import { createClassDecorator, createProxy } from './utils';
+import { createClassDecorator, createProxy } from './utils.js';
 
 /**
  * Decorator function that applies given options to any Sapphire piece

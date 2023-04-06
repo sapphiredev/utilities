@@ -1,4 +1,4 @@
-import { range } from '../src';
+import { range } from '../src/index.js';
 
 describe('range', () => {
 	test('GIVEN positive min,max,step THEN returns range array', () => {
