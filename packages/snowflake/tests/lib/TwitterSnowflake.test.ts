@@ -1,4 +1,4 @@
-import { DeconstructedSnowflake, TwitterSnowflake } from '../../src';
+import { TwitterSnowflake, type DeconstructedSnowflake } from '../../src';
 
 describe('Twitter Snowflakes', () => {
 	beforeAll(() => {

@@ -1,5 +1,5 @@
 import { EventEmitter } from 'node:events';
-import { EventIterator, EventIteratorOptions } from '../../src';
+import { EventIterator, type EventIteratorOptions } from '../../src';
 import { Person } from './Person';
 
 export class PeopleIterator extends EventIterator<[Person]> {}

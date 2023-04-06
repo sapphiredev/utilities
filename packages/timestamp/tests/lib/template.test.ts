@@ -1,4 +1,4 @@
-import { Timestamp, TimestampTemplateEntry } from '../../src';
+import { Timestamp, type TimestampTemplateEntry } from '../../src';
 
 function extractParsedTemplate(timestamp: Timestamp): TimestampTemplateEntry[] {
 	return timestamp['template'];

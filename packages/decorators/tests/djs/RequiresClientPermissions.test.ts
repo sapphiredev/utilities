@@ -1,5 +1,12 @@
 import { UserError } from '@sapphire/framework';
-import { ChannelType, Message as DJSMessage, PermissionFlagsBits, PermissionResolvable, PermissionsBitField, PermissionsString } from 'discord.js';
+import {
+	ChannelType,
+	Message as DJSMessage,
+	PermissionFlagsBits,
+	PermissionsBitField,
+	type PermissionResolvable,
+	type PermissionsString
+} from 'discord.js';
 import diff from 'lodash/difference';
 import { DecoratorIdentifiers, RequiresClientPermissions } from '../../src';
 
