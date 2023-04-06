@@ -19,7 +19,7 @@ on:
       - main
 
 jobs:
-  Build:
+  build:
     name: Build code
     runs-on: ubuntu-latest
     if: github.repository_owner == 'sapphiredev'
@@ -42,7 +42,7 @@ jobs:
       - name: Build all packages
         run: yarn build
 
-  Publish:
+  publish:
     name: Publish Next to npm
     needs: build
     strategy:
@@ -98,8 +98,11 @@ jobs:
           yarn config set npmAuthToken ${NODE_AUTH_TOKEN}
           yarn config set npmPublishRegistry "https://registry.yarnpkg.com"
 
-          yarn bump --preid "${TAG}.$(git rev-parse --verify --short HEAD)"
+          echo pwd
+          echo ls -al
 
-          yarn npm publish --tag ${TAG}
+          # yarn bump --preid "${TAG}.$(git rev-parse --verify --short HEAD)"
+
+          # yarn npm publish --tag ${TAG}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
