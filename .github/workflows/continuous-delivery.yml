@@ -98,8 +98,8 @@ jobs:
           yarn config set npmAuthToken ${NODE_AUTH_TOKEN}
           yarn config set npmPublishRegistry "https://registry.yarnpkg.com"
 
-          echo pwd
-          echo ls -al
+          pwd
+          ls -al
 
           # yarn bump --preid "${TAG}.$(git rev-parse --verify --short HEAD)"
 
