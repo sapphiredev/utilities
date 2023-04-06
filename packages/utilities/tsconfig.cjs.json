@@ -1,0 +1,16 @@
+{
+	"extends": "../ts-config/extra-strict-without-decorators.json",
+	"compilerOptions": {
+		"outDir": "dist/cjs",
+		"declaration": false,
+		"declarationMap": false,
+		"module": "CommonJS",
+		"moduleResolution": "classic",
+		"resolveJsonModule": false,
+		"verbatimModuleSyntax": false,
+		"skipLibCheck": true,
+		"importHelpers": false,
+		"noEmitHelpers": false
+	},
+	"include": ["src"]
+}

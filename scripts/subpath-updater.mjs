@@ -1,8 +1,8 @@
-import { green, red, bold } from 'colorette';
+import { bold, green, red } from 'colorette';
 import { writeFile } from 'node:fs/promises';
 import { basename } from 'node:path';
 import { format } from 'prettier';
-import { findFilesRecursivelyStringEndsWith } from '../packages/node-utilities/dist/index.mjs';
+import { findFilesRecursivelyStringEndsWith } from '../packages/node-utilities/dist/index.js';
 import prettierConfig from '../packages/prettier-config/dist/index.js';
 
 const packageName = process.argv[2];
@@ -14,9 +14,9 @@ const exportMap = new Map([
 	[
 		'.',
 		{
-			types: './dist/index.d.ts',
-			import: './dist/index.js',
-			require: './dist/index.cjs',
+			types: './dist/types/index.d.ts',
+			import: './dist/esm/index.js',
+			require: './dist/cjs/index.js',
 			browser: './dist/index.global.js'
 		}
 	]
@@ -26,13 +26,19 @@ for await (const file of findFilesRecursivelyStringEndsWith(new URL(`../packages
 	const name = basename(file).replace(/\.ts$/, '');
 	const splitted = file.split('lib');
 	splitted.shift();
-	const filePath = `./dist/lib${splitted.join('').replace(/\.ts$/, '')}`.replace(/\\/g, '/');
+
 	if (name === 'index') continue;
 
+	const filePath = `./dist/%SUBFOLDER%/lib${splitted.join('').replace(/\.ts$/, '')}`.replace(/\\/g, '/');
+
+	const typesFilePath = filePath.replace('%SUBFOLDER%', 'types');
+	const esmFilePath = filePath.replace('%SUBFOLDER%', 'esm');
+	const cjsFilePath = filePath.replace('%SUBFOLDER%', 'cjs');
+
 	exportMap.set(`./${name}`, {
-		types: `${filePath}.d.ts`,
-		import: `${filePath}.js`,
-		require: `${filePath}.cjs`
+		types: `${typesFilePath}.d.ts`,
+		import: `${esmFilePath}.js`,
+		require: `${cjsFilePath}.js`
 	});
 
 	const aliasStoreEntry = aliasStore.get(name);
@@ -40,16 +46,16 @@ for await (const file of findFilesRecursivelyStringEndsWith(new URL(`../packages
 		if (Array.isArray(aliasStoreEntry)) {
 			for (const entry of aliasStoreEntry) {
 				exportMap.set(`./${entry}`, {
-					types: `${filePath}.d.ts`,
-					import: `${filePath}.js`,
-					require: `${filePath}.cjs`
+					types: `${typesFilePath}.d.ts`,
+					import: `${esmFilePath}.js`,
+					require: `${cjsFilePath}.js`
 				});
 			}
 		} else {
 			exportMap.set(`./${aliasStoreEntry}`, {
-				types: `${filePath}.d.ts`,
-				import: `${filePath}.js`,
-				require: `${filePath}.cjs`
+				types: `${typesFilePath}.d.ts`,
+				import: `${esmFilePath}.js`,
+				require: `${cjsFilePath}.js`
 			});
 		}
 	}

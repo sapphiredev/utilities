@@ -4,303 +4,301 @@
 	"description": "Common JavaScript utilities for the Sapphire Community",
 	"author": "@sapphire",
 	"license": "MIT",
-	"main": "dist/index.cjs",
-	"module": "dist/index.js",
+	"main": "dist/cjs/index.js",
+	"module": "dist/esm/index.js",
 	"browser": "dist/index.global.js",
 	"unpkg": "dist/index.global.js",
-	"types": "dist/index.d.ts",
+	"types": "dist/types/index.d.ts",
 	"type": "module",
 	"exports": {
 		".": {
-			"types": "./dist/index.d.ts",
-			"import": "./dist/index.js",
-			"require": "./dist/index.cjs",
+			"types": "./dist/types/index.d.ts",
+			"import": "./dist/esm/index.js",
+			"require": "./dist/cjs/index.js",
 			"browser": "./dist/index.global.js"
 		},
 		"./arrayStrictEquals": {
-			"types": "./dist/lib/arrayStrictEquals.d.ts",
-			"import": "./dist/lib/arrayStrictEquals.js",
-			"require": "./dist/lib/arrayStrictEquals.cjs"
+			"types": "./dist/types/lib/arrayStrictEquals.d.ts",
+			"import": "./dist/esm/lib/arrayStrictEquals.js",
+			"require": "./dist/cjs/lib/arrayStrictEquals.js"
 		},
 		"./cast": {
-			"types": "./dist/lib/cast.d.ts",
-			"import": "./dist/lib/cast.js",
-			"require": "./dist/lib/cast.cjs"
+			"types": "./dist/types/lib/cast.d.ts",
+			"import": "./dist/esm/lib/cast.js",
+			"require": "./dist/cjs/lib/cast.js"
 		},
 		"./chunk": {
-			"types": "./dist/lib/chunk.d.ts",
-			"import": "./dist/lib/chunk.js",
-			"require": "./dist/lib/chunk.cjs"
+			"types": "./dist/types/lib/chunk.d.ts",
+			"import": "./dist/esm/lib/chunk.js",
+			"require": "./dist/cjs/lib/chunk.js"
 		},
 		"./classExtends": {
-			"types": "./dist/lib/classExtends.d.ts",
-			"import": "./dist/lib/classExtends.js",
-			"require": "./dist/lib/classExtends.cjs"
+			"types": "./dist/types/lib/classExtends.d.ts",
+			"import": "./dist/esm/lib/classExtends.js",
+			"require": "./dist/cjs/lib/classExtends.js"
 		},
 		"./codeBlock": {
-			"types": "./dist/lib/codeBlock.d.ts",
-			"import": "./dist/lib/codeBlock.js",
-			"require": "./dist/lib/codeBlock.cjs"
+			"types": "./dist/types/lib/codeBlock.d.ts",
+			"import": "./dist/esm/lib/codeBlock.js",
+			"require": "./dist/cjs/lib/codeBlock.js"
 		},
 		"./cutText": {
-			"types": "./dist/lib/cutText.d.ts",
-			"import": "./dist/lib/cutText.js",
-			"require": "./dist/lib/cutText.cjs"
+			"types": "./dist/types/lib/cutText.d.ts",
+			"import": "./dist/esm/lib/cutText.js",
+			"require": "./dist/cjs/lib/cutText.js"
 		},
 		"./debounce": {
-			"types": "./dist/lib/debounce/debounce.d.ts",
-			"import": "./dist/lib/debounce/debounce.js",
-			"require": "./dist/lib/debounce/debounce.cjs"
+			"types": "./dist/types/lib/debounce/debounce.d.ts",
+			"import": "./dist/esm/lib/debounce/debounce.js",
+			"require": "./dist/cjs/lib/debounce/debounce.js"
 		},
 		"./deepClone": {
-			"types": "./dist/lib/deepClone.d.ts",
-			"import": "./dist/lib/deepClone.js",
-			"require": "./dist/lib/deepClone.cjs"
+			"types": "./dist/types/lib/deepClone.d.ts",
+			"import": "./dist/esm/lib/deepClone.js",
+			"require": "./dist/cjs/lib/deepClone.js"
 		},
 		"./filterNullAndUndefined": {
-			"types": "./dist/lib/filterNullAndUndefined.d.ts",
-			"import": "./dist/lib/filterNullAndUndefined.js",
-			"require": "./dist/lib/filterNullAndUndefined.cjs"
+			"types": "./dist/types/lib/filterNullAndUndefined.d.ts",
+			"import": "./dist/esm/lib/filterNullAndUndefined.js",
+			"require": "./dist/cjs/lib/filterNullAndUndefined.js"
 		},
 		"./filterNullAndUndefinedAndEmpty": {
-			"types": "./dist/lib/filterNullAndUndefinedAndEmpty.d.ts",
-			"import": "./dist/lib/filterNullAndUndefinedAndEmpty.js",
-			"require": "./dist/lib/filterNullAndUndefinedAndEmpty.cjs"
+			"types": "./dist/types/lib/filterNullAndUndefinedAndEmpty.d.ts",
+			"import": "./dist/esm/lib/filterNullAndUndefinedAndEmpty.js",
+			"require": "./dist/cjs/lib/filterNullAndUndefinedAndEmpty.js"
 		},
 		"./filterNullAndUndefinedAndZero": {
-			"types": "./dist/lib/filterNullAndUndefinedAndZero.d.ts",
-			"import": "./dist/lib/filterNullAndUndefinedAndZero.js",
-			"require": "./dist/lib/filterNullAndUndefinedAndZero.cjs"
+			"types": "./dist/types/lib/filterNullAndUndefinedAndZero.d.ts",
+			"import": "./dist/esm/lib/filterNullAndUndefinedAndZero.js",
+			"require": "./dist/cjs/lib/filterNullAndUndefinedAndZero.js"
 		},
 		"./filterNullish": {
-			"types": "./dist/lib/filterNullAndUndefined.d.ts",
-			"import": "./dist/lib/filterNullAndUndefined.js",
-			"require": "./dist/lib/filterNullAndUndefined.cjs"
+			"types": "./dist/types/lib/filterNullAndUndefined.d.ts",
+			"import": "./dist/esm/lib/filterNullAndUndefined.js",
+			"require": "./dist/cjs/lib/filterNullAndUndefined.js"
 		},
 		"./filterNullishAndEmpty": {
-			"types": "./dist/lib/filterNullAndUndefinedAndEmpty.d.ts",
-			"import": "./dist/lib/filterNullAndUndefinedAndEmpty.js",
-			"require": "./dist/lib/filterNullAndUndefinedAndEmpty.cjs"
+			"types": "./dist/types/lib/filterNullAndUndefinedAndEmpty.d.ts",
+			"import": "./dist/esm/lib/filterNullAndUndefinedAndEmpty.js",
+			"require": "./dist/cjs/lib/filterNullAndUndefinedAndEmpty.js"
 		},
 		"./filterNullishAndZero": {
-			"types": "./dist/lib/filterNullAndUndefinedAndZero.d.ts",
-			"import": "./dist/lib/filterNullAndUndefinedAndZero.js",
-			"require": "./dist/lib/filterNullAndUndefinedAndZero.cjs"
+			"types": "./dist/types/lib/filterNullAndUndefinedAndZero.d.ts",
+			"import": "./dist/esm/lib/filterNullAndUndefinedAndZero.js",
+			"require": "./dist/cjs/lib/filterNullAndUndefinedAndZero.js"
 		},
 		"./filterNullishOrEmpty": {
-			"types": "./dist/lib/filterNullAndUndefinedAndEmpty.d.ts",
-			"import": "./dist/lib/filterNullAndUndefinedAndEmpty.js",
-			"require": "./dist/lib/filterNullAndUndefinedAndEmpty.cjs"
+			"types": "./dist/types/lib/filterNullAndUndefinedAndEmpty.d.ts",
+			"import": "./dist/esm/lib/filterNullAndUndefinedAndEmpty.js",
+			"require": "./dist/cjs/lib/filterNullAndUndefinedAndEmpty.js"
 		},
 		"./filterNullishOrZero": {
-			"types": "./dist/lib/filterNullAndUndefinedAndZero.d.ts",
-			"import": "./dist/lib/filterNullAndUndefinedAndZero.js",
-			"require": "./dist/lib/filterNullAndUndefinedAndZero.cjs"
+			"types": "./dist/types/lib/filterNullAndUndefinedAndZero.d.ts",
+			"import": "./dist/esm/lib/filterNullAndUndefinedAndZero.js",
+			"require": "./dist/cjs/lib/filterNullAndUndefinedAndZero.js"
 		},
 		"./getDeepObjectKeys": {
-			"types": "./dist/lib/getDeepObjectKeys.d.ts",
-			"import": "./dist/lib/getDeepObjectKeys.js",
-			"require": "./dist/lib/getDeepObjectKeys.cjs"
+			"types": "./dist/types/lib/getDeepObjectKeys.d.ts",
+			"import": "./dist/esm/lib/getDeepObjectKeys.js",
+			"require": "./dist/cjs/lib/getDeepObjectKeys.js"
 		},
 		"./hasAtLeastOneKeyInMap": {
-			"types": "./dist/lib/hasAtLeastOneKeyInMap.d.ts",
-			"import": "./dist/lib/hasAtLeastOneKeyInMap.js",
-			"require": "./dist/lib/hasAtLeastOneKeyInMap.cjs"
+			"types": "./dist/types/lib/hasAtLeastOneKeyInMap.d.ts",
+			"import": "./dist/esm/lib/hasAtLeastOneKeyInMap.js",
+			"require": "./dist/cjs/lib/hasAtLeastOneKeyInMap.js"
 		},
 		"./inlineCodeBlock": {
-			"types": "./dist/lib/inlineCodeBlock.d.ts",
-			"import": "./dist/lib/inlineCodeBlock.js",
-			"require": "./dist/lib/inlineCodeBlock.cjs"
+			"types": "./dist/types/lib/inlineCodeBlock.d.ts",
+			"import": "./dist/esm/lib/inlineCodeBlock.js",
+			"require": "./dist/cjs/lib/inlineCodeBlock.js"
 		},
 		"./isClass": {
-			"types": "./dist/lib/isClass.d.ts",
-			"import": "./dist/lib/isClass.js",
-			"require": "./dist/lib/isClass.cjs"
+			"types": "./dist/types/lib/isClass.d.ts",
+			"import": "./dist/esm/lib/isClass.js",
+			"require": "./dist/cjs/lib/isClass.js"
 		},
 		"./isFunction": {
-			"types": "./dist/lib/isFunction.d.ts",
-			"import": "./dist/lib/isFunction.js",
-			"require": "./dist/lib/isFunction.cjs"
+			"types": "./dist/types/lib/isFunction.d.ts",
+			"import": "./dist/esm/lib/isFunction.js",
+			"require": "./dist/cjs/lib/isFunction.js"
 		},
 		"./isNullish": {
-			"types": "./dist/lib/isNullOrUndefined.d.ts",
-			"import": "./dist/lib/isNullOrUndefined.js",
-			"require": "./dist/lib/isNullOrUndefined.cjs"
+			"types": "./dist/types/lib/isNullOrUndefined.d.ts",
+			"import": "./dist/esm/lib/isNullOrUndefined.js",
+			"require": "./dist/cjs/lib/isNullOrUndefined.js"
 		},
 		"./isNullishOrEmpty": {
-			"types": "./dist/lib/isNullOrUndefinedOrEmpty.d.ts",
-			"import": "./dist/lib/isNullOrUndefinedOrEmpty.js",
-			"require": "./dist/lib/isNullOrUndefinedOrEmpty.cjs"
+			"types": "./dist/types/lib/isNullOrUndefinedOrEmpty.d.ts",
+			"import": "./dist/esm/lib/isNullOrUndefinedOrEmpty.js",
+			"require": "./dist/cjs/lib/isNullOrUndefinedOrEmpty.js"
 		},
 		"./isNullishOrZero": {
-			"types": "./dist/lib/isNullOrUndefinedOrZero.d.ts",
-			"import": "./dist/lib/isNullOrUndefinedOrZero.js",
-			"require": "./dist/lib/isNullOrUndefinedOrZero.cjs"
+			"types": "./dist/types/lib/isNullOrUndefinedOrZero.d.ts",
+			"import": "./dist/esm/lib/isNullOrUndefinedOrZero.js",
+			"require": "./dist/cjs/lib/isNullOrUndefinedOrZero.js"
 		},
 		"./isNullOrUndefined": {
-			"types": "./dist/lib/isNullOrUndefined.d.ts",
-			"import": "./dist/lib/isNullOrUndefined.js",
-			"require": "./dist/lib/isNullOrUndefined.cjs"
+			"types": "./dist/types/lib/isNullOrUndefined.d.ts",
+			"import": "./dist/esm/lib/isNullOrUndefined.js",
+			"require": "./dist/cjs/lib/isNullOrUndefined.js"
 		},
 		"./isNullOrUndefinedOrEmpty": {
-			"types": "./dist/lib/isNullOrUndefinedOrEmpty.d.ts",
-			"import": "./dist/lib/isNullOrUndefinedOrEmpty.js",
-			"require": "./dist/lib/isNullOrUndefinedOrEmpty.cjs"
+			"types": "./dist/types/lib/isNullOrUndefinedOrEmpty.d.ts",
+			"import": "./dist/esm/lib/isNullOrUndefinedOrEmpty.js",
+			"require": "./dist/cjs/lib/isNullOrUndefinedOrEmpty.js"
 		},
 		"./isNullOrUndefinedOrZero": {
-			"types": "./dist/lib/isNullOrUndefinedOrZero.d.ts",
-			"import": "./dist/lib/isNullOrUndefinedOrZero.js",
-			"require": "./dist/lib/isNullOrUndefinedOrZero.cjs"
+			"types": "./dist/types/lib/isNullOrUndefinedOrZero.d.ts",
+			"import": "./dist/esm/lib/isNullOrUndefinedOrZero.js",
+			"require": "./dist/cjs/lib/isNullOrUndefinedOrZero.js"
 		},
 		"./isNumber": {
-			"types": "./dist/lib/isNumber.d.ts",
-			"import": "./dist/lib/isNumber.js",
-			"require": "./dist/lib/isNumber.cjs"
+			"types": "./dist/types/lib/isNumber.d.ts",
+			"import": "./dist/esm/lib/isNumber.js",
+			"require": "./dist/cjs/lib/isNumber.js"
 		},
 		"./isObject": {
-			"types": "./dist/lib/isObject.d.ts",
-			"import": "./dist/lib/isObject.js",
-			"require": "./dist/lib/isObject.cjs"
+			"types": "./dist/types/lib/isObject.d.ts",
+			"import": "./dist/esm/lib/isObject.js",
+			"require": "./dist/cjs/lib/isObject.js"
 		},
 		"./isPrimitive": {
-			"types": "./dist/lib/isPrimitive.d.ts",
-			"import": "./dist/lib/isPrimitive.js",
-			"require": "./dist/lib/isPrimitive.cjs"
+			"types": "./dist/types/lib/isPrimitive.d.ts",
+			"import": "./dist/esm/lib/isPrimitive.js",
+			"require": "./dist/cjs/lib/isPrimitive.js"
 		},
 		"./isThenable": {
-			"types": "./dist/lib/isThenable.d.ts",
-			"import": "./dist/lib/isThenable.js",
-			"require": "./dist/lib/isThenable.cjs"
+			"types": "./dist/types/lib/isThenable.d.ts",
+			"import": "./dist/esm/lib/isThenable.js",
+			"require": "./dist/cjs/lib/isThenable.js"
 		},
 		"./lazy": {
-			"types": "./dist/lib/lazy.d.ts",
-			"import": "./dist/lib/lazy.js",
-			"require": "./dist/lib/lazy.cjs"
+			"types": "./dist/types/lib/lazy.d.ts",
+			"import": "./dist/esm/lib/lazy.js",
+			"require": "./dist/cjs/lib/lazy.js"
 		},
 		"./makeObject": {
-			"types": "./dist/lib/makeObject.d.ts",
-			"import": "./dist/lib/makeObject.js",
-			"require": "./dist/lib/makeObject.cjs"
+			"types": "./dist/types/lib/makeObject.d.ts",
+			"import": "./dist/esm/lib/makeObject.js",
+			"require": "./dist/cjs/lib/makeObject.js"
 		},
 		"./mergeDefault": {
-			"types": "./dist/lib/mergeDefault.d.ts",
-			"import": "./dist/lib/mergeDefault.js",
-			"require": "./dist/lib/mergeDefault.cjs"
+			"types": "./dist/types/lib/mergeDefault.d.ts",
+			"import": "./dist/esm/lib/mergeDefault.js",
+			"require": "./dist/cjs/lib/mergeDefault.js"
 		},
 		"./mergeObjects": {
-			"types": "./dist/lib/mergeObjects.d.ts",
-			"import": "./dist/lib/mergeObjects.js",
-			"require": "./dist/lib/mergeObjects.cjs"
+			"types": "./dist/types/lib/mergeObjects.d.ts",
+			"import": "./dist/esm/lib/mergeObjects.js",
+			"require": "./dist/cjs/lib/mergeObjects.js"
 		},
 		"./noop": {
-			"types": "./dist/lib/noop.d.ts",
-			"import": "./dist/lib/noop.js",
-			"require": "./dist/lib/noop.cjs"
+			"types": "./dist/types/lib/noop.d.ts",
+			"import": "./dist/esm/lib/noop.js",
+			"require": "./dist/cjs/lib/noop.js"
 		},
 		"./objectEntries": {
-			"types": "./dist/lib/objectEntries.d.ts",
-			"import": "./dist/lib/objectEntries.js",
-			"require": "./dist/lib/objectEntries.cjs"
+			"types": "./dist/types/lib/objectEntries.d.ts",
+			"import": "./dist/esm/lib/objectEntries.js",
+			"require": "./dist/cjs/lib/objectEntries.js"
 		},
 		"./objectKeys": {
-			"types": "./dist/lib/objectKeys.d.ts",
-			"import": "./dist/lib/objectKeys.js",
-			"require": "./dist/lib/objectKeys.cjs"
+			"types": "./dist/types/lib/objectKeys.d.ts",
+			"import": "./dist/esm/lib/objectKeys.js",
+			"require": "./dist/cjs/lib/objectKeys.js"
 		},
 		"./objectToTuples": {
-			"types": "./dist/lib/objectToTuples.d.ts",
-			"import": "./dist/lib/objectToTuples.js",
-			"require": "./dist/lib/objectToTuples.cjs"
+			"types": "./dist/types/lib/objectToTuples.d.ts",
+			"import": "./dist/esm/lib/objectToTuples.js",
+			"require": "./dist/cjs/lib/objectToTuples.js"
 		},
 		"./objectValues": {
-			"types": "./dist/lib/objectValues.d.ts",
-			"import": "./dist/lib/objectValues.js",
-			"require": "./dist/lib/objectValues.cjs"
+			"types": "./dist/types/lib/objectValues.d.ts",
+			"import": "./dist/esm/lib/objectValues.js",
+			"require": "./dist/cjs/lib/objectValues.js"
 		},
 		"./parseURL": {
-			"types": "./dist/lib/tryParseURL.d.ts",
-			"import": "./dist/lib/tryParseURL.js",
-			"require": "./dist/lib/tryParseURL.cjs"
+			"types": "./dist/types/lib/tryParseURL.d.ts",
+			"import": "./dist/esm/lib/tryParseURL.js",
+			"require": "./dist/cjs/lib/tryParseURL.js"
 		},
 		"./partition": {
-			"types": "./dist/lib/partition.d.ts",
-			"import": "./dist/lib/partition.js",
-			"require": "./dist/lib/partition.cjs"
+			"types": "./dist/types/lib/partition.d.ts",
+			"import": "./dist/esm/lib/partition.js",
+			"require": "./dist/cjs/lib/partition.js"
 		},
 		"./pickRandom": {
-			"types": "./dist/lib/pickRandom.d.ts",
-			"import": "./dist/lib/pickRandom.js",
-			"require": "./dist/lib/pickRandom.cjs"
+			"types": "./dist/types/lib/pickRandom.d.ts",
+			"import": "./dist/esm/lib/pickRandom.js",
+			"require": "./dist/cjs/lib/pickRandom.js"
 		},
 		"./range": {
-			"types": "./dist/lib/range.d.ts",
-			"import": "./dist/lib/range.js",
-			"require": "./dist/lib/range.cjs"
+			"types": "./dist/types/lib/range.d.ts",
+			"import": "./dist/esm/lib/range.js",
+			"require": "./dist/cjs/lib/range.js"
 		},
 		"./regExpEsc": {
-			"types": "./dist/lib/regExpEsc.d.ts",
-			"import": "./dist/lib/regExpEsc.js",
-			"require": "./dist/lib/regExpEsc.cjs"
+			"types": "./dist/types/lib/regExpEsc.d.ts",
+			"import": "./dist/esm/lib/regExpEsc.js",
+			"require": "./dist/cjs/lib/regExpEsc.js"
 		},
 		"./roundNumber": {
-			"types": "./dist/lib/roundNumber.d.ts",
-			"import": "./dist/lib/roundNumber.js",
-			"require": "./dist/lib/roundNumber.cjs"
+			"types": "./dist/types/lib/roundNumber.d.ts",
+			"import": "./dist/esm/lib/roundNumber.js",
+			"require": "./dist/cjs/lib/roundNumber.js"
 		},
 		"./sleep": {
-			"types": "./dist/lib/sleep.d.ts",
-			"import": "./dist/lib/sleep.js",
-			"require": "./dist/lib/sleep.cjs"
+			"types": "./dist/types/lib/sleep.d.ts",
+			"import": "./dist/esm/lib/sleep.js",
+			"require": "./dist/cjs/lib/sleep.js"
 		},
 		"./sleepSync": {
-			"types": "./dist/lib/sleep.d.ts",
-			"import": "./dist/lib/sleep.js",
-			"require": "./dist/lib/sleep.cjs"
+			"types": "./dist/types/lib/sleep.d.ts",
+			"import": "./dist/esm/lib/sleep.js",
+			"require": "./dist/cjs/lib/sleep.js"
 		},
 		"./splitText": {
-			"types": "./dist/lib/splitText.d.ts",
-			"import": "./dist/lib/splitText.js",
-			"require": "./dist/lib/splitText.cjs"
+			"types": "./dist/types/lib/splitText.d.ts",
+			"import": "./dist/esm/lib/splitText.js",
+			"require": "./dist/cjs/lib/splitText.js"
 		},
 		"./throttle": {
-			"types": "./dist/lib/throttle.d.ts",
-			"import": "./dist/lib/throttle.js",
-			"require": "./dist/lib/throttle.cjs"
+			"types": "./dist/types/lib/throttle.d.ts",
+			"import": "./dist/esm/lib/throttle.js",
+			"require": "./dist/cjs/lib/throttle.js"
 		},
 		"./toTitleCase": {
-			"types": "./dist/lib/toTitleCase.d.ts",
-			"import": "./dist/lib/toTitleCase.js",
-			"require": "./dist/lib/toTitleCase.cjs"
+			"types": "./dist/types/lib/toTitleCase.d.ts",
+			"import": "./dist/esm/lib/toTitleCase.js",
+			"require": "./dist/cjs/lib/toTitleCase.js"
 		},
 		"./tryParse": {
-			"types": "./dist/lib/tryParseJSON.d.ts",
-			"import": "./dist/lib/tryParseJSON.js",
-			"require": "./dist/lib/tryParseJSON.cjs"
+			"types": "./dist/types/lib/tryParseJSON.d.ts",
+			"import": "./dist/esm/lib/tryParseJSON.js",
+			"require": "./dist/cjs/lib/tryParseJSON.js"
 		},
 		"./tryParseJSON": {
-			"types": "./dist/lib/tryParseJSON.d.ts",
-			"import": "./dist/lib/tryParseJSON.js",
-			"require": "./dist/lib/tryParseJSON.cjs"
+			"types": "./dist/types/lib/tryParseJSON.d.ts",
+			"import": "./dist/esm/lib/tryParseJSON.js",
+			"require": "./dist/cjs/lib/tryParseJSON.js"
 		},
 		"./tryParseURL": {
-			"types": "./dist/lib/tryParseURL.d.ts",
-			"import": "./dist/lib/tryParseURL.js",
-			"require": "./dist/lib/tryParseURL.cjs"
+			"types": "./dist/types/lib/tryParseURL.d.ts",
+			"import": "./dist/esm/lib/tryParseURL.js",
+			"require": "./dist/cjs/lib/tryParseURL.js"
 		},
 		"./types": {
-			"types": "./dist/lib/types.d.ts",
-			"import": "./dist/lib/types.js",
-			"require": "./dist/lib/types.cjs"
+			"types": "./dist/types/lib/types.d.ts",
+			"import": "./dist/esm/lib/types.js",
+			"require": "./dist/cjs/lib/types.js"
 		}
 	},
-	"sideEffects": [
-		"./dist/chunk*.js"
-	],
+	"sideEffects": false,
 	"homepage": "https://github.com/sapphiredev/utilities/tree/main/packages/utilities",
 	"scripts": {
 		"test": "vitest run",
 		"lint": "eslint src tests --ext ts --fix -c ../../.eslintrc",
-		"build": "tsup && tsup --config tsup.config.iife.ts && tsc -b src",
+		"build": " tsup --config tsup.config.iife.ts && tsc -p tsconfig.cjs.json && tsc -p tsconfig.esm.json && tsc -p tsconfig.types.json",
 		"docs": "typedoc-json-parser",
 		"prepack": "yarn build && yarn check-subpath",
 		"bump": "cliff-jumper",

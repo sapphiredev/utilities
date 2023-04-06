@@ -1,0 +1,9 @@
+{
+	"extends": "../ts-config/extra-strict-without-decorators.json",
+	"compilerOptions": {
+		"emitDeclarationOnly": true,
+		"outDir": "dist/types",
+		"declarationDir": "dist/types"
+	},
+	"include": ["src"]
+}
