@@ -1,5 +1,5 @@
 import { Option } from '@sapphire/result';
-import { EmptyStrategy, IUnorderedStrategy } from '../../../../src';
+import { EmptyStrategy, type IUnorderedStrategy } from '../../../../src';
 
 describe('EmptyStrategy', () => {
 	const strategy: IUnorderedStrategy = new EmptyStrategy();

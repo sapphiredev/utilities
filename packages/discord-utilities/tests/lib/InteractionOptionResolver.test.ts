@@ -1,14 +1,14 @@
 import {
-	APIApplicationCommandInteraction,
-	APIAttachment,
-	APIChatInputApplicationCommandInteraction,
-	APIInteractionDataResolvedChannel,
-	APIMessage,
-	APIRole,
-	APIUser,
 	ApplicationCommandOptionType,
 	ApplicationCommandType,
-	InteractionType
+	InteractionType,
+	type APIApplicationCommandInteraction,
+	type APIAttachment,
+	type APIChatInputApplicationCommandInteraction,
+	type APIInteractionDataResolvedChannel,
+	type APIMessage,
+	type APIRole,
+	type APIUser
 } from 'discord-api-types/v10';
 import { InteractionOptionResolver } from '../../src';
 

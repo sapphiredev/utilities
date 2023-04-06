@@ -1,5 +1,5 @@
 import { Option } from '@sapphire/result';
-import { IUnorderedStrategy, PrefixedStrategy } from '../../../../src';
+import { PrefixedStrategy, type IUnorderedStrategy } from '../../../../src';
 
 describe('PrefixedStrategy', () => {
 	const strategy: IUnorderedStrategy = new PrefixedStrategy(['--', '/'], ['=', ':']);

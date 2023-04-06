@@ -1,4 +1,4 @@
-import { Lexer, Parameter, QuotedParameter, Token, TokenType, WordParameter } from '../../../src';
+import { Lexer, QuotedParameter, TokenType, WordParameter, type Parameter, type Token } from '../../../src';
 
 describe('Lexer', () => {
 	describe('run', () => {

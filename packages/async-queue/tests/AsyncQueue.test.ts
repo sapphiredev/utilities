@@ -1,4 +1,4 @@
-import { AsyncQueue, AsyncQueueWaitOptions } from '../src';
+import { AsyncQueue, type AsyncQueueWaitOptions } from '../src';
 
 function genNumbers(queue: AsyncQueue) {
 	let i = 0;
