@@ -5,9 +5,9 @@
 	"author": "@sapphire",
 	"license": "MIT",
 	"main": "dist/index.js",
-	"module": "dist/index.mjs",
+	"module": "dist/index.js",
 	"exports": {
-		"import": "./dist/index.mjs",
+		"import": "./dist/index.js",
 		"require": "./dist/index.js"
 	},
 	"sideEffects": false,
@@ -15,7 +15,7 @@
 	"scripts": {
 		"test": "vitest run",
 		"lint": "eslint src tests --ext ts --fix -c ../../.eslintrc",
-		"build": "tsup && tsc -b src",
+		"build": "tsup",
 		"prepack": "yarn build",
 		"bump": "cliff-jumper",
 		"check-update": "cliff-jumper --dry-run"
