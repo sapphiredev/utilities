@@ -3,7 +3,8 @@
 	"compilerOptions": {
 		"emitDeclarationOnly": true,
 		"outDir": "dist/types",
-		"declarationDir": "dist/types"
+		"declarationDir": "dist/types",
+		"target": "ES2019"
 	},
 	"include": ["src"]
 }

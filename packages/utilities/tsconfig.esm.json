@@ -3,7 +3,8 @@
 	"compilerOptions": {
 		"outDir": "dist/esm",
 		"declaration": false,
-		"declarationMap": false
+		"declarationMap": false,
+		"target": "ES2019"
 	},
 	"include": ["src"]
 }

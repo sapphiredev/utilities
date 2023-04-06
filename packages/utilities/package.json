@@ -337,10 +337,10 @@
 	},
 	"devDependencies": {
 		"@favware/cliff-jumper": "^2.0.0",
-		"@vitest/coverage-c8": "^0.29.8",
-		"typedoc": "^0.23.28",
+		"@vitest/coverage-c8": "^0.30.1",
+		"typedoc": "0.23.28",
 		"typedoc-json-parser": "^7.2.0",
-		"typescript": "^5.0.3",
-		"vitest": "^0.29.8"
+		"typescript": "^5.0.4",
+		"vitest": "^0.30.1"
 	}
 }
