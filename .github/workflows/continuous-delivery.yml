@@ -90,9 +90,12 @@ jobs:
       - name: Install Dependencies
         run: yarn --immutable
 
-        # Required step because @favware/cliff-jumper depends on this package
+        # Required steps because @favware/cliff-jumper depends on this package
       - name: Build utilities
         working-directory: packages/utilities
+        run: yarn build
+      - name: Build result
+        working-directory: packages/result
         run: yarn build
 
       - name: Bump Versions & Publish
