@@ -89,6 +89,12 @@ jobs:
           registry-url: https://registry.yarnpkg.com/
       - name: Install Dependencies
         run: yarn --immutable
+
+        # Required step because @favware/cliff-jumper depends on this package
+      - name: Build utilities
+        working-directory: packages/utilities
+        run: yarn build
+
       - name: Bump Versions & Publish
         working-directory: packages/${{ matrix.package }}
         run: |
