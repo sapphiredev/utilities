@@ -19,32 +19,10 @@ on:
       - main
 
 jobs:
-  build:
-    name: Build code
-    runs-on: ubuntu-latest
-    if: github.repository_owner == 'sapphiredev'
-    steps:
-      - name: Checkout Project
-        uses: actions/checkout@v3
-        with:
-          repository: ${{ github.event.inputs.repository || 'sapphiredev/utilities' }}
-          ref: ${{ github.event.inputs.ref || 'main' }}
-      - name: Add TypeScript problem matcher
-        run: echo "::add-matcher::.github/problemMatchers/tsc.json"
-      - name: Use Node.js v18
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-          cache: yarn
-          registry-url: https://registry.yarnpkg.com/
-      - name: Install Dependencies
-        run: yarn --immutable
-      - name: Build all packages
-        run: yarn build
-
   publish:
     name: Publish Next to npm
-    needs: build
+    runs-on: ubuntu-latest
+    if: github.repository_owner == 'sapphiredev'
     strategy:
       fail-fast: false
       matrix:
@@ -72,8 +50,6 @@ jobs:
           - timestamp
           - ts-config
           - utilities
-    runs-on: ubuntu-latest
-    if: github.repository_owner == 'sapphiredev'
     steps:
       - name: Checkout Project
         uses: actions/checkout@v3
@@ -89,15 +65,8 @@ jobs:
           registry-url: https://registry.yarnpkg.com/
       - name: Install Dependencies
         run: yarn --immutable
-
-        # Required steps because @favware/cliff-jumper depends on this package
-      - name: Build utilities
-        working-directory: packages/utilities
+      - name: Build all packages
         run: yarn build
-      - name: Build result
-        working-directory: packages/result
-        run: yarn build
-
       - name: Bump Versions & Publish
         working-directory: packages/${{ matrix.package }}
         run: |
