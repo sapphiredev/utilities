@@ -72,6 +72,7 @@
 		"@sapphire/eslint-config": "workspace:^",
 		"@sapphire/eslint-plugin-result": "workspace:^",
 		"@vitest/coverage-c8": "^0.29.8",
+		"typedoc": "0.23.28",
 		"vitest": "^0.29.8"
 	}
 }
