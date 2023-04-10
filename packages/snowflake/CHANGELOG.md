@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/snowflake@3.4.1](https://github.com/sapphiredev/utilities/compare/@sapphire/snowflake@3.4.0...@sapphire/snowflake@3.4.1) - (2023-04-10)
+
+## 🐛 Bug Fixes
+
+- **snowflake:** Ensure strings are never compared with bigints ([22199a5](https://github.com/sapphiredev/utilities/commit/22199a5aa0c6150f46e01bfbe328deecb9f818ba))
+- **deps:** Update all non-major dependencies (#577) ([291dd67](https://github.com/sapphiredev/utilities/commit/291dd6783e57d8f075ce566218ba076ef6c4bbbd))
+- **deps:** Update all non-major dependencies (#545) ([40ca040](https://github.com/sapphiredev/utilities/commit/40ca040a21d8a0949682051a3a974538183a400e))
+- **deps:** Update all non-major dependencies (#544) ([cc78f17](https://github.com/sapphiredev/utilities/commit/cc78f17390c7f3db08af92bf46a5a70a9c11dd5f))
+
+## 🧪 Testing
+
+- Cleanup tests ([aec1bb2](https://github.com/sapphiredev/utilities/commit/aec1bb290d0f3c00a1ae4f4c86302ebbb161d348))
+
 # [@sapphire/snowflake@3.4.0](https://github.com/sapphiredev/utilities/compare/@sapphire/snowflake@3.3.0...@sapphire/snowflake@3.4.0) - (2022-12-27)
 
 ## 🐛 Bug Fixes
