@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/decorators@6.0.1](https://github.com/sapphiredev/utilities/compare/@sapphire/decorators@6.0.0...@sapphire/decorators@6.0.1) - (2023-04-10)
+
+## 🐛 Bug Fixes
+
+- **decorators:** Add missing type modifiers ([2f49bbb](https://github.com/sapphiredev/utilities/commit/2f49bbbd17f97653ba221025b81efc8271830100))
+- **deps:** Update all non-major dependencies (#577) ([291dd67](https://github.com/sapphiredev/utilities/commit/291dd6783e57d8f075ce566218ba076ef6c4bbbd))
+- **deps:** Update all non-major dependencies (#545) ([40ca040](https://github.com/sapphiredev/utilities/commit/40ca040a21d8a0949682051a3a974538183a400e))
+- **deps:** Update all non-major dependencies (#544) ([cc78f17](https://github.com/sapphiredev/utilities/commit/cc78f17390c7f3db08af92bf46a5a70a9c11dd5f))
+
+## 🧪 Testing
+
+- Cleanup tests ([aec1bb2](https://github.com/sapphiredev/utilities/commit/aec1bb290d0f3c00a1ae4f4c86302ebbb161d348))
+
 # [@sapphire/decorators@6.0.0](https://github.com/sapphiredev/utilities/compare/@sapphire/decorators@5.0.0...@sapphire/decorators@6.0.0) - (2023-01-08)
 
 ## 🚀 Features
