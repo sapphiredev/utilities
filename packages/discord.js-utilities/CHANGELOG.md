@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/discord.js-utilities@6.0.5](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@6.0.4...@sapphire/discord.js-utilities@6.0.5) - (2023-04-10)
+
+## 🐛 Bug Fixes
+
+- **discord.js-utilities:** Add missing type modifiers ([b372e79](https://github.com/sapphiredev/utilities/commit/b372e796c9e030ae5d2b795a0368471738719fb5))
+- **deps:** Update all non-major dependencies (#577) ([291dd67](https://github.com/sapphiredev/utilities/commit/291dd6783e57d8f075ce566218ba076ef6c4bbbd))
+
 # [@sapphire/discord.js-utilities@6.0.4](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@6.0.3...@sapphire/discord.js-utilities@6.0.4) - (2023-03-14)
 
 ## 🐛 Bug Fixes
