@@ -2,6 +2,38 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/utilities@3.11.1](https://github.com/sapphiredev/utilities/compare/@sapphire/utilities@3.11.0...@sapphire/utilities@3.11.1) - (2023-04-10)
+
+## 🏃 Performance
+
+- **chunk:** Remove clone (#574) ([049047b](https://github.com/sapphiredev/utilities/commit/049047b3ceee6fcfeb2e09e15e26424022a5045c))
+
+## 🏠 Refactor
+
+- **utilities:** Improve `codeBlock` and `inlineCodeBlock` (#498) ([29b1e5a](https://github.com/sapphiredev/utilities/commit/29b1e5a21317142ca6cceea5d4eaf65e9243653e))
+
+## 🐛 Bug Fixes
+
+- **deps:** Update all non-major dependencies (#577) ([291dd67](https://github.com/sapphiredev/utilities/commit/291dd6783e57d8f075ce566218ba076ef6c4bbbd))
+- **deps:** Update all non-major dependencies (#545) ([40ca040](https://github.com/sapphiredev/utilities/commit/40ca040a21d8a0949682051a3a974538183a400e))
+- **deps:** Update all non-major dependencies (#544) ([cc78f17](https://github.com/sapphiredev/utilities/commit/cc78f17390c7f3db08af92bf46a5a70a9c11dd5f))
+- **deps:** Update all non-major dependencies (#532) ([8033d1f](https://github.com/sapphiredev/utilities/commit/8033d1ff7a5a1974134c61f424f171cccb2915e1))
+- **deps:** Update all non-major dependencies (#514) ([21b07d5](https://github.com/sapphiredev/utilities/commit/21b07d5db529a0d982647a60de98e46f36f1ac93))
+- **deps:** Update all non-major dependencies (#505) ([6178296](https://github.com/sapphiredev/utilities/commit/617829649e1e4deeee02b14533b5377cd5bc1fb3))
+
+## 📝 Documentation
+
+- Add @06000208 as a contributor ([fa3349e](https://github.com/sapphiredev/utilities/commit/fa3349e55ce4ad008785211dec7bf8e2b5d933df))
+- Add @didinele as a contributor ([42ef7b6](https://github.com/sapphiredev/utilities/commit/42ef7b656c48fd0e720119db1d622c8bba2791e9))
+- Add @goestav as a contributor ([0e56a92](https://github.com/sapphiredev/utilities/commit/0e56a92a4e2d0942bfa207f81a8cb03b32312034))
+- Add @CitTheDev as a contributor ([34169ea](https://github.com/sapphiredev/utilities/commit/34169eae1dc0476ccf5a6c4f36e28602a204829e))
+- Add @legendhimslef as a contributor ([059b6f1](https://github.com/sapphiredev/utilities/commit/059b6f1ab5362d46d58624d06c1aa39192b0716f))
+- **utilities:** Add usage (#499) ([0c4decc](https://github.com/sapphiredev/utilities/commit/0c4decc879cb531d82fe4c871b6fe6a7b3e1314b))
+
+## 🧪 Testing
+
+- Cleanup tests ([aec1bb2](https://github.com/sapphiredev/utilities/commit/aec1bb290d0f3c00a1ae4f4c86302ebbb161d348))
+
 # [@sapphire/utilities@3.11.0](https://github.com/sapphiredev/utilities/compare/@sapphire/utilities@3.10.1...@sapphire/utilities@3.11.0) - (2022-10-08)
 
 ## 🐛 Bug Fixes
