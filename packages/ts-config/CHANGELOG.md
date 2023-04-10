@@ -2,6 +2,59 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/ts-config@4.0.0](https://github.com/sapphiredev/utilities/compare/@sapphire/ts-config@3.3.4...@sapphire/ts-config@4.0.0) - (2023-04-10)
+
+## 🏠 Refactor
+
+- Split `@sapphire/time-utilities` into 4 sub-packages (#462) ([574299a](https://github.com/sapphiredev/utilities/commit/574299a99e658f6500a2a7efa587a0919b2d1313))
+
+## 🐛 Bug Fixes
+
+- **ts-config:** Update typescript to 5.0.3 ([049102b](https://github.com/sapphiredev/utilities/commit/049102b03475a5e83556f3c8a7bcfb08c14df263))
+- **deps:** Update all non-major dependencies (#577) ([291dd67](https://github.com/sapphiredev/utilities/commit/291dd6783e57d8f075ce566218ba076ef6c4bbbd))
+- **deps:** Update all non-major dependencies (#545) ([40ca040](https://github.com/sapphiredev/utilities/commit/40ca040a21d8a0949682051a3a974538183a400e))
+- **deps:** Update all non-major dependencies (#544) ([cc78f17](https://github.com/sapphiredev/utilities/commit/cc78f17390c7f3db08af92bf46a5a70a9c11dd5f))
+- **deps:** Update all non-major dependencies (#532) ([8033d1f](https://github.com/sapphiredev/utilities/commit/8033d1ff7a5a1974134c61f424f171cccb2915e1))
+- **deps:** Update all non-major dependencies (#505) ([6178296](https://github.com/sapphiredev/utilities/commit/617829649e1e4deeee02b14533b5377cd5bc1fb3))
+- **deps:** Update all non-major dependencies ([e20f299](https://github.com/sapphiredev/utilities/commit/e20f29906e83cee000aaba9c6827e3bec5173d28))
+
+## 📝 Documentation
+
+- Add @06000208 as a contributor ([fa3349e](https://github.com/sapphiredev/utilities/commit/fa3349e55ce4ad008785211dec7bf8e2b5d933df))
+- Add @didinele as a contributor ([42ef7b6](https://github.com/sapphiredev/utilities/commit/42ef7b656c48fd0e720119db1d622c8bba2791e9))
+- Add @goestav as a contributor ([0e56a92](https://github.com/sapphiredev/utilities/commit/0e56a92a4e2d0942bfa207f81a8cb03b32312034))
+- Add @CitTheDev as a contributor ([34169ea](https://github.com/sapphiredev/utilities/commit/34169eae1dc0476ccf5a6c4f36e28602a204829e))
+- Add @legendhimslef as a contributor ([059b6f1](https://github.com/sapphiredev/utilities/commit/059b6f1ab5362d46d58624d06c1aa39192b0716f))
+- Add @r-priyam as a contributor ([fb278ba](https://github.com/sapphiredev/utilities/commit/fb278bacf627ec6fc88752eafeb12df5f3177a2c))
+- Change name of @kyranet (#451) ([df4fdef](https://github.com/sapphiredev/utilities/commit/df4fdefce18659975a4ebc224723638507d02d35))
+- Update @RealShadowNova as a contributor ([a869ba0](https://github.com/sapphiredev/utilities/commit/a869ba0abfad041610b9115187d426aebe671af6))
+- Add @muchnameless as a contributor ([a1221fe](https://github.com/sapphiredev/utilities/commit/a1221fea68506e99591d5d00ec552a07c26833f9))
+- Add @enxg as a contributor ([d2382f0](https://github.com/sapphiredev/utilities/commit/d2382f04e3909cb4ad11798a0a10e683f6cf5383))
+- Add @EvolutionX-10 as a contributor ([efc3a32](https://github.com/sapphiredev/utilities/commit/efc3a320a72ae258996dd62866d206c33f8d4961))
+- Add @MajesticString as a contributor ([295b3e9](https://github.com/sapphiredev/utilities/commit/295b3e9849a4b0fe64074bae02f6426378a303c3))
+- Add @Mzato0001 as a contributor ([c790ef2](https://github.com/sapphiredev/utilities/commit/c790ef25df2d7e22888fa9f8169167aa555e9e19))
+- Add @NotKaskus as a contributor ([00da8f1](https://github.com/sapphiredev/utilities/commit/00da8f199137b9277119823f322d1f2d168d928a))
+- Add @imranbarbhuiya as a contributor ([fb674c2](https://github.com/sapphiredev/utilities/commit/fb674c2c5594d41e71662263553dcb4bac9e37f4))
+- Add @axisiscool as a contributor ([ce1aa31](https://github.com/sapphiredev/utilities/commit/ce1aa316871a88d3663efbdf2a42d3d8dfe6a27f))
+- Add @dhruv-kaushikk as a contributor ([ebbf43f](https://github.com/sapphiredev/utilities/commit/ebbf43f63617daba96e72c50a234bf8b64f6ddc4))
+- Add @Commandtechno as a contributor ([f1d69fa](https://github.com/sapphiredev/utilities/commit/f1d69fabe1ee0abe4be08b19e63dbec03102f7ce))
+
+## 🚀 Features
+
+- **ts-config:** Use `Node16` as default module ([1f5c88e](https://github.com/sapphiredev/utilities/commit/1f5c88ed98305df515537df57b7981f27230e0c9))
+  - 💥 **BREAKING CHANGE:** The previous version had `"module": "CommonJS"` whereas this one has
+  - 💥 **`"module":** "Node16"`. Refer to the TypeScript documentation for the differences
+- **ts-config:** Update for TypeScript v5.x ([d3e0bfe](https://github.com/sapphiredev/utilities/commit/d3e0bfe5fea4f1d9ed817920c637d1c962f1f927))
+  - 💥 **BREAKING CHANGE:** @sapphire/ts-config now relies on TypeScript v5.x.
+DO NOT attempt to use this version with TypeScript v4.x or lower.
+DO NOT attempt to use a previous major with TypeScript v5.x.
+- @sapphire/eslint-plugin-result (#556) ([009d3d2](https://github.com/sapphiredev/utilities/commit/009d3d2e3cfa51ac195a0b85a6c9e18cb32b4201))
+- **utilities:** Add possibility to import single functions by appending them to the import path. (#454) ([374c145](https://github.com/sapphiredev/utilities/commit/374c145a5dd329cfc1a867ed6720abf408683a88))
+
+## 🧪 Testing
+
+- Migrate to vitest (#380) ([075ec73](https://github.com/sapphiredev/utilities/commit/075ec73c7a8e3374fad3ada612d37eb4ac36ec8d))
+
 ## [3.3.4](https://github.com/sapphiredev/utilities/compare/@sapphire/ts-config@3.3.3...@sapphire/ts-config@3.3.4) (2022-04-01)
 
 ### Bug Fixes
