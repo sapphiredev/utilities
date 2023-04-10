@@ -38,7 +38,7 @@
 		"typescript": "^5.0.3"
 	},
 	"files": [
-		"tsconfig.json",
+		"./tsconfig.json",
 		"extra-strict*.json",
 		"*decorators*.json"
 	],
