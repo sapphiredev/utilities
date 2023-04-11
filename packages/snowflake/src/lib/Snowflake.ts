@@ -127,15 +127,23 @@ export class Snowflake {
 	 * ```
 	 */
 	public static compare(a: string | bigint, b: string | bigint): -1 | 0 | 1 {
-		if (typeof a === 'bigint' || typeof b === 'bigint') {
-			if (typeof a === 'string') a = BigInt(a);
-			if (typeof b === 'string') b = BigInt(b);
-
-			return a === b ? 0 : a < b ? -1 : 1;
-		}
-
-		return a === b ? 0 : a.length < b.length ? -1 : a.length > b.length ? 1 : a < b ? -1 : 1;
+		const typeA = typeof a;
+		return typeA === typeof b
+			? typeA === 'string'
+				? cmpString(a as string, b as string)
+				: cmpBigInt(a as bigint, b as bigint)
+			: cmpBigInt(BigInt(a), BigInt(b));
 	}
+}
+
+/** @internal */
+function cmpBigInt(a: bigint, b: bigint) {
+	return a === b ? 0 : a < b ? -1 : 1;
+}
+
+/** @internal */
+function cmpString(a: string, b: string) {
+	return a === b ? 0 : a.length < b.length ? -1 : a.length > b.length ? 1 : a < b ? -1 : 1;
 }
 
 /**
