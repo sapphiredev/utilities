@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/eslint-config@4.4.1](https://github.com/sapphiredev/utilities/compare/@sapphire/eslint-config@4.4.0...@sapphire/eslint-config@4.4.1) - (2023-04-12)
+
+## 🏃 Performance
+
+- **chunk:** Remove clone (#574) ([049047b](https://github.com/sapphiredev/utilities/commit/049047b3ceee6fcfeb2e09e15e26424022a5045c))
+
+## 🐛 Bug Fixes
+
+- **eslint-config:** Bump eslint dependencies ([65aa3ae](https://github.com/sapphiredev/utilities/commit/65aa3ae7c0a165af3e613ce058b23293364244f5))
+
 # [@sapphire/eslint-config@4.4.0](https://github.com/sapphiredev/utilities/compare/@sapphire/eslint-config@4.3.8...@sapphire/eslint-config@4.4.0) - (2023-04-10)
 
 ## 🏠 Refactor
