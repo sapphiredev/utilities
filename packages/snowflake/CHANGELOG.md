@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/snowflake@3.4.2](https://github.com/sapphiredev/utilities/compare/@sapphire/snowflake@3.4.1...@sapphire/snowflake@3.4.2) - (2023-04-12)
+
+## 🏠 Refactor
+
+- **Snowflake:** Simplify `compare` logic (#578) ([886254e](https://github.com/sapphiredev/utilities/commit/886254eea2f0cc5e8f63d015acffaf0e61489357))
+
 # [@sapphire/snowflake@3.4.1](https://github.com/sapphiredev/utilities/compare/@sapphire/snowflake@3.4.0...@sapphire/snowflake@3.4.1) - (2023-04-10)
 
 ## 🐛 Bug Fixes
