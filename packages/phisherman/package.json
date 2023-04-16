@@ -31,9 +31,7 @@
 		"directory": "packages/phisherman"
 	},
 	"files": [
-		"dist/**/*.js*",
-		"dist/**/*.mjs*",
-		"dist/**/*.d*"
+		"dist/"
 	],
 	"engines": {
 		"node": ">=16.6.0",

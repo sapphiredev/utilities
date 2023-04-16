@@ -4,11 +4,11 @@
 	"description": "A TypeScript ESLint plugin for @sapphire/result",
 	"author": "@sapphire",
 	"license": "MIT",
-	"main": "dist/index.js",
-	"module": "dist/index.js",
+	"main": "dist/index.cjs",
+	"module": "dist/index.cjs",
 	"exports": {
-		"import": "./dist/index.js",
-		"require": "./dist/index.js"
+		"import": "./dist/index.cjs",
+		"require": "./dist/index.cjs"
 	},
 	"sideEffects": false,
 	"homepage": "https://github.com/sapphiredev/utilities/tree/main/packages/eslint-plugin-result",
@@ -26,9 +26,7 @@
 		"directory": "packages/eslint-plugin-result"
 	},
 	"files": [
-		"dist/**/*.js*",
-		"dist/**/*.mjs*",
-		"dist/**/*.d*"
+		"dist/"
 	],
 	"engines": {
 		"node": ">=v14.0.0",

@@ -3,7 +3,7 @@ import { writeFile } from 'node:fs/promises';
 import { basename } from 'node:path';
 import { format } from 'prettier';
 import { findFilesRecursivelyStringEndsWith } from '../packages/node-utilities/dist/index.js';
-import prettierConfig from '../packages/prettier-config/dist/index.js';
+import prettierConfig from '../packages/prettier-config/dist/index.cjs';
 
 const packageName = process.argv[2];
 const check = process.argv[3] === '--check';
