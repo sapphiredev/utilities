@@ -70,6 +70,15 @@ const DetailedPermissionsFlags = {
 const DetailedPermissionsBitField = new BitField(DetailedPermissionsFlags);
 ```
 
+> **Warning**: If the source is a TypeScript enum of numbers, you may use the `enumToObject` utility to turn it into a strict typed 1-way object.
+
+```typescript
+const { BitField, enumToObject } = require('@sapphire/bitfield');
+const { ActivityFlags } = require('discord-api-types/v10');
+
+const PermissionsBitField = new BitField(enumToObject(ActivityFlags));
+```
+
 > **Note**: An exception will be thrown in the constructor if a non-object, null, empty object, or objects with values that aren't all numbers or all bigints.
 
 ### Resolving
