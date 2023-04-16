@@ -25,5 +25,5 @@ export function enumToObject<T extends object>(enumObject: T): { [K in Exclude<k
 		if (Number.isNaN(Number(key))) result[key] = value;
 	}
 
-	return result as any;
+	return result;
 }
