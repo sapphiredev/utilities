@@ -1,4 +1,4 @@
-import { Command, type CommandStore, container, type CommandOptions } from '@sapphire/framework';
+import { Command, CommandStore, container, type CommandOptions } from '@sapphire/framework';
 import { ApplyOptions } from '../../src/index.js';
 
 describe('ApplyOptions', () => {
