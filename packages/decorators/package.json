@@ -32,12 +32,12 @@
 		"@sapphire/ratelimits": "workspace:^",
 		"@sapphire/result": "workspace:^",
 		"@sapphire/utilities": "workspace:^",
-		"@vitest/coverage-c8": "^0.29.8",
+		"@vitest/coverage-c8": "^0.30.1",
 		"tsup": "^6.7.0",
 		"typedoc": "0.23.28",
 		"typedoc-json-parser": "^7.2.0",
 		"typescript": "^5.0.4",
-		"vitest": "^0.29.8"
+		"vitest": "^0.30.1"
 	},
 	"repository": {
 		"type": "git",
