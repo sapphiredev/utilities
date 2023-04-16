@@ -33,7 +33,7 @@ describe('codeBlock', () => {
 			\`${zeroWidthSpace}\`\`js
 				if (sapphireCommunityIsCool) return 'awesome!';
 			\`\`\`
-
+\t\t
 \`\`\``
 		);
 	});
@@ -51,7 +51,7 @@ describe('codeBlock', () => {
 
 			# Header
 			\`const sapphireCommunityIsCool = true\`
-
+\t\t
 \`\`\``);
 	});
 
