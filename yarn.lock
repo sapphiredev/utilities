@@ -758,7 +758,7 @@ __metadata:
     "@favware/cliff-jumper": ^2.0.0
     "@vitest/coverage-c8": ^0.30.1
     tsup: ^6.7.0
-    typedoc: 0.23.28
+    typedoc: 0.24.2
     typedoc-json-parser: ^7.2.0
     typescript: ^5.0.4
     vitest: ^0.30.1
@@ -772,7 +772,7 @@ __metadata:
     "@favware/cliff-jumper": ^2.0.0
     "@vitest/coverage-c8": ^0.30.1
     tsup: ^6.7.0
-    typedoc: 0.23.28
+    typedoc: 0.24.2
     typedoc-json-parser: ^7.2.0
     typescript: ^5.0.4
     vitest: ^0.30.1
@@ -787,7 +787,7 @@ __metadata:
     "@sapphire/utilities": "workspace:^"
     "@vitest/coverage-c8": ^0.30.1
     tsup: ^6.7.0
-    typedoc: 0.23.28
+    typedoc: 0.24.2
     typedoc-json-parser: ^7.2.0
     typescript: ^5.0.4
     vitest: ^0.30.1
@@ -807,7 +807,7 @@ __metadata:
     "@vitest/coverage-c8": ^0.30.1
     tslib: ^2.5.0
     tsup: ^6.7.0
-    typedoc: 0.23.28
+    typedoc: 0.24.2
     typedoc-json-parser: ^7.2.0
     typescript: ^5.0.4
     vitest: ^0.30.1
@@ -822,7 +822,7 @@ __metadata:
     "@vitest/coverage-c8": ^0.30.1
     discord-api-types: ^0.37.38
     tsup: ^6.7.0
-    typedoc: 0.23.28
+    typedoc: 0.24.2
     typedoc-json-parser: ^7.2.0
     typescript: ^5.0.4
     vitest: ^0.30.1
@@ -840,7 +840,7 @@ __metadata:
     "@sapphire/utilities": "workspace:^"
     tslib: ^2.5.0
     tsup: ^6.7.0
-    typedoc: 0.23.28
+    typedoc: 0.24.2
     typedoc-json-parser: ^7.2.0
     typescript: ^5.0.4
   languageName: unknown
@@ -853,7 +853,7 @@ __metadata:
     "@favware/cliff-jumper": ^2.0.0
     "@vitest/coverage-c8": ^0.30.1
     tsup: ^6.7.0
-    typedoc: 0.23.28
+    typedoc: 0.24.2
     typedoc-json-parser: ^7.2.0
     typescript: ^5.0.4
     vitest: ^0.30.1
@@ -873,7 +873,7 @@ __metadata:
     eslint-plugin-prettier: ^4.2.1
     prettier: ^2.8.7
     tsup: ^6.7.0
-    typedoc: 0.23.28
+    typedoc: 0.24.2
     typescript: ^5.0.4
     vitest: ^0.30.1
   languageName: unknown
@@ -889,7 +889,7 @@ __metadata:
     "@vitest/coverage-c8": ^0.30.1
     tsup: ^6.7.0
     tsutils: ^3.21.0
-    typedoc: 0.23.28
+    typedoc: 0.24.2
     typescript: ^5.0.4
     vitest: ^0.30.1
   languageName: unknown
@@ -903,7 +903,7 @@ __metadata:
     "@vitest/coverage-c8": ^0.30.1
     tslib: ^2.5.0
     tsup: ^6.7.0
-    typedoc: 0.23.28
+    typedoc: 0.24.2
     typedoc-json-parser: ^7.2.0
     typescript: ^5.0.4
     vitest: ^0.30.1
@@ -918,7 +918,7 @@ __metadata:
     "@vitest/coverage-c8": ^0.30.1
     cross-fetch: ^3.1.5
     tsup: ^6.7.0
-    typedoc: 0.23.28
+    typedoc: 0.24.2
     typedoc-json-parser: ^7.2.0
     typescript: ^5.0.4
     vitest: ^0.30.1
@@ -950,7 +950,7 @@ __metadata:
     "@sapphire/result": "workspace:^"
     "@vitest/coverage-c8": ^0.30.1
     tsup: ^6.7.0
-    typedoc: 0.23.28
+    typedoc: 0.24.2
     typedoc-json-parser: ^7.2.0
     typescript: ^5.0.4
     vitest: ^0.30.1
@@ -964,7 +964,7 @@ __metadata:
     "@favware/cliff-jumper": ^2.0.0
     "@vitest/coverage-c8": ^0.30.1
     tsup: ^6.7.0
-    typedoc: 0.23.28
+    typedoc: 0.24.2
     typedoc-json-parser: ^7.2.0
     typescript: ^5.0.4
     vitest: ^0.30.1
@@ -978,7 +978,7 @@ __metadata:
     "@favware/cliff-jumper": ^2.0.0
     "@sapphire/fetch": "workspace:^"
     tsup: ^6.7.0
-    typedoc: 0.23.28
+    typedoc: 0.24.2
     typedoc-json-parser: ^7.2.0
     typescript: ^5.0.4
   languageName: unknown
@@ -1003,7 +1003,7 @@ __metadata:
     "@vitest/coverage-c8": ^0.30.1
     prettier: ^2.8.7
     tsup: ^6.7.0
-    typedoc: 0.23.28
+    typedoc: 0.24.2
     vitest: ^0.30.1
   languageName: unknown
   linkType: soft
@@ -1015,7 +1015,7 @@ __metadata:
     "@favware/cliff-jumper": ^2.0.0
     "@vitest/coverage-c8": ^0.30.1
     tsup: ^6.7.0
-    typedoc: 0.23.28
+    typedoc: 0.24.2
     typedoc-json-parser: ^7.2.0
     typescript: ^5.0.4
     vitest: ^0.30.1
@@ -1029,7 +1029,7 @@ __metadata:
     "@favware/cliff-jumper": ^2.0.0
     "@vitest/coverage-c8": ^0.30.1
     tsup: ^6.7.0
-    typedoc: 0.23.28
+    typedoc: 0.24.2
     typedoc-json-parser: ^7.2.0
     typescript: ^5.0.4
     vitest: ^0.30.1
@@ -1053,7 +1053,7 @@ __metadata:
     "@favware/cliff-jumper": ^2.0.0
     "@vitest/coverage-c8": ^0.30.1
     tsup: ^6.7.0
-    typedoc: 0.23.28
+    typedoc: 0.24.2
     typedoc-json-parser: ^7.2.0
     typescript: ^5.0.4
     vitest: ^0.30.1
@@ -1070,7 +1070,7 @@ __metadata:
     jsdom: ^21.1.1
     tslib: ^2.5.0
     tsup: ^6.7.0
-    typedoc: 0.23.28
+    typedoc: 0.24.2
     typedoc-json-parser: ^7.2.0
     typescript: ^5.0.4
     vitest: ^0.30.1
@@ -1087,7 +1087,7 @@ __metadata:
     "@sapphire/timer-manager": "workspace:^"
     "@sapphire/timestamp": "workspace:^"
     tsup: ^6.7.0
-    typedoc: 0.23.28
+    typedoc: 0.24.2
     typedoc-json-parser: ^7.2.0
     typescript: ^5.0.4
   languageName: unknown
@@ -1100,7 +1100,7 @@ __metadata:
     "@favware/cliff-jumper": ^2.0.0
     "@vitest/coverage-c8": ^0.30.1
     tsup: ^6.7.0
-    typedoc: 0.23.28
+    typedoc: 0.24.2
     typedoc-json-parser: ^7.2.0
     typescript: ^5.0.4
     vitest: ^0.30.1
@@ -1114,7 +1114,7 @@ __metadata:
     "@favware/cliff-jumper": ^2.0.0
     "@vitest/coverage-c8": ^0.30.1
     tsup: ^6.7.0
-    typedoc: 0.23.28
+    typedoc: 0.24.2
     typedoc-json-parser: ^7.2.0
     typescript: ^5.0.4
     vitest: ^0.30.1
@@ -1130,7 +1130,7 @@ __metadata:
     "@sapphire/eslint-plugin-result": "workspace:^"
     "@vitest/coverage-c8": ^0.30.1
     tslib: ^2.5.0
-    typedoc: 0.23.28
+    typedoc: 0.24.2
     typescript: ^5.0.4
     vitest: ^0.30.1
   languageName: unknown
@@ -1144,7 +1144,7 @@ __metadata:
     "@vitest/coverage-c8": ^0.30.1
     esbuild-plugin-file-path-extensions: ^1.0.0
     tsup: ^6.7.0
-    typedoc: 0.23.28
+    typedoc: 0.24.2
     typedoc-json-parser: ^7.2.0
     typescript: ^5.0.4
     vitest: ^0.30.1
@@ -4618,7 +4618,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"marked@npm:^4.2.12":
+"marked@npm:^4.2.12, marked@npm:^4.3.0":
   version: 4.3.0
   resolution: "marked@npm:4.3.0"
   bin:
@@ -6842,7 +6842,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typedoc@npm:0.23.28, typedoc@npm:^0.23.26":
+"typedoc@npm:0.24.2":
+  version: 0.24.2
+  resolution: "typedoc@npm:0.24.2"
+  dependencies:
+    lunr: ^2.3.9
+    marked: ^4.3.0
+    minimatch: ^9.0.0
+    shiki: ^0.14.1
+  peerDependencies:
+    typescript: 4.6.x || 4.7.x || 4.8.x || 4.9.x || 5.0.x
+  bin:
+    typedoc: bin/typedoc
+  checksum: ada472d51d4cd437a665d9d7545c8ceed7c1d27e56d3f9790aa4f6b3ad3c9957ea1e0c2648f28145f060f1988e290dd6a1733c8e550399cdacfb3f40d22718b4
+  languageName: node
+  linkType: hard
+
+"typedoc@npm:^0.23.26":
   version: 0.23.28
   resolution: "typedoc@npm:0.23.28"
   dependencies:
