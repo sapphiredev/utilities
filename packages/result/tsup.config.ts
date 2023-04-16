@@ -1,3 +1,3 @@
 import { createTsupConfig } from '../../scripts/tsup.config';
 
-export default createTsupConfig({ globalName: 'SapphireResult', dts: false });
+export default createTsupConfig({ globalName: 'SapphireResult' });

@@ -1,12 +1,12 @@
 import type { Awaitable } from '../common/utils.js';
 import type { Option } from '../Option.js';
-import { err, type Err } from '../Result/Err.js';
-import { ok, type Ok } from '../Result/Ok.js';
+import { createErr, type ResultErr } from '../Result/Err.js';
+import { createOk, type ResultOk } from '../Result/Ok.js';
 import type { IOption } from './IOption.js';
 import { OptionError } from './OptionError.js';
-import type { Some } from './Some.js';
+import type { OptionSome } from './Some.js';
 
-export class None implements IOption<any> {
+export class OptionNone implements IOption<any> {
 	public isSome(): false {
 		return false;
 	}
@@ -16,7 +16,7 @@ export class None implements IOption<any> {
 		return false;
 	}
 
-	public isNone(): this is None {
+	public isNone(): this is OptionNone {
 		return true;
 	}
 
@@ -70,12 +70,12 @@ export class None implements IOption<any> {
 		return Promise.resolve(this);
 	}
 
-	public okOr<E>(error: E): Err<E> {
-		return err(error);
+	public okOr<E>(error: E): ResultErr<E> {
+		return createErr(error);
 	}
 
-	public okOrElse<E>(cb: () => E): Err<E> {
-		return err(cb());
+	public okOrElse<E>(cb: () => E): ResultErr<E> {
+		return createErr(cb());
 	}
 
 	public *iter(): Generator<never> {
@@ -100,15 +100,15 @@ export class None implements IOption<any> {
 		return cb();
 	}
 
-	public xor<T>(option: None): None;
-	public xor<T>(option: Some<T>): Some<T>;
-	public xor<T>(option: Option<T>): Some<T> | None;
-	public xor<T>(option: Some<T> | None): Some<T> | None {
+	public xor<T>(option: OptionNone): OptionNone;
+	public xor<T>(option: OptionSome<T>): OptionSome<T>;
+	public xor<T>(option: Option<T>): OptionSome<T> | OptionNone;
+	public xor<T>(option: OptionSome<T> | OptionNone): OptionSome<T> | OptionNone {
 		return option.isSome() ? option : this;
 	}
 
-	public filter(predicate: (value: never) => boolean): None;
-	public filter(): None {
+	public filter(predicate: (value: never) => boolean): OptionNone;
+	public filter(): OptionNone {
 		return this;
 	}
 
@@ -117,41 +117,41 @@ export class None implements IOption<any> {
 		return false;
 	}
 
-	public zip(other: Option<any>): None;
-	public zip(): None {
+	public zip(other: Option<any>): OptionNone;
+	public zip(): OptionNone {
 		return this;
 	}
 
-	public zipWith(other: Option<any>, f: (s: never, o: never) => any): None;
-	public zipWith(): None {
+	public zipWith(other: Option<any>, f: (s: never, o: never) => any): OptionNone;
+	public zipWith(): OptionNone {
 		return this;
 	}
 
-	public unzip(): [None, None] {
+	public unzip(): [OptionNone, OptionNone] {
 		return [this, this];
 	}
 
-	public transpose(): Ok<None> {
-		return ok(this);
+	public transpose(): ResultOk<OptionNone> {
+		return createOk(this);
 	}
 
-	public flatten(): None {
+	public flatten(): OptionNone {
 		return this;
 	}
 
-	public intoPromise(): Promise<None> {
-		return Promise.resolve(none);
+	public intoPromise(): Promise<OptionNone> {
+		return Promise.resolve(createNone);
 	}
 
-	public eq(other: None): true;
-	public eq(other: Some<any>): false;
+	public eq(other: OptionNone): true;
+	public eq(other: OptionSome<any>): false;
 	public eq(other: Option<any>): boolean;
 	public eq(other: Option<any>): boolean {
 		return other.isNone();
 	}
 
-	public ne(other: None): false;
-	public ne(other: Some<any>): true;
+	public ne(other: OptionNone): false;
+	public ne(other: OptionSome<any>): true;
 	public ne(other: Option<any>): boolean;
 	public ne(other: Option<any>): boolean {
 		return other.isSome();
@@ -166,4 +166,4 @@ export class None implements IOption<any> {
 	}
 }
 
-export const none = new None();
+export const createNone = new OptionNone();

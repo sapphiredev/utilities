@@ -1,8 +1,8 @@
 import type { Awaitable } from '../common/utils.js';
 import type { Option } from '../Option.js';
 import type { Result } from '../Result.js';
-import type { Err } from './Err.js';
-import type { Ok } from './Ok.js';
+import type { ResultErr } from './Err.js';
+import type { ResultOk } from './Ok.js';
 
 /**
  * A type used to express computations that can fail, it can be used for returning and propagating errors. This is a
@@ -31,7 +31,7 @@ export interface IResult<T, E> {
 	 *
 	 * @see {@link https://doc.rust-lang.org/std/result/enum.Result.html#method.is_ok}
 	 */
-	isOk(): this is Ok<T>;
+	isOk(): this is ResultOk<T>;
 
 	/**
 	 * Returns `true` if the result is `Ok` and the value inside of it matches a predicate.
@@ -54,7 +54,7 @@ export interface IResult<T, E> {
 	 *
 	 * @see {@link https://doc.rust-lang.org/std/result/enum.Result.html#method.is_ok_and}
 	 */
-	isOkAnd<R extends boolean>(cb: (value: T) => R): this is Ok<T> & R;
+	isOkAnd<R extends boolean>(cb: (value: T) => R): this is ResultOk<T> & R;
 
 	/**
 	 * Returns `true` if the result is `Err`.
@@ -72,7 +72,7 @@ export interface IResult<T, E> {
 	 *
 	 * @see {@link https://doc.rust-lang.org/std/result/enum.Result.html#method.is_err}
 	 */
-	isErr(): this is Err<E>;
+	isErr(): this is ResultErr<E>;
 
 	/**
 	 * Returns `true` if the result is `Err` and the value inside of it matches a predicate.
@@ -96,7 +96,7 @@ export interface IResult<T, E> {
 	 *
 	 * @see {@link https://doc.rust-lang.org/std/result/enum.Result.html#method.is_err_and}
 	 */
-	isErrAnd<R extends boolean>(cb: (error: E) => R): this is Err<E> & R;
+	isErrAnd<R extends boolean>(cb: (error: E) => R): this is ResultErr<E> & R;
 
 	/**
 	 * Converts from `Result<T, E>` to `Option<T>`.

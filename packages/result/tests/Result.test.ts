@@ -1,9 +1,5 @@
 import { setTimeout as sleep } from 'node:timers/promises';
-import { err, none, ok, Option, Result, ResultError, some } from '../src/index.js';
-import type { None } from '../src/lib/Option/None.js';
-import type { Some } from '../src/lib/Option/Some.js';
-import type { Err } from '../src/lib/Result/Err.js';
-import type { Ok } from '../src/lib/Result/Ok.js';
+import { Option, Result, ResultError, err, none, ok, some, type Err, type None, type Ok, type Some } from '../src/index.js';
 import { error, makeThrow } from './shared.js';
 
 describe('Result', () => {

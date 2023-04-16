@@ -1,20 +1,20 @@
 import type { Awaitable } from '../common/utils.js';
 import type { Option } from '../Option.js';
-import { none, type None } from '../Option/None.js';
-import { some, type Some } from '../Option/Some.js';
+import { createNone, type OptionNone } from '../Option/None.js';
+import { createSome, type OptionSome } from '../Option/Some.js';
 import type { Result } from '../Result.js';
-import type { Err } from './Err.js';
+import type { ResultErr } from './Err.js';
 import type { IResult } from './IResult.js';
 import { ResultError } from './ResultError.js';
 
-export class Ok<T> implements IResult<T, any> {
+export class ResultOk<T> implements IResult<T, any> {
 	private readonly value: T;
 
 	public constructor(value: T) {
 		this.value = value;
 	}
 
-	public isOk(): this is Ok<T> {
+	public isOk(): this is ResultOk<T> {
 		return true;
 	}
 
@@ -31,16 +31,16 @@ export class Ok<T> implements IResult<T, any> {
 		return false;
 	}
 
-	public ok(): Some<T> {
-		return some(this.value);
+	public ok(): OptionSome<T> {
+		return createSome(this.value);
 	}
 
-	public err(): None {
-		return none;
+	public err(): OptionNone {
+		return createNone;
 	}
 
-	public map<U>(cb: (value: T) => U): Ok<U> {
-		return ok(cb(this.value));
+	public map<U>(cb: (value: T) => U): ResultOk<U> {
+		return createOk(cb(this.value));
 	}
 
 	public mapInto<R extends Result<any, any>>(cb: (value: T) => R): R {
@@ -147,17 +147,17 @@ export class Ok<T> implements IResult<T, any> {
 		return false;
 	}
 
-	public transpose(this: Ok<None>): None;
-	public transpose<Inner>(this: Ok<Some<Inner>>): Some<Ok<Inner>>;
-	public transpose<Inner>(this: Ok<Option<Inner>>): Option<Ok<Inner>>;
-	public transpose<IT>(this: Ok<Option<IT>>): Option<Ok<IT>> {
+	public transpose(this: ResultOk<OptionNone>): OptionNone;
+	public transpose<Inner>(this: ResultOk<OptionSome<Inner>>): OptionSome<ResultOk<Inner>>;
+	public transpose<Inner>(this: ResultOk<Option<Inner>>): Option<ResultOk<Inner>>;
+	public transpose<IT>(this: ResultOk<Option<IT>>): Option<ResultOk<IT>> {
 		return this.value.match({
-			some: (value) => some(ok(value)),
-			none: () => none
+			some: (value) => createSome(createOk(value)),
+			none: () => createNone
 		});
 	}
 
-	public flatten<Inner extends Result<any, any>>(this: Ok<Inner>): Inner {
+	public flatten<Inner extends Result<any, any>>(this: ResultOk<Inner>): Inner {
 		return this.value;
 	}
 
@@ -165,17 +165,17 @@ export class Ok<T> implements IResult<T, any> {
 		return this.value;
 	}
 
-	public async intoPromise(): Promise<Ok<Awaited<T>>> {
-		return ok(await this.value);
+	public async intoPromise(): Promise<ResultOk<Awaited<T>>> {
+		return createOk(await this.value);
 	}
 
-	public eq(other: Err<any>): false;
+	public eq(other: ResultErr<any>): false;
 	public eq(other: Result<T, any>): boolean;
 	public eq(other: Result<T, any>): boolean {
 		return other.isOkAnd((value) => this.value === value);
 	}
 
-	public ne(other: Err<any>): true;
+	public ne(other: ResultErr<any>): true;
 	public ne(other: Result<T, any>): boolean;
 	public ne(other: Result<T, any>): boolean {
 		return !this.eq(other);
@@ -194,7 +194,7 @@ export class Ok<T> implements IResult<T, any> {
  * Creates an Ok with no value.
  * @return A successful Result.
  */
-export function ok(): Ok<unknown>;
+export function createOk(): ResultOk<unknown>;
 
 /**
  * Creates an Ok.
@@ -202,7 +202,7 @@ export function ok(): Ok<unknown>;
  * @param x Value to use.
  * @return A successful Result.
  */
-export function ok<T>(x: T): Ok<T>;
-export function ok<T>(x?: T): Ok<T | undefined> {
-	return new Ok(x);
+export function createOk<T>(x: T): ResultOk<T>;
+export function createOk<T>(x?: T): ResultOk<T | undefined> {
+	return new ResultOk(x);
 }

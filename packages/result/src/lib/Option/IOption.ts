@@ -1,8 +1,8 @@
 import type { Awaitable } from '../common/utils.js';
 import type { Option } from '../Option.js';
 import type { Result } from '../Result.js';
-import type { None } from './None.js';
-import type { Some } from './Some.js';
+import type { OptionNone } from './None.js';
+import type { OptionSome } from './Some.js';
 
 export interface IOption<T> {
 	/**
@@ -21,7 +21,7 @@ export interface IOption<T> {
 	 *
 	 * @see {@link https://doc.rust-lang.org/std/option/enum.Option.html#method.is_some}
 	 */
-	isSome(): this is Some<T>;
+	isSome(): this is OptionSome<T>;
 
 	/**
 	 * Returns `true` if the option is a `Some` and the value inside of it matches a predicate.
@@ -63,7 +63,7 @@ export interface IOption<T> {
 	 *
 	 * @see {@link https://doc.rust-lang.org/std/option/enum.Option.html#method.is_none}
 	 */
-	isNone(): this is None;
+	isNone(): this is OptionNone;
 
 	/**
 	 * Returns the contained `Some` value.

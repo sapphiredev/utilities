@@ -1,19 +1,19 @@
 import type { Awaitable } from '../common/utils.js';
 import type { Option } from '../Option.js';
 import type { Result } from '../Result.js';
-import { err, type Err } from '../Result/Err.js';
-import { ok, type Ok } from '../Result/Ok.js';
+import { createErr, type ResultErr } from '../Result/Err.js';
+import { createOk, type ResultOk } from '../Result/Ok.js';
 import type { IOption } from './IOption.js';
-import { none, type None } from './None.js';
+import { createNone, type OptionNone } from './None.js';
 
-export class Some<T> implements IOption<T> {
+export class OptionSome<T> implements IOption<T> {
 	private readonly value: T;
 
 	public constructor(value: T) {
 		this.value = value;
 	}
 
-	public isSome(): this is Some<T> {
+	public isSome(): this is OptionSome<T> {
 		return true;
 	}
 
@@ -44,8 +44,8 @@ export class Some<T> implements IOption<T> {
 		return this.value;
 	}
 
-	public map<U>(cb: (value: T) => U): Some<U> {
-		return some(cb(this.value));
+	public map<U>(cb: (value: T) => U): OptionSome<U> {
+		return createSome(cb(this.value));
 	}
 
 	public mapInto<R extends Option<any>>(cb: (value: T) => R): R {
@@ -75,14 +75,14 @@ export class Some<T> implements IOption<T> {
 		return this;
 	}
 
-	public okOr(err?: any): Ok<T>;
-	public okOr(): Ok<T> {
-		return ok(this.value);
+	public okOr(err?: any): ResultOk<T>;
+	public okOr(): ResultOk<T> {
+		return createOk(this.value);
 	}
 
-	public okOrElse(cb: () => any): Ok<T>;
-	public okOrElse(): Ok<T> {
-		return ok(this.value);
+	public okOrElse(cb: () => any): ResultOk<T>;
+	public okOrElse(): ResultOk<T> {
+		return createOk(this.value);
 	}
 
 	public *iter(): Generator<T> {
@@ -107,68 +107,68 @@ export class Some<T> implements IOption<T> {
 		return this;
 	}
 
-	public xor(option: Some<T>): None;
-	public xor(option: None): this;
-	public xor(option: Option<T>): this | None;
-	public xor(option: Option<T>): this | None {
-		return option.isSome() ? none : this;
+	public xor(option: OptionSome<T>): OptionNone;
+	public xor(option: OptionNone): this;
+	public xor(option: Option<T>): this | OptionNone;
+	public xor(option: Option<T>): this | OptionNone {
+		return option.isSome() ? createNone : this;
 	}
 
 	public filter(predicate: (value: T) => true): this;
-	public filter(predicate: (value: T) => false): None;
-	public filter(predicate: (value: T) => boolean): this | None;
-	public filter(predicate: (value: T) => boolean): this | None {
-		return predicate(this.value) ? this : none;
+	public filter(predicate: (value: T) => false): OptionNone;
+	public filter(predicate: (value: T) => boolean): this | OptionNone;
+	public filter(predicate: (value: T) => boolean): this | OptionNone {
+		return predicate(this.value) ? this : createNone;
 	}
 
 	public contains(value: T): boolean {
 		return this.value === value;
 	}
 
-	public zip(other: None): None;
-	public zip<U>(other: Some<U>): Some<[T, U]>;
+	public zip(other: OptionNone): OptionNone;
+	public zip<U>(other: OptionSome<U>): OptionSome<[T, U]>;
 	public zip<U>(other: Option<U>): Option<[T, U]>;
 	public zip<U>(other: Option<U>): Option<[T, U]> {
 		return other.map((o) => [this.value, o] as [T, U]);
 	}
 
-	public zipWith<U, R>(other: None, f: (s: T, o: U) => R): None;
-	public zipWith<U, R>(other: Some<U>, f: (s: T, o: U) => R): Some<R>;
+	public zipWith<U, R>(other: OptionNone, f: (s: T, o: U) => R): OptionNone;
+	public zipWith<U, R>(other: OptionSome<U>, f: (s: T, o: U) => R): OptionSome<R>;
 	public zipWith<U, R>(other: Option<U>, f: (s: T, o: U) => R): Option<R>;
 	public zipWith<U, R>(other: Option<U>, f: (s: T, o: U) => R): Option<R> {
 		return other.map((o) => f(this.value, o));
 	}
 
-	public unzip<I, U>(this: Some<readonly [I, U]>): [Some<I>, Some<U>] {
+	public unzip<I, U>(this: OptionSome<readonly [I, U]>): [OptionSome<I>, OptionSome<U>] {
 		const [s, o] = this.value;
-		return [some(s), some(o)];
+		return [createSome(s), createSome(o)];
 	}
 
-	public transpose<Inner>(this: Some<Ok<Inner>>): Ok<Some<Inner>>;
-	public transpose<Inner>(this: Some<Err<Inner>>): Err<Some<Inner>>;
-	public transpose<IT, E>(this: Some<Result<IT, E>>): Result<Some<IT>, E>;
-	public transpose<IT, E>(this: Some<Result<IT, E>>): Result<Some<IT>, E> {
+	public transpose<Inner>(this: OptionSome<ResultOk<Inner>>): ResultOk<OptionSome<Inner>>;
+	public transpose<Inner>(this: OptionSome<ResultErr<Inner>>): ResultErr<OptionSome<Inner>>;
+	public transpose<IT, E>(this: OptionSome<Result<IT, E>>): Result<OptionSome<IT>, E>;
+	public transpose<IT, E>(this: OptionSome<Result<IT, E>>): Result<OptionSome<IT>, E> {
 		return this.value.match({
-			ok: (v) => ok(some(v)),
-			err: (e) => err(e)
+			ok: (v) => createOk(createSome(v)),
+			err: (e) => createErr(e)
 		});
 	}
 
-	public flatten<Inner extends Option<any>>(this: Some<Inner>): Inner {
+	public flatten<Inner extends Option<any>>(this: OptionSome<Inner>): Inner {
 		return this.value;
 	}
 
-	public async intoPromise(): Promise<Some<Awaited<T>>> {
-		return some(await this.value);
+	public async intoPromise(): Promise<OptionSome<Awaited<T>>> {
+		return createSome(await this.value);
 	}
 
-	public eq(other: None): false;
+	public eq(other: OptionNone): false;
 	public eq(other: Option<T>): boolean;
 	public eq(other: Option<T>): boolean {
 		return other.isSomeAnd((value) => this.value === value);
 	}
 
-	public ne(other: None): true;
+	public ne(other: OptionNone): true;
 	public ne(other: Option<T>): boolean;
 	public ne(other: Option<T>): boolean {
 		return !this.eq(other);
@@ -183,6 +183,6 @@ export class Some<T> implements IOption<T> {
 	}
 }
 
-export function some<T>(value: T): Some<T> {
-	return new Some<T>(value);
+export function createSome<T>(value: T): OptionSome<T> {
+	return new OptionSome<T>(value);
 }
