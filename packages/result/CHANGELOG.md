@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/result@2.6.2](https://github.com/sapphiredev/utilities/compare/@sapphire/result@2.6.1...@sapphire/result@2.6.2) - (2023-04-17)
+
+## 🐛 Bug Fixes
+
+- **result:** Add tslib dependency to fix __exportStar not being defined ([4c51387](https://github.com/sapphiredev/utilities/commit/4c51387b83ce363752528d45da9ca9772ed80552))
+
 # [@sapphire/result@2.6.1](https://github.com/sapphiredev/utilities/compare/@sapphire/result@2.6.0...@sapphire/result@2.6.1) - (2023-04-10)
 
 ## 🐛 Bug Fixes
