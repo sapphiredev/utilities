@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/discord.js-utilities@6.0.6](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@6.0.5...@sapphire/discord.js-utilities@6.0.6) - (2023-04-17)
+
+## 🐛 Bug Fixes
+
+- **discord.js-utilities:** Add tslib dependency to fix __exportStar not being defined ([2f6e4e6](https://github.com/sapphiredev/utilities/commit/2f6e4e65907bfe768a97b37830a10d5cadd75a1e))
+
 # [@sapphire/discord.js-utilities@6.0.5](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@6.0.4...@sapphire/discord.js-utilities@6.0.5) - (2023-04-10)
 
 ## 🐛 Bug Fixes
