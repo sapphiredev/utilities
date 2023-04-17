@@ -814,7 +814,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@sapphire/discord-utilities@^3.0.2, @sapphire/discord-utilities@workspace:^, @sapphire/discord-utilities@workspace:packages/discord-utilities":
+"@sapphire/discord-utilities@^3.0.1, @sapphire/discord-utilities@^3.0.2, @sapphire/discord-utilities@workspace:^, @sapphire/discord-utilities@workspace:packages/discord-utilities":
   version: 0.0.0-use.local
   resolution: "@sapphire/discord-utilities@workspace:packages/discord-utilities"
   dependencies:
@@ -829,7 +829,19 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@sapphire/discord.js-utilities@6.0.5, @sapphire/discord.js-utilities@workspace:^, @sapphire/discord.js-utilities@workspace:packages/discord.js-utilities":
+"@sapphire/discord.js-utilities@npm:6.0.5":
+  version: 6.0.5
+  resolution: "@sapphire/discord.js-utilities@npm:6.0.5"
+  dependencies:
+    "@sapphire/discord-utilities": ^3.0.1
+    "@sapphire/duration": ^1.1.0
+    "@sapphire/utilities": ^3.11.0
+    tslib: ^2.5.0
+  checksum: 8726777571ba20d62bf2057e624785198ace1c041aad83151080a2b180ab87b904ccacb5125a4590f43f76aaab989088027b07b4c86582ebc294067d10653e02
+  languageName: node
+  linkType: hard
+
+"@sapphire/discord.js-utilities@workspace:^, @sapphire/discord.js-utilities@workspace:packages/discord.js-utilities":
   version: 0.0.0-use.local
   resolution: "@sapphire/discord.js-utilities@workspace:packages/discord.js-utilities"
   dependencies:
@@ -846,7 +858,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@sapphire/duration@workspace:^, @sapphire/duration@workspace:packages/duration":
+"@sapphire/duration@^1.1.0, @sapphire/duration@workspace:^, @sapphire/duration@workspace:packages/duration":
   version: 0.0.0-use.local
   resolution: "@sapphire/duration@workspace:packages/duration"
   dependencies:
