@@ -20,7 +20,7 @@
 		"check-update": "cliff-jumper --dry-run"
 	},
 	"dependencies": {
-		"prettier": "^2.8.7"
+		"prettier": "^2.8.8"
 	},
 	"repository": {
 		"type": "git",
@@ -56,7 +56,7 @@
 		"@favware/cliff-jumper": "^2.0.0",
 		"@vitest/coverage-c8": "^0.30.1",
 		"tsup": "^6.7.0",
-		"typedoc": "0.23.28",
+		"typedoc": "0.24.5",
 		"vitest": "^0.30.1"
 	}
 }
