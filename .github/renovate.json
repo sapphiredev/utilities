@@ -4,7 +4,7 @@
 	"npm": {
 		"packageRules": [
 			{
-				"matchPackagePatterns": ["discord-api-types"],
+				"matchPackagePatterns": ["typedoc"],
 				"enabled": false
 			}
 		]
