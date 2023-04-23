@@ -20,7 +20,7 @@
 		"check-update": "cliff-jumper --dry-run"
 	},
 	"dependencies": {
-		"prettier": "^2.8.7"
+		"prettier": "^2.8.8"
 	},
 	"repository": {
 		"type": "git",
