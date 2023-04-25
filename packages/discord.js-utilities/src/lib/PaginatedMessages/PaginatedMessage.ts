@@ -9,10 +9,10 @@ import {
 	IntentsBitField,
 	InteractionCollector,
 	InteractionType,
-	isJSONEncodable,
 	Partials,
 	StringSelectMenuBuilder,
 	StringSelectMenuInteraction,
+	isJSONEncodable,
 	userMention,
 	type APIEmbed,
 	type APIMessage,
@@ -32,6 +32,7 @@ import { isAnyInteraction, isGuildBasedChannel, isMessageInstance, isStageChanne
 import type { AnyInteractableInteraction } from '../utility-types';
 import type {
 	PaginatedMessageAction,
+	PaginatedMessageComponentUnion,
 	PaginatedMessageEmbedResolvable,
 	PaginatedMessageInternationalizationContext,
 	PaginatedMessageMessageOptionsUnion,
@@ -125,7 +126,7 @@ export class PaginatedMessage {
 	/**
 	 * The pages to be converted to {@link PaginatedMessage.messages}
 	 */
-	public pages: PaginatedMessagePage[];
+	public pages: PaginatedMessagePage[] = [];
 
 	/**
 	 * The response message used to edit on page changes.
@@ -146,6 +147,11 @@ export class PaginatedMessage {
 	 * The actions which are to be used.
 	 */
 	public actions = new Map<string, PaginatedMessageAction>();
+
+	/**
+	 * The components which were converted from {@link PaginatedMessage.actions}
+	 */
+	public components: (PaginatedMessageComponentUnion[] | null)[] = [];
 
 	/**
 	 * The handler's current page/message index.
@@ -235,13 +241,7 @@ export class PaginatedMessage {
 		embedFooterSeparator,
 		paginatedMessageData = null
 	}: PaginatedMessageOptions = {}) {
-		this.pages = pages ?? [];
-
-		for (const page of this.pages) {
-			if (isFunction(page) || isObject(page)) {
-				this.messages.push(page);
-			}
-		}
+		if (pages) this.setPages(pages);
 
 		for (const action of actions ?? this.constructor.defaultActions) {
 			if (actionIsButtonOrMenu(action)) {
@@ -437,6 +437,14 @@ export class PaginatedMessage {
 	 */
 	public hasPage(index: number): boolean {
 		return index >= 0 && index < this.pages.length;
+	}
+
+	/**
+	 * Checks whether or not the handler has an action with a specific custom ID.
+	 * @param index The custom ID to check.
+	 */
+	public hasCustomId(customId: string): boolean {
+		return this.actions.has(customId);
 	}
 
 	/**
@@ -958,6 +966,29 @@ export class PaginatedMessage {
 	}
 
 	/**
+	 * Resolves the components from a page's action.
+	 * @param messageOrInteraction The message or interaction that triggered this {@link PaginatedMessage}.
+	 * @param targetUser The user the handler is for.
+	 * @param index The index to resolve.
+	 */
+	public async resolveActions(
+		messageOrInteraction: Message | AnyInteractableInteraction,
+		targetUser: User,
+		index: number
+	): Promise<PaginatedMessageComponentUnion[]> {
+		const components = this.components[index];
+		if (!isNullish(components)) {
+			return components;
+		}
+
+		const resolvedComponents = await this.handleActionLoad([...this.actions.values()], messageOrInteraction, targetUser);
+		const messageComponents = createPartitionedMessageRow(resolvedComponents);
+
+		this.components[index] = messageComponents;
+		return messageComponents;
+	}
+
+	/**
 	 * Clones the current handler into a new instance.
 	 */
 	public clone(): PaginatedMessage {
@@ -966,6 +997,14 @@ export class PaginatedMessage {
 		clone.response = this.response;
 		clone.template = this.template;
 		return clone;
+	}
+
+	/**
+	 * Get an action by its custom ID.
+	 * @param customId The custom ID of the action.
+	 */
+	protected getAction(customId: string): PaginatedMessageAction {
+		return this.actions.get(customId)!;
 	}
 
 	/**
@@ -990,31 +1029,7 @@ export class PaginatedMessage {
 
 		// If we do not have more than 1 page then there is no reason to add message components
 		if (this.pages.length > 1) {
-			const messageComponents = await Promise.all(
-				[...this.actions.values()].map<Promise<ButtonBuilder | StringSelectMenuBuilder>>(async (interaction) => {
-					return isMessageButtonInteractionData(interaction)
-						? new ButtonBuilder(interaction)
-						: new StringSelectMenuBuilder({
-								...(interaction.customId === '@sapphire/paginated-messages.goToPage' && {
-									options: await Promise.all(
-										this.pages.map(async (_, index) => {
-											return {
-												...(await this.selectMenuOptions(
-													index + 1,
-													this.resolvePaginatedMessageInternationalizationContext(messageOrInteraction, targetUser)
-												)),
-												value: index.toString()
-											};
-										})
-									),
-									placeholder: this.selectMenuPlaceholder
-								}),
-								...interaction
-						  });
-				})
-			);
-
-			page.components = createPartitionedMessageRow(messageComponents);
+			page.components = await this.resolveActions(messageOrInteraction, targetUser, this.index);
 		}
 
 		if (this.response) {
@@ -1050,7 +1065,7 @@ export class PaginatedMessage {
 				filter: (interaction) =>
 					!isNullish(this.response) && //
 					interaction.isMessageComponent() &&
-					this.actions.has(interaction.customId),
+					this.hasCustomId(interaction.customId),
 
 				time: this.idle,
 
@@ -1091,6 +1106,42 @@ export class PaginatedMessage {
 	}
 
 	/**
+	 * Handles the loading of actions.
+	 * @param actions The actions to be loaded.
+	 * @param messageOrInteraction The message or interaction that triggered this {@link PaginatedMessage}.
+	 * @param targetUser The user the handler is for.
+	 */
+	protected async handleActionLoad(
+		actions: PaginatedMessageAction[],
+		messageOrInteraction: Message | AnyInteractableInteraction,
+		targetUser: User
+	): Promise<(ButtonBuilder | StringSelectMenuBuilder)[]> {
+		return Promise.all(
+			actions.map<Promise<ButtonBuilder | StringSelectMenuBuilder>>(async (interaction) => {
+				return isMessageButtonInteractionData(interaction)
+					? new ButtonBuilder(interaction)
+					: new StringSelectMenuBuilder({
+							...(interaction.customId === '@sapphire/paginated-messages.goToPage' && {
+								options: await Promise.all(
+									this.pages.map(async (_, index) => {
+										return {
+											...(await this.selectMenuOptions(
+												index + 1,
+												this.resolvePaginatedMessageInternationalizationContext(messageOrInteraction, targetUser)
+											)),
+											value: index.toString()
+										};
+									})
+								),
+								placeholder: this.selectMenuPlaceholder
+							}),
+							...interaction
+					  });
+			})
+		);
+	}
+
+	/**
 	 * Handles the `collect` event from the collector.
 	 * @param targetUser The user the handler is for.
 	 * @param channel The channel the handler is running at.
@@ -1105,7 +1156,7 @@ export class PaginatedMessage {
 			// Update the response to the latest interaction
 			this.response = interaction;
 
-			const action = this.actions.get(interaction.customId)!;
+			const action = this.getAction(interaction.customId);
 
 			if (actionIsButtonOrMenu(action)) {
 				const previousIndex = this.index;
@@ -1121,14 +1172,18 @@ export class PaginatedMessage {
 
 				if (!this.stopPaginatedMessageCustomIds.includes(action.customId)) {
 					const newIndex = previousIndex === this.index ? previousIndex : this.index;
+
 					const messagePage = await this.resolvePage(newIndex);
+					const components = await this.resolveActions(this.response, targetUser, newIndex);
+
 					const updateOptions = isFunction(messagePage) ? await messagePage(newIndex, this.pages, this) : messagePage;
+					const resolvedOptions = { ...updateOptions, components };
 
 					await safelyReplyToInteraction({
 						messageOrInteraction: interaction,
-						interactionEditReplyContent: updateOptions,
+						interactionEditReplyContent: resolvedOptions,
 						interactionReplyContent: { ...this.#thisMazeWasNotMeantForYouContent, ephemeral: true },
-						componentUpdateContent: updateOptions
+						componentUpdateContent: resolvedOptions
 					});
 				}
 			}
@@ -1239,7 +1294,7 @@ export class PaginatedMessage {
 		return context;
 	}
 
-	private applyTemplate(
+	protected applyTemplate(
 		template: PaginatedMessageMessageOptionsUnion,
 		options: PaginatedMessageMessageOptionsUnion
 	): PaginatedMessageMessageOptionsUnion {

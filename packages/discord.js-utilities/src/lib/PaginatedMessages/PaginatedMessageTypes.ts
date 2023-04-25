@@ -1,7 +1,13 @@
 import type { Awaitable } from '@sapphire/utilities';
 import type {
+	APIActionRowComponent,
+	APIButtonComponent,
 	APIMessage,
+	APIStringSelectComponent,
+	ActionRowData,
 	BaseMessageOptions,
+	ButtonBuilder,
+	ButtonComponentData,
 	ButtonInteraction,
 	CommandInteraction,
 	EmbedBuilder,
@@ -11,6 +17,7 @@ import type {
 	InteractionCollector,
 	InteractionReplyOptions,
 	InteractionUpdateOptions,
+	JSONEncodable,
 	LinkButtonComponentData,
 	Message,
 	MessageComponentInteraction,
@@ -18,6 +25,7 @@ import type {
 	MessageReplyOptions,
 	SelectMenuComponentOptionData,
 	StageChannel,
+	StringSelectMenuBuilder,
 	StringSelectMenuComponentData,
 	StringSelectMenuInteraction,
 	User,
@@ -159,6 +167,11 @@ export type PaginatedMessageWrongUserInteractionReplyFunction = (
 export type PaginatedMessageEmbedResolvable = BaseMessageOptions['embeds'];
 
 export type PaginatedMessageMessageOptionsUnion = Omit<BaseMessageOptions, 'flags'> | WebhookMessageEditOptions;
+
+export type PaginatedMessageComponentUnion =
+	| JSONEncodable<APIActionRowComponent<APIButtonComponent | APIStringSelectComponent>>
+	| ActionRowData<ButtonComponentData | StringSelectMenuComponentData | ButtonBuilder | StringSelectMenuBuilder>
+	| APIActionRowComponent<APIButtonComponent | APIStringSelectComponent>;
 
 /**
  * @internal This is a duplicate of the same interface in `@sapphire/plugin-i18next`

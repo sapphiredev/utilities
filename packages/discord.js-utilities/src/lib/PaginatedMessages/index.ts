@@ -1,3 +1,5 @@
+export * from './JITPaginatedMessage';
+export * from './JITPaginatedMessageTypes';
 export * from './LazyPaginatedMessage';
 export * from './PaginatedFieldMessageEmbed';
 export * from './PaginatedMessage';

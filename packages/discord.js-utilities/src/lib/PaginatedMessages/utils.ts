@@ -8,16 +8,14 @@ import {
 	type APIButtonComponent,
 	type APIStringSelectComponent,
 	type ActionRowComponentOptions,
-	type ActionRowData,
-	type ButtonComponentData,
-	type JSONEncodable,
-	type StringSelectMenuComponentData
+	type ButtonComponentData
 } from 'discord.js';
 import { isAnyInteractableInteraction, isMessageInstance } from '../type-guards';
 import type {
 	PaginatedMessageAction,
 	PaginatedMessageActionButton,
 	PaginatedMessageActionMenu,
+	PaginatedMessageComponentUnion,
 	SafeReplyToInteractionParameters
 } from './PaginatedMessageTypes';
 
@@ -40,13 +38,7 @@ export function isButtonComponentBuilder(component: ButtonBuilder | StringSelect
 	return component.data.type === ComponentType.Button;
 }
 
-export function createPartitionedMessageRow(
-	components: (ButtonBuilder | StringSelectMenuBuilder)[]
-): (
-	| JSONEncodable<APIActionRowComponent<APIButtonComponent | APIStringSelectComponent>>
-	| ActionRowData<ButtonComponentData | StringSelectMenuComponentData | ButtonBuilder | StringSelectMenuBuilder>
-	| APIActionRowComponent<APIButtonComponent | APIStringSelectComponent>
-)[] {
+export function createPartitionedMessageRow(components: (ButtonBuilder | StringSelectMenuBuilder)[]): PaginatedMessageComponentUnion[] {
 	// Partition the components into two groups: buttons and select menus
 	const [messageButtons, selectMenus] = partition(components, isButtonComponentBuilder);
 
