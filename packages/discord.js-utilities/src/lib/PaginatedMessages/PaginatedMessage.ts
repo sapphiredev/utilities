@@ -995,18 +995,20 @@ export class PaginatedMessage {
 					return isMessageButtonInteractionData(interaction)
 						? new ButtonBuilder(interaction)
 						: new StringSelectMenuBuilder({
-								options: await Promise.all(
-									this.pages.map(async (_, index) => {
-										return {
-											...(await this.selectMenuOptions(
-												index + 1,
-												this.resolvePaginatedMessageInternationalizationContext(messageOrInteraction, targetUser)
-											)),
-											value: index.toString()
-										};
-									})
-								),
-								placeholder: this.selectMenuPlaceholder,
+								...(interaction.customId === '@sapphire/paginated-messages.goToPage' && {
+									options: await Promise.all(
+										this.pages.map(async (_, index) => {
+											return {
+												...(await this.selectMenuOptions(
+													index + 1,
+													this.resolvePaginatedMessageInternationalizationContext(messageOrInteraction, targetUser)
+												)),
+												value: index.toString()
+											};
+										})
+									),
+									placeholder: this.selectMenuPlaceholder
+								}),
 								...interaction
 						  });
 				})
