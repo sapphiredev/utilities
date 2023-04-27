@@ -821,7 +821,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@sapphire/discord-utilities@^3.0.1, @sapphire/discord-utilities@^3.0.2, @sapphire/discord-utilities@workspace:^, @sapphire/discord-utilities@workspace:packages/discord-utilities":
+"@sapphire/discord-utilities@^3.0.2, @sapphire/discord-utilities@workspace:^, @sapphire/discord-utilities@workspace:packages/discord-utilities":
   version: 0.0.0-use.local
   resolution: "@sapphire/discord-utilities@workspace:packages/discord-utilities"
   dependencies:
@@ -836,19 +836,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@sapphire/discord.js-utilities@npm:6.0.5":
-  version: 6.0.5
-  resolution: "@sapphire/discord.js-utilities@npm:6.0.5"
-  dependencies:
-    "@sapphire/discord-utilities": ^3.0.1
-    "@sapphire/duration": ^1.1.0
-    "@sapphire/utilities": ^3.11.0
-    tslib: ^2.5.0
-  checksum: 8726777571ba20d62bf2057e624785198ace1c041aad83151080a2b180ab87b904ccacb5125a4590f43f76aaab989088027b07b4c86582ebc294067d10653e02
-  languageName: node
-  linkType: hard
-
-"@sapphire/discord.js-utilities@workspace:^, @sapphire/discord.js-utilities@workspace:packages/discord.js-utilities":
+"@sapphire/discord.js-utilities@6.0.6, @sapphire/discord.js-utilities@workspace:^, @sapphire/discord.js-utilities@workspace:packages/discord.js-utilities":
   version: 0.0.0-use.local
   resolution: "@sapphire/discord.js-utilities@workspace:packages/discord.js-utilities"
   dependencies:
@@ -865,7 +853,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@sapphire/duration@^1.1.0, @sapphire/duration@workspace:^, @sapphire/duration@workspace:packages/duration":
+"@sapphire/duration@workspace:^, @sapphire/duration@workspace:packages/duration":
   version: 0.0.0-use.local
   resolution: "@sapphire/duration@workspace:packages/duration"
   dependencies:
@@ -942,20 +930,20 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@sapphire/framework@npm:^4.4.1":
-  version: 4.4.1
-  resolution: "@sapphire/framework@npm:4.4.1"
+"@sapphire/framework@npm:^4.4.2":
+  version: 4.4.2
+  resolution: "@sapphire/framework@npm:4.4.2"
   dependencies:
     "@discordjs/builders": ^1.6.1
     "@sapphire/discord-utilities": ^3.0.2
-    "@sapphire/discord.js-utilities": 6.0.5
+    "@sapphire/discord.js-utilities": 6.0.6
     "@sapphire/lexure": ^1.1.3
     "@sapphire/pieces": ^3.6.2
     "@sapphire/ratelimits": ^2.4.6
-    "@sapphire/result": ^2.6.1
+    "@sapphire/result": ^2.6.2
     "@sapphire/stopwatch": ^1.5.0
     "@sapphire/utilities": ^3.11.1
-  checksum: e7a92461b97f03d55ffc5330430f22803f33616d4b923d36658e2115c13afa3afc226842d549b8625397adb9f06af81943250bff27b68d398a43ced3ef67ba57
+  checksum: 63fd7c37766010845b29bba50da3f9a685d112030cd5b965594d71b8675e56c2f42ebd20e083cde45a9c639608216c6b0fd003f714f43487b72abc1c474b38ae
   languageName: node
   linkType: hard
 
@@ -1038,7 +1026,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@sapphire/result@^2.6.0, @sapphire/result@^2.6.1, @sapphire/result@workspace:^, @sapphire/result@workspace:packages/result":
+"@sapphire/result@^2.6.0, @sapphire/result@^2.6.2, @sapphire/result@workspace:^, @sapphire/result@workspace:packages/result":
   version: 0.0.0-use.local
   resolution: "@sapphire/result@workspace:packages/result"
   dependencies:
@@ -5038,15 +5026,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nock@npm:^13.3.0":
-  version: 13.3.0
-  resolution: "nock@npm:13.3.0"
+"nock@npm:^13.3.1":
+  version: 13.3.1
+  resolution: "nock@npm:13.3.1"
   dependencies:
     debug: ^4.1.0
     json-stringify-safe: ^5.0.1
     lodash: ^4.17.21
     propagate: ^2.0.0
-  checksum: 118d04e95a17f493898a82b5dfecc03762776e1980d9c3b2077479747e60b77109c5f7c0df969d1a8f6039260abe5961733553a5841f0f627bb35238576a0009
+  checksum: 0f2a73e8432f6b5650656c53eef99f9e5bbde3df538dc2f07057edc4438cfc61a394c9d06dd82e60f6e86d42433f20f3c04364a1f088beee7bf03a24e3f0fdd0
   languageName: node
   linkType: hard
 
@@ -5911,7 +5899,7 @@ __metadata:
     "@favware/cliff-jumper": ^2.0.0
     "@favware/npm-deprecate": ^1.0.7
     "@favware/rollup-type-bundler": ^2.0.0
-    "@sapphire/framework": ^4.4.1
+    "@sapphire/framework": ^4.4.2
     "@types/lodash": ^4.14.194
     "@types/node": ^18.16.1
     "@types/ws": ^8.5.4
@@ -5927,7 +5915,7 @@ __metadata:
     husky: ^8.0.3
     lint-staged: ^13.2.2
     lodash: ^4.17.21
-    nock: ^13.3.0
+    nock: ^13.3.1
     prettier: ^2.8.8
     pretty-quick: ^3.1.3
     rimraf: ^5.0.0
