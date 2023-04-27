@@ -22,7 +22,14 @@ import type {
 } from './PaginatedMessageTypes';
 
 export function actionIsButtonOrMenu(action: PaginatedMessageAction): action is PaginatedMessageActionButton | PaginatedMessageActionMenu {
-	return action.type === ComponentType.SelectMenu || action.type === ComponentType.Button;
+	return (
+		action.type === ComponentType.Button ||
+		action.type === ComponentType.StringSelect ||
+		action.type === ComponentType.UserSelect ||
+		action.type === ComponentType.RoleSelect ||
+		action.type === ComponentType.MentionableSelect ||
+		action.type === ComponentType.ChannelSelect
+	);
 }
 
 export function isMessageButtonInteractionData(interaction: ActionRowComponentOptions): interaction is ButtonComponentData {
