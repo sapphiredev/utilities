@@ -67,7 +67,7 @@ export interface PaginatedMessageActionLink extends LinkButtonComponentData {}
  * ```typescript
  * const StopAction: PaginatedMessageActionMenu {
  *   customId: 'CustomSelectMenu',
- *   type: Constants.MessageComponentTypes.SELECT_MENU,
+ *   type: ComponentType.StringSelect,
  *   run: ({ handler, interaction }) => interaction.isSelectMenu() && (handler.index = parseInt(interaction.values[0], 10))
  * }
  * ```
