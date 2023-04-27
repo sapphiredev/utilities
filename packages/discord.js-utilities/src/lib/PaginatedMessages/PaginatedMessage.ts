@@ -362,7 +362,7 @@ export class PaginatedMessage {
 	 *     style: 'PRIMARY',
 	 *     label: 'My Button',
 	 *     customId: 'custom_button',
-	 *     type: Constants.MessageComponentTypes.BUTTON,
+	 *     type: ComponentType.Button,
 	 *     run: (context) => console.log(context)
 	 *   }
 	 * ], true);
@@ -379,7 +379,7 @@ export class PaginatedMessage {
 	 *     label: 'Sapphire Website',
 	 *     emoji: '🔷',
 	 *     url: 'https://sapphirejs.dev',
-	 *     type: Constants.MessageComponentTypes.BUTTON
+	 *     type: ComponentType.Button
 	 *   }
 	 * ], true);
 	 * ```
@@ -392,7 +392,7 @@ export class PaginatedMessage {
 	 * display.setActions([
 	 *   {
 	 *     customId: 'custom_menu',
-	 *     type: Constants.MessageComponentTypes.SELECT_MENU,
+	 *     type: ComponentType.StringSelect,
 	 *     run: (context) => console.log(context) // Do something here
 	 *   }
 	 * ], true);
