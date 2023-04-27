@@ -263,8 +263,9 @@ export class BitField<Flags extends Record<string, number> | Record<string, bigi
 	}
 }
 
-type PrimitiveType<T> = T extends number ? number : bigint;
-type MaybeArray<T> = T | readonly T[];
+export type PrimitiveType<T> = T extends number ? number : bigint;
+
+export type MaybeArray<T> = T | readonly T[];
 
 /**
  * Resolves the type of the values the specified {@link BitField} takes.
