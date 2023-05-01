@@ -1,8 +1,9 @@
 import { isFunction } from '@sapphire/utilities';
-import { EmbedBuilder } from 'discord.js';
+import { EmbedBuilder, Message, User } from 'discord.js';
 import { MessageBuilder } from '../builders/MessageBuilder';
 import { PaginatedMessage } from './PaginatedMessage';
 import type { PaginatedMessagePage } from './PaginatedMessageTypes';
+import type { AnyInteractableInteraction } from '../utility-types';
 
 /**
  * This is a LazyPaginatedMessage. Instead of resolving all pages that are functions on {@link PaginatedMessage.run} will resolve when requested.
@@ -11,18 +12,25 @@ export class LazyPaginatedMessage extends PaginatedMessage {
 	/**
 	 * Only resolves the page corresponding with the handler's current index.
 	 */
-	public override async resolvePagesOnRun(): Promise<void> {
-		await this.resolvePage(this.index);
+	public override async resolvePagesOnRun(messageOrInteraction: Message | AnyInteractableInteraction, target: User): Promise<void> {
+		await this.resolvePage(messageOrInteraction, target, this.index);
 	}
 
 	/**
 	 * Resolves the page corresponding with the given index. This also resolves the index's before and after the given index.
+	 * @param messageOrInteraction The message or interaction that triggered this {@link LazyPaginatedMessage}.
+	 * @param target The user who will be able to interact with the buttons of this {@link LazyPaginatedMessage}.
 	 * @param index The index to resolve. Defaults to handler's current index.
+	 * @returns
 	 */
-	public override async resolvePage(index: number): Promise<PaginatedMessagePage> {
-		const promises = [super.resolvePage(index)];
-		if (this.hasPage(index - 1)) promises.push(super.resolvePage(index - 1));
-		if (this.hasPage(index + 1)) promises.push(super.resolvePage(index + 1));
+	public override async resolvePage(
+		messageOrInteraction: Message | AnyInteractableInteraction,
+		target: User,
+		index: number
+	): Promise<PaginatedMessagePage> {
+		const promises = [super.resolvePage(messageOrInteraction, target, index)];
+		if (this.hasPage(index - 1)) promises.push(super.resolvePage(messageOrInteraction, target, index - 1));
+		if (this.hasPage(index + 1)) promises.push(super.resolvePage(messageOrInteraction, target, index + 1));
 
 		const [result] = await Promise.all(promises);
 		return result;
