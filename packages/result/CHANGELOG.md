@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/result@2.6.3](https://github.com/sapphiredev/utilities/compare/@sapphire/result@2.6.2...@sapphire/result@2.6.3) - (2023-05-02)
+
+## 🏠 Refactor
+
+- **result:** Internally rework code to ensure typings can be generated without conflicts ([83d698e](https://github.com/sapphiredev/utilities/commit/83d698e5b0f3e552a3c97e1d9146fc74426b7609))
+
 # [@sapphire/result@2.6.2](https://github.com/sapphiredev/utilities/compare/@sapphire/result@2.6.1...@sapphire/result@2.6.2) - (2023-04-17)
 
 ## 🐛 Bug Fixes
