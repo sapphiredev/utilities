@@ -1081,6 +1081,11 @@ export class PaginatedMessage {
 
 		// Load the page and return it:
 		const resolvedPage = await this.handlePageLoad(this.pages[index], index);
+		if (resolvedPage.actions) {
+			this.addPageActions(resolvedPage.actions, index);
+		}
+
+		const pageSpecificActions = this.pageActions.at(index);
 		const resolvedComponents: PaginatedMessageComponentUnion[] = [];
 
 		if (this.pages.length > 1) {
@@ -1090,10 +1095,8 @@ export class PaginatedMessage {
 			resolvedComponents.push(...sharedComponents);
 		}
 
-		if (!isNullish(resolvedPage.actions)) {
-			this.setPageActions(resolvedPage.actions, index);
-
-			const pageActions = await this.handleActionLoad([...resolvedPage.actions.values()], messageOrInteraction, target);
+		if (pageSpecificActions) {
+			const pageActions = await this.handleActionLoad([...pageSpecificActions.values()], messageOrInteraction, target);
 			const pageComponents = createPartitionedMessageRow(pageActions);
 
 			resolvedComponents.push(...pageComponents);
