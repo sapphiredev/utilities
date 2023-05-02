@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/discord-utilities@3.0.3](https://github.com/sapphiredev/utilities/compare/@sapphire/discord-utilities@3.0.2...@sapphire/discord-utilities@3.0.3) - (2023-05-02)
+
+## 🐛 Bug Fixes
+
+- **discord-utilities:** Update dev dep ([48988d6](https://github.com/sapphiredev/utilities/commit/48988d65bfdeec76515268f23b381b99ea9e5525))
+- **discord-utilities:** Update discord-api-types dependency ([db67971](https://github.com/sapphiredev/utilities/commit/db6797186c10e9cf32d270c5bb89a6091289a110))
+
 # [@sapphire/discord-utilities@3.0.2](https://github.com/sapphiredev/utilities/compare/@sapphire/discord-utilities@3.0.1...@sapphire/discord-utilities@3.0.2) - (2023-04-12)
 
 ## 🐛 Bug Fixes
