@@ -9,10 +9,10 @@ import {
 	IntentsBitField,
 	InteractionCollector,
 	InteractionType,
-	isJSONEncodable,
 	Partials,
 	StringSelectMenuBuilder,
 	StringSelectMenuInteraction,
+	isJSONEncodable,
 	userMention,
 	type APIEmbed,
 	type APIMessage,
@@ -834,13 +834,31 @@ export class PaginatedMessage {
 	/**
 	 * Clear all actions for a page and set the new ones.
 	 * @param actions The actions to set.
-	 * @param index The index of the page to set the actions to.
+	 * @param index The index of the page to set the actions to. **This is 0-based**.
+	 * @param includeDefaultActions Whether to merge in the {@link PaginatedMessage.defaultActions} when setting the actions for the page.
+	 * If you set this to true then you do not need to manually add `...PaginatedMessage.defaultActions` as seen in the first example.
+	 * The default value is `false` in order to match {@link PaginatedMessage.setActions}.
+	 *
+	 * @remark Add a select menu to the first page, while preserving all default actions:
+	 * @example
+	 * ```typescript
+	 * const display = new PaginatedMessage();
+	 *
+	 * display.setPageActions([
+	 *   {
+	 *     customId: 'custom_menu',
+	 *     type: ComponentType.StringSelect,
+	 *     run: (context) => console.log(context) // Do something here
+	 *   }
+	 * ], 0, true);
+	 * ```
+	 * @see {@link PaginatedMessage.setActions} for more examples on how to structure the action.
 	 */
-	public setPageActions(actions: PaginatedMessageAction[], index: number) {
+	public setPageActions(actions: PaginatedMessageAction[], index: number, includeDefaultActions = false) {
 		if (index < 0 || index > this.pages.length - 1) throw new Error('Provided index is out of bounds');
 
 		this.pageActions[index]?.clear();
-		this.addPageActions(actions, index);
+		this.addPageActions([...(includeDefaultActions ? PaginatedMessage.defaultActions : []), ...actions], index);
 		return this;
 	}
 
@@ -848,11 +866,15 @@ export class PaginatedMessage {
 	 * Add the provided actions to a page.
 	 * @param actions The actions to add.
 	 * @param index The index of the page to add the actions to.
+	 * @see {@link PaginatedMessage.setActions} for examples on how to structure the actions.
 	 */
 	public addPageActions(actions: PaginatedMessageAction[], index: number) {
 		if (index < 0 || index > this.pages.length - 1) throw new Error('Provided index is out of bounds');
 
-		for (const action of actions) this.addPageAction(action, index);
+		for (const action of actions) {
+			this.addPageAction(action, index);
+		}
+
 		return this;
 	}
 
@@ -860,6 +882,7 @@ export class PaginatedMessage {
 	 * Add the provided action to a page.
 	 * @param action The action to add.
 	 * @param index The index of the page to add the action to.
+	 * @see {@link PaginatedMessage.setActions} for examples on how to structure the action.
 	 */
 	public addPageAction(action: PaginatedMessageAction, index: number) {
 		if (index < 0 || index > this.pages.length - 1) throw new Error('Provided index is out of bounds');
