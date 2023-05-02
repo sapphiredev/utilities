@@ -64,7 +64,7 @@
 		"@favware/rollup-type-bundler": "^2.0.0",
 		"tsup": "^6.7.0",
 		"typedoc": "^0.24.6",
-		"typedoc-json-parser": "^7.3.1",
+		"typedoc-json-parser": "^7.3.2",
 		"typescript": "^5.0.4"
 	}
 }
