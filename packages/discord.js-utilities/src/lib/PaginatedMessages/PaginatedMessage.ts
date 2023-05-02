@@ -1284,7 +1284,7 @@ export class PaginatedMessage {
 							interactionReplyContent: { ...this.#thisMazeWasNotMeantForYouContent, ephemeral: true },
 							componentUpdateContent: updateOptions
 						});
-					} else if (!interaction.deferred) {
+					} else if (!interaction.replied && !interaction.deferred) {
 						await interaction.deferUpdate();
 					}
 				}
