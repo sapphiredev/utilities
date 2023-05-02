@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/eslint-plugin-result@1.0.2](https://github.com/sapphiredev/utilities/compare/@sapphire/eslint-plugin-result@1.0.1...@sapphire/eslint-plugin-result@1.0.2) - (2023-05-02)
+
+## 🐛 Bug Fixes
+
+- **eslint-plugin-result:** Update dependencies ([49fc9c9](https://github.com/sapphiredev/utilities/commit/49fc9c975c22567e74b585651d2a6e62cbb42562))
+- **eslint-plugin-result:** Ensure the correct .d.ts is read ([ad2701e](https://github.com/sapphiredev/utilities/commit/ad2701e4154200cb0701993b856aad88a8d4a04f))
+
 # [@sapphire/eslint-plugin-result@1.0.1](https://github.com/sapphiredev/utilities/compare/@sapphire/eslint-plugin-result@1.0.0...@sapphire/eslint-plugin-result@1.0.1) - (2023-04-10)
 
 ## 🐛 Bug Fixes
