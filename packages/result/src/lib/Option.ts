@@ -1,10 +1,10 @@
 import { isFunction, type Awaitable } from './common/utils';
-import { none as _none, None } from './Option/None';
-import { some as _some, Some } from './Option/Some';
+import { createNone, OptionNone } from './Option/None';
+import { createSome, OptionSome } from './Option/Some';
 
-export * from './Option/IOption';
+export type * from './Option/IOption';
 export * from './Option/OptionError';
-export { _some as some, _none as none };
+export { createSome as some, createNone as none, type OptionNone as None, type OptionSome as Some };
 
 /**
  * The union of the two variations of `Option`.
@@ -23,7 +23,7 @@ export namespace Option {
 	export function is<T>(value: Option<T>): true;
 	export function is(value: any): value is Option<unknown>;
 	export function is(value: any) {
-		return value instanceof None || value instanceof Some;
+		return value instanceof OptionNone || value instanceof OptionSome;
 	}
 
 	/**
@@ -86,11 +86,11 @@ export namespace Option {
 		return none;
 	}
 
-	export const none = _none;
-	export const some = _some;
+	export const none = createNone;
+	export const some = createSome;
 
-	export type Some<T> = import('./Option/Some').Some<T>;
-	export type None = import('./Option/None').None;
+	export type Some<T> = OptionSome<T>;
+	export type None = OptionNone;
 
 	export type UnwrapSome<T extends Option<any>> = T extends Some<infer S> ? S : never;
 	export type UnwrapSomeArray<T extends readonly Option<any>[] | []> = {
