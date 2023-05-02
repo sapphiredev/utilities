@@ -1,6 +1,6 @@
 {
 	"name": "@sapphire/eslint-plugin-result",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"description": "A TypeScript ESLint plugin for @sapphire/result",
 	"author": "@sapphire",
 	"license": "MIT",
