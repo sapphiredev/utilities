@@ -1,12 +1,12 @@
 import type { Awaitable } from '../common/utils';
-import { none, type None } from '../Option/None';
-import { some, type Some } from '../Option/Some';
+import { createNone, type OptionNone } from '../Option/None';
+import { createSome, type OptionSome } from '../Option/Some';
 import type { Result } from '../Result';
 import type { IResult } from './IResult';
-import type { Ok } from './Ok';
+import type { ResultOk } from './Ok';
 import { ResultError } from './ResultError';
 
-export class Err<E> implements IResult<any, E> {
+export class ResultErr<E> implements IResult<any, E> {
 	private readonly error: E;
 
 	public constructor(error: E) {
@@ -22,7 +22,7 @@ export class Err<E> implements IResult<any, E> {
 		return false;
 	}
 
-	public isErr(): this is Err<E> {
+	public isErr(): this is ResultErr<E> {
 		return true;
 	}
 
@@ -30,12 +30,12 @@ export class Err<E> implements IResult<any, E> {
 		return cb(this.error);
 	}
 
-	public ok(): None {
-		return none;
+	public ok(): OptionNone {
+		return createNone;
 	}
 
-	public err(): Some<E> {
-		return some(this.error);
+	public err(): OptionSome<E> {
+		return createSome(this.error);
 	}
 
 	public map(cb?: (value: never) => unknown): this;
@@ -58,8 +58,8 @@ export class Err<E> implements IResult<any, E> {
 		return op(this.error);
 	}
 
-	public mapErr<F>(cb: (error: E) => F): Err<F> {
-		return err(cb(this.error));
+	public mapErr<F>(cb: (error: E) => F): ResultErr<F> {
+		return createErr(cb(this.error));
 	}
 
 	public mapErrInto<R extends Result<any, any>>(cb: (error: E) => R): R {
@@ -147,8 +147,8 @@ export class Err<E> implements IResult<any, E> {
 		return this.error === error;
 	}
 
-	public transpose(): Some<this> {
-		return some(this);
+	public transpose(): OptionSome<this> {
+		return createSome(this);
 	}
 
 	public flatten(): this {
@@ -159,17 +159,17 @@ export class Err<E> implements IResult<any, E> {
 		return this.error;
 	}
 
-	public async intoPromise(): Promise<Err<Awaited<E>>> {
-		return err(await this.error);
+	public async intoPromise(): Promise<ResultErr<Awaited<E>>> {
+		return createErr(await this.error);
 	}
 
-	public eq(other: Ok<any>): false;
+	public eq(other: ResultOk<any>): false;
 	public eq(other: Result<any, E>): boolean;
 	public eq(other: Result<any, E>): boolean {
 		return other.isErrAnd((error) => this.error === error);
 	}
 
-	public ne(other: Ok<any>): true;
+	public ne(other: ResultOk<any>): true;
 	public ne(other: Result<any, E>): boolean;
 	public ne(other: Result<any, E>): boolean {
 		return !this.eq(other);
@@ -188,7 +188,7 @@ export class Err<E> implements IResult<any, E> {
  * Creates an Err with no error.
  * @return An erroneous Result.
  */
-export function err(): Err<unknown>;
+export function createErr(): ResultErr<unknown>;
 
 /**
  * Creates an Err.
@@ -196,7 +196,7 @@ export function err(): Err<unknown>;
  * @param x Value to use.
  * @return An erroneous Result.
  */
-export function err<E>(x: E): Err<E>;
-export function err<E>(x?: E): Err<unknown> {
-	return new Err(x);
+export function createErr<E>(x: E): ResultErr<E>;
+export function createErr<E>(x?: E): ResultErr<unknown> {
+	return new ResultErr(x);
 }
