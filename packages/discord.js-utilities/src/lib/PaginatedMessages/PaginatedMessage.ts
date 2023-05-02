@@ -484,6 +484,31 @@ export class PaginatedMessage {
 	}
 
 	/**
+	 * Update the current page.
+	 * @param page The content to update the page with.
+	 */
+	public async updateCurrentPage(page: PaginatedMessagePage): Promise<this> {
+		if (this.response === null) {
+			throw new Error('You cannot update a page before responding to the interaction.');
+		}
+
+		const currentIndex = this.index;
+
+		this.pages[currentIndex] = page;
+		const messagePage = await this.handlePageLoad(page, currentIndex);
+		this.messages[currentIndex] = messagePage;
+
+		await safelyReplyToInteraction({
+			messageOrInteraction: this.response,
+			interactionEditReplyContent: messagePage,
+			interactionReplyContent: { ...this.#thisMazeWasNotMeantForYouContent, ephemeral: true },
+			componentUpdateContent: messagePage
+		});
+
+		return this;
+	}
+
+	/**
 	 * Adds a page to the existing ones using a {@link MessageBuilder}. This will be added as the last page.
 	 * @param builder Either a callback whose first parameter is `new MessageBuilder()`, or an already constructed {@link MessageBuilder}
 	 * @example
