@@ -839,6 +839,17 @@ export class PaginatedMessage {
 	 * If you set this to true then you do not need to manually add `...PaginatedMessage.defaultActions` as seen in the first example.
 	 * The default value is `false` in order to match {@link PaginatedMessage.setActions}.
 	 *
+	 * @remark Internally we check if the provided index exists.
+	 * This means that calling this function _before_ calling any of the methods below this will not work as the amount of pages will always be 0,
+	 * thus the index will always be out of bounds. That said, make sure you first define your pages and _then_ define your actions for those pages.
+	 * - {@link PaginatedMessage.addAsyncPageEmbed}
+	 * - {@link PaginatedMessage.addPageBuilder}
+	 * - {@link PaginatedMessage.addPageContent}
+	 * - {@link PaginatedMessage.addPageEmbed}
+	 * - {@link PaginatedMessage.addPageEmbeds}
+	 * - {@link PaginatedMessage.addPages}
+	 * - {@link PaginatedMessage.setPages}
+	 *
 	 * @remark Add a select menu to the first page, while preserving all default actions:
 	 * @example
 	 * ```typescript
@@ -867,6 +878,17 @@ export class PaginatedMessage {
 	 * @param actions The actions to add.
 	 * @param index The index of the page to add the actions to.
 	 * @see {@link PaginatedMessage.setActions} for examples on how to structure the actions.
+	 *
+	 * @remark Internally we check if the provided index exists.
+	 * This means that calling this function _before_ calling any of the methods below this will not work as the amount of pages will always be 0,
+	 * thus the index will always be out of bounds. That said, make sure you first define your pages and _then_ define your actions for those pages.
+	 * - {@link PaginatedMessage.addAsyncPageEmbed}
+	 * - {@link PaginatedMessage.addPageBuilder}
+	 * - {@link PaginatedMessage.addPageContent}
+	 * - {@link PaginatedMessage.addPageEmbed}
+	 * - {@link PaginatedMessage.addPageEmbeds}
+	 * - {@link PaginatedMessage.addPages}
+	 * - {@link PaginatedMessage.setPages}
 	 */
 	public addPageActions(actions: PaginatedMessageAction[], index: number) {
 		if (index < 0 || index > this.pages.length - 1) throw new Error('Provided index is out of bounds');
@@ -883,6 +905,17 @@ export class PaginatedMessage {
 	 * @param action The action to add.
 	 * @param index The index of the page to add the action to.
 	 * @see {@link PaginatedMessage.setActions} for examples on how to structure the action.
+	 *
+	 * @remark Internally we check if the provided index exists.
+	 * This means that calling this function _before_ calling any of the methods below this will not work as the amount of pages will always be 0,
+	 * thus the index will always be out of bounds. That said, make sure you first define your pages and _then_ define your actions for those pages.
+	 * - {@link PaginatedMessage.addAsyncPageEmbed}
+	 * - {@link PaginatedMessage.addPageBuilder}
+	 * - {@link PaginatedMessage.addPageContent}
+	 * - {@link PaginatedMessage.addPageEmbed}
+	 * - {@link PaginatedMessage.addPageEmbeds}
+	 * - {@link PaginatedMessage.addPages}
+	 * - {@link PaginatedMessage.setPages}
 	 */
 	public addPageAction(action: PaginatedMessageAction, index: number) {
 		if (index < 0 || index > this.pages.length - 1) throw new Error('Provided index is out of bounds');
