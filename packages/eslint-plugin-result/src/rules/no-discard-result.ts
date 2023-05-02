@@ -10,7 +10,7 @@ const messages = {
 
 type Messages = keyof typeof messages;
 
-const resultPath = require.resolve('@sapphire/result').split('/').slice(0, -1).concat('lib', 'Result.d.ts').join('/');
+const resultPath = require.resolve('@sapphire/result').split('/').slice(0, -1).concat('index.d.ts').join('/');
 
 function getSapphireResultType(service: ParserServices, checker: ts.TypeChecker): ts.Type | null {
 	const file = service.program.getSourceFile(resultPath);
