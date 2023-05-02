@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/discord.js-utilities@6.0.7](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@6.0.6...@sapphire/discord.js-utilities@6.0.7) - (2023-05-02)
+
+## 🐛 Bug Fixes
+
+- **PaginatedMessage:** Only add options and placeholder to the built-in StringSelectMenu (#575) ([49d588b](https://github.com/sapphiredev/utilities/commit/49d588b007754bfae7ffa59be6ec0d1c266447f4))
+- **paginatedmessage:** Fix checks for `actionIsButtonOrMenu` ([3f5d500](https://github.com/sapphiredev/utilities/commit/3f5d5000701c34328038c8a3e3dede021932a27b))
+
+## 📝 Documentation
+
+- **paginatedmessage:** Fix examples ([c080740](https://github.com/sapphiredev/utilities/commit/c080740a6eeb151263827836d76463430624d62a))
+
 # [@sapphire/discord.js-utilities@6.0.6](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@6.0.5...@sapphire/discord.js-utilities@6.0.6) - (2023-04-17)
 
 ## 🐛 Bug Fixes
