@@ -835,9 +835,6 @@ export class PaginatedMessage {
 	 * Clear all actions for a page and set the new ones.
 	 * @param actions The actions to set.
 	 * @param index The index of the page to set the actions to. **This is 0-based**.
-	 * @param includeDefaultActions Whether to merge in the {@link PaginatedMessage.defaultActions} when setting the actions for the page.
-	 * If you set this to true then you do not need to manually add `...PaginatedMessage.defaultActions` as seen in the first example.
-	 * The default value is `false` in order to match {@link PaginatedMessage.setActions}.
 	 *
 	 * @remark Internally we check if the provided index exists.
 	 * This means that calling this function _before_ calling any of the methods below this will not work as the amount of pages will always be 0,
@@ -861,15 +858,15 @@ export class PaginatedMessage {
 	 *     type: ComponentType.StringSelect,
 	 *     run: (context) => console.log(context) // Do something here
 	 *   }
-	 * ], 0, true);
+	 * ], 0);
 	 * ```
 	 * @see {@link PaginatedMessage.setActions} for more examples on how to structure the action.
 	 */
-	public setPageActions(actions: PaginatedMessageAction[], index: number, includeDefaultActions = false) {
+	public setPageActions(actions: PaginatedMessageAction[], index: number) {
 		if (index < 0 || index > this.pages.length - 1) throw new Error('Provided index is out of bounds');
 
 		this.pageActions[index]?.clear();
-		this.addPageActions([...(includeDefaultActions ? PaginatedMessage.defaultActions : []), ...actions], index);
+		this.addPageActions(actions, index);
 		return this;
 	}
 
