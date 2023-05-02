@@ -1,10 +1,10 @@
 import { isFunction, type Awaitable } from './common/utils';
-import { Err, err as _err } from './Result/Err';
-import { Ok, ok as _ok } from './Result/Ok';
+import { createErr, ResultErr } from './Result/Err';
+import { createOk, ResultOk } from './Result/Ok';
 
-export * from './Result/IResult';
+export type * from './Result/IResult';
 export * from './Result/ResultError';
-export { _ok as ok, _err as err };
+export { createOk as ok, createErr as err, type ResultOk as Ok, type ResultErr as Err };
 
 /**
  * The union of the two variations of `Result`.
@@ -23,7 +23,7 @@ export namespace Result {
 	export function is<T, E>(value: Result<T, E>): true;
 	export function is(value: any): value is Result<unknown, unknown>;
 	export function is(value: any) {
-		return value instanceof Ok || value instanceof Err;
+		return value instanceof ResultOk || value instanceof ResultErr;
 	}
 
 	/**
@@ -91,11 +91,11 @@ export namespace Result {
 		return err(errors as UnwrapErrArray<T>);
 	}
 
-	export const err = _err;
-	export const ok = _ok;
+	export const err = createErr;
+	export const ok = createOk;
 
-	export type Err<E> = import('./Result/Err').Err<E>;
-	export type Ok<T> = import('./Result/Ok').Ok<T>;
+	export type Err<E> = ResultErr<E>;
+	export type Ok<T> = ResultOk<T>;
 
 	export type UnwrapOk<T extends Result<any, any>> = T extends Ok<infer S> ? S : never;
 	export type UnwrapErr<T extends Result<any, any>> = T extends Err<infer S> ? S : never;
