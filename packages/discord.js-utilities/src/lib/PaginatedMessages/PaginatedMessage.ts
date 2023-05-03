@@ -25,7 +25,11 @@ import {
 	type Snowflake,
 	type TextBasedChannel,
 	type User,
-	type WebhookMessageEditOptions
+	type WebhookMessageEditOptions,
+	ActionRowBuilder,
+	type APIActionRowComponent,
+	type APIButtonComponent,
+	type APIStringSelectComponent
 } from 'discord.js';
 import { MessageBuilder } from '../builders/MessageBuilder';
 import { isAnyInteraction, isGuildBasedChannel, isMessageInstance, isStageChannel } from '../type-guards';
@@ -486,6 +490,8 @@ export class PaginatedMessage {
 	/**
 	 * Update the current page.
 	 * @param page The content to update the page with.
+	 *
+	 * @remark This method can only be used after {@link PaginatedMessage.run} has been used.
 	 */
 	public async updateCurrentPage(page: PaginatedMessagePage): Promise<this> {
 		if (this.response === null) {
@@ -502,7 +508,7 @@ export class PaginatedMessage {
 		const newPage = await this.handlePageLoad(page, currentIndex);
 
 		this.pages[currentIndex] = page;
-		this.messages[currentIndex] = { ...newPage, components: oldOptions?.components };
+		this.messages[currentIndex] = { ...newPage, components: newPage.components ?? oldOptions?.components };
 
 		return this;
 	}
@@ -1116,6 +1122,22 @@ export class PaginatedMessage {
 	}
 
 	/**
+	 * Get the components of a page.
+	 * @param index The index of the page that has the components.
+	 */
+	public async getComponents(index: number): Promise<ActionRowBuilder<ButtonBuilder | StringSelectMenuBuilder>[] | undefined> {
+		const page = this.messages.at(index);
+		if (isNullish(page)) return undefined;
+
+		const options = isFunction(page) ? await page(this.index, this.pages, this) : page;
+		if (isNullish(options.components)) return undefined;
+
+		return options.components.map((row) => {
+			return ActionRowBuilder.from(row as APIActionRowComponent<APIButtonComponent | APIStringSelectComponent>);
+		});
+	}
+
+	/**
 	 * Sets up the message.
 	 *
 	 * @param messageOrInteraction The message or interaction that triggered this {@link PaginatedMessage}.
@@ -1257,7 +1279,10 @@ export class PaginatedMessage {
 			// Update the response to the latest interaction
 			this.response = interaction;
 
-			const action = this.getAction(interaction.customId, this.index)!;
+			const action = this.getAction(interaction.customId, this.index);
+			if (isNullish(action)) {
+				throw new Error('There was no action for the provided custom ID');
+			}
 
 			if (actionIsButtonOrMenu(action)) {
 				const previousIndex = this.index;
@@ -1460,12 +1485,9 @@ export class PaginatedMessage {
 	}
 
 	private getAction(customId: string, index: number): PaginatedMessageAction | undefined {
-		let action = this.actions.get(customId);
-		if (isNullish(action)) {
-			action = this.pageActions[index]!.get(customId);
-		}
-
-		return action;
+		const action = this.actions.get(customId);
+		if (action) return action;
+		return this.pageActions.at(index)?.get(customId);
 	}
 
 	/**
