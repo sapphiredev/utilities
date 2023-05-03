@@ -1116,6 +1116,7 @@ export class PaginatedMessage {
 	public clone(): PaginatedMessage {
 		const clone = new this.constructor({ pages: this.pages, actions: [] }).setIndex(this.index).setIdle(this.idle);
 		clone.actions = this.actions;
+		clone.pageActions = this.pageActions;
 		clone.response = this.response;
 		clone.template = this.template;
 		return clone;
