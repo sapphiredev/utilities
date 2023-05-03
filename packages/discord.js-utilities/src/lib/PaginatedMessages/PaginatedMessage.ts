@@ -1272,20 +1272,16 @@ export class PaginatedMessage {
 				});
 
 				if (!this.stopPaginatedMessageCustomIds.includes(action.customId)) {
-					if (PaginatedMessage.defaultActions.some((entry) => actionIsButtonOrMenu(entry) && action.customId === entry.customId)) {
-						const newIndex = previousIndex === this.index ? previousIndex : this.index;
-						const messagePage = await this.resolvePage(this.response, targetUser, newIndex);
-						const updateOptions = isFunction(messagePage) ? await messagePage(newIndex, this.pages, this) : messagePage;
+					const newIndex = previousIndex === this.index ? previousIndex : this.index;
+					const messagePage = await this.resolvePage(this.response, targetUser, newIndex);
+					const updateOptions = isFunction(messagePage) ? await messagePage(newIndex, this.pages, this) : messagePage;
 
-						await safelyReplyToInteraction({
-							messageOrInteraction: interaction,
-							interactionEditReplyContent: updateOptions,
-							interactionReplyContent: { ...this.#thisMazeWasNotMeantForYouContent, ephemeral: true },
-							componentUpdateContent: updateOptions
-						});
-					} else if (!interaction.replied && !interaction.deferred) {
-						await interaction.deferUpdate();
-					}
+					await safelyReplyToInteraction({
+						messageOrInteraction: interaction,
+						interactionEditReplyContent: updateOptions,
+						interactionReplyContent: { ...this.#thisMazeWasNotMeantForYouContent, ephemeral: true },
+						componentUpdateContent: updateOptions
+					});
 				}
 			}
 		} else {
