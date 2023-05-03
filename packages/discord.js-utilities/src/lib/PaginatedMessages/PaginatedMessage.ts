@@ -494,16 +494,15 @@ export class PaginatedMessage {
 
 		const currentIndex = this.index;
 
-		this.pages[currentIndex] = page;
-		const messagePage = await this.handlePageLoad(page, currentIndex);
-		this.messages[currentIndex] = messagePage;
+		// Retrieve the current page
+		const oldPage = this.messages[currentIndex];
+		const oldOptions = isFunction(oldPage) ? await oldPage(currentIndex, this.pages, this) : oldPage;
 
-		await safelyReplyToInteraction({
-			messageOrInteraction: this.response,
-			interactionEditReplyContent: messagePage,
-			interactionReplyContent: { ...this.#thisMazeWasNotMeantForYouContent, ephemeral: true },
-			componentUpdateContent: messagePage
-		});
+		// Load the new page
+		const newPage = await this.handlePageLoad(page, currentIndex);
+
+		this.pages[currentIndex] = page;
+		this.messages[currentIndex] = { ...newPage, components: oldOptions?.components };
 
 		return this;
 	}
