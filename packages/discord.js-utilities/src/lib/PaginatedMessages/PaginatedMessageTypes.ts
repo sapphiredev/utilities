@@ -101,7 +101,11 @@ export type PaginatedMessageActionStringMenu = StringSelectMenuComponentData & P
  * const UserMenu: PaginatedMessageActionUserMenu = {
  *   customId: 'CustomUserSelectMenu',
  *   type: ComponentType.ChannelSelect,
- *   run: ({ interaction }) => console.log(interaction.values[0]);)
+ *   run: ({ interaction }) => {
+ *     if (interaction.isChannelSelectMenu()) {
+ *       console.log(interaction.values[0])
+ *     }
+ *   }
  * }
  * ```
  */
@@ -114,7 +118,11 @@ export type PaginatedMessageActionUserMenu = UserSelectMenuComponentData & Pagin
  * const RoleMenu: PaginatedMessageActionRoleMenu = {
  *   customId: 'CustomRoleSelectMenu',
  *   type: ComponentType.RoleSelect,
- *   run: ({ interaction }) => console.log(interaction.values[0]);)
+ *   run: ({ interaction }) => {
+ *     if (interaction.isRoleSelectMenu()) {
+ *       console.log(interaction.values[0])
+ *     }
+ *   }
  * }
  * ```
  */
@@ -127,7 +135,11 @@ export type PaginatedMessageActionRoleMenu = RoleSelectMenuComponentData & Pagin
  * const MentionableMenu: PaginatedMessageActionMentionableMenu = {
  *   customId: 'CustomMentionableSelectMenu',
  *   type: ComponentType.MentionableSelect,
- *   run: ({ interaction }) => console.log(interaction.values[0]);)
+ *   run: ({ interaction }) => {
+ *     if (interaction.isMentionableSelectMenu()) {
+ *       console.log(interaction.values[0])
+ *     }
+ *   }
  * }
  * ```
  */
@@ -141,7 +153,11 @@ export type PaginatedMessageActionMentionableMenu = MentionableSelectMenuCompone
  *   customId: 'CustomChannelSelectMenu',
  *   type: ComponentType.ChannelSelect,
  *   channelTypes: [ChannelType.GuildText],
- *   run: ({ interaction }) => console.log(interaction.values[0]);)
+ *   run: ({ interaction }) => {
+ *     if (interaction.isChannelSelectMenu()) {
+ *       console.log(interaction.values[0])
+ *     }
+ *   }
  * }
  * ```
  */
