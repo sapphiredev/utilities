@@ -6,12 +6,10 @@ import type {
 	ActionRowComponentOptions,
 	ActionRowData,
 	BaseMessageOptions,
-	BaseSelectMenuComponentData,
 	ButtonInteraction,
-	ChannelType,
+	ChannelSelectMenuComponentData,
 	CollectedInteraction,
 	CommandInteraction,
-	ComponentType,
 	EmbedBuilder,
 	Guild,
 	Interaction,
@@ -21,15 +19,19 @@ import type {
 	InteractionUpdateOptions,
 	JSONEncodable,
 	LinkButtonComponentData,
+	MentionableSelectMenuComponentData,
 	Message,
 	MessageActionRowComponentBuilder,
 	MessageComponentInteraction,
 	MessageEditOptions,
 	MessageReplyOptions,
 	ModalSubmitInteraction,
+	RoleSelectMenuComponentData,
 	SelectMenuComponentOptionData,
 	StageChannel,
+	StringSelectMenuComponentData,
 	User,
+	UserSelectMenuComponentData,
 	VoiceChannel,
 	WebhookMessageEditOptions
 } from 'discord.js';
@@ -91,10 +93,9 @@ export type PaginatedMessageActionLink = LinkButtonComponentData;
  * ```
  */
 export type PaginatedMessageActionStringMenu = PaginatedMessageActionRun &
-	BaseSelectMenuComponentData & {
-		type: ComponentType.StringSelect;
-		options: SelectMenuComponentOptionData[];
-	};
+	// TODO: When DiscordJS fixes the `options` being marked as undefined we can merge this Omit and Pick back into a regular intersection.
+	Omit<StringSelectMenuComponentData, 'options'> &
+	Required<Pick<StringSelectMenuComponentData, 'options'>>;
 
 /**
  * To utilize User Select Menus you can pass an object with the structure of {@link PaginatedMessageActionUserMenu} to {@link PaginatedMessage} actions.
@@ -112,8 +113,7 @@ export type PaginatedMessageActionStringMenu = PaginatedMessageActionRun &
  * ```
  */
 export type PaginatedMessageActionUserMenu = PaginatedMessageActionRun &
-	BaseSelectMenuComponentData & {
-		type: ComponentType.UserSelect;
+	UserSelectMenuComponentData & {
 		options?: never;
 	};
 
@@ -133,8 +133,7 @@ export type PaginatedMessageActionUserMenu = PaginatedMessageActionRun &
  * ```
  */
 export type PaginatedMessageActionRoleMenu = PaginatedMessageActionRun &
-	BaseSelectMenuComponentData & {
-		type: ComponentType.RoleSelect;
+	RoleSelectMenuComponentData & {
 		options?: never;
 	};
 
@@ -154,8 +153,7 @@ export type PaginatedMessageActionRoleMenu = PaginatedMessageActionRun &
  * ```
  */
 export type PaginatedMessageActionMentionableMenu = PaginatedMessageActionRun &
-	BaseSelectMenuComponentData & {
-		type: ComponentType.MentionableSelect;
+	MentionableSelectMenuComponentData & {
 		options?: never;
 	};
 
@@ -176,9 +174,7 @@ export type PaginatedMessageActionMentionableMenu = PaginatedMessageActionRun &
  * ```
  */
 export type PaginatedMessageActionChannelMenu = PaginatedMessageActionRun &
-	BaseSelectMenuComponentData & {
-		type: ComponentType.ChannelSelect;
-		channelTypes?: ChannelType[];
+	ChannelSelectMenuComponentData & {
 		options?: never;
 	};
 
