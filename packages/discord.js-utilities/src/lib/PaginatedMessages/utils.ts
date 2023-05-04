@@ -4,15 +4,15 @@ import {
 	ButtonBuilder,
 	ComponentType,
 	type APIActionRowComponent,
+	type APIMessageActionRowComponent,
 	type ActionRowComponentOptions,
 	type ButtonComponentData,
-	type MessageActionRowComponentBuilder,
+	type ChannelSelectMenuComponentData,
 	type MentionableSelectMenuComponentData,
+	type MessageActionRowComponentBuilder,
 	type RoleSelectMenuComponentData,
 	type StringSelectMenuComponentData,
-	type UserSelectMenuComponentData,
-	type APIMessageActionRowComponent,
-	type ChannelSelectMenuComponentData
+	type UserSelectMenuComponentData
 } from 'discord.js';
 import { isAnyInteractableInteraction, isMessageInstance } from '../type-guards';
 import type {

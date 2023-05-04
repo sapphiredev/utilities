@@ -4,7 +4,6 @@ import {
 	ChannelType,
 	GuildMember,
 	Message,
-	type VoiceBasedChannel,
 	type APIGuildMember,
 	type APIInteractionDataResolvedGuildMember,
 	type APIInteractionGuildMember,
@@ -19,6 +18,7 @@ import {
 	type StageChannel,
 	type TextChannel,
 	type ThreadChannel,
+	type VoiceBasedChannel,
 	type VoiceChannel
 } from 'discord.js';
 import type {

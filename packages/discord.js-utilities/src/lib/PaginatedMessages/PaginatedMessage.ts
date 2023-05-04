@@ -1,37 +1,37 @@
 import { Time } from '@sapphire/duration';
 import { deepClone, isFunction, isNullish, isObject } from '@sapphire/utilities';
 import {
+	ActionRowBuilder,
 	ButtonBuilder,
 	ButtonStyle,
+	ChannelSelectMenuBuilder,
 	ComponentType,
 	EmbedBuilder,
 	GatewayIntentBits,
 	IntentsBitField,
 	InteractionCollector,
 	InteractionType,
+	MentionableSelectMenuBuilder,
 	Partials,
+	RoleSelectMenuBuilder,
 	StringSelectMenuBuilder,
+	UserSelectMenuBuilder,
 	isJSONEncodable,
 	userMention,
+	type APIActionRowComponent,
 	type APIEmbed,
 	type APIMessage,
+	type APIMessageActionRowComponent,
 	type BaseMessageOptions,
 	type Collection,
 	type InteractionReplyOptions,
 	type JSONEncodable,
 	type Message,
+	type MessageActionRowComponentBuilder,
 	type Snowflake,
 	type TextBasedChannel,
 	type User,
-	type WebhookMessageEditOptions,
-	ActionRowBuilder,
-	type APIActionRowComponent,
-	type MessageActionRowComponentBuilder,
-	ChannelSelectMenuBuilder,
-	MentionableSelectMenuBuilder,
-	RoleSelectMenuBuilder,
-	UserSelectMenuBuilder,
-	type APIMessageActionRowComponent
+	type WebhookMessageEditOptions
 } from 'discord.js';
 import { MessageBuilder } from '../builders/MessageBuilder';
 import { isAnyInteraction, isGuildBasedChannel, isMessageInstance, isStageChannel } from '../type-guards';
@@ -1258,18 +1258,23 @@ export class PaginatedMessage {
 				if (isMessageButtonInteractionData(interaction)) {
 					return new ButtonBuilder(interaction);
 				}
+
 				if (isMessageUserSelectInteractionData(interaction)) {
 					return new UserSelectMenuBuilder(interaction);
 				}
+
 				if (isMessageRoleSelectInteractionData(interaction)) {
 					return new RoleSelectMenuBuilder(interaction);
 				}
+
 				if (isMessageMentionableSelectInteractionData(interaction)) {
 					return new MentionableSelectMenuBuilder(interaction);
 				}
+
 				if (isMessageChannelSelectInteractionData(interaction)) {
 					return new ChannelSelectMenuBuilder(interaction);
 				}
+
 				if (isMessageStringSelectInteractionData(interaction)) {
 					return new StringSelectMenuBuilder({
 						...(interaction.customId === '@sapphire/paginated-messages.goToPage' && {
@@ -1290,7 +1295,9 @@ export class PaginatedMessage {
 					});
 				}
 
-				throw new Error('Unsupported message component type');
+				throw new Error(
+					"Unsupported message component type detected. Validate your code and if you're sure this is a bug in Sapphire make a report in the server"
+				);
 			})
 		);
 	}
