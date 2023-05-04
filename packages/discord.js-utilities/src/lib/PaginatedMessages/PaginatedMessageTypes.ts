@@ -90,7 +90,7 @@ export type PaginatedMessageActionLink = LinkButtonComponentData;
  * }
  * ```
  */
-type PaginatedMessageActionStringMenu = PaginatedMessageActionRun &
+export type PaginatedMessageActionStringMenu = PaginatedMessageActionRun &
 	BaseSelectMenuComponentData & {
 		type: ComponentType.StringSelect;
 		options: SelectMenuComponentOptionData[];
@@ -111,7 +111,7 @@ type PaginatedMessageActionStringMenu = PaginatedMessageActionRun &
  * }
  * ```
  */
-type PaginatedMessageActionUserMenu = PaginatedMessageActionRun &
+export type PaginatedMessageActionUserMenu = PaginatedMessageActionRun &
 	BaseSelectMenuComponentData & {
 		type: ComponentType.UserSelect;
 		options?: never;
@@ -132,7 +132,7 @@ type PaginatedMessageActionUserMenu = PaginatedMessageActionRun &
  * }
  * ```
  */
-type PaginatedMessageActionRoleMenu = PaginatedMessageActionRun &
+export type PaginatedMessageActionRoleMenu = PaginatedMessageActionRun &
 	BaseSelectMenuComponentData & {
 		type: ComponentType.RoleSelect;
 		options?: never;
@@ -153,7 +153,7 @@ type PaginatedMessageActionRoleMenu = PaginatedMessageActionRun &
  * }
  * ```
  */
-type PaginatedMessageActionMentionableMenu = PaginatedMessageActionRun &
+export type PaginatedMessageActionMentionableMenu = PaginatedMessageActionRun &
 	BaseSelectMenuComponentData & {
 		type: ComponentType.MentionableSelect;
 		options?: never;
@@ -175,7 +175,7 @@ type PaginatedMessageActionMentionableMenu = PaginatedMessageActionRun &
  * }
  * ```
  */
-type PaginatedMessageActionChannelMenu = PaginatedMessageActionRun &
+export type PaginatedMessageActionChannelMenu = PaginatedMessageActionRun &
 	BaseSelectMenuComponentData & {
 		type: ComponentType.ChannelSelect;
 		channelTypes?: ChannelType[];
