@@ -93,7 +93,7 @@ export type PaginatedMessageActionLink = LinkButtonComponentData;
  * ```
  */
 export type PaginatedMessageActionStringMenu = PaginatedMessageActionRun &
-	// TODO: When DiscordJS fixes the `options` being marked as undefined we can merge this Omit and Pick back into a regular intersection.
+	// TODO: When DiscordJS fixes the `options` being marked as undefined we can merge this Omit and Pick back into a regular intersection. (ref: https://github.com/discordjs/discord.js/pull/9515)
 	Omit<StringSelectMenuComponentData, 'options'> &
 	Required<Pick<StringSelectMenuComponentData, 'options'>>;
 
