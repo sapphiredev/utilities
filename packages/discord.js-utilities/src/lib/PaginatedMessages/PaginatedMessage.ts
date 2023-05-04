@@ -289,6 +289,10 @@ export class PaginatedMessage {
 
 	/**
 	 * Sets the {@link PaginatedMessage.selectMenuPlaceholder} for this instance of {@link PaginatedMessage}.
+	 *
+	 * This applies only to the string select menu from the {@link PaginatedMessage.defaultActions}
+	 * that offers "go to page" (we internally check the customId for this)
+	 *
 	 * This will only apply to this one instance and no others.
 	 * @param placeholder The new placeholder to set
 	 * @returns The current instance of {@link PaginatedMessage}
@@ -1277,6 +1281,7 @@ export class PaginatedMessage {
 
 				if (isMessageStringSelectInteractionData(interaction)) {
 					return new StringSelectMenuBuilder({
+						...interaction,
 						...(interaction.customId === '@sapphire/paginated-messages.goToPage' && {
 							options: await Promise.all(
 								this.pages.map(async (_, index) => {
@@ -1290,8 +1295,7 @@ export class PaginatedMessage {
 								})
 							),
 							placeholder: this.selectMenuPlaceholder
-						}),
-						...interaction
+						})
 					});
 				}
 
@@ -1528,6 +1532,7 @@ export class PaginatedMessage {
 		{
 			customId: '@sapphire/paginated-messages.goToPage',
 			type: ComponentType.StringSelect,
+			options: [],
 			run: ({ handler, interaction }) => interaction.isStringSelectMenu() && (handler.index = parseInt(interaction.values[0], 10))
 		},
 		{

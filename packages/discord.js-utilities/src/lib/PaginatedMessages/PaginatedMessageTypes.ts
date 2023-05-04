@@ -6,10 +6,12 @@ import type {
 	ActionRowComponentOptions,
 	ActionRowData,
 	BaseMessageOptions,
+	BaseSelectMenuComponentData,
 	ButtonInteraction,
-	ChannelSelectMenuComponentData,
+	ChannelType,
 	CollectedInteraction,
 	CommandInteraction,
+	ComponentType,
 	EmbedBuilder,
 	Guild,
 	Interaction,
@@ -19,19 +21,15 @@ import type {
 	InteractionUpdateOptions,
 	JSONEncodable,
 	LinkButtonComponentData,
-	MentionableSelectMenuComponentData,
 	Message,
 	MessageActionRowComponentBuilder,
 	MessageComponentInteraction,
 	MessageEditOptions,
 	MessageReplyOptions,
 	ModalSubmitInteraction,
-	RoleSelectMenuComponentData,
 	SelectMenuComponentOptionData,
 	StageChannel,
-	StringSelectMenuComponentData,
 	User,
-	UserSelectMenuComponentData,
 	VoiceChannel,
 	WebhookMessageEditOptions
 } from 'discord.js';
@@ -92,7 +90,11 @@ export type PaginatedMessageActionLink = LinkButtonComponentData;
  * }
  * ```
  */
-export type PaginatedMessageActionStringMenu = StringSelectMenuComponentData & PaginatedMessageActionRun;
+type PaginatedMessageActionStringMenu = PaginatedMessageActionRun &
+	BaseSelectMenuComponentData & {
+		type: ComponentType.StringSelect;
+		options: SelectMenuComponentOptionData[];
+	};
 
 /**
  * To utilize User Select Menus you can pass an object with the structure of {@link PaginatedMessageActionUserMenu} to {@link PaginatedMessage} actions.
@@ -100,7 +102,7 @@ export type PaginatedMessageActionStringMenu = StringSelectMenuComponentData & P
  * ```typescript
  * const UserMenu: PaginatedMessageActionUserMenu = {
  *   customId: 'CustomUserSelectMenu',
- *   type: ComponentType.ChannelSelect,
+ *   type: ComponentType.UserSelect,
  *   run: ({ interaction }) => {
  *     if (interaction.isChannelSelectMenu()) {
  *       console.log(interaction.values[0])
@@ -109,7 +111,11 @@ export type PaginatedMessageActionStringMenu = StringSelectMenuComponentData & P
  * }
  * ```
  */
-export type PaginatedMessageActionUserMenu = UserSelectMenuComponentData & PaginatedMessageActionRun;
+type PaginatedMessageActionUserMenu = PaginatedMessageActionRun &
+	BaseSelectMenuComponentData & {
+		type: ComponentType.UserSelect;
+		options?: never;
+	};
 
 /**
  * To utilize Role Select Menus you can pass an object with the structure of {@link PaginatedMessageActionRoleMenu} to {@link PaginatedMessage} actions.
@@ -126,7 +132,11 @@ export type PaginatedMessageActionUserMenu = UserSelectMenuComponentData & Pagin
  * }
  * ```
  */
-export type PaginatedMessageActionRoleMenu = RoleSelectMenuComponentData & PaginatedMessageActionRun;
+type PaginatedMessageActionRoleMenu = PaginatedMessageActionRun &
+	BaseSelectMenuComponentData & {
+		type: ComponentType.RoleSelect;
+		options?: never;
+	};
 
 /**
  * To utilize Mentionable Select Menus you can pass an object with the structure of {@link PaginatedMessageActionMentionableMenu} to {@link PaginatedMessage} actions.
@@ -143,7 +153,11 @@ export type PaginatedMessageActionRoleMenu = RoleSelectMenuComponentData & Pagin
  * }
  * ```
  */
-export type PaginatedMessageActionMentionableMenu = MentionableSelectMenuComponentData & PaginatedMessageActionRun;
+type PaginatedMessageActionMentionableMenu = PaginatedMessageActionRun &
+	BaseSelectMenuComponentData & {
+		type: ComponentType.MentionableSelect;
+		options?: never;
+	};
 
 /**
  * To utilize Channel Select Menus you can pass an object with the structure of {@link PaginatedMessageActionChannelMenu} to {@link PaginatedMessage} actions.
@@ -161,7 +175,12 @@ export type PaginatedMessageActionMentionableMenu = MentionableSelectMenuCompone
  * }
  * ```
  */
-export type PaginatedMessageActionChannelMenu = ChannelSelectMenuComponentData & PaginatedMessageActionRun;
+type PaginatedMessageActionChannelMenu = PaginatedMessageActionRun &
+	BaseSelectMenuComponentData & {
+		type: ComponentType.ChannelSelect;
+		channelTypes?: ChannelType[];
+		options?: never;
+	};
 
 /**
  * The context to be used in {@link PaginatedMessageActionButton}.
