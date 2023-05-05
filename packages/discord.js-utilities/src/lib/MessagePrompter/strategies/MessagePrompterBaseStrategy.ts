@@ -1,8 +1,8 @@
 import { isNullish, type ArgumentTypes, type Awaitable } from '@sapphire/utilities';
 import type { CollectorFilter, CollectorOptions, EmojiIdentifierResolvable, Message, MessageReaction, User } from 'discord.js';
 import { isStageChannel, isTextBasedChannel } from '../../type-guards';
-import type { MessagePrompterChannelTypes, MessagePrompterMessage } from '../constants';
 import type { IMessagePrompterExplicitReturnBase } from '../ExplicitReturnTypes';
+import type { MessagePrompterChannelTypes, MessagePrompterMessage } from '../constants';
 import type { IMessagePrompterStrategyOptions } from '../strategyOptions';
 
 export abstract class MessagePrompterBaseStrategy {

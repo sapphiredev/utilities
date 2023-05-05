@@ -1,35 +1,37 @@
 import { Time } from '@sapphire/duration';
 import { deepClone, isFunction, isNullish, isObject } from '@sapphire/utilities';
 import {
+	ActionRowBuilder,
 	ButtonBuilder,
 	ButtonStyle,
+	ChannelSelectMenuBuilder,
 	ComponentType,
 	EmbedBuilder,
 	GatewayIntentBits,
 	IntentsBitField,
 	InteractionCollector,
 	InteractionType,
+	MentionableSelectMenuBuilder,
 	Partials,
+	RoleSelectMenuBuilder,
 	StringSelectMenuBuilder,
-	StringSelectMenuInteraction,
+	UserSelectMenuBuilder,
 	isJSONEncodable,
 	userMention,
+	type APIActionRowComponent,
 	type APIEmbed,
 	type APIMessage,
+	type APIMessageActionRowComponent,
 	type BaseMessageOptions,
-	type ButtonInteraction,
 	type Collection,
 	type InteractionReplyOptions,
 	type JSONEncodable,
 	type Message,
+	type MessageActionRowComponentBuilder,
 	type Snowflake,
 	type TextBasedChannel,
 	type User,
-	type WebhookMessageEditOptions,
-	ActionRowBuilder,
-	type APIActionRowComponent,
-	type APIButtonComponent,
-	type APIStringSelectComponent
+	type WebhookMessageEditOptions
 } from 'discord.js';
 import { MessageBuilder } from '../builders/MessageBuilder';
 import { isAnyInteraction, isGuildBasedChannel, isMessageInstance, isStageChannel } from '../type-guards';
@@ -38,6 +40,7 @@ import type {
 	PaginatedMessageAction,
 	PaginatedMessageComponentUnion,
 	PaginatedMessageEmbedResolvable,
+	PaginatedMessageInteractionUnion,
 	PaginatedMessageInternationalizationContext,
 	PaginatedMessageMessageOptionsUnion,
 	PaginatedMessageOptions,
@@ -46,7 +49,17 @@ import type {
 	PaginatedMessageStopReasons,
 	PaginatedMessageWrongUserInteractionReplyFunction
 } from './PaginatedMessageTypes';
-import { actionIsButtonOrMenu, createPartitionedMessageRow, isMessageButtonInteractionData, safelyReplyToInteraction } from './utils';
+import {
+	actionIsButtonOrMenu,
+	createPartitionedMessageRow,
+	isMessageButtonInteractionData,
+	isMessageChannelSelectInteractionData,
+	isMessageMentionableSelectInteractionData,
+	isMessageRoleSelectInteractionData,
+	isMessageStringSelectInteractionData,
+	isMessageUserSelectInteractionData,
+	safelyReplyToInteraction
+} from './utils';
 
 /**
  * This is a {@link PaginatedMessage}, a utility to paginate messages (usually embeds).
@@ -140,7 +153,7 @@ export class PaginatedMessage {
 	/**
 	 * The collector used for handling component interactions.
 	 */
-	public collector: InteractionCollector<ButtonInteraction | StringSelectMenuInteraction> | null = null;
+	public collector: InteractionCollector<PaginatedMessageInteractionUnion> | null = null;
 
 	/**
 	 * The pages which were converted from {@link PaginatedMessage.pages}
@@ -276,6 +289,10 @@ export class PaginatedMessage {
 
 	/**
 	 * Sets the {@link PaginatedMessage.selectMenuPlaceholder} for this instance of {@link PaginatedMessage}.
+	 *
+	 * This applies only to the string select menu from the {@link PaginatedMessage.defaultActions}
+	 * that offers "go to page" (we internally check the customId for this)
+	 *
 	 * This will only apply to this one instance and no others.
 	 * @param placeholder The new placeholder to set
 	 * @returns The current instance of {@link PaginatedMessage}
@@ -946,7 +963,7 @@ export class PaginatedMessage {
 	 *
 	 * @param messageOrInteraction The message or interaction that triggered this {@link PaginatedMessage}.
 	 * Generally this will be the command message or an interaction
-	 * (either a {@link CommandInteraction}, a {@link ContextMenuInteraction}, a {@link StringSelectMenuInteraction} or a {@link ButtonInteraction}),
+	 * (either a {@link CommandInteraction}, {@link ContextMenuInteraction}, or an interaction from {@link PaginatedMessageInteractionUnion}),
 	 * but it can also be another message from your client, i.e. to indicate a loading state.
 	 *
 	 * @param target The user who will be able to interact with the buttons of this {@link PaginatedMessage}.
@@ -1126,7 +1143,7 @@ export class PaginatedMessage {
 	 * Get the components of a page.
 	 * @param index The index of the page that has the components.
 	 */
-	public async getComponents(index: number): Promise<ActionRowBuilder<ButtonBuilder | StringSelectMenuBuilder>[] | undefined> {
+	public async getComponents(index: number): Promise<ActionRowBuilder<MessageActionRowComponentBuilder>[] | undefined> {
 		const page = this.messages.at(index);
 		if (isNullish(page)) return undefined;
 
@@ -1134,7 +1151,7 @@ export class PaginatedMessage {
 		if (isNullish(options.components)) return undefined;
 
 		return options.components.map((row) => {
-			return ActionRowBuilder.from(row as APIActionRowComponent<APIButtonComponent | APIStringSelectComponent>);
+			return ActionRowBuilder.from(row as APIActionRowComponent<APIMessageActionRowComponent>);
 		});
 	}
 
@@ -1143,7 +1160,7 @@ export class PaginatedMessage {
 	 *
 	 * @param messageOrInteraction The message or interaction that triggered this {@link PaginatedMessage}.
 	 * Generally this will be the command message or an interaction
-	 * (either a {@link CommandInteraction}, a {@link ContextMenuInteraction}, a {@link StringSelectMenuInteraction} or a {@link ButtonInteraction}),
+	 * (either a {@link CommandInteraction}, {@link ContextMenuInteraction}, or an interaction from {@link PaginatedMessageInteractionUnion}),
 	 * but it can also be another message from your client, i.e. to indicate a loading state.
 	 */
 	protected async setUpMessage(messageOrInteraction: Message | AnyInteractableInteraction): Promise<void> {
@@ -1185,7 +1202,7 @@ export class PaginatedMessage {
 	 */
 	protected setUpCollector(channel: TextBasedChannel, targetUser: User): void {
 		if (this.pages.length > 1) {
-			this.collector = new InteractionCollector<ButtonInteraction | StringSelectMenuInteraction>(targetUser.client, {
+			this.collector = new InteractionCollector<PaginatedMessageInteractionUnion>(targetUser.client, {
 				filter: (interaction) =>
 					!isNullish(this.response) && //
 					interaction.isMessageComponent() &&
@@ -1239,28 +1256,52 @@ export class PaginatedMessage {
 		actions: PaginatedMessageAction[],
 		messageOrInteraction: Message | AnyInteractableInteraction,
 		targetUser: User
-	): Promise<(ButtonBuilder | StringSelectMenuBuilder)[]> {
+	): Promise<MessageActionRowComponentBuilder[]> {
 		return Promise.all(
-			actions.map<Promise<ButtonBuilder | StringSelectMenuBuilder>>(async (interaction) => {
-				return isMessageButtonInteractionData(interaction)
-					? new ButtonBuilder(interaction)
-					: new StringSelectMenuBuilder({
-							...(interaction.customId === '@sapphire/paginated-messages.goToPage' && {
-								options: await Promise.all(
-									this.pages.map(async (_, index) => {
-										return {
-											...(await this.selectMenuOptions(
-												index + 1,
-												this.resolvePaginatedMessageInternationalizationContext(messageOrInteraction, targetUser)
-											)),
-											value: index.toString()
-										};
-									})
-								),
-								placeholder: this.selectMenuPlaceholder
-							}),
-							...interaction
-					  });
+			actions.map<Promise<MessageActionRowComponentBuilder>>(async (interaction) => {
+				if (isMessageButtonInteractionData(interaction)) {
+					return new ButtonBuilder(interaction);
+				}
+
+				if (isMessageUserSelectInteractionData(interaction)) {
+					return new UserSelectMenuBuilder(interaction);
+				}
+
+				if (isMessageRoleSelectInteractionData(interaction)) {
+					return new RoleSelectMenuBuilder(interaction);
+				}
+
+				if (isMessageMentionableSelectInteractionData(interaction)) {
+					return new MentionableSelectMenuBuilder(interaction);
+				}
+
+				if (isMessageChannelSelectInteractionData(interaction)) {
+					return new ChannelSelectMenuBuilder(interaction);
+				}
+
+				if (isMessageStringSelectInteractionData(interaction)) {
+					return new StringSelectMenuBuilder({
+						...interaction,
+						...(interaction.customId === '@sapphire/paginated-messages.goToPage' && {
+							options: await Promise.all(
+								this.pages.map(async (_, index) => {
+									return {
+										...(await this.selectMenuOptions(
+											index + 1,
+											this.resolvePaginatedMessageInternationalizationContext(messageOrInteraction, targetUser)
+										)),
+										value: index.toString()
+									};
+								})
+							),
+							placeholder: this.selectMenuPlaceholder
+						})
+					});
+				}
+
+				throw new Error(
+					"Unsupported message component type detected. Validate your code and if you're sure this is a bug in Sapphire make a report in the server"
+				);
 			})
 		);
 	}
@@ -1271,11 +1312,7 @@ export class PaginatedMessage {
 	 * @param channel The channel the handler is running at.
 	 * @param interaction The button interaction that was received.
 	 */
-	protected async handleCollect(
-		targetUser: User,
-		channel: Message['channel'],
-		interaction: ButtonInteraction | StringSelectMenuInteraction
-	): Promise<void> {
+	protected async handleCollect(targetUser: User, channel: Message['channel'], interaction: PaginatedMessageInteractionUnion): Promise<void> {
 		if (interaction.user.id === targetUser.id) {
 			// Update the response to the latest interaction
 			this.response = interaction;
@@ -1329,10 +1366,7 @@ export class PaginatedMessage {
 	 * Handles the `end` event from the collector.
 	 * @param reason The reason for which the collector was ended.
 	 */
-	protected async handleEnd(
-		_: Collection<Snowflake, ButtonInteraction | StringSelectMenuInteraction>,
-		reason: PaginatedMessageStopReasons
-	): Promise<void> {
+	protected async handleEnd(_: Collection<Snowflake, PaginatedMessageInteractionUnion>, reason: PaginatedMessageStopReasons): Promise<void> {
 		// Ensure no race condition can occur where interacting with the message when the paginated message closes would otherwise result in a DiscordAPIError
 		if (
 			(reason === 'time' || reason === 'idle') &&
@@ -1498,6 +1532,7 @@ export class PaginatedMessage {
 		{
 			customId: '@sapphire/paginated-messages.goToPage',
 			type: ComponentType.StringSelect,
+			options: [],
 			run: ({ handler, interaction }) => interaction.isStringSelectMenu() && (handler.index = parseInt(interaction.values[0], 10))
 		},
 		{

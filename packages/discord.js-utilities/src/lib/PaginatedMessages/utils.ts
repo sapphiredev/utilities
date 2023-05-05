@@ -3,23 +3,26 @@ import {
 	ActionRowBuilder,
 	ButtonBuilder,
 	ComponentType,
-	StringSelectMenuBuilder,
 	type APIActionRowComponent,
-	type APIButtonComponent,
-	type APIStringSelectComponent,
+	type APIMessageActionRowComponent,
 	type ActionRowComponentOptions,
-	type ButtonComponentData
+	type ButtonComponentData,
+	type ChannelSelectMenuComponentData,
+	type MentionableSelectMenuComponentData,
+	type MessageActionRowComponentBuilder,
+	type RoleSelectMenuComponentData,
+	type StringSelectMenuComponentData,
+	type UserSelectMenuComponentData
 } from 'discord.js';
 import { isAnyInteractableInteraction, isMessageInstance } from '../type-guards';
 import type {
 	PaginatedMessageAction,
-	PaginatedMessageActionButton,
-	PaginatedMessageActionMenu,
+	PaginatedMessageActionLink,
 	PaginatedMessageComponentUnion,
 	SafeReplyToInteractionParameters
 } from './PaginatedMessageTypes';
 
-export function actionIsButtonOrMenu(action: PaginatedMessageAction): action is PaginatedMessageActionButton | PaginatedMessageActionMenu {
+export function actionIsButtonOrMenu(action: PaginatedMessageAction): action is Exclude<PaginatedMessageAction, PaginatedMessageActionLink> {
 	return (
 		action.type === ComponentType.Button ||
 		action.type === ComponentType.StringSelect ||
@@ -34,11 +37,31 @@ export function isMessageButtonInteractionData(interaction: ActionRowComponentOp
 	return interaction.type === ComponentType.Button;
 }
 
-export function isButtonComponentBuilder(component: ButtonBuilder | StringSelectMenuBuilder): component is ButtonBuilder {
+export function isMessageStringSelectInteractionData(interaction: ActionRowComponentOptions): interaction is StringSelectMenuComponentData {
+	return interaction.type === ComponentType.StringSelect;
+}
+
+export function isMessageUserSelectInteractionData(interaction: ActionRowComponentOptions): interaction is UserSelectMenuComponentData {
+	return interaction.type === ComponentType.UserSelect;
+}
+
+export function isMessageRoleSelectInteractionData(interaction: ActionRowComponentOptions): interaction is RoleSelectMenuComponentData {
+	return interaction.type === ComponentType.RoleSelect;
+}
+
+export function isMessageMentionableSelectInteractionData(interaction: ActionRowComponentOptions): interaction is MentionableSelectMenuComponentData {
+	return interaction.type === ComponentType.MentionableSelect;
+}
+
+export function isMessageChannelSelectInteractionData(interaction: ActionRowComponentOptions): interaction is ChannelSelectMenuComponentData {
+	return interaction.type === ComponentType.ChannelSelect;
+}
+
+export function isButtonComponentBuilder(component: MessageActionRowComponentBuilder): component is ButtonBuilder {
 	return component.data.type === ComponentType.Button;
 }
 
-export function createPartitionedMessageRow(components: (ButtonBuilder | StringSelectMenuBuilder)[]): PaginatedMessageComponentUnion[] {
+export function createPartitionedMessageRow(components: MessageActionRowComponentBuilder[]): PaginatedMessageComponentUnion[] {
 	// Partition the components into two groups: buttons and select menus
 	const [messageButtons, selectMenus] = partition(components, isButtonComponentBuilder);
 
@@ -57,9 +80,9 @@ export function createPartitionedMessageRow(components: (ButtonBuilder | StringS
 			.setComponents(component)
 	);
 
-	return [...messageButtonActionRows, ...selectMenuActionRows].map((actionRow) => actionRow.toJSON()) as APIActionRowComponent<
-		APIButtonComponent | APIStringSelectComponent
-	>[];
+	return [...messageButtonActionRows, ...selectMenuActionRows].map((actionRow) =>
+		actionRow.toJSON()
+	) as APIActionRowComponent<APIMessageActionRowComponent>[];
 }
 
 /**

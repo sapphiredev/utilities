@@ -1,12 +1,12 @@
 import type { Ctor } from '@sapphire/utilities';
 import type { CollectorFilter, EmojiResolvable, Message, MessageReaction, User } from 'discord.js';
-import type { MessagePrompterChannelTypes, MessagePrompterMessage } from './constants';
 import type {
 	IMessagePrompterExplicitConfirmReturn,
 	IMessagePrompterExplicitMessageReturn,
 	IMessagePrompterExplicitNumberReturn,
 	IMessagePrompterExplicitReturnBase
 } from './ExplicitReturnTypes';
+import type { MessagePrompterChannelTypes, MessagePrompterMessage } from './constants';
 import { MessagePrompterBaseStrategy } from './strategies/MessagePrompterBaseStrategy';
 import { MessagePrompterConfirmStrategy } from './strategies/MessagePrompterConfirmStrategy';
 import { MessagePrompterMessageStrategy } from './strategies/MessagePrompterMessageStrategy';
