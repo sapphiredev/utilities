@@ -62,6 +62,6 @@
 		"@favware/cliff-jumper": "^2.0.0",
 		"@vitest/coverage-c8": "^0.31.0",
 		"tsup": "^6.7.0",
-		"vitest": "^0.30.1"
+		"vitest": "^0.31.0"
 	}
 }
