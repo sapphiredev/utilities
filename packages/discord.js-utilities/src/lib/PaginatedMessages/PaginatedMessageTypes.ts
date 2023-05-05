@@ -1,14 +1,14 @@
 import type { Awaitable } from '@sapphire/utilities';
 import type {
 	APIActionRowComponent,
-	APIButtonComponent,
 	APIMessage,
-	APIStringSelectComponent,
+	APIMessageActionRowComponent,
+	ActionRowComponentOptions,
 	ActionRowData,
 	BaseMessageOptions,
-	ButtonBuilder,
-	ButtonComponentData,
 	ButtonInteraction,
+	ChannelSelectMenuComponentData,
+	CollectedInteraction,
 	CommandInteraction,
 	EmbedBuilder,
 	Guild,
@@ -19,29 +19,43 @@ import type {
 	InteractionUpdateOptions,
 	JSONEncodable,
 	LinkButtonComponentData,
+	MentionableSelectMenuComponentData,
 	Message,
+	MessageActionRowComponentBuilder,
 	MessageComponentInteraction,
 	MessageEditOptions,
 	MessageReplyOptions,
+	ModalSubmitInteraction,
+	RoleSelectMenuComponentData,
 	SelectMenuComponentOptionData,
 	StageChannel,
-	StringSelectMenuBuilder,
 	StringSelectMenuComponentData,
-	StringSelectMenuInteraction,
 	User,
+	UserSelectMenuComponentData,
 	VoiceChannel,
 	WebhookMessageEditOptions
 } from 'discord.js';
 import type { AnyInteractableInteraction } from '../utility-types';
 import type { PaginatedMessage } from './PaginatedMessage';
 
-export type PaginatedMessageAction = PaginatedMessageActionButton | PaginatedMessageActionLink | PaginatedMessageActionMenu;
+export type PaginatedMessageAction =
+	| PaginatedMessageActionButton
+	| PaginatedMessageActionLink
+	| PaginatedMessageActionStringMenu
+	| PaginatedMessageActionUserMenu
+	| PaginatedMessageActionRoleMenu
+	| PaginatedMessageActionMentionableMenu
+	| PaginatedMessageActionChannelMenu;
+
+export interface PaginatedMessageActionRun {
+	run(context: PaginatedMessageActionContext): Awaitable<unknown>;
+}
 
 /**
  * To utilize buttons you can pass an object with the structure of {@link PaginatedMessageActionButton} to {@link PaginatedMessage} actions.
  * @example
  * ```typescript
- * const StopAction: PaginatedMessageActionButton {
+ * const StopAction: PaginatedMessageActionButton = {
  *   customId: 'CustomStopAction',
  *   emoji: '⏹️',
  *   run: ({ collector }) => {
@@ -50,9 +64,7 @@ export type PaginatedMessageAction = PaginatedMessageActionButton | PaginatedMes
  * }
  * ```
  */
-export interface PaginatedMessageActionButton extends InteractionButtonComponentData {
-	run(context: PaginatedMessageActionContext): Awaitable<unknown>;
-}
+export type PaginatedMessageActionButton = InteractionButtonComponentData & PaginatedMessageActionRun;
 
 /**
  * To utilize links you can pass an object with the structure of {@link PaginatedMessageActionLink} to {@link PaginatedMessage} actions.
@@ -60,40 +72,122 @@ export interface PaginatedMessageActionButton extends InteractionButtonComponent
  * ```typescript
  *  You can also give the object directly.
  *
- * const LinkSapphireJs: PaginatedMessageActionLink {
+ * const LinkSapphireJs: PaginatedMessageActionLink = {
  *   url: 'https://sapphirejs.dev',
  *   label: 'Sapphire Website',
  *   emoji: '🔗'
  * }
  * ```
  */
-export interface PaginatedMessageActionLink extends LinkButtonComponentData {}
+export type PaginatedMessageActionLink = LinkButtonComponentData;
 
 /**
- * To utilize Select Menus you can pass an object with the structure of {@link PaginatedMessageActionMenu} to {@link PaginatedMessage} actions.
+ * To utilize String Select Menus you can pass an object with the structure of {@link PaginatedMessageActionStringMenu} to {@link PaginatedMessage} actions.
  * @example
  * ```typescript
- * const StopAction: PaginatedMessageActionMenu {
- *   customId: 'CustomSelectMenu',
+ * const StringMenu: PaginatedMessageActionStringMenu = {
+ *   customId: 'CustomStringSelectMenu',
  *   type: ComponentType.StringSelect,
- *   run: ({ handler, interaction }) => interaction.isSelectMenu() && (handler.index = parseInt(interaction.values[0], 10))
+ *   run: ({ handler, interaction }) => interaction.isStringSelectMenu() && (handler.index = parseInt(interaction.values[0], 10))
  * }
  * ```
  */
-export interface PaginatedMessageActionMenu extends StringSelectMenuComponentData {
-	run(context: PaginatedMessageActionContext): Awaitable<unknown>;
-}
+export type PaginatedMessageActionStringMenu = PaginatedMessageActionRun &
+	// TODO: When DiscordJS fixes the `options` being marked as undefined we can merge this Omit and Pick back into a regular intersection. (ref: https://github.com/discordjs/discord.js/pull/9515)
+	Omit<StringSelectMenuComponentData, 'options'> &
+	Required<Pick<StringSelectMenuComponentData, 'options'>>;
+
+/**
+ * To utilize User Select Menus you can pass an object with the structure of {@link PaginatedMessageActionUserMenu} to {@link PaginatedMessage} actions.
+ * @example
+ * ```typescript
+ * const UserMenu: PaginatedMessageActionUserMenu = {
+ *   customId: 'CustomUserSelectMenu',
+ *   type: ComponentType.UserSelect,
+ *   run: ({ interaction }) => {
+ *     if (interaction.isChannelSelectMenu()) {
+ *       console.log(interaction.values[0])
+ *     }
+ *   }
+ * }
+ * ```
+ */
+export type PaginatedMessageActionUserMenu = PaginatedMessageActionRun &
+	UserSelectMenuComponentData & {
+		options?: never;
+	};
+
+/**
+ * To utilize Role Select Menus you can pass an object with the structure of {@link PaginatedMessageActionRoleMenu} to {@link PaginatedMessage} actions.
+ * @example
+ * ```typescript
+ * const RoleMenu: PaginatedMessageActionRoleMenu = {
+ *   customId: 'CustomRoleSelectMenu',
+ *   type: ComponentType.RoleSelect,
+ *   run: ({ interaction }) => {
+ *     if (interaction.isRoleSelectMenu()) {
+ *       console.log(interaction.values[0])
+ *     }
+ *   }
+ * }
+ * ```
+ */
+export type PaginatedMessageActionRoleMenu = PaginatedMessageActionRun &
+	RoleSelectMenuComponentData & {
+		options?: never;
+	};
+
+/**
+ * To utilize Mentionable Select Menus you can pass an object with the structure of {@link PaginatedMessageActionMentionableMenu} to {@link PaginatedMessage} actions.
+ * @example
+ * ```typescript
+ * const MentionableMenu: PaginatedMessageActionMentionableMenu = {
+ *   customId: 'CustomMentionableSelectMenu',
+ *   type: ComponentType.MentionableSelect,
+ *   run: ({ interaction }) => {
+ *     if (interaction.isMentionableSelectMenu()) {
+ *       console.log(interaction.values[0])
+ *     }
+ *   }
+ * }
+ * ```
+ */
+export type PaginatedMessageActionMentionableMenu = PaginatedMessageActionRun &
+	MentionableSelectMenuComponentData & {
+		options?: never;
+	};
+
+/**
+ * To utilize Channel Select Menus you can pass an object with the structure of {@link PaginatedMessageActionChannelMenu} to {@link PaginatedMessage} actions.
+ * @example
+ * ```typescript
+ * const ChannelMenu: PaginatedMessageActionChannelMenu = {
+ *   customId: 'CustomChannelSelectMenu',
+ *   type: ComponentType.ChannelSelect,
+ *   channelTypes: [ChannelType.GuildText],
+ *   run: ({ interaction }) => {
+ *     if (interaction.isChannelSelectMenu()) {
+ *       console.log(interaction.values[0])
+ *     }
+ *   }
+ * }
+ * ```
+ */
+export type PaginatedMessageActionChannelMenu = PaginatedMessageActionRun &
+	ChannelSelectMenuComponentData & {
+		options?: never;
+	};
 
 /**
  * The context to be used in {@link PaginatedMessageActionButton}.
  */
 export interface PaginatedMessageActionContext {
-	interaction: ButtonInteraction | StringSelectMenuInteraction;
+	interaction: PaginatedMessageInteractionUnion;
 	handler: PaginatedMessage;
 	author: User;
 	channel: Message['channel'];
-	response: APIMessage | Message | CommandInteraction | StringSelectMenuInteraction | ButtonInteraction;
-	collector: InteractionCollector<ButtonInteraction | StringSelectMenuInteraction>;
+	response: APIMessage | Message | CommandInteraction | ButtonInteraction | PaginatedMessageInteractionUnion;
+	collector: InteractionCollector<PaginatedMessageInteractionUnion>;
 }
 
 export interface PaginatedMessageOptions {
@@ -170,10 +264,12 @@ export type PaginatedMessageMessageOptionsUnion = (Omit<BaseMessageOptions, 'fla
 	actions?: PaginatedMessageAction[];
 };
 
+export type PaginatedMessageInteractionUnion = Exclude<CollectedInteraction, ModalSubmitInteraction>;
+
 export type PaginatedMessageComponentUnion =
-	| JSONEncodable<APIActionRowComponent<APIButtonComponent | APIStringSelectComponent>>
-	| ActionRowData<ButtonComponentData | StringSelectMenuComponentData | ButtonBuilder | StringSelectMenuBuilder>
-	| APIActionRowComponent<APIButtonComponent | APIStringSelectComponent>;
+	| JSONEncodable<APIActionRowComponent<APIMessageActionRowComponent>>
+	| ActionRowData<ActionRowComponentOptions | MessageActionRowComponentBuilder>
+	| APIActionRowComponent<APIMessageActionRowComponent>;
 
 /**
  * @internal This is a duplicate of the same interface in `@sapphire/plugin-i18next`
