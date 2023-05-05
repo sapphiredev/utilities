@@ -243,7 +243,7 @@ describe('ArgumentStream', () => {
 
 			expect<ReturnType>(stream.find(cb)).toEqual(Option.some('aa'));
 			expect(cb).toHaveBeenCalledOnce();
-			cb.mockReset();
+			cb.mockClear();
 
 			expect<ReturnType>(stream.find(cb)).toEqual(Option.none);
 			expect(cb).not.toHaveBeenCalled();
@@ -256,12 +256,12 @@ describe('ArgumentStream', () => {
 			expect<ReturnType>(stream.find(cb)).toEqual(Option.some('aa'));
 			expect([...stream.state.used]).toStrictEqual([0]);
 			expect(cb).toHaveBeenCalledTimes(1);
-			cb.mockRestore();
+			cb.mockClear();
 
 			expect<ReturnType>(stream.find(cb)).toEqual(Option.some('ac'));
 			expect([...stream.state.used]).toStrictEqual([0, 2]);
 			expect(cb).toHaveBeenCalledTimes(2);
-			cb.mockRestore();
+			cb.mockClear();
 
 			expect<ReturnType>(stream.find(cb)).toEqual(Option.none);
 			expect([...stream.state.used]).toStrictEqual([0, 2]);
@@ -296,7 +296,7 @@ describe('ArgumentStream', () => {
 
 			await expect<ReturnType>(stream.findAsync(cb)).resolves.toEqual(Option.some('aa'));
 			expect(cb).toHaveBeenCalledOnce();
-			cb.mockReset();
+			cb.mockClear();
 
 			await expect<ReturnType>(stream.findAsync(cb)).resolves.toEqual(Option.none);
 			expect(cb).not.toHaveBeenCalled();
@@ -309,12 +309,12 @@ describe('ArgumentStream', () => {
 			await expect<ReturnType>(stream.findAsync(cb)).resolves.toEqual(Option.some('aa'));
 			expect([...stream.state.used]).toStrictEqual([0]);
 			expect(cb).toHaveBeenCalledTimes(1);
-			cb.mockRestore();
+			cb.mockClear();
 
 			await expect<ReturnType>(stream.findAsync(cb)).resolves.toEqual(Option.some('ac'));
 			expect([...stream.state.used]).toStrictEqual([0, 2]);
 			expect(cb).toHaveBeenCalledTimes(2);
-			cb.mockRestore();
+			cb.mockClear();
 
 			await expect<ReturnType>(stream.findAsync(cb)).resolves.toEqual(Option.none);
 			expect([...stream.state.used]).toStrictEqual([0, 2]);
@@ -349,7 +349,7 @@ describe('ArgumentStream', () => {
 
 			expect<ReturnType>(stream.findMap(cb)).toEqual(Option.some('aaaa'));
 			expect(cb).toHaveBeenCalledOnce();
-			cb.mockReset();
+			cb.mockClear();
 
 			expect<ReturnType>(stream.findMap(cb)).toEqual(Option.none);
 			expect(cb).not.toHaveBeenCalled();
@@ -362,12 +362,12 @@ describe('ArgumentStream', () => {
 			expect<ReturnType>(stream.findMap(cb)).toEqual(Option.some('aaaa'));
 			expect([...stream.state.used]).toStrictEqual([0]);
 			expect(cb).toHaveBeenCalledTimes(1);
-			cb.mockRestore();
+			cb.mockClear();
 
 			expect<ReturnType>(stream.findMap(cb)).toEqual(Option.some('acac'));
 			expect([...stream.state.used]).toStrictEqual([0, 2]);
 			expect(cb).toHaveBeenCalledTimes(2);
-			cb.mockRestore();
+			cb.mockClear();
 
 			expect<ReturnType>(stream.findMap(cb)).toEqual(Option.none);
 			expect([...stream.state.used]).toStrictEqual([0, 2]);
@@ -402,7 +402,7 @@ describe('ArgumentStream', () => {
 
 			await expect<ReturnType>(stream.findMapAsync(cb)).resolves.toEqual(Option.some('aaaa'));
 			expect(cb).toHaveBeenCalledOnce();
-			cb.mockReset();
+			cb.mockClear();
 
 			await expect<ReturnType>(stream.findMapAsync(cb)).resolves.toEqual(Option.none);
 			expect(cb).not.toHaveBeenCalled();
@@ -415,12 +415,12 @@ describe('ArgumentStream', () => {
 			await expect<ReturnType>(stream.findMapAsync(cb)).resolves.toEqual(Option.some('aaaa'));
 			expect([...stream.state.used]).toStrictEqual([0]);
 			expect(cb).toHaveBeenCalledTimes(1);
-			cb.mockRestore();
+			cb.mockClear();
 
 			await expect<ReturnType>(stream.findMapAsync(cb)).resolves.toEqual(Option.some('acac'));
 			expect([...stream.state.used]).toStrictEqual([0, 2]);
 			expect(cb).toHaveBeenCalledTimes(2);
-			cb.mockRestore();
+			cb.mockClear();
 
 			await expect<ReturnType>(stream.findMapAsync(cb)).resolves.toEqual(Option.none);
 			expect([...stream.state.used]).toStrictEqual([0, 2]);
@@ -459,7 +459,7 @@ describe('ArgumentStream', () => {
 			expect<ReturnType>(stream.findParse(cb)).toEqual(Result.ok(4));
 			expect([...stream.state.used]).toStrictEqual([0]);
 			expect(cb).toHaveBeenCalledOnce();
-			cb.mockReset();
+			cb.mockClear();
 
 			expect<ReturnType>(stream.findParse(cb)).toEqual(Result.err([]));
 			expect(cb).not.toHaveBeenCalled();
@@ -472,12 +472,12 @@ describe('ArgumentStream', () => {
 			expect<ReturnType>(stream.findParse(cb)).toEqual(Result.ok(4));
 			expect([...stream.state.used]).toStrictEqual([0]);
 			expect(cb).toHaveBeenCalledTimes(1);
-			cb.mockRestore();
+			cb.mockClear();
 
 			expect<ReturnType>(stream.findParse(cb)).toEqual(Result.ok(2));
 			expect([...stream.state.used]).toStrictEqual([0, 2]);
 			expect(cb).toHaveBeenCalledTimes(2);
-			cb.mockRestore();
+			cb.mockClear();
 
 			expect<ReturnType>(stream.findParse(cb)).toEqual(Result.err(['Could not parse a to a number', 'Could not parse b to a number']));
 			expect([...stream.state.used]).toStrictEqual([0, 2]);
@@ -523,7 +523,7 @@ describe('ArgumentStream', () => {
 			await expect<ReturnType>(stream.findParseAsync(cb)).resolves.toEqual(Result.ok(4));
 			expect([...stream.state.used]).toStrictEqual([0]);
 			expect(cb).toHaveBeenCalledOnce();
-			cb.mockReset();
+			cb.mockClear();
 
 			await expect<ReturnType>(stream.findParseAsync(cb)).resolves.toEqual(Result.err([]));
 			expect(cb).not.toHaveBeenCalled();
@@ -536,12 +536,12 @@ describe('ArgumentStream', () => {
 			await expect<ReturnType>(stream.findParseAsync(cb)).resolves.toEqual(Result.ok(4));
 			expect([...stream.state.used]).toStrictEqual([0]);
 			expect(cb).toHaveBeenCalledTimes(1);
-			cb.mockRestore();
+			cb.mockClear();
 
 			await expect<ReturnType>(stream.findParseAsync(cb)).resolves.toEqual(Result.ok(2));
 			expect([...stream.state.used]).toStrictEqual([0, 2]);
 			expect(cb).toHaveBeenCalledTimes(2);
-			cb.mockRestore();
+			cb.mockClear();
 
 			await expect<ReturnType>(stream.findParseAsync(cb)).resolves.toEqual(
 				Result.err(['Could not parse a to a number', 'Could not parse b to a number'])
@@ -602,7 +602,7 @@ describe('ArgumentStream', () => {
 			expect<ReturnType>(stream.filter(cb)).toEqual(Option.some(['aa']));
 			expect([...stream.state.used]).toStrictEqual([0]);
 			expect(cb).toHaveBeenCalledOnce();
-			cb.mockReset();
+			cb.mockClear();
 
 			expect<ReturnType>(stream.filter(cb)).toEqual(Option.none);
 			expect(cb).not.toHaveBeenCalled();
@@ -615,7 +615,7 @@ describe('ArgumentStream', () => {
 			expect<ReturnType>(stream.filter(cb)).toEqual(Option.some(['aa', 'ac']));
 			expect([...stream.state.used]).toStrictEqual([0, 2]);
 			expect(cb).toHaveBeenCalledTimes(4);
-			cb.mockRestore();
+			cb.mockClear();
 
 			expect<ReturnType>(stream.filter(cb)).toEqual(Option.some([]));
 			expect([...stream.state.used]).toStrictEqual([0, 2]);
@@ -651,7 +651,7 @@ describe('ArgumentStream', () => {
 			await expect<ReturnType>(stream.filterAsync(cb)).resolves.toEqual(Option.some(['aa']));
 			expect([...stream.state.used]).toStrictEqual([0]);
 			expect(cb).toHaveBeenCalledOnce();
-			cb.mockReset();
+			cb.mockClear();
 
 			await expect<ReturnType>(stream.filterAsync(cb)).resolves.toEqual(Option.none);
 			expect(cb).not.toHaveBeenCalled();
@@ -664,7 +664,7 @@ describe('ArgumentStream', () => {
 			await expect<ReturnType>(stream.filterAsync(cb)).resolves.toEqual(Option.some(['aa', 'ac']));
 			expect([...stream.state.used]).toStrictEqual([0, 2]);
 			expect(cb).toHaveBeenCalledTimes(4);
-			cb.mockRestore();
+			cb.mockClear();
 
 			await expect<ReturnType>(stream.filterAsync(cb)).resolves.toEqual(Option.some([]));
 			expect([...stream.state.used]).toStrictEqual([0, 2]);
@@ -700,7 +700,7 @@ describe('ArgumentStream', () => {
 			expect<ReturnType>(stream.filterMap(cb)).toEqual(Option.some(['aaaa']));
 			expect([...stream.state.used]).toStrictEqual([0]);
 			expect(cb).toHaveBeenCalledOnce();
-			cb.mockReset();
+			cb.mockClear();
 
 			expect<ReturnType>(stream.filterMap(cb)).toEqual(Option.none);
 			expect(cb).not.toHaveBeenCalled();
@@ -713,7 +713,7 @@ describe('ArgumentStream', () => {
 			expect<ReturnType>(stream.filterMap(cb)).toEqual(Option.some(['aaaa', 'acac']));
 			expect([...stream.state.used]).toStrictEqual([0, 2]);
 			expect(cb).toHaveBeenCalledTimes(4);
-			cb.mockRestore();
+			cb.mockClear();
 
 			expect<ReturnType>(stream.filterMap(cb)).toEqual(Option.some([]));
 			expect([...stream.state.used]).toStrictEqual([0, 2]);
@@ -749,7 +749,7 @@ describe('ArgumentStream', () => {
 			await expect<ReturnType>(stream.filterMapAsync(cb)).resolves.toEqual(Option.some(['aaaa']));
 			expect([...stream.state.used]).toStrictEqual([0]);
 			expect(cb).toHaveBeenCalledOnce();
-			cb.mockReset();
+			cb.mockClear();
 
 			await expect<ReturnType>(stream.filterMapAsync(cb)).resolves.toEqual(Option.none);
 			expect(cb).not.toHaveBeenCalled();
@@ -762,7 +762,7 @@ describe('ArgumentStream', () => {
 			await expect<ReturnType>(stream.filterMapAsync(cb)).resolves.toEqual(Option.some(['aaaa', 'acac']));
 			expect([...stream.state.used]).toStrictEqual([0, 2]);
 			expect(cb).toHaveBeenCalledTimes(4);
-			cb.mockRestore();
+			cb.mockClear();
 
 			await expect<ReturnType>(stream.filterMapAsync(cb)).resolves.toEqual(Option.some([]));
 			expect([...stream.state.used]).toStrictEqual([0, 2]);
