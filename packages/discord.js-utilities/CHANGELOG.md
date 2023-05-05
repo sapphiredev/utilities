@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/discord.js-utilities@6.1.0](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@6.0.7...@sapphire/discord.js-utilities@6.1.0) - (2023-05-05)
+
+## 🚀 Features
+
+- **PaginatedMessage:** Add support for all select menus (#589) ([4858486](https://github.com/sapphiredev/utilities/commit/4858486714192e8d37cf69f2aeda3002c1bfb9aa))
+- **PaginatedMessage:** Add support for per-page actions (#587) ([b917236](https://github.com/sapphiredev/utilities/commit/b9172364bc46a0adef2708ff79ad756bc78f6b1d))
+- **PaginatedMessage:** Add method to update pages after response (#584) ([db13068](https://github.com/sapphiredev/utilities/commit/db130684ff3c1680f736451361eec80686a783e0))
+
 # [@sapphire/discord.js-utilities@6.0.7](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@6.0.6...@sapphire/discord.js-utilities@6.0.7) - (2023-05-02)
 
 ## 🐛 Bug Fixes
