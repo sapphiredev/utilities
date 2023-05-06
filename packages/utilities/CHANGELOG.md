@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/utilities@3.11.2](https://github.com/sapphiredev/utilities/compare/@sapphire/utilities@3.11.1...@sapphire/utilities@3.11.2) - (2023-05-06)
+
+## 🐛 Bug Fixes
+
+- **utilities:** Add support for TypedArray to deepClone (#592) ([85dcd15](https://github.com/sapphiredev/utilities/commit/85dcd15fd98fff5bf74749d2cd26963a99c71a75))
+
 # [@sapphire/utilities@3.11.1](https://github.com/sapphiredev/utilities/compare/@sapphire/utilities@3.11.0...@sapphire/utilities@3.11.1) - (2023-04-10)
 
 ## 🏃 Performance
