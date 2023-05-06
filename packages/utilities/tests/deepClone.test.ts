@@ -38,6 +38,36 @@ describe('deepClone', () => {
 		expect(deepClone(source)).toBe(source);
 	});
 
+	test.each([
+		['Buffer', Buffer],
+		['Uint8Array', Uint8Array],
+		['Uint8ClampedArray', Uint8ClampedArray],
+		['Uint16Array', Uint16Array],
+		['Uint32Array', Uint32Array],
+		['Int8Array', Int8Array],
+		['Int16Array', Int16Array],
+		['Int32Array', Int32Array],
+		['Float32Array', Float32Array],
+		['Float64Array', Float64Array]
+	])('Given %s THEN returns same', (_, TypedArray) => {
+		const source = TypedArray.from([0x62, 0x75, 0x66, 0x66, 0x65, 0x72]);
+		const result = deepClone(source);
+
+		expect(result).toEqual(source);
+		expect(result).toBeInstanceOf(TypedArray);
+	});
+
+	test.each([
+		['BigUint64Array', BigUint64Array],
+		['BigInt64Array', BigInt64Array]
+	])('Given %s THEN returns same', (_, TypedArray) => {
+		const source = TypedArray.from([0x62n, 0x75n, 0x66n, 0x66n, 0x65n, 0x72n]);
+		const result = deepClone(source);
+
+		expect(result).toEqual(source);
+		expect(result).toBeInstanceOf(TypedArray);
+	});
+
 	test('GIVEN Array THEN returns same', () => {
 		expect.assertions(2);
 		const source = [1, 2, 3];
