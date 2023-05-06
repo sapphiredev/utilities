@@ -38,6 +38,11 @@ describe('deepClone', () => {
 		expect(deepClone(source)).toBe(source);
 	});
 
+	test('GIVEN Buffer THEN returns same', () => {
+		const source = Buffer.from([0x62, 0x75, 0x66, 0x66, 0x65, 0x72]);
+		expect(deepClone(source)).toEqual(source);
+	});
+
 	test('GIVEN Array THEN returns same', () => {
 		expect.assertions(2);
 		const source = [1, 2, 3];
