@@ -40,72 +40,98 @@ describe('deepClone', () => {
 
 	test('GIVEN Buffer THEN returns same', () => {
 		const source = Buffer.from([0x62, 0x75, 0x66, 0x66, 0x65, 0x72]);
-		expect(deepClone(source)).toEqual(source);
+		const result = deepClone(source);
+
+		expect(result).toEqual(source);
+		expect(result).toBeInstanceOf(Buffer);
 	});
 
 	test('GIVEN Uint8Array THEN returns same', () => {
 		const source = Uint8Array.from([0x62, 0x75, 0x66, 0x66, 0x65, 0x72]);
-		expect(deepClone(source)).toEqual(source);
+		const result = deepClone(source);
+
+		expect(result).toEqual(source);
+		expect(result).toBeInstanceOf(Uint8Array);
 	});
 
 	test('GIVEN Uint8ClampedArray THEN returns same', () => {
 		const source = Uint8ClampedArray.from([0x62, 0x75, 0x66, 0x66, 0x65, 0x72]);
-		expect(deepClone(source)).toEqual(source);
+		const result = deepClone(source);
+
+		expect(result).toEqual(source);
+		expect(result).toBeInstanceOf(Uint8ClampedArray);
 	});
 
 	test('GIVEN Uint16Array THEN returns same', () => {
 		const source = Uint16Array.from([0x62, 0x75, 0x66, 0x66, 0x65, 0x72]);
-		expect(deepClone(source)).toEqual(source);
+		const result = deepClone(source);
+
+		expect(result).toEqual(source);
+		expect(result).toBeInstanceOf(Uint16Array);
 	});
 
 	test('GIVEN Uint32Array THEN returns same', () => {
 		const source = Uint32Array.from([0x62, 0x75, 0x66, 0x66, 0x65, 0x72]);
-		expect(deepClone(source)).toEqual(source);
+		const result = deepClone(source);
+
+		expect(result).toEqual(source);
+		expect(result).toBeInstanceOf(Uint32Array);
 	});
 
 	test('GIVEN Int8Array THEN returns same', () => {
 		const source = Int8Array.from([0x62, 0x75, 0x66, 0x66, 0x65, 0x72]);
-		expect(deepClone(source)).toEqual(source);
+		const result = deepClone(source);
+
+		expect(result).toEqual(source);
+		expect(result).toBeInstanceOf(Int8Array);
 	});
 
 	test('GIVEN Int16Array THEN returns same', () => {
 		const source = Int16Array.from([0x62, 0x75, 0x66, 0x66, 0x65, 0x72]);
-		expect(deepClone(source)).toEqual(source);
+		const result = deepClone(source);
+
+		expect(result).toEqual(source);
+		expect(result).toBeInstanceOf(Int16Array);
 	});
 
 	test('GIVEN Int32Array THEN returns same', () => {
 		const source = Int32Array.from([0x62, 0x75, 0x66, 0x66, 0x65, 0x72]);
-		expect(deepClone(source)).toEqual(source);
+		const result = deepClone(source);
+
+		expect(result).toEqual(source);
+		expect(result).toBeInstanceOf(Int32Array);
 	});
 
 	test('GIVEN BigUint64Array THEN returns same', () => {
 		const source = BigUint64Array.from([0x62n, 0x75n, 0x66n, 0x66n, 0x65n, 0x72n]);
-		expect(deepClone(source)).toEqual(source);
+		const result = deepClone(source);
+
+		expect(result).toEqual(source);
+		expect(result).toBeInstanceOf(BigUint64Array);
 	});
 
 	test('GIVEN BigInt64Array THEN returns same', () => {
 		const source = BigInt64Array.from([0x62n, 0x75n, 0x66n, 0x66n, 0x65n, 0x72n]);
-		expect(deepClone(source)).toEqual(source);
+		const result = deepClone(source);
+
+		expect(result).toEqual(source);
+		expect(result).toBeInstanceOf(BigInt64Array);
 	});
 
 	test('GIVEN Float32Array THEN returns same', () => {
 		const source = Float32Array.from([0x62, 0x75, 0x66, 0x66, 0x65, 0x72]);
-		expect(deepClone(source)).toEqual(source);
+		const result = deepClone(source);
+
+		expect(result).toEqual(source);
+		expect(result).toBeInstanceOf(Float32Array);
 	});
 
 	test('GIVEN Float64Array THEN returns same', () => {
 		const source = Float64Array.from([0x62, 0x75, 0x66, 0x66, 0x65, 0x72]);
-		expect(deepClone(source)).toEqual(source);
-	});
+		const result = deepClone(source);
 
-	test('GIVEN Int8Array THEN returns same', () => {
-		const source = Int8Array.from([0x62, 0x75, 0x66, 0x66, 0x65, 0x72]);
-		expect(deepClone(source)).toEqual(source);
-	});
-
-	test('GIVEN Int8Array THEN returns same', () => {
-		const source = Int8Array.from([0x62, 0x75, 0x66, 0x66, 0x65, 0x72]);
-		expect(deepClone(source)).toEqual(source);
+		expect(result).toEqual(source);
+		expect(result).toBeInstanceOf(Float64Array);
 	});
 
 	test('GIVEN Array THEN returns same', () => {
