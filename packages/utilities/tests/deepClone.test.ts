@@ -43,6 +43,71 @@ describe('deepClone', () => {
 		expect(deepClone(source)).toEqual(source);
 	});
 
+	test('GIVEN Uint8Array THEN returns same', () => {
+		const source = Uint8Array.from([0x62, 0x75, 0x66, 0x66, 0x65, 0x72]);
+		expect(deepClone(source)).toEqual(source);
+	});
+
+	test('GIVEN Uint8ClampedArray THEN returns same', () => {
+		const source = Uint8ClampedArray.from([0x62, 0x75, 0x66, 0x66, 0x65, 0x72]);
+		expect(deepClone(source)).toEqual(source);
+	});
+
+	test('GIVEN Uint16Array THEN returns same', () => {
+		const source = Uint16Array.from([0x62, 0x75, 0x66, 0x66, 0x65, 0x72]);
+		expect(deepClone(source)).toEqual(source);
+	});
+
+	test('GIVEN Uint32Array THEN returns same', () => {
+		const source = Uint32Array.from([0x62, 0x75, 0x66, 0x66, 0x65, 0x72]);
+		expect(deepClone(source)).toEqual(source);
+	});
+
+	test('GIVEN Int8Array THEN returns same', () => {
+		const source = Int8Array.from([0x62, 0x75, 0x66, 0x66, 0x65, 0x72]);
+		expect(deepClone(source)).toEqual(source);
+	});
+
+	test('GIVEN Int16Array THEN returns same', () => {
+		const source = Int16Array.from([0x62, 0x75, 0x66, 0x66, 0x65, 0x72]);
+		expect(deepClone(source)).toEqual(source);
+	});
+
+	test('GIVEN Int32Array THEN returns same', () => {
+		const source = Int32Array.from([0x62, 0x75, 0x66, 0x66, 0x65, 0x72]);
+		expect(deepClone(source)).toEqual(source);
+	});
+
+	test('GIVEN BigUint64Array THEN returns same', () => {
+		const source = BigUint64Array.from([0x62n, 0x75n, 0x66n, 0x66n, 0x65n, 0x72n]);
+		expect(deepClone(source)).toEqual(source);
+	});
+
+	test('GIVEN BigInt64Array THEN returns same', () => {
+		const source = BigInt64Array.from([0x62n, 0x75n, 0x66n, 0x66n, 0x65n, 0x72n]);
+		expect(deepClone(source)).toEqual(source);
+	});
+
+	test('GIVEN Float32Array THEN returns same', () => {
+		const source = Float32Array.from([0x62, 0x75, 0x66, 0x66, 0x65, 0x72]);
+		expect(deepClone(source)).toEqual(source);
+	});
+
+	test('GIVEN Float64Array THEN returns same', () => {
+		const source = Float64Array.from([0x62, 0x75, 0x66, 0x66, 0x65, 0x72]);
+		expect(deepClone(source)).toEqual(source);
+	});
+
+	test('GIVEN Int8Array THEN returns same', () => {
+		const source = Int8Array.from([0x62, 0x75, 0x66, 0x66, 0x65, 0x72]);
+		expect(deepClone(source)).toEqual(source);
+	});
+
+	test('GIVEN Int8Array THEN returns same', () => {
+		const source = Int8Array.from([0x62, 0x75, 0x66, 0x66, 0x65, 0x72]);
+		expect(deepClone(source)).toEqual(source);
+	});
+
 	test('GIVEN Array THEN returns same', () => {
 		expect.assertions(2);
 		const source = [1, 2, 3];
