@@ -1,7 +1,7 @@
-const IncrementSymbol = Symbol('@sapphire/snowflake:snowflake.increment');
-const EpochSymbol = Symbol('@sapphire/snowflake:snowflake.epoch');
-const ProcessIdSymbol = Symbol('@sapphire/snowflake:snowflake.processId');
-const WorkerIdSymbol = Symbol('@sapphire/snowflake:snowflake.workerId');
+const IncrementSymbol = Symbol('@sapphire/snowflake.increment');
+const EpochSymbol = Symbol('@sapphire/snowflake.epoch');
+const ProcessIdSymbol = Symbol('@sapphire/snowflake.processId');
+const WorkerIdSymbol = Symbol('@sapphire/snowflake.workerId');
 
 /**
  * A class for generating and deconstructing Twitter snowflakes.
