@@ -1,4 +1,4 @@
-const FlagEntriesSymbol = Symbol('@sapphire/bitfield:bitfield.flags.entries');
+const FlagEntriesSymbol = Symbol('@sapphire/bitfield.flags.entries');
 
 export class BitField<Flags extends Record<string, number> | Record<string, bigint>> {
 	public readonly type: Flags[keyof Flags] extends number ? 'number' : 'bigint';
