@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/snowflake@3.5.0](https://github.com/sapphiredev/utilities/compare/@sapphire/snowflake@3.4.3...@sapphire/snowflake@3.5.0) - (2023-05-10)
+
+## 🚀 Features
+
+- **snowflake:** Expose `processId` and `workerId` (#595) ([b873c1c](https://github.com/sapphiredev/utilities/commit/b873c1cc3b30cb54d710a49f7618e125ac1132ad))
+
 # [@sapphire/snowflake@3.4.2](https://github.com/sapphiredev/utilities/compare/@sapphire/snowflake@3.4.1...@sapphire/snowflake@3.4.2) - (2023-04-12)
 
 ## 🏠 Refactor
