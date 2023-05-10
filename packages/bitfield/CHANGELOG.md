@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/bitfield@1.1.2](https://github.com/sapphiredev/utilities/compare/@sapphire/bitfield@1.1.1...@sapphire/bitfield@1.1.2) - (2023-05-10)
+
+## 🏠 Refactor
+
+- **bitfield:** Call entries only once (#594) ([de02ab3](https://github.com/sapphiredev/utilities/commit/de02ab311d8c56fad0b58bf9acdec5a40484ce0d))
+
 # [@sapphire/bitfield@1.1.1](https://github.com/sapphiredev/utilities/compare/@sapphire/bitfield@1.1.0...@sapphire/bitfield@1.1.1) - (2023-05-10)
 
 ## 🐛 Bug Fixes
