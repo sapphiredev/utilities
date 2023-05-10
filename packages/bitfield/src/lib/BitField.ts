@@ -1,8 +1,11 @@
+const FlagEntriesSymbol = Symbol('@sapphire/bitfield.flags.entries');
+
 export class BitField<Flags extends Record<string, number> | Record<string, bigint>> {
 	public readonly type: Flags[keyof Flags] extends number ? 'number' : 'bigint';
 	public readonly zero: Flags[keyof Flags] extends number ? 0 : 0n;
 	public readonly mask: ValueType<this>;
 	public readonly flags: Flags;
+	private readonly [FlagEntriesSymbol]: readonly [string, Flags[keyof Flags]][];
 
 	public constructor(flags: Readonly<Flags>) {
 		if (typeof flags !== 'object' || flags === null) {
@@ -21,6 +24,7 @@ export class BitField<Flags extends Record<string, number> | Record<string, bigi
 
 		this.type = type as any;
 		this.flags = flags;
+		this[FlagEntriesSymbol] = entries;
 
 		if (type === 'number') {
 			this.zero = 0 as any;
@@ -226,7 +230,7 @@ export class BitField<Flags extends Record<string, number> | Record<string, bigi
 	public toArray(field: ValueResolvable<this>): (keyof Flags)[] {
 		const bits = this.resolve(field);
 		const keys: (keyof Flags)[] = [];
-		for (const [key, bit] of Object.entries(this.flags)) {
+		for (const [key, bit] of this[FlagEntriesSymbol]) {
 			// Inline `.has` code for lower overhead:
 			if ((bits & bit) === bit) keys.push(key);
 		}
@@ -259,7 +263,7 @@ export class BitField<Flags extends Record<string, number> | Record<string, bigi
 	 */
 	public toObject(field: ValueResolvable<this>): Record<keyof Flags, boolean> {
 		const bits = this.resolve(field);
-		return Object.fromEntries(Object.entries(this.flags).map(([key, bit]) => [key, (bits & bit) === bit])) as Record<keyof Flags, boolean>;
+		return Object.fromEntries(this[FlagEntriesSymbol].map(([key, bit]) => [key, (bits & bit) === bit])) as Record<keyof Flags, boolean>;
 	}
 }
 
