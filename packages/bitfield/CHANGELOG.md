@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/bitfield@1.1.1](https://github.com/sapphiredev/utilities/compare/@sapphire/bitfield@1.1.0...@sapphire/bitfield@1.1.1) - (2023-05-10)
+
+## 🐛 Bug Fixes
+
+- **bitfield:** Export PrimitiveType and MaybeArray ([568bd32](https://github.com/sapphiredev/utilities/commit/568bd329e1341147dfb7f8a5dabcd9dd604fe535))
+
 # [@sapphire/bitfield@1.1.0](https://github.com/sapphiredev/utilities/compare/@sapphire/bitfield@1.0.0...@sapphire/bitfield@1.1.0) - (2023-04-16)
 
 ## 🐛 Bug Fixes
