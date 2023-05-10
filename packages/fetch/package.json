@@ -62,7 +62,7 @@
 		"@favware/cliff-jumper": "^2.0.0",
 		"@vitest/coverage-c8": "^0.31.0",
 		"tsup": "^6.7.0",
-		"typedoc": "^0.24.6",
+		"typedoc": "^0.24.7",
 		"typedoc-json-parser": "^7.4.0",
 		"typescript": "^5.0.4",
 		"vitest": "^0.31.0"
