@@ -1,8 +1,3 @@
-const IncrementSymbol = Symbol('@sapphire/snowflake.increment');
-const EpochSymbol = Symbol('@sapphire/snowflake.epoch');
-const ProcessIdSymbol = Symbol('@sapphire/snowflake.processId');
-const WorkerIdSymbol = Symbol('@sapphire/snowflake.workerId');
-
 /**
  * A class for generating and deconstructing Twitter snowflakes.
  *
@@ -27,45 +22,45 @@ export class Snowflake {
 	 * Internal reference of the epoch passed in the constructor
 	 * @internal
 	 */
-	private readonly [EpochSymbol]: bigint;
+	readonly #epoch: bigint;
 
 	/**
 	 * Internal incrementor for generating snowflakes
 	 * @internal
 	 */
-	private [IncrementSymbol] = 0n;
+	#increment = 0n;
 
 	/**
 	 * The process ID that will be used by default in the generate method
 	 * @internal
 	 */
-	private [ProcessIdSymbol] = 1n;
+	#processId = 1n;
 
 	/**
 	 * The worker ID that will be used by default in the generate method
 	 * @internal
 	 */
-	private [WorkerIdSymbol] = 0n;
+	#workerId = 0n;
 
 	/**
 	 * @param epoch the epoch to use
 	 */
 	public constructor(epoch: number | bigint | Date) {
-		this[EpochSymbol] = BigInt(epoch instanceof Date ? epoch.getTime() : epoch);
+		this.#epoch = BigInt(epoch instanceof Date ? epoch.getTime() : epoch);
 	}
 
 	/**
 	 * The epoch for this snowflake
 	 */
 	public get epoch(): bigint {
-		return this[EpochSymbol];
+		return this.#epoch;
 	}
 
 	/**
 	 * Gets the configured process ID
 	 */
 	public get processId(): bigint {
-		return this[ProcessIdSymbol];
+		return this.#processId;
 	}
 
 	/**
@@ -73,14 +68,14 @@ export class Snowflake {
 	 * @param value The new value, will be coerced to BigInt and masked with `0b11111n`
 	 */
 	public set processId(value: number | bigint) {
-		this[ProcessIdSymbol] = BigInt(value) & 0b11111n;
+		this.#processId = BigInt(value) & 0b11111n;
 	}
 
 	/**
 	 * Gets the configured worker ID
 	 */
 	public get workerId(): bigint {
-		return this[WorkerIdSymbol];
+		return this.#workerId;
 	}
 
 	/**
@@ -88,7 +83,7 @@ export class Snowflake {
 	 * @param value The new value, will be coerced to BigInt and masked with `0b11111n`
 	 */
 	public set workerId(value: number | bigint) {
-		this[WorkerIdSymbol] = BigInt(value) & 0b11111n;
+		this.#workerId = BigInt(value) & 0b11111n;
 	}
 
 	/**
@@ -103,12 +98,7 @@ export class Snowflake {
 	 * ```
 	 * @returns A unique snowflake
 	 */
-	public generate({
-		increment,
-		timestamp = Date.now(),
-		workerId = this[WorkerIdSymbol],
-		processId = this[ProcessIdSymbol]
-	}: SnowflakeGenerateOptions = {}) {
+	public generate({ increment, timestamp = Date.now(), workerId = this.#workerId, processId = this.#processId }: SnowflakeGenerateOptions = {}) {
 		if (timestamp instanceof Date) timestamp = BigInt(timestamp.getTime());
 		else if (typeof timestamp === 'number') timestamp = BigInt(timestamp);
 		else if (typeof timestamp !== 'bigint') {
@@ -117,12 +107,12 @@ export class Snowflake {
 
 		if (typeof increment === 'bigint' && increment >= 4095n) increment = 0n;
 		else {
-			increment = this[IncrementSymbol]++;
-			if (this[IncrementSymbol] >= 4095n) this[IncrementSymbol] = 0n;
+			increment = this.#increment++;
+			if (increment >= 4095n) this.#increment = 0n;
 		}
 
 		// timestamp, workerId, processId, increment
-		return ((timestamp - this[EpochSymbol]) << 22n) | ((workerId & 0b11111n) << 17n) | ((processId & 0b11111n) << 12n) | increment;
+		return ((timestamp - this.#epoch) << 22n) | ((workerId & 0b11111n) << 17n) | ((processId & 0b11111n) << 12n) | increment;
 	}
 
 	/**
@@ -137,7 +127,7 @@ export class Snowflake {
 	 */
 	public deconstruct(id: string | bigint): DeconstructedSnowflake {
 		const bigIntId = BigInt(id);
-		const epoch = this[EpochSymbol];
+		const epoch = this.#epoch;
 		return {
 			id: bigIntId,
 			timestamp: (bigIntId >> 22n) + epoch,
@@ -154,7 +144,7 @@ export class Snowflake {
 	 * @returns The UNIX timestamp that is stored in `id`.
 	 */
 	public timestampFrom(id: string | bigint): number {
-		return Number((BigInt(id) >> 22n) + this[EpochSymbol]);
+		return Number((BigInt(id) >> 22n) + this.#epoch);
 	}
 
 	/**
