@@ -4,6 +4,21 @@ const ProcessIdSymbol = Symbol('@sapphire/snowflake.processId');
 const WorkerIdSymbol = Symbol('@sapphire/snowflake.workerId');
 
 /**
+ * The maximum value the `workerId` field accepts in snowflakes.
+ */
+export const MaximumWorkerId = 0b11111n;
+
+/**
+ * The maximum value the `processId` field accepts in snowflakes.
+ */
+export const MaximumProcessId = 0b11111n;
+
+/**
+ * The maximum value the `increment` field accepts in snowflakes.
+ */
+export const MaximumIncrement = 0b111111111111n;
+
+/**
  * A class for generating and deconstructing Twitter snowflakes.
  *
  * A {@link https://developer.twitter.com/en/docs/twitter-ids Twitter snowflake}
@@ -73,7 +88,7 @@ export class Snowflake {
 	 * @param value The new value, will be coerced to BigInt and masked with `0b11111n`
 	 */
 	public set processId(value: number | bigint) {
-		this[ProcessIdSymbol] = BigInt(value) & 0b11111n;
+		this[ProcessIdSymbol] = BigInt(value) & MaximumProcessId;
 	}
 
 	/**
@@ -88,7 +103,7 @@ export class Snowflake {
 	 * @param value The new value, will be coerced to BigInt and masked with `0b11111n`
 	 */
 	public set workerId(value: number | bigint) {
-		this[WorkerIdSymbol] = BigInt(value) & 0b11111n;
+		this[WorkerIdSymbol] = BigInt(value) & MaximumWorkerId;
 	}
 
 	/**
@@ -115,14 +130,19 @@ export class Snowflake {
 			throw new TypeError(`"timestamp" argument must be a number, bigint, or Date (received ${typeof timestamp})`);
 		}
 
-		if (typeof increment === 'bigint' && increment >= 4095n) increment = 0n;
-		else {
-			increment = this[IncrementSymbol]++;
-			if (this[IncrementSymbol] >= 4095n) this[IncrementSymbol] = 0n;
+		if (typeof increment !== 'bigint') {
+			// The increment was within
+			increment = this[IncrementSymbol];
+			this[IncrementSymbol] = (increment + 1n) & MaximumIncrement;
 		}
 
 		// timestamp, workerId, processId, increment
-		return ((timestamp - this[EpochSymbol]) << 22n) | ((workerId & 0b11111n) << 17n) | ((processId & 0b11111n) << 12n) | increment;
+		return (
+			((timestamp - this[EpochSymbol]) << 22n) |
+			((workerId & MaximumWorkerId) << 17n) |
+			((processId & MaximumProcessId) << 12n) |
+			(increment & MaximumIncrement)
+		);
 	}
 
 	/**
@@ -141,9 +161,9 @@ export class Snowflake {
 		return {
 			id: bigIntId,
 			timestamp: (bigIntId >> 22n) + epoch,
-			workerId: (bigIntId >> 17n) & 0b11111n,
-			processId: (bigIntId >> 12n) & 0b11111n,
-			increment: bigIntId & 0b111111111111n,
+			workerId: (bigIntId >> 17n) & MaximumWorkerId,
+			processId: (bigIntId >> 12n) & MaximumProcessId,
+			increment: bigIntId & MaximumIncrement,
 			epoch
 		};
 	}

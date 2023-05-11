@@ -77,8 +77,17 @@ describe('Snowflake', () => {
 			expect(snow.toString()).toBe(testId);
 		});
 
+		test('GIVEN timestamp as Date and increment lower than 0n THEN returns predefined snowflake', () => {
+			const testId = '3971046231244808191';
+			const testDate = new Date(2524608000000);
+			const snowflake = new Snowflake(sampleEpoch);
+			const snow = snowflake.generate({ timestamp: testDate, increment: -1n });
+
+			expect(snow.toString()).toBe(testId);
+		});
+
 		test('GIVEN timestamp as Date and increment higher than 4095n THEN returns predefined snowflake', () => {
-			const testId = '3971046231244804096';
+			const testId = '3971046231244805000';
 			const testDate = new Date(2524608000000);
 			const snowflake = new Snowflake(sampleEpoch);
 			const snow = snowflake.generate({ timestamp: testDate, increment: 5000n });
@@ -178,6 +187,50 @@ describe('Snowflake', () => {
 			const snow = snowflake.generate();
 
 			expect(snow.toString()).toBe(testId);
+		});
+
+		describe('increment overrides', () => {
+			const IncrementSymbol = Object.getOwnPropertySymbols(new Snowflake(sampleEpoch)).find(
+				(s) => s.description === '@sapphire/snowflake.increment'
+			);
+
+			if (!IncrementSymbol) throw new TypeError('Could not find IncrementSymbol');
+
+			test('GIVEN near-limit THEN it reaches limit', () => {
+				const snowflake = new Snowflake(sampleEpoch);
+				Reflect.set(snowflake, IncrementSymbol, 4094n);
+				const snow = snowflake.generate();
+
+				expect(snow.toString()).toBe('8190');
+				expect(Reflect.get(snowflake, IncrementSymbol)).toBe(4095n);
+			});
+
+			test('GIVEN limit THEN it cycles to 0', () => {
+				const snowflake = new Snowflake(sampleEpoch);
+				Reflect.set(snowflake, IncrementSymbol, 4095n);
+				const snow = snowflake.generate();
+
+				expect(snow.toString()).toBe('8191');
+				expect(Reflect.get(snowflake, IncrementSymbol)).toBe(0n);
+			});
+
+			test('GIVEN over-limit THEN it cycles to 0', () => {
+				const snowflake = new Snowflake(sampleEpoch);
+				Reflect.set(snowflake, IncrementSymbol, 4096n);
+				const snow = snowflake.generate();
+
+				expect(snow.toString()).toBe('4096');
+				expect(Reflect.get(snowflake, IncrementSymbol)).toBe(1n);
+			});
+
+			test('GIVEN under-limit THEN it cycles to 0', () => {
+				const snowflake = new Snowflake(sampleEpoch);
+				Reflect.set(snowflake, IncrementSymbol, -1n);
+				const snow = snowflake.generate();
+
+				expect(snow.toString()).toBe('8191');
+				expect(Reflect.get(snowflake, IncrementSymbol)).toBe(0n);
+			});
 		});
 	});
 
