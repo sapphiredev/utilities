@@ -77,24 +77,6 @@ describe('Snowflake', () => {
 			expect(snow.toString()).toBe(testId);
 		});
 
-		test('GIVEN timestamp as Date and increment lower than 0n THEN returns predefined snowflake', () => {
-			const testId = '3971046231244808191';
-			const testDate = new Date(2524608000000);
-			const snowflake = new Snowflake(sampleEpoch);
-			const snow = snowflake.generate({ timestamp: testDate, increment: -1n });
-
-			expect(snow.toString()).toBe(testId);
-		});
-
-		test('GIVEN timestamp as Date and increment higher than 4095n THEN returns predefined snowflake', () => {
-			const testId = '3971046231244805000';
-			const testDate = new Date(2524608000000);
-			const snowflake = new Snowflake(sampleEpoch);
-			const snow = snowflake.generate({ timestamp: testDate, increment: 5000n });
-
-			expect(snow.toString()).toBe(testId);
-		});
-
 		test('GIVEN empty object options THEN returns predefined snowflake', () => {
 			const testId = '4096';
 			const snowflake = new Snowflake(sampleEpoch);
@@ -153,6 +135,30 @@ describe('Snowflake', () => {
 
 			// Validate that there are no duplicate IDs
 			expect(setOf10Snowflakes.size).toBe(arrayOf10Snowflakes.length);
+		});
+
+		test('GIVEN timestamp as Date and increment lower than 0n THEN returns predefined snowflake', () => {
+			const testId = '8191';
+			const snowflake = new Snowflake(sampleEpoch);
+			const snow = snowflake.generate({ increment: -1n });
+
+			expect(snow.toString()).toBe(testId);
+		});
+
+		test('GIVEN timestamp as Date and increment higher than 4095n THEN returns predefined snowflake', () => {
+			const testId = '6196';
+			const snowflake = new Snowflake(sampleEpoch);
+			const snow = snowflake.generate({ increment: 2100n });
+
+			expect(snow.toString()).toBe(testId);
+		});
+
+		test('GIVEN timestamp as Date and increment higher than 4095n THEN returns predefined snowflake', () => {
+			const testId = '5000';
+			const snowflake = new Snowflake(sampleEpoch);
+			const snow = snowflake.generate({ increment: 5000n });
+
+			expect(snow.toString()).toBe(testId);
 		});
 
 		test('GIVEN overflowing processId THEN generates ID with truncated processId', () => {
