@@ -342,7 +342,7 @@
 		"esbuild-plugin-file-path-extensions": "^1.0.0",
 		"tsup": "^6.7.0",
 		"typedoc": "^0.24.7",
-		"typedoc-json-parser": "^8.0.0",
+		"typedoc-json-parser": "^7.4.0",
 		"typescript": "^5.0.4",
 		"vitest": "^0.31.0"
 	}
