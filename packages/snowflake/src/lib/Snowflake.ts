@@ -131,7 +131,6 @@ export class Snowflake {
 		}
 
 		if (typeof increment !== 'bigint') {
-			// The increment was within
 			increment = this[IncrementSymbol];
 			this[IncrementSymbol] = (increment + 1n) & MaximumIncrement;
 		}
