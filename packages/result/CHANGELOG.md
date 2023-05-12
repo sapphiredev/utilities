@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/result@2.6.4](https://github.com/sapphiredev/utilities/compare/@sapphire/result@2.6.3...@sapphire/result@2.6.4) - (2023-05-12)
+
+## 🐛 Bug Fixes
+
+- **result:** Remove unnecessary tslib import ([ec40daa](https://github.com/sapphiredev/utilities/commit/ec40daa55fce58202f06401bb1a8ee0414f28962))
+
 # [@sapphire/result@2.6.3](https://github.com/sapphiredev/utilities/compare/@sapphire/result@2.6.2...@sapphire/result@2.6.3) - (2023-05-02)
 
 ## 🏠 Refactor
