@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/snowflake@3.5.1](https://github.com/sapphiredev/utilities/compare/@sapphire/snowflake@3.5.0...@sapphire/snowflake@3.5.1) - (2023-05-12)
+
+## 🏠 Refactor
+
+- **snowflake:** Handle out-of-bounds `increment` correctly (#596) ([b5276d7](https://github.com/sapphiredev/utilities/commit/b5276d7372c33356975a302bafb5ae8aba604431))
+
 # [@sapphire/snowflake@3.5.0](https://github.com/sapphiredev/utilities/compare/@sapphire/snowflake@3.4.3...@sapphire/snowflake@3.5.0) - (2023-05-10)
 
 ## 🚀 Features
