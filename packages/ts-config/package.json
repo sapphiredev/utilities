@@ -28,7 +28,7 @@
 	"scripts": {
 		"test": "vitest run",
 		"lint": "eslint tests --ext mjs,ts --fix -c ../../.eslintrc",
-		"build": "yarn lint && tsc -b tests",
+		"build": "tsc -b tests",
 		"bump": "cliff-jumper",
 		"check-update": "cliff-jumper --dry-run"
 	},
