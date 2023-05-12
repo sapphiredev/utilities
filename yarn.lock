@@ -793,7 +793,7 @@ __metadata:
     "@vitest/coverage-c8": ^0.31.0
     tsup: ^6.7.0
     typedoc: ^0.24.7
-    typedoc-json-parser: ^7.4.0
+    typedoc-json-parser: ^8.0.0
     typescript: ^5.0.4
     vitest: ^0.31.0
   languageName: unknown
@@ -807,7 +807,7 @@ __metadata:
     "@vitest/coverage-c8": ^0.31.0
     tsup: ^6.7.0
     typedoc: ^0.24.7
-    typedoc-json-parser: ^7.4.0
+    typedoc-json-parser: ^8.0.0
     typescript: ^5.0.4
     vitest: ^0.31.0
   languageName: unknown
@@ -822,7 +822,7 @@ __metadata:
     "@vitest/coverage-c8": ^0.31.0
     tsup: ^6.7.0
     typedoc: ^0.24.7
-    typedoc-json-parser: ^7.4.0
+    typedoc-json-parser: ^8.0.0
     typescript: ^5.0.4
     vitest: ^0.31.0
   languageName: unknown
@@ -842,7 +842,7 @@ __metadata:
     tslib: ^2.5.0
     tsup: ^6.7.0
     typedoc: ^0.24.7
-    typedoc-json-parser: ^7.4.0
+    typedoc-json-parser: ^8.0.0
     typescript: ^5.0.4
     vitest: ^0.31.0
   languageName: unknown
@@ -857,7 +857,7 @@ __metadata:
     discord-api-types: ^0.37.42
     tsup: ^6.7.0
     typedoc: ^0.24.7
-    typedoc-json-parser: ^7.4.0
+    typedoc-json-parser: ^8.0.0
     typescript: ^5.0.4
     vitest: ^0.31.0
   languageName: unknown
@@ -887,7 +887,7 @@ __metadata:
     tslib: ^2.5.0
     tsup: ^6.7.0
     typedoc: ^0.24.7
-    typedoc-json-parser: ^7.4.0
+    typedoc-json-parser: ^8.0.0
     typescript: ^5.0.4
   languageName: unknown
   linkType: soft
@@ -900,7 +900,7 @@ __metadata:
     "@vitest/coverage-c8": ^0.31.0
     tsup: ^6.7.0
     typedoc: ^0.24.7
-    typedoc-json-parser: ^7.4.0
+    typedoc-json-parser: ^8.0.0
     typescript: ^5.0.4
     vitest: ^0.31.0
   languageName: unknown
@@ -948,7 +948,7 @@ __metadata:
     tslib: ^2.5.0
     tsup: ^6.7.0
     typedoc: ^0.24.7
-    typedoc-json-parser: ^7.4.0
+    typedoc-json-parser: ^8.0.0
     typescript: ^5.0.4
     vitest: ^0.31.0
   languageName: unknown
@@ -963,7 +963,7 @@ __metadata:
     cross-fetch: ^3.1.5
     tsup: ^6.7.0
     typedoc: ^0.24.7
-    typedoc-json-parser: ^7.4.0
+    typedoc-json-parser: ^8.0.0
     typescript: ^5.0.4
     vitest: ^0.31.0
   languageName: unknown
@@ -995,7 +995,7 @@ __metadata:
     "@vitest/coverage-c8": ^0.31.0
     tsup: ^6.7.0
     typedoc: ^0.24.7
-    typedoc-json-parser: ^7.4.0
+    typedoc-json-parser: ^8.0.0
     typescript: ^5.0.4
     vitest: ^0.31.0
   languageName: unknown
@@ -1009,7 +1009,7 @@ __metadata:
     "@vitest/coverage-c8": ^0.31.0
     tsup: ^6.7.0
     typedoc: ^0.24.7
-    typedoc-json-parser: ^7.4.0
+    typedoc-json-parser: ^8.0.0
     typescript: ^5.0.4
     vitest: ^0.31.0
   languageName: unknown
@@ -1023,7 +1023,7 @@ __metadata:
     "@sapphire/fetch": "workspace:^"
     tsup: ^6.7.0
     typedoc: ^0.24.7
-    typedoc-json-parser: ^7.4.0
+    typedoc-json-parser: ^8.0.0
     typescript: ^5.0.4
   languageName: unknown
   linkType: soft
@@ -1059,7 +1059,7 @@ __metadata:
     "@vitest/coverage-c8": ^0.31.0
     tsup: ^6.7.0
     typedoc: ^0.24.7
-    typedoc-json-parser: ^7.4.0
+    typedoc-json-parser: ^8.0.0
     typescript: ^5.0.4
     vitest: ^0.31.0
   languageName: unknown
@@ -1074,7 +1074,7 @@ __metadata:
     tslib: ^2.5.0
     tsup: ^6.7.0
     typedoc: ^0.24.7
-    typedoc-json-parser: ^7.4.0
+    typedoc-json-parser: ^8.0.0
     typescript: ^5.0.4
     vitest: ^0.31.0
   languageName: unknown
@@ -1098,7 +1098,7 @@ __metadata:
     "@vitest/coverage-c8": ^0.31.0
     tsup: ^6.7.0
     typedoc: ^0.24.7
-    typedoc-json-parser: ^7.4.0
+    typedoc-json-parser: ^8.0.0
     typescript: ^5.0.4
     vitest: ^0.31.0
   languageName: unknown
@@ -1115,7 +1115,7 @@ __metadata:
     tslib: ^2.5.0
     tsup: ^6.7.0
     typedoc: ^0.24.7
-    typedoc-json-parser: ^7.4.0
+    typedoc-json-parser: ^8.0.0
     typescript: ^5.0.4
     vitest: ^0.31.0
   languageName: unknown
@@ -1132,7 +1132,7 @@ __metadata:
     "@sapphire/timestamp": "workspace:^"
     tsup: ^6.7.0
     typedoc: ^0.24.7
-    typedoc-json-parser: ^7.4.0
+    typedoc-json-parser: ^8.0.0
     typescript: ^5.0.4
   languageName: unknown
   linkType: soft
@@ -1145,7 +1145,7 @@ __metadata:
     "@vitest/coverage-c8": ^0.31.0
     tsup: ^6.7.0
     typedoc: ^0.24.7
-    typedoc-json-parser: ^7.4.0
+    typedoc-json-parser: ^8.0.0
     typescript: ^5.0.4
     vitest: ^0.31.0
   languageName: unknown
@@ -1159,7 +1159,7 @@ __metadata:
     "@vitest/coverage-c8": ^0.31.0
     tsup: ^6.7.0
     typedoc: ^0.24.7
-    typedoc-json-parser: ^7.4.0
+    typedoc-json-parser: ^8.0.0
     typescript: ^5.0.4
     vitest: ^0.31.0
   languageName: unknown
@@ -1188,7 +1188,7 @@ __metadata:
     esbuild-plugin-file-path-extensions: ^1.0.0
     tsup: ^6.7.0
     typedoc: ^0.24.7
-    typedoc-json-parser: ^7.4.0
+    typedoc-json-parser: ^8.0.0
     typescript: ^5.0.4
     vitest: ^0.31.0
   languageName: unknown
@@ -1305,10 +1305,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^18.16.7":
+"@types/node@npm:*":
   version: 18.16.7
   resolution: "@types/node@npm:18.16.7"
   checksum: dbff7d41a050557cc81aa37cb186aaf3a799b3001bc4bb1015b240398abde1f9d0ac1e943959bba7f2ab2701292ae407a9ee2fc0f735a05b28bfc97d0b2b5e91
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:^18.16.8":
+  version: 18.16.8
+  resolution: "@types/node@npm:18.16.8"
+  checksum: d2ec9b61abd260b0fa1e33e4eca8f0089ebb6f6ec1ad2f036a4d01af11dba4f1dbff95b2a1f5dbe9eab3a6f38ed4bd8bf95eb2de9ad96b1caa1f67671e623c1d
   languageName: node
   linkType: hard
 
@@ -5877,7 +5884,7 @@ __metadata:
     "@favware/rollup-type-bundler": ^2.0.0
     "@sapphire/framework": ^4.4.3
     "@types/lodash": ^4.14.194
-    "@types/node": ^18.16.7
+    "@types/node": ^18.16.8
     "@types/ws": ^8.5.4
     "@typescript-eslint/eslint-plugin": ^5.59.5
     "@typescript-eslint/parser": ^5.59.5
@@ -5897,7 +5904,7 @@ __metadata:
     rimraf: ^5.0.0
     tslib: ^2.5.0
     tsup: ^6.7.0
-    turbo: ^1.9.3
+    turbo: ^1.9.4
     typescript: ^5.0.4
     vite: ^4.3.5
     vitest: ^0.31.0
@@ -6673,58 +6680,58 @@ __metadata:
   languageName: node
   linkType: hard
 
-"turbo-darwin-64@npm:1.9.3":
-  version: 1.9.3
-  resolution: "turbo-darwin-64@npm:1.9.3"
+"turbo-darwin-64@npm:1.9.4":
+  version: 1.9.4
+  resolution: "turbo-darwin-64@npm:1.9.4"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"turbo-darwin-arm64@npm:1.9.3":
-  version: 1.9.3
-  resolution: "turbo-darwin-arm64@npm:1.9.3"
+"turbo-darwin-arm64@npm:1.9.4":
+  version: 1.9.4
+  resolution: "turbo-darwin-arm64@npm:1.9.4"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"turbo-linux-64@npm:1.9.3":
-  version: 1.9.3
-  resolution: "turbo-linux-64@npm:1.9.3"
+"turbo-linux-64@npm:1.9.4":
+  version: 1.9.4
+  resolution: "turbo-linux-64@npm:1.9.4"
   conditions: os=linux & cpu=x64
   languageName: node
   linkType: hard
 
-"turbo-linux-arm64@npm:1.9.3":
-  version: 1.9.3
-  resolution: "turbo-linux-arm64@npm:1.9.3"
+"turbo-linux-arm64@npm:1.9.4":
+  version: 1.9.4
+  resolution: "turbo-linux-arm64@npm:1.9.4"
   conditions: os=linux & cpu=arm64
   languageName: node
   linkType: hard
 
-"turbo-windows-64@npm:1.9.3":
-  version: 1.9.3
-  resolution: "turbo-windows-64@npm:1.9.3"
+"turbo-windows-64@npm:1.9.4":
+  version: 1.9.4
+  resolution: "turbo-windows-64@npm:1.9.4"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
 
-"turbo-windows-arm64@npm:1.9.3":
-  version: 1.9.3
-  resolution: "turbo-windows-arm64@npm:1.9.3"
+"turbo-windows-arm64@npm:1.9.4":
+  version: 1.9.4
+  resolution: "turbo-windows-arm64@npm:1.9.4"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"turbo@npm:^1.9.3":
-  version: 1.9.3
-  resolution: "turbo@npm:1.9.3"
+"turbo@npm:^1.9.4":
+  version: 1.9.4
+  resolution: "turbo@npm:1.9.4"
   dependencies:
-    turbo-darwin-64: 1.9.3
-    turbo-darwin-arm64: 1.9.3
-    turbo-linux-64: 1.9.3
-    turbo-linux-arm64: 1.9.3
-    turbo-windows-64: 1.9.3
-    turbo-windows-arm64: 1.9.3
+    turbo-darwin-64: 1.9.4
+    turbo-darwin-arm64: 1.9.4
+    turbo-linux-64: 1.9.4
+    turbo-linux-arm64: 1.9.4
+    turbo-windows-64: 1.9.4
+    turbo-windows-arm64: 1.9.4
   dependenciesMeta:
     turbo-darwin-64:
       optional: true
@@ -6740,7 +6747,7 @@ __metadata:
       optional: true
   bin:
     turbo: bin/turbo
-  checksum: ebf06d3b9b1401a5baabace238cd1e0d8fc1dc062b4f7bd577f644298c555f326d15f331144641c0b43a60ae8058769bcbd9d1660874fa9927ec64b5be8ee9dc
+  checksum: 178488e89e9d3f445dd8e3c1dd972d398aba4be801d6f42e76b7ff018b0be1fb7ce3b37da2c715205b62a56830308d14c67bf3c065dc79633e45beec98af7afa
   languageName: node
   linkType: hard
 
@@ -6802,9 +6809,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typedoc-json-parser@npm:^7.4.0":
-  version: 7.4.0
-  resolution: "typedoc-json-parser@npm:7.4.0"
+"typedoc-json-parser@npm:^8.0.0":
+  version: 8.0.0
+  resolution: "typedoc-json-parser@npm:8.0.0"
   dependencies:
     "@favware/colorette-spinner": ^1.0.1
     "@sapphire/node-utilities": ^1.0.0
@@ -6812,14 +6819,14 @@ __metadata:
     commander: ^10.0.1
     js-yaml: ^4.1.0
     tslib: ^2.5.0
-    typedoc: ^0.24.4
+    typedoc: ^0.24.7
   bin:
     typedoc-json-parser: ./dist/bin/index.js
-  checksum: 642e50ae51e4c7347d7320552cf9d4ea39322a66d13a4ea71f60c4607745457ee2c16e90101783b3930daeb8a38d2397e36631d9afcd5cf13994c14e6c196b6e
+  checksum: a135512227f5503ae3dcd95304908ecb90d0ef86cabeafcab6457f98f4c4e697dcd9c8cd5824ec23aa6a7e7e0228cd0ec267673c52cc7c23050b3cbe30aba5b9
   languageName: node
   linkType: hard
 
-"typedoc@npm:^0.24.4, typedoc@npm:^0.24.7":
+"typedoc@npm:^0.24.7":
   version: 0.24.7
   resolution: "typedoc@npm:0.24.7"
   dependencies:
