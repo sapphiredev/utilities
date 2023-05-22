@@ -2,6 +2,7 @@ import { chunk, partition } from '@sapphire/utilities';
 import {
 	ActionRowBuilder,
 	ButtonBuilder,
+	ButtonStyle,
 	ComponentType,
 	type APIActionRowComponent,
 	type APIMessageActionRowComponent,
@@ -17,7 +18,13 @@ import {
 import { isAnyInteractableInteraction, isMessageInstance } from '../type-guards';
 import type {
 	PaginatedMessageAction,
+	PaginatedMessageActionButton,
+	PaginatedMessageActionChannelMenu,
 	PaginatedMessageActionLink,
+	PaginatedMessageActionMentionableMenu,
+	PaginatedMessageActionRoleMenu,
+	PaginatedMessageActionStringMenu,
+	PaginatedMessageActionUserMenu,
 	PaginatedMessageComponentUnion,
 	SafeReplyToInteractionParameters
 } from './PaginatedMessageTypes';
@@ -59,6 +66,34 @@ export function isMessageChannelSelectInteractionData(interaction: ActionRowComp
 
 export function isButtonComponentBuilder(component: MessageActionRowComponentBuilder): component is ButtonBuilder {
 	return component.data.type === ComponentType.Button;
+}
+
+export function isActionButton(action: PaginatedMessageAction): action is PaginatedMessageActionButton {
+	return action.type === ComponentType.Button && action.style !== ButtonStyle.Link;
+}
+
+export function isActionLink(action: PaginatedMessageAction): action is PaginatedMessageActionLink {
+	return action.type === ComponentType.Button && action.style === ButtonStyle.Link;
+}
+
+export function isActionStringMenu(action: PaginatedMessageAction): action is PaginatedMessageActionStringMenu {
+	return action.type === ComponentType.StringSelect;
+}
+
+export function isActionUserMenu(action: PaginatedMessageAction): action is PaginatedMessageActionUserMenu {
+	return action.type === ComponentType.UserSelect;
+}
+
+export function isActionRoleMenu(action: PaginatedMessageAction): action is PaginatedMessageActionRoleMenu {
+	return action.type === ComponentType.RoleSelect;
+}
+
+export function isActionMentionableMenu(action: PaginatedMessageAction): action is PaginatedMessageActionMentionableMenu {
+	return action.type === ComponentType.MentionableSelect;
+}
+
+export function isActionChannelMenu(action: PaginatedMessageAction): action is PaginatedMessageActionChannelMenu {
+	return action.type === ComponentType.ChannelSelect;
 }
 
 export function createPartitionedMessageRow(components: MessageActionRowComponentBuilder[]): PaginatedMessageComponentUnion[] {

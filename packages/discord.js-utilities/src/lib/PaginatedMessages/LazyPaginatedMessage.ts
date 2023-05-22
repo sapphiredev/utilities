@@ -3,7 +3,7 @@ import { EmbedBuilder, Message, User } from 'discord.js';
 import { MessageBuilder } from '../builders/MessageBuilder';
 import type { AnyInteractableInteraction } from '../utility-types';
 import { PaginatedMessage } from './PaginatedMessage';
-import type { PaginatedMessagePage } from './PaginatedMessageTypes';
+import type { PaginatedMessageResolvedPage } from './PaginatedMessageTypes';
 
 /**
  * This is a LazyPaginatedMessage. Instead of resolving all pages that are functions on {@link PaginatedMessage.run} will resolve when requested.
@@ -26,7 +26,7 @@ export class LazyPaginatedMessage extends PaginatedMessage {
 		messageOrInteraction: Message | AnyInteractableInteraction,
 		target: User,
 		index: number
-	): Promise<PaginatedMessagePage> {
+	): Promise<PaginatedMessageResolvedPage> {
 		const promises = [super.resolvePage(messageOrInteraction, target, index)];
 		if (this.hasPage(index - 1)) promises.push(super.resolvePage(messageOrInteraction, target, index - 1));
 		if (this.hasPage(index + 1)) promises.push(super.resolvePage(messageOrInteraction, target, index + 1));
