@@ -1,7 +1,6 @@
 import { Time } from '@sapphire/duration';
 import { deepClone, isFunction, isNullish, isObject } from '@sapphire/utilities';
 import {
-	ActionRowBuilder,
 	ButtonBuilder,
 	ButtonStyle,
 	ChannelSelectMenuBuilder,
@@ -18,20 +17,15 @@ import {
 	UserSelectMenuBuilder,
 	isJSONEncodable,
 	userMention,
-	type APIActionRowComponent,
 	type APIEmbed,
-	type APIMessage,
-	type APIMessageActionRowComponent,
 	type BaseMessageOptions,
 	type Collection,
-	type InteractionReplyOptions,
 	type JSONEncodable,
 	type Message,
 	type MessageActionRowComponentBuilder,
 	type Snowflake,
 	type TextBasedChannel,
-	type User,
-	type WebhookMessageEditOptions
+	type User
 } from 'discord.js';
 import { MessageBuilder } from '../builders/MessageBuilder';
 import { isAnyInteraction, isGuildBasedChannel, isMessageInstance, isStageChannel } from '../type-guards';
@@ -45,6 +39,7 @@ import type {
 	PaginatedMessageMessageOptionsUnion,
 	PaginatedMessageOptions,
 	PaginatedMessagePage,
+	PaginatedMessageResolvedPage,
 	PaginatedMessageSelectMenuOptionsFunction,
 	PaginatedMessageStopReasons,
 	PaginatedMessageWrongUserInteractionReplyFunction
@@ -148,7 +143,7 @@ export class PaginatedMessage {
 	/**
 	 * The response message used to edit on page changes.
 	 */
-	public response: APIMessage | Message | AnyInteractableInteraction | null = null;
+	public response: Message | AnyInteractableInteraction | null = null;
 
 	/**
 	 * The collector used for handling component interactions.
@@ -158,7 +153,7 @@ export class PaginatedMessage {
 	/**
 	 * The pages which were converted from {@link PaginatedMessage.pages}
 	 */
-	public messages: (PaginatedMessagePage | null)[] = [];
+	public messages: (PaginatedMessageResolvedPage | null)[] = [];
 
 	/**
 	 * The actions which are to be used.
@@ -260,13 +255,7 @@ export class PaginatedMessage {
 	}: PaginatedMessageOptions = {}) {
 		if (pages) this.addPages(pages);
 
-		for (const action of actions ?? this.constructor.defaultActions) {
-			if (actionIsButtonOrMenu(action)) {
-				this.actions.set(action.customId, action);
-			} else {
-				this.actions.set(action.url, action);
-			}
-		}
+		this.addActions(actions ?? this.constructor.defaultActions);
 
 		this.template = PaginatedMessage.resolveTemplate(template);
 		this.pageIndexPrefix = pageIndexPrefix ?? PaginatedMessage.pageIndexPrefix;
@@ -511,21 +500,19 @@ export class PaginatedMessage {
 	 * @remark This method can only be used after {@link PaginatedMessage.run} has been used.
 	 */
 	public async updateCurrentPage(page: PaginatedMessagePage): Promise<this> {
-		if (this.response === null) {
+		const interaction = this.response;
+		const currentIndex = this.index;
+
+		if (interaction === null) {
 			throw new Error('You cannot update a page before responding to the interaction.');
 		}
 
-		const currentIndex = this.index;
-
-		// Retrieve the current page
-		const oldPage = this.messages[currentIndex];
-		const oldOptions = isFunction(oldPage) ? await oldPage(currentIndex, this.pages, this) : oldPage;
-
-		// Load the new page
-		const newPage = await this.handlePageLoad(page, currentIndex);
-
 		this.pages[currentIndex] = page;
-		this.messages[currentIndex] = { ...newPage, components: newPage.components ?? oldOptions?.components };
+		this.messages[currentIndex] = null;
+		this.pageActions[currentIndex]?.clear();
+
+		const target = isAnyInteraction(interaction) ? interaction.user : interaction.author;
+		await this.resolvePage(interaction, target, currentIndex);
 
 		return this;
 	}
@@ -884,7 +871,7 @@ export class PaginatedMessage {
 	 * ```
 	 * @see {@link PaginatedMessage.setActions} for more examples on how to structure the action.
 	 */
-	public setPageActions(actions: PaginatedMessageAction[], index: number) {
+	public setPageActions(actions: PaginatedMessageAction[], index: number): this {
 		if (index < 0 || index > this.pages.length - 1) throw new Error('Provided index is out of bounds');
 
 		this.pageActions[index]?.clear();
@@ -909,7 +896,7 @@ export class PaginatedMessage {
 	 * - {@link PaginatedMessage.addPages}
 	 * - {@link PaginatedMessage.setPages}
 	 */
-	public addPageActions(actions: PaginatedMessageAction[], index: number) {
+	public addPageActions(actions: PaginatedMessageAction[], index: number): this {
 		if (index < 0 || index > this.pages.length - 1) throw new Error('Provided index is out of bounds');
 
 		for (const action of actions) {
@@ -936,7 +923,7 @@ export class PaginatedMessage {
 	 * - {@link PaginatedMessage.addPages}
 	 * - {@link PaginatedMessage.setPages}
 	 */
-	public addPageAction(action: PaginatedMessageAction, index: number) {
+	public addPageAction(action: PaginatedMessageAction, index: number): this {
 		if (index < 0 || index > this.pages.length - 1) throw new Error('Provided index is out of bounds');
 
 		if (!this.pageActions[index]) {
@@ -1091,7 +1078,11 @@ export class PaginatedMessage {
 	 * @param target The user who will be able to interact with the buttons of this {@link PaginatedMessage}.
 	 * @param index The index to resolve.
 	 */
-	public async resolvePage(messageOrInteraction: Message | AnyInteractableInteraction, target: User, index: number): Promise<PaginatedMessagePage> {
+	public async resolvePage(
+		messageOrInteraction: Message | AnyInteractableInteraction,
+		target: User,
+		index: number
+	): Promise<PaginatedMessageResolvedPage> {
 		// If the message was already processed, do not load it again:
 		const message = this.messages[index];
 		if (!isNullish(message)) {
@@ -1140,19 +1131,12 @@ export class PaginatedMessage {
 	}
 
 	/**
-	 * Get the components of a page.
-	 * @param index The index of the page that has the components.
+	 * Get the options of a page.
+	 * @param index The index of the page.
 	 */
-	public async getComponents(index: number): Promise<ActionRowBuilder<MessageActionRowComponentBuilder>[] | undefined> {
-		const page = this.messages.at(index);
-		if (isNullish(page)) return undefined;
-
-		const options = isFunction(page) ? await page(this.index, this.pages, this) : page;
-		if (isNullish(options.components)) return undefined;
-
-		return options.components.map((row) => {
-			return ActionRowBuilder.from(row as APIActionRowComponent<APIMessageActionRowComponent>);
-		});
+	public async getPageOptions(index: number): Promise<PaginatedMessageMessageOptionsUnion | undefined> {
+		const page = this.pages.at(index);
+		return isFunction(page) ? page(index, this.pages, this) : page;
 	}
 
 	/**
@@ -1167,31 +1151,33 @@ export class PaginatedMessage {
 		// Get the current page
 		let page = this.messages[this.index]!;
 
-		// If the page is a callback function such as with `addAsyncPageEmbed` then resolve it here
-		page = isFunction(page) ? await page(this.index, this.pages, this) : page;
-
 		// Merge in the advanced options
 		page = { ...page, ...(this.paginatedMessageData ?? {}) };
 
 		if (this.response) {
 			if (isAnyInteraction(this.response)) {
 				if (this.response.replied || this.response.deferred) {
-					await this.response.editReply(page as WebhookMessageEditOptions);
+					await this.response.editReply(page);
 				} else {
-					await this.response.reply(page as InteractionReplyOptions);
+					await this.response.reply({ ...page, content: page.content ?? undefined });
 				}
 			} else if (isMessageInstance(this.response)) {
-				await this.response.edit(page as WebhookMessageEditOptions);
+				await this.response.edit(page);
 			}
 		} else if (isAnyInteraction(messageOrInteraction)) {
 			if (messageOrInteraction.replied || messageOrInteraction.deferred) {
 				const editReplyResponse = await messageOrInteraction.editReply(page);
 				this.response = messageOrInteraction.ephemeral ? messageOrInteraction : editReplyResponse;
 			} else {
-				this.response = await messageOrInteraction.reply({ ...(page as InteractionReplyOptions), fetchReply: true, ephemeral: false });
+				this.response = await messageOrInteraction.reply({
+					...page,
+					content: page.content ?? undefined,
+					fetchReply: true,
+					ephemeral: false
+				});
 			}
 		} else if (!isStageChannel(messageOrInteraction.channel)) {
-			this.response = await messageOrInteraction.channel.send(page as BaseMessageOptions);
+			this.response = await messageOrInteraction.channel.send({ ...page, content: page.content ?? undefined });
 		}
 	}
 
@@ -1322,7 +1308,7 @@ export class PaginatedMessage {
 				throw new Error('There was no action for the provided custom ID');
 			}
 
-			if (actionIsButtonOrMenu(action)) {
+			if (actionIsButtonOrMenu(action) && action.run) {
 				const previousIndex = this.index;
 
 				await action.run({
@@ -1336,8 +1322,7 @@ export class PaginatedMessage {
 
 				if (!this.stopPaginatedMessageCustomIds.includes(action.customId)) {
 					const newIndex = previousIndex === this.index ? previousIndex : this.index;
-					const messagePage = await this.resolvePage(this.response, targetUser, newIndex);
-					const updateOptions = isFunction(messagePage) ? await messagePage(newIndex, this.pages, this) : messagePage;
+					const updateOptions = await this.resolvePage(this.response, targetUser, newIndex);
 
 					await safelyReplyToInteraction({
 						messageOrInteraction: interaction,

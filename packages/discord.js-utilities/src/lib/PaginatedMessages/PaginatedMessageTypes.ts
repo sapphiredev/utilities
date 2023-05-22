@@ -48,7 +48,7 @@ export type PaginatedMessageAction =
 	| PaginatedMessageActionChannelMenu;
 
 export interface PaginatedMessageActionRun {
-	run(context: PaginatedMessageActionContext): Awaitable<unknown>;
+	run?(context: PaginatedMessageActionContext): Awaitable<unknown>;
 }
 
 /**
@@ -92,10 +92,7 @@ export type PaginatedMessageActionLink = LinkButtonComponentData;
  * }
  * ```
  */
-export type PaginatedMessageActionStringMenu = PaginatedMessageActionRun &
-	// TODO: When DiscordJS fixes the `options` being marked as undefined we can merge this Omit and Pick back into a regular intersection. (ref: https://github.com/discordjs/discord.js/pull/9515)
-	Omit<StringSelectMenuComponentData, 'options'> &
-	Required<Pick<StringSelectMenuComponentData, 'options'>>;
+export type PaginatedMessageActionStringMenu = PaginatedMessageActionRun & StringSelectMenuComponentData;
 
 /**
  * To utilize User Select Menus you can pass an object with the structure of {@link PaginatedMessageActionUserMenu} to {@link PaginatedMessage} actions.
@@ -241,6 +238,8 @@ export type PaginatedMessagePage =
 	| ((index: number, pages: PaginatedMessagePage[], handler: PaginatedMessage) => Awaitable<PaginatedMessageMessageOptionsUnion>)
 	| PaginatedMessageMessageOptionsUnion;
 
+export type PaginatedMessageResolvedPage = Omit<BaseMessageOptions, 'flags'> | WebhookMessageEditOptions;
+
 /**
  * The type of the custom function that can be set for the {@link PaginatedMessage.selectMenuOptions}
  */
@@ -260,7 +259,7 @@ export type PaginatedMessageWrongUserInteractionReplyFunction = (
 
 export type PaginatedMessageEmbedResolvable = BaseMessageOptions['embeds'];
 
-export type PaginatedMessageMessageOptionsUnion = (Omit<BaseMessageOptions, 'flags'> | WebhookMessageEditOptions) & {
+export type PaginatedMessageMessageOptionsUnion = Omit<PaginatedMessageResolvedPage, 'components'> & {
 	actions?: PaginatedMessageAction[];
 };
 
