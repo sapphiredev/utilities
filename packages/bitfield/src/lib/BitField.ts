@@ -228,14 +228,82 @@ export class BitField<Flags extends Record<string, number> | Record<string, bigi
 	 * ```
 	 */
 	public toArray(field: ValueResolvable<this>): (keyof Flags)[] {
+		return [...this.toKeys(field)];
+	}
+
+	/**
+	 * Retrieves an iterator of the properties from {@link Flags} whose values are contained in `field`.
+	 * @param field The field to convert to an iterator.
+	 * @returns An iterator with the keys of the {@link BitField}'s flag properties whose value are contained in `field`.
+	 * @example
+	 * ```typescript
+	 * const bitfield = new BitField({
+	 * 	Read:   0b0001,
+	 * 	Write:  0b0010,
+	 * 	Edit:   0b0100,
+	 * 	Delete: 0b1000
+	 * });
+	 *
+	 * [...bitfield.toKeys(0b0101)];
+	 * // ['Read', 'Edit']
+	 * ```
+	 */
+	public *toKeys(field: ValueResolvable<this>): IterableIterator<keyof Flags> {
 		const bits = this.resolve(field);
-		const keys: (keyof Flags)[] = [];
 		for (const [key, bit] of this[FlagEntriesSymbol]) {
 			// Inline `.has` code for lower overhead:
-			if ((bits & bit) === bit) keys.push(key);
+			if ((bits & bit) === bit) yield key;
 		}
+	}
 
-		return keys;
+	/**
+	 * Retrieves an iterator of the values from {@link Flags} whose values are contained in `field`.
+	 * @param field The field to convert to an iterator.
+	 * @returns An iterator with the values of the {@link BitField}'s flag properties whose value are contained in `field`.
+	 * @example
+	 * ```typescript
+	 * const bitfield = new BitField({
+	 * 	Read:   0b0001,
+	 * 	Write:  0b0010,
+	 * 	Edit:   0b0100,
+	 * 	Delete: 0b1000
+	 * });
+	 *
+	 * [...bitfield.toValues(0b0101)];
+	 * // [0b0001, 0b0100]
+	 * ```
+	 */
+	public *toValues(field: ValueResolvable<this>): IterableIterator<ValueType<this>> {
+		const bits = this.resolve(field);
+		for (const [_, bit] of this[FlagEntriesSymbol]) {
+			// Inline `.has` code for lower overhead:
+			if ((bits & bit) === bit) yield bit as unknown as ValueType<this>;
+		}
+	}
+
+	/**
+	 * Retrieves an iterator of the entries from {@link Flags} whose values are contained in `field`.
+	 * @param field The field to convert to an iterator.
+	 * @returns An iterator with the entries of the {@link BitField}'s flag properties whose value are contained in `field`.
+	 * @example
+	 * ```typescript
+	 * const bitfield = new BitField({
+	 * 	Read:   0b0001,
+	 * 	Write:  0b0010,
+	 * 	Edit:   0b0100,
+	 * 	Delete: 0b1000
+	 * });
+	 *
+	 * [...bitfield.toEntries(0b0101)];
+	 * // [['Read', 0b0001], ['Edit', 0b0100]]
+	 * ```
+	 */
+	public *toEntries(field: ValueResolvable<this>): IterableIterator<[key: keyof Flags, value: ValueType<this>]> {
+		const bits = this.resolve(field);
+		for (const [key, bit] of this[FlagEntriesSymbol]) {
+			// Inline `.has` code for lower overhead:
+			if ((bits & bit) === bit) yield [key, bit as unknown as ValueType<this>];
+		}
 	}
 
 	/**

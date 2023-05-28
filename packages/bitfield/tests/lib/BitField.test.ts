@@ -327,6 +327,105 @@ describe('BitField', () => {
 			});
 		});
 
+		describe('toKeys', () => {
+			test('GIVEN ∅ THEN returns empty iterator', () => {
+				const given = [...bitfield.toKeys(bitfield.zero)];
+				const expected = [] as const;
+
+				expect<string[]>(given).toEqual(expected);
+			});
+
+			test('GIVEN multiple values THEN returns iterator with given values', () => {
+				const given = [...bitfield.toKeys(['Read', 'Delete'])];
+				const expected = ['Read', 'Delete'] as const;
+
+				expect<string[]>(given).toEqual(expected);
+			});
+
+			test('GIVEN duplicated values THEN returns iterator with deduplicated values', () => {
+				const given = [...bitfield.toKeys(['Read', 'Delete', 'Read'])];
+				const expected = ['Read', 'Delete'] as const;
+
+				expect<string[]>(given).toEqual(expected);
+			});
+
+			test('GIVEN out-of-range values THEN returns iterator with correct values', () => {
+				const given = [...bitfield.toKeys(['Read', 'Delete', 16])];
+				const expected = ['Read', 'Delete'] as const;
+
+				expect<string[]>(given).toEqual(expected);
+			});
+		});
+
+		describe('toValues', () => {
+			test('GIVEN ∅ THEN returns empty iterator', () => {
+				const given = [...bitfield.toValues(bitfield.zero)];
+				const expected = [] as const;
+
+				expect<number[]>(given).toEqual(expected);
+			});
+
+			test('GIVEN multiple values THEN returns iterator with given values', () => {
+				const given = [...bitfield.toValues(['Read', 'Delete'])];
+				const expected = [1, 8] as const;
+
+				expect<number[]>(given).toEqual(expected);
+			});
+
+			test('GIVEN duplicated values THEN returns iterator with deduplicated values', () => {
+				const given = [...bitfield.toValues(['Read', 'Delete', 'Read'])];
+				const expected = [1, 8] as const;
+
+				expect<number[]>(given).toEqual(expected);
+			});
+
+			test('GIVEN out-of-range values THEN returns iterator with correct values', () => {
+				const given = [...bitfield.toValues(['Read', 'Delete', 16])];
+				const expected = [1, 8] as const;
+
+				expect<number[]>(given).toEqual(expected);
+			});
+		});
+
+		describe('toEntries', () => {
+			test('GIVEN ∅ THEN returns empty iterator', () => {
+				const given = [...bitfield.toEntries(bitfield.zero)];
+				const expected = [] as const;
+
+				expect<[string, number][]>(given).toEqual(expected);
+			});
+
+			test('GIVEN multiple values THEN returns iterator with given values', () => {
+				const given = [...bitfield.toEntries(['Read', 'Delete'])];
+				const expected = [
+					['Read', 1],
+					['Delete', 8]
+				] as const;
+
+				expect<[string, number][]>(given).toEqual(expected);
+			});
+
+			test('GIVEN duplicated values THEN returns iterator with deduplicated values', () => {
+				const given = [...bitfield.toEntries(['Read', 'Delete', 'Read'])];
+				const expected = [
+					['Read', 1],
+					['Delete', 8]
+				] as const;
+
+				expect<[string, number][]>(given).toEqual(expected);
+			});
+
+			test('GIVEN out-of-range values THEN returns iterator with correct values', () => {
+				const given = [...bitfield.toEntries(['Read', 'Delete', 16])];
+				const expected = [
+					['Read', 1],
+					['Delete', 8]
+				] as const;
+
+				expect<[string, number][]>(given).toEqual(expected);
+			});
+		});
+
 		describe('toObject', () => {
 			type Expected = { [K in keyof typeof NumberFlags]: boolean };
 
