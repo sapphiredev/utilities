@@ -21,7 +21,7 @@ There many functions that are always extremely useful to have when developing bo
 
 -   Written in TypeScript.
 -   Bundled with esbuild to provide size-optimal bundles.
--   Offers CommonJS and ESM bundles
+-   Offers CommonJS and ESM bundles.
 
 ## Installation
 
