@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/bitfield@1.2.0](https://github.com/sapphiredev/utilities/compare/@sapphire/bitfield@1.1.2...@sapphire/bitfield@1.2.0) - (2023-05-28)
+
+## 🚀 Features
+
+- **bitfield:** Add iterator methods (#599) ([a2274a4](https://github.com/sapphiredev/utilities/commit/a2274a4e266524ccdd2a26096bb032466095b05c))
+
 # [@sapphire/bitfield@1.1.2](https://github.com/sapphiredev/utilities/compare/@sapphire/bitfield@1.1.1...@sapphire/bitfield@1.1.2) - (2023-05-10)
 
 ## 🏠 Refactor
