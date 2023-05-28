@@ -57,13 +57,13 @@
 		"access": "public"
 	},
 	"devDependencies": {
-		"@favware/cliff-jumper": "^2.0.0",
+		"@favware/cliff-jumper": "^2.0.1",
 		"@types/jsdom": "^21.1.1",
 		"@vitest/coverage-c8": "^0.31.1",
-		"jsdom": "^22.0.0",
+		"jsdom": "^22.1.0",
 		"tsup": "^6.7.0",
 		"typedoc": "^0.24.7",
-		"typedoc-json-parser": "^8.1.0",
+		"typedoc-json-parser": "^8.1.2",
 		"typescript": "^5.0.4",
 		"vitest": "^0.31.1"
 	}
