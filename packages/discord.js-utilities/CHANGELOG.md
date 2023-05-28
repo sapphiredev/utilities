@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/discord.js-utilities@7.0.0](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@6.1.0...@sapphire/discord.js-utilities@7.0.0) - (2023-05-28)
+
+## 🏠 Refactor
+
+- **PaginatedMessage:** Cleaned up some internal type casting. ([870252d](https://github.com/sapphiredev/utilities/commit/870252d2748c2d4050d5003e510742064d6328b6))
+- **PaginatedMessage:** The callback union is removed from `messages` property. pages are *always* processed with `resolvePage` meaning they can never be a callback. ([4407907](https://github.com/sapphiredev/utilities/commit/44079071bddff7f1998d787a2b8fd782a1a3c112))
+- **PaginatedMessage:** `PaginatedMessageMessageOptionsUnion` now omits `components` as it was not handled anyway. ([d60b8e2](https://github.com/sapphiredev/utilities/commit/d60b8e27752c43df5ffe04010579523af42ad825))
+- **PaginatedMessage:** Allow PaginatedMessage actions `run` to be optional and instead get handled by Sapphire interaction-handlers ([d87eede](https://github.com/sapphiredev/utilities/commit/d87eedeb151b4d9d780bf304bf7d1bcd0d670d3e))
+  - 💥 **BREAKING CHANGE:** `updateCurrentPage` components are now resolved from the `actions` property
+instead of the `components` property. This makes it consistent with all the other
+page manipulation methods
+  - 💥 **BREAKING CHANGE:** Removed `getComponents` since it is effectively useless due to the above change.
+
+## 🚀 Features
+
+- **PaginatedMessage:** Added utility functions for type-guarding action variants. ([5c0ae46](https://github.com/sapphiredev/utilities/commit/5c0ae46778729f658462f04e6ad1b92565b0c0d2))
+
 # [@sapphire/discord.js-utilities@6.1.0](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@6.0.7...@sapphire/discord.js-utilities@6.1.0) - (2023-05-05)
 
 ## 🚀 Features
