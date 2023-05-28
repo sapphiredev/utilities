@@ -62,4 +62,4 @@ Thank you to all the people who already contributed to Sapphire!
 
 [contributing]: https://github.com/sapphiredev/.github/blob/main/.github/CONTRIBUTING.md
 [@sapphire/discord-utilities]: https://www.npmjs.com/package/@sapphire/discord-utilities
-[discord.js]: https://discord.js.org
+[discord.js]: https://discordjs.dev
