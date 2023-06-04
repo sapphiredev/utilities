@@ -57,7 +57,7 @@
 		"@sapphire/discord-utilities": "workspace:^",
 		"@sapphire/duration": "workspace:^",
 		"@sapphire/utilities": "workspace:^",
-		"tslib": "^2.5.2"
+		"tslib": "^2.5.3"
 	},
 	"devDependencies": {
 		"@favware/cliff-jumper": "^2.0.1",
@@ -65,6 +65,6 @@
 		"tsup": "^6.7.0",
 		"typedoc": "^0.24.7",
 		"typedoc-json-parser": "^8.1.2",
-		"typescript": "^5.0.4"
+		"typescript": "^5.1.3"
 	}
 }
