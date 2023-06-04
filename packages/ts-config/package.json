@@ -33,8 +33,8 @@
 		"check-update": "cliff-jumper --dry-run"
 	},
 	"dependencies": {
-		"tslib": "^2.5.2",
-		"typescript": "^5.0.4"
+		"tslib": "^2.5.3",
+		"typescript": "^5.1.3"
 	},
 	"files": [
 		"./tsconfig.json",
@@ -70,8 +70,8 @@
 		"@favware/cliff-jumper": "^2.0.1",
 		"@sapphire/eslint-config": "workspace:^",
 		"@sapphire/eslint-plugin-result": "workspace:^",
-		"@vitest/coverage-c8": "^0.31.1",
+		"@vitest/coverage-c8": "^0.31.4",
 		"typedoc-json-parser": "^8.1.2",
-		"vitest": "^0.31.1"
+		"vitest": "^0.31.4"
 	}
 }
