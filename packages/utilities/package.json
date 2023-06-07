@@ -241,6 +241,11 @@
 			"import": "./dist/lib/regExpEsc.mjs",
 			"require": "./dist/lib/regExpEsc.js"
 		},
+		"./retry": {
+			"types": "./dist/lib/retry.d.ts",
+			"import": "./dist/lib/retry.mjs",
+			"require": "./dist/lib/retry.js"
+		},
 		"./roundNumber": {
 			"types": "./dist/lib/roundNumber.d.ts",
 			"import": "./dist/lib/roundNumber.mjs",
