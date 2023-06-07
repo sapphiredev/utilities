@@ -23,4 +23,23 @@ describe('retry', () => {
 		expect(result).toBe('success!');
 		expect(counter).toBe(2);
 	});
+
+	test('GIVEN a thrice failing function WHEN retries is lower THEN returns throws the last error', async () => {
+		let counter = 0;
+		const cb = () => {
+			if (counter < 2) {
+				++counter;
+				throw new Error('💣💥');
+			}
+
+			return 'success!';
+		};
+
+		await expect(retry(cb, 2)).rejects.toThrowError(Error('💣💥'));
+		expect(counter).toBe(2);
+	});
+
+	test('GIVEN retries below 1 THEN throws', async () => {
+		await expect(retry(() => 'test', 0)).rejects.toThrowError(RangeError('Expected retries to be a number >= 1'));
+	});
 });
