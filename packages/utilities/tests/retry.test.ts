@@ -45,9 +45,17 @@ describe('retry', () => {
 		expect(mockFunction).toBeCalledTimes(2);
 	});
 
+	test('GIVEN 0 retries THEN returns result', async () => {
+		const mockFunction = vi.fn().mockReturnValue('test');
+		const result = await retry(mockFunction, 0);
+
+		expect(result).toBe('test');
+		expect(mockFunction).toBeCalledTimes(1);
+	});
+
 	test('GIVEN retries below 1 THEN throws', async () => {
 		const mockFunction = vi.fn().mockReturnValue('test');
-		await expect(retry(mockFunction, 0)).rejects.toThrowError(RangeError('Expected retries to be a number >= 1'));
+		await expect(retry(mockFunction, -1)).rejects.toThrowError(RangeError('Expected retries to be a number >= 0'));
 		expect(mockFunction).toBeCalledTimes(0);
 	});
 });
