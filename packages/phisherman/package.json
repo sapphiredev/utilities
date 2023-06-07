@@ -59,7 +59,7 @@
 	"devDependencies": {
 		"@favware/cliff-jumper": "^2.0.1",
 		"tsup": "^6.7.0",
-		"typedoc": "^0.24.7",
+		"typedoc": "^0.24.8",
 		"typedoc-json-parser": "^8.1.2",
 		"typescript": "^5.1.3"
 	}
