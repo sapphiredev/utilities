@@ -1181,7 +1181,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@sapphire/utilities@3.11.2, @sapphire/utilities@^3.11.0, @sapphire/utilities@^3.11.1, @sapphire/utilities@^3.11.2, @sapphire/utilities@workspace:^, @sapphire/utilities@workspace:packages/utilities":
+"@sapphire/utilities@^3.11.0, @sapphire/utilities@^3.11.1, @sapphire/utilities@^3.11.2, @sapphire/utilities@workspace:^, @sapphire/utilities@workspace:packages/utilities":
   version: 0.0.0-use.local
   resolution: "@sapphire/utilities@workspace:packages/utilities"
   dependencies:
@@ -1195,6 +1195,13 @@ __metadata:
     vitest: ^0.32.0
   languageName: unknown
   linkType: soft
+
+"@sapphire/utilities@npm:3.11.2":
+  version: 3.11.2
+  resolution: "@sapphire/utilities@npm:3.11.2"
+  checksum: af06b3f52156af397a3be564f992bedefd728ea2d44fee8ffdc00242de0454075e722091cc213d4ad2fb4ef5c3b78740bf5e7f75242851d31a56206f51a8f403
+  languageName: node
+  linkType: hard
 
 "@tokenizer/token@npm:^0.3.0":
   version: 0.3.0

@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/utilities@3.12.0](https://github.com/sapphiredev/utilities/compare/@sapphire/utilities@3.11.2...@sapphire/utilities@3.12.0) - (2023-06-09)
+
+## 🚀 Features
+
+- **utilities:** Add retry function (#604) ([37dee25](https://github.com/sapphiredev/utilities/commit/37dee25f403fbc7bbe4703651367cbf0cbb1d2aa))
+
+## 🧪 Testing
+
+- Update vitest to coverage v8 ([a4bc6e4](https://github.com/sapphiredev/utilities/commit/a4bc6e4f24ea60143a150ecc76fda6484f172ab9))
+
 # [@sapphire/utilities@3.11.2](https://github.com/sapphiredev/utilities/compare/@sapphire/utilities@3.11.1...@sapphire/utilities@3.11.2) - (2023-05-06)
 
 ## 🐛 Bug Fixes
