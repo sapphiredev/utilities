@@ -11,7 +11,6 @@ const eslintConfig = {
 	root: true,
 	parser: '@typescript-eslint/parser',
 	parserOptions: {
-		extraFileExtensions: ['.mjs'],
 		project: './tsconfig.eslint.json',
 		sourceType: 'module',
 		ecmaVersion: 2020,
