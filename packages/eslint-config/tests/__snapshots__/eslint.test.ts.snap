@@ -18,9 +18,6 @@ exports[`ESLint Config > should export rules 1`] = `
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": 2020,
-    "extraFileExtensions": [
-      ".mjs",
-    ],
     "project": "./tsconfig.eslint.json",
     "sourceType": "module",
     "warnOnUnsupportedTypeScriptVersion": false,
