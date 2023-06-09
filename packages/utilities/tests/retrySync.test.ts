@@ -40,7 +40,7 @@ describe('retry', () => {
 		};
 		const mockFunction = vi.fn().mockImplementation(cb);
 
-		expect(retrySync(mockFunction, 2)).rejects.toThrowError(Error('💣💥'));
+		expect(() => retrySync(mockFunction, 2)).toThrowError(Error('💣💥'));
 		expect(counter).toBe(2);
 		expect(mockFunction).toBeCalledTimes(2);
 	});
@@ -55,7 +55,7 @@ describe('retry', () => {
 
 	test('GIVEN retries below 1 THEN throws', () => {
 		const mockFunction = vi.fn().mockReturnValue('test');
-		expect(retrySync(mockFunction, -1)).rejects.toThrowError(RangeError('Expected retries to be a number >= 0'));
+		expect(() => retrySync(mockFunction, -1)).toThrowError(RangeError('Expected retries to be a number >= 0'));
 		expect(mockFunction).toBeCalledTimes(0);
 	});
 });
