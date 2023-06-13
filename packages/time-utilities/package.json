@@ -61,7 +61,7 @@
 		"@sapphire/timestamp": "workspace:^"
 	},
 	"devDependencies": {
-		"@favware/cliff-jumper": "^2.0.1",
+		"@favware/cliff-jumper": "^2.1.1",
 		"tsup": "^6.7.0",
 		"typedoc": "^0.24.8",
 		"typedoc-json-parser": "^8.1.2",
