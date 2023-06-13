@@ -1,3 +1,4 @@
 name: result
 org: sapphire
+install: true
 packagePath: packages/result

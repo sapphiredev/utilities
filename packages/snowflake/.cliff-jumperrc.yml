@@ -1,3 +1,4 @@
 name: snowflake
 org: sapphire
+install: true
 packagePath: packages/snowflake

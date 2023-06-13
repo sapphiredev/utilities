@@ -1,3 +1,4 @@
 name: timestamp
 org: sapphire
+install: true
 packagePath: packages/timestamp

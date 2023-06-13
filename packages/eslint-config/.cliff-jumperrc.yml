@@ -1,3 +1,4 @@
 name: eslint-config
 org: sapphire
+install: true
 packagePath: packages/eslint-config

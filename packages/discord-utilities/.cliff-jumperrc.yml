@@ -1,3 +1,4 @@
 name: discord-utilities
 org: sapphire
+install: true
 packagePath: packages/discord-utilities

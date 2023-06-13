@@ -1,3 +1,4 @@
 name: eslint-plugin-result
 org: sapphire
+install: true
 packagePath: packages/eslint-plugin-result

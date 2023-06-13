@@ -1,3 +1,4 @@
 name: prettier-config
 org: sapphire
+install: true
 packagePath: packages/prettier-config

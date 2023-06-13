@@ -1,3 +1,4 @@
 name: utilities
 org: sapphire
+install: true
 packagePath: packages/utilities
