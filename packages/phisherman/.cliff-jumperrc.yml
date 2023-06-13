@@ -1,3 +1,4 @@
 name: phisherman
 org: sapphire
+install: true
 packagePath: packages/phisherman

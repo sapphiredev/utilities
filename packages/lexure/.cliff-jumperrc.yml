@@ -1,3 +1,4 @@
 name: lexure
 org: sapphire
+install: true
 packagePath: packages/lexure

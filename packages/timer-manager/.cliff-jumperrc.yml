@@ -1,3 +1,4 @@
 name: timer-manager
 org: sapphire
+install: true
 packagePath: packages/timer-manager

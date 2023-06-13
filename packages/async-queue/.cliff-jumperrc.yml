@@ -1,3 +1,4 @@
 name: async-queue
 org: sapphire
+install: true
 packagePath: packages/async-queue

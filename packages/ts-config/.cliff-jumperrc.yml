@@ -1,3 +1,4 @@
 name: ts-config
 org: sapphire
+install: true
 packagePath: packages/ts-config

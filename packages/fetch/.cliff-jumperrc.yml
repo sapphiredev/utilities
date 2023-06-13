@@ -1,3 +1,4 @@
 name: fetch
 org: sapphire
+install: true
 packagePath: packages/fetch

@@ -1,3 +1,4 @@
 name: bitfield
 org: sapphire
+install: true
 packagePath: packages/bitfield

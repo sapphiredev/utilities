@@ -1,3 +1,4 @@
 name: stopwatch
 org: sapphire
+install: true
 packagePath: packages/stopwatch
