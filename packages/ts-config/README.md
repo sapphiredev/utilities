@@ -62,12 +62,11 @@ Following is a copy of this config file for easy viewing:
 		"emitDecoratorMetadata": true,
 		"esModuleInterop": true,
 		"experimentalDecorators": true,
-		"forceConsistentCasingInFileNames": true,
 		"importHelpers": true,
-		"importsNotUsedAsValues": "error",
+		"verbatimModuleSyntax": true,
 		"incremental": true,
 		"lib": ["esnext"],
-		"module": "CommonJS",
+		"module": "Node16",
 		"moduleResolution": "Node",
 		"newLine": "lf",
 		"noEmitHelpers": true,
@@ -81,7 +80,7 @@ Following is a copy of this config file for easy viewing:
 		"resolveJsonModule": true,
 		"sourceMap": true,
 		"strict": true,
-		"target": "ES2019",
+		"target": "ES2020",
 		"useDefineForClassFields": true
 	}
 }
