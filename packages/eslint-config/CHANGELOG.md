@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/eslint-config@4.4.3](https://github.com/sapphiredev/utilities/compare/@sapphire/eslint-config@4.4.2...@sapphire/eslint-config@4.4.3) - (2023-07-05)
+
+## 🐛 Bug Fixes
+
+- **eslint-config:** Update transitive dependencies ([f8c6e68](https://github.com/sapphiredev/utilities/commit/f8c6e680ccc282c52d2d0e0b20ec51201becbbf0))
+- **deps:** Update all non-major dependencies (#607) ([9cc8bd0](https://github.com/sapphiredev/utilities/commit/9cc8bd0d4b5d650deab2c913e6c3d713861bae28))
+- **eslint-config:** Update dependencies ([7c249e5](https://github.com/sapphiredev/utilities/commit/7c249e564a60ca119aebad811773373a8b1c7e46))
+- **eslint-config:** Remove the unnecessary `.mjs` extension from `extraFileExtensions` (#605) ([0d9bbd4](https://github.com/sapphiredev/utilities/commit/0d9bbd46cb865d90a9fe1fd4f817185274804159))
+- **eslint-config:** Update transitive dependencies ([a4246c4](https://github.com/sapphiredev/utilities/commit/a4246c45438d5066ba5f8a9a79c39b43cbf6a5dc))
+- **eslint-config:** Bump typescript-eslint ([45b2934](https://github.com/sapphiredev/utilities/commit/45b29341af6b2391171de4e21ca5e359b56c17fe))
+
+## 🧪 Testing
+
+- Update vitest to coverage v8 ([a4bc6e4](https://github.com/sapphiredev/utilities/commit/a4bc6e4f24ea60143a150ecc76fda6484f172ab9))
+
 # [@sapphire/eslint-config@4.4.2](https://github.com/sapphiredev/utilities/compare/@sapphire/eslint-config@4.4.1...@sapphire/eslint-config@4.4.2) - (2023-05-02)
 
 ## 🐛 Bug Fixes
