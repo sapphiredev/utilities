@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/eslint-plugin-result@1.0.3](https://github.com/sapphiredev/utilities/compare/@sapphire/eslint-plugin-result@1.0.2...@sapphire/eslint-plugin-result@1.0.3) - (2023-07-05)
+
+## 🐛 Bug Fixes
+
+- **eslint-plugin-result:** Update transitive dependencies ([1dc024a](https://github.com/sapphiredev/utilities/commit/1dc024a5462cd110ddfe9ce79648efc30da9e49e))
+- **deps:** Update all non-major dependencies (#607) ([9cc8bd0](https://github.com/sapphiredev/utilities/commit/9cc8bd0d4b5d650deab2c913e6c3d713861bae28))
+- **eslint-plugin-result:** Update dependencies ([b68b697](https://github.com/sapphiredev/utilities/commit/b68b69790c73a24df581a720f6a13cfd6ff5ff68))
+- **eslint-plugin-result:** Update transitive dependencies ([16928b7](https://github.com/sapphiredev/utilities/commit/16928b7d8a35c1a498762b2c74b4d63c6621f341))
+- **eslint-plugin-result:** Bump typescript-eslint ([74c717a](https://github.com/sapphiredev/utilities/commit/74c717a2b5884ac58b34f60d60e49ef46d18a6f3))
+
+## 🧪 Testing
+
+- Update vitest to coverage v8 ([a4bc6e4](https://github.com/sapphiredev/utilities/commit/a4bc6e4f24ea60143a150ecc76fda6484f172ab9))
+
 # [@sapphire/eslint-plugin-result@1.0.2](https://github.com/sapphiredev/utilities/compare/@sapphire/eslint-plugin-result@1.0.1...@sapphire/eslint-plugin-result@1.0.2) - (2023-05-02)
 
 ## 🐛 Bug Fixes
