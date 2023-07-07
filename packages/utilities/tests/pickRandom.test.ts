@@ -18,4 +18,12 @@ describe('pickRandom', () => {
 		expect(picked).toHaveLength(2);
 		expect(array).toEqual(expect.arrayContaining(picked));
 	});
+
+	test('GIVEN empty array THEN returns an empty array', () => {
+		const array: never[] = [];
+		const picked = pickRandom(array, 2);
+
+		expect(picked).toHaveLength(0);
+		expect(array).toEqual(expect.arrayContaining(picked));
+	});
 });
