@@ -1,4 +1,4 @@
-import { sleepSync } from './sleep';
+import { sleepSync } from './sleepSync';
 
 /**
  * Executes a function {@link cb} and validates the result with function {@link cbCondition},
