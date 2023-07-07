@@ -26,7 +26,7 @@ export function pollSync<T>(
 
 	if (timeoutMilliseconds === 0) return cb();
 
-	const startTime = new Date().getMilliseconds();
+	const startTime = Date.now();
 	let result = cb();
 
 	while (!cbCondition(result)) {
@@ -38,7 +38,7 @@ export function pollSync<T>(
 
 		result = cb();
 
-		const currentTime = new Date().getMilliseconds();
+		const currentTime = Date.now();
 		if (currentTime - startTime > timeoutMilliseconds) {
 			throw new Error(`Polling task timed out after ${timeoutMilliseconds} milliseconds`);
 		}
