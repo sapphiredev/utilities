@@ -1,4 +1,4 @@
-import { retrySync } from '../src/lib/retrySync';
+import { retrySync } from '../src';
 
 describe('retry', () => {
 	test('GIVEN a simple string return THEN returns the same on first attempt', () => {

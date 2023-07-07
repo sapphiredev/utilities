@@ -1,4 +1,4 @@
-import { retry } from '../src/lib/retry';
+import { retry } from '../src';
 
 describe('retry', () => {
 	test('GIVEN a simple string return THEN returns the same on first attempt', async () => {

@@ -262,9 +262,9 @@
 			"require": "./dist/lib/sleep.js"
 		},
 		"./sleepSync": {
-			"types": "./dist/lib/sleep.d.ts",
-			"import": "./dist/lib/sleep.mjs",
-			"require": "./dist/lib/sleep.js"
+			"types": "./dist/lib/sleepSync.d.ts",
+			"import": "./dist/lib/sleepSync.mjs",
+			"require": "./dist/lib/sleepSync.js"
 		},
 		"./splitText": {
 			"types": "./dist/lib/splitText.d.ts",
