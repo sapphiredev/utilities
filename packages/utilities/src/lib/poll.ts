@@ -1,4 +1,5 @@
 import { sleep } from './sleep';
+import type { Awaitable } from './types';
 
 /**
  * Executes a function {@link cb} and validates the result with function {@link cbCondition},
@@ -14,19 +15,19 @@ import { sleep } from './sleep';
  * @throws If {@link timeoutMilliseconds} is reached.
  */
 export async function poll<T>(
-	cb: () => T,
-	cbCondition: (arg: T) => boolean,
+	cb: () => Awaitable<T>,
+	cbCondition: (arg: Awaitable<T>) => boolean,
 	intervalMilliseconds: number,
 	timeoutMilliseconds: number,
 	verbose?: boolean
-): Promise<T> {
+): Promise<Awaitable<T>> {
 	if (timeoutMilliseconds < 0) {
 		throw new RangeError('Expected timeoutMilliseconds to be a number >= 0');
 	}
 
 	if (timeoutMilliseconds === 0) return cb();
 
-	const startTime = new Date().getMilliseconds();
+	const startTime = Date.now();
 	let result = await cb();
 
 	while (!cbCondition(result)) {
@@ -38,7 +39,7 @@ export async function poll<T>(
 
 		result = await cb();
 
-		const currentTime = new Date().getMilliseconds();
+		const currentTime = Date.now();
 		if (currentTime - startTime > timeoutMilliseconds) {
 			throw new Error(`Polling task timed out after ${timeoutMilliseconds} milliseconds`);
 		}

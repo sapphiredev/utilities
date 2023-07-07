@@ -48,8 +48,8 @@ describe('poll', () => {
 			new Error('Polling task timed out after 2 milliseconds')
 		);
 
-		expect(counter).toBe(3);
-		expect(mockFunction).toBeCalledTimes(3);
+		expect(counter).toBe(2);
+		expect(mockFunction).toBeCalledTimes(2);
 	});
 
 	test('GIVEN 0 milliseconds to timeout THEN returns result', async () => {
