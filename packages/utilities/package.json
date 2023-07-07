@@ -231,6 +231,16 @@
 			"import": "./dist/lib/pickRandom.mjs",
 			"require": "./dist/lib/pickRandom.js"
 		},
+		"./poll": {
+			"types": "./dist/lib/poll.d.ts",
+			"import": "./dist/lib/poll.mjs",
+			"require": "./dist/lib/poll.js"
+		},
+		"./pollSync": {
+			"types": "./dist/lib/pollSync.d.ts",
+			"import": "./dist/lib/pollSync.mjs",
+			"require": "./dist/lib/pollSync.js"
+		},
 		"./range": {
 			"types": "./dist/lib/range.d.ts",
 			"import": "./dist/lib/range.mjs",
