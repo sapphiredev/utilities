@@ -19,7 +19,7 @@ describe('retry', () => {
 
 			return 'success!';
 		};
-		const mockFunction = vi.fn().mockImplementation(cb);
+		const mockFunction = vi.fn(cb);
 
 		const result = retrySync(mockFunction, 3);
 
