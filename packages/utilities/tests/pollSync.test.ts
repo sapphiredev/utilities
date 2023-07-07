@@ -1,4 +1,4 @@
-import { pollSync } from '../src/lib/pollSync';
+import { pollSync } from '../src';
 
 const oneMillisecond = 1;
 const oneMinute = 60 * 1000;
