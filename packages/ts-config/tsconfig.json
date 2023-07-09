@@ -15,7 +15,7 @@
 		"module": "Node16",
 		"moduleResolution": "Node",
 		"newLine": "lf",
-		"noEmitHelpers": true,
+		"noEmitHelpers": false,
 		"noFallthroughCasesInSwitch": true,
 		"noImplicitReturns": true,
 		"noUnusedLocals": true,
