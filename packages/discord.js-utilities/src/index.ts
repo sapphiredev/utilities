@@ -1,5 +1,3 @@
-import 'tslib';
-
 export * from '@sapphire/discord-utilities';
 export * from './lib/MessagePrompter';
 export * from './lib/PaginatedMessages';
