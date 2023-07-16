@@ -3,6 +3,7 @@
 	"compilerOptions": {
 		"noEmit": true,
 		"incremental": false,
+		"moduleResolution": "Node16",
 		"types": ["vitest/globals"]
 	},
 	"include": ["./"]

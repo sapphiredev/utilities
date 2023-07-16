@@ -2,7 +2,6 @@
 
 exports[`Prettier Config > should export rules 1`] = `
 {
-  "$schema": "http://json.schemastore.org/prettierrc",
   "endOfLine": "lf",
   "overrides": [
     {

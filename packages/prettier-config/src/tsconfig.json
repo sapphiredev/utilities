@@ -3,7 +3,11 @@
 	"compilerOptions": {
 		"rootDir": "./",
 		"outDir": "../dist",
-		"incremental": false
+		"incremental": false,
+		"declaration": false,
+		"sourceMap": false,
+		"declarationMap": false,
+		"moduleResolution": "Node16"
 	},
 	"include": ["."]
 }
