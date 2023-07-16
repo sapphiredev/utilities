@@ -8,7 +8,7 @@
 		"clean": "node scripts/clean.mjs",
 		"clean:full": "node scripts/clean-full.mjs",
 		"lint": "eslint packages --ext mjs,js,ts,tsx --fix",
-		"format": "prettier --write \"packages/**/{src,tests,scripts}/**/*.{mjs,ts,js}\"",
+		"format": "prettier --ignore-path=.prettierignore --write \"packages/**/{src,tests,scripts}/**/*.{mjs,ts,js}\"",
 		"test": "vitest run",
 		"build": "turbo run build",
 		"docs": "turbo run docs",

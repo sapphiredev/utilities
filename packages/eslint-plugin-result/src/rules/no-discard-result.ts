@@ -1,5 +1,5 @@
 import { AST_NODE_TYPES, ESLintUtils, TSESTree, type ParserServices } from '@typescript-eslint/utils';
-import type { RuleListener, RuleModule } from "@typescript-eslint/utils/ts-eslint";
+import type { RuleListener, RuleModule } from '@typescript-eslint/utils/ts-eslint';
 import { isThenableType, isUnionType } from 'tsutils';
 import ts from 'typescript';
 
@@ -108,8 +108,7 @@ function isDiscardedResult(callExpressionNode: TSESTree.Node): boolean {
 	return true;
 }
 
-export const noDiscordResultRule: RuleModule<"discardedResult", [], RuleListener>
- = ESLintUtils.RuleCreator.withoutDocs<Options, Messages>({
+export const noDiscordResultRule: RuleModule<'discardedResult', [], RuleListener> = ESLintUtils.RuleCreator.withoutDocs<Options, Messages>({
 	meta: {
 		messages,
 		type: 'problem',
