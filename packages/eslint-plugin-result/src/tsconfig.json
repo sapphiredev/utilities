@@ -3,6 +3,8 @@
 	"compilerOptions": {
 		"rootDir": "./",
 		"outDir": "../dist",
+		"moduleResolution": "Node16",
+		"verbatimModuleSyntax": false,
 		"incremental": false
 	},
 	"include": ["."]

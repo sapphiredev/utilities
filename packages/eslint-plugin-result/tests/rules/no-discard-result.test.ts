@@ -7,7 +7,6 @@ ruleTester.run('no-discard-result', noDiscordResultRule, {
 			code: `import { Result } from '@sapphire/result';
 				function foo(): Result<string, string> {}
 				async function bar(): Promise<Result<string, string>> {}
-				
 				const x = foo();
 				let y = await bar(), z = (void 0, foo());
 				y = z = await bar();
@@ -48,7 +47,7 @@ ruleTester.run('no-discard-result', noDiscordResultRule, {
 		{
 			code: `import { Result } from '@sapphire/result';
 				async function foo(): Promise<Result<string, string>> {}
-				
+
 				foo();`,
 			name: 'unawaited async function discarded',
 			errors: [
@@ -61,7 +60,7 @@ ruleTester.run('no-discard-result', noDiscordResultRule, {
 		{
 			code: `import { Result } from '@sapphire/result';
 				async function foo(): Promise<Result<string, string>> {}
-				
+
 				await foo();`,
 			name: 'awaited async function discarded',
 			errors: [
@@ -74,7 +73,7 @@ ruleTester.run('no-discard-result', noDiscordResultRule, {
 		{
 			code: `import { Result } from '@sapphire/result';
 				function foo(): Promise<Result<string, string>> {}
-				
+
 				(
 					foo(),
 					await foo()
@@ -94,7 +93,7 @@ ruleTester.run('no-discard-result', noDiscordResultRule, {
 		{
 			code: `import { Result } from '@sapphire/result';
 				function foo(): Promise<Result<string, string>> {}
-				
+
 				null ?? foo();
 				`,
 			name: 'potential discard (??)',

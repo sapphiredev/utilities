@@ -1,6 +1,6 @@
-import { ESLintUtils } from '@typescript-eslint/utils';
+import { RuleTester } from '@typescript-eslint/rule-tester';
 
-export const ruleTester = new ESLintUtils.RuleTester({
+export const ruleTester = new RuleTester({
 	parserOptions: {
 		ecmaVersion: 2020,
 		tsconfigRootDir: __dirname,
