@@ -1,4 +1,5 @@
-import type { PrettierSchema } from './schema';
+import type { Config } from 'prettier';
+
 /**
  * Standard Prettier config for the Sapphire Community
  * @example
@@ -8,8 +9,7 @@ import type { PrettierSchema } from './schema';
  * }
  * ```
  */
-const prettierConfig: PrettierSchema = {
-	$schema: 'http://json.schemastore.org/prettierrc',
+const prettierConfig: Config = {
 	endOfLine: 'lf',
 	printWidth: 150,
 	quoteProps: 'as-needed',
@@ -29,4 +29,4 @@ const prettierConfig: PrettierSchema = {
 	]
 };
 
-module.exports = prettierConfig;
+export default prettierConfig;
