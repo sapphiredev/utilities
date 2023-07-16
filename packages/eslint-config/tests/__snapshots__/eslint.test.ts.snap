@@ -12,7 +12,8 @@ exports[`ESLint Config > should export rules 1`] = `
     "node": true,
   },
   "extends": [
-    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/strict",
+    "plugin:@typescript-eslint/stylistic",
     "plugin:prettier/recommended",
   ],
   "parser": "@typescript-eslint/parser",
@@ -82,12 +83,6 @@ exports[`ESLint Config > should export rules 1`] = `
     ],
     "@typescript-eslint/no-base-to-string": "error",
     "@typescript-eslint/no-dupe-class-members": "error",
-    "@typescript-eslint/no-duplicate-imports": [
-      "error",
-      {
-        "includeExports": false,
-      },
-    ],
     "@typescript-eslint/no-empty-interface": "off",
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/no-extra-non-null-assertion": "error",

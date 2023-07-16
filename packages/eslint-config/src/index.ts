@@ -85,12 +85,6 @@ const eslintConfig = {
 		],
 		'@typescript-eslint/no-base-to-string': 'error',
 		'@typescript-eslint/no-dupe-class-members': 'error',
-		'@typescript-eslint/no-duplicate-imports': [
-			'error',
-			{
-				includeExports: false
-			}
-		],
 		'@typescript-eslint/no-empty-interface': 'off',
 		'@typescript-eslint/no-explicit-any': 'off',
 		'@typescript-eslint/no-extra-non-null-assertion': 'error',
@@ -109,6 +103,7 @@ const eslintConfig = {
 		'@typescript-eslint/no-unnecessary-qualifier': 'error',
 		'@typescript-eslint/no-unsafe-assignment': 'off',
 		'@typescript-eslint/no-unsafe-call': 'off',
+		'@typescript-eslint/no-unsafe-declaration-merging': 'off',
 		'@typescript-eslint/no-unsafe-member-access': 'off',
 		'@typescript-eslint/no-unsafe-return': 'off',
 		'@typescript-eslint/no-unused-vars': 'off',
@@ -118,6 +113,7 @@ const eslintConfig = {
 		'@typescript-eslint/prefer-as-const': 'error',
 		'@typescript-eslint/prefer-for-of': 'error',
 		'@typescript-eslint/prefer-includes': 'error',
+		'@typescript-eslint/prefer-literal-enum-member': 'off',
 		'@typescript-eslint/prefer-reduce-type-parameter': 'error',
 		'@typescript-eslint/prefer-string-starts-ends-with': 'error',
 		'@typescript-eslint/promise-function-async': 'off',
