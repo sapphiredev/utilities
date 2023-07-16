@@ -1,4 +1,5 @@
 import { AST_NODE_TYPES, ESLintUtils, TSESTree, type ParserServices } from '@typescript-eslint/utils';
+import type { RuleListener, RuleModule } from "@typescript-eslint/utils/ts-eslint";
 import { isThenableType, isUnionType } from 'tsutils';
 import ts from 'typescript';
 
@@ -13,7 +14,7 @@ type Messages = keyof typeof messages;
 const resultPath = require.resolve('@sapphire/result').split('/').slice(0, -1).concat('index.d.ts').join('/');
 
 function getSapphireResultType(service: ParserServices, checker: ts.TypeChecker): ts.Type | null {
-	const file = service.program.getSourceFile(resultPath);
+	const file = service.program?.getSourceFile(resultPath);
 	const resultNode = file?.statements.find((node) => ts.isTypeAliasDeclaration(node) && node.name.getText() === 'Result');
 	if (resultNode) {
 		return checker.getTypeAtLocation(resultNode);
@@ -107,7 +108,8 @@ function isDiscardedResult(callExpressionNode: TSESTree.Node): boolean {
 	return true;
 }
 
-export const noDiscordResultRule = ESLintUtils.RuleCreator.withoutDocs<Options, Messages>({
+export const noDiscordResultRule: RuleModule<"discardedResult", [], RuleListener>
+ = ESLintUtils.RuleCreator.withoutDocs<Options, Messages>({
 	meta: {
 		messages,
 		type: 'problem',
