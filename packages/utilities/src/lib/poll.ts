@@ -40,7 +40,7 @@ export interface PollOptions {
  */
 export async function poll<T>(
 	cb: (signal: AbortSignal | undefined) => Awaitable<T>,
-	cbCondition: (value: Awaited<T>, signal: AbortSignal | undefined) => boolean,
+	cbCondition: (value: Awaited<T>, signal: AbortSignal | undefined) => Awaitable<boolean>,
 	options: PollOptions = {}
 ): Promise<Awaitable<T>> {
 	const signal = options.signal ?? undefined;
@@ -57,10 +57,7 @@ export async function poll<T>(
 
 	signal?.throwIfAborted();
 	let result = await cb(signal);
-	if (maximumRetries === 0) return result;
-
-	let retries = 0;
-	while (retries < maximumRetries && !cbCondition(result, signal)) {
+	for (let retries = 0; retries < maximumRetries && !(await cbCondition(result, signal)); retries++) {
 		signal?.throwIfAborted();
 
 		if (waitBetweenRetries > 0) {
@@ -69,7 +66,6 @@ export async function poll<T>(
 		}
 
 		result = await cb(signal);
-		retries++;
 	}
 
 	return result;
