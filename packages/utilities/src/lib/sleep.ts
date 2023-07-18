@@ -12,20 +12,6 @@ export interface SleepOptions {
 	ref?: boolean | undefined;
 }
 
-export class AbortError extends Error {
-	public readonly code: string;
-	public constructor(
-		message?: string,
-		options?: {
-			cause?: unknown;
-		}
-	) {
-		super(message, options);
-		this.name = 'AbortError';
-		this.code = 'ERR_ABORT';
-	}
-}
-
 /**
  * Sleeps for the specified number of milliseconds.
  * For a synchronous variant, see [sleepSync](./sleepSync.d.ts).
@@ -35,18 +21,20 @@ export class AbortError extends Error {
  */
 export function sleep<T = undefined>(ms: number, value?: T, options?: SleepOptions): Promise<T> {
 	return new Promise((resolve, reject) => {
-		const timer: NodeJS.Timeout | number = setTimeout(() => resolve(value!), ms);
 		const signal = options?.signal;
 		if (signal) {
+			if (signal.aborted) {
+				reject(signal.reason);
+				return;
+			}
+
 			signal.addEventListener('abort', () => {
 				clearTimeout(timer);
-				reject(
-					new AbortError('The operation was aborted', {
-						cause: signal.reason
-					})
-				);
+				reject(signal.reason);
 			});
 		}
+
+		const timer: NodeJS.Timeout | number = setTimeout(() => resolve(value!), ms);
 		if (options?.ref === false && typeof timer === 'object') {
 			timer.unref();
 		}
