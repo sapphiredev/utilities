@@ -1,5 +1,11 @@
 import { poll } from '../src';
 
+const DOMException: typeof globalThis.DOMException =
+	globalThis.DOMException ??
+	// DOMException was only made a global in Node v17.0.0,
+	// but our CI runs on Node v16.6.0 too
+	AbortSignal.abort().reason.constructor;
+
 describe('poll', () => {
 	const pass = 'success!';
 	const fail = 'fail!';
@@ -32,7 +38,6 @@ describe('poll', () => {
 	});
 
 	describe('signal', () => {
-		const DOMException = globalThis.DOMException ?? (AbortSignal.abort().reason.constructor as typeof globalThis.DOMException);
 		test('GIVEN an AbortSignal that is aborted before the first call THEN throws', async () => {
 			const cb = vi.fn(cbRaw);
 			const cbCondition = vi.fn(cbConditionRaw);
