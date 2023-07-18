@@ -108,7 +108,7 @@ function isDiscardedResult(callExpressionNode: TSESTree.Node): boolean {
 	return true;
 }
 
-export const noDiscordResultRule: RuleModule<'discardedResult', [], RuleListener> = ESLintUtils.RuleCreator.withoutDocs<Options, Messages>({
+export const noDiscardResult: RuleModule<'discardedResult', [], RuleListener> = ESLintUtils.RuleCreator.withoutDocs<Options, Messages>({
 	meta: {
 		messages,
 		type: 'problem',

@@ -1,7 +1,7 @@
+import { noDiscardResult } from '../../src/rules/no-discard-result';
 import { ruleTester } from '../shared';
-import { noDiscordResultRule } from '../../src/rules/no-discard-result';
 
-ruleTester.run('no-discard-result', noDiscordResultRule, {
+ruleTester.run('no-discard-result', noDiscardResult, {
 	valid: [
 		{
 			code: `import { Result } from '@sapphire/result';
@@ -34,7 +34,7 @@ ruleTester.run('no-discard-result', noDiscordResultRule, {
 		{
 			code: `import { Result } from '@sapphire/result';
 				function foo(): Result<string, string> {}
-				
+
 				foo();`,
 			name: 'simple discard',
 			errors: [
