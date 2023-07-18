@@ -4,9 +4,27 @@ import type { Awaitable } from './types';
 /** The options for the {@link poll} function */
 export interface PollOptions {
 	/**
-	 * Whether to log to the console on each polling interval, allowing the tracing of the amount of required attempts.
+	 * An optional AbortSignal to abort the polling.
 	 */
-	verbose?: boolean;
+	signal?: AbortSignal | undefined;
+
+	/**
+	 * The amount of attempts to try, if any.
+	 * @default Infinite
+	 */
+	maximumRetries?: number | null | undefined;
+
+	/**
+	 * The amount of time to wait between each poll.
+	 * @default 0
+	 */
+	waitBetweenRetries?: number | null | undefined;
+
+	/**
+	 * Whether to log to the console on each polling interval, allowing the tracing of the amount of required attempts.
+	 * @default false
+	 */
+	verbose?: boolean | undefined;
 }
 
 /**
@@ -15,42 +33,43 @@ export interface PollOptions {
  *
  * For a synchronous variant, see [pollSync](./pollSync.d.ts).
  * @param cb The function that should be executed.
- * @param cbCondition A function that when given the result of `fn` should return `true` if the polling should stop and should return `false` if the polling should continue.
- * @param interval The interval in between each poll.
- * @param timeout The maximum amount of time to poll before timing out and throwing an error.
+ * @param cbCondition A function that when given the result of `cb` should return `true` if the polling should stop and should return `false` if the polling should continue.
  * @param options Options to provide further modifying behaviour.
  * @returns The result of {@link cb} as soon as {@link cbCondition} returns `true`, or an error if {@link timeout} is reached.
  * @throws If {@link timeout} is reached.
  */
 export async function poll<T>(
-	cb: () => Awaitable<T>,
-	cbCondition: (arg: Awaited<T>) => boolean,
-	interval: number,
-	timeout: number,
+	cb: (signal: AbortSignal | undefined) => Awaitable<T>,
+	cbCondition: (value: Awaited<T>, signal: AbortSignal | undefined) => boolean,
 	options: PollOptions = {}
 ): Promise<Awaitable<T>> {
-	if (timeout < 0) {
-		throw new RangeError('Expected timeoutMilliseconds to be a number >= 0');
+	const signal = options.signal ?? undefined;
+
+	const maximumRetries = options.maximumRetries ?? Infinity;
+	if (typeof maximumRetries !== 'number') throw new TypeError('Expected maximumRetries to be a number');
+	if (!(maximumRetries >= 0)) throw new RangeError('Expected maximumRetries to be a non-negative number');
+
+	const waitBetweenRetries = options.waitBetweenRetries ?? 0;
+	if (typeof waitBetweenRetries !== 'number') throw new TypeError('Expected waitBetweenRetries to be a number');
+	if (!Number.isSafeInteger(waitBetweenRetries) || waitBetweenRetries < 0) {
+		throw new RangeError('Expected waitBetweenRetries to be a positive safe integer');
 	}
 
-	if (timeout === 0) return cb();
+	signal?.throwIfAborted();
+	let result = await cb(signal);
+	if (maximumRetries === 0) return result;
 
-	const startTime = Date.now();
-	let result = await cb();
+	let retries = 0;
+	while (retries < maximumRetries && !cbCondition(result, signal)) {
+		signal?.throwIfAborted();
 
-	while (!cbCondition(result)) {
-		if (options.verbose) {
-			console.log(`Waiting ${interval} ms before polling again...`);
+		if (waitBetweenRetries > 0) {
+			if (options.verbose) console.log(`Waiting ${waitBetweenRetries}ms before polling again...`);
+			await sleep(waitBetweenRetries, undefined, { signal });
 		}
 
-		await sleep(interval);
-
-		result = await cb();
-
-		const currentTime = Date.now();
-		if (currentTime - startTime > timeout) {
-			throw new Error(`Polling task timed out after ${timeout} milliseconds`);
-		}
+		result = await cb(signal);
+		retries++;
 	}
 
 	return result;

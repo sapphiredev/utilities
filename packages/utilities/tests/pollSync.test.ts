@@ -65,7 +65,7 @@ describe('pollSync', () => {
 			.mockReturnValueOnce('fail!')
 			.mockReturnValueOnce('success!');
 
-		const result = pollSync(mockFunction, (result) => result === 'success!', oneMillisecond, oneMinute, true);
+		const result = pollSync(mockFunction, (result) => result === 'success!', oneMillisecond, oneMinute, { verbose: true });
 
 		expect(result).toBe('success!');
 		expect(mockFunction).toBeCalledTimes(3);
