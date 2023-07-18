@@ -32,6 +32,7 @@ describe('poll', () => {
 	});
 
 	describe('signal', () => {
+		const DOMException = globalThis.DOMException ?? (AbortSignal.abort().constructor as typeof globalThis.DOMException);
 		test('GIVEN an AbortSignal that is aborted before the first call THEN throws', async () => {
 			const cb = vi.fn(cbRaw);
 			const cbCondition = vi.fn(cbConditionRaw);
