@@ -1,4 +1,4 @@
-import { AbortError, poll } from '../src';
+import { poll } from '../src';
 
 describe('poll', () => {
 	const pass = 'success!';
@@ -161,7 +161,7 @@ describe('poll', () => {
 			const result = poll(cb, cbCondition, { signal, waitBetweenRetries: 10 });
 			vi.useRealTimers();
 
-			await expect(result).rejects.toStrictEqual(new AbortError('The operation was aborted'));
+			await expect(result).rejects.toStrictEqual(new DOMException('The operation was aborted due to timeout', 'TimeoutError'));
 			expect(cb).toBeCalledTimes(1);
 			expect(cb).toHaveBeenCalledWith(signal);
 			expect(cbCondition).toBeCalledTimes(1);
