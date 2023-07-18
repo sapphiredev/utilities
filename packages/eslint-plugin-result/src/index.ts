@@ -1,5 +1,5 @@
 import { recommendedConfig } from './configs/recommended';
-import { noDiscordResultRule } from './rules/no-discard-result';
+import { noDiscardResult } from './rules/no-discard-result';
 
 /**
  * ESLint plugin result for @sapphire/result package
@@ -21,7 +21,7 @@ import { noDiscordResultRule } from './rules/no-discard-result';
  */
 const eslintPluginResult = {
 	rules: {
-		'no-discard-result': noDiscordResultRule
+		'no-discard-result': noDiscardResult
 	},
 	configs: {
 		recommended: recommendedConfig
