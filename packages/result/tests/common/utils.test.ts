@@ -26,7 +26,7 @@ describe('utils', () => {
 
 			expect(isPromise(value)).toBe(true);
 
-			value.catch(vi.fn());
+			void value.catch(vi.fn());
 		});
 
 		test('GIVEN a promise-like THEN returns true', () => {
