@@ -181,7 +181,7 @@ describe('pollSync', () => {
 			expect(consoleLog).toHaveBeenCalledTimes(0);
 		});
 
-		test('GIVEN verbose but no waitBetweenRetries THEN does not call console.log', () => {
+		test('GIVEN verbose and waitBetweenRetries THEN calls console.log on retry', () => {
 			const cb = vi.fn<[], string>().mockReturnValueOnce(fail).mockReturnValueOnce(pass);
 			const consoleLog = vi.spyOn(console, 'log').mockImplementation(() => undefined);
 			const result = pollSync(cb, cbConditionRaw, { verbose: true, waitBetweenRetries: 5 });
