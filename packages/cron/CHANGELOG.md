@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/cron@1.1.1](https://github.com/sapphiredev/utilities/compare/@sapphire/cron@1.1.0...@sapphire/cron@1.1.1) - (2023-07-21)
+
+## 🐛 Bug Fixes
+
+- **deps:** Update all non-major dependencies (#607) ([9cc8bd0](https://github.com/sapphiredev/utilities/commit/9cc8bd0d4b5d650deab2c913e6c3d713861bae28))
+- **deps:** Update all non-major dependencies (#577) ([291dd67](https://github.com/sapphiredev/utilities/commit/291dd6783e57d8f075ce566218ba076ef6c4bbbd))
+
+## 🧪 Testing
+
+- Update vitest to coverage v8 ([a4bc6e4](https://github.com/sapphiredev/utilities/commit/a4bc6e4f24ea60143a150ecc76fda6484f172ab9))
+
 # [@sapphire/cron@1.1.0](https://github.com/sapphiredev/utilities/compare/@sapphire/cron@1.0.0...@sapphire/cron@1.1.0) - (2023-03-15)
 
 ## 🏠 Refactor

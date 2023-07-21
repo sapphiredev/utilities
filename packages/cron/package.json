@@ -1,6 +1,6 @@
 {
 	"name": "@sapphire/cron",
-	"version": "1.1.0",
+	"version": "1.1.1",
 	"description": "A cron utility library for JavaScript.",
 	"author": "@sapphire",
 	"license": "MIT",
