@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/decorators@6.0.2](https://github.com/sapphiredev/utilities/compare/@sapphire/decorators@6.0.1...@sapphire/decorators@6.0.2) - (2023-07-21)
+
+## 🐛 Bug Fixes
+
+- **deps:** Update all non-major dependencies (#607) ([9cc8bd0](https://github.com/sapphiredev/utilities/commit/9cc8bd0d4b5d650deab2c913e6c3d713861bae28))
+
+## 🧪 Testing
+
+- Update vitest to coverage v8 ([a4bc6e4](https://github.com/sapphiredev/utilities/commit/a4bc6e4f24ea60143a150ecc76fda6484f172ab9))
+
 # [@sapphire/decorators@6.0.1](https://github.com/sapphiredev/utilities/compare/@sapphire/decorators@6.0.0...@sapphire/decorators@6.0.1) - (2023-04-10)
 
 ## 🐛 Bug Fixes
