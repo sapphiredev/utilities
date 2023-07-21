@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/eslint-config@5.0.0](https://github.com/sapphiredev/utilities/compare/@sapphire/eslint-config@4.4.3...@sapphire/eslint-config@5.0.0) - (2023-07-21)
+
+## 🐛 Bug Fixes
+
+- **deps:** Update all non-major dependencies ([3c9d07e](https://github.com/sapphiredev/utilities/commit/3c9d07e34217c2494f160d84cd177fba6ced4ac3))
+
+## 🚀 Features
+
+- **eslint-config:** Update to `@typescript-eslint` v6 ([e029a2b](https://github.com/sapphiredev/utilities/commit/e029a2bc83d121d517b42815b6dfbd6ff893b6a6))
+  - 💥 **BREAKING CHANGE:** This package now depends on `@typescript-eslint v6`
+  - 💥 **BREAKING CHANGE:** As per above the rule `@typescript-eslint/no-duplicate-imports` has been removed. The replacement is [`import/no-duplicates`](https://github.com/import-js/eslint-plugin-import/blob/HEAD/docs/rules/no-duplicates.md) from [`eslint-plugin-import`](https://github.com/import-js/eslint-plugin-import)
+
 # [@sapphire/eslint-config@4.4.3](https://github.com/sapphiredev/utilities/compare/@sapphire/eslint-config@4.4.2...@sapphire/eslint-config@4.4.3) - (2023-07-05)
 
 ## 🐛 Bug Fixes
