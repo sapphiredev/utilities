@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/utilities@3.13.0](https://github.com/sapphiredev/utilities/compare/@sapphire/utilities@3.12.0...@sapphire/utilities@3.13.0) - (2023-07-21)
+
+## 🏠 Refactor
+
+- **sleep:** Align more closely with the Node.js API. This removes the `AbortError` class, if you were previously using it then check for `instanceof DOMException` and `error.name === 'AbortError'` (#626) ([36cd38f](https://github.com/sapphiredev/utilities/commit/36cd38f75c1cbea4f9a30149e18ea5255fde2be9))
+- **utilities:** Make sleepSync its own file (#615) ([5838b7e](https://github.com/sapphiredev/utilities/commit/5838b7e32e7d0cbf455f259e22c6aeaae5f18ec0))
+
+## 🐛 Bug Fixes
+
+- **deps:** Update all non-major dependencies (#607) ([9cc8bd0](https://github.com/sapphiredev/utilities/commit/9cc8bd0d4b5d650deab2c913e6c3d713861bae28))
+
+## 🚀 Features
+
+- **utilities:** Add poll function (#616) ([59d4c6b](https://github.com/sapphiredev/utilities/commit/59d4c6b986f8f363e32ec6297921d999201b0930))
+
+## 🧪 Testing
+
+- **sleepSync:** Use spies for `Date.now()` (#617) ([cf444df](https://github.com/sapphiredev/utilities/commit/cf444df3c4a63ac039de9cf4fe56b86f2068f1e2))
+- **pickRandom:** Add test to cover empty arrays ([b74394a](https://github.com/sapphiredev/utilities/commit/b74394a1a09ce8aaa14f4084e7a1105284e08205))
+
 # [@sapphire/utilities@3.12.0](https://github.com/sapphiredev/utilities/compare/@sapphire/utilities@3.11.2...@sapphire/utilities@3.12.0) - (2023-06-09)
 
 ## 🚀 Features
