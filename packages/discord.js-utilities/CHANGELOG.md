@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/discord.js-utilities@7.0.1](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@7.0.0...@sapphire/discord.js-utilities@7.0.1) - (2023-07-21)
+
+## 🐛 Bug Fixes
+
+- **tsconfig:** Set `noEmitHelpers` to false (#620) ([8ed04bf](https://github.com/sapphiredev/utilities/commit/8ed04bff735fbdff35855e0d0bdaf03a3686fefc))
+
+## 🧪 Testing
+
+- Update vitest to coverage v8 ([a4bc6e4](https://github.com/sapphiredev/utilities/commit/a4bc6e4f24ea60143a150ecc76fda6484f172ab9))
+
 # [@sapphire/discord.js-utilities@7.0.0](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@6.1.0...@sapphire/discord.js-utilities@7.0.0) - (2023-05-28)
 
 ## 🏠 Refactor
