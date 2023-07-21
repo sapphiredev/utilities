@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/eslint-plugin-result@2.0.0](https://github.com/sapphiredev/utilities/compare/@sapphire/eslint-plugin-result@1.0.3...@sapphire/eslint-plugin-result@2.0.0) - (2023-07-21)
+
+## 🐛 Bug Fixes
+
+- **eslint-plugin-result:** Fix typo in rule name constant ([fb156b0](https://github.com/sapphiredev/utilities/commit/fb156b05fd3e9d7b2a5bf640fd8ec0dede2d0a4a))
+- **deps:** Update all non-major dependencies ([3c9d07e](https://github.com/sapphiredev/utilities/commit/3c9d07e34217c2494f160d84cd177fba6ced4ac3))
+
+## 🚀 Features
+
+- **eslint-plugin-result:** Update to `@typescript-eslint v6` ([750be13](https://github.com/sapphiredev/utilities/commit/750be13a307db0395b8cb10c29130182c47b20fd))
+  - 💥 **BREAKING CHANGE:** This package now depends on `@typescript-eslint` v6
+
+## 🪞 Styling
+
+- Prettier formatting ([2650e29](https://github.com/sapphiredev/utilities/commit/2650e29fe20fe4e82c0d24ecf93ae583bafdee5b))
+
 # [@sapphire/eslint-plugin-result@1.0.3](https://github.com/sapphiredev/utilities/compare/@sapphire/eslint-plugin-result@1.0.2...@sapphire/eslint-plugin-result@1.0.3) - (2023-07-05)
 
 ## 🐛 Bug Fixes
