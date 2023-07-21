@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/discord-utilities@3.0.4](https://github.com/sapphiredev/utilities/compare/@sapphire/discord-utilities@3.0.3...@sapphire/discord-utilities@3.0.4) - (2023-07-21)
+
+## 🐛 Bug Fixes
+
+- **discord-utilities:** Bump discord-api-types to v0.37.50 ([dd3e1fb](https://github.com/sapphiredev/utilities/commit/dd3e1fb69e93d4809c2cddad464a71d411ad6867))
+- **discord-utilities:** Update to discord-api-types to v0.37.49 ([1bd861b](https://github.com/sapphiredev/utilities/commit/1bd861b7535f8fecbb9b2e36efa85ec0b78a6754))
+- **deps:** Update all non-major dependencies ([3c9d07e](https://github.com/sapphiredev/utilities/commit/3c9d07e34217c2494f160d84cd177fba6ced4ac3))
+- **deps:** Update all non-major dependencies (#607) ([9cc8bd0](https://github.com/sapphiredev/utilities/commit/9cc8bd0d4b5d650deab2c913e6c3d713861bae28))
+- **discord-utilities:** Bump discord-api-types ([9cd3af3](https://github.com/sapphiredev/utilities/commit/9cd3af355bfe6640d6b2a57daf0585de1c6e6742))
+
+## 🧪 Testing
+
+- Update vitest to coverage v8 ([a4bc6e4](https://github.com/sapphiredev/utilities/commit/a4bc6e4f24ea60143a150ecc76fda6484f172ab9))
+
 # [@sapphire/discord-utilities@3.0.3](https://github.com/sapphiredev/utilities/compare/@sapphire/discord-utilities@3.0.2...@sapphire/discord-utilities@3.0.3) - (2023-05-02)
 
 ## 🐛 Bug Fixes
