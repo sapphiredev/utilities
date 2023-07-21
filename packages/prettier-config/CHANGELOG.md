@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/prettier-config@2.0.0](https://github.com/sapphiredev/utilities/compare/@sapphire/prettier-config@1.4.5...@sapphire/prettier-config@2.0.0) - (2023-07-21)
+
+## 🏃 Performance
+
+- **chunk:** Remove clone (#574) ([049047b](https://github.com/sapphiredev/utilities/commit/049047b3ceee6fcfeb2e09e15e26424022a5045c))
+
+## 🐛 Bug Fixes
+
+- **deps:** Update all non-major dependencies (#607) ([9cc8bd0](https://github.com/sapphiredev/utilities/commit/9cc8bd0d4b5d650deab2c913e6c3d713861bae28))
+- **deps:** Update all non-major dependencies (#577) ([291dd67](https://github.com/sapphiredev/utilities/commit/291dd6783e57d8f075ce566218ba076ef6c4bbbd))
+- **deps:** Update all non-major dependencies (#545) ([40ca040](https://github.com/sapphiredev/utilities/commit/40ca040a21d8a0949682051a3a974538183a400e))
+- **deps:** Update all non-major dependencies (#544) ([cc78f17](https://github.com/sapphiredev/utilities/commit/cc78f17390c7f3db08af92bf46a5a70a9c11dd5f))
+
+## 🚀 Features
+
+- **prettier-config:** Update to Prettier v3 ([f7aca37](https://github.com/sapphiredev/utilities/commit/f7aca371e28e8a444299b9f7b900de6c32e53713))
+  - 💥 **BREAKING CHANGE:** This package now depends on [Prettier v3](https://prettier.io/blog/2023/07/05/3.0.0.html). The config as exported by this package is now an EcmaScript Module, which means that it can no longer be imported in CJS with `require`. You should update your prettier config to use ESM instead.
+- **duration:** Add units on Duration (#561) ([eac39af](https://github.com/sapphiredev/utilities/commit/eac39af4c43c4f600234fbacb5efe8fb0cbb53b8))
+
+## 🧪 Testing
+
+- Update vitest to coverage v8 ([a4bc6e4](https://github.com/sapphiredev/utilities/commit/a4bc6e4f24ea60143a150ecc76fda6484f172ab9))
+
 # [@sapphire/prettier-config@1.4.5](https://github.com/sapphiredev/utilities/compare/@sapphire/prettier-config@1.4.4...@sapphire/prettier-config@1.4.5) - (2023-01-09)
 
 ## 🏠 Refactor
