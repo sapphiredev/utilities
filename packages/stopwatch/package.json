@@ -24,7 +24,7 @@
 		"check-update": "cliff-jumper --dry-run"
 	},
 	"dependencies": {
-		"tslib": "^2.6.0"
+		"tslib": "^2.6.1"
 	},
 	"repository": {
 		"type": "git",
