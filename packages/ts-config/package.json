@@ -33,7 +33,7 @@
 		"check-update": "cliff-jumper --dry-run"
 	},
 	"dependencies": {
-		"tslib": "^2.6.0",
+		"tslib": "^2.6.1",
 		"typescript": "^5.1.6"
 	},
 	"files": [
