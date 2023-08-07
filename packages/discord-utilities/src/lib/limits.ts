@@ -14,8 +14,59 @@ export const ChannelLimits = {
 
 	/**
 	 * Maximum viewers allowed per screen share.
+	 * @deprecated Use `VoiceChannelLimits.MaximumViewersPerScreenShare` instead.
 	 */
 	MaximumViewersPerScreenShare: 50
+} as const;
+
+/**
+ * Namespace containing limits related to Discord voice channels.
+ */
+export const VoiceChannelLimits = {
+	/**
+	 * Maximum viewers allowed per screen share.
+	 */
+	MaximumViewersPerScreenShare: 50,
+
+	/**
+	 * Maximum user limit of voice channel.
+	 */
+	MaximumUserLimit: 99
+};
+
+/**
+ * Namespace containing limits related to Discord stage channels.
+ */
+export const StageChannelLimits = {
+	/**
+	 * Maximum user limit of stage channel.
+	 */
+	MaximumUserLimit: 250
+};
+
+/**
+ * Namespace containing limits related to Discord text channels.
+ */
+export const TextChannelLimits = {
+	/**
+	 * Maximum pins allowed in a text channel.
+	 */
+	MaximumMessagePins: 50
+} as const;
+
+/**
+ * Namespace containing limits related to Discord threads.
+ */
+export const ThreadLimits = {
+	/**
+	 * Minimum number of threads to return from the threads API.
+	 */
+	MinimumThreadsToFetch: 1,
+
+	/**
+	 * Maximum number of threads to return from the threads API.
+	 */
+	MaximumThreadsToFetch: 100
 } as const;
 
 /**
@@ -70,7 +121,13 @@ export const EmojiLimits = {
 	/**
 	 * Maximum characters allowed in a custom guild emoji.
 	 */
-	MaximumEmojiNameLength: 32
+	MaximumEmojiNameLength: 32,
+
+	/**
+	 * Maximum size allowed for a custom guild emoji.
+	 * Size is in bytes, and corresponds to 256KB.
+	 */
+	MaximumEmojiSize: 256_000
 } as const;
 
 /**
@@ -85,7 +142,32 @@ export const GuildLimits = {
 	/**
 	 * Maximum roles allowed in a guild.
 	 */
-	MaximumRoles: 250
+	MaximumRoles: 250,
+
+	/**
+	 * Maximum scheduled or active events allowed in a guild.
+	 */
+	MaximumScheduledOrActiveEvents: 100,
+
+	/**
+	 * Minimum number of user guilds to return from the user guilds API.
+	 */
+	MinimumUserGuildsToFetch: 1,
+
+	/**
+	 * Maximum number of user guilds to return from the user guilds API.
+	 */
+	MaximumUserGuildsToFetch: 200
+} as const;
+
+/**
+ * Namespace containing limits related to Discord guild scheduled events.
+ */
+export const GuildScheduledEventLimits = {
+	/**
+	 * Maximum number of users to return from the guild scheduled event users API.
+	 */
+	MaximumUsersToFetch: 100
 } as const;
 
 /**
@@ -95,7 +177,32 @@ export const GuildMemberLimits = {
 	/**
 	 * Maximum characters allowed in the display name of a guild member.
 	 */
-	MaximumDisplayNameLength: 32
+	MaximumDisplayNameLength: 32,
+
+	/**
+	 * Minimum number of members to return from the guild members API.
+	 */
+	MinimumMembersToFetch: 1,
+
+	/**
+	 * Maximum number of members to return from the guild members API.
+	 */
+	MaximumMembersToFetch: 1000
+} as const;
+
+/**
+ * Namespace containing limits related to Discord guild bans.
+ */
+export const GuildBansLimits = {
+	/**
+	 * Minimum number of bans to return from the guild bans API.
+	 */
+	MinimumBansToFetch: 1,
+
+	/**
+	 * Maximum number of bans to return from the guild bans API.
+	 */
+	MaximumBansToFetch: 1000
 } as const;
 
 /**
@@ -140,7 +247,12 @@ export const ApplicationCommandLimits = {
 	/**
 	 * Maximum options allowed in an application command.
 	 */
-	MaximumOptionsLength: 25
+	MaximumOptionsLength: 25,
+
+	/**
+	 * Maximum combined characters allowed in the name, description, and value properties of an application command, its options (including subcommands and groups), and choices.
+	 */
+	MaximumCombinedCharacters: 4000
 } as const;
 
 /**
@@ -160,7 +272,22 @@ export const ApplicationCommandOptionLimits = {
 	/**
 	 * Maximum length of choices allowed in the option of an application command.
 	 */
-	MaximumChoicesLength: 25
+	MaximumChoicesLength: 25,
+
+	/**
+	 * Maximum length of string allowed in the string option of an application command.
+	 */
+	MaximumStringLength: 6000
+} as const;
+
+/**
+ * Namespace containing limits related to Permissions of Discord Application Commands.
+ */
+export const ApplicationCommandPermissionLimits = {
+	/**
+	 * Maximum length of permissions allowed in the option of an application command.
+	 */
+	MaximumPermissionsLength: 100
 } as const;
 
 /**
@@ -210,7 +337,17 @@ export const SelectMenuLimits = {
 	/**
 	 * Maximum characters allowed in a select menu option's name.
 	 */
-	MaximumLengthOfNameOfOption: 100
+	MaximumLengthOfNameOfOption: 100,
+
+	/**
+	 * Maximum characters allowed in a select menu option's description.
+	 */
+	MaximumLengthOfDescriptionOfOption: 100,
+
+	/**
+	 * Maximum characters allowed in a select menu option's value.
+	 */
+	MaximumLengthOfValueOfOption: 100
 } as const;
 
 /**
@@ -244,13 +381,13 @@ export const MessageLimits = {
 
 	/**
 	 * Maximum upload size for a free user in a guild of tier 1 or below, or in DMs.
-	 * Size is in bytes, and correspond to 8MB.
+	 * Size is in bytes, and corresponds to 8MB.
 	 */
 	MaximumUploadSize: 8_000_000,
 
 	/**
 	 * Maximum upload size for a nitro user, in any guild or in DMs.
-	 * Size is in bytes, and correspond to 500MB.
+	 * Size is in bytes, and corresponds to 500MB.
 	 */
 	MaximumNitroUploadSize: 5_000_000_000,
 
@@ -258,8 +395,49 @@ export const MessageLimits = {
 	 * Maximum upload size for a free user for all different boost levels available in a guild.
 	 * Sizes are in bytes, and correspond to 8MB, 8MB, 50MB, and 100MB.
 	 */
-	MaximumUploadSizeInGuild: [8_000_000, 8_000_000, 50_000_000, 100_000_000]
+	MaximumUploadSizeInGuild: [8_000_000, 8_000_000, 50_000_000, 100_000_000],
+
+	/**
+	 * Minimum number of messages to return from the channel messages API.
+	 */
+	MinimumMessagesToFetch: 1,
+
+	/**
+	 * Maximum number of messages to return from the channel messages API.
+	 */
+	MaximumMessagesToFetch: 100,
+
+	/**
+	 * Maximum request size when sending a messages.
+	 * Size is in bytes, and corresponds to 25MB.
+	 */
+	MaximumRequestSize: 25_000_000,
+
+	/**
+	 * Minimum number of messages to delete in a single bulk delete request.
+	 */
+	MinimumMessagesToBulkDelete: 2,
+
+	/**
+	 * Maximum number of messages to delete in a single bulk delete request.
+	 */
+	MaximumMessagesToBulkDelete: 100
 } as const;
+
+/**
+ * Namespace containing limits related to Discord message reactions.
+ */
+export const ReactionLimits = {
+	/**
+	 * Minimum number of reactions to fetch from the message reactions API.
+	 */
+	MinimumReactionToFetch: 1,
+
+	/**
+	 * Maximum number of reactions to fetch from the message reactions API.
+	 */
+	MaximumReactionsToFetch: 100
+};
 
 /**
  * Namespace containing limits related to built-in moderation features.
@@ -355,3 +533,204 @@ export const TextInputLimits = {
 	 */
 	MaximumValueCharacters: 4000
 } as const;
+
+/**
+ * Namespace containing limits related to Discord Application Role Connections.
+ */
+export const ApplicationRoleConnectionLimits = {
+	/**
+	 * Maximum application role connection metadata records an application can have.
+	 */
+	MaximumMetadataRecords: 5,
+
+	/**
+	 * Maximum characters allowed in metadata values.
+	 */
+	MaximumMetadataValueLength: 100,
+
+	/**
+	 * Maximum characters allowed in a platform name.
+	 */
+	MaximumPlatformNameLength: 50,
+
+	/**
+	 * Maximum characters allowed in a platform username.
+	 */
+	MaximumPlatformUsernameLength: 100
+} as const;
+
+/**
+ * Namespace containing limits related to Discord Guild Audit Logs.
+ */
+export const GuildAuditLogsLimits = {
+	/**
+	 * Minimum number of entries to return from the guild audit log API.
+	 */
+	MinimumEntriesToFetch: 1,
+
+	/**
+	 * Maximum number of entries to return from the guild audit log API.
+	 */
+	MaximumEntriesToFetch: 100
+} as const;
+
+/**
+ * Namespace containing limits related to Discord Auto Moderation Rules.
+ */
+export const AutoModerationRuleLimits = {
+	/**
+	 * Maximum number of exempt roles a rule can have.
+	 */
+	MaximumExemptRoles: 20,
+
+	/**
+	 * Maximum number of exempt channels a rule can have.
+	 */
+	MaximumExemptChannels: 50
+} as const;
+
+/**
+ * Namespace containing limits related to Discord Auto Moderation Triggers.
+ */
+export const TriggerTypeLimits = {
+	/**
+	 * Maximum number of keyword triggers a guild can have.
+	 */
+	MaximumKeywordTriggersPerGuild: 6,
+
+	/**
+	 * Maximum number of mention spam triggers a guild can have.
+	 */
+	MaximumSpamTriggersPerGuild: 1,
+
+	/**
+	 * Maximum number of keyword triggers a channel can have.
+	 */
+	MaximumKeywordPresetTriggersPerChannel: 1,
+
+	/**
+	 * Maximum number of mention spam triggers a channel can have.
+	 */
+	MaximumMentionSpamTriggersPerChannel: 1
+} as const;
+
+/**
+ * Namespace containing limits related to Discord Auto Moderation Trigger Metadata.
+ */
+export const TriggerMetadataLimits = {
+	/**
+	 * Maximum number of substrings which will be searched for in content.
+	 */
+	MaximumKeywordFilters: 1000,
+
+	/**
+	 * Maximum number of characters allowed in a keyword filter.
+	 */
+	MaximumKeywordFilterLength: 60,
+
+	/**
+	 * Maximum number of regular expression patterns which will be matched against content.
+	 */
+	MaximumRegexPatterns: 10,
+
+	/**
+	 * Maximum number of characters allowed in a regular expression pattern.
+	 */
+	MaximumCharactersPerRegexPattern: 260,
+
+	/**
+	 * Maximum number of substrings which should not trigger the keyword rule.
+	 */
+	MaximumKeywordAllowListLength: 100,
+
+	/**
+	 * Maximum characters per keyword that should not trigger the keyword rule.
+	 */
+	MaximumKeywordAllowListKeywordLength: 60,
+
+	/**
+	 * Maximum characters per keyword should not trigger the keyword preset rule.
+	 */
+	MaximumKeywordPresetAllowListKeywordPresetLength: 60,
+
+	/**
+	 * Maximum number of substrings which should not trigger the keyword preset rule.
+	 */
+	MaximumKeywordPresetAllowListLength: 1000,
+
+	/**
+	 * Maximum number of unique role and user mentions allowed per message.
+	 */
+	MaximumMentionSpamTotalMentions: 50
+} as const;
+
+/**
+ * Namespace containing limits related to Discord Auto Moderation Action Metadata.
+ */
+export const ActionMetadataLimits = {
+	/**
+	 * Maximum timeout duration in seconds.
+	 */
+	MaximumTimeoutDurationSeconds: 2_419_200,
+
+	/**
+	 * Maximum number of characters allowed in a custom block message.
+	 */
+	MaximumCustomBlockMessageLength: 150
+} as const;
+
+/**
+ * Namespace containing limits related to Discord Message Allowed Mentions.
+ */
+export const AllowedMentionsLimits = {
+	/**
+	 * Maximum number of users allowed in an allowed mentions object.
+	 */
+	MaximumUsers: 100,
+
+	/**
+	 * Maximum number of roles allowed in an allowed mentions object.
+	 */
+	MaximumRoles: 100
+} as const;
+
+/**
+ * Namespace containing limits related to Discord Channel Invites.
+ */
+export const ChannelInviteLimits = {
+	/**
+	 * Maximum age of an invite in seconds.
+	 */
+	MaximumAgeSeconds: 604_800,
+
+	/**
+	 * Maximum number of uses allowed for an invite.
+	 */
+	MaximumUses: 100
+} as const;
+
+/**
+ * Namespace containing limits related to Discord Guild Integrations.
+ */
+export const GuildIntegrationLimits = {
+	/**
+	 * Maximum number of integrations returned from the guild integrations API. Needs a more description name than "MaximumIntegrations".
+	 */
+	MaximumIntegrationsToFetch: 50
+} as const;
+
+/**
+ * Namespace containing limits related to Discord Stickers.
+ */
+export const StickerLimits = {
+	/**
+	 * Maximum number of characters allowed in the autocomplete/suggestion tags for the sticker.
+	 */
+	MaximumTagsLength: 200,
+
+	/**
+	 * Maximum size allowed for a sticker.
+	 * Size is in bytes, and corresponds to 512KB.
+	 */
+	MaximumStickerSize: 512_000
+};
