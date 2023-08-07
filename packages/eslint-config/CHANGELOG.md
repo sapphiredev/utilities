@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/eslint-config@5.0.1](https://github.com/sapphiredev/utilities/compare/@sapphire/eslint-config@5.0.0...@sapphire/eslint-config@5.0.1) - (2023-08-07)
+
+## 🐛 Bug Fixes
+
+- **eslint-config:** Update eslint-config-prettier to v9 ([4d7b394](https://github.com/sapphiredev/utilities/commit/4d7b394b4ca77aba491dd5866b1b343f382224e3))
+
 # [@sapphire/eslint-config@5.0.0](https://github.com/sapphiredev/utilities/compare/@sapphire/eslint-config@4.4.3...@sapphire/eslint-config@5.0.0) - (2023-07-21)
 
 ## 🐛 Bug Fixes
