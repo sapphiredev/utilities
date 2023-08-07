@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/discord-utilities@3.1.0](https://github.com/sapphiredev/utilities/compare/@sapphire/discord-utilities@3.0.4...@sapphire/discord-utilities@3.1.0) - (2023-08-07)
+
+## 🚀 Features
+
+- **limits:** Add more limits (#630) ([3a9f6d2](https://github.com/sapphiredev/utilities/commit/3a9f6d200dbbfe0b690b1a7cc065187ff1eaf1b7))
+
 # [@sapphire/discord-utilities@3.0.4](https://github.com/sapphiredev/utilities/compare/@sapphire/discord-utilities@3.0.3...@sapphire/discord-utilities@3.0.4) - (2023-07-21)
 
 ## 🐛 Bug Fixes
