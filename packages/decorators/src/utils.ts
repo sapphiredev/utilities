@@ -78,7 +78,7 @@ export function createFunctionPrecondition(precondition: FunctionPrecondition, f
 
 		descriptor.value = async function descriptorValue(this: (...args: any[]) => any, ...args: any[]) {
 			const canRun = await precondition(...args);
-			return canRun ? method.call(this, ...args) : fallback.call(this, ...args);
+			return canRun ? await method.call(this, ...args) : await fallback.call(this, ...args);
 		} as unknown as undefined;
 	});
 }
