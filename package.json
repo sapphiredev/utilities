@@ -39,7 +39,7 @@
 		"eslint-config-prettier": "^9.0.0",
 		"eslint-plugin-prettier": "^5.0.0",
 		"husky": "^8.0.3",
-		"lint-staged": "^13.3.0",
+		"lint-staged": "^14.0.0",
 		"lodash": "^4.17.21",
 		"nock": "^13.3.3",
 		"prettier": "^3.0.2",
