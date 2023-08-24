@@ -70,6 +70,8 @@ jobs:
   docs:
     name: Generate Documentation
     runs-on: ubuntu-latest
+    # Re-enable when typedoc supports TS 5.2
+    if: false
     steps:
       - name: Checkout Project
         uses: actions/checkout@v3
