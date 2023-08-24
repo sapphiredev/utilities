@@ -1,3 +1,7 @@
 {
-	"extends": "./packages/ts-config/extra-strict-without-decorators.json"
+	"extends": [
+		"./packages/ts-config/src/base/tsconfig.json",
+		"./packages/ts-config/src/cjs/tsconfig.json",
+		"./packages/ts-config/src/base/extra-strict.json"
+	]
 }

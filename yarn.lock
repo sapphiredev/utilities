@@ -811,7 +811,7 @@ __metadata:
     tsup: ^7.2.0
     typedoc: ^0.24.8
     typedoc-json-parser: ^8.2.0
-    typescript: ^5.1.6
+    typescript: ^5.2.2
     vitest: ^0.34.2
   languageName: unknown
   linkType: soft
@@ -825,7 +825,7 @@ __metadata:
     tsup: ^7.2.0
     typedoc: ^0.24.8
     typedoc-json-parser: ^8.2.0
-    typescript: ^5.1.6
+    typescript: ^5.2.2
     vitest: ^0.34.2
   languageName: unknown
   linkType: soft
@@ -840,7 +840,7 @@ __metadata:
     tsup: ^7.2.0
     typedoc: ^0.24.8
     typedoc-json-parser: ^8.2.0
-    typescript: ^5.1.6
+    typescript: ^5.2.2
     vitest: ^0.34.2
   languageName: unknown
   linkType: soft
@@ -860,7 +860,7 @@ __metadata:
     tsup: ^7.2.0
     typedoc: ^0.24.8
     typedoc-json-parser: ^8.2.0
-    typescript: ^5.1.6
+    typescript: ^5.2.2
     vitest: ^0.34.2
   languageName: unknown
   linkType: soft
@@ -875,7 +875,7 @@ __metadata:
     tsup: ^7.2.0
     typedoc: ^0.24.8
     typedoc-json-parser: ^8.2.0
-    typescript: ^5.1.6
+    typescript: ^5.2.2
     vitest: ^0.34.2
   languageName: unknown
   linkType: soft
@@ -893,7 +893,7 @@ __metadata:
     tsup: ^7.2.0
     typedoc: ^0.24.8
     typedoc-json-parser: ^8.2.0
-    typescript: ^5.1.6
+    typescript: ^5.2.2
   languageName: unknown
   linkType: soft
 
@@ -906,7 +906,7 @@ __metadata:
     tsup: ^7.2.0
     typedoc: ^0.24.8
     typedoc-json-parser: ^8.2.0
-    typescript: ^5.1.6
+    typescript: ^5.2.2
     vitest: ^0.34.2
   languageName: unknown
   linkType: soft
@@ -925,7 +925,7 @@ __metadata:
     prettier: ^3.0.2
     tsup: ^7.2.0
     typedoc-json-parser: ^8.2.0
-    typescript: ^5.1.6
+    typescript: ^5.2.2
     vitest: ^0.34.2
   languageName: unknown
   linkType: soft
@@ -943,7 +943,7 @@ __metadata:
     tsup: ^7.2.0
     tsutils: ^3.21.0
     typedoc-json-parser: ^8.2.0
-    typescript: ^5.1.6
+    typescript: ^5.2.2
     vitest: ^0.34.2
   languageName: unknown
   linkType: soft
@@ -958,7 +958,7 @@ __metadata:
     tsup: ^7.2.0
     typedoc: ^0.24.8
     typedoc-json-parser: ^8.2.0
-    typescript: ^5.1.6
+    typescript: ^5.2.2
     vitest: ^0.34.2
   languageName: unknown
   linkType: soft
@@ -973,7 +973,7 @@ __metadata:
     tsup: ^7.2.0
     typedoc: ^0.24.8
     typedoc-json-parser: ^8.2.0
-    typescript: ^5.1.6
+    typescript: ^5.2.2
     vitest: ^0.34.2
   languageName: unknown
   linkType: soft
@@ -1005,7 +1005,7 @@ __metadata:
     tsup: ^7.2.0
     typedoc: ^0.24.8
     typedoc-json-parser: ^8.2.0
-    typescript: ^5.1.6
+    typescript: ^5.2.2
     vitest: ^0.34.2
   languageName: unknown
   linkType: soft
@@ -1019,7 +1019,7 @@ __metadata:
     tsup: ^7.2.0
     typedoc: ^0.24.8
     typedoc-json-parser: ^8.2.0
-    typescript: ^5.1.6
+    typescript: ^5.2.2
     vitest: ^0.34.2
   languageName: unknown
   linkType: soft
@@ -1033,7 +1033,7 @@ __metadata:
     tsup: ^7.2.0
     typedoc: ^0.24.8
     typedoc-json-parser: ^8.2.0
-    typescript: ^5.1.6
+    typescript: ^5.2.2
   languageName: unknown
   linkType: soft
 
@@ -1056,7 +1056,7 @@ __metadata:
     "@vitest/coverage-v8": ^0.34.2
     prettier: ^3.0.2
     typedoc-json-parser: ^8.2.0
-    typescript: ^5.1.6
+    typescript: ^5.2.2
     vitest: ^0.34.2
   languageName: unknown
   linkType: soft
@@ -1070,7 +1070,7 @@ __metadata:
     tsup: ^7.2.0
     typedoc: ^0.24.8
     typedoc-json-parser: ^8.2.0
-    typescript: ^5.1.6
+    typescript: ^5.2.2
     vitest: ^0.34.2
   languageName: unknown
   linkType: soft
@@ -1084,7 +1084,7 @@ __metadata:
     tsup: ^7.2.0
     typedoc: ^0.24.8
     typedoc-json-parser: ^8.2.0
-    typescript: ^5.1.6
+    typescript: ^5.2.2
     vitest: ^0.34.2
   languageName: unknown
   linkType: soft
@@ -1108,7 +1108,7 @@ __metadata:
     tsup: ^7.2.0
     typedoc: ^0.24.8
     typedoc-json-parser: ^8.2.0
-    typescript: ^5.1.6
+    typescript: ^5.2.2
     vitest: ^0.34.2
   languageName: unknown
   linkType: soft
@@ -1125,7 +1125,7 @@ __metadata:
     tsup: ^7.2.0
     typedoc: ^0.24.8
     typedoc-json-parser: ^8.2.0
-    typescript: ^5.1.6
+    typescript: ^5.2.2
     vitest: ^0.34.2
   languageName: unknown
   linkType: soft
@@ -1142,7 +1142,7 @@ __metadata:
     tsup: ^7.2.0
     typedoc: ^0.24.8
     typedoc-json-parser: ^8.2.0
-    typescript: ^5.1.6
+    typescript: ^5.2.2
   languageName: unknown
   linkType: soft
 
@@ -1155,7 +1155,7 @@ __metadata:
     tsup: ^7.2.0
     typedoc: ^0.24.8
     typedoc-json-parser: ^8.2.0
-    typescript: ^5.1.6
+    typescript: ^5.2.2
     vitest: ^0.34.2
   languageName: unknown
   linkType: soft
@@ -1169,7 +1169,7 @@ __metadata:
     tsup: ^7.2.0
     typedoc: ^0.24.8
     typedoc-json-parser: ^8.2.0
-    typescript: ^5.1.6
+    typescript: ^5.2.2
     vitest: ^0.34.2
   languageName: unknown
   linkType: soft
@@ -1184,7 +1184,7 @@ __metadata:
     "@vitest/coverage-v8": ^0.34.2
     tslib: ^2.6.2
     typedoc-json-parser: ^8.2.0
-    typescript: ^5.1.6
+    typescript: ^5.2.2
     vitest: ^0.34.2
   languageName: unknown
   linkType: soft
@@ -1199,7 +1199,7 @@ __metadata:
     tsup: ^7.2.0
     typedoc: ^0.24.8
     typedoc-json-parser: ^8.2.0
-    typescript: ^5.1.6
+    typescript: ^5.2.2
     vitest: ^0.34.2
   languageName: unknown
   linkType: soft
@@ -5703,7 +5703,7 @@ __metadata:
     tsup: ^7.2.0
     turbo: ^1.10.12
     typedoc-json-parser: ^8.2.0
-    typescript: ^5.1.6
+    typescript: ^5.2.2
     vite: ^4.4.9
     vitest: ^0.34.2
   languageName: unknown
@@ -6622,7 +6622,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:^4.6.4 || ^5.0.0, typescript@npm:^5.1.6":
+"typescript@npm:^4.6.4 || ^5.0.0":
   version: 5.1.6
   resolution: "typescript@npm:5.1.6"
   bin:
@@ -6642,7 +6642,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@^4.6.4 || ^5.0.0#~builtin<compat/typescript>, typescript@patch:typescript@^5.1.6#~builtin<compat/typescript>":
+"typescript@npm:^5.2.2":
+  version: 5.2.2
+  resolution: "typescript@npm:5.2.2"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: 7912821dac4d962d315c36800fe387cdc0a6298dba7ec171b350b4a6e988b51d7b8f051317786db1094bd7431d526b648aba7da8236607febb26cf5b871d2d3c
+  languageName: node
+  linkType: hard
+
+"typescript@patch:typescript@^4.6.4 || ^5.0.0#~builtin<compat/typescript>":
   version: 5.1.6
   resolution: "typescript@patch:typescript@npm%3A5.1.6#~builtin<compat/typescript>::version=5.1.6&hash=5da071"
   bin:
@@ -6659,6 +6669,16 @@ __metadata:
     tsc: bin/tsc
     tsserver: bin/tsserver
   checksum: 1f8f3b6aaea19f0f67cba79057674ba580438a7db55057eb89cc06950483c5d632115c14077f6663ea76fd09fce3c190e6414bb98582ec80aa5a4eaf345d5b68
+  languageName: node
+  linkType: hard
+
+"typescript@patch:typescript@^5.2.2#~builtin<compat/typescript>":
+  version: 5.2.2
+  resolution: "typescript@patch:typescript@npm%3A5.2.2#~builtin<compat/typescript>::version=5.2.2&hash=f3b441"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: 0f4da2f15e6f1245e49db15801dbee52f2bbfb267e1c39225afdab5afee1a72839cd86000e65ee9d7e4dfaff12239d28beaf5ee431357fcced15fb08583d72ca
   languageName: node
   linkType: hard
 
