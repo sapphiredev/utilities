@@ -4,37 +4,32 @@
 	"description": "Shareable TypeScript configuration for the Sapphire Community",
 	"author": "@sapphire",
 	"license": "MIT",
-	"main": "src/base/tsconfig.json",
+	"main": "src/tsconfig.json",
 	"exports": {
 		".": {
-			"types": "./src/base/tsconfig.json",
-			"import": "./src/base/tsconfig.json",
-			"require": "./src/base/tsconfig.json"
+			"types": "./src/tsconfig.json",
+			"import": "./src/tsconfig.json",
+			"require": "./src/tsconfig.json"
 		},
 		"./base": {
-			"types": "./src/base/tsconfig.json",
-			"import": "./src/base/tsconfig.json",
-			"require": "./src/base/tsconfig.json"
+			"types": "./src/tsconfig.json",
+			"import": "./src/tsconfig.json",
+			"require": "./src/tsconfig.json"
 		},
 		"./decorators": {
-			"types": "./src/base/decorators.json",
-			"import": "./src/base/decorators.json",
-			"require": "./src/base/decorators.json"
+			"types": "./src/decorators.json",
+			"import": "./src/decorators.json",
+			"require": "./src/decorators.json"
 		},
 		"./extra-strict": {
-			"types": "./src/base/extra-strict.json",
-			"import": "./src/base/extra-strict.json",
-			"require": "./src/base/extra-strict.json"
+			"types": "./src/extra-strict.json",
+			"import": "./src/extra-strict.json",
+			"require": "./src/extra-strict.json"
 		},
-		"./cjs": {
-			"types": "./src/cjs/tsconfig.json",
-			"import": "./src/cjs/tsconfig.json",
-			"require": "./src/cjs/tsconfig.json"
-		},
-		"./esm": {
-			"types": "./src/esm/tsconfig.json",
-			"import": "./src/esm/tsconfig.json",
-			"require": "./src/esm/tsconfig.json"
+		"./verbatim": {
+			"types": "./src/verbatim.json",
+			"import": "./src/verbatim.json",
+			"require": "./src/verbatim.json"
 		}
 	},
 	"sideEffects": false,

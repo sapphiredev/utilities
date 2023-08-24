@@ -15,14 +15,15 @@
 
 **Table of Contents**
 
--   [Installation](#installation)
--   [Usage](#usage)
-    -   [Base Config](#base-config)
-    -   [Config without decorators](#config-without-decorators)
-    -   [Config with extra strict compiler options](#config-with-extra-strict-compiler-options)
-    -   [Config with extra strict compiler options and without decorators](#config-with-extra-strict-compiler-options-and-without-decorators)
--   [Buy us some doughnuts](#buy-us-some-doughnuts)
--   [Contributors ✨](#contributors-%E2%9C%A8)
+-   [@sapphire/ts-config](#sapphirets-config)
+    -   [Installation](#installation)
+    -   [Usage](#usage)
+        -   [Base](#base)
+        -   [Extra Strict](#extra-strict)
+        -   [Decorators](#decorators)
+        -   [Verbatim](#verbatim)
+    -   [Buy us some doughnuts](#buy-us-some-doughnuts)
+    -   [Contributors](#contributors)
 
 ## Installation
 
@@ -36,132 +37,73 @@ npm install --save-dev @sapphire/ts-config
 
 ## Usage
 
-### Base Config
+This package ships a couple of different sets of tsconfig, they should be used in an array of
+`extends` in your `tsconfig.json` file. The supported configs are:
 
-You can use `@sapphire/ts-config` base [`tsconfig.json`](https://github.com/sapphiredev/utilities/blob/main/packages/ts-config/tsconfig.json) by extending it in yours:
+-   `@sapphire/ts-config/base` -> This is identical to `@sapphire/ts-config`
+-   `@sapphire/ts-config/extra-strict`
+-   `@sapphire/ts-config/decorators`
+-   `@sapphire/ts-config/verbatim`
 
-```json
-{
-	"extends": "@sapphire/ts-config"
-}
-```
+You should always start with the base config, regardless of what other configs you choose.
+Next you can opt-in to the other configs.
 
-This TypeScript config is set up in such a way that it will suite nearly all projects, you may extend this to include your own
-configuration options as well.
+Finally you should configure your package.json properly based on what kind of package you are writing
 
-Following is a copy of this config file for easy viewing:
+-   For CJS packages you should add `"type": "commonjs"` to your `package.json`
+-   For ESM packages you should add `"type": "module"` to your `package.json`
 
-```json
-{
-	"compileOnSave": true,
-	"compilerOptions": {
-		"allowSyntheticDefaultImports": true,
-		"alwaysStrict": true,
-		"declaration": true,
-		"declarationMap": true,
-		"emitDecoratorMetadata": true,
-		"esModuleInterop": true,
-		"experimentalDecorators": true,
-		"importHelpers": true,
-		"verbatimModuleSyntax": true,
-		"incremental": true,
-		"lib": ["esnext"],
-		"module": "Node16",
-		"moduleResolution": "Node",
-		"newLine": "lf",
-		"noEmitHelpers": true,
-		"noFallthroughCasesInSwitch": true,
-		"noImplicitReturns": true,
-		"noUnusedLocals": true,
-		"noUnusedParameters": true,
-		"preserveConstEnums": true,
-		"pretty": true,
-		"removeComments": false,
-		"resolveJsonModule": true,
-		"sourceMap": true,
-		"strict": true,
-		"target": "ES2020",
-		"useDefineForClassFields": true
-	}
-}
-```
+-   For a package that is going to be used by both CJS and ESM then you should not add any `"type"` to your `package.json`
+    -   Note that if you intend to compile for both your best option is to compile
+        for CJS from TypeScript, then use [`gen-esm-wrapper`](https://github.com/addaleax/gen-esm-wrapper) to transform your
+        input file to ESM compatible exports. This is also what we do for our Sapphire packages.
 
-### Config without decorators
+Next we will go over the different configs and what they do.
 
-You can use `@sapphire/ts-config`'s [`without-decorators.json`](https://github.com/sapphiredev/utilities/blob/main/packages/ts-config/extra-strict-without-decorators.json) by extending it in yours:
+### Base
 
-```json
-{
-	"extends": "@sapphire/ts-config/without-decorators"
-}
-```
+The base config (`@sapphire/ts-config`, or `@sapphire/ts-config/base`) is the default config with options set up in
+such a way that it will suite nearly all projects.
 
-This TypeScript extends everything from the base config, but disables decorator support.
+You can view the content of this tsconfig [here](https://github.com/sapphiredev/utilities/blob/main/packages/ts-config/src/tsconfig.json)
 
-Following is a copy of this config file for easy viewing:
+### Extra Strict
 
-```json
-{
-	"$schema": "https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/tsconfig.json",
-	"extends": "./tsconfig.json",
-	"compilerOptions": {
-		"emitDecoratorMetadata": false,
-		"experimentalDecorators": false
-	}
-}
-```
+You should include this config if you want to extra strict checking. This enables the following compiler options:
 
-### Config with extra strict compiler options
+-   [allowUnreachableCode](https://www.typescriptlang.org/tsconfig#allowUnreachableCode)
+-   [allowUnusedLabels](https://www.typescriptlang.org/tsconfig#allowUnusedLabels)
+-   [exactOptionalPropertyTypes](https://www.typescriptlang.org/tsconfig#exactOptionalPropertyTypes)
+-   [noImplicitOverride](https://www.typescriptlang.org/tsconfig#noImplicitOverride)
 
-You can use `@sapphire/ts-config`'s [`extra-strict.json`](https://github.com/sapphiredev/utilities/blob/main/packages/ts-config/extra-strict.json) by extending it in yours:
+You can view the content of this tsconfig [here](https://github.com/sapphiredev/utilities/blob/main/packages/ts-config/src/extra-strict.json)
 
-```json
-{
-	"extends": "@sapphire/ts-config/extra-strict"
-}
-```
+### Decorators
 
-This TypeScript extends everything from the base config, while enabling some extra strict options.
+You should include this config if you want to use decorators in the project using decorators from before the TC39
+TC39 standardization process. Note that at time of writing (2023-08-24) TC39 decorators aren't fully properly
+implemented by either NodeJS or TypeScript yet, so at least at time of writing we recommend enabling this config if
+you are using decorators. Packages such as `@sapphire/decorators` rely on this config being enabled.
 
-Following is a copy of this config file for easy viewing:
+This enables the following compiler options:
 
-```json
-{
-	"$schema": "https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/tsconfig.json",
-	"extends": "./tsconfig.json",
-	"compilerOptions": {
-		"allowUnreachableCode": false,
-		"allowUnusedLabels": false,
-		"exactOptionalPropertyTypes": false,
-		"noImplicitOverride": true
-	}
-}
-```
+-   [experimentalDecorators](https://www.typescriptlang.org/tsconfig#experimentalDecorators)
+-   [emitDecoratorMetadata](https://www.typescriptlang.org/tsconfig#emitDecoratorMetadata)
 
-### Config with extra strict compiler options and without decorators
+You can view the content of this tsconfig [here](https://github.com/sapphiredev/utilities/blob/main/packages/ts-config/src/decorators.json)
 
-You can use `@sapphire/ts-config`'s [`extra-strict-without-decorators.json`](https://github.com/sapphiredev/utilities/blob/main/packages/ts-config/extra-strict-without-decorators.json) by extending it in yours:
+### Verbatim
 
-```json
-{
-	"extends": "@sapphire/ts-config/extra-strict-without-decorators"
-}
-```
+You should include this config if you want to enable the
+[verbatimModuleSyntax](https://www.typescriptlang.org/tsconfig#verbatimModuleSyntax) option. This option has some
+drawbacks when writing CJS code but also ensures even more type strictness.
+See the TypeScript documentation for more information.
 
-This TypeScript is a combination of the [Config without decorators](#config-without-decorators) and [Config with extra strict compiler options](#config-with-extra-strict-compiler-options) config files.
+This enables the following compiler options:
 
-Following is a copy of this config file for easy viewing:
+-   [verbatimModuleSyntax](https://www.typescriptlang.org/tsconfig#verbatimModuleSyntax)
 
-```json
-{
-	"$schema": "https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/tsconfig.json",
-	"extends": "./extra-strict.json",
-	"compilerOptions": {
-		"emitDecoratorMetadata": false,
-		"experimentalDecorators": false
-	}
-}
-```
+You can view the content of this tsconfig [here](https://github.com/sapphiredev/utilities/blob/main/packages/ts-config/src/verbatim.json)
 
 ## Buy us some doughnuts
 
