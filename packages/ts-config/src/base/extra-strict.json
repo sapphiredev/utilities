@@ -1,8 +1,9 @@
 {
 	"$schema": "https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/tsconfig.json",
-	"extends": "./extra-strict.json",
 	"compilerOptions": {
-		"emitDecoratorMetadata": false,
-		"experimentalDecorators": false
+		"allowUnreachableCode": false,
+		"allowUnusedLabels": false,
+		"exactOptionalPropertyTypes": false,
+		"noImplicitOverride": true
 	}
 }
