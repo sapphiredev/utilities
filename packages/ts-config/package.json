@@ -4,23 +4,37 @@
 	"description": "Shareable TypeScript configuration for the Sapphire Community",
 	"author": "@sapphire",
 	"license": "MIT",
-	"main": "tsconfig.json",
+	"main": "src/base/tsconfig.json",
 	"exports": {
 		".": {
-			"import": "./tsconfig.json",
-			"require": "./tsconfig.json"
+			"types": "./src/base/tsconfig.json",
+			"import": "./src/base/tsconfig.json",
+			"require": "./src/base/tsconfig.json"
 		},
-		"./without-decorators": {
-			"import": "./without-decorators.json",
-			"require": "./without-decorators.json"
+		"./base": {
+			"types": "./src/base/tsconfig.json",
+			"import": "./src/base/tsconfig.json",
+			"require": "./src/base/tsconfig.json"
+		},
+		"./decorators": {
+			"types": "./src/base/decorators.json",
+			"import": "./src/base/decorators.json",
+			"require": "./src/base/decorators.json"
 		},
 		"./extra-strict": {
-			"import": "./extra-strict.json",
-			"require": "./extra-strict.json"
+			"types": "./src/base/extra-strict.json",
+			"import": "./src/base/extra-strict.json",
+			"require": "./src/base/extra-strict.json"
 		},
-		"./extra-strict-without-decorators": {
-			"import": "./extra-strict-without-decorators.json",
-			"require": "./extra-strict-without-decorators.json"
+		"./cjs": {
+			"types": "./src/cjs/tsconfig.json",
+			"import": "./src/cjs/tsconfig.json",
+			"require": "./src/cjs/tsconfig.json"
+		},
+		"./esm": {
+			"types": "./src/esm/tsconfig.json",
+			"import": "./src/esm/tsconfig.json",
+			"require": "./src/esm/tsconfig.json"
 		}
 	},
 	"sideEffects": false,
@@ -34,12 +48,11 @@
 	},
 	"dependencies": {
 		"tslib": "^2.6.2",
-		"typescript": "^5.1.6"
+		"typescript": "^5.2.2"
 	},
 	"files": [
-		"./tsconfig.json",
-		"extra-strict*.json",
-		"*decorators*.json"
+		"src",
+		"UPGRADING-*.md"
 	],
 	"engines": {
 		"node": ">=v16.0.0",
