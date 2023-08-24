@@ -75,9 +75,6 @@ if (oldPackageJSON === newPackageJSON) {
 	process.exit(0);
 }
 
-console.log(oldPackageJSON);
-console.log(newPackageJSON);
-
 if (check) {
 	console.error(red(`The package.json file for ${packageName} is not up to date! Run ${green(bold('yarn check-subpath'))} to update it.`));
 	process.exit(1);
