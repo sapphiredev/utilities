@@ -1,4 +1,4 @@
-import { green, red, bold } from 'colorette';
+import { bold, green, red } from 'colorette';
 import { writeFile } from 'node:fs/promises';
 import { basename } from 'node:path';
 import { format } from 'prettier';
@@ -74,6 +74,9 @@ if (oldPackageJSON === newPackageJSON) {
 	console.log(green(`The package.json file for ${packageName} is up to date!`));
 	process.exit(0);
 }
+
+console.log(oldPackageJSON);
+console.log(newPackageJSON);
 
 if (check) {
 	console.error(red(`The package.json file for ${packageName} is not up to date! Run ${green(bold('yarn check-subpath'))} to update it.`));
