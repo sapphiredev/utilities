@@ -1,9 +1,0 @@
-{
-	"extends": "./packages/ts-config/extra-strict.json",
-	"compilerOptions": {
-		"target": "ES2020",
-		"jsx": "react",
-		"jsxFactory": "EmbedJsx.make"
-	},
-	"exclude": ["**/dist/**/*"]
-}

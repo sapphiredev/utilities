@@ -1,7 +1,3 @@
 {
-	"extends": [
-		"./packages/ts-config/src/base/tsconfig.json",
-		"./packages/ts-config/src/cjs/tsconfig.json",
-		"./packages/ts-config/src/base/extra-strict.json"
-	]
+	"extends": ["./packages/ts-config/src/tsconfig.json", "./packages/ts-config/src/extra-strict.json", "./packages/ts-config/src/verbatim.json"]
 }
