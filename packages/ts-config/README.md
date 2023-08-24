@@ -52,11 +52,12 @@ Finally you should configure your package.json properly based on what kind of pa
 
 -   For CJS packages you should add `"type": "commonjs"` to your `package.json`
 -   For ESM packages you should add `"type": "module"` to your `package.json`
-
 -   For a package that is going to be used by both CJS and ESM then you should not add any `"type"` to your `package.json`
     -   Note that if you intend to compile for both your best option is to compile
         for CJS from TypeScript, then use [`gen-esm-wrapper`](https://github.com/addaleax/gen-esm-wrapper) to transform your
         input file to ESM compatible exports. This is also what we do for our Sapphire packages.
+    -   Note also that in this case you should not enable `@sapphire/ts-config/verbatim`, because it will not work without
+        a `"type"` specified in `package.json`
 
 Next we will go over the different configs and what they do.
 

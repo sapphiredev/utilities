@@ -12,6 +12,8 @@ The following changes have been applied to the base config:
 -   `experimentalDecorators` is now `false` by default
 -   `emitDecoratorMetadata` is now `false` by default
 -   `verbatimModuleSyntax` is now `false` by default. It gets set to true by `@sapphire/ts-config/verbatim`.
+    -   Note that you should not enable `@sapphire/ts-config/verbatim` without also setting `"type"` in `package.json`
+        to either `"commonjs"` or `"module"`
 
 The following configs have been added:
 
