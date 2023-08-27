@@ -21,6 +21,7 @@ The following configs have been added:
 -   `@sapphire/ts-config/decorators`
 -   `@sapphire/ts-config/base` -> This is identical to `@sapphire/ts-config`
 -   `@sapphire/ts-config/verbatim`
+-   `@sapphire/ts-config/bundler`
 
 In order to achieve the following old configs you now need to use:
 

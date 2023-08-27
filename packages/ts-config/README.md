@@ -1,5 +1,4 @@
 <div align="center">
-
 ![Sapphire Logo](https://raw.githubusercontent.com/sapphiredev/assets/main/banners/SapphireCommunity.png)
 
 # @sapphire/ts-config
@@ -22,6 +21,7 @@
         -   [Extra Strict](#extra-strict)
         -   [Decorators](#decorators)
         -   [Verbatim](#verbatim)
+        -   [Bundler](#bundler)
     -   [Buy us some doughnuts](#buy-us-some-doughnuts)
     -   [Contributors](#contributors)
 
@@ -106,6 +106,19 @@ This enables the following compiler options:
 
 You can view the content of this tsconfig [here](https://github.com/sapphiredev/utilities/blob/main/packages/ts-config/src/verbatim.json)
 
+### Bundler
+
+You may include this config if bundle your code with a bundler such as [tsup], [esbuild], [swc] or something else. This
+config sets [`moduleResolution` to `Bundler`][moduleResolution] and [`module` to `ES2022`][module]. This will likely also allow you to enable
+[Verbatim](#verbatim).
+
+This configures the following compiler options:
+
+-   [`moduleResolution` to `Bundler`][moduleResolution]
+-   [`module` to `ES2022`][module]
+
+You can view the content of this tsconfig [here](https://github.com/sapphiredev/utilities/blob/main/packages/ts-config/src/bundler.json)
+
 ## Buy us some doughnuts
 
 Sapphire Community is and always will be open source, even if we don't get donations. That being said, we know there are amazing people who may still want to donate just to show their appreciation. Thank you very much in advance!
@@ -130,3 +143,5 @@ Thank you to all the people who already contributed to Sapphire!
 </a>
 
 [contributing]: https://github.com/sapphiredev/.github/blob/main/.github/CONTRIBUTING.md
+[module]: https://www.typescriptlang.org/tsconfig#module
+[moduleResolution]: https://www.typescriptlang.org/tsconfig#moduleResolution
