@@ -145,3 +145,6 @@ Thank you to all the people who already contributed to Sapphire!
 [contributing]: https://github.com/sapphiredev/.github/blob/main/.github/CONTRIBUTING.md
 [module]: https://www.typescriptlang.org/tsconfig#module
 [moduleResolution]: https://www.typescriptlang.org/tsconfig#moduleResolution
+[tsup]: https://tsup.egoist.dev
+[esbuild]: https://esbuild.github.io
+[swc]: https://swc.rs
