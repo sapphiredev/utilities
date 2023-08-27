@@ -1,3 +1,8 @@
 {
-	"extends": ["./packages/ts-config/src/tsconfig.json", "./packages/ts-config/src/extra-strict.json"]
+	"extends": [
+		"./packages/ts-config/src/tsconfig.json",
+		"./packages/ts-config/src/extra-strict.json",
+		"./packages/ts-config/src/bundler.json",
+		"./packages/ts-config/src/verbatim.json"
+	]
 }
