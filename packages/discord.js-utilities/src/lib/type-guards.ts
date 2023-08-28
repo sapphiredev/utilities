@@ -15,6 +15,8 @@ import {
 	type NewsChannel,
 	type PartialDMChannel,
 	type PartialGroupDMChannel,
+	type PrivateThreadChannel,
+	type PublicThreadChannel,
 	type StageChannel,
 	type TextChannel,
 	type ThreadChannel,
@@ -113,27 +115,27 @@ export function isThreadChannel(channel: ChannelTypes | Nullish): channel is Thr
 }
 
 /**
- * Checks whether a given channel is a News {@link ThreadChannel}
+ * Checks whether a given channel is a Announcement {@link PublicThreadChannel}
  * @param channel The channel to check.
  */
-export function isNewsThreadChannel(channel: ChannelTypes | Nullish): channel is ThreadChannel {
-	return channel?.type === ChannelType.GuildNewsThread;
+export function isNewsThreadChannel(channel: ChannelTypes | Nullish): channel is PublicThreadChannel {
+	return channel?.type === ChannelType.AnnouncementThread;
 }
 
 /**
- * Checks whether a given channel is a Public {@link ThreadChannel}
+ * Checks whether a given channel is a {@link PublicThreadChannel}
  * @param channel The channel to check.
  */
-export function isPublicThreadChannel(channel: ChannelTypes | Nullish): channel is ThreadChannel {
-	return channel?.type === ChannelType.GuildPublicThread;
+export function isPublicThreadChannel(channel: ChannelTypes | Nullish): channel is PublicThreadChannel {
+	return channel?.type === ChannelType.PublicThread;
 }
 
 /**
- * Checks whether a given channel is a Private {@link ThreadChannel}
+ * Checks whether a given channel is a {@link PrivateThreadChannel}
  * @param channel The channel to check.
  */
-export function isPrivateThreadChannel(channel: ChannelTypes | Nullish): channel is ThreadChannel {
-	return channel?.type === ChannelType.GuildPrivateThread;
+export function isPrivateThreadChannel(channel: ChannelTypes | Nullish): channel is PrivateThreadChannel {
+	return channel?.type === ChannelType.PrivateThread;
 }
 
 /**
@@ -171,13 +173,13 @@ export function isNsfwChannel(channel: ChannelTypes | Nullish): boolean {
 		case ChannelType.GuildVoice:
 		case ChannelType.GuildDirectory:
 			return false;
-		case ChannelType.GuildNews:
+		case ChannelType.GuildAnnouncement:
 		case ChannelType.GuildText:
 		case ChannelType.GuildForum:
 			return (channel as Exclude<NonThreadGuildTextBasedChannelTypes, VoiceChannel | StageChannel>).nsfw;
-		case ChannelType.GuildNewsThread:
-		case ChannelType.GuildPrivateThread:
-		case ChannelType.GuildPublicThread:
+		case ChannelType.AnnouncementThread:
+		case ChannelType.PrivateThread:
+		case ChannelType.PublicThread:
 			return Boolean((channel as ThreadChannel).parent?.nsfw);
 	}
 }
