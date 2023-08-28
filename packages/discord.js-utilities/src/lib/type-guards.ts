@@ -15,6 +15,8 @@ import {
 	type NewsChannel,
 	type PartialDMChannel,
 	type PartialGroupDMChannel,
+	type PrivateThreadChannel,
+	type PublicThreadChannel,
 	type StageChannel,
 	type TextChannel,
 	type ThreadChannel,
@@ -31,6 +33,7 @@ import type {
 
 /**
  * Checks whether a given channel is a {@link CategoryChannel}
+ * This checks for {@link ChannelType.GuildCategory}.
  * @param channel The channel to check
  */
 export function isCategoryChannel(channel: ChannelTypes | Nullish): channel is CategoryChannel {
@@ -39,6 +42,7 @@ export function isCategoryChannel(channel: ChannelTypes | Nullish): channel is C
 
 /**
  * Checks whether a given channel is a {@link DMChannel}
+ * This checks for {@link ChannelType.DM}.
  * @param channel The channel to check
  */
 export function isDMChannel(channel: ChannelTypes | Nullish): channel is DMChannel | PartialDMChannel {
@@ -47,6 +51,7 @@ export function isDMChannel(channel: ChannelTypes | Nullish): channel is DMChann
 
 /**
  * Checks whether a given channel is a {@link PartialGroupDMChannel}
+ * This checks for {@link ChannelType.GroupDM}.
  * @param channel The channel to check
  */
 export function isGroupChannel(channel: Channel | PartialDMChannel | Nullish): channel is PartialGroupDMChannel {
@@ -55,6 +60,7 @@ export function isGroupChannel(channel: Channel | PartialDMChannel | Nullish): c
 
 /**
  * Checks if a channel comes from a guild.
+ * This checks that the channel is **not** {@link ChannelType.DM}.
  * @param channel The channel to check
  * @returns Whether or not the channel is guild-based.
  */
@@ -74,14 +80,16 @@ export function isGuildBasedChannelByGuildKey(channel: ChannelTypes | Nullish): 
 
 /**
  * Checks whether a given channel is a {@link NewsChannel}.
+ * This checks for {@link ChannelType.GuildAnnouncement}.
  * @param channel The channel to check.
  */
 export function isNewsChannel(channel: ChannelTypes | Nullish): channel is NewsChannel {
-	return channel?.type === ChannelType.GuildNews;
+	return channel?.type === ChannelType.GuildAnnouncement;
 }
 
 /**
  * Checks whether a given channel is a {@link TextChannel}.
+ * This checks for {@link ChannelType.GuildText}.
  * @param channel The channel to check.
  */
 export function isTextChannel(channel: ChannelTypes | Nullish): channel is TextChannel {
@@ -90,6 +98,7 @@ export function isTextChannel(channel: ChannelTypes | Nullish): channel is TextC
 
 /**
  * Checks whether a given channel is a {@link VoiceChannel}
+ * This checks for {@link ChannelType.GuildVoice}.
  * @param channel The channel to check
  */
 export function isVoiceChannel(channel: ChannelTypes | Nullish): channel is VoiceChannel {
@@ -98,6 +107,7 @@ export function isVoiceChannel(channel: ChannelTypes | Nullish): channel is Voic
 
 /**
  * Checks whether a given channel is a {@link StageChannel}
+ * This checks for {@link ChannelType.GuildStageVoice}.
  * @param channel The channel to check
  */
 export function isStageChannel(channel: ChannelTypes | Nullish): channel is StageChannel {
@@ -106,6 +116,7 @@ export function isStageChannel(channel: ChannelTypes | Nullish): channel is Stag
 
 /**
  * Checks whether a given channel is a {@link ThreadChannel}
+ * This checks for {@link ChannelTypes.isThread()}.
  * @param channel The channel to check.
  */
 export function isThreadChannel(channel: ChannelTypes | Nullish): channel is ThreadChannel {
@@ -113,27 +124,30 @@ export function isThreadChannel(channel: ChannelTypes | Nullish): channel is Thr
 }
 
 /**
- * Checks whether a given channel is a News {@link ThreadChannel}
+ * Checks whether a given channel is an Announcement {@link PublicThreadChannel}
+ * This checks for {@link ChannelType.AnnouncementThread}.
  * @param channel The channel to check.
  */
-export function isNewsThreadChannel(channel: ChannelTypes | Nullish): channel is ThreadChannel {
-	return channel?.type === ChannelType.GuildNewsThread;
+export function isNewsThreadChannel(channel: ChannelTypes | Nullish): channel is PublicThreadChannel {
+	return channel?.type === ChannelType.AnnouncementThread;
 }
 
 /**
- * Checks whether a given channel is a Public {@link ThreadChannel}
+ * Checks whether a given channel is a {@link PublicThreadChannel}
+ * This checks for {@link ChannelType.PublicThread}.
  * @param channel The channel to check.
  */
-export function isPublicThreadChannel(channel: ChannelTypes | Nullish): channel is ThreadChannel {
-	return channel?.type === ChannelType.GuildPublicThread;
+export function isPublicThreadChannel(channel: ChannelTypes | Nullish): channel is PublicThreadChannel {
+	return channel?.type === ChannelType.PublicThread;
 }
 
 /**
- * Checks whether a given channel is a Private {@link ThreadChannel}
+ * Checks whether a given channel is a {@link PrivateThreadChannel}
+ * This checks for {@link ChannelType.PrivateThread}.
  * @param channel The channel to check.
  */
-export function isPrivateThreadChannel(channel: ChannelTypes | Nullish): channel is ThreadChannel {
-	return channel?.type === ChannelType.GuildPrivateThread;
+export function isPrivateThreadChannel(channel: ChannelTypes | Nullish): channel is PrivateThreadChannel {
+	return channel?.type === ChannelType.PrivateThread;
 }
 
 /**
@@ -148,6 +162,7 @@ export function isTextBasedChannel(channel: ChannelTypes | Nullish): channel is 
 
 /**
  * Checks whether a given channel is a {@link VoiceBasedChannel}.
+ * This checks for {@link Channel.isVoiceBased()}.
  * @param channel: The channel to check.
  */
 export function isVoiceBasedChannel(channel: Channel | Nullish): channel is VoiceBasedChannel {
@@ -158,6 +173,24 @@ export function isVoiceBasedChannel(channel: Channel | Nullish): channel is Voic
 
 /**
  * Checks whether a given channel allows NSFW content or not
+ *
+ * For the following channel types this is always false:
+ * - {@link ChannelType.DM}
+ * - {@link ChannelType.GroupDM}
+ * - {@link ChannelType.GuildCategory}
+ * - {@link ChannelType.GuildStageVoice}
+ * - {@link ChannelType.GuildVoice}
+ * - {@link ChannelType.GuildDirectory}
+ *
+ * For the following channel types the actual channel is checked:
+ * - {@link ChannelType.GuildAnnouncement}
+ * - {@link ChannelType.GuildText}
+ * - {@link ChannelType.GuildForum}
+ *
+ * For the following channel types the parent of the channel is checked:
+ * - {@link ChannelType.AnnouncementThread}
+ * - {@link ChannelType.PrivateThread}
+ * - {@link ChannelType.PublicThread}
  * @param channel The channel to check.
  */
 export function isNsfwChannel(channel: ChannelTypes | Nullish): boolean {
@@ -171,13 +204,13 @@ export function isNsfwChannel(channel: ChannelTypes | Nullish): boolean {
 		case ChannelType.GuildVoice:
 		case ChannelType.GuildDirectory:
 			return false;
-		case ChannelType.GuildNews:
+		case ChannelType.GuildAnnouncement:
 		case ChannelType.GuildText:
 		case ChannelType.GuildForum:
 			return (channel as Exclude<NonThreadGuildTextBasedChannelTypes, VoiceChannel | StageChannel>).nsfw;
-		case ChannelType.GuildNewsThread:
-		case ChannelType.GuildPrivateThread:
-		case ChannelType.GuildPublicThread:
+		case ChannelType.AnnouncementThread:
+		case ChannelType.PrivateThread:
+		case ChannelType.PublicThread:
 			return Boolean((channel as ThreadChannel).parent?.nsfw);
 	}
 }
