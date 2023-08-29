@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/discord.js-utilities@7.0.2](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@7.0.1...@sapphire/discord.js-utilities@7.0.2) - (2023-08-29)
+
+## 🐛 Bug Fixes
+
+- **discord.js-utilities:** Output proper dist files ([75fded2](https://github.com/sapphiredev/utilities/commit/75fded2797d1a4888b43dc05ad2fbcd9b035162a))
+- **discord.js-utilities:** Revised type-guards for thread channels (#639) ([62f14dc](https://github.com/sapphiredev/utilities/commit/62f14dc21b6dd6dfef1575626334b0f450b42f98))
+
 # [@sapphire/discord.js-utilities@7.0.1](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@7.0.0...@sapphire/discord.js-utilities@7.0.1) - (2023-07-21)
 
 ## 🐛 Bug Fixes
