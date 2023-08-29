@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/eslint-config@5.0.2](https://github.com/sapphiredev/utilities/compare/@sapphire/eslint-config@5.0.1...@sapphire/eslint-config@5.0.2) - (2023-08-29)
+
+## 🐛 Bug Fixes
+
+- **eslint-config:** Update transitive dependencies ([de7b294](https://github.com/sapphiredev/utilities/commit/de7b294df5cceac794ec03647755653578226f5f))
+- **eslint-config:** Update transitive dependencies ([a81f6de](https://github.com/sapphiredev/utilities/commit/a81f6defaa4d537499065211eaf15940ff039bc9))
+
 # [@sapphire/eslint-config@5.0.1](https://github.com/sapphiredev/utilities/compare/@sapphire/eslint-config@5.0.0...@sapphire/eslint-config@5.0.1) - (2023-08-07)
 
 ## 🐛 Bug Fixes
