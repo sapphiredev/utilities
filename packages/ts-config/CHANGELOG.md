@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/ts-config@5.0.0](https://github.com/sapphiredev/utilities/compare/@sapphire/ts-config@4.0.1...@sapphire/ts-config@5.0.0) - (2023-08-29)
+
+## 🚀 Features
+
+- **tsconfig:** Rework entire tsconfig setup for better TS 5.2 support ([a49bed1](https://github.com/sapphiredev/utilities/commit/a49bed1fa3d277762dac1f4fcba889d922aee530))
+  - 💥 **BREAKING CHANGE:** The tsconfig has been majorly restructured. Please see [the upgrading guide](https://github.com/sapphiredev/utilities/blob/main/packages/ts-config/UPGRADING-v4-v5.md) for how to migrate to the new version.
+
 # [@sapphire/ts-config@4.0.1](https://github.com/sapphiredev/utilities/compare/@sapphire/ts-config@4.0.0...@sapphire/ts-config@4.0.1) - (2023-07-21)
 
 ## 🐛 Bug Fixes
