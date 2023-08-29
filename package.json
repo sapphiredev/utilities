@@ -27,15 +27,15 @@
 		"@favware/rollup-type-bundler": "^2.0.0",
 		"@sapphire/framework": "^4.5.3",
 		"@types/lodash": "^4.14.197",
-		"@types/node": "^18.17.9",
+		"@types/node": "^18.17.12",
 		"@types/ws": "^8.5.5",
-		"@typescript-eslint/eslint-plugin": "^6.4.1",
-		"@typescript-eslint/parser": "^6.4.1",
-		"@vitest/coverage-v8": "^0.34.2",
+		"@typescript-eslint/eslint-plugin": "^6.5.0",
+		"@typescript-eslint/parser": "^6.5.0",
+		"@vitest/coverage-v8": "^0.34.3",
 		"cz-conventional-changelog": "^3.3.0",
 		"discord-api-types": "^0.37.55",
 		"discord.js": "^14.13.0",
-		"eslint": "^8.47.0",
+		"eslint": "^8.48.0",
 		"eslint-config-prettier": "^9.0.0",
 		"eslint-plugin-prettier": "^5.0.0",
 		"husky": "^8.0.3",
@@ -50,7 +50,7 @@
 		"typedoc-json-parser": "^8.2.0",
 		"typescript": "^5.2.2",
 		"vite": "^4.4.9",
-		"vitest": "^0.34.2"
+		"vitest": "^0.34.3"
 	},
 	"repository": {
 		"type": "git",
@@ -78,5 +78,5 @@
 		"ansi-regex": "^5.0.1",
 		"minimist": "^1.2.8"
 	},
-	"packageManager": "yarn@3.6.2"
+	"packageManager": "yarn@3.6.3"
 }
