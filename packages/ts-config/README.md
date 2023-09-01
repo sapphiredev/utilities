@@ -70,12 +70,12 @@ You can view the content of this tsconfig [here](https://github.com/sapphiredev/
 
 ### Extra Strict
 
-You should include this config if you want to extra strict checking. This enables the following compiler options:
+You should include this config if you want to extra strict checking. This configures the following compiler options:
 
--   [allowUnreachableCode](https://www.typescriptlang.org/tsconfig#allowUnreachableCode)
--   [allowUnusedLabels](https://www.typescriptlang.org/tsconfig#allowUnusedLabels)
--   [exactOptionalPropertyTypes](https://www.typescriptlang.org/tsconfig#exactOptionalPropertyTypes)
--   [noImplicitOverride](https://www.typescriptlang.org/tsconfig#noImplicitOverride)
+-   [`allowUnreachableCode` to `false`](https://www.typescriptlang.org/tsconfig#allowUnreachableCode)
+-   [`allowUnusedLabels` to `false`](https://www.typescriptlang.org/tsconfig#allowUnusedLabels)
+-   [`exactOptionalPropertyTypes` to `false`](https://www.typescriptlang.org/tsconfig#exactOptionalPropertyTypes)
+-   [`noImplicitOverride` to `true`](https://www.typescriptlang.org/tsconfig#noImplicitOverride)
 
 You can view the content of this tsconfig [here](https://github.com/sapphiredev/utilities/blob/main/packages/ts-config/src/extra-strict.json)
 
