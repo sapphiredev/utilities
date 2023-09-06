@@ -34,10 +34,12 @@ Add the Prettier config to your `package.json`:
 }
 ```
 
-Or to `prettierrc.js`:
+Or to `prettierrc.mjs`:
 
 ```js
-module.exports = require('@sapphire/prettier-config');
+import SapphirePrettierConfig from '@sapphire/prettier-config';
+
+export default SapphirePrettierConfig;
 ```
 
 ## Buy us some doughnuts
