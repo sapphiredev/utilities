@@ -14,7 +14,7 @@ export class RateLimitManager<K = string> extends Map<K, RateLimit<K>> {
 	/**
 	 * The interval to sweep expired {@link RateLimit ratelimits}.
 	 */
-	private sweepInterval!: NodeJS.Timer | null;
+	private sweepInterval!: NodeJS.Timeout | undefined | null;
 
 	/**
 	 * @param time The amount of milliseconds for the ratelimits from this manager to expire.
@@ -63,7 +63,7 @@ export class RateLimitManager<K = string> extends Map<K, RateLimit<K>> {
 			if (value.expired) this.delete(id);
 		}
 
-		if (this.size === 0 && this.sweepInterval !== null) {
+		if (this.size === 0 && this.sweepInterval !== undefined && this.sweepInterval !== null) {
 			clearInterval(this.sweepInterval);
 			this.sweepInterval = null;
 		}
