@@ -47,7 +47,7 @@
 		"tslib": "^2.6.2",
 		"tsup": "^7.2.0",
 		"turbo": "^1.10.13",
-		"typedoc-json-parser": "^8.2.0",
+		"typedoc-json-parser": "^9.0.0",
 		"typescript": "^5.2.2",
 		"vite": "^4.4.9",
 		"vitest": "^0.34.4"
