@@ -15,8 +15,7 @@ jobs:
   build:
     name: Build Documentation
     runs-on: ubuntu-latest
-    # Re-enable when typedoc supports TS 5.2
-    if: github.repository_owner == 'sapphiredev' && false
+    if: github.repository_owner == 'sapphiredev'
     outputs:
       NAME: ${{ steps.env.outputs.NAME }}
       TYPE: ${{ steps.env.outputs.TYPE }}
