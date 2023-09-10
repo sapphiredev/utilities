@@ -72,7 +72,7 @@ export class EventIterator<V extends unknown[]> implements AsyncIterableIterator
 	/**
 	 * The timer to track when this will idle out.
 	 */
-	#idleTimer: NodeJS.Timer | null = null;
+	#idleTimer: NodeJS.Timeout | undefined | null = null;
 
 	/**
 	 * The push handler with context bound to the instance.
@@ -145,7 +145,7 @@ export class EventIterator<V extends unknown[]> implements AsyncIterableIterator
 
 		// Listen for a new element from the emitter:
 		return new Promise<IteratorResult<V>>((resolve) => {
-			let idleTimer: NodeJS.Timer | null = null;
+			let idleTimer: NodeJS.Timeout | undefined | null = null;
 
 			// If there is an idle time set, we will create a temporary timer,
 			// which will cause the iterator to end if no new elements are received:
