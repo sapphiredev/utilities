@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/ratelimits@2.4.7](https://github.com/sapphiredev/utilities/compare/@sapphire/ratelimits@2.4.6...@sapphire/ratelimits@2.4.7) - (2023-09-10)
+
+## 🐛 Bug Fixes
+
+- **ratelimits:** Fixed support for `@types/node` `>=v20` ([d2bdd53](https://github.com/sapphiredev/utilities/commit/d2bdd53a6fa01b4e95f163b5d6c4f2de280fad45))
+- Update export mapping for proper ESM/CJS split ([dd0cff8](https://github.com/sapphiredev/utilities/commit/dd0cff8e9b03a15812f25f7a1180501a92422629))
+- **deps:** Update all non-major dependencies (#607) ([9cc8bd0](https://github.com/sapphiredev/utilities/commit/9cc8bd0d4b5d650deab2c913e6c3d713861bae28))
+- **deps:** Update all non-major dependencies (#577) ([291dd67](https://github.com/sapphiredev/utilities/commit/291dd6783e57d8f075ce566218ba076ef6c4bbbd))
+
+## 🧪 Testing
+
+- Update vitest to coverage v8 ([a4bc6e4](https://github.com/sapphiredev/utilities/commit/a4bc6e4f24ea60143a150ecc76fda6484f172ab9))
+
 # [@sapphire/ratelimits@2.4.6](https://github.com/sapphiredev/utilities/compare/@sapphire/ratelimits@2.4.5...@sapphire/ratelimits@2.4.6) - (2023-03-09)
 
 ## 🏠 Refactor
