@@ -35,7 +35,9 @@ npm install @sapphire/result
 
 ## Usage
 
-**Note:** While this section uses `require`, the imports match 1:1 with ESM imports. For example `const { Result } = require('@sapphire/result')` equals `import { Result } from '@sapphire/result'`.
+**Note 1:** While this section uses `require`, the imports match 1:1 with ESM imports. For example `const { Result } = require('@sapphire/result')` equals `import { Result } from '@sapphire/result'`.
+
+**Note 2:** For more thorough examples check out the generated documentation on [our website here](https://www.sapphirejs.dev/docs/Documentation/api-utilities/interfaces/sapphire_result.IResult)
 
 ### Wrapping synchronous `try-catch` blocks
 
