@@ -787,7 +787,7 @@ __metadata:
     "@favware/cliff-jumper": ^2.2.0
     "@vitest/coverage-v8": ^0.34.6
     tsup: ^7.2.0
-    typedoc: ^0.25.1
+    typedoc: ^0.25.2
     typedoc-json-parser: ^9.0.1
     typescript: ^5.2.2
     vitest: ^0.34.6
@@ -801,7 +801,7 @@ __metadata:
     "@favware/cliff-jumper": ^2.2.0
     "@vitest/coverage-v8": ^0.34.6
     tsup: ^7.2.0
-    typedoc: ^0.25.1
+    typedoc: ^0.25.2
     typedoc-json-parser: ^9.0.1
     typescript: ^5.2.2
     vitest: ^0.34.6
@@ -816,7 +816,7 @@ __metadata:
     "@sapphire/utilities": "workspace:^"
     "@vitest/coverage-v8": ^0.34.6
     tsup: ^7.2.0
-    typedoc: ^0.25.1
+    typedoc: ^0.25.2
     typedoc-json-parser: ^9.0.1
     typescript: ^5.2.2
     vitest: ^0.34.6
@@ -836,7 +836,7 @@ __metadata:
     "@vitest/coverage-v8": ^0.34.6
     tslib: ^2.6.2
     tsup: ^7.2.0
-    typedoc: ^0.25.1
+    typedoc: ^0.25.2
     typedoc-json-parser: ^9.0.1
     typescript: ^5.2.2
     vitest: ^0.34.6
@@ -851,7 +851,7 @@ __metadata:
     "@vitest/coverage-v8": ^0.34.6
     discord-api-types: ^0.37.60
     tsup: ^7.2.0
-    typedoc: ^0.25.1
+    typedoc: ^0.25.2
     typedoc-json-parser: ^9.0.1
     typescript: ^5.2.2
     vitest: ^0.34.6
@@ -869,7 +869,7 @@ __metadata:
     "@sapphire/utilities": "workspace:^"
     tslib: ^2.6.2
     tsup: ^7.2.0
-    typedoc: ^0.25.1
+    typedoc: ^0.25.2
     typedoc-json-parser: ^9.0.1
     typescript: ^5.2.2
   languageName: unknown
@@ -882,7 +882,7 @@ __metadata:
     "@favware/cliff-jumper": ^2.2.0
     "@vitest/coverage-v8": ^0.34.6
     tsup: ^7.2.0
-    typedoc: ^0.25.1
+    typedoc: ^0.25.2
     typedoc-json-parser: ^9.0.1
     typescript: ^5.2.2
     vitest: ^0.34.6
@@ -934,7 +934,7 @@ __metadata:
     "@vitest/coverage-v8": ^0.34.6
     tslib: ^2.6.2
     tsup: ^7.2.0
-    typedoc: ^0.25.1
+    typedoc: ^0.25.2
     typedoc-json-parser: ^9.0.1
     typescript: ^5.2.2
     vitest: ^0.34.6
@@ -949,7 +949,7 @@ __metadata:
     "@vitest/coverage-v8": ^0.34.6
     cross-fetch: ^4.0.0
     tsup: ^7.2.0
-    typedoc: ^0.25.1
+    typedoc: ^0.25.2
     typedoc-json-parser: ^9.0.1
     typescript: ^5.2.2
     vitest: ^0.34.6
@@ -981,7 +981,7 @@ __metadata:
     "@sapphire/result": "workspace:^"
     "@vitest/coverage-v8": ^0.34.6
     tsup: ^7.2.0
-    typedoc: ^0.25.1
+    typedoc: ^0.25.2
     typedoc-json-parser: ^9.0.1
     typescript: ^5.2.2
     vitest: ^0.34.6
@@ -995,7 +995,7 @@ __metadata:
     "@favware/cliff-jumper": ^2.2.0
     "@vitest/coverage-v8": ^0.34.6
     tsup: ^7.2.0
-    typedoc: ^0.25.1
+    typedoc: ^0.25.2
     typedoc-json-parser: ^9.0.1
     typescript: ^5.2.2
     vitest: ^0.34.6
@@ -1009,7 +1009,7 @@ __metadata:
     "@favware/cliff-jumper": ^2.2.0
     "@sapphire/fetch": "workspace:^"
     tsup: ^7.2.0
-    typedoc: ^0.25.1
+    typedoc: ^0.25.2
     typedoc-json-parser: ^9.0.1
     typescript: ^5.2.2
   languageName: unknown
@@ -1046,7 +1046,7 @@ __metadata:
     "@favware/cliff-jumper": ^2.2.0
     "@vitest/coverage-v8": ^0.34.6
     tsup: ^7.2.0
-    typedoc: ^0.25.1
+    typedoc: ^0.25.2
     typedoc-json-parser: ^9.0.1
     typescript: ^5.2.2
     vitest: ^0.34.6
@@ -1060,7 +1060,7 @@ __metadata:
     "@favware/cliff-jumper": ^2.2.0
     "@vitest/coverage-v8": ^0.34.6
     tsup: ^7.2.0
-    typedoc: ^0.25.1
+    typedoc: ^0.25.2
     typedoc-json-parser: ^9.0.1
     typescript: ^5.2.2
     vitest: ^0.34.6
@@ -1084,7 +1084,7 @@ __metadata:
     "@favware/cliff-jumper": ^2.2.0
     "@vitest/coverage-v8": ^0.34.6
     tsup: ^7.2.0
-    typedoc: ^0.25.1
+    typedoc: ^0.25.2
     typedoc-json-parser: ^9.0.1
     typescript: ^5.2.2
     vitest: ^0.34.6
@@ -1101,7 +1101,7 @@ __metadata:
     jsdom: ^22.1.0
     tslib: ^2.6.2
     tsup: ^7.2.0
-    typedoc: ^0.25.1
+    typedoc: ^0.25.2
     typedoc-json-parser: ^9.0.1
     typescript: ^5.2.2
     vitest: ^0.34.6
@@ -1118,7 +1118,7 @@ __metadata:
     "@sapphire/timer-manager": "workspace:^"
     "@sapphire/timestamp": "workspace:^"
     tsup: ^7.2.0
-    typedoc: ^0.25.1
+    typedoc: ^0.25.2
     typedoc-json-parser: ^9.0.1
     typescript: ^5.2.2
   languageName: unknown
@@ -1131,7 +1131,7 @@ __metadata:
     "@favware/cliff-jumper": ^2.2.0
     "@vitest/coverage-v8": ^0.34.6
     tsup: ^7.2.0
-    typedoc: ^0.25.1
+    typedoc: ^0.25.2
     typedoc-json-parser: ^9.0.1
     typescript: ^5.2.2
     vitest: ^0.34.6
@@ -1145,7 +1145,7 @@ __metadata:
     "@favware/cliff-jumper": ^2.2.0
     "@vitest/coverage-v8": ^0.34.6
     tsup: ^7.2.0
-    typedoc: ^0.25.1
+    typedoc: ^0.25.2
     typedoc-json-parser: ^9.0.1
     typescript: ^5.2.2
     vitest: ^0.34.6
@@ -1175,7 +1175,7 @@ __metadata:
     "@vitest/coverage-v8": ^0.34.6
     esbuild-plugin-file-path-extensions: ^1.0.0
     tsup: ^7.2.0
-    typedoc: ^0.25.1
+    typedoc: ^0.25.2
     typedoc-json-parser: ^9.0.1
     typescript: ^5.2.2
     vitest: ^0.34.6
@@ -6593,9 +6593,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typedoc@npm:^0.25.1":
-  version: 0.25.1
-  resolution: "typedoc@npm:0.25.1"
+"typedoc@npm:^0.25.1, typedoc@npm:^0.25.2":
+  version: 0.25.2
+  resolution: "typedoc@npm:0.25.2"
   dependencies:
     lunr: ^2.3.9
     marked: ^4.3.0
@@ -6605,7 +6605,7 @@ __metadata:
     typescript: 4.6.x || 4.7.x || 4.8.x || 4.9.x || 5.0.x || 5.1.x || 5.2.x
   bin:
     typedoc: bin/typedoc
-  checksum: 6c1c28cbf51b6ab1741429f58f540c5c12d6119ce30054866b879ef2a3a2120a6adbaf59919f7411d3bb51b9113fc926522c40934a3d8ef601785abdf0134eed
+  checksum: 5b6e24bae7498bb542aaba495378ed5a3e13c76eb04a1ae95b506f76bda4d517847101fb05a7eab3f6b79357d1e2ac6f4747d39792395329b72e463f7effda65
   languageName: node
   linkType: hard
 
