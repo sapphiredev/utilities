@@ -13,7 +13,6 @@
 		"build": "turbo run build",
 		"docs": "turbo run docs",
 		"update": "yarn upgrade-interactive",
-		"postinstall": "husky install .github/husky",
 		"check-update": "turbo run check-update",
 		"check-subpath": "turbo run check-subpath"
 	},
@@ -38,7 +37,6 @@
 		"eslint": "^8.51.0",
 		"eslint-config-prettier": "^9.0.0",
 		"eslint-plugin-prettier": "^5.0.1",
-		"husky": "^8.0.3",
 		"lint-staged": "^15.0.1",
 		"lodash": "^4.17.21",
 		"nock": "^13.3.4",
