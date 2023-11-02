@@ -27,6 +27,7 @@ jobs:
       - name: Build ESLint, Prettier and Utilities
         run: |
           yarn workspaces foreach \
+            --all \
             --parallel \
             --include @sapphire/eslint-config \
             --include @sapphire/prettier-config \
