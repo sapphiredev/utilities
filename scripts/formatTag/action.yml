@@ -10,5 +10,5 @@ outputs:
   semver:
     description: 'The semver string that was extracted from this tag'
 runs:
-  using: node16
+  using: node20
   main: index.mjs
