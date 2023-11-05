@@ -92,7 +92,7 @@ export type NonNullableProperties<T = unknown> = {
 };
 
 /**
- * An object that is non nullable, to bypass TypeScript not easily working with {@link Record}<{@link PropertyKey}, unknown> in various instances.
+ * An object that is non nullable, to bypass TypeScript not easily working with `Record<PropertyKey, unknown>` in various instances.
  */
 // eslint-disable-next-line @typescript-eslint/ban-types
 export type NonNullObject = {} & object;
