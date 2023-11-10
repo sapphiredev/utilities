@@ -16,6 +16,8 @@
 		"test": {
 			"dependsOn": [
 				"@sapphire/async-queue#build",
+				"@sapphire/bit-array#build",
+				"@sapphire/bitfield#build",
 				"@sapphire/discord-utilities#build",
 				"@sapphire/discord.js-utilities#build",
 				"@sapphire/duration#build",
@@ -43,6 +45,8 @@
 		"docs": {
 			"dependsOn": [
 				"@sapphire/async-queue#build",
+				"@sapphire/bit-array#build",
+				"@sapphire/bitfield#build",
 				"@sapphire/cron#build",
 				"@sapphire/discord.js-utilities#build",
 				"@sapphire/fetch#build",

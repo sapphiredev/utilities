@@ -1,0 +1,4 @@
+name: bit-array
+org: sapphire
+install: true
+packagePath: packages/bit-array

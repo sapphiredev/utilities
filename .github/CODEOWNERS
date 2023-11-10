@@ -3,6 +3,7 @@
 /package/timer-manager/**/*.ts @favna @kyranet @vladfrangu
 /package/timestamp/**/*.ts @favna @kyranet @vladfrangu
 /packages/async-queue/**/*.ts @vladfrangu @kyranet @favna
+/packages/bit-array/**/*.ts @vladfrangu @kyranet @favna
 /packages/bitfield/**/*.ts @vladfrangu @kyranet @favna
 /packages/decorators/**/*.ts @vladfrangu @kyranet @favna
 /packages/discord-utilities/**/*.ts @favna

@@ -773,6 +773,20 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@sapphire/bit-array@workspace:packages/bit-array":
+  version: 0.0.0-use.local
+  resolution: "@sapphire/bit-array@workspace:packages/bit-array"
+  dependencies:
+    "@favware/cliff-jumper": "npm:^2.2.0"
+    "@vitest/coverage-v8": "npm:^0.34.6"
+    tsup: "npm:^7.2.0"
+    typedoc: "npm:^0.25.3"
+    typedoc-json-parser: "npm:^9.0.1"
+    typescript: "npm:^5.2.2"
+    vitest: "npm:^0.34.6"
+  languageName: unknown
+  linkType: soft
+
 "@sapphire/bitfield@workspace:packages/bitfield":
   version: 0.0.0-use.local
   resolution: "@sapphire/bitfield@workspace:packages/bitfield"
