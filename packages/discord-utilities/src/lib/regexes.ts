@@ -61,7 +61,7 @@ export const FormattedCustomEmojiWithGroups = /(?<animated>a?):(?<name>[^:]+):(?
 /**
  * Regex that matches any URL starting with `http` or `https`
  * @raw `/^https?:\/\//`
- * @remark for WebSocket URLs see {@link WebsocketGenericUrlRegex}
+ * @remark for WebSocket URLs see {@link WebSocketUrlRegex}
  */
 export const HttpUrlRegex = /^https?:\/\//;
 
