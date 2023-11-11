@@ -381,21 +381,27 @@ export const MessageLimits = {
 
 	/**
 	 * Maximum upload size for a free user in a guild of tier 1 or below, or in DMs.
-	 * Size is in bytes, and corresponds to 8MB.
+	 * Size is in bytes, and corresponds to 25MB.
 	 */
-	MaximumUploadSize: 8_000_000,
+	MaximumUploadSize: 25_000_000,
 
 	/**
-	 * Maximum upload size for a nitro user, in any guild or in DMs.
+	 * Maximum upload size for a Nitro Basic user, in any guild or in DMs.
+	 * Size is in bytes, and corresponds to 50MB.
+	 */
+	MaximumNitroBasicUploadSize: 50_000_000,
+
+	/**
+	 * Maximum upload size for a Nitro user, in any guild or in DMs.
 	 * Size is in bytes, and corresponds to 500MB.
 	 */
-	MaximumNitroUploadSize: 5_000_000_000,
+	MaximumNitroUploadSize: 500_000_000,
 
 	/**
 	 * Maximum upload size for a free user for all different boost levels available in a guild.
-	 * Sizes are in bytes, and correspond to 8MB, 8MB, 50MB, and 100MB.
+	 * Sizes are in bytes, and correspond to 25MB, 25MB, 50MB, and 100MB.
 	 */
-	MaximumUploadSizeInGuild: [8_000_000, 8_000_000, 50_000_000, 100_000_000],
+	MaximumUploadSizeInGuild: [25_000_000, 25_000_000, 50_000_000, 100_000_000],
 
 	/**
 	 * Minimum number of messages to return from the channel messages API.
