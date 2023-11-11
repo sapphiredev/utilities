@@ -25,7 +25,7 @@ export class MessagePrompterReactionStrategy extends MessagePrompterBaseStrategy
 	 * This executes the {@link MessagePrompterReactionStrategy} and sends the message.
 	 * The handler will wait for one (1) reaction.
 	 * @param channel The channel to use.
-	 * @param authorOrFilter An author object to validate or a {@linkplain https://discord.js.org/#/docs/main/stable/typedef/CollectorFilter CollectorFilter} predicate callback.
+	 * @param authorOrFilter An author object to validate or a {@linkplain https://discord.js.org/docs/packages/discord.js/main/CollectorFilter:TypeAlias CollectorFilter} predicate callback.
 	 * @returns A promise that resolves to the reaction object.
 	 */
 	public async run(
