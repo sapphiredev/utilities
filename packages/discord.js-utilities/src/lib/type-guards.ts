@@ -191,6 +191,7 @@ export function isVoiceBasedChannel(channel: Channel | Nullish): channel is Voic
  * - {@link ChannelType.AnnouncementThread}
  * - {@link ChannelType.PrivateThread}
  * - {@link ChannelType.PublicThread}
+ * - {@link ChannelType.MediaChannel}
  * @param channel The channel to check.
  */
 export function isNsfwChannel(channel: ChannelTypes | Nullish): boolean {
@@ -207,6 +208,7 @@ export function isNsfwChannel(channel: ChannelTypes | Nullish): boolean {
 		case ChannelType.GuildAnnouncement:
 		case ChannelType.GuildText:
 		case ChannelType.GuildForum:
+		case ChannelType.GuildMedia:
 			return (channel as Exclude<NonThreadGuildTextBasedChannelTypes, VoiceChannel | StageChannel>).nsfw;
 		case ChannelType.AnnouncementThread:
 		case ChannelType.PrivateThread:
