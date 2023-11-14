@@ -3,6 +3,7 @@ import {
 	BaseInteraction,
 	ChannelType,
 	GuildMember,
+	MediaChannel,
 	Message,
 	type APIGuildMember,
 	type APIInteractionDataResolvedGuildMember,
@@ -191,6 +192,7 @@ export function isVoiceBasedChannel(channel: Channel | Nullish): channel is Voic
  * - {@link ChannelType.AnnouncementThread}
  * - {@link ChannelType.PrivateThread}
  * - {@link ChannelType.PublicThread}
+ * - {@link ChannelType.MediaChannel}
  * @param channel The channel to check.
  */
 export function isNsfwChannel(channel: ChannelTypes | Nullish): boolean {
@@ -211,6 +213,7 @@ export function isNsfwChannel(channel: ChannelTypes | Nullish): boolean {
 		case ChannelType.AnnouncementThread:
 		case ChannelType.PrivateThread:
 		case ChannelType.PublicThread:
+		case ChannelType.GuildMedia:
 			return Boolean((channel as ThreadChannel).parent?.nsfw);
 	}
 }
