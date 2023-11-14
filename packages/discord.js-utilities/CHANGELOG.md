@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/discord.js-utilities@7.0.3](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@7.0.3...@sapphire/discord.js-utilities@7.0.3) - (2023-11-14)
+
+## 🐛 Bug Fixes
+
+- **discord.js-utilities:** Fixed `isNsfwChannel` typeguard by including `ChannelType.GuildMedia` (#665) ([7c6cfe2](https://github.com/sapphiredev/utilities/commit/7c6cfe239ba660fcf4e58a50e7691a2e622c0fda))
+
+## 📝 Documentation
+
+- **discord.js-utilities:** Update discord.js.org links (#662) ([9c92477](https://github.com/sapphiredev/utilities/commit/9c92477b5911d1fc92eea027958399550f6058a6))
+
 # [@sapphire/discord.js-utilities@7.0.2](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@7.0.1...@sapphire/discord.js-utilities@7.0.2) - (2023-08-29)
 
 ## 🐛 Bug Fixes
