@@ -3,7 +3,6 @@ import {
 	BaseInteraction,
 	ChannelType,
 	GuildMember,
-	MediaChannel,
 	Message,
 	type APIGuildMember,
 	type APIInteractionDataResolvedGuildMember,
@@ -209,11 +208,11 @@ export function isNsfwChannel(channel: ChannelTypes | Nullish): boolean {
 		case ChannelType.GuildAnnouncement:
 		case ChannelType.GuildText:
 		case ChannelType.GuildForum:
+		case ChannelType.GuildMedia:
 			return (channel as Exclude<NonThreadGuildTextBasedChannelTypes, VoiceChannel | StageChannel>).nsfw;
 		case ChannelType.AnnouncementThread:
 		case ChannelType.PrivateThread:
 		case ChannelType.PublicThread:
-		case ChannelType.GuildMedia:
 			return Boolean((channel as ThreadChannel).parent?.nsfw);
 	}
 }
