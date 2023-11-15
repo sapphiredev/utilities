@@ -1,5 +1,5 @@
 import { Time } from '@sapphire/duration';
-import { deepClone, isFunction, isNullish, isObject } from '@sapphire/utilities';
+import { deepClone, isFunction, isNullish, isObject, type Awaitable } from '@sapphire/utilities';
 import {
 	ButtonBuilder,
 	ButtonStyle,
@@ -31,6 +31,7 @@ import { MessageBuilder } from '../builders/MessageBuilder';
 import { isAnyInteraction, isGuildBasedChannel, isMessageInstance, isStageChannel } from '../type-guards';
 import type { AnyInteractableInteraction } from '../utility-types';
 import type {
+	EmbedResolvable,
 	PaginatedMessageAction,
 	PaginatedMessageComponentUnion,
 	PaginatedMessageEmbedResolvable,
@@ -626,7 +627,7 @@ export class PaginatedMessage {
 	 * 	.addPageEmbed(embed);
 	 * ```
 	 */
-	public addPageEmbed(embed: EmbedBuilder | ((embed: EmbedBuilder) => EmbedBuilder)): this {
+	public addPageEmbed(embed: EmbedResolvable | ((embed: EmbedBuilder) => EmbedResolvable)): this {
 		return this.addPage({ embeds: isFunction(embed) ? [embed(new EmbedBuilder())] : [embed] });
 	}
 
@@ -649,7 +650,7 @@ export class PaginatedMessage {
 	 * });
 	 * ```
 	 */
-	public addAsyncPageEmbed(embed: EmbedBuilder | ((builder: EmbedBuilder) => Promise<EmbedBuilder>)): this {
+	public addAsyncPageEmbed(embed: EmbedResolvable | ((builder: EmbedBuilder) => Awaitable<EmbedResolvable>)): this {
 		return this.addPage(async () => ({ embeds: isFunction(embed) ? [await embed(new EmbedBuilder())] : [embed] }));
 	}
 
@@ -702,7 +703,7 @@ export class PaginatedMessage {
 	 */
 	public addPageEmbeds(
 		embeds:
-			| EmbedBuilder[]
+			| EmbedResolvable[]
 			| ((
 					embed1: EmbedBuilder,
 					embed2: EmbedBuilder,
@@ -714,7 +715,7 @@ export class PaginatedMessage {
 					embed8: EmbedBuilder,
 					embed9: EmbedBuilder,
 					embed10: EmbedBuilder
-			  ) => EmbedBuilder[])
+			  ) => EmbedResolvable[])
 	): this {
 		let processedEmbeds = isFunction(embeds)
 			? embeds(
@@ -793,7 +794,7 @@ export class PaginatedMessage {
 	 */
 	public addAsyncPageEmbeds(
 		embeds:
-			| EmbedBuilder[]
+			| EmbedResolvable[]
 			| ((
 					embed1: EmbedBuilder,
 					embed2: EmbedBuilder,
@@ -805,7 +806,7 @@ export class PaginatedMessage {
 					embed8: EmbedBuilder,
 					embed9: EmbedBuilder,
 					embed10: EmbedBuilder
-			  ) => Promise<EmbedBuilder[]>)
+			  ) => Awaitable<EmbedResolvable[]>)
 	): this {
 		return this.addPage(async () => {
 			let processedEmbeds = isFunction(embeds)
@@ -1392,24 +1393,20 @@ export class PaginatedMessage {
 		const embedsWithFooterApplied = deepClone(message.embeds);
 
 		const idx = embedsWithFooterApplied.length - 1;
-		const lastEmbed = embedsWithFooterApplied[idx];
-		if (lastEmbed) {
-			const jsonTemplateEmbed = isJSONEncodable(this.template.embeds?.[idx] ?? this.template.embeds?.[0])
-				? ((this.template.embeds?.[idx] ?? this.template.embeds?.[0]) as JSONEncodable<APIEmbed> | undefined)?.toJSON()
-				: ((this.template.embeds?.[idx] ?? this.template.embeds?.[0]) as APIEmbed | undefined);
+		if (embedsWithFooterApplied.length > 0) {
+			let lastEmbed = embedsWithFooterApplied[idx];
+			const templateEmbed = this.template.embeds?.[idx] ?? this.template.embeds?.[0];
+			const jsonTemplateEmbed = isJSONEncodable(templateEmbed) ? templateEmbed.toJSON() : templateEmbed;
 
 			if (isJSONEncodable(lastEmbed)) {
-				const casted = lastEmbed as EmbedBuilder;
-				casted.data.footer ??= { text: jsonTemplateEmbed?.footer?.text ?? '' };
-				casted.data.footer.text = `${this.pageIndexPrefix ? `${this.pageIndexPrefix} ` : ''}${index + 1} / ${this.pages.length}${
-					casted.data.footer.text ? ` ${this.embedFooterSeparator} ${casted.data.footer.text}` : ''
-				}`;
-			} else {
-				lastEmbed.footer ??= { text: jsonTemplateEmbed?.footer?.text ?? '' };
-				lastEmbed.footer.text = `${this.pageIndexPrefix ? `${this.pageIndexPrefix} ` : ''}${index + 1} / ${this.pages.length}${
-					lastEmbed.footer.text ? ` ${this.embedFooterSeparator} ${lastEmbed.footer.text}` : ''
-				}`;
+				lastEmbed = lastEmbed.toJSON();
+				embedsWithFooterApplied[idx] = lastEmbed;
 			}
+
+			lastEmbed.footer ??= { text: jsonTemplateEmbed?.footer?.text ?? '' };
+			lastEmbed.footer.text = `${this.pageIndexPrefix ? `${this.pageIndexPrefix} ` : ''}${index + 1} / ${this.pages.length}${
+				lastEmbed.footer.text ? ` ${this.embedFooterSeparator} ${lastEmbed.footer.text}` : ''
+			}`;
 		}
 
 		return { ...message, embeds: embedsWithFooterApplied };
@@ -1727,13 +1724,13 @@ export class PaginatedMessage {
 		allowedMentions: { users: [], roles: [] }
 	});
 
-	private static resolveTemplate(template?: EmbedBuilder | BaseMessageOptions): BaseMessageOptions {
+	private static resolveTemplate(template?: JSONEncodable<APIEmbed> | BaseMessageOptions): BaseMessageOptions {
 		if (template === undefined) {
 			return {};
 		}
 
-		if (template instanceof EmbedBuilder) {
-			return { embeds: [template] };
+		if (isJSONEncodable(template)) {
+			return { embeds: [template.toJSON()] };
 		}
 
 		return template;

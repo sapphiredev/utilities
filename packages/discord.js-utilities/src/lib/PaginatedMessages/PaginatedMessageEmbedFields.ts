@@ -1,7 +1,8 @@
 import { EmbedLimits } from '@sapphire/discord-utilities';
-import { isFunction } from '@sapphire/utilities';
-import { EmbedBuilder, type EmbedData, type EmbedField } from 'discord.js';
+import { isFunction, isNullishOrEmpty } from '@sapphire/utilities';
+import { EmbedBuilder, isJSONEncodable, type APIEmbed, type EmbedData, type EmbedField } from 'discord.js';
 import { PaginatedMessage } from './PaginatedMessage';
+import type { EmbedResolvable } from './PaginatedMessageTypes';
 
 /**
  * This is a utility of {@link PaginatedMessage}, except it exclusively paginates the fields of an embed.
@@ -27,7 +28,7 @@ import { PaginatedMessage } from './PaginatedMessage';
  * ```
  */
 export class PaginatedMessageEmbedFields extends PaginatedMessage {
-	private embedTemplate: EmbedBuilder = new EmbedBuilder();
+	private embedTemplate: APIEmbed = new EmbedBuilder().toJSON();
 	private totalPages = 0;
 	private items: EmbedField[] = [];
 	private itemsPerPage = 10;
@@ -79,7 +80,7 @@ export class PaginatedMessageEmbedFields extends PaginatedMessage {
 	 * 	.run(message);
 	 * ```
 	 */
-	public setTemplate(template: EmbedBuilder | EmbedData | ((embed: EmbedBuilder) => EmbedBuilder)): this {
+	public setTemplate(template: EmbedResolvable | ((embed: EmbedBuilder) => EmbedResolvable)): this {
 		this.embedTemplate = this.resolveTemplate(template);
 		return this;
 	}
@@ -114,11 +115,11 @@ export class PaginatedMessageEmbedFields extends PaginatedMessage {
 	}
 
 	private generatePages(): void {
-		const template = this.embedTemplate instanceof EmbedBuilder ? this.embedTemplate.toJSON() : this.embedTemplate;
+		const template = this.embedTemplate;
 		for (let i = 0; i < this.totalPages; i++) {
 			const clonedTemplate = new EmbedBuilder(template);
-			const fieldsClone = this.embedTemplate.data.fields ?? [];
-			clonedTemplate.data.fields = [];
+			const fieldsClone = isNullishOrEmpty(template.fields) ? [] : [...template.fields];
+			if (fieldsClone.length > 0) clonedTemplate.setFields();
 
 			if (!clonedTemplate.data.color) clonedTemplate.setColor('Random');
 
@@ -134,15 +135,8 @@ export class PaginatedMessageEmbedFields extends PaginatedMessage {
 		return items.slice(offset, offset + perPageItems);
 	}
 
-	private resolveTemplate(template: EmbedBuilder | EmbedData | ((embed: EmbedBuilder) => EmbedBuilder)) {
-		if (template instanceof EmbedBuilder) {
-			return template;
-		}
-
-		if (isFunction(template)) {
-			return template(new EmbedBuilder());
-		}
-
-		return new EmbedBuilder(template);
+	private resolveTemplate(template: EmbedResolvable | EmbedData | ((embed: EmbedBuilder) => EmbedResolvable)): APIEmbed {
+		if (isFunction(template)) template = template(new EmbedBuilder());
+		return (isJSONEncodable(template) ? template : new EmbedBuilder(template)).toJSON();
 	}
 }

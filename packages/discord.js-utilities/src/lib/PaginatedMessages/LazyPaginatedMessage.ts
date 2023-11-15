@@ -3,7 +3,7 @@ import { EmbedBuilder, Message, User } from 'discord.js';
 import { MessageBuilder } from '../builders/MessageBuilder';
 import type { AnyInteractableInteraction } from '../utility-types';
 import { PaginatedMessage } from './PaginatedMessage';
-import type { PaginatedMessageResolvedPage } from './PaginatedMessageTypes';
+import type { EmbedResolvable, PaginatedMessageResolvedPage } from './PaginatedMessageTypes';
 
 /**
  * This is a LazyPaginatedMessage. Instead of resolving all pages that are functions on {@link PaginatedMessage.run} will resolve when requested.
@@ -43,13 +43,13 @@ export class LazyPaginatedMessage extends PaginatedMessage {
 		return this.addPage(() => ({ content }));
 	}
 
-	public override addPageEmbed(embed: EmbedBuilder | ((builder: EmbedBuilder) => EmbedBuilder)): this {
+	public override addPageEmbed(embed: EmbedResolvable | ((builder: EmbedBuilder) => EmbedResolvable)): this {
 		return this.addPage(() => ({ embeds: typeof embed === 'function' ? [embed(new EmbedBuilder())] : [embed] }));
 	}
 
 	public override addPageEmbeds(
 		embeds:
-			| EmbedBuilder[]
+			| EmbedResolvable[]
 			| ((
 					embed1: EmbedBuilder,
 					embed2: EmbedBuilder,
@@ -61,7 +61,7 @@ export class LazyPaginatedMessage extends PaginatedMessage {
 					embed8: EmbedBuilder,
 					embed9: EmbedBuilder,
 					embed10: EmbedBuilder
-			  ) => EmbedBuilder[])
+			  ) => EmbedResolvable[])
 	): this {
 		return this.addPage(() => {
 			let processedEmbeds = isFunction(embeds)
