@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/discord-utilities@3.2.0](https://github.com/sapphiredev/utilities/compare/@sapphire/discord-utilities@3.2.0...@sapphire/discord-utilities@3.2.0) - (2023-11-15)
+
+## 🐛 Bug Fixes
+
+- Update export mapping for proper ESM/CJS split ([dd0cff8](https://github.com/sapphiredev/utilities/commit/dd0cff8e9b03a15812f25f7a1180501a92422629))
+
+## 📝 Documentation
+
+- **utilities:** Use updated name in `@link` for `HttpUrlRegex` (#661) ([d8b3b84](https://github.com/sapphiredev/utilities/commit/d8b3b84b96f10031466955e5c272337fa95e6933))
+
+## 🚀 Features
+
+- **utilities:** Add maximum nitro basic upload size (#660) ([3bc31a5](https://github.com/sapphiredev/utilities/commit/3bc31a5507869726771ba5bad42453a9cb041412))
+
 # [@sapphire/discord-utilities@3.1.1](https://github.com/sapphiredev/utilities/compare/@sapphire/discord-utilities@3.1.0...@sapphire/discord-utilities@3.1.1) - (2023-08-29)
 
 ## 🐛 Bug Fixes
