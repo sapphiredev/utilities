@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/discord.js-utilities@7.1.0](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@7.1.0...@sapphire/discord.js-utilities@7.1.0) - (2023-11-15)
+
+## 🚀 Features
+
+- **PaginatedMessage:** Improve `@discordjs/builders` support (#659) ([0cbf663](https://github.com/sapphiredev/utilities/commit/0cbf663065d5f7772c0d3c0d093dc1145614e7bb))
+
 # [@sapphire/discord.js-utilities@7.0.3](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@7.0.3...@sapphire/discord.js-utilities@7.0.3) - (2023-11-14)
 
 ## 🐛 Bug Fixes
