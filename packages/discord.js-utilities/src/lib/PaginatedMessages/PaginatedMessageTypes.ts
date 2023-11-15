@@ -1,6 +1,7 @@
 import type { Awaitable } from '@sapphire/utilities';
 import type {
 	APIActionRowComponent,
+	APIEmbed,
 	APIMessage,
 	APIMessageActionRowComponent,
 	ActionRowComponentOptions,
@@ -310,3 +311,5 @@ export type PaginatedMessageStopReasons =
 	| 'limit'
 	| 'componentLimit'
 	| 'userLimit';
+
+export type EmbedResolvable = JSONEncodable<APIEmbed> | APIEmbed;

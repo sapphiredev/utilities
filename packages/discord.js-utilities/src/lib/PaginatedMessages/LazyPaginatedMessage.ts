@@ -2,8 +2,8 @@ import { isFunction } from '@sapphire/utilities';
 import { EmbedBuilder, Message, User } from 'discord.js';
 import { MessageBuilder } from '../builders/MessageBuilder';
 import type { AnyInteractableInteraction } from '../utility-types';
-import { PaginatedMessage, type EmbedResolvable } from './PaginatedMessage';
-import type { PaginatedMessageResolvedPage } from './PaginatedMessageTypes';
+import { PaginatedMessage } from './PaginatedMessage';
+import type { EmbedResolvable, PaginatedMessageResolvedPage } from './PaginatedMessageTypes';
 
 /**
  * This is a LazyPaginatedMessage. Instead of resolving all pages that are functions on {@link PaginatedMessage.run} will resolve when requested.

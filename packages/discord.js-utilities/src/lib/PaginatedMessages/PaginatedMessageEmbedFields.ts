@@ -1,7 +1,8 @@
 import { EmbedLimits } from '@sapphire/discord-utilities';
 import { isFunction, isNullishOrEmpty } from '@sapphire/utilities';
-import { EmbedBuilder, type APIEmbed, type EmbedData, type EmbedField, isJSONEncodable } from 'discord.js';
-import { PaginatedMessage, type EmbedResolvable } from './PaginatedMessage';
+import { EmbedBuilder, isJSONEncodable, type APIEmbed, type EmbedData, type EmbedField } from 'discord.js';
+import { PaginatedMessage } from './PaginatedMessage';
+import type { EmbedResolvable } from './PaginatedMessageTypes';
 
 /**
  * This is a utility of {@link PaginatedMessage}, except it exclusively paginates the fields of an embed.
@@ -116,15 +117,15 @@ export class PaginatedMessageEmbedFields extends PaginatedMessage {
 	private generatePages(): void {
 		const template = this.embedTemplate;
 		for (let i = 0; i < this.totalPages; i++) {
-			const fields = isNullishOrEmpty(template.fields) ? [] : [...template.fields];
-			const embed = new EmbedBuilder(template);
-			if (fields.length > 0) embed.setFields();
+			const clonedTemplate = new EmbedBuilder(template);
+			const fieldsClone = isNullishOrEmpty(template.fields) ? [] : [...template.fields];
+			if (fieldsClone.length > 0) clonedTemplate.setFields();
 
-			if (!embed.data.color) embed.setColor('Random');
+			if (!clonedTemplate.data.color) clonedTemplate.setColor('Random');
 
-			const data = this.paginateArray(this.items, i, this.itemsPerPage - fields.length);
+			const data = this.paginateArray(this.items, i, this.itemsPerPage - fieldsClone.length);
 			this.addPage({
-				embeds: [embed.addFields(...data, ...fields)]
+				embeds: [clonedTemplate.addFields(...data, ...fieldsClone)]
 			});
 		}
 	}

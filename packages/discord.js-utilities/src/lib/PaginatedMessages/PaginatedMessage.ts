@@ -31,6 +31,7 @@ import { MessageBuilder } from '../builders/MessageBuilder';
 import { isAnyInteraction, isGuildBasedChannel, isMessageInstance, isStageChannel } from '../type-guards';
 import type { AnyInteractableInteraction } from '../utility-types';
 import type {
+	EmbedResolvable,
 	PaginatedMessageAction,
 	PaginatedMessageComponentUnion,
 	PaginatedMessageEmbedResolvable,
@@ -55,8 +56,6 @@ import {
 	isMessageUserSelectInteractionData,
 	safelyReplyToInteraction
 } from './utils';
-
-export type EmbedResolvable = JSONEncodable<APIEmbed> | APIEmbed;
 
 /**
  * This is a {@link PaginatedMessage}, a utility to paginate messages (usually embeds).
