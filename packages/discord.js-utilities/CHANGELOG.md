@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/discord.js-utilities@7.1.2](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@7.1.2...@sapphire/discord.js-utilities@7.1.2) - (2023-11-16)
+
+## 🐛 Bug Fixes
+
+- **paginatedmessage:** Fixed interacting with multiple users on multiple ephemeral interactions (#666) ([0c4ba3c](https://github.com/sapphiredev/utilities/commit/0c4ba3c7923d541b1e73dbcd8020b5832187fefe))
+
+## 📝 Documentation
+
+- **typeguards:** Improve the docs for isAnyInteraction and isAnyInteractableInteraction (#667) ([f4ec262](https://github.com/sapphiredev/utilities/commit/f4ec26242ab739f99437163043b601636e5338cf))
+
 # [@sapphire/discord.js-utilities@7.1.0](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@7.1.0...@sapphire/discord.js-utilities@7.1.0) - (2023-11-15)
 
 ## 🚀 Features
