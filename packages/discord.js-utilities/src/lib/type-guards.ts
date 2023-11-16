@@ -256,7 +256,7 @@ export function isAnyInteraction(messageOrInteraction: APIMessage | Message | Ba
 /**
  * Checks whether the input `messageOrInteraction` is one of {@link Message} or any class that extends {@link BaseInteraction}
  * As opposed to {@link isAnyInteraction} this also checks that the interaction can actually be interacted with by the user
- * which means that this **cannot** be a {@link AutocompleteInteraction}.
+ * which means that this **cannot** be an {@link AutocompleteInteraction}.
  * That said, this type guard filters the `messageOrInteraction` down to one of:
  * - {@link Interaction}
  * - {@link ButtonInteraction}
