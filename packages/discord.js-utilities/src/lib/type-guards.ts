@@ -227,14 +227,57 @@ export function isMessageInstance(message: APIMessage | Message): message is Mes
 }
 
 /**
- * Checks whether the input `messageOrInteraction` is one of {@link Message} or one of {@link Interaction}, {@link CommandInteraction}, {@link ContextMenuInteraction}, or {@link SelectMenuInteraction}
+ * Checks whether the input `messageOrInteraction` is one of {@link Message} or any class that
+ * extends {@link BaseInteraction}. This generally boils down to being one of:
+ * - {@link Interaction}
+ * - {@link AutocompleteInteraction}
+ * - {@link ButtonInteraction}
+ * - {@link ChannelSelectMenuInteraction}
+ * - {@link ChatInputCommandInteraction}
+ * - {@link CommandInteraction}
+ * - {@link ContextMenuInteraction}
+ * - {@link MentionableSelectMenuInteraction}
+ * - {@link MessageComponentInteraction}
+ * - {@link MessageContextMenuCommandInteraction}
+ * - {@link ModalSubmitInteraction}
+ * - {@link RoleSelectMenuInteraction}
+ * - {@link SelectMenuInteraction}
+ * - {@link StringSelectMenuInteraction}
+ * - {@link UserContextMenuCommandInteraction}
+ * - {@link UserSelectMenuInteraction}
+ *
  * @param messageOrInteraction The message or interaction that should be checked.
- * @returns `true` if the `messageOrInteraction` is **NOT** an instanceof {@link Message}, `false` if it is.
+ * @returns `true` if the `messageOrInteraction` is an instanceof {@link BaseInteraction}, `false` if it is not.
  */
 export function isAnyInteraction(messageOrInteraction: APIMessage | Message | BaseInteraction): messageOrInteraction is BaseInteraction {
 	return messageOrInteraction instanceof BaseInteraction;
 }
 
+/**
+ * Checks whether the input `messageOrInteraction` is one of {@link Message} or any class that extends {@link BaseInteraction}
+ * As opposed to {@link isAnyInteraction} this also checks that the interaction can actually be interacted with by the user
+ * which means that this **cannot** be an {@link AutocompleteInteraction}.
+ * That said, this type guard filters the `messageOrInteraction` down to one of:
+ * - {@link Interaction}
+ * - {@link ButtonInteraction}
+ * - {@link ChannelSelectMenuInteraction}
+ * - {@link ChatInputCommandInteraction}
+ * - {@link CommandInteraction}
+ * - {@link ContextMenuInteraction}
+ * - {@link MentionableSelectMenuInteraction}
+ * - {@link MessageComponentInteraction}
+ * - {@link MessageContextMenuCommandInteraction}
+ * - {@link ModalSubmitInteraction}
+ * - {@link RoleSelectMenuInteraction}
+ * - {@link SelectMenuInteraction}
+ * - {@link StringSelectMenuInteraction}
+ * - {@link UserContextMenuCommandInteraction}
+ * - {@link UserSelectMenuInteraction}
+ *
+ * @param messageOrInteraction The message or interaction that should be checked.
+ * @returns `true` if the `messageOrInteraction` is an instanceof {@link BaseInteraction} and does **NOT** pass
+ * {@link Interaction.isAutocomplete()}, `false` otherwise.
+ */
 export function isAnyInteractableInteraction(
 	messageOrInteraction: APIMessage | Message | BaseInteraction
 ): messageOrInteraction is AnyInteractableInteraction {
