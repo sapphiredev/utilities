@@ -24,7 +24,6 @@ import {
 	type Message,
 	type MessageActionRowComponentBuilder,
 	type Snowflake,
-	type TextBasedChannel,
 	type User
 } from 'discord.js';
 import { MessageBuilder } from '../builders/MessageBuilder';
@@ -1047,7 +1046,7 @@ export class PaginatedMessage {
 		if (!this.actions.size) throw new Error('There are no actions.');
 
 		await this.setUpMessage(messageOrInteraction);
-		this.setUpCollector(messageOrInteraction.channel, target);
+		this.setUpCollector(messageOrInteraction, target);
 
 		const messageId = this.response!.id;
 
@@ -1184,22 +1183,33 @@ export class PaginatedMessage {
 
 	/**
 	 * Sets up the message's collector.
-	 * @param channel The channel the handler is running at.
+	 * @param messageOrInteraction The message or interaction that triggered this {@link PaginatedMessage}.
 	 * @param targetUser The user the handler is for.
 	 */
-	protected setUpCollector(channel: TextBasedChannel, targetUser: User): void {
+	protected setUpCollector(messageOrInteraction: Message<boolean> | AnyInteractableInteraction, targetUser: User): void {
 		if (this.pages.length > 1) {
 			this.collector = new InteractionCollector<PaginatedMessageInteractionUnion>(targetUser.client, {
-				filter: (interaction) =>
-					!isNullish(this.response) && //
-					interaction.isMessageComponent() &&
-					(this.actions.has(interaction.customId) || this.pageActions.some((actions) => actions && actions.has(interaction.customId))),
+				filter: (interaction) => {
+					if (!isNullish(this.response) && interaction.isMessageComponent()) {
+						const customIdValidation =
+							this.actions.has(interaction.customId) ||
+							this.pageActions.some((actions) => actions && actions.has(interaction.customId));
+
+						if (isAnyInteraction(messageOrInteraction) && messageOrInteraction.ephemeral) {
+							return interaction.user.id === targetUser.id && customIdValidation;
+						}
+
+						return customIdValidation;
+					}
+
+					return false;
+				},
 
 				time: this.idle,
 
-				guild: isGuildBasedChannel(channel) ? channel.guild : undefined,
+				guild: isGuildBasedChannel(messageOrInteraction.channel) ? messageOrInteraction.channel.guild : undefined,
 
-				channel,
+				channel: messageOrInteraction.channel as Message['channel'],
 
 				interactionType: InteractionType.MessageComponent,
 
@@ -1209,7 +1219,7 @@ export class PaginatedMessage {
 					  }
 					: {})
 			})
-				.on('collect', this.handleCollect.bind(this, targetUser, channel))
+				.on('collect', this.handleCollect.bind(this, targetUser, messageOrInteraction.channel as Message['channel']))
 				.on('end', this.handleEnd.bind(this));
 		}
 	}
