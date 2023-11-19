@@ -877,7 +877,7 @@ __metadata:
   dependencies:
     "@favware/cliff-jumper": "npm:^2.2.3"
     "@vitest/coverage-v8": "npm:^0.34.6"
-    tsup: "npm:^7.3.0"
+    tsup: "npm:^8.0.0"
     typedoc: "npm:^0.25.3"
     typedoc-json-parser: "npm:^9.0.1"
     typescript: "npm:^5.2.2"
@@ -891,7 +891,7 @@ __metadata:
   dependencies:
     "@favware/cliff-jumper": "npm:^2.2.3"
     "@vitest/coverage-v8": "npm:^0.34.6"
-    tsup: "npm:^7.3.0"
+    tsup: "npm:^8.0.0"
     typedoc: "npm:^0.25.3"
     typedoc-json-parser: "npm:^9.0.1"
     typescript: "npm:^5.2.2"
@@ -906,7 +906,7 @@ __metadata:
     "@favware/cliff-jumper": "npm:^2.2.3"
     "@sapphire/utilities": "workspace:^"
     "@vitest/coverage-v8": "npm:^0.34.6"
-    tsup: "npm:^7.3.0"
+    tsup: "npm:^8.0.0"
     typedoc: "npm:^0.25.3"
     typedoc-json-parser: "npm:^9.0.1"
     typescript: "npm:^5.2.2"
@@ -926,7 +926,7 @@ __metadata:
     "@sapphire/utilities": "workspace:^"
     "@vitest/coverage-v8": "npm:^0.34.6"
     tslib: "npm:^2.6.2"
-    tsup: "npm:^7.3.0"
+    tsup: "npm:^8.0.0"
     typedoc: "npm:^0.25.3"
     typedoc-json-parser: "npm:^9.0.1"
     typescript: "npm:^5.2.2"
@@ -941,7 +941,7 @@ __metadata:
     "@favware/cliff-jumper": "npm:^2.2.3"
     "@vitest/coverage-v8": "npm:^0.34.6"
     discord-api-types: "npm:^0.37.63"
-    tsup: "npm:^7.3.0"
+    tsup: "npm:^8.0.0"
     typedoc: "npm:^0.25.3"
     typedoc-json-parser: "npm:^9.0.1"
     typescript: "npm:^5.2.2"
@@ -959,7 +959,7 @@ __metadata:
     "@sapphire/duration": "workspace:^"
     "@sapphire/utilities": "workspace:^"
     tslib: "npm:^2.6.2"
-    tsup: "npm:^7.3.0"
+    tsup: "npm:^8.0.0"
     typedoc: "npm:^0.25.3"
     typedoc-json-parser: "npm:^9.0.1"
     typescript: "npm:^5.2.2"
@@ -972,7 +972,7 @@ __metadata:
   dependencies:
     "@favware/cliff-jumper": "npm:^2.2.3"
     "@vitest/coverage-v8": "npm:^0.34.6"
-    tsup: "npm:^7.3.0"
+    tsup: "npm:^8.0.0"
     typedoc: "npm:^0.25.3"
     typedoc-json-parser: "npm:^9.0.1"
     typescript: "npm:^5.2.2"
@@ -992,7 +992,7 @@ __metadata:
     eslint-config-prettier: "npm:^9.0.0"
     eslint-plugin-prettier: "npm:^5.0.1"
     prettier: "npm:^3.1.0"
-    tsup: "npm:^7.3.0"
+    tsup: "npm:^8.0.0"
     typedoc-json-parser: "npm:^9.0.1"
     typescript: "npm:^5.2.2"
     vitest: "npm:^0.34.6"
@@ -1009,7 +1009,7 @@ __metadata:
     "@typescript-eslint/typescript-estree": "npm:^6.11.0"
     "@typescript-eslint/utils": "npm:^6.11.0"
     "@vitest/coverage-v8": "npm:^0.34.6"
-    tsup: "npm:^7.3.0"
+    tsup: "npm:^8.0.0"
     tsutils: "npm:^3.21.0"
     typedoc-json-parser: "npm:^9.0.1"
     typescript: "npm:^5.2.2"
@@ -1024,7 +1024,7 @@ __metadata:
     "@favware/cliff-jumper": "npm:^2.2.3"
     "@vitest/coverage-v8": "npm:^0.34.6"
     tslib: "npm:^2.6.2"
-    tsup: "npm:^7.3.0"
+    tsup: "npm:^8.0.0"
     typedoc: "npm:^0.25.3"
     typedoc-json-parser: "npm:^9.0.1"
     typescript: "npm:^5.2.2"
@@ -1039,7 +1039,7 @@ __metadata:
     "@favware/cliff-jumper": "npm:^2.2.3"
     "@vitest/coverage-v8": "npm:^0.34.6"
     cross-fetch: "npm:^4.0.0"
-    tsup: "npm:^7.3.0"
+    tsup: "npm:^8.0.0"
     typedoc: "npm:^0.25.3"
     typedoc-json-parser: "npm:^9.0.1"
     typescript: "npm:^5.2.2"
@@ -1071,7 +1071,7 @@ __metadata:
     "@favware/cliff-jumper": "npm:^2.2.3"
     "@sapphire/result": "workspace:^"
     "@vitest/coverage-v8": "npm:^0.34.6"
-    tsup: "npm:^7.3.0"
+    tsup: "npm:^8.0.0"
     typedoc: "npm:^0.25.3"
     typedoc-json-parser: "npm:^9.0.1"
     typescript: "npm:^5.2.2"
@@ -1085,7 +1085,7 @@ __metadata:
   dependencies:
     "@favware/cliff-jumper": "npm:^2.2.3"
     "@vitest/coverage-v8": "npm:^0.34.6"
-    tsup: "npm:^7.3.0"
+    tsup: "npm:^8.0.0"
     typedoc: "npm:^0.25.3"
     typedoc-json-parser: "npm:^9.0.1"
     typescript: "npm:^5.2.2"
@@ -1099,7 +1099,7 @@ __metadata:
   dependencies:
     "@favware/cliff-jumper": "npm:^2.2.3"
     "@sapphire/fetch": "workspace:^"
-    tsup: "npm:^7.3.0"
+    tsup: "npm:^8.0.0"
     typedoc: "npm:^0.25.3"
     typedoc-json-parser: "npm:^9.0.1"
     typescript: "npm:^5.2.2"
@@ -1136,7 +1136,7 @@ __metadata:
   dependencies:
     "@favware/cliff-jumper": "npm:^2.2.3"
     "@vitest/coverage-v8": "npm:^0.34.6"
-    tsup: "npm:^7.3.0"
+    tsup: "npm:^8.0.0"
     typedoc: "npm:^0.25.3"
     typedoc-json-parser: "npm:^9.0.1"
     typescript: "npm:^5.2.2"
@@ -1150,7 +1150,7 @@ __metadata:
   dependencies:
     "@favware/cliff-jumper": "npm:^2.2.3"
     "@vitest/coverage-v8": "npm:^0.34.6"
-    tsup: "npm:^7.3.0"
+    tsup: "npm:^8.0.0"
     typedoc: "npm:^0.25.3"
     typedoc-json-parser: "npm:^9.0.1"
     typescript: "npm:^5.2.2"
@@ -1174,7 +1174,7 @@ __metadata:
   dependencies:
     "@favware/cliff-jumper": "npm:^2.2.3"
     "@vitest/coverage-v8": "npm:^0.34.6"
-    tsup: "npm:^7.3.0"
+    tsup: "npm:^8.0.0"
     typedoc: "npm:^0.25.3"
     typedoc-json-parser: "npm:^9.0.1"
     typescript: "npm:^5.2.2"
@@ -1191,7 +1191,7 @@ __metadata:
     "@vitest/coverage-v8": "npm:^0.34.6"
     jsdom: "npm:^22.1.0"
     tslib: "npm:^2.6.2"
-    tsup: "npm:^7.3.0"
+    tsup: "npm:^8.0.0"
     typedoc: "npm:^0.25.3"
     typedoc-json-parser: "npm:^9.0.1"
     typescript: "npm:^5.2.2"
@@ -1208,7 +1208,7 @@ __metadata:
     "@sapphire/duration": "workspace:^"
     "@sapphire/timer-manager": "workspace:^"
     "@sapphire/timestamp": "workspace:^"
-    tsup: "npm:^7.3.0"
+    tsup: "npm:^8.0.0"
     typedoc: "npm:^0.25.3"
     typedoc-json-parser: "npm:^9.0.1"
     typescript: "npm:^5.2.2"
@@ -1221,7 +1221,7 @@ __metadata:
   dependencies:
     "@favware/cliff-jumper": "npm:^2.2.3"
     "@vitest/coverage-v8": "npm:^0.34.6"
-    tsup: "npm:^7.3.0"
+    tsup: "npm:^8.0.0"
     typedoc: "npm:^0.25.3"
     typedoc-json-parser: "npm:^9.0.1"
     typescript: "npm:^5.2.2"
@@ -1235,7 +1235,7 @@ __metadata:
   dependencies:
     "@favware/cliff-jumper": "npm:^2.2.3"
     "@vitest/coverage-v8": "npm:^0.34.6"
-    tsup: "npm:^7.3.0"
+    tsup: "npm:^8.0.0"
     typedoc: "npm:^0.25.3"
     typedoc-json-parser: "npm:^9.0.1"
     typescript: "npm:^5.2.2"
@@ -1265,7 +1265,7 @@ __metadata:
     "@favware/cliff-jumper": "npm:^2.2.3"
     "@vitest/coverage-v8": "npm:^0.34.6"
     esbuild-plugin-file-path-extensions: "npm:^1.0.0"
-    tsup: "npm:^7.3.0"
+    tsup: "npm:^8.0.0"
     typedoc: "npm:^0.25.3"
     typedoc-json-parser: "npm:^9.0.1"
     typescript: "npm:^5.2.2"
@@ -5770,7 +5770,7 @@ __metadata:
     prettier: "npm:^3.1.0"
     rimraf: "npm:^5.0.5"
     tslib: "npm:^2.6.2"
-    tsup: "npm:^7.3.0"
+    tsup: "npm:^8.0.0"
     turbo: "npm:^1.10.16"
     typedoc-json-parser: "npm:^9.0.1"
     typescript: "npm:^5.2.2"
@@ -6435,9 +6435,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tsup@npm:^7.3.0":
-  version: 7.3.0
-  resolution: "tsup@npm:7.3.0"
+"tsup@npm:^8.0.0":
+  version: 8.0.0
+  resolution: "tsup@npm:8.0.0"
   dependencies:
     bundle-require: "npm:^4.0.0"
     cac: "npm:^6.7.12"
@@ -6454,10 +6454,13 @@ __metadata:
     sucrase: "npm:^3.20.3"
     tree-kill: "npm:^1.2.2"
   peerDependencies:
+    "@microsoft/api-extractor": ^7.36.0
     "@swc/core": ^1
     postcss: ^8.4.12
     typescript: ">=4.5.0"
   peerDependenciesMeta:
+    "@microsoft/api-extractor":
+      optional: true
     "@swc/core":
       optional: true
     postcss:
@@ -6467,7 +6470,7 @@ __metadata:
   bin:
     tsup: dist/cli-default.js
     tsup-node: dist/cli-node.js
-  checksum: 1051bd0d993d058ea7977a3217b4fe68c8fd6cc9e8e900307dd9ab30553749c7a813016ff1dbc854992d08893ede563d04499b2ca9c01af40c0298ef0554cd9f
+  checksum: 24a04b87041f21c5e85af049fbf01fc7fafe4ddfa34a1232f5032af974be932979504285232ae6df1278981b56becbfada5bf6b8097e0a97d9faf1c2fcb2f894
   languageName: node
   linkType: hard
 
