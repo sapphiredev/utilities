@@ -5978,7 +5978,7 @@ __metadata:
     "@actions/core": "npm:^1.10.1"
     "@commitlint/cli": "npm:^18.4.2"
     "@commitlint/config-conventional": "npm:^18.4.2"
-    "@discordjs/collection": "npm:^1.5.3"
+    "@discordjs/collection": "npm:^2.0.0"
     "@favware/cliff-jumper": "npm:^2.2.3"
     "@favware/npm-deprecate": "npm:^1.0.7"
     "@favware/rollup-type-bundler": "npm:^2.0.0"

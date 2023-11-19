@@ -20,7 +20,7 @@
 		"@actions/core": "^1.10.1",
 		"@commitlint/cli": "^18.4.2",
 		"@commitlint/config-conventional": "^18.4.2",
-		"@discordjs/collection": "^1.5.3",
+		"@discordjs/collection": "^2.0.0",
 		"@favware/cliff-jumper": "^2.2.3",
 		"@favware/npm-deprecate": "^1.0.7",
 		"@favware/rollup-type-bundler": "^2.0.0",
