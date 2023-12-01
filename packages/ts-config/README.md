@@ -1,4 +1,5 @@
 <div align="center">
+
 ![Sapphire Logo](https://raw.githubusercontent.com/sapphiredev/assets/main/banners/SapphireCommunity.png)
 
 # @sapphire/ts-config
