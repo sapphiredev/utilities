@@ -1265,7 +1265,7 @@ __metadata:
   dependencies:
     "@favware/cliff-jumper": "npm:^2.2.3"
     "@vitest/coverage-v8": "npm:^0.34.6"
-    esbuild-plugin-file-path-extensions: "npm:^1.0.0"
+    esbuild-plugin-file-path-extensions: "npm:^2.0.0"
     tsup: "npm:^8.0.1"
     typedoc: "npm:^0.25.4"
     typedoc-json-parser: "npm:^9.0.1"
@@ -2744,10 +2744,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"esbuild-plugin-file-path-extensions@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "esbuild-plugin-file-path-extensions@npm:1.0.0"
-  checksum: 2ad4dd22994ed90ef4772120562e370cce65047e6e1e708c478002fff6ca240db86887d1ab5f0b823f20460c1ff97463533ae0e0054296727ee934868a5300d6
+"esbuild-plugin-file-path-extensions@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "esbuild-plugin-file-path-extensions@npm:2.0.0"
+  checksum: 1555a90dd8e32c1df9c1f8897a3f40e77c799224785a2f8972c84cc5224ca8263fdef0501fda8f982bf1c9ed2ad31b8217278f5ff09bb3bed81236206605bac5
   languageName: node
   linkType: hard
 
