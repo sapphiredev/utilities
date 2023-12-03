@@ -7,5 +7,5 @@ export default createTsupConfig({
 	entry: ['src/**/*.ts', '!src/**/*.d.ts'],
 	format: ['esm', 'cjs'],
 	dts: false,
-	esbuildPlugins: [esbuildPluginFilePathExtensions()]
+	esbuildPlugins: [esbuildPluginFilePathExtensions({ cjsExtension: 'js' })]
 });
