@@ -36,9 +36,7 @@
 		"directory": "packages/discord.js-utilities"
 	},
 	"files": [
-		"dist/**/*.js*",
-		"dist/**/*.mjs*",
-		"dist/**/*.d*"
+		"dist/"
 	],
 	"engines": {
 		"node": ">=16.6.0",

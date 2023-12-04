@@ -39,9 +39,7 @@
 		"directory": "packages/eslint-config"
 	},
 	"files": [
-		"dist/**/*.js*",
-		"dist/**/*.mjs*",
-		"dist/**/*.d*"
+		"dist/"
 	],
 	"engines": {
 		"node": ">=v14.0.0",
