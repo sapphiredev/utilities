@@ -1,6 +1,6 @@
 import nock from 'nock';
 import { URL as NodeUrl } from 'node:url';
-import { fetch, FetchResultTypes, QueryError, FetchMediaContentTypes } from '../dist';
+import { fetch, FetchResultTypes, QueryError, FetchMediaContentTypes } from '../dist/esm/index.mjs';
 
 describe('fetch', () => {
 	let nockScopeHttp: nock.Scope;
