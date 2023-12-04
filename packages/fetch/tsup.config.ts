@@ -32,4 +32,8 @@ const options: Options = {
 	}
 };
 
-export default createTsupConfig(options, options, { ...options, globalName: 'SapphireFetch' });
+export default createTsupConfig({
+	cjsOptions: options,
+	esmOptions: options,
+	iifeOptions: { ...options, globalName: 'SapphireFetch' }
+});

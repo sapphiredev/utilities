@@ -3,4 +3,8 @@ import { createTsupConfig } from '../../scripts/tsup.config';
 
 const options: Options = { target: 'es2020' };
 
-export default createTsupConfig(options, options, { ...options, globalName: 'SapphireAsyncQueue' });
+export default createTsupConfig({
+	cjsOptions: options,
+	esmOptions: options,
+	iifeOptions: { ...options, globalName: 'SapphireAsyncQueue' }
+});
