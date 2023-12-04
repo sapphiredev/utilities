@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/utilities@3.14.0](https://github.com/sapphiredev/utilities/compare/@sapphire/utilities@3.14.0...@sapphire/utilities@3.14.0) - (2023-12-04)
+
+## 🐛 Bug Fixes
+
+- **utilities:** Properly split CJS, ESM and IIFE ([f9d8c8e](https://github.com/sapphiredev/utilities/commit/f9d8c8ec9b196ef34820a11f2612c8ae7588c0d3))
+- **discord.js-utilities:** Fixed `isNsfwChannel` typeguard by including `ChannelType.GuildMedia` (#665) ([7c6cfe2](https://github.com/sapphiredev/utilities/commit/7c6cfe239ba660fcf4e58a50e7691a2e622c0fda))
+
+## 📝 Documentation
+
+- **utilities:** Improve typedoc ([16c05ea](https://github.com/sapphiredev/utilities/commit/16c05eab3ae464b109b7fbc24364135111c22d98))
+
+## 🚀 Features
+
+- **tryParseJSON:** Support `replacer` argument (#668) ([4cf0978](https://github.com/sapphiredev/utilities/commit/4cf0978ed608a48164af0d5a027b72990f32124b))
+
 # [@sapphire/utilities@3.13.0](https://github.com/sapphiredev/utilities/compare/@sapphire/utilities@3.12.0...@sapphire/utilities@3.13.0) - (2023-07-21)
 
 ## 🏠 Refactor
