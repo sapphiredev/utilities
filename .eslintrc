@@ -1,5 +1,5 @@
 {
-	"extends": ["./packages/eslint-config/dist/index.js", "plugin:@sapphire/result/recommended"],
+	"extends": ["./packages/eslint-config/dist/cjs/index.cjs", "plugin:@sapphire/result/recommended"],
 	"overrides": [
 		{
 			"files": ["*.test.ts"],
