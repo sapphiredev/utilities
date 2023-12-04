@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/bitfield@1.2.1](https://github.com/sapphiredev/utilities/compare/@sapphire/bitfield@1.2.1...@sapphire/bitfield@1.2.1) - (2023-12-04)
+
+## 🐛 Bug Fixes
+
+- **bitfield:** Properly split CJS, ESM and IIFE ([1e691b4](https://github.com/sapphiredev/utilities/commit/1e691b4f361b5503fea5a7daf733b29e3f545494))
+- Update export mapping for proper ESM/CJS split ([dd0cff8](https://github.com/sapphiredev/utilities/commit/dd0cff8e9b03a15812f25f7a1180501a92422629))
+- **deps:** Update all non-major dependencies (#607) ([9cc8bd0](https://github.com/sapphiredev/utilities/commit/9cc8bd0d4b5d650deab2c913e6c3d713861bae28))
+
+## 🧪 Testing
+
+- Update vitest to coverage v8 ([a4bc6e4](https://github.com/sapphiredev/utilities/commit/a4bc6e4f24ea60143a150ecc76fda6484f172ab9))
+
 # [@sapphire/bitfield@1.2.0](https://github.com/sapphiredev/utilities/compare/@sapphire/bitfield@1.1.2...@sapphire/bitfield@1.2.0) - (2023-05-28)
 
 ## 🚀 Features
