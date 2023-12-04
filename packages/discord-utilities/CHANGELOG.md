@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/discord-utilities@3.2.1](https://github.com/sapphiredev/utilities/compare/@sapphire/discord-utilities@3.2.1...@sapphire/discord-utilities@3.2.1) - (2023-12-04)
+
+## 🐛 Bug Fixes
+
+- **discord-utilities:** Properly split CJS, ESM and IIFE ([e8cf041](https://github.com/sapphiredev/utilities/commit/e8cf04139a2665474a86dba445bec448752c4b93))
+
 # [@sapphire/discord-utilities@3.2.0](https://github.com/sapphiredev/utilities/compare/@sapphire/discord-utilities@3.2.0...@sapphire/discord-utilities@3.2.0) - (2023-11-15)
 
 ## 🐛 Bug Fixes
