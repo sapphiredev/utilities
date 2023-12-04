@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/discord.js-utilities@7.1.3](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@7.1.3...@sapphire/discord.js-utilities@7.1.3) - (2023-12-04)
+
+## 🐛 Bug Fixes
+
+- **discord.js-utilities:** Properly split CJS and ESM ([3f9bd6a](https://github.com/sapphiredev/utilities/commit/3f9bd6a849143640ba62a58d6f1d71774e761ff4))
+
 # [@sapphire/discord.js-utilities@7.1.2](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@7.1.2...@sapphire/discord.js-utilities@7.1.2) - (2023-11-16)
 
 ## 🐛 Bug Fixes
