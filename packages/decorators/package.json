@@ -4,16 +4,17 @@
 	"description": "Useful TypeScript decorators for Sapphire Framework Discord bots",
 	"author": "@sapphire",
 	"license": "MIT",
-	"main": "dist/index.js",
-	"types": "dist/index.d.ts",
+	"main": "dist/cjs/index.cjs",
+	"module": "dist/esm/index.mjs",
+	"types": "dist/cjs/index.d.ts",
 	"exports": {
 		"import": {
-			"types": "./dist/index.d.mts",
-			"default": "./dist/index.mjs"
+			"types": "./dist/esm/index.d.mts",
+			"default": "./dist/esm/index.mjs"
 		},
 		"require": {
-			"types": "./dist/index.d.ts",
-			"default": "./dist/index.js"
+			"types": "./dist/cjs/index.d.ts",
+			"default": "./dist/cjs/index.cjs"
 		}
 	},
 	"sideEffects": false,
