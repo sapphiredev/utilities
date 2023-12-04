@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/timestamp@1.0.2](https://github.com/sapphiredev/utilities/compare/@sapphire/timestamp@1.0.2...@sapphire/timestamp@1.0.2) - (2023-12-04)
+
+## 🐛 Bug Fixes
+
+- **timestamp:** Properly split CJS, ESM and IIFE ([faf881a](https://github.com/sapphiredev/utilities/commit/faf881a6eec5a6698121a8012dd31462b629fc3d))
+- Update export mapping for proper ESM/CJS split ([dd0cff8](https://github.com/sapphiredev/utilities/commit/dd0cff8e9b03a15812f25f7a1180501a92422629))
+- **deps:** Update all non-major dependencies (#607) ([9cc8bd0](https://github.com/sapphiredev/utilities/commit/9cc8bd0d4b5d650deab2c913e6c3d713861bae28))
+- **deps:** Update all non-major dependencies (#577) ([291dd67](https://github.com/sapphiredev/utilities/commit/291dd6783e57d8f075ce566218ba076ef6c4bbbd))
+
+## 🧪 Testing
+
+- Update vitest to coverage v8 ([a4bc6e4](https://github.com/sapphiredev/utilities/commit/a4bc6e4f24ea60143a150ecc76fda6484f172ab9))
+- Cleanup tests ([aec1bb2](https://github.com/sapphiredev/utilities/commit/aec1bb290d0f3c00a1ae4f4c86302ebbb161d348))
+
 # [@sapphire/timestamp@1.0.1](https://github.com/sapphiredev/utilities/compare/@sapphire/timestamp@1.0.0...@sapphire/timestamp@1.0.1) - (2023-03-15)
 
 ## 🏠 Refactor
