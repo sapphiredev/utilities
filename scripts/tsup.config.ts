@@ -14,7 +14,7 @@ const baseOptions: Options = {
 	treeshake: true
 };
 
-export const createTsupConfig = (cjsOptions: Options = {}, esmOptions: Options = cjsOptions, iifeOptions: Options = cjsOptions) => [
+export const createTsupConfig = (cjsOptions: Options = {}, esmOptions: Options = cjsOptions, iifeOptions: IifeOptions = cjsOptions) => [
 	defineConfig({
 		...baseOptions,
 		outDir: 'dist/cjs',
@@ -28,12 +28,20 @@ export const createTsupConfig = (cjsOptions: Options = {}, esmOptions: Options =
 		format: 'esm',
 		...esmOptions
 	}),
-	defineConfig({
-		...baseOptions,
-		dts: false,
-		entry: ['src/index.ts'],
-		outDir: 'dist/iife',
-		format: 'iife',
-		...iifeOptions
-	})
+	...(iifeOptions.disabled
+		? []
+		: [
+				defineConfig({
+					...baseOptions,
+					dts: false,
+					entry: ['src/index.ts'],
+					outDir: 'dist/iife',
+					format: 'iife',
+					...iifeOptions
+				})
+		  ])
 ];
+
+export interface IifeOptions extends Options {
+	disabled?: boolean;
+}
