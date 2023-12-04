@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/eslint-plugin-result@2.0.2](https://github.com/sapphiredev/utilities/compare/@sapphire/eslint-plugin-result@2.0.2...@sapphire/eslint-plugin-result@2.0.2) - (2023-12-04)
+
+## 🐛 Bug Fixes
+
+- **eslint-plugin-result:** Properly split CJS and ESM ([e357e62](https://github.com/sapphiredev/utilities/commit/e357e629a3932faf827f423736d793c02a495109))
+- **eslint-plugin-result:** Update transitive dependencies ([7878399](https://github.com/sapphiredev/utilities/commit/7878399502917fbb90af1b7c85135b2966dd43b2))
+
 # [@sapphire/eslint-plugin-result@2.0.1](https://github.com/sapphiredev/utilities/compare/@sapphire/eslint-plugin-result@2.0.0...@sapphire/eslint-plugin-result@2.0.1) - (2023-08-29)
 
 ## 🐛 Bug Fixes
