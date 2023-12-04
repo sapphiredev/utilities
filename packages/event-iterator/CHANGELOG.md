@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/event-iterator@1.7.1](https://github.com/sapphiredev/utilities/compare/@sapphire/event-iterator@1.7.1...@sapphire/event-iterator@1.7.1) - (2023-12-04)
+
+## 🐛 Bug Fixes
+
+- **event-iterator:** Properly split CJS and ESM ([6153bd2](https://github.com/sapphiredev/utilities/commit/6153bd2520a6213e1fb2acbe34949f2b629574e6))
+
 # [@sapphire/event-iterator@1.7.0](https://github.com/sapphiredev/utilities/compare/@sapphire/event-iterator@1.6.1...@sapphire/event-iterator@1.7.0) - (2023-09-10)
 
 ## 🏠 Refactor
