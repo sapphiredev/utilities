@@ -6,4 +6,8 @@ const options: Options = {
 	dts: false
 };
 
-export default createTsupConfig(options, options, { disabled: true });
+export default createTsupConfig({
+	cjsOptions: options,
+	esmOptions: options,
+	iifeOptions: { disabled: true }
+});

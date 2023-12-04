@@ -14,34 +14,40 @@ const baseOptions: Options = {
 	treeshake: true
 };
 
-export const createTsupConfig = (cjsOptions: Options = {}, esmOptions: Options = cjsOptions, iifeOptions: IifeOptions = cjsOptions) => [
-	defineConfig({
-		...baseOptions,
-		outDir: 'dist/cjs',
-		format: 'cjs',
-		outExtension: () => ({ js: '.cjs' }),
-		...cjsOptions
-	}),
-	defineConfig({
-		...baseOptions,
-		outDir: 'dist/esm',
-		format: 'esm',
-		...esmOptions
-	}),
-	...(iifeOptions.disabled
-		? []
-		: [
-				defineConfig({
-					...baseOptions,
-					dts: false,
-					entry: ['src/index.ts'],
-					outDir: 'dist/iife',
-					format: 'iife',
-					...iifeOptions
-				})
-		  ])
-];
+export function createTsupConfig(options: EnhancedTsupOptions) {
+	return [
+		defineConfig({
+			...baseOptions,
+			outDir: 'dist/cjs',
+			format: 'cjs',
+			outExtension: () => ({ js: '.cjs' }),
+			...options.cjsOptions
+		}),
+		defineConfig({
+			...baseOptions,
+			outDir: 'dist/esm',
+			format: 'esm',
+			...options.esmOptions
+		}),
+		...(options.iifeOptions?.disabled
+			? []
+			: [
+					defineConfig({
+						...baseOptions,
+						dts: false,
+						entry: ['src/index.ts'],
+						outDir: 'dist/iife',
+						format: 'iife',
+						...options.iifeOptions
+					})
+			  ])
+	];
+}
 
-export interface IifeOptions extends Options {
-	disabled?: boolean;
+interface EnhancedTsupOptions {
+	cjsOptions?: Options;
+	esmOptions?: Options;
+	iifeOptions?: Options & {
+		disabled?: boolean;
+	};
 }

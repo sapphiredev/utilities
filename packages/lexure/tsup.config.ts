@@ -1,3 +1,5 @@
 import { createTsupConfig } from '../../scripts/tsup.config';
 
-export default createTsupConfig(undefined, undefined, { globalName: 'SapphireLexure' });
+export default createTsupConfig({
+	iifeOptions: { globalName: 'SapphireLexure' }
+});
