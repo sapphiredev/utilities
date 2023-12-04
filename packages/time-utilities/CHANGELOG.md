@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/time-utilities@1.7.11](https://github.com/sapphiredev/utilities/compare/@sapphire/time-utilities@1.7.11...@sapphire/time-utilities@1.7.11) - (2023-12-04)
+
+## 🐛 Bug Fixes
+
+- **time-utilities:** Properly split CJS, ESM and IIFE ([c8b75e0](https://github.com/sapphiredev/utilities/commit/c8b75e0f4bc4df0d165b9e93d2e2b3128a7517a3))
+- Update export mapping for proper ESM/CJS split ([dd0cff8](https://github.com/sapphiredev/utilities/commit/dd0cff8e9b03a15812f25f7a1180501a92422629))
+
 # [@sapphire/time-utilities@1.7.10](https://github.com/sapphiredev/utilities/compare/@sapphire/time-utilities@1.7.9...@sapphire/time-utilities@1.7.10) - (2023-07-21)
 
 ## 🐛 Bug Fixes
