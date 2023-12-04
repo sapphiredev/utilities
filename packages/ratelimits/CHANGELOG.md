@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/ratelimits@2.4.8](https://github.com/sapphiredev/utilities/compare/@sapphire/ratelimits@2.4.8...@sapphire/ratelimits@2.4.8) - (2023-12-04)
+
+## 🐛 Bug Fixes
+
+- **ratelimits:** Properly split CJS, ESM and IIFE ([fc1a7d7](https://github.com/sapphiredev/utilities/commit/fc1a7d7ba96a6a6ab8dbaed486e221a9a064e108))
+
 # [@sapphire/ratelimits@2.4.7](https://github.com/sapphiredev/utilities/compare/@sapphire/ratelimits@2.4.6...@sapphire/ratelimits@2.4.7) - (2023-09-10)
 
 ## 🐛 Bug Fixes
