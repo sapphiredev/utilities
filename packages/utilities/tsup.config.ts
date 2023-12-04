@@ -1,11 +1,12 @@
 import { esbuildPluginFilePathExtensions } from 'esbuild-plugin-file-path-extensions';
+import { Options } from 'tsup';
 import { createTsupConfig } from '../../scripts/tsup.config';
 
-export default createTsupConfig({
+const options: Options = {
 	target: 'es2019',
 	bundle: true,
 	entry: ['src/**/*.ts', '!src/**/*.d.ts'],
-	format: ['esm', 'cjs'],
-	dts: false,
-	esbuildPlugins: [esbuildPluginFilePathExtensions({ cjsExtension: 'js' })]
-});
+	esbuildPlugins: [esbuildPluginFilePathExtensions()]
+};
+
+export default createTsupConfig(options, options, { ...options, globalName: 'SapphireUtilities' });

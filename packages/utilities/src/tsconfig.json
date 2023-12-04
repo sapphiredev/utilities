@@ -3,8 +3,7 @@
 	"compilerOptions": {
 		"lib": ["dom", "esnext"],
 		"rootDir": "./",
-		"outDir": "../dist",
-		"emitDeclarationOnly": true
+		"outDir": "../dist"
 	},
 	"include": ["."]
 }
