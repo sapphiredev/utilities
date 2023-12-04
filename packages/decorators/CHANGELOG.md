@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/decorators@6.0.3](https://github.com/sapphiredev/utilities/compare/@sapphire/decorators@6.0.3...@sapphire/decorators@6.0.3) - (2023-12-04)
+
+## 🐛 Bug Fixes
+
+- **decorators:** Properly split CJS and ESM ([2326c11](https://github.com/sapphiredev/utilities/commit/2326c116cb31ffd7f3c93b25af85ae33e381df35))
+- Update export mapping for proper ESM/CJS split ([dd0cff8](https://github.com/sapphiredev/utilities/commit/dd0cff8e9b03a15812f25f7a1180501a92422629))
+
 # [@sapphire/decorators@6.0.2](https://github.com/sapphiredev/utilities/compare/@sapphire/decorators@6.0.1...@sapphire/decorators@6.0.2) - (2023-07-21)
 
 ## 🐛 Bug Fixes
