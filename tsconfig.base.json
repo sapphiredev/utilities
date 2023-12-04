@@ -4,5 +4,9 @@
 		"./packages/ts-config/src/extra-strict.json",
 		"./packages/ts-config/src/bundler.json",
 		"./packages/ts-config/src/verbatim.json"
-	]
+	],
+	"compilerOptions": {
+		"incremental": false,
+		"noEmit": true
+	}
 }
