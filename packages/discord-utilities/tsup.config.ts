@@ -1,3 +1,3 @@
 import { createTsupConfig } from '../../scripts/tsup.config';
 
-export default createTsupConfig({ globalName: 'SapphireDiscordUtilities' });
+export default createTsupConfig(undefined, undefined, { globalName: 'SapphireDiscordUtilities' });
