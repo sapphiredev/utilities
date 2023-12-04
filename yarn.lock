@@ -1058,9 +1058,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@sapphire/framework@npm:^4.8.5":
-  version: 4.8.5
-  resolution: "@sapphire/framework@npm:4.8.5"
+"@sapphire/framework@npm:^5.0.0":
+  version: 5.0.0
+  resolution: "@sapphire/framework@npm:5.0.0"
   dependencies:
     "@discordjs/builders": "npm:^1.7.0"
     "@sapphire/discord-utilities": "npm:^3.2.0"
@@ -1071,7 +1071,7 @@ __metadata:
     "@sapphire/result": "npm:^2.6.4"
     "@sapphire/stopwatch": "npm:^1.5.0"
     "@sapphire/utilities": "npm:^3.13.0"
-  checksum: 29410130d747662271f6bd3ca70675cdbdfb6c7c3b21e9f30b08ce3d4d3d3fd353d0c68eead8b10e8df4c9c130d6e43515e5485a85c5422a0fb74c5b08911f09
+  checksum: 5db2b120e8783af705b4f688854c5d90fb6c6e5e439d6881e058974a95863893119ee8827afae8c75d666971af3e90c8a14977f5dd3677bac57098f11d60c422
   languageName: node
   linkType: hard
 
@@ -5818,7 +5818,7 @@ __metadata:
     "@favware/cliff-jumper": "npm:^2.2.3"
     "@favware/npm-deprecate": "npm:^1.0.7"
     "@favware/rollup-type-bundler": "npm:^3.2.0"
-    "@sapphire/framework": "npm:^4.8.5"
+    "@sapphire/framework": "npm:^5.0.0"
     "@types/lodash": "npm:^4.14.202"
     "@types/node": "npm:^20.10.3"
     "@types/ws": "npm:^8.5.10"
