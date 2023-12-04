@@ -1,7 +1,7 @@
+import type { Options } from 'tsup';
 import { createTsupConfig } from '../../scripts/tsup.config';
 
-export default createTsupConfig({
-	globalName: 'SapphireFetch',
+const options: Options = {
 	esbuildOptions: (options, context) => {
 		switch (context.format) {
 			case 'cjs': {
@@ -30,4 +30,6 @@ export default createTsupConfig({
 			}
 		}
 	}
-});
+};
+
+export default createTsupConfig(options, options, { ...options, globalName: 'SapphireFetch' });
