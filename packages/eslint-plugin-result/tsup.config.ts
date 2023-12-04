@@ -1,3 +1,9 @@
+import { Options } from 'tsup';
 import { createTsupConfig } from '../../scripts/tsup.config';
 
-export default createTsupConfig({ format: ['cjs'], sourcemap: false, dts: false });
+const options: Options = {
+	sourcemap: false,
+	dts: false
+};
+
+export default createTsupConfig(options, options, { disabled: true });
