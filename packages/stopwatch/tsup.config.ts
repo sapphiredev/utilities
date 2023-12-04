@@ -1,5 +1,3 @@
 import { createTsupConfig } from '../../scripts/tsup.config';
 
-export default createTsupConfig({
-	globalName: 'SapphireStopwatch'
-});
+export default createTsupConfig(undefined, undefined, { globalName: 'SapphireStopwatch' });
