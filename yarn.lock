@@ -1179,7 +1179,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/snowflake@npm:3.5.1, @sapphire/snowflake@npm:^3.5.1, @sapphire/snowflake@workspace:packages/snowflake":
+"@sapphire/snowflake@npm:3.5.1":
+  version: 3.5.1
+  resolution: "@sapphire/snowflake@npm:3.5.1"
+  checksum: 12d09f0e4f52f86bdc330d70e4a3042f212d787c2d40e7bc41769218c8d08649786109aa78d777262a658a8f29f12ef5bacc6188d46fd1dd35a4e1f29d378723
+  languageName: node
+  linkType: hard
+
+"@sapphire/snowflake@npm:^3.5.1, @sapphire/snowflake@workspace:packages/snowflake":
   version: 0.0.0-use.local
   resolution: "@sapphire/snowflake@workspace:packages/snowflake"
   dependencies:

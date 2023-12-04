@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/snowflake@3.5.2](https://github.com/sapphiredev/utilities/compare/@sapphire/snowflake@3.5.2...@sapphire/snowflake@3.5.2) - (2023-12-04)
+
+## 🐛 Bug Fixes
+
+- **snowflake:** Properly split CJS, ESM and IIFE ([2a1fdde](https://github.com/sapphiredev/utilities/commit/2a1fddefe9fb3e07e7ab9eaee1631ab7e82ef1b3))
+- Update export mapping for proper ESM/CJS split ([dd0cff8](https://github.com/sapphiredev/utilities/commit/dd0cff8e9b03a15812f25f7a1180501a92422629))
+- **deps:** Update all non-major dependencies (#607) ([9cc8bd0](https://github.com/sapphiredev/utilities/commit/9cc8bd0d4b5d650deab2c913e6c3d713861bae28))
+
+## 🧪 Testing
+
+- Update vitest to coverage v8 ([a4bc6e4](https://github.com/sapphiredev/utilities/commit/a4bc6e4f24ea60143a150ecc76fda6484f172ab9))
+
 # [@sapphire/snowflake@3.5.1](https://github.com/sapphiredev/utilities/compare/@sapphire/snowflake@3.5.0...@sapphire/snowflake@3.5.1) - (2023-05-12)
 
 ## 🏠 Refactor
