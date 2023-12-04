@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/cron@1.1.2](https://github.com/sapphiredev/utilities/compare/@sapphire/cron@1.1.2...@sapphire/cron@1.1.2) - (2023-12-04)
+
+## 🐛 Bug Fixes
+
+- **cron:** Properly split CJS, ESM and IIFE ([2b119af](https://github.com/sapphiredev/utilities/commit/2b119afcf745cd00a41d9fe8ec1f7e639b67e693))
+- Update export mapping for proper ESM/CJS split ([dd0cff8](https://github.com/sapphiredev/utilities/commit/dd0cff8e9b03a15812f25f7a1180501a92422629))
+
 # [@sapphire/cron@1.1.1](https://github.com/sapphiredev/utilities/compare/@sapphire/cron@1.1.0...@sapphire/cron@1.1.1) - (2023-07-21)
 
 ## 🐛 Bug Fixes
