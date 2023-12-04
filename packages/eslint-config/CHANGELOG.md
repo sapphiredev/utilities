@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/eslint-config@5.0.3](https://github.com/sapphiredev/utilities/compare/@sapphire/eslint-config@5.0.3...@sapphire/eslint-config@5.0.3) - (2023-12-04)
+
+## 🐛 Bug Fixes
+
+- **eslint-config:** Properly split CJS and ESM ([ccc6514](https://github.com/sapphiredev/utilities/commit/ccc6514db0d4f3dbd531a81419591533eac41271))
+- **eslint-config:** Update transitive dependencies ([8656062](https://github.com/sapphiredev/utilities/commit/86560622a4f1eea3bc075faf552883851c4e8b11))
+
 # [@sapphire/eslint-config@5.0.2](https://github.com/sapphiredev/utilities/compare/@sapphire/eslint-config@5.0.1...@sapphire/eslint-config@5.0.2) - (2023-08-29)
 
 ## 🐛 Bug Fixes
