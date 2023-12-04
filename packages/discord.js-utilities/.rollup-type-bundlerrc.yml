@@ -1,0 +1,6 @@
+external:
+  - '@sapphire/discord-utilities'
+  - '@sapphire/time-utilities'
+  - '@sapphire/utilities'
+  - discord.js
+onlyBundle: true

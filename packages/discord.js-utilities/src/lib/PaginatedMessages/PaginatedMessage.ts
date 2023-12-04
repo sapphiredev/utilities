@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/member-ordering */
+
 import { Time } from '@sapphire/duration';
 import { deepClone, isFunction, isNullish, isObject, type Awaitable } from '@sapphire/utilities';
 import {
@@ -134,6 +136,235 @@ import {
  * ```
  */
 export class PaginatedMessage {
+	/**
+	 * The default actions of this handler.
+	 */
+	public static defaultActions: PaginatedMessageAction[] = [
+		{
+			customId: '@sapphire/paginated-messages.goToPage',
+			type: ComponentType.StringSelect,
+			options: [],
+			run: ({ handler, interaction }) => interaction.isStringSelectMenu() && (handler.index = parseInt(interaction.values[0], 10))
+		},
+		{
+			customId: '@sapphire/paginated-messages.firstPage',
+			style: ButtonStyle.Primary,
+			emoji: '⏪',
+			type: ComponentType.Button,
+			run: ({ handler }) => (handler.index = 0)
+		},
+		{
+			customId: '@sapphire/paginated-messages.previousPage',
+			style: ButtonStyle.Primary,
+			emoji: '◀️',
+			type: ComponentType.Button,
+			run: ({ handler }) => {
+				if (handler.index === 0) {
+					handler.index = handler.pages.length - 1;
+				} else {
+					--handler.index;
+				}
+			}
+		},
+		{
+			customId: '@sapphire/paginated-messages.nextPage',
+			style: ButtonStyle.Primary,
+			emoji: '▶️',
+			type: ComponentType.Button,
+			run: ({ handler }) => {
+				if (handler.index === handler.pages.length - 1) {
+					handler.index = 0;
+				} else {
+					++handler.index;
+				}
+			}
+		},
+		{
+			customId: '@sapphire/paginated-messages.goToLastPage',
+			style: ButtonStyle.Primary,
+			emoji: '⏩',
+			type: ComponentType.Button,
+			run: ({ handler }) => (handler.index = handler.pages.length - 1)
+		},
+		{
+			customId: '@sapphire/paginated-messages.stop',
+			style: ButtonStyle.Danger,
+			emoji: '⏹️',
+			type: ComponentType.Button,
+			run: ({ collector }) => {
+				collector.stop();
+			}
+		}
+	];
+
+	/**
+	 * Whether to emit the warning about running a {@link PaginatedMessage} in a DM channel without the client the `'CHANNEL'` partial.
+	 * @remark When using message based commands (as opposed to Application Commands) then you will also need to specify the `DIRECT_MESSAGE` intent for {@link PaginatedMessage} to work.
+	 *
+	 * @remark To overwrite this property change it somewhere in a "setup" file, i.e. where you also call `client.login()` for your client.
+	 * Alternatively, you can also customize it on a per-PaginatedMessage basis by using `paginatedMessageInstance.setEmitPartialDMChannelWarning(newBoolean)`
+	 * @default true
+	 */
+	public static emitPartialDMChannelWarning = true;
+
+	/**
+	 * A list of `customId` that are bound to actions that will stop the {@link PaginatedMessage}
+	 * @default ['@sapphire/paginated-messages.stop']
+	 * @remark To overwrite this property change it somewhere in a "setup" file, i.e. where you also call `client.login()` for your client.
+	 * Alternatively, you can also customize it on a per-PaginatedMessage basis by using `paginatedMessageInstance.setStopPaginatedMessageCustomIds(customIds)`
+	 * @example
+	 * ```typescript
+	 * import { PaginatedMessage } from '@sapphire/discord.js-utilities';
+	 *
+	 * PaginatedMessage.stopPaginatedMessageCustomIds = ['my-custom-stop-custom-id'];
+	 * ```
+	 */
+	public static stopPaginatedMessageCustomIds = ['@sapphire/paginated-messages.stop'];
+
+	/**
+	 * The reasons sent by {@linkplain https://discord.js.org/docs/packages/discord.js/main/InteractionCollector:Class#end InteractionCollector#end}
+	 * event when the message (or its owner) has been deleted.
+	 */
+	public static deletionStopReasons = ['messageDelete', 'channelDelete', 'guildDelete'];
+
+	/**
+	 * Custom text to show in front of the page index in the embed footer.
+	 * PaginatedMessage will automatically add a space (` `) after the given text. You do not have to add it yourself.
+	 * @default ""
+	 * @remark To overwrite this property change it somewhere in a "setup" file, i.e. where you also call `client.login()` for your client.
+	 * @example
+	 * ```typescript
+	 * import { PaginatedMessage } from '@sapphire/discord.js-utilities';
+	 *
+	 * PaginatedMessage.pageIndexPrefix = 'Page';
+	 * // This will make the footer of the embed something like "Page 1/2"
+	 * ```
+	 */
+	public static pageIndexPrefix = '';
+
+	/**
+	 * Custom separator for the page index in the embed footer.
+	 * @default "•"
+	 * @remark To overwrite this property change it somewhere in a "setup" file, i.e. where you also call `client.login()` for your client.
+	 * Alternatively, you can also customize it on a per-PaginatedMessage basis by passing `embedFooterSeparator` in the options of the constructor.
+	 * @example
+	 * ```typescript
+	 * import { PaginatedMessage } from '@sapphire/discord.js-utilities';
+	 *
+	 * PaginatedMessage.embedFooterSeparator = '|';
+	 * // This will make the separator of the embed footer something like "Page 1/2 | Today at 4:20"
+	 * ```
+	 */
+	public static embedFooterSeparator = '•';
+
+	/**
+	 * The messages that are currently being handled by a {@link PaginatedMessage}
+	 * The key is the ID of the message that triggered this {@link PaginatedMessage}
+	 *
+	 * This is to ensure that only 1 {@link PaginatedMessage} can run on a specified message at once.
+	 * This is important when having an editable commands solution.
+	 */
+	public static readonly messages = new Map<string, PaginatedMessage>();
+
+	/**
+	 * The current {@link InteractionCollector} handlers that are active.
+	 * The key is the ID of of the author who sent the message that triggered this {@link PaginatedMessage}
+	 *
+	 * This is to ensure that any given author can only trigger 1 {@link PaginatedMessage}.
+	 * This is important for performance reasons, and users should not have more than 1 {@link PaginatedMessage} open at once.
+	 */
+	public static readonly handlers = new Map<string, PaginatedMessage>();
+
+	/**
+	 * A generator for {@link MessageSelectOption} that will be used to generate the options for the {@link StringSelectMenuBuilder}.
+	 * We do not allow overwriting the {@link MessageSelectOption#value} property with this, as it is vital to how we handle
+	 * select menu interactions.
+	 *
+	 * @param pageIndex The index of the page to add to the {@link StringSelectMenuBuilder}. We will add 1 to this number because our pages are 0 based,
+	 * so this will represent the pages as seen by the user.
+	 * @default
+	 * ```ts
+	 * {
+	 * 	label: `Page ${pageIndex}`
+	 * }
+	 * ```
+	 * @remark To overwrite this property change it in a "setup" file prior to calling `client.login()` for your client.
+	 *
+	 * @example
+	 * ```typescript
+	 * import { PaginatedMessage } from '@sapphire/discord.js-utilities';
+	 *
+	 * PaginatedMessage.selectMenuOptions = (pageIndex) => ({
+	 * 	 label: `Go to page: ${pageIndex}`,
+	 * 	 description: 'This is a description'
+	 * });
+	 * ```
+	 */
+	public static selectMenuOptions: PaginatedMessageSelectMenuOptionsFunction = (pageIndex) => ({ label: `Page ${pageIndex}` });
+
+	/**
+	 * A generator for {@link MessageComponentInteraction#reply} that will be called and sent whenever an untargeted user interacts with one of the buttons.
+	 * When modifying this it is recommended that the message is set to be ephemeral so only the user that is pressing the buttons can see them.
+	 * Furthermore, we also recommend setting `allowedMentions: { users: [], roles: [] }`, so you don't have to worry about accidentally pinging anyone.
+	 *
+	 * When setting just a string, we will add `{ ephemeral: true, allowedMentions: { users: [], roles: [] } }` for you.
+	 *
+	 * @param targetUser The {@link User} this {@link PaginatedMessage} was intended for.
+	 * @param interactionUser The {@link User} that actually clicked the button.
+	 * @default
+	 * ```ts
+	 * import { userMention } from 'discord.js';
+	 *
+	 * {
+	 * 	content: `Please stop interacting with the components on this message. They are only for ${userMention(targetUser.id)}.`,
+	 * 	ephemeral: true,
+	 * 	allowedMentions: { users: [], roles: [] }
+	 * }
+	 * ```
+	 * @remark To overwrite this property change it in a "setup" file prior to calling `client.login()` for your client.
+	 *
+	 * @example
+	 * ```typescript
+	 * import { PaginatedMessage } from '@sapphire/discord.js-utilities';
+	 * import { userMention } from 'discord.js';
+	 *
+	 * // We  will add ephemeral and no allowed mention for string only overwrites
+	 * PaginatedMessage.wrongUserInteractionReply = (targetUser) =>
+	 *     `These buttons are only for ${userMention(targetUser.id)}. Press them as much as you want, but I won't do anything with your clicks.`;
+	 * ```
+	 *
+	 * @example
+	 * ```typescript
+	 * import { PaginatedMessage } from '@sapphire/discord.js-utilities';
+	 * import { userMention } from 'discord.js';
+	 *
+	 * PaginatedMessage.wrongUserInteractionReply = (targetUser) => ({
+	 * 	content: `These buttons are only for ${userMention(
+	 * 		targetUser.id
+	 * 	)}. Press them as much as you want, but I won't do anything with your clicks.`,
+	 * 	ephemeral: true,
+	 * 	allowedMentions: { users: [], roles: [] }
+	 * });
+	 * ```
+	 */
+	public static wrongUserInteractionReply: PaginatedMessageWrongUserInteractionReplyFunction = (targetUser: User) => ({
+		content: `Please stop interacting with the components on this message. They are only for ${userMention(targetUser.id)}.`,
+		ephemeral: true,
+		allowedMentions: { users: [], roles: [] }
+	});
+
+	private static resolveTemplate(template?: JSONEncodable<APIEmbed> | BaseMessageOptions): BaseMessageOptions {
+		if (template === undefined) {
+			return {};
+		}
+
+		if (isJSONEncodable(template)) {
+			return { embeds: [template.toJSON()] };
+		}
+
+		return template;
+	}
+
 	// #region public class properties
 	/**
 	 * The pages to be converted to {@link PaginatedMessage.messages}
@@ -1515,235 +1746,6 @@ export class PaginatedMessage {
 		const action = this.actions.get(customId);
 		if (action) return action;
 		return this.pageActions.at(index)?.get(customId);
-	}
-
-	/**
-	 * The default actions of this handler.
-	 */
-	public static defaultActions: PaginatedMessageAction[] = [
-		{
-			customId: '@sapphire/paginated-messages.goToPage',
-			type: ComponentType.StringSelect,
-			options: [],
-			run: ({ handler, interaction }) => interaction.isStringSelectMenu() && (handler.index = parseInt(interaction.values[0], 10))
-		},
-		{
-			customId: '@sapphire/paginated-messages.firstPage',
-			style: ButtonStyle.Primary,
-			emoji: '⏪',
-			type: ComponentType.Button,
-			run: ({ handler }) => (handler.index = 0)
-		},
-		{
-			customId: '@sapphire/paginated-messages.previousPage',
-			style: ButtonStyle.Primary,
-			emoji: '◀️',
-			type: ComponentType.Button,
-			run: ({ handler }) => {
-				if (handler.index === 0) {
-					handler.index = handler.pages.length - 1;
-				} else {
-					--handler.index;
-				}
-			}
-		},
-		{
-			customId: '@sapphire/paginated-messages.nextPage',
-			style: ButtonStyle.Primary,
-			emoji: '▶️',
-			type: ComponentType.Button,
-			run: ({ handler }) => {
-				if (handler.index === handler.pages.length - 1) {
-					handler.index = 0;
-				} else {
-					++handler.index;
-				}
-			}
-		},
-		{
-			customId: '@sapphire/paginated-messages.goToLastPage',
-			style: ButtonStyle.Primary,
-			emoji: '⏩',
-			type: ComponentType.Button,
-			run: ({ handler }) => (handler.index = handler.pages.length - 1)
-		},
-		{
-			customId: '@sapphire/paginated-messages.stop',
-			style: ButtonStyle.Danger,
-			emoji: '⏹️',
-			type: ComponentType.Button,
-			run: ({ collector }) => {
-				collector.stop();
-			}
-		}
-	];
-
-	/**
-	 * Whether to emit the warning about running a {@link PaginatedMessage} in a DM channel without the client the `'CHANNEL'` partial.
-	 * @remark When using message based commands (as opposed to Application Commands) then you will also need to specify the `DIRECT_MESSAGE` intent for {@link PaginatedMessage} to work.
-	 *
-	 * @remark To overwrite this property change it somewhere in a "setup" file, i.e. where you also call `client.login()` for your client.
-	 * Alternatively, you can also customize it on a per-PaginatedMessage basis by using `paginatedMessageInstance.setEmitPartialDMChannelWarning(newBoolean)`
-	 * @default true
-	 */
-	public static emitPartialDMChannelWarning = true;
-
-	/**
-	 * A list of `customId` that are bound to actions that will stop the {@link PaginatedMessage}
-	 * @default ['@sapphire/paginated-messages.stop']
-	 * @remark To overwrite this property change it somewhere in a "setup" file, i.e. where you also call `client.login()` for your client.
-	 * Alternatively, you can also customize it on a per-PaginatedMessage basis by using `paginatedMessageInstance.setStopPaginatedMessageCustomIds(customIds)`
-	 * @example
-	 * ```typescript
-	 * import { PaginatedMessage } from '@sapphire/discord.js-utilities';
-	 *
-	 * PaginatedMessage.stopPaginatedMessageCustomIds = ['my-custom-stop-custom-id'];
-	 * ```
-	 */
-	public static stopPaginatedMessageCustomIds = ['@sapphire/paginated-messages.stop'];
-
-	/**
-	 * The reasons sent by {@linkplain https://discord.js.org/docs/packages/discord.js/main/InteractionCollector:Class#end InteractionCollector#end}
-	 * event when the message (or its owner) has been deleted.
-	 */
-	public static deletionStopReasons = ['messageDelete', 'channelDelete', 'guildDelete'];
-
-	/**
-	 * Custom text to show in front of the page index in the embed footer.
-	 * PaginatedMessage will automatically add a space (` `) after the given text. You do not have to add it yourself.
-	 * @default ""
-	 * @remark To overwrite this property change it somewhere in a "setup" file, i.e. where you also call `client.login()` for your client.
-	 * @example
-	 * ```typescript
-	 * import { PaginatedMessage } from '@sapphire/discord.js-utilities';
-	 *
-	 * PaginatedMessage.pageIndexPrefix = 'Page';
-	 * // This will make the footer of the embed something like "Page 1/2"
-	 * ```
-	 */
-	public static pageIndexPrefix = '';
-
-	/**
-	 * Custom separator for the page index in the embed footer.
-	 * @default "•"
-	 * @remark To overwrite this property change it somewhere in a "setup" file, i.e. where you also call `client.login()` for your client.
-	 * Alternatively, you can also customize it on a per-PaginatedMessage basis by passing `embedFooterSeparator` in the options of the constructor.
-	 * @example
-	 * ```typescript
-	 * import { PaginatedMessage } from '@sapphire/discord.js-utilities';
-	 *
-	 * PaginatedMessage.embedFooterSeparator = '|';
-	 * // This will make the separator of the embed footer something like "Page 1/2 | Today at 4:20"
-	 * ```
-	 */
-	public static embedFooterSeparator = '•';
-
-	/**
-	 * The messages that are currently being handled by a {@link PaginatedMessage}
-	 * The key is the ID of the message that triggered this {@link PaginatedMessage}
-	 *
-	 * This is to ensure that only 1 {@link PaginatedMessage} can run on a specified message at once.
-	 * This is important when having an editable commands solution.
-	 */
-	public static readonly messages = new Map<string, PaginatedMessage>();
-
-	/**
-	 * The current {@link InteractionCollector} handlers that are active.
-	 * The key is the ID of of the author who sent the message that triggered this {@link PaginatedMessage}
-	 *
-	 * This is to ensure that any given author can only trigger 1 {@link PaginatedMessage}.
-	 * This is important for performance reasons, and users should not have more than 1 {@link PaginatedMessage} open at once.
-	 */
-	public static readonly handlers = new Map<string, PaginatedMessage>();
-
-	/**
-	 * A generator for {@link MessageSelectOption} that will be used to generate the options for the {@link StringSelectMenuBuilder}.
-	 * We do not allow overwriting the {@link MessageSelectOption#value} property with this, as it is vital to how we handle
-	 * select menu interactions.
-	 *
-	 * @param pageIndex The index of the page to add to the {@link StringSelectMenuBuilder}. We will add 1 to this number because our pages are 0 based,
-	 * so this will represent the pages as seen by the user.
-	 * @default
-	 * ```ts
-	 * {
-	 * 	label: `Page ${pageIndex}`
-	 * }
-	 * ```
-	 * @remark To overwrite this property change it in a "setup" file prior to calling `client.login()` for your client.
-	 *
-	 * @example
-	 * ```typescript
-	 * import { PaginatedMessage } from '@sapphire/discord.js-utilities';
-	 *
-	 * PaginatedMessage.selectMenuOptions = (pageIndex) => ({
-	 * 	 label: `Go to page: ${pageIndex}`,
-	 * 	 description: 'This is a description'
-	 * });
-	 * ```
-	 */
-	public static selectMenuOptions: PaginatedMessageSelectMenuOptionsFunction = (pageIndex) => ({ label: `Page ${pageIndex}` });
-
-	/**
-	 * A generator for {@link MessageComponentInteraction#reply} that will be called and sent whenever an untargeted user interacts with one of the buttons.
-	 * When modifying this it is recommended that the message is set to be ephemeral so only the user that is pressing the buttons can see them.
-	 * Furthermore, we also recommend setting `allowedMentions: { users: [], roles: [] }`, so you don't have to worry about accidentally pinging anyone.
-	 *
-	 * When setting just a string, we will add `{ ephemeral: true, allowedMentions: { users: [], roles: [] } }` for you.
-	 *
-	 * @param targetUser The {@link User} this {@link PaginatedMessage} was intended for.
-	 * @param interactionUser The {@link User} that actually clicked the button.
-	 * @default
-	 * ```ts
-	 * import { userMention } from 'discord.js';
-	 *
-	 * {
-	 * 	content: `Please stop interacting with the components on this message. They are only for ${userMention(targetUser.id)}.`,
-	 * 	ephemeral: true,
-	 * 	allowedMentions: { users: [], roles: [] }
-	 * }
-	 * ```
-	 * @remark To overwrite this property change it in a "setup" file prior to calling `client.login()` for your client.
-	 *
-	 * @example
-	 * ```typescript
-	 * import { PaginatedMessage } from '@sapphire/discord.js-utilities';
-	 * import { userMention } from 'discord.js';
-	 *
-	 * // We  will add ephemeral and no allowed mention for string only overwrites
-	 * PaginatedMessage.wrongUserInteractionReply = (targetUser) =>
-	 *     `These buttons are only for ${userMention(targetUser.id)}. Press them as much as you want, but I won't do anything with your clicks.`;
-	 * ```
-	 *
-	 * @example
-	 * ```typescript
-	 * import { PaginatedMessage } from '@sapphire/discord.js-utilities';
-	 * import { userMention } from 'discord.js';
-	 *
-	 * PaginatedMessage.wrongUserInteractionReply = (targetUser) => ({
-	 * 	content: `These buttons are only for ${userMention(
-	 * 		targetUser.id
-	 * 	)}. Press them as much as you want, but I won't do anything with your clicks.`,
-	 * 	ephemeral: true,
-	 * 	allowedMentions: { users: [], roles: [] }
-	 * });
-	 * ```
-	 */
-	public static wrongUserInteractionReply: PaginatedMessageWrongUserInteractionReplyFunction = (targetUser: User) => ({
-		content: `Please stop interacting with the components on this message. They are only for ${userMention(targetUser.id)}.`,
-		ephemeral: true,
-		allowedMentions: { users: [], roles: [] }
-	});
-
-	private static resolveTemplate(template?: JSONEncodable<APIEmbed> | BaseMessageOptions): BaseMessageOptions {
-		if (template === undefined) {
-			return {};
-		}
-
-		if (isJSONEncodable(template)) {
-			return { embeds: [template.toJSON()] };
-		}
-
-		return template;
 	}
 }
 
