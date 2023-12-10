@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/fetch@3.0.0](https://github.com/sapphiredev/utilities/compare/@sapphire/fetch@3.0.0...@sapphire/fetch@3.0.0) - (2023-12-10)
+
+## 🚀 Features
+
+- **fetch:** Drop cross-fetch, always use global fetch ([c716bc2](https://github.com/sapphiredev/utilities/commit/c716bc2fba8f6e217113d9c13e5664753a2433a1))
+  - 💥 **BREAKING CHANGE:** This version and all subsequent versions require
+NodeJS v18 or above, or v16 with the `--experimental-fetch` flag
+
+## 🧪 Testing
+
+- Switch from nock to mfw ([5a5b3ff](https://github.com/sapphiredev/utilities/commit/5a5b3ff466e07edba6122705588ce5762a82ac31))
+
 # [@sapphire/fetch@2.4.2](https://github.com/sapphiredev/utilities/compare/@sapphire/fetch@2.4.2...@sapphire/fetch@2.4.2) - (2023-12-04)
 
 ## 🏠 Refactor
