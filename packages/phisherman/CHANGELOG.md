@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/phisherman@2.0.0](https://github.com/sapphiredev/utilities/compare/@sapphire/phisherman@2.0.0...@sapphire/phisherman@2.0.0) - (2023-12-10)
+
+## 🚀 Features
+
+- **phisherman:** Drop cross-fetch, always use global fetch ([8ba1e75](https://github.com/sapphiredev/utilities/commit/8ba1e75e2680c36415775c8eb7e8cdeb2bf3d28d))
+  - 💥 **BREAKING CHANGE:** This version and all subsequent versions require
+NodeJS v18 or above, or v16 with the `--experimental-fetch` flag
+
 # [@sapphire/phisherman@1.4.2](https://github.com/sapphiredev/utilities/compare/@sapphire/phisherman@1.4.2...@sapphire/phisherman@1.4.2) - (2023-12-04)
 
 ## 🐛 Bug Fixes
