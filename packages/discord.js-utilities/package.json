@@ -67,11 +67,11 @@
 	},
 	"devDependencies": {
 		"@favware/cliff-jumper": "^2.2.3",
-		"@favware/rollup-type-bundler": "^3.2.0",
+		"@favware/rollup-type-bundler": "^3.2.1",
 		"concurrently": "^8.2.2",
 		"tsup": "^8.0.1",
 		"typedoc": "^0.25.4",
 		"typedoc-json-parser": "^9.0.1",
-		"typescript": "^5.3.2"
+		"typescript": "^5.3.3"
 	}
 }
