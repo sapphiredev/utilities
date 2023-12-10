@@ -1,7 +1,7 @@
 {
 	"name": "@sapphire/fetch",
 	"version": "2.4.2",
-	"description": "Tiny wrapper around cross-fetch (for NodeJS) and window.fetch (for Browsers) for improved TypeScript and data type support",
+	"description": "Tiny wrapper around globalThis.fetch for improved TypeScript and data type support",
 	"author": "@sapphire",
 	"license": "MIT",
 	"main": "dist/cjs/index.cjs",
@@ -31,9 +31,6 @@
 		"bump": "cliff-jumper",
 		"check-update": "cliff-jumper --dry-run"
 	},
-	"dependencies": {
-		"cross-fetch": "^4.0.0"
-	},
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/sapphiredev/utilities.git",
@@ -43,8 +40,7 @@
 		"dist/"
 	],
 	"engines": {
-		"node": ">=v14.0.0",
-		"npm": ">=7.0.0"
+		"node": ">=v18"
 	},
 	"keywords": [
 		"@sapphire/fetch",

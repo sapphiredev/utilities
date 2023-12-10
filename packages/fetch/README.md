@@ -4,7 +4,7 @@
 
 # @sapphire/fetch
 
-**Tiny wrapper around cross-fetch for improved TypeScript and data type support**
+**Tiny wrapper around Node's global `fetch` for improved TypeScript and data type support**
 
 [![GitHub](https://img.shields.io/github/license/sapphiredev/utilities)](https://github.com/sapphiredev/utilities/blob/main/LICENSE.md)
 [![codecov](https://codecov.io/gh/sapphiredev/utilities/branch/main/graph/badge.svg?token=OEGIV6RFDO)](https://codecov.io/gh/sapphiredev/utilities)
@@ -28,7 +28,7 @@
 
 ## Description
 
-[cross-fetch] is already a great library for making API calls, but because it focuses solely on bringing the [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) to Node.js, it doesn't provide specific error messages and handling for different return types (JSON, Buffer, plain text, etc). This is where `@sapphire/fetch` comes in. The syntax is more restrictive than that of [cross-fetch], but that makes it consistent and easier to use in TypeScript.
+Node has a great global `fetch` (powered by [undici]) for making API calls, but because it focuses solely on bringing the [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) to Node.js, it doesn't provide specific error messages and handling for different return types (JSON, Buffer, plain text, etc). This is where `@sapphire/fetch` comes in. The syntax is more restrictive than that of [undici], but that makes it consistent and easier to use in TypeScript.
 
 ## Features
 
@@ -37,7 +37,7 @@
 -   Exported `enum` for the common return data types.
 -   Throws distinctive errors when the API returns a "not ok" status code to make them easier to understand.
 -   Enforces casting the return type when requesting JSON data, to ensure your return data is strictly typed.
--   Uses [cross-fetch] so this package can be used in NodeJS (where it uses [node-fetch]) and browser (where it uses [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API))
+-   Uses global `fetch`, which for NodeJS is [undici] and for browsers is the [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)
 
 ## Installation
 
@@ -140,5 +140,4 @@ Thank you to all the people who already contributed to Sapphire!
 
 <!-- LINKS -->
 
-[node-fetch]: https://github.com/node-fetch/node-fetch
-[cross-fetch]: https://github.com/lquixada/cross-fetch
+[undici]: https://github.com/nodejs/undici
