@@ -64,11 +64,11 @@
 	},
 	"devDependencies": {
 		"@favware/cliff-jumper": "^2.2.3",
-		"@vitest/coverage-v8": "^0.34.6",
+		"@vitest/coverage-v8": "^1.0.4",
 		"tsup": "^8.0.1",
 		"typedoc": "^0.25.4",
 		"typedoc-json-parser": "^9.0.1",
 		"typescript": "^5.3.3",
-		"vitest": "^0.34.6"
+		"vitest": "^1.0.4"
 	}
 }
