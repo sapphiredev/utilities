@@ -76,7 +76,7 @@ export class LazyPaginatedMessage extends PaginatedMessage {
 						new EmbedBuilder(),
 						new EmbedBuilder(),
 						new EmbedBuilder()
-				  )
+					)
 				: embeds;
 
 			if (processedEmbeds.length > 10) {

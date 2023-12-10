@@ -40,7 +40,7 @@ export function createTsupConfig(options: EnhancedTsupOptions) {
 						format: 'iife',
 						...options.iifeOptions
 					})
-			  ])
+				])
 	];
 }
 

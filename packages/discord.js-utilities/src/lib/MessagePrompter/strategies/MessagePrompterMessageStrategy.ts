@@ -52,7 +52,7 @@ export class MessagePrompterMessageStrategy extends MessagePrompterBaseStrategy 
 						strategy: this,
 						appliedMessage: this.appliedMessage,
 						message: this.message
-				  }
+					}
 				: response;
 		}
 

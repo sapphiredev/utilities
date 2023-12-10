@@ -959,7 +959,7 @@ export class PaginatedMessage {
 					new EmbedBuilder(),
 					new EmbedBuilder(),
 					new EmbedBuilder()
-			  )
+				)
 			: embeds;
 
 		if (processedEmbeds.length > 10) {
@@ -1051,7 +1051,7 @@ export class PaginatedMessage {
 						new EmbedBuilder(),
 						new EmbedBuilder(),
 						new EmbedBuilder()
-				  )
+					)
 				: embeds;
 
 			if (processedEmbeds.length > 10) {
@@ -1447,7 +1447,7 @@ export class PaginatedMessage {
 				...(!isNullish(this.response) && !isAnyInteraction(this.response)
 					? {
 							message: this.response
-					  }
+						}
 					: {})
 			})
 				.on('collect', this.handleCollect.bind(this, targetUser, messageOrInteraction.channel as Message['channel']))

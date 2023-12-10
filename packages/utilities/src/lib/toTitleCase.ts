@@ -41,7 +41,7 @@ export function toTitleCase(str: string, options: ToTitleCaseOptions = {}): stri
 			: Object.entries(additionalVariants).reduce<Record<string, string>>(
 					(variants, [key, variant]) => ({ ...variants, [key.toLowerCase()]: variant }),
 					{}
-			  ))
+				))
 	};
 
 	return str.replace(
