@@ -28,16 +28,16 @@
 
 ## Description
 
-Node has a great global `fetch` (powered by [undici]) for making API calls, but because it focuses solely on bringing the [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) to Node.js, it doesn't provide specific error messages and handling for different return types (JSON, Buffer, plain text, etc). This is where `@sapphire/fetch` comes in. The syntax is more restrictive than that of [undici], but that makes it consistent and easier to use in TypeScript.
+Node has a great global `fetch` (powered by [undici]) for making API calls, but because it focuses solely on bringing the [Fetch API][fetch-mdn] to Node.js, it doesn't provide specific error messages and handling for different return types (JSON, Buffer, plain text, etc). This is where `@sapphire/fetch` comes in. The syntax is more restrictive than that of [undici], but that makes it consistent and easier to use in TypeScript.
 
 ## Features
 
 -   Written in TypeScript
 -   Fully tested
--   Exported `enum` for the common return data types.
--   Throws distinctive errors when the API returns a "not ok" status code to make them easier to understand.
--   Enforces casting the return type when requesting JSON data, to ensure your return data is strictly typed.
--   Uses global `fetch`, which for NodeJS is [undici] and for browsers is the [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)
+-   Exported `enum` for the common return data types
+-   Throws distinctive errors when the API returns a "not ok" status code to make them easier to understand
+-   Enforces casting the return type when requesting JSON data, to ensure your return data is strictly typed
+-   Uses global `fetch`, which for NodeJS is [undici] and for browsers is the [Fetch API][fetch-mdn]
 
 ## Installation
 
@@ -92,7 +92,7 @@ console.log(sapphireLogo);
 // Import the fetch function
 import { fetch, FetchResultTypes, FetchMethods } from '@sapphire/fetch';
 
-// Fetch the data. No need to call `.json()` after making the request!
+// Post the data. No need to call `.json()` after making the request!
 const responseData = await fetch(
 	'https://jsonplaceholder.typicode.com/todos',
 	{
@@ -140,4 +140,5 @@ Thank you to all the people who already contributed to Sapphire!
 
 <!-- LINKS -->
 
+[fetch-mdn]: https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API
 [undici]: https://github.com/nodejs/undici
