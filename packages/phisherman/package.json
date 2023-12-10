@@ -38,8 +38,7 @@
 		"dist/"
 	],
 	"engines": {
-		"node": ">=16.6.0",
-		"npm": ">=7.0.0"
+		"node": ">=18"
 	},
 	"keywords": [
 		"sapphiredev",
@@ -61,6 +60,7 @@
 	},
 	"devDependencies": {
 		"@favware/cliff-jumper": "^2.2.3",
+		"esbuild-plugin-version-injector": "^1.2.1",
 		"tsup": "^8.0.1",
 		"typedoc": "^0.25.4",
 		"typedoc-json-parser": "^9.0.1",

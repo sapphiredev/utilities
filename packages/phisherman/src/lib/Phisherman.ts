@@ -2,7 +2,10 @@ import { fetch, FetchMethods, FetchResultTypes, QueryError } from '@sapphire/fet
 import type { PhishermanInfoType, PhishermanReportType, PhishermanReturnType } from './PhishermanTypes';
 import os from 'node:os';
 
-const agent = `Sapphire Phisherman/1.0.0 (node-fetch) ${os.platform()}/${os.release()} (https://github.com/sapphiredev/utilities/tree/main/packages/phisherman)`;
+// eslint-disable-next-line @typescript-eslint/no-inferrable-types
+const packageVersion: string = '[VI]{{inject}}[/VI]';
+
+const agent = `Sapphire Phisherman/${packageVersion} (undici) ${os.platform()}/${os.release()} (https://github.com/sapphiredev/utilities/tree/main/packages/phisherman)`;
 /**
  * The cached apiKey which was created using {@link setApiKey}
  */
