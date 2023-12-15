@@ -134,6 +134,7 @@ import {
  * ```
  */
 export class PaginatedMessage {
+	// #region public static class properties
 	/**
 	 * The default actions of this handler.
 	 */
@@ -350,7 +351,15 @@ export class PaginatedMessage {
 		ephemeral: true,
 		allowedMentions: { users: [], roles: [] }
 	});
+	// #endregion
 
+	// #region private static class properties
+	/**
+	 * Resolves the template for the PaginatedMessage.
+	 *
+	 * @param template - The template to resolve.
+	 * @returns The resolved template as a BaseMessageOptions object.
+	 */
 	private static resolveTemplate(template?: JSONEncodable<APIEmbed> | BaseMessageOptions): BaseMessageOptions {
 		if (template === undefined) {
 			return {};
@@ -362,6 +371,7 @@ export class PaginatedMessage {
 
 		return template;
 	}
+	// #endregion
 
 	// #region public class properties
 	/**
@@ -439,20 +449,24 @@ export class PaginatedMessage {
 	 * @default ```PaginatedMessage.emitPartialDMChannelWarning``` (static property)
 	 */
 	public emitPartialDMChannelWarning = PaginatedMessage.emitPartialDMChannelWarning;
-
 	// #endregion
+
 	// #region protected class properties
+	/**
+	 * Data for the paginated message.
+	 */
 	protected paginatedMessageData: Omit<PaginatedMessageMessageOptionsUnion, 'components'> | null = null;
 
-	protected selectMenuOptions: PaginatedMessageSelectMenuOptionsFunction = PaginatedMessage.selectMenuOptions;
-
+	/**
+	 * The placeholder for the select menu.
+	 */
 	protected selectMenuPlaceholder: string | undefined = undefined;
-
-	protected wrongUserInteractionReply: PaginatedMessageWrongUserInteractionReplyFunction = PaginatedMessage.wrongUserInteractionReply;
 
 	/**
 	 * Tracks whether a warning was already emitted for this {@link PaginatedMessage}
 	 * concerning the maximum amount of pages in the {@link SelectMenu}.
+	 *
+	 * @default false
 	 */
 	protected hasEmittedMaxPageWarning = false;
 
@@ -462,13 +476,16 @@ export class PaginatedMessage {
 	 * without the client having the `'Channel'` partial.
 	 *
 	 * @remark When using message based commands (as opposed to Application Commands) then you will also need to specify the `DIRECT_MESSAGE` intent for {@link PaginatedMessage} to work.
+	 * @default false
 	 */
 	protected hasEmittedPartialDMChannelWarning = false;
 
 	// #endregion
 
+	// #region private class fields
 	/** The response we send when someone gets into an invalid flow */
 	#thisMazeWasNotMeantForYouContent = { content: "This maze wasn't meant for you...what did you do." };
+	// #endregion
 
 	/**
 	 * Constructor for the {@link PaginatedMessage} class
@@ -493,7 +510,6 @@ export class PaginatedMessage {
 	}
 
 	// #region property setters
-
 	/**
 	 * Sets the {@link PaginatedMessage.selectMenuOptions} for this instance of {@link PaginatedMessage}.
 	 * This will only apply to this one instance and no others.
@@ -572,8 +588,8 @@ export class PaginatedMessage {
 	}
 
 	// #endregion
-	// #region actions related methods
 
+	// #region actions related methods
 	/**
 	 * Clears all current actions and sets them. The order given is the order they will be used.
 	 * @param actions The actions to set. This can be either a Button, Link Button, or Select Menu.
@@ -666,10 +682,9 @@ export class PaginatedMessage {
 
 		return this;
 	}
-
 	// #endregion
-	// #region page related methods
 
+	// #region page related methods
 	/**
 	 * Checks whether or not the handler has a specific page.
 	 * @param index The index to check.
@@ -1167,7 +1182,6 @@ export class PaginatedMessage {
 
 		return this;
 	}
-
 	// #endregion
 
 	/**
@@ -1672,6 +1686,13 @@ export class PaginatedMessage {
 		return context;
 	}
 
+	/**
+	 * Applies a template to the provided options, merging them together and applying the template's embeds.
+	 *
+	 * @param template - The template to apply.
+	 * @param options - The options to merge with the template.
+	 * @returns The merged options with the template's embeds applied.
+	 */
 	private applyTemplate(
 		template: PaginatedMessageMessageOptionsUnion,
 		options: PaginatedMessageMessageOptionsUnion
@@ -1681,6 +1702,16 @@ export class PaginatedMessage {
 		return { ...template, ...options, embeds: embedData };
 	}
 
+	/**
+	 * Applies a template embed to the page embeds.
+	 * If the page embeds are nullish, it returns the template embed as an array.
+	 * If the template embed is nullish, it returns the page embeds.
+	 * Otherwise, it merges the template embed with the first page embed.
+	 *
+	 * @param templateEmbed - The template embed to apply.
+	 * @param pageEmbeds - The page embeds to apply the template to.
+	 * @returns The resulting embeds after applying the template.
+	 */
 	private applyTemplateEmbed(
 		templateEmbed: PaginatedMessageEmbedResolvable,
 		pageEmbeds: PaginatedMessageEmbedResolvable
@@ -1696,6 +1727,13 @@ export class PaginatedMessage {
 		return this.mergeEmbeds(templateEmbed[0], pageEmbeds);
 	}
 
+	/**
+	 * Merges the template embed with an array of page embeds.
+	 *
+	 * @param templateEmbed - The template embed to merge.
+	 * @param pageEmbeds - The array of page embeds to merge.
+	 * @returns The merged embeds.
+	 */
 	private mergeEmbeds(
 		templateEmbed: Exclude<PaginatedMessageEmbedResolvable, undefined>[0],
 		pageEmbeds: Exclude<PaginatedMessageEmbedResolvable, undefined>
@@ -1728,6 +1766,13 @@ export class PaginatedMessage {
 		return mergedEmbeds;
 	}
 
+	/**
+	 * Merges two arrays together.
+	 * @template T - The type of elements in the arrays.
+	 * @param {T[]} template - The first array to merge.
+	 * @param {T[]} array - The second array to merge.
+	 * @returns {undefined | T[]} - The merged array or undefined if both arrays are nullish.
+	 */
 	private mergeArrays<T>(template?: T[], array?: T[]): undefined | T[] {
 		if (isNullish(array)) {
 			return template;
@@ -1740,6 +1785,13 @@ export class PaginatedMessage {
 		return [...template, ...array];
 	}
 
+	/**
+	 * Retrieves the PaginatedMessageAction associated with the provided customId and index.
+	 *
+	 * @param customId - The customId of the action.
+	 * @param index - The index of the action in the pageActions array.
+	 * @returns The PaginatedMessageAction associated with the customId and index, or undefined if not found.
+	 */
 	private getAction(customId: string, index: number): PaginatedMessageAction | undefined {
 		const action = this.actions.get(customId);
 		if (action) return action;
@@ -1747,6 +1799,13 @@ export class PaginatedMessage {
 	}
 }
 
+/**
+ * The `PaginatedMessage` interface represents a paginated message.
+ */
 export interface PaginatedMessage {
+	/**
+	 * The `constructor` field represents the constructor of the `PaginatedMessage` interface.
+	 * It is of type `typeof PaginatedMessage`, which means it refers to the type of the `PaginatedMessage` interface itself.
+	 */
 	constructor: typeof PaginatedMessage;
 }
