@@ -480,6 +480,27 @@ export class PaginatedMessage {
 	 */
 	protected hasEmittedPartialDMChannelWarning = false;
 
+	/**
+	 * Determines whether the default footer that shows the current page number should be added to the embeds.
+	 *
+	 * @note If this is set to false, i.e.e through {@link setShouldAddFooterToEmbeds}, then {@link embedFooterSeparator}
+	 * is never applied.
+	 *
+	 * @default true
+	 */
+	protected shouldAddFooterToEmbeds = true;
+
+	/**
+	 * Function that returns the select menu options for the paginated message.
+	 * @param message The paginated message.
+	 * @returns The select menu options.
+	 */
+	protected selectMenuOptions: PaginatedMessageSelectMenuOptionsFunction = PaginatedMessage.selectMenuOptions;
+
+	/**
+	 * Function that handles the reply when a user interacts with the paginated message incorrectly.
+	 */
+	protected wrongUserInteractionReply: PaginatedMessageWrongUserInteractionReplyFunction = PaginatedMessage.wrongUserInteractionReply;
 	// #endregion
 
 	// #region private class fields
@@ -587,6 +608,15 @@ export class PaginatedMessage {
 		return this;
 	}
 
+	/**
+	 * Sets the value of {@link shouldAddFooterToEmbeds} property and returns the instance of the class.
+	 * @param newValue - The new value for {@link shouldAddFooterToEmbeds}.
+	 * @returns The instance of the class with the updated {@link shouldAddFooterToEmbeds} value.
+	 */
+	public setShouldAddFooterToEmbeds(newValue: boolean): this {
+		this.shouldAddFooterToEmbeds = newValue;
+		return this;
+	}
 	// #endregion
 
 	// #region actions related methods
@@ -1657,9 +1687,12 @@ export class PaginatedMessage {
 			}
 
 			lastEmbed.footer ??= { text: jsonTemplateEmbed?.footer?.text ?? '' };
-			lastEmbed.footer.text = `${this.pageIndexPrefix ? `${this.pageIndexPrefix} ` : ''}${index + 1} / ${this.pages.length}${
-				lastEmbed.footer.text ? ` ${this.embedFooterSeparator} ${lastEmbed.footer.text}` : ''
-			}`;
+
+			if (this.shouldAddFooterToEmbeds) {
+				lastEmbed.footer.text = `${this.pageIndexPrefix ? `${this.pageIndexPrefix} ` : ''}${index + 1} / ${this.pages.length}${
+					lastEmbed.footer.text ? ` ${this.embedFooterSeparator} ${lastEmbed.footer.text}` : ''
+				}`;
+			}
 		}
 
 		return { ...message, embeds: embedsWithFooterApplied };
