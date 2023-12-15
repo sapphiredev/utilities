@@ -30,11 +30,35 @@ import type { EmbedResolvable } from './PaginatedMessageTypes';
  * ```
  */
 export class PaginatedFieldMessageEmbed<T> extends PaginatedMessage {
+	/**
+	 * The `embedTemplate` field represents the template for the embed message. It is of type `APIEmbed`.
+	 * It is initialized with a new `EmbedBuilder` instance converted to JSON.
+	 */
 	private embedTemplate: APIEmbed = new EmbedBuilder().toJSON();
-	private totalPages = 0;
+
+	/**
+	 * The `totalPages` field represents the total number of pages in the paginated message. It is of type `number`.
+	 * It is initialized to 0.
+	 */
+	private totalPages: number = 0;
+
+	/**
+	 * The `items` field represents the items to be displayed in the paginated message. It is an array of type `T`.
+	 * It is initialized to an empty array.
+	 */
 	private items: T[] = [];
-	private itemsPerPage = 10;
-	private fieldTitle = '';
+
+	/**
+	 * The `itemsPerPage` field represents the number of items to be displayed per page. It is of type `number`.
+	 * It is initialized to 10.
+	 */
+	private itemsPerPage: number = 10;
+
+	/**
+	 * The `fieldTitle` field represents the title of the field in the embed message. It is of type `string`.
+	 * It is initialized to an empty string.
+	 */
+	private fieldTitle: string = '';
 
 	/**
 	 * Set the items to paginate.
@@ -146,6 +170,10 @@ export class PaginatedFieldMessageEmbed<T> extends PaginatedMessage {
 		return this;
 	}
 
+	/**
+	 * Generates the pages for the paginated field message embed.
+	 * Each page contains a cloned template with modified fields and data.
+	 */
 	private generatePages() {
 		const template = this.embedTemplate;
 		for (let i = 0; i < this.totalPages; i++) {
@@ -161,11 +189,26 @@ export class PaginatedFieldMessageEmbed<T> extends PaginatedMessage {
 		}
 	}
 
+	/**
+	 * Paginates an array of items.
+	 *
+	 * @template T The type of items in the array.
+	 * @param items The array of items to paginate.
+	 * @param currentPage The current page number.
+	 * @param perPageItems The number of items per page.
+	 * @returns The paginated array of items.
+	 */
 	private paginateArray(items: T[], currentPage: number, perPageItems: number) {
 		const offset = currentPage * perPageItems;
 		return items.slice(offset, offset + perPageItems);
 	}
 
+	/**
+	 * Resolves the template for the embed.
+	 *
+	 * @param template - The template for the embed. It can be an EmbedResolvable, EmbedData, or a function that takes an EmbedBuilder and returns an EmbedResolvable.
+	 * @returns The resolved APIEmbed object.
+	 */
 	private resolveTemplate(template: EmbedResolvable | EmbedData | ((embed: EmbedBuilder) => EmbedResolvable)): APIEmbed {
 		if (isFunction(template)) template = template(new EmbedBuilder());
 		return (isJSONEncodable(template) ? template : new EmbedBuilder(template)).toJSON();
