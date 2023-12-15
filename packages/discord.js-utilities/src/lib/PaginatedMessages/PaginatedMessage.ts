@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/member-ordering */
-
 import { Time } from '@sapphire/duration';
 import { deepClone, isFunction, isNullish, isObject, type Awaitable } from '@sapphire/utilities';
 import {
