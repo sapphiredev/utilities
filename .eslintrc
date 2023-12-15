@@ -6,6 +6,12 @@
 			"rules": {
 				"@typescript-eslint/no-extraneous-class": "off"
 			}
+		},
+		{
+			"files": ["packages/discord.js-utilities/src/lib/PaginatedMessages/PaginatedMessage.ts"],
+			"rules": {
+				"@typescript-eslint/member-ordering": "off"
+			}
 		}
 	]
 }
