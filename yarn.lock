@@ -1217,6 +1217,7 @@ __metadata:
   dependencies:
     "@favware/cliff-jumper": "npm:^2.2.3"
     "@sapphire/fetch": "workspace:^"
+    "@sapphire/result": "workspace:^"
     esbuild-plugin-version-injector: "npm:^1.2.1"
     tsup: "npm:^8.0.1"
     typedoc: "npm:^0.25.4"
