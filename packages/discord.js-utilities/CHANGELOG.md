@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/discord.js-utilities@7.1.4](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@7.1.4...@sapphire/discord.js-utilities@7.1.4) - (2023-12-15)
+
+## 🐛 Bug Fixes
+
+- **PaginatedMessage:** Make it possible to disable adding page numbers to the footer through `setShouldAddFooterToEmbeds` ([dc18281](https://github.com/sapphiredev/utilities/commit/dc182811fdfbe208938ab5a736281aa2a18ee815))
+- **paginatedmessage:** Check for pageActions before throwing an error (#684) ([740b317](https://github.com/sapphiredev/utilities/commit/740b3170700f1b500549ab0e7d7f85ed2698f185))
+
+## 📝 Documentation
+
+- **PaginatedMessage:** Add AI generated tsdoc to remaining items ([4ca1c55](https://github.com/sapphiredev/utilities/commit/4ca1c5530ccd5b264c10e65b53b2d4f9916c5135))
+- **PaginatedMessage:** Add AI generated doc comments on all undocumented fields ([fdba2bb](https://github.com/sapphiredev/utilities/commit/fdba2bb1ae3beb088dc694c348b7a00d6db0f3bb))
+
+## 🪞 Styling
+
+- Run prettier on the codebase ([1d6e994](https://github.com/sapphiredev/utilities/commit/1d6e9941833b674eebb245d272ce879ce6a70427))
+
 # [@sapphire/discord.js-utilities@7.1.3](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@7.1.3...@sapphire/discord.js-utilities@7.1.3) - (2023-12-04)
 
 ## 🐛 Bug Fixes
