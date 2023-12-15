@@ -174,7 +174,7 @@ export function isActionChannelMenu(action: PaginatedMessageAction): action is P
 /**
  * Creates partitioned message rows based on the provided components.
  * @param components The array of MessageActionRowComponentBuilder objects.
- * @returns An array of APIActionRowComponent<APIMessageActionRowComponent> objects.
+ * @returns An array of {@link APIActionRowComponent `APIActionRowComponent`}<{@link APIMessageActionRowComponent `APIMessageActionRowComponent`}> objects.
  */
 export function createPartitionedMessageRow(components: MessageActionRowComponentBuilder[]): PaginatedMessageComponentUnion[] {
 	// Partition the components into two groups: buttons and select menus
