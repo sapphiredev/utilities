@@ -28,10 +28,28 @@ import type { EmbedResolvable } from './PaginatedMessageTypes';
  * ```
  */
 export class PaginatedMessageEmbedFields extends PaginatedMessage {
+	/**
+	 * The `embedTemplate` field represents the template for the embed message. It is of type `APIEmbed`.
+	 * It is initialized with a new `EmbedBuilder` instance converted to JSON.
+	 */
 	private embedTemplate: APIEmbed = new EmbedBuilder().toJSON();
-	private totalPages = 0;
+
+	/**
+	 * The `totalPages` field represents the total number of pages in the paginated message. It is of type `number`.
+	 * It is initialized to 0.
+	 */
+	private totalPages: number = 0;
+
+	/**
+	 * The array of embed fields in the PaginatedMessageEmbedFields class.
+	 */
 	private items: EmbedField[] = [];
-	private itemsPerPage = 10;
+
+	/**
+	 * The `itemsPerPage` field represents the number of items to be displayed per page. It is of type `number`.
+	 * It is initialized to 10.
+	 */
+	private itemsPerPage: number = 10;
 
 	/**
 	 * Set the items to paginate.
@@ -114,6 +132,10 @@ export class PaginatedMessageEmbedFields extends PaginatedMessage {
 		return this;
 	}
 
+	/**
+	 * Generates the pages for the paginated message.
+	 * It clones the embed template, sets the fields, color, and adds the data to each page.
+	 */
 	private generatePages(): void {
 		const template = this.embedTemplate;
 		for (let i = 0; i < this.totalPages; i++) {
@@ -130,11 +152,25 @@ export class PaginatedMessageEmbedFields extends PaginatedMessage {
 		}
 	}
 
+	/**
+	 * Paginates an array of EmbedFields.
+	 *
+	 * @param items - The array of EmbedFields to paginate.
+	 * @param currentPage - The current page number.
+	 * @param perPageItems - The number of items per page.
+	 * @returns The paginated array of EmbedFields.
+	 */
 	private paginateArray(items: EmbedField[], currentPage: number, perPageItems: number): EmbedField[] {
 		const offset = currentPage * perPageItems;
 		return items.slice(offset, offset + perPageItems);
 	}
 
+	/**
+	 * Resolves the template for the PaginatedMessageEmbedFields.
+	 *
+	 * @param template - The template to resolve. It can be an EmbedResolvable, EmbedData, or a function that takes an EmbedBuilder and returns an EmbedResolvable.
+	 * @returns The resolved APIEmbed object.
+	 */
 	private resolveTemplate(template: EmbedResolvable | EmbedData | ((embed: EmbedBuilder) => EmbedResolvable)): APIEmbed {
 		if (isFunction(template)) template = template(new EmbedBuilder());
 		return (isJSONEncodable(template) ? template : new EmbedBuilder(template)).toJSON();

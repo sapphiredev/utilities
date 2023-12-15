@@ -39,6 +39,9 @@ import type {
 import type { AnyInteractableInteraction } from '../utility-types';
 import type { PaginatedMessage } from './PaginatedMessage';
 
+/**
+ * Represents an action that can be performed in a paginated message.
+ */
 export type PaginatedMessageAction =
 	| PaginatedMessageActionButton
 	| PaginatedMessageActionLink
@@ -48,7 +51,15 @@ export type PaginatedMessageAction =
 	| PaginatedMessageActionMentionableMenu
 	| PaginatedMessageActionChannelMenu;
 
+/**
+ * Represents an action that can be run in a paginated message.
+ */
 export interface PaginatedMessageActionRun {
+	/**
+	 * Runs the action with the given context.
+	 * @param context The context object containing information about the paginated message.
+	 * @returns A promise that resolves when the action is complete.
+	 */
 	run?(context: PaginatedMessageActionContext): Awaitable<unknown>;
 }
 
@@ -188,27 +199,37 @@ export interface PaginatedMessageActionContext {
 	collector: InteractionCollector<PaginatedMessageInteractionUnion>;
 }
 
+/**
+ * Options for configuring a paginated message.
+ */
 export interface PaginatedMessageOptions {
 	/**
-	 * The pages to display in this {@link PaginatedMessage}
+	 * The pages to display in this {@link PaginatedMessage}.
 	 */
 	pages?: PaginatedMessagePage[];
+
 	/**
-	 * Custom actions to provide when sending the paginated message
+	 * Custom actions to provide when sending the paginated message.
 	 */
 	actions?: PaginatedMessageAction[];
+
 	/**
-	 * The {@link EmbedBuilder} or {@link MessageOptions} options to apply to the entire {@link PaginatedMessage}
+	 * The {@link EmbedBuilder} or {@link MessageOptions} options to apply to the entire {@link PaginatedMessage}.
 	 */
 	template?: EmbedBuilder | BaseMessageOptions;
+
 	/**
+	 * The prefix to display before the page index.
 	 * @seealso {@link PaginatedMessage.pageIndexPrefix}
 	 */
 	pageIndexPrefix?: string;
+
 	/**
+	 * The separator to display between the embed footer and the page index.
 	 * @seealso {@link PaginatedMessage.embedFooterSeparator}
 	 */
 	embedFooterSeparator?: string;
+
 	/**
 	 * Additional options that are applied to each message when sending it to Discord.
 	 * Be careful with using this, misusing it can cause issues, such as sending empty messages.
@@ -239,6 +260,11 @@ export type PaginatedMessagePage =
 	| ((index: number, pages: PaginatedMessagePage[], handler: PaginatedMessage) => Awaitable<PaginatedMessageMessageOptionsUnion>)
 	| PaginatedMessageMessageOptionsUnion;
 
+/**
+ * Represents a resolved page for a paginated message.
+ * It can be either a `BaseMessageOptions` object with the `flags` property omitted,
+ * or a `WebhookMessageEditOptions` object.
+ */
 export type PaginatedMessageResolvedPage = Omit<BaseMessageOptions, 'flags'> | WebhookMessageEditOptions;
 
 /**
@@ -258,14 +284,30 @@ export type PaginatedMessageWrongUserInteractionReplyFunction = (
 	internationalizationContext: PaginatedMessageInternationalizationContext
 ) => Awaitable<Parameters<MessageComponentInteraction['reply']>[0]>;
 
+/**
+ * Represents the resolvable type for the embeds property of a paginated message.
+ */
 export type PaginatedMessageEmbedResolvable = BaseMessageOptions['embeds'];
 
+/**
+ * Represents the union of options for a paginated message.
+ */
 export type PaginatedMessageMessageOptionsUnion = Omit<PaginatedMessageResolvedPage, 'components'> & {
 	actions?: PaginatedMessageAction[];
 };
 
+/**
+ * Represents the union type of interactions for a paginated message, excluding the ModalSubmitInteraction.
+ */
 export type PaginatedMessageInteractionUnion = Exclude<CollectedInteraction, ModalSubmitInteraction>;
 
+/**
+ * Represents a union type for components in a paginated message.
+ * It can be one of the following types:
+ * - `JSONEncodable<APIActionRowComponent<APIMessageActionRowComponent>>`
+ * - `ActionRowData<ActionRowComponentOptions | MessageActionRowComponentBuilder>`
+ * - `APIActionRowComponent<APIMessageActionRowComponent>`
+ */
 export type PaginatedMessageComponentUnion =
 	| JSONEncodable<APIActionRowComponent<APIMessageActionRowComponent>>
 	| ActionRowData<ActionRowComponentOptions | MessageActionRowComponentBuilder>
@@ -291,15 +333,45 @@ export interface PaginatedMessageInternationalizationContext {
 	interactionLocale?: Interaction['locale'];
 }
 
+/**
+ * Represents the parameters for safely replying to an interaction.
+ * @template T - The type of message method ('edit', 'reply', or never).
+ */
 export interface SafeReplyToInteractionParameters<T extends 'edit' | 'reply' | never = never> {
+	/**
+	 * The message or interaction to reply to.
+	 */
 	messageOrInteraction: APIMessage | Message | AnyInteractableInteraction;
+
+	/**
+	 * The content to use when editing a reply to an interaction.
+	 */
 	interactionEditReplyContent: WebhookMessageEditOptions;
+
+	/**
+	 * The content to use when replying to an interaction.
+	 */
 	interactionReplyContent: InteractionReplyOptions;
+
+	/**
+	 * The content to use when updating a component interaction.
+	 */
 	componentUpdateContent: InteractionUpdateOptions;
+
+	/**
+	 * The method to use when sending a message.
+	 */
 	messageMethod?: T;
+
+	/**
+	 * The content to use when sending a message using the 'reply' method.
+	 */
 	messageMethodContent?: T extends 'reply' ? MessageReplyOptions : MessageEditOptions;
 }
 
+/**
+ * Represents the possible reasons for stopping a paginated message.
+ */
 export type PaginatedMessageStopReasons =
 	| 'time'
 	| 'idle'
@@ -312,4 +384,8 @@ export type PaginatedMessageStopReasons =
 	| 'componentLimit'
 	| 'userLimit';
 
+/**
+ * Represents a resolvable object that can be used to create an embed in Discord.
+ * It can be either a JSON-encodable object or an APIEmbed object.
+ */
 export type EmbedResolvable = JSONEncodable<APIEmbed> | APIEmbed;
