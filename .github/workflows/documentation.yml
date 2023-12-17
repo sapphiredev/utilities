@@ -22,7 +22,7 @@ jobs:
       SHA: ${{ steps.env.outputs.SHA }}
     steps:
       - name: Checkout Project
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Use Node.js v20
         uses: actions/setup-node@v4
         with:
@@ -82,7 +82,7 @@ jobs:
       SHA: ${{ needs.build.outputs.SHA }}
     steps:
       - name: Checkout Project
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Use Node.js v20
         uses: actions/setup-node@v4
         with:
@@ -97,7 +97,7 @@ jobs:
           name: docs
           path: docs
       - name: Checkout Documentation Project
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: 'sapphiredev/docs'
           token: ${{ secrets.SKYRA_TOKEN }}
