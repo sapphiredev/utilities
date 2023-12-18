@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/fetch@3.0.1](https://github.com/sapphiredev/utilities/compare/@sapphire/fetch@3.0.1...@sapphire/fetch@3.0.1) - (2023-12-18)
+
+## 🐛 Bug Fixes
+
+- **fetch:** Add additional reference lib comment (#695) ([83400f3](https://github.com/sapphiredev/utilities/commit/83400f3330ae4bb47a8e8174164fb9141eaeeec8))
+
+## 📝 Documentation
+
+- **fetch:** README cleanup (#683) ([147b2d5](https://github.com/sapphiredev/utilities/commit/147b2d543ba26de6875f25e8800b4f02f7f505aa))
+
 # [@sapphire/fetch@3.0.0](https://github.com/sapphiredev/utilities/compare/@sapphire/fetch@3.0.0...@sapphire/fetch@3.0.0) - (2023-12-10)
 
 ## 🚀 Features
