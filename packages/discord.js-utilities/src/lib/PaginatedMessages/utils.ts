@@ -46,6 +46,15 @@ export function actionIsButtonOrMenu(action: PaginatedMessageAction): action is 
 }
 
 /**
+ * Checks if a PaginatedMessageAction is a button with {@link ButtonStyle.Link style `link`}.
+ * @param action The PaginatedMessageAction to check.
+ * @returns `true` if the action is a button with {@link ButtonStyle.Link style `link`}, `false` otherwise.
+ */
+export function actionIsLinkButton(action: PaginatedMessageAction): action is PaginatedMessageActionLink {
+	return action.type === ComponentType.Button && action.style === ButtonStyle.Link;
+}
+
+/**
  * Checks if the given interaction is a button interaction.
  * @param interaction - The interaction to check.
  * @returns True if the interaction is a button interaction, false otherwise.
