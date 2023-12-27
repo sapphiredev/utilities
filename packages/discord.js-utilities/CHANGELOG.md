@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/discord.js-utilities@7.1.5](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@7.1.5...@sapphire/discord.js-utilities@7.1.5) - (2023-12-27)
+
+## 🏠 Refactor
+
+- **PaginatedMessage:** Always put link buttons below select menus (#699) ([86b58d0](https://github.com/sapphiredev/utilities/commit/86b58d08caaa54f7a09c8b6472ede3f017cf3ca2))
+
+## 🐛 Bug Fixes
+
+- **PaginatedMessage:** Fixed link buttons not properly being added (#698) ([aa3e3eb](https://github.com/sapphiredev/utilities/commit/aa3e3ebb6c5a6842612da1427eda5e24bea99257))
+
+## 📝 Documentation
+
+- **createPartitionedMessageRow:** Fix documentation for docusaurus rendering ([0c8d013](https://github.com/sapphiredev/utilities/commit/0c8d0135689cfb4767d26f7a1176b8efb47d49b6))
+- **createPartitionedMessageRow:** Fix documentation for docusaurus rendering ([ab04d55](https://github.com/sapphiredev/utilities/commit/ab04d552102ecf742ec947367f444c9dd87d16df))
+
 # [@sapphire/discord.js-utilities@7.1.4](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@7.1.4...@sapphire/discord.js-utilities@7.1.4) - (2023-12-15)
 
 ## 🐛 Bug Fixes
