@@ -46,6 +46,7 @@ import type {
 } from './PaginatedMessageTypes';
 import {
 	actionIsButtonOrMenu,
+	actionIsLinkButton,
 	createPartitionedMessageRow,
 	isMessageButtonInteractionData,
 	isMessageChannelSelectInteractionData,
@@ -704,10 +705,10 @@ export class PaginatedMessage {
 	 * @see {@link PaginatedMessage.setActions} for examples on how to structure the action.
 	 */
 	public addAction(action: PaginatedMessageAction): this {
-		if (actionIsButtonOrMenu(action)) {
-			this.actions.set(action.customId, action);
-		} else {
+		if (actionIsLinkButton(action)) {
 			this.actions.set(action.url, action);
+		} else if (actionIsButtonOrMenu(action)) {
+			this.actions.set(action.customId, action);
 		}
 
 		return this;
@@ -1204,10 +1205,10 @@ export class PaginatedMessage {
 			this.pageActions[index] = new Map<string, PaginatedMessageAction>();
 		}
 
-		if (actionIsButtonOrMenu(action)) {
-			this.pageActions[index]!.set(action.customId, action);
-		} else {
+		if (actionIsLinkButton(action)) {
 			this.pageActions[index]!.set(action.url, action);
+		} else if (actionIsButtonOrMenu(action)) {
+			this.pageActions[index]!.set(action.customId, action);
 		}
 
 		return this;
