@@ -13,7 +13,8 @@ import {
 	type MessageActionRowComponentBuilder,
 	type RoleSelectMenuComponentData,
 	type StringSelectMenuComponentData,
-	type UserSelectMenuComponentData
+	type UserSelectMenuComponentData,
+	type APIButtonComponent
 } from 'discord.js';
 import { isAnyInteractableInteraction, isMessageInstance } from '../type-guards';
 import type {
@@ -188,12 +189,13 @@ export function isActionChannelMenu(action: PaginatedMessageAction): action is P
 export function createPartitionedMessageRow(components: MessageActionRowComponentBuilder[]): PaginatedMessageComponentUnion[] {
 	// Partition the components into two groups: buttons and select menus
 	const [messageButtons, selectMenus] = partition(components, isButtonComponentBuilder);
+	const [actionButtons, linkButtons] = partition(messageButtons, (value) => (value.data as Partial<APIButtonComponent>).style !== ButtonStyle.Link);
 
 	// Chunk the button components in sets of 5, the maximum of 1 ActionRowBuilder
-	const chunkedButtonComponents = chunk(messageButtons, 5);
+	const chunkedActionButtonComponents = chunk(actionButtons, 5);
 
 	// Map all the button components to ActionRowBuilders
-	const messageButtonActionRows = chunkedButtonComponents.map((componentsChunk) =>
+	const messageActionButtonActionRows = chunkedActionButtonComponents.map((componentsChunk) =>
 		new ActionRowBuilder() //
 			.setComponents(componentsChunk)
 	);
@@ -204,7 +206,16 @@ export function createPartitionedMessageRow(components: MessageActionRowComponen
 			.setComponents(component)
 	);
 
-	return [...messageButtonActionRows, ...selectMenuActionRows].map((actionRow) =>
+	// Chunk the button components in sets of 5, the maximum of 1 ActionRowBuilder
+	const chunkedLinkButtonComponents = chunk(linkButtons, 5);
+
+	// Map all the button components to ActionRowBuilders
+	const messageLinkButtonActionRows = chunkedLinkButtonComponents.map((componentsChunk) =>
+		new ActionRowBuilder() //
+			.setComponents(componentsChunk)
+	);
+
+	return [...messageActionButtonActionRows, ...selectMenuActionRows, ...messageLinkButtonActionRows].map((actionRow) =>
 		actionRow.toJSON()
 	) as APIActionRowComponent<APIMessageActionRowComponent>[];
 }
