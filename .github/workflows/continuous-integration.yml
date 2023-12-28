@@ -48,7 +48,7 @@ jobs:
     steps:
       - name: Checkout Project
         uses: actions/checkout@v4
-      - name: Use Node.js v{{ matrix.node }}
+      - name: Use Node.js v${{ matrix.node }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}
