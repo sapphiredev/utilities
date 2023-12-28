@@ -30,6 +30,7 @@ export * from './lib/objectEntries';
 export * from './lib/objectKeys';
 export * from './lib/objectToTuples';
 export * from './lib/objectValues';
+export * from './lib/omitKeysFromObject';
 export * from './lib/partition';
 export * from './lib/pickRandom';
 export * from './lib/poll';
