@@ -45,6 +45,11 @@ describe('omitKeysFromObject', () => {
 		const source = { name: 'John', age: 30, city: 'New York' };
 		const result = omitKeysFromObject(source);
 		expect(result).not.toBe(source);
+	});
+
+	test("GIVEN any source object THEN validates that the source isn't modified", () => {
+		const source = { name: 'John', age: 30, city: 'New York' };
+		omitKeysFromObject(source);
 		expect(source).toEqual({ name: 'John', age: 30, city: 'New York' });
 	});
 });
