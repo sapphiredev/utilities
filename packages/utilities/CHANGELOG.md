@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/utilities@3.15.0](https://github.com/sapphiredev/utilities/compare/@sapphire/utilities@3.15.0...@sapphire/utilities@3.15.0) - (2023-12-28)
+
+## 🚀 Features
+
+- **utilities:** Add omitKeysFromObject utility function (#700) ([eccf9f6](https://github.com/sapphiredev/utilities/commit/eccf9f679581d95a7d2b29ae894a6971edcb4cc3))
+
+## 🪞 Styling
+
+- Run prettier on the codebase ([1d6e994](https://github.com/sapphiredev/utilities/commit/1d6e9941833b674eebb245d272ce879ce6a70427))
+
 # [@sapphire/utilities@3.14.0](https://github.com/sapphiredev/utilities/compare/@sapphire/utilities@3.14.0...@sapphire/utilities@3.14.0) - (2023-12-04)
 
 ## 🐛 Bug Fixes
