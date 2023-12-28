@@ -45,5 +45,6 @@ describe('omitKeysFromObject', () => {
 		const source = { name: 'John', age: 30, city: 'New York' };
 		const result = omitKeysFromObject(source);
 		expect(result).not.toBe(source);
+		expect(source).toEqual({ name: 'John', age: 30, city: 'New York' });
 	});
 });
