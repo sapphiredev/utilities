@@ -3,8 +3,8 @@ import { deepClone } from './deepClone';
 /**
  * Clones the source object using {@link deepClone} then deletes the specified keys with {@link Reflect.deleteProperty}
  *
- * @template TO - The object type.
- * @template KTO - The keys of the object type.
+ * @template Object - The object type.
+ * @template ObjectKeys - The keys of the object type.
  *
  * @param source - The input object.
  * @param keys - The keys to omit from the object.
