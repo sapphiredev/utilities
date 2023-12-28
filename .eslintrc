@@ -12,6 +12,12 @@
 			"rules": {
 				"@typescript-eslint/member-ordering": "off"
 			}
+		},
+		{
+			"files": ["packages/utilities/src/lib/omitKeysFromObject.ts"],
+			"rules": {
+				"@typescript-eslint/ban-types": "off"
+			}
 		}
 	]
 }

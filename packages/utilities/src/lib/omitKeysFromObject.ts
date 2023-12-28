@@ -10,7 +10,10 @@ import { deepClone } from './deepClone';
  * @param keys - The keys to omit from the object.
  * @returns A new object without the specified keys.
  */
-export function omitKeysFromObject<Object extends object, ObjectKeys extends keyof Object>(source: Object, ...keys: readonly ObjectKeys[]): Omit<Object, ObjectKeys> {
+export function omitKeysFromObject<Object extends object, ObjectKeys extends keyof Object>(
+	source: Object,
+	...keys: readonly ObjectKeys[]
+): Omit<Object, ObjectKeys> {
 	const clone = deepClone(source);
 
 	for (const key of keys) {
