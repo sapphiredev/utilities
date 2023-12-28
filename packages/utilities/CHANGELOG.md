@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/utilities@3.15.1](https://github.com/sapphiredev/utilities/compare/@sapphire/utilities@3.15.1...@sapphire/utilities@3.15.1) - (2023-12-28)
+
+## 📝 Documentation
+
+- **utilities:** Fix tsdoc comments for omitKeysFromObject ([afd7d27](https://github.com/sapphiredev/utilities/commit/afd7d2742fbca4d1c84fa0b6855490ce644a1899))
+
 # [@sapphire/utilities@3.15.0](https://github.com/sapphiredev/utilities/compare/@sapphire/utilities@3.15.0...@sapphire/utilities@3.15.0) - (2023-12-28)
 
 ## 🚀 Features
