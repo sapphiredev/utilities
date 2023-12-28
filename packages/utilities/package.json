@@ -469,6 +469,16 @@
 				"default": "./dist/cjs/lib/objectValues.cjs"
 			}
 		},
+		"./omitKeysFromObject": {
+			"import": {
+				"types": "./dist/esm/lib/omitKeysFromObject.d.mts",
+				"default": "./dist/esm/lib/omitKeysFromObject.mjs"
+			},
+			"require": {
+				"types": "./dist/cjs/lib/omitKeysFromObject.d.ts",
+				"default": "./dist/cjs/lib/omitKeysFromObject.cjs"
+			}
+		},
 		"./parseURL": {
 			"import": {
 				"types": "./dist/esm/lib/tryParseURL.d.mts",
