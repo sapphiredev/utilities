@@ -41,7 +41,7 @@ describe('omitKeysFromObject', () => {
 		expect(result).toEqual({ name: 'John' });
 	});
 
-	test(`GIVEN any source object THEN validates that the result isn't identical to the source`, () => {
+	test("GIVEN any source object THEN validates that the result isn't identical to the source", () => {
 		const source = { name: 'John', age: 30, city: 'New York' };
 		const result = omitKeysFromObject(source);
 		expect(result).not.toBe(source);
