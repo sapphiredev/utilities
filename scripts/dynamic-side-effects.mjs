@@ -19,7 +19,7 @@ for await (const file of findFilesRecursivelyRegex(
 }
 
 const { default: packageJSON } = await import(`../packages/${packageName}/package.json`, {
-	with: {
+	assert: {
 		type: 'json'
 	}
 });

@@ -77,7 +77,7 @@ for await (const file of findFilesRecursivelyStringEndsWith(new URL(`../packages
 const exportObj = Object.fromEntries([...exportMap.entries()].sort((a, b) => a[0].localeCompare(b[0])));
 
 const { default: packageJSON } = await import(`../packages/${packageName}/package.json`, {
-	with: {
+	assert: {
 		type: 'json'
 	}
 });

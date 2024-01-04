@@ -32,6 +32,7 @@ jobs:
             --include @sapphire/prettier-config \
             --include @sapphire/eslint-plugin-result \
             --include @sapphire/result \
+            --include @sapphire/node-utilities \
             --include @sapphire/utilities \
             run build
       - name: Run ESLint
