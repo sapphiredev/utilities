@@ -24,7 +24,7 @@ jobs:
       - name: Build packages for script
         run: yarn turbo run build --filter=@sapphire/timestamp --filter=@sapphire/fetch --filter=@sapphire/prettier-config
       - name: Run updater
-        run: node --experimental-json-modules scripts/twemoji-regex-updater.mjs
+        run: node scripts/twemoji-regex-updater.mjs
       - name: Run prettier on the code
         run: yarn format
       - name: Commit any changes and create a pull request
