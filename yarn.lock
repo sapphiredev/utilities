@@ -1204,7 +1204,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@sapphire/node-utilities@npm:^1.0.0, @sapphire/node-utilities@workspace:packages/node-utilities":
+"@sapphire/node-utilities@npm:^1.0.0, @sapphire/node-utilities@workspace:^, @sapphire/node-utilities@workspace:packages/node-utilities":
   version: 0.0.0-use.local
   resolution: "@sapphire/node-utilities@workspace:packages/node-utilities"
   dependencies:
@@ -1244,7 +1244,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/prettier-config@workspace:packages/prettier-config":
+"@sapphire/prettier-config@workspace:^, @sapphire/prettier-config@workspace:packages/prettier-config":
   version: 0.0.0-use.local
   resolution: "@sapphire/prettier-config@workspace:packages/prettier-config"
   dependencies:
@@ -1404,6 +1404,8 @@ __metadata:
   resolution: "@sapphire/utilities@workspace:packages/utilities"
   dependencies:
     "@favware/cliff-jumper": "npm:^2.2.3"
+    "@sapphire/node-utilities": "workspace:^"
+    "@sapphire/prettier-config": "workspace:^"
     "@vitest/coverage-v8": "npm:^1.1.0"
     esbuild-plugin-file-path-extensions: "npm:^2.0.0"
     tsup: "npm:^8.0.1"
