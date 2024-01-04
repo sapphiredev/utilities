@@ -1,5 +1,5 @@
 import { bold, green, red } from 'colorette';
-import { writeFile } from 'node:fs/promises';
+import { readFile, writeFile } from 'node:fs/promises';
 import { basename } from 'node:path';
 import { format } from 'prettier';
 import { findFilesRecursivelyStringEndsWith } from '../packages/node-utilities/dist/esm/index.mjs';
