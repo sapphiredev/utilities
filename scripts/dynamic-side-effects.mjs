@@ -1,5 +1,5 @@
 import { bold, green, red } from 'colorette';
-import { writeFile } from 'node:fs/promises';
+import { readFile, writeFile } from 'node:fs/promises';
 import { basename } from 'node:path';
 import { format } from 'prettier';
 import { findFilesRecursivelyRegex } from '../packages/node-utilities/dist/esm/index.mjs';
@@ -18,11 +18,8 @@ for await (const file of findFilesRecursivelyRegex(
 	sideEffects.unshift(`./dist/esm/${name}`);
 }
 
-const { default: packageJSON } = await import(`../packages/${packageName}/package.json`, {
-	assert: {
-		type: 'json'
-	}
-});
+const packageJsonRaw = await readFile(new URL(`../packages/${packageName}/package.json`, import.meta.url), 'utf8');
+const packageJSON = JSON.parse(packageJsonRaw);
 
 const newPackageJSON = JSON.stringify({
 	...packageJSON,
