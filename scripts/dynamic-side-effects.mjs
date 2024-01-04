@@ -14,8 +14,7 @@ for await (const file of findFilesRecursivelyRegex(
 	new URL(`../packages/${packageName}/dist/esm`, import.meta.url),
 	/chunk-[A-Z0-9]+\.mjs(?!\.map)/
 )) {
-	const name = basename(file).replace(/\.ts$/, '');
-
+	const name = basename(file);
 	sideEffects.unshift(`./dist/esm/${name}`);
 }
 
