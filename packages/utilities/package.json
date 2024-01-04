@@ -13,9 +13,9 @@
 	"scripts": {
 		"test": "vitest run",
 		"lint": "eslint src tests --ext ts --fix -c ../../.eslintrc",
-		"build": "tsup && yarn dynamic-side-effects && yarn check-subpath",
+		"build": "tsup",
 		"docs": "typedoc-json-parser",
-		"prepack": "yarn build",
+		"prepack": "yarn build && yarn dynamic-side-effects && yarn check-subpath",
 		"bump": "cliff-jumper",
 		"check-update": "cliff-jumper --dry-run",
 		"dynamic-side-effects": "node ../../scripts/dynamic-side-effects.mjs utilities",
