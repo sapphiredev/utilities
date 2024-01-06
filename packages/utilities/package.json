@@ -13,11 +13,12 @@
 	"scripts": {
 		"test": "vitest run",
 		"lint": "eslint src tests --ext ts --fix -c ../../.eslintrc",
-		"build": "tsup",
+		"build": "tsup && yarn dynamic-side-effects && yarn check-subpath",
 		"docs": "typedoc-json-parser",
-		"prepack": "yarn build && yarn check-subpath",
+		"prepack": "yarn build",
 		"bump": "cliff-jumper",
 		"check-update": "cliff-jumper --dry-run",
+		"dynamic-side-effects": "node ../../scripts/dynamic-side-effects.mjs utilities",
 		"check-subpath": "node ../../scripts/subpath-updater.mjs utilities"
 	},
 	"repository": {
@@ -49,6 +50,8 @@
 	},
 	"devDependencies": {
 		"@favware/cliff-jumper": "^2.2.3",
+		"@sapphire/node-utilities": "workspace:^",
+		"@sapphire/prettier-config": "workspace:^",
 		"@vitest/coverage-v8": "^1.1.0",
 		"esbuild-plugin-file-path-extensions": "^2.0.0",
 		"tsup": "^8.0.1",
@@ -671,7 +674,7 @@
 		}
 	},
 	"sideEffects": [
-		"./dist/esm/chunk*.mjs",
+		"./dist/esm/chunk-G5GHKT7C.mjs",
 		"./dist/iife/index.global.js"
 	]
 }

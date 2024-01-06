@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - stable
   pull_request:
 
 jobs:
@@ -33,6 +32,7 @@ jobs:
             --include @sapphire/prettier-config \
             --include @sapphire/eslint-plugin-result \
             --include @sapphire/result \
+            --include @sapphire/node-utilities \
             --include @sapphire/utilities \
             run build
       - name: Run ESLint
@@ -101,3 +101,20 @@ jobs:
         run: yarn --immutable
       - name: Run Script
         run: yarn check-subpath -- --check
+
+  Check_DynamicSideEffects:
+    name: Check Dynamic Side Effects
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Project
+        uses: actions/checkout@v4
+      - name: Use Node.js v20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: yarn
+          registry-url: https://registry.yarnpkg.org/
+      - name: Install Dependencies
+        run: yarn --immutable
+      - name: Validate dynamic side effects
+        run: yarn dynamic-side-effects -- --check
