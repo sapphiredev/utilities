@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/utilities@3.15.2](https://github.com/sapphiredev/utilities/compare/@sapphire/utilities@3.15.2...@sapphire/utilities@3.15.2) - (2024-01-06)
+
+## 🐛 Bug Fixes
+
+- Fixed bun compatibility for @sapphire/utilities (#703) ([ba07362](https://github.com/sapphiredev/utilities/commit/ba07362e08bce895d4ada672d65edb527fcfc26d))
+
 # [@sapphire/utilities@3.15.1](https://github.com/sapphiredev/utilities/compare/@sapphire/utilities@3.15.1...@sapphire/utilities@3.15.1) - (2023-12-28)
 
 ## 📝 Documentation
