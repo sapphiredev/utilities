@@ -63,7 +63,7 @@
 		"@sapphire/result": "workspace:^",
 		"esbuild-plugin-version-injector": "^1.2.1",
 		"tsup": "^8.0.1",
-		"typedoc": "^0.25.4",
+		"typedoc": "^0.25.6",
 		"typedoc-json-parser": "^9.0.1",
 		"typescript": "^5.3.3"
 	}
