@@ -1,9 +1,7 @@
 {
-	"name": "@sapphire/discord.js-utilities",
-	"version": "7.1.5",
-	"description": "Discord.js specific utilities for your JavaScript/TypeScript bots",
-	"author": "@sapphire",
-	"license": "MIT",
+	"name": "@sapphire/pieces",
+	"version": "4.2.1",
+	"description": "Sapphire's piece loader.",
 	"main": "dist/cjs/index.cjs",
 	"module": "dist/esm/index.mjs",
 	"types": "dist/cjs/index.d.cts",
@@ -17,62 +15,102 @@
 			"default": "./dist/cjs/index.cjs"
 		}
 	},
-	"sideEffects": false,
-	"homepage": "https://github.com/sapphiredev/utilities/tree/main/packages/discord.js-utilities",
+	"author": "@sapphire",
+	"license": "MIT",
 	"scripts": {
-		"lint": "eslint src --ext ts --fix -c ../../.eslintrc",
-		"build": "tsup && yarn build:types",
-		"build:types": "concurrently \"yarn:build:types:*\"",
-		"build:types:cjs": "rollup-type-bundler -d dist/cjs -ot cts",
-		"build:types:esm": "rollup-type-bundler -d dist/esm -t .mts",
+		"lint": "eslint src scripts --ext mjs,ts --fix",
+		"format": "prettier --write \"{src,scripts}/**/*.ts\"",
 		"docs": "typedoc-json-parser",
-		"prepack": "yarn build",
+		"update": "yarn upgrade-interactive",
+		"clean": "rimraf dist",
+		"test": "vitest run",
+		"build": "tsup && concurrently \"yarn:postbuild:*\"",
+		"postbuild:internal": "node scripts/make-import.mjs",
+		"postbuild:types:cjs": "rollup-type-bundler -d dist/cjs -ot .cts",
+		"postbuild:types:esm": "rollup-type-bundler -d dist/esm -t .mts",
+		"typecheck": "tsc -b src",
 		"bump": "cliff-jumper",
-		"check-update": "cliff-jumper --dry-run"
+		"check-update": "cliff-jumper --dry-run",
+		"prepack": "yarn build"
+	},
+	"dependencies": {
+		"@discordjs/collection": "^1.5.3",
+		"@sapphire/utilities": "^3.15.2",
+		"tslib": "^2.6.2"
+	},
+	"devDependencies": {
+		"@commitlint/cli": "^18.4.4",
+		"@commitlint/config-conventional": "^18.4.4",
+		"@favware/cliff-jumper": "^2.2.3",
+		"@favware/npm-deprecate": "^1.0.7",
+		"@favware/rollup-type-bundler": "^3.3.0",
+		"@sapphire/eslint-config": "^5.0.3",
+		"@sapphire/prettier-config": "^2.0.0",
+		"@sapphire/ts-config": "^5.0.0",
+		"@types/node": "^20.11.5",
+		"@typescript-eslint/eslint-plugin": "^6.19.0",
+		"@typescript-eslint/parser": "^6.19.0",
+		"concurrently": "^8.2.2",
+		"cz-conventional-changelog": "^3.3.0",
+		"esbuild-plugin-file-path-extensions": "^2.0.0",
+		"eslint": "^8.56.0",
+		"eslint-config-prettier": "^9.1.0",
+		"eslint-plugin-prettier": "^5.1.3",
+		"lint-staged": "^15.2.0",
+		"prettier": "^3.2.4",
+		"rimraf": "^5.0.5",
+		"tsup": "^8.0.1",
+		"typedoc": "^0.25.7",
+		"typedoc-json-parser": "^9.0.1",
+		"typescript": "^5.3.3",
+		"vitest": "^1.2.1"
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/sapphiredev/utilities.git",
-		"directory": "packages/discord.js-utilities"
+		"url": "git+https://github.com/sapphiredev/pieces.git"
 	},
 	"files": [
 		"dist/"
 	],
 	"engines": {
-		"node": ">=16.6.0",
+		"node": ">=v14.0.0",
 		"npm": ">=7.0.0"
 	},
 	"keywords": [
-		"@sapphire/discord.js-utilities",
+		"discordjs",
 		"bot",
 		"typescript",
 		"ts",
 		"yarn",
 		"discord",
-		"sapphire",
-		"standalone",
-		"discord.js"
+		"sapphire"
 	],
 	"bugs": {
-		"url": "https://github.com/sapphiredev/utilities/issues"
+		"url": "https://github.com/sapphiredev/pieces/issues"
+	},
+	"homepage": "https://www.sapphirejs.dev",
+	"commitlint": {
+		"extends": [
+			"@commitlint/config-conventional"
+		]
+	},
+	"lint-staged": {
+		"*": "prettier --ignore-unknown --write",
+		"*.{mjs,js,ts}": "eslint --fix --ext mjs,js,ts"
+	},
+	"config": {
+		"commitizen": {
+			"path": "./node_modules/cz-conventional-changelog"
+		}
 	},
 	"publishConfig": {
 		"access": "public"
 	},
-	"dependencies": {
-		"@sapphire/discord-utilities": "workspace:^",
-		"@sapphire/duration": "workspace:^",
-		"@sapphire/utilities": "workspace:^",
-		"tslib": "^2.6.2"
+	"resolutions": {
+		"acorn": "^8.11.3",
+		"ansi-regex": "^5.0.1",
+		"minimist": "^1.2.8"
 	},
-	"devDependencies": {
-		"@favware/cliff-jumper": "^2.2.3",
-		"@favware/rollup-type-bundler": "^3.3.0",
-		"concurrently": "^8.2.2",
-		"tsup": "^8.0.1",
-		"tsx": "^4.7.0",
-		"typedoc": "^0.25.7",
-		"typedoc-json-parser": "^9.0.1",
-		"typescript": "^5.3.3"
-	}
+	"prettier": "@sapphire/prettier-config",
+	"packageManager": "yarn@4.0.2"
 }
