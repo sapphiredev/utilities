@@ -62,7 +62,7 @@
 	},
 	"dependencies": {
 		"@sapphire/result": "workspace:^",
-		"@typescript-eslint/utils": "^6.18.1",
+		"@typescript-eslint/utils": "^6.19.0",
 		"tsutils": "^3.21.0",
 		"typescript": "^5.3.3"
 	}
