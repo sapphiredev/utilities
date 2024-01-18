@@ -53,9 +53,9 @@
 	},
 	"devDependencies": {
 		"@favware/cliff-jumper": "^2.2.3",
-		"@typescript-eslint/rule-tester": "^6.18.1",
-		"@typescript-eslint/typescript-estree": "^6.18.1",
-		"@vitest/coverage-v8": "^1.2.0",
+		"@typescript-eslint/rule-tester": "^6.19.0",
+		"@typescript-eslint/typescript-estree": "^6.19.0",
+		"@vitest/coverage-v8": "^1.2.1",
 		"tsup": "^8.0.1",
 		"typedoc-json-parser": "^9.0.1",
 		"vitest": "^1.2.1"
