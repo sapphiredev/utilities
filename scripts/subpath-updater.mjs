@@ -19,7 +19,7 @@ const exportMap = new Map([
 				default: './dist/esm/index.mjs'
 			},
 			require: {
-				types: './dist/cjs/index.d.ts',
+				types: './dist/cjs/index.d.cts',
 				default: './dist/cjs/index.cjs'
 			},
 			browser: './dist/iife/index.global.js'
@@ -39,7 +39,7 @@ for await (const file of findFilesRecursivelyStringEndsWith(new URL(`../packages
 			default: `./dist/esm/lib/${name}.mjs`
 		},
 		require: {
-			types: `./dist/cjs/lib/${name}.d.ts`,
+			types: `./dist/cjs/lib/${name}.d.cts`,
 			default: `./dist/cjs/lib/${name}.cjs`
 		}
 	});
@@ -54,7 +54,7 @@ for await (const file of findFilesRecursivelyStringEndsWith(new URL(`../packages
 						default: `./dist/esm/lib/${name}.mjs`
 					},
 					require: {
-						types: `./dist/cjs/lib/${name}.d.ts`,
+						types: `./dist/cjs/lib/${name}.d.cts`,
 						default: `./dist/cjs/lib/${name}.cjs`
 					}
 				});
@@ -66,7 +66,7 @@ for await (const file of findFilesRecursivelyStringEndsWith(new URL(`../packages
 					default: `./dist/esm/lib/${name}.mjs`
 				},
 				require: {
-					types: `./dist/cjs/lib/${name}.d.ts`,
+					types: `./dist/cjs/lib/${name}.d.cts`,
 					default: `./dist/cjs/lib/${name}.cjs`
 				}
 			});
