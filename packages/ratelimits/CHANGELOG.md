@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/ratelimits@2.4.9](https://github.com/sapphiredev/utilities/compare/@sapphire/ratelimits@2.4.9...@sapphire/ratelimits@2.4.9) - (2024-01-19)
+
+## 🐛 Bug Fixes
+
+- Fixed commonjs typings export mapping (#707) ([216ff02](https://github.com/sapphiredev/utilities/commit/216ff0260d63a9590357f9a5069f1ae2b34eaf5d))
+
 # [@sapphire/ratelimits@2.4.8](https://github.com/sapphiredev/utilities/compare/@sapphire/ratelimits@2.4.8...@sapphire/ratelimits@2.4.8) - (2023-12-04)
 
 ## 🐛 Bug Fixes
