@@ -25,7 +25,7 @@
 		"@favware/cliff-jumper": "^2.2.3",
 		"@favware/npm-deprecate": "^1.0.7",
 		"@favware/rollup-type-bundler": "^3.3.0",
-		"@sapphire/framework": "^5.0.6",
+		"@sapphire/framework": "^5.0.7",
 		"@types/lodash": "^4.14.202",
 		"@types/node": "^20.11.5",
 		"@types/ws": "^8.5.10",
