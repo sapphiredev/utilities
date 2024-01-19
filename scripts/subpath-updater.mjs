@@ -33,16 +33,29 @@ for await (const file of findFilesRecursivelyStringEndsWith(new URL(`../packages
 	splitted.shift();
 	if (name === 'index') continue;
 
-	exportMap.set(`./${name}`, {
-		import: {
-			types: `./dist/esm/lib/${name}.d.mts`,
-			default: `./dist/esm/lib/${name}.mjs`
-		},
-		require: {
-			types: `./dist/cjs/lib/${name}.d.cts`,
-			default: `./dist/cjs/lib/${name}.cjs`
-		}
-	});
+	if (name === 'debounce') {
+		exportMap.set(`./${name}`, {
+			import: {
+				types: `./dist/esm/lib/debounce/${name}.d.mts`,
+				default: `./dist/esm/lib/debounce/${name}.mjs`
+			},
+			require: {
+				types: `./dist/cjs/lib/debounce/${name}.d.cts`,
+				default: `./dist/cjs/lib/debounce/${name}.cjs`
+			}
+		});
+	} else {
+		exportMap.set(`./${name}`, {
+			import: {
+				types: `./dist/esm/lib/${name}.d.mts`,
+				default: `./dist/esm/lib/${name}.mjs`
+			},
+			require: {
+				types: `./dist/cjs/lib/${name}.d.cts`,
+				default: `./dist/cjs/lib/${name}.cjs`
+			}
+		});
+	}
 
 	const aliasStoreEntry = aliasStore.get(name);
 	if (aliasStoreEntry) {

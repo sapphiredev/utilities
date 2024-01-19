@@ -135,12 +135,12 @@
 		},
 		"./debounce": {
 			"import": {
-				"types": "./dist/esm/lib/debounce.d.mts",
-				"default": "./dist/esm/lib/debounce.mjs"
+				"types": "./dist/esm/lib/debounce/debounce.d.mts",
+				"default": "./dist/esm/lib/debounce/debounce.mjs"
 			},
 			"require": {
-				"types": "./dist/cjs/lib/debounce.d.cts",
-				"default": "./dist/cjs/lib/debounce.cjs"
+				"types": "./dist/cjs/lib/debounce/debounce.d.cts",
+				"default": "./dist/cjs/lib/debounce/debounce.cjs"
 			}
 		},
 		"./deepClone": {
