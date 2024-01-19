@@ -1,6 +1,6 @@
 {
 	"name": "@sapphire/node-utilities",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"description": "Node specific JavaScript utilities for the Sapphire Community",
 	"author": "@sapphire",
 	"license": "MIT",
