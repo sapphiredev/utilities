@@ -1,6 +1,6 @@
 {
 	"name": "@sapphire/bitfield",
-	"version": "1.2.1",
+	"version": "1.2.2",
 	"description": "A bitfield utility library for JavaScript.",
 	"author": "@sapphire",
 	"license": "MIT",
