@@ -100,7 +100,7 @@ jobs:
       - name: Install Dependencies
         run: yarn --immutable
       - name: Run Script
-        run: yarn check-subpath -- --check
+        run: yarn build:check-subpath -- --check
 
   Check_DynamicSideEffects:
     name: Check Dynamic Side Effects
@@ -117,4 +117,4 @@ jobs:
       - name: Install Dependencies
         run: yarn --immutable
       - name: Validate dynamic side effects
-        run: yarn dynamic-side-effects -- --check
+        run: yarn build:dynamic-side-effects -- --check

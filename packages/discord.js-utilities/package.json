@@ -6,14 +6,14 @@
 	"license": "MIT",
 	"main": "dist/cjs/index.cjs",
 	"module": "dist/esm/index.mjs",
-	"types": "dist/cjs/index.d.ts",
+	"types": "dist/cjs/index.d.cts",
 	"exports": {
 		"import": {
 			"types": "./dist/esm/index.d.mts",
 			"default": "./dist/esm/index.mjs"
 		},
 		"require": {
-			"types": "./dist/cjs/index.d.ts",
+			"types": "./dist/cjs/index.d.cts",
 			"default": "./dist/cjs/index.cjs"
 		}
 	},
@@ -23,7 +23,7 @@
 		"lint": "eslint src --ext ts --fix -c ../../.eslintrc",
 		"build": "tsup && yarn build:types",
 		"build:types": "concurrently \"yarn:build:types:*\"",
-		"build:types:cjs": "rollup-type-bundler -d dist/cjs",
+		"build:types:cjs": "rollup-type-bundler -d dist/cjs -ot .cts",
 		"build:types:esm": "rollup-type-bundler -d dist/esm -t .mts",
 		"docs": "typedoc-json-parser",
 		"prepack": "yarn build",
