@@ -1131,11 +1131,15 @@ __metadata:
   dependencies:
     "@favware/cliff-jumper": "npm:^2.2.3"
     "@sapphire/result": "workspace:^"
+    "@typescript-eslint/rule-tester": "npm:^6.19.0"
+    "@typescript-eslint/typescript-estree": "npm:^6.19.0"
     "@typescript-eslint/utils": "npm:^6.19.0"
+    "@vitest/coverage-v8": "npm:^1.2.1"
     tsup: "npm:^8.0.1"
     tsutils: "npm:^3.21.0"
     typedoc-json-parser: "npm:^9.0.1"
     typescript: "npm:^5.3.3"
+    vitest: "npm:^1.2.1"
   languageName: unknown
   linkType: soft
 
@@ -1593,6 +1597,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@typescript-eslint/rule-tester@npm:^6.19.0":
+  version: 6.19.0
+  resolution: "@typescript-eslint/rule-tester@npm:6.19.0"
+  dependencies:
+    "@typescript-eslint/typescript-estree": "npm:6.19.0"
+    "@typescript-eslint/utils": "npm:6.19.0"
+    ajv: "npm:^6.10.0"
+    lodash.merge: "npm:4.6.2"
+    semver: "npm:^7.5.4"
+  peerDependencies:
+    "@eslint/eslintrc": ">=2"
+    eslint: ">=8"
+  checksum: 4299e292a27882648ca6bdb05558af5fbfaf3bd057da024d8fd1efa8a95639b44185bbc7e3271876d7b82e0767fe52af25ea0bce1635f737da5ddb5ffee059b4
+  languageName: node
+  linkType: hard
+
 "@typescript-eslint/scope-manager@npm:6.19.0":
   version: 6.19.0
   resolution: "@typescript-eslint/scope-manager@npm:6.19.0"
@@ -1627,7 +1647,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/typescript-estree@npm:6.19.0":
+"@typescript-eslint/typescript-estree@npm:6.19.0, @typescript-eslint/typescript-estree@npm:^6.19.0":
   version: 6.19.0
   resolution: "@typescript-eslint/typescript-estree@npm:6.19.0"
   dependencies:
@@ -1845,7 +1865,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ajv@npm:^6.12.4":
+"ajv@npm:^6.10.0, ajv@npm:^6.12.4":
   version: 6.12.6
   resolution: "ajv@npm:6.12.6"
   dependencies:
@@ -4523,7 +4543,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash.merge@npm:^4.6.2":
+"lodash.merge@npm:4.6.2, lodash.merge@npm:^4.6.2":
   version: 4.6.2
   resolution: "lodash.merge@npm:4.6.2"
   checksum: d0ea2dd0097e6201be083865d50c3fb54fbfbdb247d9cc5950e086c991f448b7ab0cdab0d57eacccb43473d3f2acd21e134db39f22dac2d6c9ba6bf26978e3d6
