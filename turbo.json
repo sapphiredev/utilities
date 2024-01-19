@@ -36,11 +36,11 @@
 			"dependsOn": [],
 			"outputs": []
 		},
-		"check-subpath": {
+		"build:check-subpath": {
 			"dependsOn": ["@sapphire/prettier-config#build", "@sapphire/node-utilities#build"],
 			"outputs": ["package.json"]
 		},
-		"dynamic-side-effects": {
+		"build:dynamic-side-effects": {
 			"dependsOn": ["@sapphire/prettier-config#build", "@sapphire/node-utilities#build", "@sapphire/utilities#build"],
 			"outputs": ["package.json"]
 		},

@@ -11,11 +11,11 @@
 		"format": "prettier --ignore-path=.prettierignore --write \"packages/**/{src,tests,scripts}/**/*.{mjs,ts,js}\"",
 		"test": "vitest run",
 		"build": "turbo run build",
+		"build:check-subpath": "turbo run build:check-subpath",
+		"build:dynamic-side-effects": "turbo run build:dynamic-side-effects",
 		"docs": "turbo run docs",
 		"update": "yarn upgrade-interactive",
-		"check-update": "turbo run check-update",
-		"check-subpath": "turbo run check-subpath",
-		"dynamic-side-effects": "turbo run dynamic-side-effects"
+		"check-update": "turbo run check-update"
 	},
 	"devDependencies": {
 		"@actions/core": "^1.10.1",
@@ -42,6 +42,7 @@
 		"lint-staged": "^15.2.0",
 		"lodash": "^4.17.21",
 		"msw": "^2.1.2",
+		"npm-run-all": "^4.1.5",
 		"prettier": "^3.2.4",
 		"rimraf": "^5.0.5",
 		"tslib": "^2.6.2",

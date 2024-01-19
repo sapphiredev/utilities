@@ -34,7 +34,9 @@ if (oldPackageJSON === newPackageJSON) {
 }
 
 if (check) {
-	console.error(red(`The package.json file for ${packageName} is not up to date! Run ${green(bold('yarn dynamic-side-effects'))} to update it.`));
+	console.error(
+		red(`The package.json file for ${packageName} is not up to date! Run ${green(bold('yarn build:dynamic-side-effects'))} to update it.`)
+	);
 	process.exit(1);
 }
 

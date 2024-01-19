@@ -13,14 +13,15 @@
 	"scripts": {
 		"test": "vitest run",
 		"lint": "eslint src tests --ext ts --fix -c ../../.eslintrc",
-		"build": "tsup && yarn dynamic-side-effects && yarn check-subpath && yarn build:rename-cjs-index",
+		"build": "tsup && run-s \"build:*\"",
 		"build:rename-cjs-index": "node ../../scripts/rename-cjs-index.mjs",
+		"build:dynamic-side-effects": "node ../../scripts/dynamic-side-effects.mjs utilities",
+		"build:check-subpath": "node ../../scripts/subpath-updater.mjs utilities",
+		"build:fix-dcts-imports": "node ../../scripts/fix-dcts-imports.mjs",
 		"docs": "typedoc-json-parser",
 		"prepack": "yarn build",
 		"bump": "cliff-jumper",
-		"check-update": "cliff-jumper --dry-run",
-		"dynamic-side-effects": "node ../../scripts/dynamic-side-effects.mjs utilities",
-		"check-subpath": "node ../../scripts/subpath-updater.mjs utilities"
+		"check-update": "cliff-jumper --dry-run"
 	},
 	"repository": {
 		"type": "git",
@@ -55,6 +56,7 @@
 		"@sapphire/prettier-config": "workspace:^",
 		"@vitest/coverage-v8": "^1.2.1",
 		"esbuild-plugin-file-path-extensions": "^2.0.0",
+		"npm-run-all": "^4.1.5",
 		"tsup": "^8.0.1",
 		"typedoc": "^0.25.7",
 		"typedoc-json-parser": "^9.0.1",
