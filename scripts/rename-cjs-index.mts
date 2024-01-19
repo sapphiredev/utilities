@@ -1,7 +1,7 @@
 import { bold, green } from 'colorette';
 import { rename } from 'node:fs/promises';
 import { join } from 'node:path';
-import { findFilesRecursivelyStringEndsWith } from '../packages/node-utilities/dist/esm/index.mjs';
+import { findFilesRecursivelyStringEndsWith } from '../packages/node-utilities/src/index.js';
 
 const inputPath = 'dist/cjs/';
 
