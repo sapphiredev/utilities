@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/utilities@3.15.3](https://github.com/sapphiredev/utilities/compare/@sapphire/utilities@3.15.3...@sapphire/utilities@3.15.3) - (2024-01-19)
+
+## 🐛 Bug Fixes
+
+- Fixed commonjs typings export mapping (#707) ([216ff02](https://github.com/sapphiredev/utilities/commit/216ff0260d63a9590357f9a5069f1ae2b34eaf5d))
+
 # [@sapphire/utilities@3.15.2](https://github.com/sapphiredev/utilities/compare/@sapphire/utilities@3.15.2...@sapphire/utilities@3.15.2) - (2024-01-06)
 
 ## 🐛 Bug Fixes
