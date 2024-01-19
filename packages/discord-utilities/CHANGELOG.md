@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/discord-utilities@3.2.2](https://github.com/sapphiredev/utilities/compare/@sapphire/discord-utilities@3.2.2...@sapphire/discord-utilities@3.2.2) - (2024-01-19)
+
+## 🐛 Bug Fixes
+
+- Fixed commonjs typings export mapping (#707) ([216ff02](https://github.com/sapphiredev/utilities/commit/216ff0260d63a9590357f9a5069f1ae2b34eaf5d))
+
 # [@sapphire/discord-utilities@3.2.1](https://github.com/sapphiredev/utilities/compare/@sapphire/discord-utilities@3.2.1...@sapphire/discord-utilities@3.2.1) - (2023-12-04)
 
 ## 🐛 Bug Fixes
