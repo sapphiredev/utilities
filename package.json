@@ -10,7 +10,7 @@
 		"lint": "eslint packages --ext mjs,js,ts,tsx --fix",
 		"format": "prettier --ignore-path=.prettierignore --write \"packages/**/{src,tests,scripts}/**/*.{mjs,ts,js}\"",
 		"test": "vitest run",
-		"build": "turbo run build",
+		"build": "yarn workspace @sapphire/node-utilities build && turbo run build",
 		"build:check-subpath": "turbo run build:check-subpath",
 		"build:dynamic-side-effects": "turbo run build:dynamic-side-effects",
 		"docs": "turbo run docs",
