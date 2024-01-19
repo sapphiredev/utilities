@@ -9,7 +9,7 @@ const options: Options = {
 const cjsAndEsmOptions: Options = {
 	...options,
 	bundle: true,
-	entry: ['src/**/*.ts', '!src/**/*.d.ts'],
+	entry: ['src/**/*.ts'],
 	esbuildPlugins: [esbuildPluginFilePathExtensions()]
 };
 
