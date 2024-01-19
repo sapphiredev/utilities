@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/decorators@6.0.4](https://github.com/sapphiredev/utilities/compare/@sapphire/decorators@6.0.4...@sapphire/decorators@6.0.4) - (2024-01-19)
+
+## 🐛 Bug Fixes
+
+- Fixed commonjs typings export mapping (#707) ([216ff02](https://github.com/sapphiredev/utilities/commit/216ff0260d63a9590357f9a5069f1ae2b34eaf5d))
+
 # [@sapphire/decorators@6.0.3](https://github.com/sapphiredev/utilities/compare/@sapphire/decorators@6.0.3...@sapphire/decorators@6.0.3) - (2023-12-04)
 
 ## 🐛 Bug Fixes
