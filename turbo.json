@@ -47,12 +47,12 @@
 		},
 		"docs": {
 			"dependsOn": [
+				"@sapphire/node-utilities#build",
 				"@sapphire/async-queue#build",
 				"@sapphire/cron#build",
 				"@sapphire/discord.js-utilities#build",
 				"@sapphire/fetch#build",
 				"@sapphire/lexure#build",
-				"@sapphire/node-utilities#build",
 				"@sapphire/ratelimits#build",
 				"@sapphire/timer-manager#build",
 				"@sapphire/result#build",
