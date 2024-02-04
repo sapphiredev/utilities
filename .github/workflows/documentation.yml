@@ -127,7 +127,7 @@ jobs:
           mv docs/${PACKAGE}/docs/api.json out/docs/utilities/${PACKAGE}/${NAME}.json
 
       - name: Commit & Push
-        uses: nick-fields/retry@v2
+        uses: nick-fields/retry@v3
         env:
           PACKAGE: ${{ steps.extract-tag.outputs.package || matrix.package }}
         with:
