@@ -61,13 +61,13 @@
 		"access": "public"
 	},
 	"dependencies": {
-		"discord-api-types": "^0.37.67"
+		"discord-api-types": "^0.37.69"
 	},
 	"devDependencies": {
 		"@favware/cliff-jumper": "^2.2.3",
 		"@vitest/coverage-v8": "^1.2.2",
-		"tsup": "^8.0.1",
-		"typedoc": "^0.25.7",
+		"tsup": "^8.0.2",
+		"typedoc": "^0.25.8",
 		"typedoc-json-parser": "^9.0.1",
 		"typescript": "^5.3.3",
 		"vitest": "^1.2.2"

@@ -63,8 +63,8 @@
 		"@favware/cliff-jumper": "^2.2.3",
 		"@sapphire/result": "workspace:^",
 		"esbuild-plugin-version-injector": "^1.2.1",
-		"tsup": "^8.0.1",
-		"typedoc": "^0.25.7",
+		"tsup": "^8.0.2",
+		"typedoc": "^0.25.8",
 		"typedoc-json-parser": "^9.0.1",
 		"typescript": "^5.3.3"
 	}
