@@ -22,7 +22,7 @@
 		"@commitlint/cli": "^18.6.1",
 		"@commitlint/config-conventional": "^18.6.2",
 		"@discordjs/collection": "^1.5.3",
-		"@favware/cliff-jumper": "^2.2.3",
+		"@favware/cliff-jumper": "^3.0.0",
 		"@favware/npm-deprecate": "^1.0.7",
 		"@favware/rollup-type-bundler": "^3.3.0",
 		"@sapphire/framework": "^5.0.7",
