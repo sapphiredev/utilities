@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/discord-utilities@3.2.3](https://github.com/sapphiredev/utilities/compare/@sapphire/discord-utilities@3.2.2...@sapphire/discord-utilities@3.2.3) - (2024-03-11)
+
+## 🐛 Bug Fixes
+
+- **discord-utilities:** Bump discord-api-types ([a9b3ea8](https://github.com/sapphiredev/utilities/commit/a9b3ea81303c1333a6cecf4ee41bf011a07ec425))
+
 # [@sapphire/discord-utilities@3.2.2](https://github.com/sapphiredev/utilities/compare/@sapphire/discord-utilities@3.2.2...@sapphire/discord-utilities@3.2.2) - (2024-01-19)
 
 ## 🐛 Bug Fixes
