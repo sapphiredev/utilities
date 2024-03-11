@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/eslint-plugin-result@2.0.3](https://github.com/sapphiredev/utilities/compare/@sapphire/eslint-plugin-result@2.0.2...@sapphire/eslint-plugin-result@2.0.3) - (2024-03-11)
+
+## 🐛 Bug Fixes
+
+- **eslint-plugin-result:** Fixed issue with linting with latest typescript-eslint ([0cf3801](https://github.com/sapphiredev/utilities/commit/0cf380184b60c2c7a310ec03b3eb25efb49dffda))
+- **deps:** Update typescript-eslint monorepo to v7 (major) (#717) ([f929edc](https://github.com/sapphiredev/utilities/commit/f929edc5c951428a3e72e6f37725f27c4b383c54))
+- Fixed commonjs typings export mapping (#707) ([216ff02](https://github.com/sapphiredev/utilities/commit/216ff0260d63a9590357f9a5069f1ae2b34eaf5d))
+- Update transitive dependencies ([9fbbbb0](https://github.com/sapphiredev/utilities/commit/9fbbbb0252850d270fdaeaae491ed84d0c93cdf6))
+- **eslint-plugin-result:** Bump transitive dependencies ([d4d8bea](https://github.com/sapphiredev/utilities/commit/d4d8bea8fb26541f9a94a9d380bd56a537764285))
+- **deps:** Update all non-major dependencies (#681) ([a593be0](https://github.com/sapphiredev/utilities/commit/a593be07bc7a5ec4b9690a83bc6fbf223e012729))
+
 # [@sapphire/eslint-plugin-result@2.0.2](https://github.com/sapphiredev/utilities/compare/@sapphire/eslint-plugin-result@2.0.2...@sapphire/eslint-plugin-result@2.0.2) - (2023-12-04)
 
 ## 🐛 Bug Fixes
