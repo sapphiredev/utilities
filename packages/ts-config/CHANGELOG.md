@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/ts-config@5.0.1](https://github.com/sapphiredev/utilities/compare/@sapphire/ts-config@5.0.0...@sapphire/ts-config@5.0.1) - (2024-03-11)
+
+## 🐛 Bug Fixes
+
+- **ts-config:** Bump transitive typescript dependency ([321df01](https://github.com/sapphiredev/utilities/commit/321df01d69964b7b8e98edd57b222dc227805a39))
+
+## 📝 Documentation
+
+- **ts-config:** Update readme (#640) ([cf8dd7e](https://github.com/sapphiredev/utilities/commit/cf8dd7ee51b6ea38dbe41427fd131b061ffe764e))
+
 # [@sapphire/ts-config@5.0.0](https://github.com/sapphiredev/utilities/compare/@sapphire/ts-config@4.0.1...@sapphire/ts-config@5.0.0) - (2023-08-29)
 
 ## 🚀 Features
