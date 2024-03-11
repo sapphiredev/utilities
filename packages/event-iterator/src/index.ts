@@ -99,7 +99,7 @@ export class EventIterator<V extends unknown[]> implements AsyncIterableIterator
 		const maxListeners = this.emitter.getMaxListeners();
 		if (maxListeners !== 0) this.emitter.setMaxListeners(maxListeners + 1);
 
-		// @ts-expect-error Silence weird compiler issue regarding `this.push`'s arguments not being `any`.
+		// @ts-ignore Silence weird compiler issue regarding `this.push`'s arguments not being `any`.
 		this.emitter.on(this.event, this.#push);
 	}
 
@@ -118,7 +118,7 @@ export class EventIterator<V extends unknown[]> implements AsyncIterableIterator
 		this.#ended = true;
 		this.#queue = [];
 
-		// @ts-expect-error Silence weird compiler issue regarding `this.push`'s arguments not being `any`.
+		// @ts-ignore Silence weird compiler issue regarding `this.push`'s arguments not being `any`.
 		this.emitter.off(this.event, this.#push);
 		const maxListeners = this.emitter.getMaxListeners();
 		if (maxListeners !== 0) this.emitter.setMaxListeners(maxListeners - 1);
