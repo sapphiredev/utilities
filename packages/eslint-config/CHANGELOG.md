@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/eslint-config@5.0.4](https://github.com/sapphiredev/utilities/compare/@sapphire/eslint-config@5.0.3...@sapphire/eslint-config@5.0.4) - (2024-03-11)
+
+## 🐛 Bug Fixes
+
+- **eslint-config:** Bump transitive dependencies ([f2600b3](https://github.com/sapphiredev/utilities/commit/f2600b34bb8dbe3c55a245a4d8c260493adfa83a))
+- **deps:** Update typescript-eslint monorepo to v7 (major) (#717) ([f929edc](https://github.com/sapphiredev/utilities/commit/f929edc5c951428a3e72e6f37725f27c4b383c54))
+- Update transitive dependencies ([4c28962](https://github.com/sapphiredev/utilities/commit/4c2896269f4204ed8e48b91581232c28a6d53f20))
+- **deps:** Update dependency prettier to ^3.2.2 ([61630cc](https://github.com/sapphiredev/utilities/commit/61630cc5aa43e05d6e3e8881b2883f0ef334f02a))
+- **eslint-config:** Bump transitive dependencies ([632805d](https://github.com/sapphiredev/utilities/commit/632805d334e47aa10df6005cc4d01155046dc26f))
+- **deps:** Update dependency eslint-plugin-prettier to ^5.1.2 ([e1c7c75](https://github.com/sapphiredev/utilities/commit/e1c7c7533acaba45d95e86984a64f1db39f0e2af))
+- **deps:** Update all non-major dependencies ([fef82a8](https://github.com/sapphiredev/utilities/commit/fef82a89eda7af96bd6fb49fce00d82608d4b62c))
+- **deps:** Update all non-major dependencies (#681) ([a593be0](https://github.com/sapphiredev/utilities/commit/a593be07bc7a5ec4b9690a83bc6fbf223e012729))
+- Bump transitive prettier dependency ([13ec7e9](https://github.com/sapphiredev/utilities/commit/13ec7e95001ebaaea3267ef22dfdededab912528))
+
 # [@sapphire/eslint-config@5.0.3](https://github.com/sapphiredev/utilities/compare/@sapphire/eslint-config@5.0.3...@sapphire/eslint-config@5.0.3) - (2023-12-04)
 
 ## 🐛 Bug Fixes
