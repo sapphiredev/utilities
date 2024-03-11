@@ -56,7 +56,7 @@ function functionHasResultLikeReturnType(service: ParserServices, checker: ts.Ty
 	const returnType = unwrapPotentialPromiseType(checker, node);
 	const resultType = getSapphireResultType(service, checker);
 
-	if (!returnType.aliasSymbol || !resultType?.aliasSymbol) {
+	if (!returnType || !returnType.aliasSymbol || !resultType?.aliasSymbol) {
 		return false;
 	}
 
