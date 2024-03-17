@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/decorators@6.1.0](https://github.com/sapphiredev/utilities/compare/@sapphire/decorators@6.0.4...@sapphire/decorators@6.1.0) - (2024-03-17)
+
+## 🚀 Features
+
+- Add-interaction-support-to-decorators (#725) ([c166ac6](https://github.com/sapphiredev/utilities/commit/c166ac6e8c2ae4c8057a84e08e7f6b4339f5a0f6))
+
 # [@sapphire/decorators@6.0.4](https://github.com/sapphiredev/utilities/compare/@sapphire/decorators@6.0.4...@sapphire/decorators@6.0.4) - (2024-01-19)
 
 ## 🐛 Bug Fixes
