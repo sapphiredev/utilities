@@ -20,7 +20,7 @@ interface Message {
 		permissionsFor(): BitField;
 	};
 	guild: {
-		me: any;
+		members: any;
 	};
 }
 
@@ -35,7 +35,7 @@ function buildMessage(channelType: DJSMessage['channel']['type'], ...givenPermis
 			permissionsFor: () => ({ missing: (resolvedPermissions: PermissionsBitField) => buildMissing(resolvedPermissions, givenPermissions) })
 		},
 		guild: {
-			me: ''
+			members: { me: '' }
 		}
 	};
 }
