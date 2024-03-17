@@ -41,6 +41,7 @@
 			"outputs": ["package.json"]
 		},
 		"build:dynamic-side-effects": {
+			"dependsOn": ["@sapphire/utilities#build"],
 			"outputs": ["package.json"]
 		},
 		"docs": {
