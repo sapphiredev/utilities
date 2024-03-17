@@ -1,6 +1,6 @@
-import { isDMChannel, isGuildBasedChannel } from '@sapphire/discord.js-utilities';
+import { isDMChannel, isGuildBasedChannel, isGuildMember } from '@sapphire/discord.js-utilities';
 import { UserError } from '@sapphire/framework';
-import { Message, BaseInteraction, PermissionFlagsBits, PermissionsBitField, type PermissionResolvable } from 'discord.js';
+import { PermissionFlagsBits, PermissionsBitField, type BaseInteraction, type Message, type PermissionResolvable } from 'discord.js';
 import { createFunctionPrecondition, type FunctionFallback } from './utils';
 
 export enum DecoratorIdentifiers {
@@ -82,7 +82,7 @@ export const RequiresClientPermissions = (...permissionsResolvable: PermissionRe
 
 	return createFunctionPrecondition((context: Message | BaseInteraction) => {
 		const { channel } = context;
-		const member = context.guild?.members.me;
+		const { member } = context;
 
 		if (resolvedIncludesServerPermissions && isDMChannel(channel)) {
 			throw new UserError({
@@ -91,8 +91,8 @@ export const RequiresClientPermissions = (...permissionsResolvable: PermissionRe
 			});
 		}
 
-		if (isGuildBasedChannel(channel)) {
-			const missingPermissions = channel!.permissionsFor(member).missing(resolved);
+		if (isGuildBasedChannel(channel) && isGuildMember(member)) {
+			const missingPermissions = channel.permissionsFor(member).missing(resolved);
 
 			if (missingPermissions.length) {
 				throw new UserError({
@@ -163,8 +163,8 @@ export const RequiresUserPermissions = (...permissionsResolvable: PermissionReso
 			});
 		}
 
-		if (isGuildBasedChannel(channel)) {
-			const missingPermissions = channel!.permissionsFor(member!).missing(resolved);
+		if (isGuildBasedChannel(channel) && isGuildMember(member)) {
+			const missingPermissions = channel.permissionsFor(member).missing(resolved);
 
 			if (missingPermissions.length) {
 				throw new UserError({
@@ -182,18 +182,18 @@ export const RequiresUserPermissions = (...permissionsResolvable: PermissionReso
 };
 
 /**
- * Requires the message to be run in a guild context, this decorator requires the first argument to be a `Message` or `BaseInteraction` instance which includes all interaction types
+ * Requires the message to be run in a guild context, this decorator requires the first argument to be a {@link Message} or {@link BaseInteraction} instance which includes all interaction types
  * @since 1.0.0
- * @param fallback The fallback value passed to `createFunctionInhibitor`
+ * @param fallback The fallback value passed to {@link createFunctionPrecondition}
  */
 export function RequiresGuildContext(fallback: FunctionFallback = (): void => undefined): MethodDecorator {
 	return createFunctionPrecondition((context: Message | BaseInteraction) => context.guild !== null, fallback);
 }
 
 /**
- * Requires the message to be run in a dm context, this decorator requires the first argument to be a `Message` or `BaseInteraction` instance which includes all interaction types
+ * Requires the message to be run in a dm context, this decorator requires the first argument to be a {@link Message} or {@link BaseInteraction} instance which includes all interaction types
  * @since 1.0.0
- * @param fallback The fallback value passed to `createFunctionInhibitor`
+ * @param fallback The fallback value passed to {@link createFunctionPrecondition}
  */
 export function RequiresDMContext(fallback: FunctionFallback = (): void => undefined): MethodDecorator {
 	return createFunctionPrecondition((context: Message | BaseInteraction) => context.guild === null, fallback);
