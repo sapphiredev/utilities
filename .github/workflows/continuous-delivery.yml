@@ -65,6 +65,8 @@ jobs:
           registry-url: https://registry.yarnpkg.com/
       - name: Install Dependencies
         run: yarn --immutable
+      - name: Build node-utilities
+        run: yarn workspace @sapphire/node-utilities build
       - name: Build all packages
         run: yarn build
       - name: Bump Versions & Publish
