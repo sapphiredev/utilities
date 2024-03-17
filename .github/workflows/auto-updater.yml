@@ -21,10 +21,8 @@ jobs:
           registry-url: https://registry.yarnpkg.com/
       - name: Install Dependencies
         run: yarn --immutable
-      - name: Build packages for script
-        run: yarn turbo run build --filter=@sapphire/timestamp --filter=@sapphire/fetch --filter=@sapphire/prettier-config
       - name: Run updater
-        run: node scripts/twemoji-regex-updater.mjs
+        run: yarn au:twemojis
       - name: Run prettier on the code
         run: yarn format
       - name: Commit any changes and create a pull request
