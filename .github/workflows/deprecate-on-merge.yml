@@ -21,7 +21,7 @@ jobs:
       - name: Install Dependencies
         run: yarn --immutable
       - name: Build Dependencies
-        run: yarn turbo run build --filter=@sapphire/utilities --filter=@sapphire/fetch --no-deps
+        run: yarn workspaces foreach --all --parallel --include @sapphire/fetch --include @sapphire/utilities run build
       - name: Deprecate versions
         run: yarn npm-deprecate --name "*pr-${PR_NUMBER}*" -d -v
         env:
