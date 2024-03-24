@@ -56,7 +56,7 @@
 		"@favware/cliff-jumper": "^3.0.1",
 		"@vitest/coverage-v8": "^1.4.0",
 		"typedoc-json-parser": "^9.0.1",
-		"typescript": "^5.4.2",
+		"typescript": "^5.4.3",
 		"vitest": "^1.4.0"
 	}
 }

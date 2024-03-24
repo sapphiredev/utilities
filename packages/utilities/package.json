@@ -62,7 +62,7 @@
 		"tsx": "^4.7.1",
 		"typedoc": "^0.25.12",
 		"typedoc-json-parser": "^9.0.1",
-		"typescript": "^5.4.2",
+		"typescript": "^5.4.3",
 		"vitest": "^1.4.0"
 	},
 	"exports": {
