@@ -7,6 +7,7 @@ const options = { recursive: true, force: true };
 const paths = [
 	// Dist folders
 	new URL('async-queue/dist/', packagesDir),
+	new URL('bit-array/dist/', packagesDir),
 	new URL('bitfield/dist/', packagesDir),
 	new URL('cron/dist/', packagesDir),
 	new URL('decorators/dist/', packagesDir),
@@ -31,6 +32,7 @@ const paths = [
 
 	// Turbo folders
 	new URL('async-queue/.turbo/', packagesDir),
+	new URL('bit-array/.turbo/', packagesDir),
 	new URL('bitfield/.turbo/', packagesDir),
 	new URL('cron/.turbo/', packagesDir),
 	new URL('decorators/.turbo/', packagesDir),

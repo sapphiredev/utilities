@@ -2,6 +2,7 @@ name: '*next*'
 verbose: true
 package:
   - '@sapphire/async-queue'
+  - '@sapphire/bit-array'
   - '@sapphire/bitfield'
   - '@sapphire/cron'
   - '@sapphire/decorators'
