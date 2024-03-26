@@ -44,6 +44,22 @@ Or to `eslintrc.js` / `.eslintrc.json`:
 }
 ```
 
+Or to `eslint.config.js`:
+
+```
+const { FlatCompat } = require('@eslint/eslintrc')
+const sapphireEslintConfig = require('@sapphire/eslint-config')
+
+const compat = new FlatCompat()
+
+module.exports = [
+	...compat.config(sapphireEslintConfig),
+	{
+		// other configs
+	}
+]
+```
+
 Create `tsconfig.eslint.json` next to the eslint config file, for example with content:
 
 ```json
