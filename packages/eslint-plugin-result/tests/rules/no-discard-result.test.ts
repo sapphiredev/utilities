@@ -1,7 +1,17 @@
+import { fileURLToPath } from 'url';
 import { noDiscardResult } from '../../src/rules/no-discard-result';
-import { ruleTester } from '../shared';
+import { RuleTester } from '@typescript-eslint/rule-tester';
 
-describe.skip('ESLint plugin result', () => {
+export const ruleTester = new RuleTester({
+	parserOptions: {
+		ecmaVersion: 2020,
+		tsconfigRootDir: fileURLToPath(new URL('..', import.meta.url)),
+		project: '../tsconfig.json'
+	},
+	parser: '@typescript-eslint/parser'
+});
+
+describe('ESLint plugin result', () => {
 	ruleTester.run('no-discard-result', noDiscardResult, {
 		valid: [
 			{
@@ -35,7 +45,7 @@ describe.skip('ESLint plugin result', () => {
 			{
 				code: `import { Result } from '@sapphire/result';
 					function foo(): Result<string, string> {}
-	
+
 					foo();`,
 				name: 'simple discard',
 				errors: [
@@ -48,7 +58,7 @@ describe.skip('ESLint plugin result', () => {
 			{
 				code: `import { Result } from '@sapphire/result';
 					async function foo(): Promise<Result<string, string>> {}
-	
+
 					foo();`,
 				name: 'unawaited async function discarded',
 				errors: [
@@ -61,7 +71,7 @@ describe.skip('ESLint plugin result', () => {
 			{
 				code: `import { Result } from '@sapphire/result';
 					async function foo(): Promise<Result<string, string>> {}
-	
+
 					await foo();`,
 				name: 'awaited async function discarded',
 				errors: [
@@ -74,7 +84,7 @@ describe.skip('ESLint plugin result', () => {
 			{
 				code: `import { Result } from '@sapphire/result';
 					function foo(): Promise<Result<string, string>> {}
-	
+
 					(
 						foo(),
 						await foo()
@@ -94,7 +104,7 @@ describe.skip('ESLint plugin result', () => {
 			{
 				code: `import { Result } from '@sapphire/result';
 					function foo(): Promise<Result<string, string>> {}
-	
+
 					null ?? foo();
 					`,
 				name: 'potential discard (??)',
