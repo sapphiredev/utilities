@@ -18,7 +18,7 @@
 	"homepage": "https://github.com/sapphiredev/utilities/tree/main/packages/eslint-plugin-result",
 	"scripts": {
 		"test": "vitest run",
-		"lint": "eslint src tests --ext ts --fix -c ../../.eslintrc",
+		"lint": "eslint src tests --fix -c ../../eslint.config.mjs",
 		"build": "tsup",
 		"prepack": "yarn build",
 		"bump": "cliff-jumper",

@@ -34,7 +34,7 @@ export function deepClone<T>(source: T): T {
 	}
 
 	if (Array.isArray(source)) {
-		const output = new (source.constructor as ArrayConstructor)(source.length) as unknown as T & T extends (infer S)[] ? S[] : never;
+		const output = new (source.constructor as ArrayConstructor)(source.length) as unknown as T extends (infer S)[] ? S[] : never;
 
 		for (let i = 0; i < source.length; i++) {
 			output[i] = deepClone(source[i]);
@@ -44,7 +44,7 @@ export function deepClone<T>(source: T): T {
 	}
 
 	if (source instanceof Map) {
-		const output = new (source.constructor as MapConstructor)() as unknown as T & T extends Map<infer K, infer V> ? Map<K, V> : never;
+		const output = new (source.constructor as MapConstructor)() as unknown as T extends Map<infer K, infer V> ? Map<K, V> : never;
 
 		for (const [key, value] of source.entries()) {
 			output.set(key, deepClone(value));
@@ -54,7 +54,7 @@ export function deepClone<T>(source: T): T {
 	}
 
 	if (source instanceof Set) {
-		const output = new (source.constructor as SetConstructor)() as unknown as T & T extends Set<infer K> ? Set<K> : never;
+		const output = new (source.constructor as SetConstructor)() as unknown as T extends Set<infer K> ? Set<K> : never;
 
 		for (const value of source.values()) {
 			output.add(deepClone(value));
