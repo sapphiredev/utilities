@@ -59,10 +59,10 @@
 		"esbuild-plugin-file-path-extensions": "^2.0.0",
 		"npm-run-all2": "^6.1.2",
 		"tsup": "^8.0.2",
-		"tsx": "^4.7.1",
+		"tsx": "^4.7.2",
 		"typedoc": "^0.25.12",
 		"typedoc-json-parser": "^9.0.1",
-		"typescript": "^5.4.3",
+		"typescript": "^5.4.4",
 		"vitest": "^1.4.0"
 	},
 	"exports": {
