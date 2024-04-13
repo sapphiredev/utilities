@@ -3,6 +3,7 @@ import type { MessageCreateOptions } from 'discord.js';
 export type MessageBuilderFileResolvable = NonNullable<MessageCreateOptions['files']>[number];
 export type MessageBuilderResolvable = Omit<MessageCreateOptions, 'embed' | 'disableMentions' | 'reply'> & {
 	embeds?: MessageCreateOptions['embeds'];
+	components?: MessageCreateOptions['components'];
 };
 
 /**
@@ -34,6 +35,11 @@ export class MessageBuilder implements MessageCreateOptions {
 	public embeds?: MessageCreateOptions['embeds'];
 
 	/**
+	 * The components for the message. If set to undefined and the builder is used to edit, the components will not be replaced.
+	 */
+	public components?: MessageCreateOptions['components'];
+
+	/**
 	 * Which mentions should be parsed from the message content.
 	 */
 	public allowedMentions?: MessageCreateOptions['allowedMentions'];
@@ -49,6 +55,7 @@ export class MessageBuilder implements MessageCreateOptions {
 		this.nonce = options?.nonce ?? MessageBuilder.defaults.nonce;
 		this.content = options?.content ?? MessageBuilder.defaults.content;
 		this.embeds = options?.embeds ?? MessageBuilder.defaults.embeds;
+		this.components = options?.components ?? MessageBuilder.defaults.components;
 		this.allowedMentions = options?.allowedMentions ?? MessageBuilder.defaults.allowedMentions;
 		this.files = options?.files ?? MessageBuilder.defaults.files;
 	}
@@ -94,6 +101,16 @@ export class MessageBuilder implements MessageCreateOptions {
 		}
 
 		this.embeds = embeds;
+		return this;
+	}
+
+	/**
+	 * Sets the value for the {@link MessageBuilder.components} field.
+	 * @param components The components for the message. If set to undefined and the builder is used to edit, the components will
+	 * not be replaced.
+	 */
+	public setComponents(components?: MessageCreateOptions['components']): this {
+		this.components = components;
 		return this;
 	}
 
