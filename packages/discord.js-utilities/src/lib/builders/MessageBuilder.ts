@@ -37,7 +37,7 @@ export class MessageBuilder implements MessageCreateOptions {
 	/**
 	 * The components for the message. If set to undefined and the builder is used to edit, the components will not be replaced.
 	 */
-	public components?: MessageCreateOptions["components"]
+	public components?: MessageCreateOptions['components']
 
 	/**
 	 * Which mentions should be parsed from the message content.
