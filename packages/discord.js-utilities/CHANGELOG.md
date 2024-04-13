@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/discord.js-utilities@7.2.0](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@7.1.6...@sapphire/discord.js-utilities@7.2.0) - (2024-04-13)
+
+## 🚀 Features
+
+- **discord.js-utilities:** Add components to MessageBuilder (#734) ([f463545](https://github.com/sapphiredev/utilities/commit/f4635450bdaa2838b95c5b0a23c1c6c221b77f7d))
+
 # [@sapphire/discord.js-utilities@7.1.6](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@7.1.6...@sapphire/discord.js-utilities@7.1.6) - (2024-01-19)
 
 ## 🐛 Bug Fixes
