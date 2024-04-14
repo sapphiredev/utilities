@@ -33,19 +33,19 @@
 		"tslib": "^2.6.2"
 	},
 	"devDependencies": {
-		"@favware/cliff-jumper": "^3.0.1",
+		"@favware/cliff-jumper": "^3.0.2",
 		"@sapphire/discord-utilities": "workspace:^",
 		"@sapphire/discord.js-utilities": "workspace:^",
 		"@sapphire/ratelimits": "workspace:^",
 		"@sapphire/result": "workspace:^",
 		"@sapphire/utilities": "workspace:^",
-		"@vitest/coverage-v8": "^1.4.0",
+		"@vitest/coverage-v8": "^1.5.0",
 		"tsup": "^8.0.2",
 		"tsx": "^4.7.2",
-		"typedoc": "^0.25.12",
+		"typedoc": "^0.25.13",
 		"typedoc-json-parser": "^9.0.1",
-		"typescript": "^5.4.4",
-		"vitest": "^1.4.0"
+		"typescript": "^5.4.5",
+		"vitest": "^1.5.0"
 	},
 	"repository": {
 		"type": "git",
