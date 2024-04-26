@@ -11,6 +11,7 @@
 /packages/eslint-plugin-result/**/*.ts @didinele
 /packages/event-iterator/**/*.ts @kyranet @vladfrangu @favna
 /packages/fetch/**/*.ts @favna @kyranet @vladfrangu
+/packages/iterator-utilities/**/*.ts @kyranet
 /packages/lexure/**/*.ts @kyranet @favna @vladfrangu
 /packages/node-utilities/**/*.ts @kyranet @favna @vladfrangu
 /packages/phisherman/**/*.ts @undiedgamer @favna @vladfrangu

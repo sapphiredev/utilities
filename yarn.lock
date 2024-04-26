@@ -1387,6 +1387,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@sapphire/iterator-utilities@workspace:packages/iterator-utilities":
+  version: 0.0.0-use.local
+  resolution: "@sapphire/iterator-utilities@workspace:packages/iterator-utilities"
+  dependencies:
+    "@favware/cliff-jumper": "npm:^3.0.2"
+    "@vitest/coverage-v8": "npm:^1.5.0"
+    tsup: "npm:^8.0.2"
+    tsx: "npm:^4.7.2"
+    typedoc: "npm:^0.25.13"
+    typedoc-json-parser: "npm:^9.0.1"
+    typescript: "npm:^5.4.5"
+    vitest: "npm:^1.5.0"
+  languageName: unknown
+  linkType: soft
+
 "@sapphire/lexure@npm:^1.1.7, @sapphire/lexure@workspace:packages/lexure":
   version: 0.0.0-use.local
   resolution: "@sapphire/lexure@workspace:packages/lexure"

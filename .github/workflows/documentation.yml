@@ -64,6 +64,7 @@ jobs:
           - duration
           - event-iterator
           - fetch
+          - iterator-utilities
           - lexure
           - node-utilities
           - phisherman
