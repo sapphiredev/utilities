@@ -281,6 +281,16 @@
 				"default": "./dist/cjs/lib/forEach.cjs"
 			}
 		},
+		"./from": {
+			"import": {
+				"types": "./dist/esm/lib/from.d.mts",
+				"default": "./dist/esm/lib/from.mjs"
+			},
+			"require": {
+				"types": "./dist/cjs/lib/from.d.cts",
+				"default": "./dist/cjs/lib/from.cjs"
+			}
+		},
 		"./indexOf": {
 			"import": {
 				"types": "./dist/esm/lib/indexOf.d.mts",
@@ -319,6 +329,16 @@
 			"require": {
 				"types": "./dist/cjs/lib/last.d.cts",
 				"default": "./dist/cjs/lib/last.cjs"
+			}
+		},
+		"./makeIterableIterator": {
+			"import": {
+				"types": "./dist/esm/lib/makeIterableIterator.d.mts",
+				"default": "./dist/esm/lib/makeIterableIterator.mjs"
+			},
+			"require": {
+				"types": "./dist/cjs/lib/makeIterableIterator.d.cts",
+				"default": "./dist/cjs/lib/makeIterableIterator.cjs"
 			}
 		},
 		"./map": {
@@ -589,6 +609,16 @@
 			"require": {
 				"types": "./dist/cjs/lib/toIntegerOrThrow.d.cts",
 				"default": "./dist/cjs/lib/toIntegerOrThrow.cjs"
+			}
+		},
+		"./toIterableIterator": {
+			"import": {
+				"types": "./dist/esm/lib/toIterableIterator.d.mts",
+				"default": "./dist/esm/lib/toIterableIterator.mjs"
+			},
+			"require": {
+				"types": "./dist/cjs/lib/toIterableIterator.d.cts",
+				"default": "./dist/cjs/lib/toIterableIterator.cjs"
 			}
 		},
 		"./toNumberOrThrow": {

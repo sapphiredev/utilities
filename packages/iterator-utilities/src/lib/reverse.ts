@@ -1,12 +1,15 @@
+import type { IterableResolvable } from './from';
+import { toIterableIterator } from './toIterableIterator';
+
 /**
  * Inverts the order of the elements in an iterator.
  *
- * @param iterator The iterator to reverse.
+ * @param iterable The iterator to reverse.
  * @returns An iterator whose element correspond to the elements of the provided iterator in reverse order.
  */
-export function* reverse<const ElementType>(iterator: IterableIterator<ElementType>): IterableIterator<ElementType> {
+export function* reverse<const ElementType>(iterable: IterableResolvable<ElementType>): IterableIterator<ElementType> {
 	const items: ElementType[] = [];
-	for (const item of iterator) {
+	for (const item of toIterableIterator(iterable)) {
 		items.push(item);
 	}
 

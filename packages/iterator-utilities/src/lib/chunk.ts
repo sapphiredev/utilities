@@ -1,15 +1,18 @@
+import type { IterableResolvable } from './from';
+import { toIterableIterator } from './toIterableIterator';
+
 /**
  * Splits the elements of an iterator into chunks of size at most `size`.
  *
- * @param iterator The iterator whose elements to chunk.
+ * @param iterable The iterator whose elements to chunk.
  * @param size The maximum size of each chunk.
  */
-export function* chunk<const ElementType>(iterator: IterableIterator<ElementType>, size: number): IterableIterator<ElementType[]> {
+export function* chunk<const ElementType>(iterable: IterableResolvable<ElementType>, size: number): IterableIterator<ElementType[]> {
 	const buffer: ElementType[] = [];
 	let i = 0;
 
-	for (const value of iterator) {
-		buffer.push(value);
+	for (const element of toIterableIterator(iterable)) {
+		buffer.push(element);
 		i++;
 
 		if (i === size) {

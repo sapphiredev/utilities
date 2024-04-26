@@ -1,11 +1,14 @@
+import type { IterableResolvable } from './from';
+import { toIterableIterator } from './toIterableIterator';
+
 /**
  * Returns an iterator that yields the entries of each iterator.
  *
- * @param iterator An iterator to map.
+ * @param iterables An iterator to map.
  * @returns An iterator that yields the entries of each iterator.
  */
-export function* flat<const ElementType>(iterator: IterableIterator<IterableIterator<ElementType>>): IterableIterator<ElementType> {
-	for (const value of iterator) {
-		yield* value;
+export function* flat<const ElementType>(iterables: IterableResolvable<IterableResolvable<ElementType>>): IterableIterator<ElementType> {
+	for (const value of toIterableIterator(iterables)) {
+		yield* toIterableIterator(value);
 	}
 }

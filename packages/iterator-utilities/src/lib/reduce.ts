@@ -1,6 +1,9 @@
+import type { IterableResolvable } from './from';
+import { toIterableIterator } from './toIterableIterator';
+
 /**
  *
- * @param iterator An iterator to reduce.
+ * @param iterable An iterator to reduce.
  * @param callbackFn A function to execute for each element produced by the iterator. Its return value becomes the value
  * of the `accumulator` parameter on the next invocation of `callbackFn`. For the last invocation, the return value
  * becomes the return value of `reduce()`.
@@ -12,14 +15,15 @@
  * @returns
  */
 export function reduce<const ElementType, const MappedType>(
-	iterator: IterableIterator<ElementType>,
+	iterable: IterableResolvable<ElementType>,
 	callbackFn: (accumulator: MappedType, currentValue: ElementType, currentIndex: number) => MappedType,
 	initialValue?: MappedType
 ): MappedType {
 	let index: number;
 	let accumulator: MappedType;
+	const resolvedIterable = toIterableIterator(iterable);
 	if (arguments.length < 3) {
-		const firstValue = iterator.next();
+		const firstValue = resolvedIterable.next();
 		if (firstValue.done) throw new TypeError('Reduce of empty iterator with no initial value');
 
 		index = 1;
@@ -29,7 +33,7 @@ export function reduce<const ElementType, const MappedType>(
 		accumulator = initialValue!;
 	}
 
-	for (const value of iterator) {
+	for (const value of resolvedIterable) {
 		accumulator = callbackFn(accumulator, value, index++);
 	}
 

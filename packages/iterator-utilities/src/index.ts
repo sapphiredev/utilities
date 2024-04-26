@@ -47,6 +47,7 @@ export * from './lib/takeLast';
 export * from './lib/takeWhile';
 export * from './lib/tee';
 export * from './lib/toArray';
+export * from './lib/toIterableIterator';
 export * from './lib/union';
 export * from './lib/unique';
 export * from './lib/unzip';

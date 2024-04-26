@@ -1,7 +1,6 @@
 import { defineWorkspace } from 'vitest/config';
 
 export default defineWorkspace([
-	'./vitest.config.ts',
 	'./packages/iterator-utilities/vitest.config.ts',
 	'./packages/discord-utilities/vitest.config.ts',
 	'./packages/lexure/vitest.config.ts',
@@ -15,7 +14,6 @@ export default defineWorkspace([
 	'./packages/stopwatch/vitest.config.ts',
 	'./packages/snowflake/vitest.config.ts',
 	'./packages/ratelimits/vitest.config.ts',
-	'./scripts/vitest.config.ts',
 	'./packages/fetch/vitest.config.ts',
 	'./packages/event-iterator/vitest.config.ts',
 	'./packages/node-utilities/vitest.config.ts',

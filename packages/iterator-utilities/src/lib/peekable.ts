@@ -1,19 +1,20 @@
-export function peekable<const ElementType, TReturn = any, TNext = undefined>(
-	iterator: Iterator<ElementType, TReturn, TNext>
-): Peekable<ElementType, TReturn, TNext> {
-	let peeked: IteratorResult<ElementType, TReturn> | undefined;
+import { from, type IterableResolvable } from './from';
+
+export function peekable<const ElementType>(iterable: IterableResolvable<ElementType>): Peekable<ElementType> {
+	const resolvedIterable = from(iterable);
+	let peeked: IteratorResult<ElementType> | undefined;
 	return {
-		next(...args) {
+		next() {
 			if (peeked) {
 				const value = peeked;
 				peeked = undefined;
 				return value;
 			}
 
-			return iterator.next(...args);
+			return resolvedIterable.next();
 		},
 		peek() {
-			peeked = peeked ?? iterator.next();
+			peeked = peeked ?? resolvedIterable.next();
 			return peeked;
 		},
 		[Symbol.iterator]() {
@@ -22,7 +23,6 @@ export function peekable<const ElementType, TReturn = any, TNext = undefined>(
 	};
 }
 
-export interface Peekable<T, TReturn, TNext> extends Iterator<T, TReturn, TNext> {
+export interface Peekable<T> extends IterableIterator<T> {
 	peek(): IteratorResult<T> | undefined;
-	[Symbol.iterator](): IterableIterator<T>;
 }
