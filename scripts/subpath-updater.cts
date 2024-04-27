@@ -44,6 +44,7 @@ async function main() {
 		const splitted = file.split('lib');
 		splitted.shift();
 		if (name === 'index') continue;
+		if (name.startsWith('_')) continue;
 
 		if (name === 'debounce') {
 			exportMap.set(`./${name}`, {

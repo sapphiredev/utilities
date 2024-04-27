@@ -1,7 +1,7 @@
 import { empty } from './empty';
 import type { IterableResolvable } from './from';
-import { assertNotNegative } from './shared/assertNotNegative';
-import { toIntegerOrInfinityOrThrow } from './shared/toIntegerOrInfinityOrThrow';
+import { assertNotNegative } from './shared/_assertNotNegative';
+import { toIntegerOrInfinityOrThrow } from './shared/_toIntegerOrInfinityOrThrow';
 import { take } from './take';
 import { toArray } from './toArray';
 

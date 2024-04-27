@@ -1,6 +1,6 @@
 import type { IterableResolvable } from './from';
 import { map } from './map';
-import { toNumberOrThrow, type NumberResolvable } from './shared/toNumberOrThrow';
+import { toNumberOrThrow, type NumberResolvable } from './shared/_toNumberOrThrow';
 
 /**
  * Consumes the iterable and returns the maximum element. If the iterable is empty, it returns `null`.

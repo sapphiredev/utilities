@@ -2,7 +2,7 @@ import { drop } from './drop';
 import { dropLast } from './dropLast';
 import { empty } from './empty';
 import type { IterableResolvable } from './from';
-import { toIntegerOrInfinityOrThrow } from './shared/toIntegerOrInfinityOrThrow';
+import { toIntegerOrInfinityOrThrow } from './shared/_toIntegerOrInfinityOrThrow';
 import { take } from './take';
 import { takeLast } from './takeLast';
 

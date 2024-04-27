@@ -1,8 +1,8 @@
 import { from, type IterableResolvable } from './from';
 import { repeat } from './repeat';
-import { assertNotNegative } from './shared/assertNotNegative';
-import { makeIterableIterator } from './shared/makeIterableIterator';
-import { toIntegerOrThrow } from './shared/toIntegerOrThrow';
+import { assertNotNegative } from './shared/_assertNotNegative';
+import { makeIterableIterator } from './shared/_makeIterableIterator';
+import { toIntegerOrThrow } from './shared/_toIntegerOrThrow';
 import { toArray } from './toArray';
 
 /**

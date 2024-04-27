@@ -1,5 +1,5 @@
 import { from, type IterableResolvable } from './from';
-import { makeIterableIterator } from './shared/makeIterableIterator';
+import { makeIterableIterator } from './shared/_makeIterableIterator';
 
 /**
  * Creates an iterable iterator from an iterable or iterator-like object.

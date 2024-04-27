@@ -1,8 +1,8 @@
 import { drop } from './drop';
 import { first } from './first';
 import type { IterableResolvable } from './from';
-import { assertNotNegative } from './shared/assertNotNegative';
-import { toIntegerOrInfinityOrThrow } from './shared/toIntegerOrInfinityOrThrow';
+import { assertNotNegative } from './shared/_assertNotNegative';
+import { toIntegerOrInfinityOrThrow } from './shared/_toIntegerOrInfinityOrThrow';
 
 /**
  * Advances the iterable to the `n`th element and returns it. If the iterable is exhausted before reaching the `n`th element, it returns `undefined`.

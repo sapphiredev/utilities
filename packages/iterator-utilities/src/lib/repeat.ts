@@ -1,6 +1,6 @@
-import { assertNotNegative } from './shared/assertNotNegative';
-import { makeIterableIterator } from './shared/makeIterableIterator';
-import { toNumberOrThrow } from './shared/toNumberOrThrow';
+import { assertNotNegative } from './shared/_assertNotNegative';
+import { makeIterableIterator } from './shared/_makeIterableIterator';
+import { toNumberOrThrow } from './shared/_toNumberOrThrow';
 
 /**
  * Creates an iterable that repeats the input iterable `count` times.

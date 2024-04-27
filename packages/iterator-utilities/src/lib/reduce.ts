@@ -1,5 +1,5 @@
 import type { IterableResolvable } from './from';
-import { assertFunction } from './shared/assertFunction';
+import { assertFunction } from './shared/_assertFunction';
 import { toIterableIterator } from './toIterableIterator';
 
 /**

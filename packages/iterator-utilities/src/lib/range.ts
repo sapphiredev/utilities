@@ -1,4 +1,4 @@
-import { toNumberOrThrow } from './shared/toNumberOrThrow';
+import { toNumberOrThrow } from './shared/_toNumberOrThrow';
 
 /**
  * Creates an iterable with the numbers from `start` to `stop` (exclusive) with an optional step.

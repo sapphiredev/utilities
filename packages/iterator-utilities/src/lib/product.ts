@@ -1,6 +1,6 @@
 import type { IterableResolvable } from './from';
 import { map } from './map';
-import { toNumberOrThrow } from './shared/toNumberOrThrow';
+import { toNumberOrThrow } from './shared/_toNumberOrThrow';
 
 /**
  * Consumes the iterable and returns the product of all the elements. If the iterable is empty, it returns `1`.

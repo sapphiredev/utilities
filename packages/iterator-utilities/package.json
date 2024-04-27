@@ -31,36 +31,6 @@
 				"default": "./dist/cjs/lib/append.cjs"
 			}
 		},
-		"./assertFunction": {
-			"import": {
-				"types": "./dist/esm/lib/assertFunction.d.mts",
-				"default": "./dist/esm/lib/assertFunction.mjs"
-			},
-			"require": {
-				"types": "./dist/cjs/lib/assertFunction.d.cts",
-				"default": "./dist/cjs/lib/assertFunction.cjs"
-			}
-		},
-		"./assertNotNegative": {
-			"import": {
-				"types": "./dist/esm/lib/assertNotNegative.d.mts",
-				"default": "./dist/esm/lib/assertNotNegative.mjs"
-			},
-			"require": {
-				"types": "./dist/cjs/lib/assertNotNegative.d.cts",
-				"default": "./dist/cjs/lib/assertNotNegative.cjs"
-			}
-		},
-		"./assertPositive": {
-			"import": {
-				"types": "./dist/esm/lib/assertPositive.d.mts",
-				"default": "./dist/esm/lib/assertPositive.mjs"
-			},
-			"require": {
-				"types": "./dist/cjs/lib/assertPositive.d.cts",
-				"default": "./dist/cjs/lib/assertPositive.cjs"
-			}
-		},
 		"./at": {
 			"import": {
 				"types": "./dist/esm/lib/at.d.mts",
@@ -351,16 +321,6 @@
 				"default": "./dist/cjs/lib/last.cjs"
 			}
 		},
-		"./makeIterableIterator": {
-			"import": {
-				"types": "./dist/esm/lib/makeIterableIterator.d.mts",
-				"default": "./dist/esm/lib/makeIterableIterator.mjs"
-			},
-			"require": {
-				"types": "./dist/cjs/lib/makeIterableIterator.d.cts",
-				"default": "./dist/cjs/lib/makeIterableIterator.cjs"
-			}
-		},
 		"./map": {
 			"import": {
 				"types": "./dist/esm/lib/map.d.mts",
@@ -611,26 +571,6 @@
 				"default": "./dist/cjs/lib/toArray.cjs"
 			}
 		},
-		"./toIntegerOrInfinityOrThrow": {
-			"import": {
-				"types": "./dist/esm/lib/toIntegerOrInfinityOrThrow.d.mts",
-				"default": "./dist/esm/lib/toIntegerOrInfinityOrThrow.mjs"
-			},
-			"require": {
-				"types": "./dist/cjs/lib/toIntegerOrInfinityOrThrow.d.cts",
-				"default": "./dist/cjs/lib/toIntegerOrInfinityOrThrow.cjs"
-			}
-		},
-		"./toIntegerOrThrow": {
-			"import": {
-				"types": "./dist/esm/lib/toIntegerOrThrow.d.mts",
-				"default": "./dist/esm/lib/toIntegerOrThrow.mjs"
-			},
-			"require": {
-				"types": "./dist/cjs/lib/toIntegerOrThrow.d.cts",
-				"default": "./dist/cjs/lib/toIntegerOrThrow.cjs"
-			}
-		},
 		"./toIterableIterator": {
 			"import": {
 				"types": "./dist/esm/lib/toIterableIterator.d.mts",
@@ -639,16 +579,6 @@
 			"require": {
 				"types": "./dist/cjs/lib/toIterableIterator.d.cts",
 				"default": "./dist/cjs/lib/toIterableIterator.cjs"
-			}
-		},
-		"./toNumberOrThrow": {
-			"import": {
-				"types": "./dist/esm/lib/toNumberOrThrow.d.mts",
-				"default": "./dist/esm/lib/toNumberOrThrow.mjs"
-			},
-			"require": {
-				"types": "./dist/cjs/lib/toNumberOrThrow.d.cts",
-				"default": "./dist/cjs/lib/toNumberOrThrow.cjs"
 			}
 		},
 		"./union": {

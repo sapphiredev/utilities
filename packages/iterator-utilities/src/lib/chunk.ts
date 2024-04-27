@@ -1,6 +1,6 @@
 import type { IterableResolvable } from './from';
-import { assertPositive } from './shared/assertPositive';
-import { toIntegerOrThrow } from './shared/toIntegerOrThrow';
+import { assertPositive } from './shared/_assertPositive';
+import { toIntegerOrThrow } from './shared/_toIntegerOrThrow';
 import { toIterableIterator } from './toIterableIterator';
 
 /**

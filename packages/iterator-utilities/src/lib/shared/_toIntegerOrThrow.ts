@@ -1,4 +1,4 @@
-import { toNumberOrThrow } from './toNumberOrThrow';
+import { toNumberOrThrow } from './_toNumberOrThrow';
 
 export function toIntegerOrThrow(value: number): number {
 	const number = toNumberOrThrow(value);

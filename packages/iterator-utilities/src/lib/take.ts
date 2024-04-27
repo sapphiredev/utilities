@@ -1,8 +1,8 @@
 import { empty } from './empty';
 import { from, type IterableResolvable } from './from';
-import { assertNotNegative } from './shared/assertNotNegative';
-import { makeIterableIterator } from './shared/makeIterableIterator';
-import { toIntegerOrInfinityOrThrow } from './shared/toIntegerOrInfinityOrThrow';
+import { assertNotNegative } from './shared/_assertNotNegative';
+import { makeIterableIterator } from './shared/_makeIterableIterator';
+import { toIntegerOrInfinityOrThrow } from './shared/_toIntegerOrInfinityOrThrow';
 
 /**
  * Creates an iterable with the first `count` elements.
