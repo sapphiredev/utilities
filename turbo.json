@@ -21,6 +21,7 @@
 				"@sapphire/discord.js-utilities#build",
 				"@sapphire/duration#build",
 				"@sapphire/fetch#build",
+				"@sapphire/iterator-utilities#build",
 				"@sapphire/lexure#build",
 				"@sapphire/ratelimits#build",
 				"@sapphire/result#build",
@@ -41,7 +42,7 @@
 			"outputs": ["package.json"]
 		},
 		"build:dynamic-side-effects": {
-			"dependsOn": ["@sapphire/utilities#build"],
+			"dependsOn": ["@sapphire/iterator-utilities#build", "@sapphire/utilities#build"],
 			"outputs": ["package.json"]
 		},
 		"docs": {
@@ -51,6 +52,7 @@
 				"@sapphire/cron#build",
 				"@sapphire/discord.js-utilities#build",
 				"@sapphire/fetch#build",
+				"@sapphire/iterator-utilities#build",
 				"@sapphire/lexure#build",
 				"@sapphire/ratelimits#build",
 				"@sapphire/timer-manager#build",
