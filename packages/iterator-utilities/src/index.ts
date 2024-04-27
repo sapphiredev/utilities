@@ -22,6 +22,7 @@ export * from './lib/first';
 export * from './lib/flat';
 export * from './lib/flatMap';
 export * from './lib/forEach';
+export * from './lib/from';
 export * from './lib/indexOf';
 export * from './lib/intersect';
 export * from './lib/isEmpty';

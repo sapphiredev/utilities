@@ -1,8 +1,8 @@
-import { assertNotNegative } from './common/assertNotNegative';
-import { toIntegerOrInfinityOrThrow } from './common/toIntegerOrInfinityOrThrow';
 import { drop } from './drop';
 import { first } from './first';
 import type { IterableResolvable } from './from';
+import { assertNotNegative } from './shared/assertNotNegative';
+import { toIntegerOrInfinityOrThrow } from './shared/toIntegerOrInfinityOrThrow';
 
 /**
  * Returns the element at a specified index in an iterator.
@@ -12,6 +12,6 @@ import type { IterableResolvable } from './from';
  * @returns The element at the specified index, or `undefined` if the index is out of range.
  */
 export function at<const ElementType>(iterable: IterableResolvable<ElementType>, index: number): ElementType | undefined {
-	const integerIndex = assertNotNegative(toIntegerOrInfinityOrThrow(index), index);
-	return first(integerIndex === 0 ? iterable : drop(iterable, integerIndex - 1));
+	index = assertNotNegative(toIntegerOrInfinityOrThrow(index), index);
+	return first(index === 0 ? iterable : drop(iterable, index));
 }

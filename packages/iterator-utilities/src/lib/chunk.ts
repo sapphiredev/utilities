@@ -1,4 +1,6 @@
 import type { IterableResolvable } from './from';
+import { assertPositive } from './shared/assertPositive';
+import { toIntegerOrThrow } from './shared/toIntegerOrThrow';
 import { toIterableIterator } from './toIterableIterator';
 
 /**
@@ -8,17 +10,15 @@ import { toIterableIterator } from './toIterableIterator';
  * @param size The maximum size of each chunk.
  */
 export function* chunk<const ElementType>(iterable: IterableResolvable<ElementType>, size: number): IterableIterator<ElementType[]> {
-	const buffer: ElementType[] = [];
-	let i = 0;
+	size = assertPositive(toIntegerOrThrow(size), size);
 
+	let buffer: ElementType[] = [];
 	for (const element of toIterableIterator(iterable)) {
 		buffer.push(element);
-		i++;
 
-		if (i === size) {
+		if (buffer.length === size) {
 			yield buffer;
-			buffer.length = 0;
-			i = 0;
+			buffer = [];
 		}
 	}
 

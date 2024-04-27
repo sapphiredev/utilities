@@ -1,5 +1,5 @@
-import { makeIterableIterator } from './common/makeIterableIterator';
 import { from, type IterableResolvable } from './from';
+import { makeIterableIterator } from './shared/makeIterableIterator';
 
 export function toIterableIterator<const ElementType>(iterable: IterableResolvable<ElementType>): IterableIterator<ElementType> {
 	const resolvedIterable = from(iterable);

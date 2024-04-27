@@ -1,4 +1,4 @@
-import { makeIterableIterator } from './common/makeIterableIterator';
+import { makeIterableIterator } from './shared/makeIterableIterator';
 
 /**
  * Creates a new empty iterator.

@@ -31,6 +31,16 @@
 				"default": "./dist/cjs/lib/append.cjs"
 			}
 		},
+		"./assertFunction": {
+			"import": {
+				"types": "./dist/esm/lib/assertFunction.d.mts",
+				"default": "./dist/esm/lib/assertFunction.mjs"
+			},
+			"require": {
+				"types": "./dist/cjs/lib/assertFunction.d.cts",
+				"default": "./dist/cjs/lib/assertFunction.cjs"
+			}
+		},
 		"./assertNotNegative": {
 			"import": {
 				"types": "./dist/esm/lib/assertNotNegative.d.mts",
@@ -39,6 +49,16 @@
 			"require": {
 				"types": "./dist/cjs/lib/assertNotNegative.d.cts",
 				"default": "./dist/cjs/lib/assertNotNegative.cjs"
+			}
+		},
+		"./assertPositive": {
+			"import": {
+				"types": "./dist/esm/lib/assertPositive.d.mts",
+				"default": "./dist/esm/lib/assertPositive.mjs"
+			},
+			"require": {
+				"types": "./dist/cjs/lib/assertPositive.d.cts",
+				"default": "./dist/cjs/lib/assertPositive.cjs"
 			}
 		},
 		"./at": {

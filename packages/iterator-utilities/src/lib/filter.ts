@@ -1,4 +1,5 @@
 import type { IterableResolvable } from './from';
+import { assertFunction } from './shared/assertFunction';
 import { toIterableIterator } from './toIterableIterator';
 
 export function filter<const ElementType, const FilteredType extends ElementType>(
@@ -21,6 +22,8 @@ export function* filter<ElementType>(
 	iterable: IterableResolvable<ElementType>,
 	callbackFn: (element: ElementType, index: number) => boolean
 ): IterableIterator<ElementType> {
+	callbackFn = assertFunction(callbackFn);
+
 	let index = 0;
 	for (const value of toIterableIterator(iterable)) {
 		if (callbackFn(value, index++)) yield value;

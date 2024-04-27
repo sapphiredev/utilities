@@ -1,4 +1,5 @@
 import type { IterableResolvable } from './from';
+import { assertFunction } from './shared/assertFunction';
 import { toIterableIterator } from './toIterableIterator';
 
 /**
@@ -19,6 +20,8 @@ export function reduce<const ElementType, const MappedType>(
 	callbackFn: (accumulator: MappedType, currentValue: ElementType, currentIndex: number) => MappedType,
 	initialValue?: MappedType
 ): MappedType {
+	callbackFn = assertFunction(callbackFn);
+
 	let index: number;
 	let accumulator: MappedType;
 	const resolvedIterable = toIterableIterator(iterable);

@@ -1,15 +1,15 @@
-import { makeIterableIterator } from './common/makeIterableIterator';
 import type { IterableResolvable } from './from';
+import { assertFunction } from './shared/assertFunction';
 import { toIterableIterator } from './toIterableIterator';
 
 export function partition<const ElementType, const FilteredType extends ElementType>(
 	iterable: IterableResolvable<ElementType>,
-	predicate: (value: ElementType) => value is FilteredType
-): [IterableIterator<FilteredType>, IterableIterator<Exclude<ElementType, FilteredType>>];
+	predicate: (value: ElementType, index: number) => value is FilteredType
+): [FilteredType[], Exclude<ElementType, FilteredType>[]];
 export function partition<const ElementType>(
 	iterable: IterableResolvable<ElementType>,
-	predicate: (value: ElementType) => boolean
-): [IterableIterator<ElementType>, IterableIterator<ElementType>];
+	predicate: (value: ElementType, index: number) => boolean
+): [ElementType[], ElementType[]];
 
 /**
  * Partitions an iterator into two iterators based on a predicate.
@@ -21,42 +21,21 @@ export function partition<const ElementType>(
  */
 export function partition<const ElementType>(
 	iterable: IterableResolvable<ElementType>,
-	predicate: (value: ElementType) => boolean
-): [IterableIterator<ElementType>, IterableIterator<ElementType>] {
+	predicate: (value: ElementType, index: number) => boolean
+): [ElementType[], ElementType[]] {
+	predicate = assertFunction(predicate);
+
 	const bufferLeft: ElementType[] = [];
 	const bufferRight: ElementType[] = [];
 
-	const resolvedIterable = toIterableIterator(iterable);
-	return [
-		makeIterableIterator<ElementType>(() => {
-			if (bufferLeft.length > 0) {
-				return { done: false, value: bufferLeft.shift()! };
-			}
+	let index = 0;
+	for (const value of toIterableIterator(iterable)) {
+		if (predicate(value, index++)) {
+			bufferLeft.push(value);
+		} else {
+			bufferRight.push(value);
+		}
+	}
 
-			for (const value of resolvedIterable) {
-				if (predicate(value)) {
-					return { done: false, value };
-				}
-
-				bufferRight.push(value);
-			}
-
-			return { done: true, value: undefined };
-		}),
-		makeIterableIterator<ElementType>(() => {
-			if (bufferRight.length > 0) {
-				return { done: false, value: bufferRight.shift()! };
-			}
-
-			for (const value of resolvedIterable) {
-				if (!predicate(value)) {
-					return { done: false, value };
-				}
-
-				bufferLeft.push(value);
-			}
-
-			return { done: true, value: undefined };
-		})
-	];
+	return [bufferLeft, bufferRight];
 }

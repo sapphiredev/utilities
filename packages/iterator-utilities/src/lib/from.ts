@@ -21,7 +21,7 @@ export function from(value: any) {
 		return value[Symbol.iterator]();
 	}
 
-	throw new TypeError(`${String(value)} cannot be converted to an iterator`);
+	throw new TypeError(`${String(value)} cannot be converted to an iterable`);
 }
 
 export type IterableResolvable<ElementType> = Iterable<ElementType> | Iterator<ElementType> | IterableIterator<ElementType>;

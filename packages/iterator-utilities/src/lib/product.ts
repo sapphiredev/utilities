@@ -1,6 +1,6 @@
-import { toNumberOrThrow } from './common/toNumberOrThrow';
 import type { IterableResolvable } from './from';
 import { map } from './map';
+import { toNumberOrThrow } from './shared/toNumberOrThrow';
 
 /**
  * Calculates the product of the elements in the input iterator.

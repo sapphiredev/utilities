@@ -12,6 +12,5 @@ export function sorted<const ElementType>(
 	iterable: IterableResolvable<ElementType>,
 	compareFn?: (a: ElementType, b: ElementType) => number
 ): IterableIterator<ElementType> {
-	const values = toArray(iterable).sort(compareFn);
-	return values.values();
+	return toArray(iterable).sort(compareFn).values();
 }

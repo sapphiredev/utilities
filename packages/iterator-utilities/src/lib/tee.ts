@@ -1,8 +1,8 @@
-import { assertNotNegative } from './common/assertNotNegative';
-import { makeIterableIterator } from './common/makeIterableIterator';
-import { toIntegerOrThrow } from './common/toIntegerOrThrow';
 import { from, type IterableResolvable } from './from';
 import { repeat } from './repeat';
+import { assertNotNegative } from './shared/assertNotNegative';
+import { makeIterableIterator } from './shared/makeIterableIterator';
+import { toIntegerOrThrow } from './shared/toIntegerOrThrow';
 import { toArray } from './toArray';
 
 /**
@@ -13,15 +13,15 @@ import { toArray } from './toArray';
  * @returns An array of `count` iterators that each yield the same values as the input iterator.
  */
 export function tee<const ElementType>(iterable: IterableResolvable<ElementType>, count: number): IterableIterator<ElementType>[] {
-	const integerCount = assertNotNegative(toIntegerOrThrow(count), count);
-	if (integerCount === 0) return [];
+	count = assertNotNegative(toIntegerOrThrow(count), count);
+	if (count === 0) return [];
 
 	const entries = [] as ElementType[];
-	const indexes = toArray(repeat(0, integerCount));
+	const indexes = toArray(repeat(0, count));
 	const resolvedIterable = from(iterable);
 
 	const iterables = [] as IterableIterator<ElementType>[];
-	for (let i = 0; i < integerCount; i++) {
+	for (let i = 0; i < count; i++) {
 		const iterable = makeIterableIterator<ElementType>(() => {
 			if (indexes[i] >= entries.length) {
 				const result = resolvedIterable.next();

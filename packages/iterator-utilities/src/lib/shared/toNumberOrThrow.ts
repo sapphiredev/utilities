@@ -1,4 +1,4 @@
-export function toNumberOrThrow(value: unknown): number {
+export function toNumberOrThrow(value: NumberResolvable): number {
 	switch (typeof value) {
 		case 'bigint':
 			throw new TypeError('Cannot convert a BigInt value to a number');
@@ -9,11 +9,13 @@ export function toNumberOrThrow(value: unknown): number {
 		case 'number':
 			return assertNumber(value, value);
 		case 'undefined':
-			throw new TypeError('Cannot convert an undefined value to a non-NaN number');
+			throw new TypeError('Cannot convert an undefined value to a number');
 		default:
 			return assertNumber(Number(value), value);
 	}
 }
+
+export type NumberResolvable = number | boolean | null | { valueOf(): number | boolean | null } | { [Symbol.toPrimitive](): number | boolean | null };
 
 function assertNumber(value: number, original: unknown): number {
 	if (Number.isNaN(value)) {

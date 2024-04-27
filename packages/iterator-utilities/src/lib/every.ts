@@ -1,4 +1,5 @@
 import type { IterableResolvable } from './from';
+import { assertFunction } from './shared/assertFunction';
 import { toIterableIterator } from './toIterableIterator';
 
 export function every<const ElementType, const FilteredType extends ElementType>(
@@ -18,6 +19,8 @@ export function every<const ElementType>(
  * @returns `true` if callbackFn returns a truthy value for every element. Otherwise, `false`.
  */
 export function every<const ElementType>(iterable: IterableResolvable<ElementType>, callbackFn: (element: ElementType, index: number) => boolean) {
+	callbackFn = assertFunction(callbackFn);
+
 	let index = 0;
 	for (const value of toIterableIterator(iterable)) {
 		if (!callbackFn(value, index++)) return false;

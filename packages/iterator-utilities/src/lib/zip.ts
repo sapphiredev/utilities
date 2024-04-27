@@ -17,7 +17,7 @@ export function* zip<const Iterables extends readonly IterableResolvable<any>[]>
 			results.push(result.value);
 		}
 
-		yield results.map((result) => result.value) as any;
+		yield results as any;
 	}
 }
 

@@ -1,8 +1,8 @@
-import { assertNotNegative } from './common/assertNotNegative';
-import { makeIterableIterator } from './common/makeIterableIterator';
-import { toIntegerOrInfinityOrThrow } from './common/toIntegerOrInfinityOrThrow';
 import { empty } from './empty';
 import type { IterableResolvable } from './from';
+import { assertNotNegative } from './shared/assertNotNegative';
+import { makeIterableIterator } from './shared/makeIterableIterator';
+import { toIntegerOrInfinityOrThrow } from './shared/toIntegerOrInfinityOrThrow';
 import { toArray } from './toArray';
 
 /**
@@ -13,11 +13,11 @@ import { toArray } from './toArray';
  * @returns An iterator that contains the last `count` elements of the provided iterator.
  */
 export function takeLast<const ElementType>(iterable: IterableResolvable<ElementType>, limit: number): IterableIterator<ElementType> {
-	const integerLimit = assertNotNegative(toIntegerOrInfinityOrThrow(limit), limit);
-	if (integerLimit === 0) return empty();
+	limit = assertNotNegative(toIntegerOrInfinityOrThrow(limit), limit);
+	if (limit === 0) return empty();
 
 	const array = toArray(iterable);
-	let i = array.length - integerLimit;
+	let i = Math.max(0, array.length - limit);
 	return makeIterableIterator<ElementType>(() => {
 		if (i >= array.length) {
 			return { done: true, value: undefined };

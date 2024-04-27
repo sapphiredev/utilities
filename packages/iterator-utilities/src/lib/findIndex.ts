@@ -1,4 +1,5 @@
 import type { IterableResolvable } from './from';
+import { assertFunction } from './shared/assertFunction';
 import { toIterableIterator } from './toIterableIterator';
 
 /**
@@ -12,6 +13,8 @@ export function findIndex<const ElementType>(
 	iterable: IterableResolvable<ElementType>,
 	callbackFn: (element: ElementType, index: number) => boolean
 ): number {
+	callbackFn = assertFunction(callbackFn);
+
 	let index = 0;
 	for (const element of toIterableIterator(iterable)) {
 		if (callbackFn(element, index)) {
