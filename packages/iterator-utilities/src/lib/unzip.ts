@@ -2,10 +2,28 @@ import type { IterableResolvable } from './from';
 import { toIterableIterator } from './toIterableIterator';
 
 /**
- * Unzips an iterable that yields arrays into an array of iterables that yield the values of the original iterable.
+ * Creates an array for each element of the input iterable, transposing the input iterable. The opposite of {@linkcode zip}.
  *
  * @param iterable An iterable to unzip.
  * @returns An array of iterables that yield the values of the original iterable.
+ *
+ * @example
+ * ```typescript
+ * import { unzip } from '@sapphire/iterator-utilities';
+ *
+ * const iterable = [[1, 'a'], [2, 'b'], [3, 'c']];
+ * const [numbers, letters] = unzip(iterable);
+ *
+ * console.log(numbers);
+ * // Output: [1, 2, 3]
+ *
+ * console.log(letters);
+ * // Output: ['a', 'b', 'c']
+ * ```
+ *
+ * @remarks
+ *
+ * This function consumes the entire iterable.
  */
 export function unzip<const ElementType extends readonly any[]>(iterable: IterableResolvable<ElementType>): UnzipIterable<ElementType> {
 	const resolvedIterable = toIterableIterator(iterable);

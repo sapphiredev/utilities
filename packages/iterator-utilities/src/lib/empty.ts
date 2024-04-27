@@ -1,9 +1,18 @@
 import { makeIterableIterator } from './shared/makeIterableIterator';
 
 /**
- * Creates a new empty iterator.
+ * Creates an empty iterator.
  *
  * @returns An empty iterator.
+ *
+ * @example
+ * ```typescript
+ * import { empty } from '@sapphire/iterator-utilities';
+ *
+ * const iterable = empty();
+ * console.log([...iterable]);
+ * // Output: []
+ * ```
  */
 export function empty<const ElementType = never>(): IterableIterator<ElementType> {
 	return makeIterableIterator<ElementType>(() => ({ done: true, value: undefined }));

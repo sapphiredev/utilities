@@ -3,6 +3,7 @@ import { assertFunction } from './shared/assertFunction';
 import { toIterableIterator } from './toIterableIterator';
 
 /**
+ * Consumes the iterable and reduces it to the reducer function's result.
  *
  * @param iterable An iterator to reduce.
  * @param callbackFn A function to execute for each element produced by the iterator. Its return value becomes the value
@@ -14,6 +15,20 @@ import { toIterableIterator } from './toIterableIterator';
  * with the second element as `currentValue`. In this case, if the iterator is empty (so that there's no first value to
  * return as `accumulator`), an error is thrown.
  * @returns
+ *
+ * @example
+ * ```typescript
+ * import { reduce } from '@sapphire/iterator-utilities';
+ *
+ * const iterable = [1, 2, 3, 4, 5];
+ * console.log(reduce(iterable, (accumulator, currentValue) => accumulator + currentValue));
+ * // Output: 15
+ * ```
+ *
+ * @remarks
+ *
+ * If `initialValue` is not provided, the first element of the iterator is used as the initial value of `accumulator`,
+ * consuming the first element.
  */
 export function reduce<const ElementType, const MappedType>(
 	iterable: IterableResolvable<ElementType>,

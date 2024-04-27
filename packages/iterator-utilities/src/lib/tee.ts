@@ -6,11 +6,24 @@ import { toIntegerOrThrow } from './shared/toIntegerOrThrow';
 import { toArray } from './toArray';
 
 /**
- * Creates a number of iterators that each yield the same values as the input iterator.
+ * Creates `count` independent iterators from the input iterable.
  *
  * @param iterable An iterator to tee.
  * @param count The number of iterators to create.
  * @returns An array of `count` iterators that each yield the same values as the input iterator.
+ *
+ * @example
+ * ```typescript
+ * import { tee } from '@sapphire/iterator-utilities';
+ *
+ * const iterable = [1, 2, 3, 4, 5];
+ * const [iter1, iter2] = tee(iterable, 2);
+ * console.log([...iter1]);
+ * // Output: [1, 2, 3, 4, 5]
+ *
+ * console.log([...iter2]);
+ * // Output: [1, 2, 3, 4, 5]
+ * ```
  */
 export function tee<const ElementType>(iterable: IterableResolvable<ElementType>, count: number): IterableIterator<ElementType>[] {
 	count = assertNotNegative(toIntegerOrThrow(count), count);

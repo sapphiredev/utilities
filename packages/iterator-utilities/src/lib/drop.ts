@@ -5,11 +5,20 @@ import { toIntegerOrInfinityOrThrow } from './shared/toIntegerOrInfinityOrThrow'
 import { toIterableIterator } from './toIterableIterator';
 
 /**
- * Creates a new iterator that contains the elements of the provided iterator, except for the first `limit` elements.
+ * Advances the iterable by `count` elements from the iterable.
  *
  * @param iterable An iterator to drop values from.
  * @param count The number of elements to drop from the start of the iteration.
- * @returns An iterator that contains the elements of the provided iterator, except for the first `limit` elements.
+ * @returns An iterator that contains the elements of the provided iterator, except for the first `count` elements.
+ *
+ * @example
+ * ```typescript
+ * import { drop } from '@sapphire/iterator-utilities';
+ *
+ * const iterable = drop(iterator, 2);
+ * console.log([...iterable]);
+ * // Output: [3, 4, 5]
+ * ```
  */
 export function drop<const ElementType>(iterable: IterableResolvable<ElementType>, count: number): IterableIterator<ElementType> {
 	count = assertNotNegative(toIntegerOrInfinityOrThrow(count), count);

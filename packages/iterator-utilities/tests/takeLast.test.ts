@@ -15,6 +15,13 @@ describe('takeLast', () => {
 		expect(result).toEqual([1, 2, 3]);
 	});
 
+	test('GIVEN iterable and limit of Infinity THEN returns all elements of iterable', () => {
+		const iterable = [1, 2, 3];
+		const limit = Number.POSITIVE_INFINITY;
+		const result = [...takeLast(iterable, limit)];
+		expect(result).toEqual([1, 2, 3]);
+	});
+
 	test('GIVEN empty iterable THEN returns empty iterable', () => {
 		const iterable: number[] = [];
 		const limit = 3;

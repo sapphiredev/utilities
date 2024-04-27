@@ -4,20 +4,35 @@ import { assertNotNegative } from './shared/assertNotNegative';
 import { makeIterableIterator } from './shared/makeIterableIterator';
 import { toIntegerOrInfinityOrThrow } from './shared/toIntegerOrInfinityOrThrow';
 import { toArray } from './toArray';
+import { toIterableIterator } from './toIterableIterator';
 
 /**
- * Returns a new iterator that contains the last `count` elements from `iterator`.
+ * Consumes the iterable and returns a new iterable with the last `count` elements.
  *
  * @param iterable An iterator to take values from.
- * @param limit The number of values to take from the end of the iterator.
+ * @param count The number of values to take from the end of the iterator.
  * @returns An iterator that contains the last `count` elements of the provided iterator.
+ *
+ * @example
+ * ```typescript
+ * import { takeLast } from '@sapphire/iterator-utilities';
+ *
+ * const iterable = [1, 2, 3, 4, 5];
+ * console.log([...takeLast(iterable, 2)]);
+ * // Output: [4, 5]
+ * ```
+ *
+ * @remarks
+ *
+ * This function consumes the entire iterator.
  */
-export function takeLast<const ElementType>(iterable: IterableResolvable<ElementType>, limit: number): IterableIterator<ElementType> {
-	limit = assertNotNegative(toIntegerOrInfinityOrThrow(limit), limit);
-	if (limit === 0) return empty();
+export function takeLast<const ElementType>(iterable: IterableResolvable<ElementType>, count: number): IterableIterator<ElementType> {
+	count = assertNotNegative(toIntegerOrInfinityOrThrow(count), count);
+	if (count === 0) return empty();
+	if (count === Number.POSITIVE_INFINITY) return toIterableIterator(iterable);
 
 	const array = toArray(iterable);
-	let i = Math.max(0, array.length - limit);
+	let i = Math.max(0, array.length - count);
 	return makeIterableIterator<ElementType>(() => {
 		if (i >= array.length) {
 			return { done: true, value: undefined };
