@@ -26,7 +26,6 @@ export function filter<const ElementType>(
 	iterable: IterableResolvable<ElementType>,
 	callbackFn: (element: ElementType, index: number) => boolean
 ): IterableIterator<ElementType>;
-
 export function* filter<ElementType>(
 	iterable: IterableResolvable<ElementType>,
 	callbackFn: (element: ElementType, index: number) => boolean

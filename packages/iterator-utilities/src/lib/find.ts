@@ -30,7 +30,6 @@ export function find<const ElementType>(
 	iterable: IterableResolvable<ElementType>,
 	callbackFn: (element: ElementType, index: number) => boolean
 ): ElementType | undefined;
-
 export function find<const ElementType>(
 	iterable: IterableResolvable<ElementType>,
 	callbackFn: (element: ElementType, index: number) => boolean

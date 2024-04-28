@@ -33,7 +33,6 @@ export function every<const ElementType>(
 	iterable: IterableResolvable<ElementType>,
 	callbackFn: (element: ElementType, index: number) => boolean
 ): boolean;
-
 export function every<const ElementType>(iterable: IterableResolvable<ElementType>, callbackFn: (element: ElementType, index: number) => boolean) {
 	callbackFn = assertFunction(callbackFn);
 
