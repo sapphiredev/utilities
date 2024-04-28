@@ -84,7 +84,7 @@
 		"@sapphire/eslint-config": "workspace:^",
 		"@sapphire/eslint-plugin-result": "workspace:^",
 		"@vitest/coverage-v8": "^1.5.2",
-		"typedoc-json-parser": "^9.0.1",
+		"typedoc-json-parser": "^10.0.0",
 		"vitest": "^1.5.2"
 	}
 }
