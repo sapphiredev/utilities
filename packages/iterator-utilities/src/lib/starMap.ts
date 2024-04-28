@@ -5,8 +5,8 @@ import { toIterableIterator } from './toIterableIterator';
 /**
  * Creates an iterable with the results of calling a provided function on each element of the input iterables as the function's parameters.
  *
- * @param iterable - The iterable to map over.
- * @param callbackFn - The callback function to apply to each element.
+ * @param iterable The iterable to map over.
+ * @param callbackFn The callback function to apply to each element.
  * @returns An iterable iterator that yields the mapped elements.
  *
  * @example
@@ -20,7 +20,9 @@ import { toIterableIterator } from './toIterableIterator';
  *
  * @remarks
  *
- * If the input iterable produces a value that is not an array, this function throws a `TypeError`.
+ * While very similar to {@link map}, `starMap` takes an iterable of iterables (which can be an array of tuples) and
+ * calls the function with each inner iterable's values as the function's parameters. {@link map} calls the function
+ * with the value and the index by comparison.
  */
 export function* starMap<const ElementType extends IterableResolvable<any>, const MappedType>(
 	iterable: IterableResolvable<ElementType>,
