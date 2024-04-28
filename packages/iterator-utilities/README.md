@@ -162,6 +162,17 @@ for (const element of iterable) {
 }
 ```
 
+### `difference`
+
+Creates an iterable with the elements of the first iterable that are not in the second iterable.
+
+```typescript
+const first = [1, 2, 3, 4, 5];
+const second = [3, 4, 5, 6, 7];
+console.log([...difference(first, second)]);
+// Output: [1, 2]
+```
+
 ### `drop`
 
 Advances the iterable by `count` elements from the iterable.
@@ -226,17 +237,6 @@ console.log(every(iterable, (value) => value < 10));
 // Output: true
 console.log(every(iterable, (value) => value < 3));
 // Output: false
-```
-
-### `except`
-
-Creates an iterable with the elements of the first iterable that are not in the second iterable.
-
-```typescript
-const first = [1, 2, 3, 4, 5];
-const second = [3, 4, 5, 6, 7];
-console.log([...except(first, second)]);
-// Output: [1, 2]
 ```
 
 ### `filter`
@@ -375,7 +375,7 @@ console.log([...map(iterable, (value) => value * 2)]);
 
 ### `max`
 
-Consumes the iterable and returns the maximum element. If the iterable is empty, it returns `null`.
+Consumes the iterable and returns the highest number element. If the iterable is empty, or contains only non-number values, it returns `null`.
 
 ```typescript
 const iterable = [1, 2, 3, 4, 5];
@@ -385,7 +385,7 @@ console.log(max(iterable));
 
 ### `min`
 
-Consumes the iterable and returns the minimum element. If the iterable is empty, it returns `null`.
+Consumes the iterable and returns the lowest number element. If the iterable is empty, or contains only non-number values, it returns `null`.
 
 ```typescript
 const iterable = [1, 2, 3, 4, 5];
@@ -508,7 +508,7 @@ console.log([...reverse('hello')]);
 
 ### `slice`
 
-Creates an iterable with the elements from the `start` index to the `end` index (exclusive).
+Produces an iterable with the elements from the `start` index to the `end` index (exclusive).
 
 ```typescript
 const iterable = [1, 2, 3, 4, 5];

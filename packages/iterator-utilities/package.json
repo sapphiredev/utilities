@@ -9,6 +9,58 @@
 	"browser": "dist/iife/index.global.js",
 	"unpkg": "dist/iife/index.global.js",
 	"types": "dist/cjs/index.d.cts",
+	"homepage": "https://github.com/sapphiredev/utilities/tree/main/packages/iterator-utilities",
+	"scripts": {
+		"test": "vitest run",
+		"lint": "eslint src tests --ext ts --fix -c ../../.eslintrc",
+		"build": "tsup && run-s \"build:*\"",
+		"build:rename-cjs-index": "yarn tsx ../../scripts/rename-cjs-index.cts",
+		"build:dynamic-side-effects": "yarn tsx ../../scripts/dynamic-side-effects.cts iterator-utilities",
+		"build:check-subpath": "yarn tsx ../../scripts/subpath-updater.cts iterator-utilities",
+		"build:fix-dcts-imports": "yarn tsx ../../scripts/fix-dcts-imports.cts",
+		"tsx": "tsx --tsconfig ../../scripts/tsconfig.json",
+		"docs": "typedoc-json-parser",
+		"prepack": "yarn build",
+		"bump": "cliff-jumper",
+		"check-update": "cliff-jumper --dry-run"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/sapphiredev/utilities.git",
+		"directory": "packages/iterator-utilities"
+	},
+	"files": [
+		"dist/"
+	],
+	"engines": {
+		"node": ">=v18",
+		"npm": ">=9"
+	},
+	"keywords": [
+		"@sapphire/iterator-utilities",
+		"iterator-utilities",
+		"typescript",
+		"ts",
+		"yarn",
+		"discord",
+		"sapphire"
+	],
+	"bugs": {
+		"url": "https://github.com/sapphiredev/utilities/issues"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"devDependencies": {
+		"@favware/cliff-jumper": "^3.0.2",
+		"@vitest/coverage-v8": "^1.5.0",
+		"tsup": "^8.0.2",
+		"tsx": "^4.7.2",
+		"typedoc": "^0.25.13",
+		"typedoc-json-parser": "^9.0.1",
+		"typescript": "^5.4.5",
+		"vitest": "^1.5.0"
+	},
 	"exports": {
 		".": {
 			"import": {
@@ -131,6 +183,16 @@
 				"default": "./dist/cjs/lib/cycle.cjs"
 			}
 		},
+		"./difference": {
+			"import": {
+				"types": "./dist/esm/lib/difference.d.mts",
+				"default": "./dist/esm/lib/difference.mjs"
+			},
+			"require": {
+				"types": "./dist/cjs/lib/difference.d.cts",
+				"default": "./dist/cjs/lib/difference.cjs"
+			}
+		},
 		"./drop": {
 			"import": {
 				"types": "./dist/esm/lib/drop.d.mts",
@@ -193,12 +255,12 @@
 		},
 		"./except": {
 			"import": {
-				"types": "./dist/esm/lib/except.d.mts",
-				"default": "./dist/esm/lib/except.mjs"
+				"types": "./dist/esm/lib/difference.d.mts",
+				"default": "./dist/esm/lib/difference.mjs"
 			},
 			"require": {
-				"types": "./dist/cjs/lib/except.d.cts",
-				"default": "./dist/cjs/lib/except.cjs"
+				"types": "./dist/cjs/lib/difference.d.cts",
+				"default": "./dist/cjs/lib/difference.cjs"
 			}
 		},
 		"./filter": {
@@ -349,6 +411,16 @@
 			"require": {
 				"types": "./dist/cjs/lib/min.d.cts",
 				"default": "./dist/cjs/lib/min.cjs"
+			}
+		},
+		"./omit": {
+			"import": {
+				"types": "./dist/esm/lib/difference.d.mts",
+				"default": "./dist/esm/lib/difference.mjs"
+			},
+			"require": {
+				"types": "./dist/cjs/lib/difference.d.cts",
+				"default": "./dist/cjs/lib/difference.cjs"
 			}
 		},
 		"./partition": {
@@ -541,16 +613,6 @@
 				"default": "./dist/cjs/lib/takeLast.cjs"
 			}
 		},
-		"./takeWhile": {
-			"import": {
-				"types": "./dist/esm/lib/takeWhile.d.mts",
-				"default": "./dist/esm/lib/takeWhile.mjs"
-			},
-			"require": {
-				"types": "./dist/cjs/lib/takeWhile.d.cts",
-				"default": "./dist/cjs/lib/takeWhile.cjs"
-			}
-		},
 		"./tee": {
 			"import": {
 				"types": "./dist/esm/lib/tee.d.mts",
@@ -625,59 +687,5 @@
 	"sideEffects": [
 		"./dist/esm/chunk-G5GHKT7C.mjs",
 		"./dist/iife/index.global.js"
-	],
-	"homepage": "https://github.com/sapphiredev/utilities/tree/main/packages/iterator-utilities",
-	"scripts": {
-		"test": "vitest run",
-		"lint": "eslint src tests --ext ts --fix -c ../../.eslintrc",
-		"build": "tsup && run-s \"build:*\"",
-		"build:rename-cjs-index": "yarn tsx ../../scripts/rename-cjs-index.cts",
-		"build:dynamic-side-effects": "yarn tsx ../../scripts/dynamic-side-effects.cts iterator-utilities",
-		"build:check-subpath": "yarn tsx ../../scripts/subpath-updater.cts iterator-utilities",
-		"build:fix-dcts-imports": "yarn tsx ../../scripts/fix-dcts-imports.cts",
-		"tsx": "tsx --tsconfig ../../scripts/tsconfig.json",
-		"docs": "typedoc-json-parser",
-		"prepack": "yarn build",
-		"bump": "cliff-jumper",
-		"check-update": "cliff-jumper --dry-run"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/sapphiredev/utilities.git",
-		"directory": "packages/iterator-utilities"
-	},
-	"files": [
-		"dist/"
-	],
-	"engines": {
-		"node": ">=v14.0.0",
-		"npm": ">=7.0.0"
-	},
-	"keywords": [
-		"@sapphire/iterator-utilities",
-		"iterator-utilities",
-		"bot",
-		"typescript",
-		"ts",
-		"yarn",
-		"discord",
-		"sapphire",
-		"standalone"
-	],
-	"bugs": {
-		"url": "https://github.com/sapphiredev/utilities/issues"
-	},
-	"publishConfig": {
-		"access": "public"
-	},
-	"devDependencies": {
-		"@favware/cliff-jumper": "^3.0.2",
-		"@vitest/coverage-v8": "^1.5.0",
-		"tsup": "^8.0.2",
-		"tsx": "^4.7.2",
-		"typedoc": "^0.25.13",
-		"typedoc-json-parser": "^9.0.1",
-		"typescript": "^5.4.5",
-		"vitest": "^1.5.0"
-	}
+	]
 }

@@ -7,7 +7,7 @@ import { take } from './take';
 import { takeLast } from './takeLast';
 
 /**
- * Creates an iterable with the elements from the `start` index to the `end` index (exclusive).
+ * Produces an iterable with the elements from the `start` index to the `end` index (exclusive).
  *
  * @param iterable The iterator to slice.
  * @param start The index at which to begin extraction.

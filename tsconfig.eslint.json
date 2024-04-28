@@ -2,7 +2,7 @@
 	"extends": "./tsconfig.base.json",
 	"include": [
 		"vitest.config.ts",
-		"vitest.workspace.js",
+		"vitest.workspace.ts",
 		"packages/",
 		"scripts/"
 	]

@@ -3,7 +3,7 @@ import { map } from './map';
 import { toNumberOrThrow, type NumberResolvable } from './shared/_toNumberOrThrow';
 
 /**
- * Consumes the iterable and returns the maximum element. If the iterable is empty, it returns `null`.
+ * Consumes the iterable and returns the highest number element. If the iterable is empty, or contains only non-number values, it returns `null`.
  *
  * @param iterable An iterator of number values to determine the maximum value of.
  * @returns The maximum value in the input iterator, or `null` if the iterator is empty or contains only non-number values.

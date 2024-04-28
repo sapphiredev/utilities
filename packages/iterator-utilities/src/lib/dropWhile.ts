@@ -28,7 +28,6 @@ export function dropWhile<const ElementType>(
 	iterable: IterableResolvable<ElementType>,
 	callbackFn: (element: ElementType, index: number) => boolean
 ): IterableIterator<ElementType>;
-
 export function* dropWhile<const ElementType>(
 	iterable: IterableResolvable<ElementType>,
 	callbackFn: (element: ElementType, index: number) => boolean

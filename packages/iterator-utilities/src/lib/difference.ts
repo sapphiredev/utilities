@@ -10,11 +10,11 @@ import { toIterableIterator } from './toIterableIterator';
  *
  * @example
  * ```typescript
- * import { except } from '@sapphire/iterator-utilities';
+ * import { difference } from '@sapphire/iterator-utilities';
  *
  * const first = [1, 2, 3, 4, 5];
  * const second = [3, 4, 5, 6, 7];
- * console.log([...except(first, second)]);
+ * console.log([...difference(first, second)]);
  * // Output: [1, 2]
  * ```
  *
@@ -22,10 +22,12 @@ import { toIterableIterator } from './toIterableIterator';
  *
  * This function consumes the entire `second` iterator to build the set of elements to exclude from `first`.
  */
-export function except<const ElementType>(
+export function difference<const ElementType>(
 	first: IterableResolvable<ElementType>,
 	second: IterableResolvable<ElementType>
 ): IterableIterator<ElementType> {
 	const set = new Set(toIterableIterator(second));
 	return filter(first, (value) => !set.has(value));
 }
+
+export { difference as except, difference as omit };

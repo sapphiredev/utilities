@@ -1,4 +1,4 @@
-import type { IterableResolvable } from './from';
+import { type IterableResolvable } from './from';
 import { assertFunction } from './shared/_assertFunction';
 import { toIterableIterator } from './toIterableIterator';
 
@@ -17,18 +17,24 @@ import { toIterableIterator } from './toIterableIterator';
  * console.log([...starMap(iterable, (a, b) => a + b)]);
  * // Output: [3, 7, 11]
  * ```
+ *
+ * @remarks
+ *
+ * If the input iterable produces a value that is not an array, this function throws a `TypeError`.
  */
-export function* starMap<const ElementType extends readonly any[], const MappedType>(
+export function* starMap<const ElementType extends IterableResolvable<any>, const MappedType>(
 	iterable: IterableResolvable<ElementType>,
-	callbackFn: (...args: ElementType) => MappedType
+	callbackFn: (...args: StarMapParameters<ElementType>) => MappedType
 ): IterableIterator<MappedType> {
 	callbackFn = assertFunction(callbackFn);
 
 	for (const value of toIterableIterator(iterable)) {
-		if (!Array.isArray(value)) {
-			throw new TypeError('Value produced by iterator is not an array.');
-		}
-
-		yield callbackFn(...(value as ElementType));
+		yield callbackFn(...(toIterableIterator(value) as any));
 	}
 }
+
+export type StarMapParameters<ElementType> = ElementType extends readonly [...infer ElementTypeEntry]
+	? ElementTypeEntry
+	: ElementType extends IterableResolvable<infer ElementType>
+		? ElementType[]
+		: never;
