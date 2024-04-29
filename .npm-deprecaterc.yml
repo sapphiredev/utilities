@@ -12,6 +12,7 @@ package:
   - '@sapphire/eslint-plugin-result'
   - '@sapphire/event-iterator'
   - '@sapphire/fetch'
+  - '@sapphire/iterator-utilities'
   - '@sapphire/node-utilities'
   - '@sapphire/phisherman'
   - '@sapphire/prettier-config'

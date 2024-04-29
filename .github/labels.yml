@@ -20,6 +20,8 @@
   color: 'fbca04'
 - name: packages:fetch
   color: 'fbca04'
+- name: packages:iterator-utilities
+  color: 'fbca04'
 - name: packages:lexure
   color: 'fbca04'
 - name: packages:node-utilities
