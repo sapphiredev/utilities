@@ -1393,6 +1393,7 @@ __metadata:
   dependencies:
     "@favware/cliff-jumper": "npm:^3.0.2"
     "@vitest/coverage-v8": "npm:^1.5.0"
+    npm-run-all2: "npm:^6.1.2"
     tsup: "npm:^8.0.2"
     tsx: "npm:^4.7.2"
     typedoc: "npm:^0.25.13"

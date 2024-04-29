@@ -54,6 +54,7 @@
 	"devDependencies": {
 		"@favware/cliff-jumper": "^3.0.2",
 		"@vitest/coverage-v8": "^1.5.0",
+		"npm-run-all2": "^6.1.2",
 		"tsup": "^8.0.2",
 		"tsx": "^4.7.2",
 		"typedoc": "^0.25.13",
