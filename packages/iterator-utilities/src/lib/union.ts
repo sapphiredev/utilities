@@ -15,6 +15,7 @@ import { toIterableIterator } from './toIterableIterator';
  * const iterable2 = [3, 4, 5];
  * console.log([...union(iterable1, iterable2)]);
  * // Output: [1, 2, 3, 4, 5]
+ * ```
  */
 export function* union<const ElementType>(...iterables: IterableResolvable<ElementType>[]): IterableIterator<ElementType> {
 	const seen = new Set<ElementType>();
