@@ -41,8 +41,7 @@ export function peekable<const ElementType>(iterable: IterableResolvable<Element
 			return resolvedIterable.next();
 		},
 		peek() {
-			peeked = peeked ?? resolvedIterable.next();
-			return peeked;
+			return (peeked ??= resolvedIterable.next());
 		},
 		[Symbol.iterator]() {
 			return this as IterableIterator<ElementType>;
@@ -51,5 +50,5 @@ export function peekable<const ElementType>(iterable: IterableResolvable<Element
 }
 
 export interface Peekable<T> extends IterableIterator<T> {
-	peek(): IteratorResult<T> | undefined;
+	peek(): IteratorResult<T>;
 }
