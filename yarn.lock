@@ -1397,7 +1397,7 @@ __metadata:
     tsup: "npm:^8.0.2"
     tsx: "npm:^4.7.2"
     typedoc: "npm:^0.25.13"
-    typedoc-json-parser: "npm:^9.0.1"
+    typedoc-json-parser: "npm:^10.0.0"
     typescript: "npm:^5.4.5"
     vitest: "npm:^1.5.0"
   languageName: unknown
@@ -1419,7 +1419,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@sapphire/node-utilities@npm:^1.0.0, @sapphire/node-utilities@npm:^1.0.1, @sapphire/node-utilities@npm:^1.0.2, @sapphire/node-utilities@workspace:^, @sapphire/node-utilities@workspace:packages/node-utilities":
+"@sapphire/node-utilities@npm:^1.0.1, @sapphire/node-utilities@npm:^1.0.2, @sapphire/node-utilities@workspace:^, @sapphire/node-utilities@workspace:packages/node-utilities":
   version: 0.0.0-use.local
   resolution: "@sapphire/node-utilities@workspace:packages/node-utilities"
   dependencies:
@@ -2577,7 +2577,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"commander@npm:11.1.0, commander@npm:^11.0.0, commander@npm:^11.1.0":
+"commander@npm:11.1.0, commander@npm:^11.1.0":
   version: 11.1.0
   resolution: "commander@npm:11.1.0"
   checksum: 10/66bd2d8a0547f6cb1d34022efb25f348e433b0e04ad76a65279b1b09da108f59a4d3001ca539c60a7a46ea38bcf399fc17d91adad76a8cf43845d8dcbaf5cda1
@@ -6871,25 +6871,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typedoc-json-parser@npm:^9.0.1":
-  version: 9.0.1
-  resolution: "typedoc-json-parser@npm:9.0.1"
-  dependencies:
-    "@favware/colorette-spinner": "npm:^1.0.1"
-    "@sapphire/node-utilities": "npm:^1.0.0"
-    colorette: "npm:^2.0.20"
-    commander: "npm:^11.0.0"
-    js-yaml: "npm:^4.1.0"
-    tslib: "npm:^2.6.2"
-    typedoc: "npm:^0.25.1"
-    typescript: "npm:^5.2.2"
-  bin:
-    typedoc-json-parser: ./dist/bin/index.js
-  checksum: 10/a4b19a3c83f3f0f5d0b36d433b83be2d1d2b9e247ac032b318369ac797b0bdcf8c0f0041855747c14a51152d505333156e87845a1dd4f3746443f666e43a01f2
-  languageName: node
-  linkType: hard
-
-"typedoc@npm:^0.25.1, typedoc@npm:^0.25.13":
+"typedoc@npm:^0.25.13":
   version: 0.25.13
   resolution: "typedoc@npm:0.25.13"
   dependencies:
@@ -6905,7 +6887,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:^5.2.2, typescript@npm:^5.3.3, typescript@npm:^5.4.5":
+"typescript@npm:^5.3.3, typescript@npm:^5.4.5":
   version: 5.4.5
   resolution: "typescript@npm:5.4.5"
   bin:
@@ -6915,7 +6897,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@npm%3A^5.2.2#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A^5.3.3#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A^5.4.5#optional!builtin<compat/typescript>":
+"typescript@patch:typescript@npm%3A^5.3.3#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A^5.4.5#optional!builtin<compat/typescript>":
   version: 5.4.5
   resolution: "typescript@patch:typescript@npm%3A5.4.5#optional!builtin<compat/typescript>::version=5.4.5&hash=5adc0c"
   bin:
