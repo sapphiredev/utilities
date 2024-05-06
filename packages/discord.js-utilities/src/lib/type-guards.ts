@@ -157,6 +157,7 @@ export function isPrivateThreadChannel(channel: ChannelTypes | Nullish): channel
 export function isTextBasedChannel(channel: ChannelTypes | Nullish): channel is TextBasedChannelTypes {
 	if (isNullish(channel) || isStageChannel(channel)) return false;
 
+	// eslint-disable-next-line @typescript-eslint/unbound-method
 	return !isNullish((channel as Exclude<TextBasedChannelTypes, StageChannel>).send);
 }
 
