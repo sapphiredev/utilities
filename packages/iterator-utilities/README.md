@@ -284,7 +284,11 @@ console.log(first(iterable));
 Creates an iterable that yields the elements of each iterable in the input iterable.
 
 ```typescript
-const iterable = flat([[1, 2], [3, 4], [5, 6]]);
+const iterable = flat([
+	[1, 2],
+	[3, 4],
+	[5, 6]
+]);
 console.log([...iterable]);
 // Output: [1, 2, 3, 4, 5, 6]
 ```
@@ -577,7 +581,11 @@ console.log([...sorted(iterable)]);
 Creates an iterable with the results of calling a provided function on each element of the input iterables as the function's parameters.
 
 ```typescript
-const iterable = [[1, 2], [3, 4], [5, 6]];
+const iterable = [
+	[1, 2],
+	[3, 4],
+	[5, 6]
+];
 console.log([...starMap(iterable, (a, b) => a + b)]);
 // Output: [3, 7, 11]
 ```
@@ -648,7 +656,11 @@ console.log(toArray(set));
 ```
 
 ```typescript
-const map = new Map([['a', 1], ['b', 2], ['c', 3]]);
+const map = new Map([
+	['a', 1],
+	['b', 2],
+	['c', 3]
+]);
 console.log(toArray(map));
 // Output: [['a', 1], ['b', 2], ['c', 3]]
 ```
@@ -676,7 +688,11 @@ console.log([...toIterableIterator(set)]);
 ```
 
 ```typescript
-const map = new Map([['a', 1], ['b', 2], ['c', 3]]);
+const map = new Map([
+	['a', 1],
+	['b', 2],
+	['c', 3]
+]);
 console.log([...toIterableIterator(map)]);
 // Output: [['a', 1], ['b', 2], ['c', 3]]
 ```
@@ -713,7 +729,11 @@ console.log([...unique(iterable)]);
 Creates an array for each element of the input iterable, transposing the input iterable. The opposite of [`zip`](#zip).
 
 ```typescript
-const iterable = [[1, 'a'], [2, 'b'], [3, 'c']];
+const iterable = [
+	[1, 'a'],
+	[2, 'b'],
+	[3, 'c']
+];
 const [numbers, letters] = unzip(iterable);
 
 console.log(numbers);
