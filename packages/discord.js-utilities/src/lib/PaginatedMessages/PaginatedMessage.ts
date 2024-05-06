@@ -42,6 +42,7 @@ import type {
 	PaginatedMessageResolvedPage,
 	PaginatedMessageSelectMenuOptionsFunction,
 	PaginatedMessageStopReasons,
+	PaginatedMessageWriteableEmbedResolvable,
 	PaginatedMessageWrongUserInteractionReplyFunction
 } from './PaginatedMessageTypes';
 import {
@@ -1674,7 +1675,7 @@ export class PaginatedMessage {
 			return message;
 		}
 
-		const embedsWithFooterApplied = deepClone(message.embeds);
+		const embedsWithFooterApplied = deepClone(message.embeds) as PaginatedMessageWriteableEmbedResolvable;
 
 		const idx = embedsWithFooterApplied.length - 1;
 		if (embedsWithFooterApplied.length > 0) {
@@ -1772,7 +1773,7 @@ export class PaginatedMessage {
 		templateEmbed: Exclude<PaginatedMessageEmbedResolvable, undefined>[0],
 		pageEmbeds: Exclude<PaginatedMessageEmbedResolvable, undefined>
 	): Exclude<PaginatedMessageEmbedResolvable, undefined> {
-		const mergedEmbeds: Exclude<PaginatedMessageEmbedResolvable, undefined> = [];
+		const mergedEmbeds: PaginatedMessageWriteableEmbedResolvable = [];
 
 		const jsonTemplate = isJSONEncodable(templateEmbed) ? templateEmbed.toJSON() : templateEmbed;
 

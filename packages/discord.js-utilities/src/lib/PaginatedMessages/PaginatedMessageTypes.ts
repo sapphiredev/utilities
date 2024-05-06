@@ -290,6 +290,15 @@ export type PaginatedMessageWrongUserInteractionReplyFunction = (
 export type PaginatedMessageEmbedResolvable = BaseMessageOptions['embeds'];
 
 /**
+ * A non nullable writeable variant of {@link PaginatedMessageEmbedResolvable}.
+ * This removes:
+ *
+ * - The union with `| undefined`
+ * - The `readonly` constraint
+ */
+export type PaginatedMessageWriteableEmbedResolvable = (APIEmbed | JSONEncodable<APIEmbed>)[];
+
+/**
  * Represents the union of options for a paginated message.
  */
 export type PaginatedMessageMessageOptionsUnion = Omit<PaginatedMessageResolvedPage, 'components'> & {
