@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/discord.js-utilities@7.2.1](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@7.2.0...@sapphire/discord.js-utilities@7.2.1) - (2024-05-06)
+
+## 🐛 Bug Fixes
+
+- **PaginatedMessage:** Fix support for discordjs 14.5.2 ([07a0cfa](https://github.com/sapphiredev/utilities/commit/07a0cfa2d93dd7f45f72e27e4c51ba0fdbf2d7be))
+
 # [@sapphire/discord.js-utilities@7.2.0](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@7.1.6...@sapphire/discord.js-utilities@7.2.0) - (2024-04-13)
 
 ## 🚀 Features
