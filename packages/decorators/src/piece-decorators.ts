@@ -5,7 +5,7 @@ import { createClassDecorator, createProxy } from './utils';
 
 /**
  * Decorator function that applies given options to any Sapphire piece
- * @param options The options to pass to the piece constructor
+ * @param optionsOrFn The options or function that returns options to pass to the piece constructor
  * @example
  * ```typescript
  * import { ApplyOptions } from '@sapphire/decorators';
@@ -52,7 +52,7 @@ import { createClassDecorator, createProxy } from './utils';
 export function ApplyOptions<T extends Piece.Options>(optionsOrFn: T | ((parameters: ApplyOptionsCallbackParameters) => T)): ClassDecorator {
 	return createClassDecorator((target: Ctor<ConstructorParameters<typeof Piece>, Piece>) =>
 		createProxy(target, {
-			construct: (ctor, [context, baseOptions = {}]: [Piece.Context, Piece.Options]) =>
+			construct: (ctor, [context, baseOptions = {}]: [Piece.LoaderContext, Piece.Options]) =>
 				new ctor(context, {
 					...baseOptions,
 					...(typeof optionsOrFn === 'function' ? optionsOrFn({ container, context }) : optionsOrFn)
@@ -63,5 +63,5 @@ export function ApplyOptions<T extends Piece.Options>(optionsOrFn: T | ((paramet
 
 export interface ApplyOptionsCallbackParameters {
 	container: Container;
-	context: Piece.Context;
+	context: Piece.LoaderContext;
 }
