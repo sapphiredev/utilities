@@ -12,7 +12,7 @@ export class MessagePrompterReactionStrategy extends MessagePrompterBaseStrategy
 
 	/**
 	 * Constructor for the {@link MessagePrompterReactionStrategy} class
-	 * @param messagePrompter The used instance of {@link MessagePrompter}
+	 * @param message The message instance for this {@link MessagePrompter}
 	 * @param options Overrideable options if needed.
 	 */
 	public constructor(message: MessagePrompterMessage, options: IMessagePrompterReactionStrategyOptions) {
