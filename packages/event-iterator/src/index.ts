@@ -82,7 +82,6 @@ export class EventIterator<V extends unknown[]> implements AsyncIterableIterator
 	/**
 	 * @param emitter The event emitter to listen to.
 	 * @param event The event we're listening for to receives values from.
-	 * @param limit The amount of values to receive before ending the iterator.
 	 * @param options Any extra options.
 	 */
 	public constructor(emitter: EventEmitter, event: string, options: EventIteratorOptions<V> = {}) {
