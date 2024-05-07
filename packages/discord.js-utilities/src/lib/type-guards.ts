@@ -164,7 +164,7 @@ export function isTextBasedChannel(channel: ChannelTypes | Nullish): channel is 
 /**
  * Checks whether a given channel is a {@link VoiceBasedChannel}.
  * This checks for {@link Channel.isVoiceBased()}.
- * @param channel: The channel to check.
+ * @param channel - The channel to check.
  */
 export function isVoiceBasedChannel(channel: Channel | Nullish): channel is VoiceBasedChannel {
 	if (isNullish(channel)) return false;

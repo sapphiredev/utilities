@@ -38,8 +38,9 @@ export abstract class MessagePrompterBaseStrategy {
 
 	/**
 	 * Constructor for the {@link MessagePrompterBaseStrategy} class
-	 * @param messagePrompter The used instance of {@link MessagePrompter}
-	 * @param options Overrideable options if needed.
+	 * @param type - The type of message prompter strategy
+	 * @param message - The message that this prompt is for
+	 * @param options - Overrideable options if needed.
 	 */
 	public constructor(type: string, message: MessagePrompterMessage, options?: IMessagePrompterStrategyOptions) {
 		this.type = type;
