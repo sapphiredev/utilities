@@ -9,7 +9,7 @@ import { MessagePrompterBaseStrategy } from './MessagePrompterBaseStrategy';
 export class MessagePrompterMessageStrategy extends MessagePrompterBaseStrategy implements IMessagePrompterStrategyOptions {
 	/**
 	 * Constructor for the {@link MessagePrompterBaseStrategy} class
-	 * @param messagePrompter The used instance of {@link MessagePrompter}
+	 * @param message The message instance for this {@link MessagePrompter}
 	 * @param options Overrideable options if needed.
 	 */
 	public constructor(message: MessagePrompterMessage, options: IMessagePrompterStrategyOptions) {
