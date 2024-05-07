@@ -61,7 +61,6 @@ export interface DebouncedFunc<FnArgumentsType extends any[], FnReturnType> {
  * See David Corbacho’s article for details over the differences between _.debounce and _.throttle.
  *
  * @param func The function to debounce.
- * @param wait The number of milliseconds to delay.
  * @param options The options object.
  * @return Returns the new debounced function.
  */
