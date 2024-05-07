@@ -38,6 +38,7 @@ export * from './lib/range';
 export * from './lib/reduce';
 export * from './lib/repeat';
 export * from './lib/reverse';
+export type { NumberResolvable } from './lib/shared/_toNumberOrThrow';
 export * from './lib/slice';
 export * from './lib/some';
 export * from './lib/sorted';
