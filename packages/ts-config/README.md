@@ -15,16 +15,15 @@
 
 **Table of Contents**
 
--   [@sapphire/ts-config](#sapphirets-config)
-    -   [Installation](#installation)
-    -   [Usage](#usage)
-        -   [Base](#base)
-        -   [Extra Strict](#extra-strict)
-        -   [Decorators](#decorators)
-        -   [Verbatim](#verbatim)
-        -   [Bundler](#bundler)
-    -   [Buy us some doughnuts](#buy-us-some-doughnuts)
-    -   [Contributors](#contributors)
+-   [Installation](#installation)
+-   [Usage](#usage)
+    -   [Base](#base)
+    -   [Extra Strict](#extra-strict)
+    -   [Decorators](#decorators)
+    -   [Verbatim](#verbatim)
+    -   [Bundler](#bundler)
+-   [Buy us some doughnuts](#buy-us-some-doughnuts)
+-   [Contributors](#contributors)
 
 ## Installation
 

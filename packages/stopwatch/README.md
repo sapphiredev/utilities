@@ -15,14 +15,13 @@
 
 **Table of Contents**
 
--   [@sapphire/stopwatch](#sapphirestopwatch)
-    -   [Description](#description)
-    -   [Features](#features)
-    -   [Installation](#installation)
-    -   [Usage](#usage)
-        -   [Basic Usage](#basic-usage)
-    -   [Buy us some doughnuts](#buy-us-some-doughnuts)
-    -   [Contributors ✨](#contributors-)
+-   [Description](#description)
+-   [Features](#features)
+-   [Installation](#installation)
+-   [Usage](#usage)
+    -   [Basic Usage](#basic-usage)
+-   [Buy us some doughnuts](#buy-us-some-doughnuts)
+-   [Contributors](#contributors)
 
 ## Description
 

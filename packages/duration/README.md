@@ -23,7 +23,7 @@
     -   [Serializing a Duration](#serializing-a-duration)
     -   [Localizing with Durations](#localizing-with-durations)
 -   [Buy us some doughnuts](#buy-us-some-doughnuts)
--   [Contributors ✨](#contributors-%E2%9C%A8)
+-   [Contributors](#contributors)
 
 ## Features
 

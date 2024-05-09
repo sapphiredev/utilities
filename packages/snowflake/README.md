@@ -28,7 +28,7 @@
         -   [Snowflake with Discord epoch constant](#snowflake-with-discord-epoch-constant-1)
         -   [Snowflake with Twitter epoch constant](#snowflake-with-twitter-epoch-constant-1)
 -   [Buy us some doughnuts](#buy-us-some-doughnuts)
--   [Contributors ✨](#contributors-%E2%9C%A8)
+-   [Contributors](#contributors)
 
 ## Description
 

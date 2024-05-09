@@ -27,7 +27,7 @@
     -   [Getting the symmetric difference between different fields](#getting-the-symmetric-difference-between-different-fields)
     -   [Formatting a field](#formatting-a-field)
 -   [Buy us some doughnuts](#buy-us-some-doughnuts)
--   [Contributors ✨](#contributors-)
+-   [Contributors](#contributors)
 
 ## Features
 

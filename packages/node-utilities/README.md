@@ -20,7 +20,7 @@
 -   [Usage](#usage)
     -   [`findFilesRecursively`](#findfilesrecursively)
 -   [Buy us some doughnuts](#buy-us-some-doughnuts)
--   [Contributors ✨](#contributors-)
+-   [Contributors](#contributors)
 
 ## Features
 

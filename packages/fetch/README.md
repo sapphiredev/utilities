@@ -15,16 +15,15 @@
 
 **Table of Contents**
 
--   [@sapphire/fetch](#sapphirefetch)
-    -   [Description](#description)
-    -   [Features](#features)
-    -   [Installation](#installation)
-    -   [Usage](#usage)
-        -   [`GET`ting JSON data](#getting-json-data)
-        -   [`GET`ting Buffer data (images, etc.)](#getting-buffer-data-images-etc)
-        -   [`POST`ing JSON data](#posting-json-data)
-    -   [Buy us some doughnuts](#buy-us-some-doughnuts)
-    -   [Contributors ✨](#contributors-%E2%9C%A8)
+-   [Description](#description)
+-   [Features](#features)
+-   [Installation](#installation)
+-   [Usage](#usage)
+    -   [`GET`ting JSON data](#getting-json-data)
+    -   [`GET`ting Buffer data (images, etc.)](#getting-buffer-data-images-etc)
+    -   [`POST`ing JSON data](#posting-json-data)
+-   [Buy us some doughnuts](#buy-us-some-doughnuts)
+-   [Contributors](#contributors)
 
 ## Description
 

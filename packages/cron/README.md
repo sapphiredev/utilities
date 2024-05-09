@@ -17,10 +17,8 @@
 
 -   [Features](#features)
 -   [Installation](#installation)
--   [Usage](#usage)
-    -   [Basic Usage](#basic-usage)
 -   [Buy us some doughnuts](#buy-us-some-doughnuts)
--   [Contributors ✨](#contributors-%E2%9C%A8)
+-   [Contributors](#contributors)
 
 ## Features
 
