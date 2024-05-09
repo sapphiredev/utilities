@@ -66,7 +66,7 @@ Thank you to all the people who already contributed to Sapphire!
 </a>
 
 [contributing]: https://github.com/sapphiredev/.github/blob/main/.github/CONTRIBUTING.md
-[cron-readme]: ../cron/#readme
-[duration-readme]: ../duration#readme
-[timer-manager-readme]: ../timer-manager#readme
-[timestamp-readme]: ../timestamp#readme
+[cron-readme]: https://github.com/sapphiredev/utilities/blob/main/packages/cron/README.md
+[duration-readme]: https://github.com/sapphiredev/utilities/blob/main/packages/duration/README.md
+[timer-manager-readme]: https://github.com/sapphiredev/utilities/blob/main/packages/timer-manager/README.md
+[timestamp-readme]: https://github.com/sapphiredev/utilities/blob/main/packages/timestamp/README.md
