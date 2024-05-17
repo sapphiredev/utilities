@@ -5,6 +5,7 @@ export const aliasStore = new Map<string, string | string[]>([
 	['isNullOrUndefined', 'isNullish'],
 	['isNullOrUndefinedOrEmpty', 'isNullishOrEmpty'],
 	['isNullOrUndefinedOrZero', 'isNullishOrZero'],
+	['snakeToCamelCase', 'kebabToCamelCase'],
 	['tryParseJSON', 'tryParse'],
 	['tryParseURL', 'parseURL']
 ]);

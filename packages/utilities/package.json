@@ -407,6 +407,16 @@
 				"default": "./dist/cjs/lib/isThenable.cjs"
 			}
 		},
+		"./kebabToCamelCase": {
+			"import": {
+				"types": "./dist/esm/lib/snakeToCamelCase.d.mts",
+				"default": "./dist/esm/lib/snakeToCamelCase.mjs"
+			},
+			"require": {
+				"types": "./dist/cjs/lib/snakeToCamelCase.d.cts",
+				"default": "./dist/cjs/lib/snakeToCamelCase.cjs"
+			}
+		},
 		"./lazy": {
 			"import": {
 				"types": "./dist/esm/lib/lazy.d.mts",
