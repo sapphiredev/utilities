@@ -87,6 +87,16 @@
 				"default": "./dist/cjs/lib/arrayStrictEquals.cjs"
 			}
 		},
+		"./capitalizeFirstLetter": {
+			"import": {
+				"types": "./dist/esm/lib/capitalizeFirstLetter.d.mts",
+				"default": "./dist/esm/lib/capitalizeFirstLetter.mjs"
+			},
+			"require": {
+				"types": "./dist/cjs/lib/capitalizeFirstLetter.d.cts",
+				"default": "./dist/cjs/lib/capitalizeFirstLetter.cjs"
+			}
+		},
 		"./cast": {
 			"import": {
 				"types": "./dist/esm/lib/cast.d.mts",
@@ -255,6 +265,16 @@
 			"require": {
 				"types": "./dist/cjs/lib/hasAtLeastOneKeyInMap.d.cts",
 				"default": "./dist/cjs/lib/hasAtLeastOneKeyInMap.cjs"
+			}
+		},
+		"./hasAtLeastOneKeyInObject": {
+			"import": {
+				"types": "./dist/esm/lib/hasAtLeastOneKeyInObject.d.mts",
+				"default": "./dist/esm/lib/hasAtLeastOneKeyInObject.mjs"
+			},
+			"require": {
+				"types": "./dist/cjs/lib/hasAtLeastOneKeyInObject.d.cts",
+				"default": "./dist/cjs/lib/hasAtLeastOneKeyInObject.cjs"
 			}
 		},
 		"./inlineCodeBlock": {
@@ -605,6 +625,16 @@
 			"require": {
 				"types": "./dist/cjs/lib/sleepSync.d.cts",
 				"default": "./dist/cjs/lib/sleepSync.cjs"
+			}
+		},
+		"./snakeToCamelCase": {
+			"import": {
+				"types": "./dist/esm/lib/snakeToCamelCase.d.mts",
+				"default": "./dist/esm/lib/snakeToCamelCase.mjs"
+			},
+			"require": {
+				"types": "./dist/cjs/lib/snakeToCamelCase.d.cts",
+				"default": "./dist/cjs/lib/snakeToCamelCase.cjs"
 			}
 		},
 		"./splitText": {
