@@ -8,7 +8,6 @@ describe('hasAtLeastOneKeyInObject', () => {
 
 	test('should return false if the object does not have any of the keys', () => {
 		const obj = { a: 1, b: 2, c: 3 };
-		// @ts-expect-error Testing invalid input
 		expect(hasAtLeastOneKeyInObject(obj, ['d'])).toBe(false);
 	});
 
@@ -25,13 +24,11 @@ describe('hasAtLeastOneKeyInObject', () => {
 
 	test('should return true if the object has at least one key from the array', () => {
 		const obj = { a: 1, b: 2, c: 3 };
-		// @ts-expect-error Testing invalid input
 		expect(hasAtLeastOneKeyInObject(obj, ['b', 'c', 'd'])).toBe(true);
 	});
 
 	test('should return false if the object does not have any key from the array', () => {
 		const obj = { a: 1, b: 2, c: 3 };
-		// @ts-expect-error Testing invalid input
 		expect(hasAtLeastOneKeyInObject(obj, ['d', 'e', 'f'])).toBe(false);
 	});
 

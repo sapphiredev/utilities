@@ -10,13 +10,13 @@ import type { NonNullObject } from './types';
  * @example
  * ```typescript
  * const obj = { a: 1, b: 2, c: 3 };
- * console.log(hasAtLeastOneKeyInObject(obj, 'a')); // true
- * console.log(hasAtLeastOneKeyInObject(obj, 'd')); // false
+ * console.log(hasAtLeastOneKeyInObject(obj, ['a'])); // true
+ * console.log(hasAtLeastOneKeyInObject(obj, ['d'])); // false
  * ```
  */
 export function hasAtLeastOneKeyInObject<T extends NonNullObject, K extends keyof T>(
 	obj: T,
-	keys: readonly K[]
+	keys: readonly (string | number | symbol)[]
 ): obj is T & { [key in K]: NonNullable<T[K]> } {
 	return !isNullish(obj) && keys.some((key) => Object.hasOwn(obj, key));
 }
