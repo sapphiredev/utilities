@@ -14,9 +14,9 @@ import type { NonNullObject } from './types';
  * console.log(hasAtLeastOneKeyInObject(obj, ['d'])); // false
  * ```
  */
-export function hasAtLeastOneKeyInObject<T extends NonNullObject, K extends keyof T>(
+export function hasAtLeastOneKeyInObject<T extends NonNullObject, K extends PropertyKey>(
 	obj: T,
-	keys: readonly PropertyKey[]
+	keys: readonly K[]
 ): obj is T & { [key in K]: NonNullable<T[K]> } {
 	return !isNullish(obj) && keys.some((key) => Object.hasOwn(obj, key));
 }
