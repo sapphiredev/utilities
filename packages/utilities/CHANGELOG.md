@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/utilities@3.16.0](https://github.com/sapphiredev/utilities/compare/@sapphire/utilities@3.15.3...@sapphire/utilities@3.16.0) - (2024-05-20)
+
+## 📝 Documentation
+
+- **readme:** Fix readme table of contents ([c60e8bd](https://github.com/sapphiredev/utilities/commit/c60e8bd9fc89156cf973871597ec3f0ef0308c08))
+- **utilities:** Fix tsdoc comments for `debounce` ([e9f4de9](https://github.com/sapphiredev/utilities/commit/e9f4de9bca5fb28cddf9c77b6c176fa7686cdaba))
+
+## 🚀 Features
+
+- **utilities:** Add `capitalizeFirstLetter`, `hasAtLeastOneKeyInObject`, and `snakeToCamelCase` (#747) ([014e4e8](https://github.com/sapphiredev/utilities/commit/014e4e8765943fc09d86b75fa347cc68102575b7))
+
 # [@sapphire/utilities@3.15.3](https://github.com/sapphiredev/utilities/compare/@sapphire/utilities@3.15.3...@sapphire/utilities@3.15.3) - (2024-01-19)
 
 ## 🐛 Bug Fixes
