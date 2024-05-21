@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/utilities@3.16.2](https://github.com/sapphiredev/utilities/compare/@sapphire/utilities@3.16.1...@sapphire/utilities@3.16.2) - (2024-05-21)
+
+## 🐛 Bug Fixes
+
+- **utilities:** Update re-exports on index level ([902cee8](https://github.com/sapphiredev/utilities/commit/902cee88b1e744d6748aa5c3c2e1c038d9d7dbbc))
+
 # [@sapphire/utilities@3.16.1](https://github.com/sapphiredev/utilities/compare/@sapphire/utilities@3.16.0...@sapphire/utilities@3.16.1) - (2024-05-21)
 
 ## 🐛 Bug Fixes
