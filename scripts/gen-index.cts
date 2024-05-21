@@ -78,6 +78,7 @@ async function main() {
 	for await (const file of findFilesRecursivelyStringEndsWith(packageLibDir, '.ts')) {
 		modules.push(file);
 	}
+	modules.sort();
 
 	const indexPath = resolve(packageDir, './index.ts');
 	const indexProgram = ts.createProgram([indexPath].concat(modules), {});
@@ -102,7 +103,7 @@ async function main() {
 				ts.factory.createExportDeclaration(
 					undefined,
 					!useNormal && useTypes,
-					useNormal && !useTypes ? undefined : ts.factory.createNamedExports(exportSpecifiers),
+					module.exports.exports_all || (useNormal && !useTypes) ? undefined : ts.factory.createNamedExports(exportSpecifiers),
 					ts.factory.createStringLiteral(`./${relative(packageDir, module.path.dir)}/${module.path.name}`, true),
 					undefined
 				),
