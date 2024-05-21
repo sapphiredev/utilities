@@ -18,18 +18,26 @@ interface ModuleExportNodes {
 
 class ModuleFile {
 	public path: ParsedPath;
+	public exports: ModuleExportNodes;
 	private sourceFile: ts.SourceFile;
 
 	public constructor(sourceFile: ts.SourceFile) {
 		this.sourceFile = sourceFile;
 		this.path = parse(sourceFile.fileName);
+		this.exports = this.getExports();
 	}
 
-	public isPrivate(): boolean {
+	public get isPrivate(): boolean {
 		return this.path.name.startsWith('_');
 	}
 
-	public getExports(): ModuleExportNodes {
+	public generateExportSpecifiers(which: keyof Omit<ModuleExportNodes, 'exports_all'>, useTypes: boolean) {
+		return this.exports[which].map((node) =>
+			ts.factory.createExportSpecifier(useTypes, undefined, ts.getNameOfDeclaration(node)!.getText(this.sourceFile)!)
+		);
+	}
+
+	private getExports(): ModuleExportNodes {
 		const normal: ts.Declaration[] = [];
 		const types: ts.Declaration[] = [];
 		let _nodeCount = 0;
@@ -53,10 +61,9 @@ class ModuleFile {
 
 /**
  * Rules:
- * 1. Find normal and type modules
- * 2. If the module begins with `_`, ignore it
+ * 1. If the module begins with `_`, ignore it
  *    a) unless the module contains types, in which case those exclusively should be included
- * 3. If the module contains types
+ * 2. If the module contains types
  *    a) use specific exports
  *       i. if it exclusively contains types, use `export type { ... }`
  *      ii. if types are contained, but not the only exported items, use `export { ..., type ... }`
@@ -74,10 +81,34 @@ async function main() {
 
 	const indexPath = resolve(packageDir, './index.ts');
 	const indexProgram = ts.createProgram([indexPath].concat(modules), {});
+	const printer = ts.createPrinter({ newLine: ts.NewLineKind.LineFeed });
 	for (const modulePath of modules) {
 		const sourceFile = indexProgram.getSourceFile(modulePath)!;
 		const module = new ModuleFile(sourceFile);
-		const exports = module.getExports();
+
+		// rule 1
+		if (module.isPrivate && !module.exports.types.length) continue;
+		// rule 2
+		const useNormal = !module.isPrivate && module.exports.normal.length > 0;
+		const useTypes = module.exports.types.length > 0;
+		const useIndividualTypes = useNormal && useTypes;
+
+		const typeExportSpecifiers = module.generateExportSpecifiers('types', useIndividualTypes);
+		const exportSpecifiers = typeExportSpecifiers.concat(useNormal ? module.generateExportSpecifiers('normal', false) : []);
+
+		console.log(
+			printer.printNode(
+				ts.EmitHint.Unspecified,
+				ts.factory.createExportDeclaration(
+					undefined,
+					!useNormal && useTypes,
+					useNormal && !useTypes ? undefined : ts.factory.createNamedExports(exportSpecifiers),
+					ts.factory.createStringLiteral(`./${relative(packageDir, module.path.dir)}/${module.path.name}`, true),
+					undefined
+				),
+				sourceFile
+			)
+		);
 	}
 }
 
