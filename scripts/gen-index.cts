@@ -7,18 +7,14 @@ async function main() {
 	const packageLibDir = resolve(packageDir, './lib');
 	const typesEnding = new RegExp(/[tT]ypes.ts$/);
 
-	let modules = [];
-	let types = [];
+	const modules = [];
+	const types = [];
 	for await (const file of findFilesRecursivelyStringEndsWith(packageLibDir, '.ts')) {
-		typesEnding.test(file) ? types.push(file) : modules.push(file);
+		const filePath = parse(file);
+		typesEnding.test(filePath.base) ? types.push(filePath) : modules.push(filePath);
 	}
 
-	const moduleExports = modules
-		.map((file) => {
-			const filePath = parse(file);
-			return `export * from './${relative(packageDir, filePath.dir)}/${filePath.name}';`;
-		})
-		.join('\n');
+	const moduleExports = modules.map((file) => `export * from './${relative(packageDir, file.dir)}/${file.name}';`).join('\n');
 
 	// TODO: add typeExports
 
