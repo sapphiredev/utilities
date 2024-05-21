@@ -1645,7 +1645,7 @@ __metadata:
     "@sapphire/node-utilities": "workspace:^"
     "@sapphire/prettier-config": "workspace:^"
     "@vitest/coverage-v8": "npm:^1.6.0"
-    esbuild-plugin-file-path-extensions: "npm:^2.1.0"
+    esbuild-plugin-file-path-extensions: "npm:^2.1.1"
     npm-run-all2: "npm:^6.2.0"
     tsup: "npm:^8.0.2"
     tsx: "npm:^4.10.5"
@@ -3052,10 +3052,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"esbuild-plugin-file-path-extensions@npm:^2.1.0":
-  version: 2.1.0
-  resolution: "esbuild-plugin-file-path-extensions@npm:2.1.0"
-  checksum: 10/c2686b97d51372631d1addce188d4c21a733625996e09f7eea1c60e95a559436973a29cf4eeaaa01588a2e4d0d9fcf84a237202381e0737713de4f95b4bec30b
+"esbuild-plugin-file-path-extensions@npm:^2.1.1":
+  version: 2.1.1
+  resolution: "esbuild-plugin-file-path-extensions@npm:2.1.1"
+  checksum: 10/7943d574791db1a9c8bf26e364b02c94338c4f26849f3039f8ed6b9fc249dbd394e8c026fce016b1b9d88a96b4eea8f90bd3f5b28756f69f5c37f08aa5cee631
   languageName: node
   linkType: hard
 
