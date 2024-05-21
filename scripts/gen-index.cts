@@ -10,14 +10,15 @@ function isType(node: ts.Node): boolean {
 	return [ts.SyntaxKind.InterfaceDeclaration, ts.SyntaxKind.TypeAliasDeclaration].includes(node.kind);
 }
 
-type ModuleExportNodes = {
+interface ModuleExportNodes {
 	normal: ts.Declaration[];
 	types: ts.Declaration[];
-};
+	exports_all: boolean;
+}
 
 class ModuleFile {
-	private sourceFile: ts.SourceFile;
 	public path: ParsedPath;
+	private sourceFile: ts.SourceFile;
 
 	public constructor(sourceFile: ts.SourceFile) {
 		this.sourceFile = sourceFile;
@@ -31,14 +32,21 @@ class ModuleFile {
 	public getExports(): ModuleExportNodes {
 		const normal: ts.Declaration[] = [];
 		const types: ts.Declaration[] = [];
+		let _nodeCount = 0;
+
 		this.sourceFile.forEachChild((node) => {
-			if (!ts.isDeclarationStatement(node)) return;
+			// imports count as declarations, so exports_all will be inaccurate if this condition is not checked.
+			if (!ts.isDeclarationStatement(node) || ts.isImportDeclaration(node)) return;
+			_nodeCount++;
 			if (!isExported(node)) return;
 			isType(node) ? types.push(node) : normal.push(node);
 		});
+
 		return {
 			normal,
-			types
+			types,
+			// TODO: find out if there is a better way to do this
+			exports_all: normal.length + types.length === _nodeCount
 		};
 	}
 }
@@ -70,15 +78,6 @@ async function main() {
 		const sourceFile = indexProgram.getSourceFile(modulePath)!;
 		const module = new ModuleFile(sourceFile);
 		const exports = module.getExports();
-		console.log('File:', module.path.base);
-		console.log(
-			'Types:',
-			exports.types.map((node) => ts.getNameOfDeclaration(node)?.getText(sourceFile))
-		);
-		console.log(
-			'Normal:',
-			exports.normal.map((node) => ts.getNameOfDeclaration(node)?.getText(sourceFile))
-		);
 	}
 }
 
