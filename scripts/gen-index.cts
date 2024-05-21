@@ -1,4 +1,4 @@
-import { relative, resolve, parse } from 'node:path';
+import { relative, resolve, parse, type ParsedPath } from 'node:path';
 import { findFilesRecursivelyStringEndsWith } from '../packages/node-utilities/src/index';
 
 async function main() {
@@ -7,8 +7,8 @@ async function main() {
 	const packageLibDir = resolve(packageDir, './lib');
 	const typesEnding = new RegExp(/[tT]ypes.ts$/);
 
-	const modules = [];
-	const types = [];
+	const modules: ParsedPath[] = [];
+	const types: ParsedPath[] = [];
 	for await (const file of findFilesRecursivelyStringEndsWith(packageLibDir, '.ts')) {
 		const filePath = parse(file);
 		typesEnding.test(filePath.base) ? types.push(filePath) : modules.push(filePath);
