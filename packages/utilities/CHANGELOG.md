@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/utilities@3.16.1](https://github.com/sapphiredev/utilities/compare/@sapphire/utilities@3.16.0...@sapphire/utilities@3.16.1) - (2024-05-21)
+
+## 🐛 Bug Fixes
+
+- **utilities:** Fixed cjs bundle ([f1db3f6](https://github.com/sapphiredev/utilities/commit/f1db3f6e09d67a5d769ee01db60d100f7af75426))
+
 # [@sapphire/utilities@3.16.0](https://github.com/sapphiredev/utilities/compare/@sapphire/utilities@3.15.3...@sapphire/utilities@3.16.0) - (2024-05-20)
 
 ## 📝 Documentation
