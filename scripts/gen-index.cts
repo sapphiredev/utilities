@@ -32,8 +32,8 @@ class ModuleFile {
 	}
 
 	public generateExportSpecifiers(which: keyof Omit<ModuleExportNodes, 'exports_all'>, useTypes: boolean) {
-		return this.exports[which].map((node) =>
-			ts.factory.createExportSpecifier(useTypes, undefined, ts.getNameOfDeclaration(node)!.getText(this.sourceFile)!)
+		return [...new Set(this.exports[which].map((node) => ts.getNameOfDeclaration(node)!.getText(this.sourceFile)!))].map((name) =>
+			ts.factory.createExportSpecifier(useTypes, undefined, name)
 		);
 	}
 
@@ -103,7 +103,7 @@ async function main() {
 				ts.factory.createExportDeclaration(
 					undefined,
 					!useNormal && useTypes,
-					module.exports.exports_all || (useNormal && !useTypes) ? undefined : ts.factory.createNamedExports(exportSpecifiers),
+					useNormal && !useTypes ? undefined : ts.factory.createNamedExports(exportSpecifiers),
 					ts.factory.createStringLiteral(`./${relative(packageDir, module.path.dir)}/${module.path.name}`, true),
 					undefined
 				),
