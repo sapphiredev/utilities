@@ -163,17 +163,17 @@ export const GuildLimits = {
 	 * Maximum static emojis allowed in a guild.
 	 */
 	MaximumStaticEmojis: 50,
-	
+
 	/**
 	 * Maximum animated emojis allowed in a guild.
 	 */
 	MaximumAnimatedEmojis: 50,
-	
+
 	/**
 	 * Maximum emojis (static and animated) allowed in a guild.
 	 */
 	MaximumEmojis: 100,
-	
+
 	/**
 	 * Maximum stickers allowed in a guild.
 	 */
@@ -189,17 +189,17 @@ export const PremiumGuildLimits = {
 		 * Maximum static emojis allowed in a guild.
 		 */
 		MaximumStaticEmojis: 100,
-		
+
 		/**
 		 * Maximum animated emojis allowed in a guild.
 		 */
 		MaximumAnimatedEmojis: 100,
-		
+
 		/**
 		 * Maximum emojis (static and animated) allowed in a guild.
 		 */
 		MaximumEmojis: 200,
-		
+
 		/**
 		 * Maximum stickers allowed in a guild.
 		 */
@@ -210,17 +210,17 @@ export const PremiumGuildLimits = {
 		 * Maximum static emojis allowed in a guild.
 		 */
 		MaximumStaticEmojis: 150,
-		
+
 		/**
 		 * Maximum animated emojis allowed in a guild.
 		 */
 		MaximumAnimatedEmojis: 150,
-		
+
 		/**
 		 * Maximum emojis (static and animated) allowed in a guild.
 		 */
 		MaximumEmojis: 300,
-		
+
 		/**
 		 * Maximum stickers allowed in a guild.
 		 */
@@ -231,22 +231,22 @@ export const PremiumGuildLimits = {
 		 * Maximum static emojis allowed in a guild.
 		 */
 		MaximumStaticEmojis: 250,
-		
+
 		/**
 		 * Maximum animated emojis allowed in a guild.
 		 */
 		MaximumAnimatedEmojis: 250,
-		
+
 		/**
 		 * Maximum emojis (static and animated) allowed in a guild.
 		 */
 		MaximumEmojis: 500,
-		
+
 		/**
 		 * Maximum stickers allowed in a guild.
 		 */
 		MaximumStickers: 60
-	},
+	}
 } as const;
 
 /**
