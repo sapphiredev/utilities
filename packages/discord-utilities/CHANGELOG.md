@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/discord-utilities@3.3.0](https://github.com/sapphiredev/utilities/compare/@sapphire/discord-utilities@3.2.3...@sapphire/discord-utilities@3.3.0) - (2024-05-22)
+
+## 🚀 Features
+
+- Add emojis & stickers limits per (premium) guild (#751) ([4424cfd](https://github.com/sapphiredev/utilities/commit/4424cfd7fd95a3b7f16e22f38328559637e65642))
+
 # [@sapphire/discord-utilities@3.2.3](https://github.com/sapphiredev/utilities/compare/@sapphire/discord-utilities@3.2.2...@sapphire/discord-utilities@3.2.3) - (2024-03-11)
 
 ## 🐛 Bug Fixes
