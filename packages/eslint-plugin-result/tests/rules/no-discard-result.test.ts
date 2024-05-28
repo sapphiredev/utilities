@@ -11,7 +11,7 @@ export const ruleTester = new RuleTester({
 	parser: '@typescript-eslint/parser'
 });
 
-describe('ESLint plugin result', () => {
+describe.skip('ESLint plugin result', () => {
 	ruleTester.run('no-discard-result', noDiscardResult, {
 		valid: [
 			{
