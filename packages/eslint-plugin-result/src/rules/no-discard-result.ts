@@ -112,7 +112,11 @@ export const noDiscardResult: RuleModule<'discardedResult', [], RuleListener> = 
 	meta: {
 		messages,
 		type: 'problem',
-		schema: []
+		schema: [],
+		docs: {
+			description: 'Disallow discarding the result of a function returning a Result.',
+			url: 'https://github.com/sapphiredev/utilities/blob/main/packages/eslint-plugin-result/README.md'
+		}
 	},
 	defaultOptions: [],
 	create: (context) => {

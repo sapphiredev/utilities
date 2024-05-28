@@ -9,7 +9,10 @@
 			"dependsOn": [
 				"@sapphire/prettier-config#build",
 				"@sapphire/eslint-config#build",
+				"@sapphire/eslint-plugin-result#build",
 				"@sapphire/utilities#build",
+				"@sapphire/node-utilities#build",
+				"@sapphire/result#build",
 				"@sapphire/duration#build"
 			],
 			"outputs": []

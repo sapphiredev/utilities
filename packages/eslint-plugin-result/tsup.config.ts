@@ -1,13 +1,14 @@
+import { esbuildPluginVersionInjector } from 'esbuild-plugin-version-injector';
 import { Options } from 'tsup';
 import { createTsupConfig } from '../../scripts/tsup.config';
 
-const options: Options = {
-	sourcemap: false,
-	dts: false
+const defaultOptions: Options = {
+	entry: ['src/index.ts', 'src/configs/recommended.ts'],
+	esbuildPlugins: [esbuildPluginVersionInjector()]
 };
 
 export default createTsupConfig({
-	cjsOptions: options,
-	esmOptions: options,
+	cjsOptions: defaultOptions,
+	esmOptions: defaultOptions,
 	iifeOptions: { disabled: true }
 });

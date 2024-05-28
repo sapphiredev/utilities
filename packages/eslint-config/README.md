@@ -21,46 +21,31 @@ You can use the following command to install this package, or replace `npm insta
 npm install --save-dev @sapphire/eslint-config
 ```
 
+It is important to note that this package only exports [ESLint Flat Config][]! This means that you _have_ to use `eslint.config.js`, `eslint.config.mjs`, or `eslint.config.cjs` to use this package. See the ESLint documentation on flat config for more information.
+
 ---
 
 ## Usage
 
-Add the ESLint config to your `package.json`:
+1. Create a file `eslint.config.mjs` in the root of your project.
+2. Add the following content to the file:
 
-```json
-{
-	"name": "my-project",
-	"eslintConfig": {
-		"extends": "@sapphire"
-	}
-}
+```js
+import sapphireEslintConfig from '@sapphire/eslint-config';
+
+/**
+ * @type {import('@typescript-eslint/utils').TSESLint.FlatConfig.ConfigArray}
+ */
+const config = [
+	// Additional config here
+	...sapphireEslintConfig
+	// or here
+];
+
+export default config;
 ```
 
-Or to `eslintrc.js` / `.eslintrc.json`:
-
-```json
-{
-	"extends": "@sapphire"
-}
-```
-
-Or to `eslint.config.js`:
-
-```
-const { FlatCompat } = require('@eslint/eslintrc')
-const sapphireEslintConfig = require('@sapphire/eslint-config')
-
-const compat = new FlatCompat()
-
-module.exports = [
-	...compat.config(sapphireEslintConfig),
-	{
-		// other configs
-	}
-]
-```
-
-Create `tsconfig.eslint.json` next to the eslint config file, for example with content:
+3. Create `tsconfig.eslint.json` next to the eslint config file, for example with content:
 
 ```json
 {
@@ -93,3 +78,4 @@ Thank you to all the people who already contributed to Sapphire!
 </a>
 
 [contributing]: https://github.com/sapphiredev/.github/blob/main/.github/CONTRIBUTING.md
+[ESLint Flat Config]: https://eslint.org/blog/2022/08/new-config-system-part-2/

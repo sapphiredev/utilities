@@ -119,7 +119,7 @@ describe('poll', () => {
 		test.each(['foo', true])('GIVEN %j THEN throws TypeError', async (waitBetweenRetries) => {
 			const cb = vi.fn(cbRaw);
 			const cbCondition = vi.fn(cbConditionRaw);
-			const result = poll(cb, cbCondition, { waitBetweenRetries: waitBetweenRetries as any });
+			const result = poll(cb, cbCondition, { waitBetweenRetries });
 
 			await expect(result).rejects.toStrictEqual(new TypeError('Expected waitBetweenRetries to be a number'));
 			expect(cb).toBeCalledTimes(0);

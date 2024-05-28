@@ -9,7 +9,7 @@ export function mergeObjects<A extends object, B extends object>(objTarget: A, o
 	for (const [key, value] of Object.entries(objSource)) {
 		const targetValue = Reflect.get(objTarget, key);
 		if (isObject(value)) {
-			Reflect.set(objTarget, key, isObject(targetValue) ? mergeObjects(targetValue, value as object) : value);
+			Reflect.set(objTarget, key, isObject(targetValue) ? mergeObjects(targetValue, value) : value);
 		} else if (!isObject(targetValue)) {
 			Reflect.set(objTarget, key, value);
 		}

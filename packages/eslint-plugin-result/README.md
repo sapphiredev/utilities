@@ -30,25 +30,46 @@ You can use the following command to install this package, or replace `npm insta
 npm install @sapphire/eslint-plugin-result
 ```
 
+It is important to note that this package only exports [ESLint Flat Config][]! This means that you _have_ to use `eslint.config.mjs` to use this package. See the ESLint documentation on flat config for more information.
+
 ## Usage
 
-Somewhere in your ESLint configuration:
+1. Create a file `eslint.config.mjs` in the root of your project.
+2. Add the following content to the file:
 
-```json
-{
-	"extends": ["plugin:@sapphire/result/recommended"]
-}
+```js
+import sapphireEslintPluginResult from '@sapphire/eslint-plugin-result/recommended';
+
+/**
+ * @type {import('@typescript-eslint/utils').TSESLint.FlatConfig.ConfigArray}
+ */
+const config = [
+	// Additional config here
+	sapphireEslintPluginResult
+	// or here
+];
+
+export default config;
 ```
 
-Or
+```js
+import sapphireEslintPluginResult from '@sapphire/eslint-plugin-result';
 
-```json
-{
-	"plugins": ["@sapphire/result"],
-	"rules": {
-		"@sapphire/result/no-discard-result": "error"
+/**
+ * @type {import('@typescript-eslint/utils').TSESLint.FlatConfig.ConfigArray}
+ */
+const config = [
+	// Additional config here
+	{
+		plugins: { result: sapphireEslintPluginResult },
+		rules: {
+			'@sapphire/result/no-discard-result': 'error'
+		}
 	}
-}
+	// or here
+];
+
+export default config;
 ```
 
 ## Buy us some doughnuts
@@ -75,3 +96,4 @@ Thank you to all the people who already contributed to Sapphire!
 </a>
 
 [contributing]: https://github.com/sapphiredev/.github/blob/main/.github/CONTRIBUTING.md
+[ESLint Flat Config]: https://eslint.org/blog/2022/08/new-config-system-part-2/

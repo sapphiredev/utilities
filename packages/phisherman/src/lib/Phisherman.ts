@@ -2,7 +2,6 @@ import { fetch, FetchMethods, FetchResultTypes, QueryError } from '@sapphire/fet
 import type { PhishermanInfoType, PhishermanReportType, PhishermanReturnType } from './PhishermanTypes';
 import os from 'node:os';
 
-// eslint-disable-next-line @typescript-eslint/no-inferrable-types
 const packageVersion: string = '[VI]{{inject}}[/VI]';
 
 const agent = `Sapphire Phisherman/${packageVersion} (undici) ${os.platform()}/${os.release()} (https://github.com/sapphiredev/utilities/tree/main/packages/phisherman)`;

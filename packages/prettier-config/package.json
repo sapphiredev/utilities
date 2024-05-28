@@ -15,7 +15,7 @@
 	"homepage": "https://github.com/sapphiredev/utilities/tree/main/packages/prettier-config",
 	"scripts": {
 		"test": "vitest run",
-		"lint": "yarn test && yarn build && eslint src tests --ext ts --fix -c ../../.eslintrc",
+		"lint": "yarn test && yarn build && eslint src tests --fix -c ../../eslint.config.mjs",
 		"build": "tsc -b src",
 		"prepack": "yarn build",
 		"bump": "cliff-jumper",

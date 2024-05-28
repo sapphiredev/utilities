@@ -24,7 +24,7 @@
 	"homepage": "https://github.com/sapphiredev/utilities/tree/main/packages/lexure",
 	"scripts": {
 		"test": "vitest run",
-		"lint": "eslint src tests --ext ts --fix -c ../../.eslintrc",
+		"lint": "eslint src tests --fix -c ../../eslint.config.mjs",
 		"build": "tsup && yarn build:rename-cjs-index",
 		"build:rename-cjs-index": "tsx --tsconfig ../../scripts/tsconfig.json ../../scripts/rename-cjs-index.cts",
 		"docs": "typedoc-json-parser",

@@ -20,7 +20,7 @@
 	"sideEffects": false,
 	"homepage": "https://github.com/sapphiredev/utilities/tree/main/packages/discord.js-utilities",
 	"scripts": {
-		"lint": "eslint src --ext ts --fix -c ../../.eslintrc",
+		"lint": "eslint src --fix -c ../../eslint.config.mjs",
 		"build": "tsup && yarn build:types",
 		"build:types": "concurrently \"yarn:build:types:*\"",
 		"build:types:cjs": "rollup-type-bundler -d dist/cjs -ot .cts",

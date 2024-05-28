@@ -110,7 +110,6 @@ const tokenResolvers = new Map<string, TokenResolver>([
 		}
 	]
 ]);
-/* eslint-enable max-len */
 
 export type TimeResolvable = Date | number | string;
 

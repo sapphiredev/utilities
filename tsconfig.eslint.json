@@ -3,6 +3,7 @@
 	"include": [
 		"vitest.config.ts",
 		"vitest.workspace.ts",
+		"eslint.config.mjs",
 		"packages/",
 		"scripts/"
 	]

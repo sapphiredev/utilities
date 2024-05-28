@@ -41,7 +41,7 @@
 	"homepage": "https://github.com/sapphiredev/utilities/tree/main/packages/ts-config",
 	"scripts": {
 		"test": "vitest run",
-		"lint": "eslint tests --ext mjs,ts --fix -c ../../.eslintrc",
+		"lint": "eslint tests --fix -c ../../eslint.config.mjs",
 		"build": "tsc -b tests",
 		"bump": "cliff-jumper",
 		"check-update": "cliff-jumper --dry-run"

@@ -25,16 +25,13 @@ jobs:
         run: yarn --immutable
       - name: Build ESLint, Prettier and Utilities
         run: |
-          yarn workspaces foreach \
-            --all \
-            --parallel \
-            --include @sapphire/eslint-config \
-            --include @sapphire/prettier-config \
-            --include @sapphire/eslint-plugin-result \
-            --include @sapphire/result \
-            --include @sapphire/node-utilities \
-            --include @sapphire/utilities \
-            run build
+          yarn turbo run build  \
+            --filter=@sapphire/eslint-config \
+            --filter=@sapphire/prettier-config \
+            --filter=@sapphire/eslint-plugin-result \
+            --filter=@sapphire/result \
+            --filter=@sapphire/node-utilities \
+            --filter=@sapphire/utilities
       - name: Run ESLint
         run: yarn lint --fix=false
 
