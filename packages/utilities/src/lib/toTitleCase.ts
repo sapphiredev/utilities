@@ -13,7 +13,7 @@ const TO_TITLE_CASE = /[A-Za-zÀ-ÖØ-öø-ÿ]\S*/g;
  * | categorychannel  | CategoryChannel  |
  * | guildmember      | GuildMember      |
  */
-export const baseVariants: Record<string, string> = {
+export const toTitleCaseDiscordJsVariants: Record<string, string> = {
 	textchannel: 'TextChannel',
 	voicechannel: 'VoiceChannel',
 	categorychannel: 'CategoryChannel',
@@ -24,9 +24,9 @@ export const baseVariants: Record<string, string> = {
  * Converts a string to Title Case
  *
  * @description This is designed to also ensure common Discord PascalCased strings
- * are put in their TitleCase {@link baseVariants}.
+ * are put in their TitleCase {@link toTitleCaseDiscordJsVariants}.
  *
- * You can also provide your own variants to merge with the {@link baseVariants} for
+ * You can also provide your own variants to merge with the {@link toTitleCaseDiscordJsVariants} for
  * your own functionality use.
  *
  * @param str The string to title case
@@ -35,7 +35,7 @@ export const baseVariants: Record<string, string> = {
 export function toTitleCase(str: string, options: ToTitleCaseOptions = {}): string {
 	const { additionalVariants = {}, caseSensitive } = options;
 	const titleCaseVariants = {
-		...baseVariants,
+		...toTitleCaseDiscordJsVariants,
 		...(caseSensitive
 			? additionalVariants
 			: Object.entries(additionalVariants).reduce<Record<string, string>>(
