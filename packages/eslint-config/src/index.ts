@@ -117,7 +117,7 @@ const eslintConfig: TSESLint.FlatConfig.ConfigArray = tseslint.config(
 			'@typescript-eslint/no-namespace': 'off',
 			'@typescript-eslint/no-non-null-asserted-optional-chain': 'error',
 			'@typescript-eslint/no-non-null-assertion': 'off',
-			'@typescript-eslint/no-throw-literal': 'error',
+			'@typescript-eslint/only-throw-error': 'error',
 			'@typescript-eslint/no-unnecessary-boolean-literal-compare': 'error',
 			'@typescript-eslint/no-unnecessary-qualifier': 'error',
 			'@typescript-eslint/no-unsafe-assignment': 'off',

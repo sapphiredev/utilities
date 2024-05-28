@@ -116,7 +116,7 @@ export class ResultErr<E> implements IResult<any, E> {
 	}
 
 	public unwrapRaw(): never {
-		// eslint-disable-next-line @typescript-eslint/no-throw-literal
+		// eslint-disable-next-line @typescript-eslint/only-throw-error
 		throw this.error;
 	}
 
