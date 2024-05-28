@@ -72,12 +72,13 @@ exports[`ESLint Config > should export rules 1`] = `
       "parser": {
         "meta": {
           "name": "typescript-eslint/parser",
-          "version": "7.5.0",
+          "version": "8.0.0-alpha.20",
         },
         "parseForESLint": [Function],
       },
       "sourceType": "module",
     },
+    "name": "typescript-eslint/base",
     "plugins": {
       "@typescript-eslint": {
         "configs": {
@@ -122,7 +123,7 @@ exports[`ESLint Config > should export rules 1`] = `
               "@typescript-eslint/no-duplicate-type-constituents": "error",
               "@typescript-eslint/no-dynamic-delete": "error",
               "@typescript-eslint/no-empty-function": "error",
-              "@typescript-eslint/no-empty-interface": "error",
+              "@typescript-eslint/no-empty-object-type": "error",
               "@typescript-eslint/no-explicit-any": "error",
               "@typescript-eslint/no-extra-non-null-assertion": "error",
               "@typescript-eslint/no-extraneous-class": "error",
@@ -134,7 +135,6 @@ exports[`ESLint Config > should export rules 1`] = `
               "@typescript-eslint/no-invalid-this": "error",
               "@typescript-eslint/no-invalid-void-type": "error",
               "@typescript-eslint/no-loop-func": "error",
-              "@typescript-eslint/no-loss-of-precision": "error",
               "@typescript-eslint/no-magic-numbers": "error",
               "@typescript-eslint/no-meaningless-void-operator": "error",
               "@typescript-eslint/no-misused-new": "error",
@@ -170,7 +170,6 @@ exports[`ESLint Config > should export rules 1`] = `
               "@typescript-eslint/no-useless-constructor": "error",
               "@typescript-eslint/no-useless-empty-export": "error",
               "@typescript-eslint/no-useless-template-literals": "error",
-              "@typescript-eslint/no-var-requires": "error",
               "@typescript-eslint/non-nullable-type-assertion-style": "error",
               "@typescript-eslint/only-throw-error": "error",
               "@typescript-eslint/parameter-properties": "error",
@@ -219,7 +218,6 @@ exports[`ESLint Config > should export rules 1`] = `
               "no-implied-eval": "off",
               "no-invalid-this": "off",
               "no-loop-func": "off",
-              "no-loss-of-precision": "off",
               "no-magic-numbers": "off",
               "no-redeclare": "off",
               "no-restricted-imports": "off",
@@ -266,7 +264,6 @@ exports[`ESLint Config > should export rules 1`] = `
               "@typescript-eslint/no-misused-promises": "off",
               "@typescript-eslint/no-mixed-enums": "off",
               "@typescript-eslint/no-redundant-type-constituents": "off",
-              "@typescript-eslint/no-throw-literal": "off",
               "@typescript-eslint/no-unnecessary-boolean-literal-compare": "off",
               "@typescript-eslint/no-unnecessary-condition": "off",
               "@typescript-eslint/no-unnecessary-qualifier": "off",
@@ -324,6 +321,7 @@ exports[`ESLint Config > should export rules 1`] = `
                   "no-dupe-keys": "off",
                   "no-func-assign": "off",
                   "no-import-assign": "off",
+                  "no-new-native-nonconstructor": "off",
                   "no-new-symbol": "off",
                   "no-obj-calls": "off",
                   "no-redeclare": "off",
@@ -350,21 +348,23 @@ exports[`ESLint Config > should export rules 1`] = `
               "@typescript-eslint/ban-types": "error",
               "@typescript-eslint/no-array-constructor": "error",
               "@typescript-eslint/no-duplicate-enum-values": "error",
+              "@typescript-eslint/no-empty-object-type": "error",
               "@typescript-eslint/no-explicit-any": "error",
               "@typescript-eslint/no-extra-non-null-assertion": "error",
-              "@typescript-eslint/no-loss-of-precision": "error",
               "@typescript-eslint/no-misused-new": "error",
               "@typescript-eslint/no-namespace": "error",
               "@typescript-eslint/no-non-null-asserted-optional-chain": "error",
+              "@typescript-eslint/no-require-imports": "error",
               "@typescript-eslint/no-this-alias": "error",
               "@typescript-eslint/no-unnecessary-type-constraint": "error",
               "@typescript-eslint/no-unsafe-declaration-merging": "error",
+              "@typescript-eslint/no-unused-expressions": "error",
               "@typescript-eslint/no-unused-vars": "error",
-              "@typescript-eslint/no-var-requires": "error",
               "@typescript-eslint/prefer-as-const": "error",
+              "@typescript-eslint/prefer-namespace-keyword": "error",
               "@typescript-eslint/triple-slash-reference": "error",
               "no-array-constructor": "off",
-              "no-loss-of-precision": "off",
+              "no-unused-expressions": "off",
               "no-unused-vars": "off",
             },
           },
@@ -378,20 +378,22 @@ exports[`ESLint Config > should export rules 1`] = `
               "@typescript-eslint/ban-ts-comment": "error",
               "@typescript-eslint/ban-types": "error",
               "@typescript-eslint/no-array-constructor": "error",
+              "@typescript-eslint/no-array-delete": "error",
               "@typescript-eslint/no-base-to-string": "error",
               "@typescript-eslint/no-duplicate-enum-values": "error",
               "@typescript-eslint/no-duplicate-type-constituents": "error",
+              "@typescript-eslint/no-empty-object-type": "error",
               "@typescript-eslint/no-explicit-any": "error",
               "@typescript-eslint/no-extra-non-null-assertion": "error",
               "@typescript-eslint/no-floating-promises": "error",
               "@typescript-eslint/no-for-in-array": "error",
               "@typescript-eslint/no-implied-eval": "error",
-              "@typescript-eslint/no-loss-of-precision": "error",
               "@typescript-eslint/no-misused-new": "error",
               "@typescript-eslint/no-misused-promises": "error",
               "@typescript-eslint/no-namespace": "error",
               "@typescript-eslint/no-non-null-asserted-optional-chain": "error",
               "@typescript-eslint/no-redundant-type-constituents": "error",
+              "@typescript-eslint/no-require-imports": "error",
               "@typescript-eslint/no-this-alias": "error",
               "@typescript-eslint/no-unnecessary-type-assertion": "error",
               "@typescript-eslint/no-unnecessary-type-constraint": "error",
@@ -402,9 +404,14 @@ exports[`ESLint Config > should export rules 1`] = `
               "@typescript-eslint/no-unsafe-enum-comparison": "error",
               "@typescript-eslint/no-unsafe-member-access": "error",
               "@typescript-eslint/no-unsafe-return": "error",
+              "@typescript-eslint/no-unsafe-unary-minus": "error",
+              "@typescript-eslint/no-unused-expressions": "error",
               "@typescript-eslint/no-unused-vars": "error",
-              "@typescript-eslint/no-var-requires": "error",
+              "@typescript-eslint/no-useless-template-literals": "error",
+              "@typescript-eslint/only-throw-error": "error",
               "@typescript-eslint/prefer-as-const": "error",
+              "@typescript-eslint/prefer-namespace-keyword": "error",
+              "@typescript-eslint/prefer-promise-reject-errors": "error",
               "@typescript-eslint/require-await": "error",
               "@typescript-eslint/restrict-plus-operands": "error",
               "@typescript-eslint/restrict-template-expressions": "error",
@@ -412,8 +419,10 @@ exports[`ESLint Config > should export rules 1`] = `
               "@typescript-eslint/unbound-method": "error",
               "no-array-constructor": "off",
               "no-implied-eval": "off",
-              "no-loss-of-precision": "off",
+              "no-throw-literal": "off",
+              "no-unused-expressions": "off",
               "no-unused-vars": "off",
+              "prefer-promise-reject-errors": "off",
               "require-await": "off",
             },
           },
@@ -427,20 +436,22 @@ exports[`ESLint Config > should export rules 1`] = `
               "@typescript-eslint/ban-ts-comment": "error",
               "@typescript-eslint/ban-types": "error",
               "@typescript-eslint/no-array-constructor": "error",
+              "@typescript-eslint/no-array-delete": "error",
               "@typescript-eslint/no-base-to-string": "error",
               "@typescript-eslint/no-duplicate-enum-values": "error",
               "@typescript-eslint/no-duplicate-type-constituents": "error",
+              "@typescript-eslint/no-empty-object-type": "error",
               "@typescript-eslint/no-explicit-any": "error",
               "@typescript-eslint/no-extra-non-null-assertion": "error",
               "@typescript-eslint/no-floating-promises": "error",
               "@typescript-eslint/no-for-in-array": "error",
               "@typescript-eslint/no-implied-eval": "error",
-              "@typescript-eslint/no-loss-of-precision": "error",
               "@typescript-eslint/no-misused-new": "error",
               "@typescript-eslint/no-misused-promises": "error",
               "@typescript-eslint/no-namespace": "error",
               "@typescript-eslint/no-non-null-asserted-optional-chain": "error",
               "@typescript-eslint/no-redundant-type-constituents": "error",
+              "@typescript-eslint/no-require-imports": "error",
               "@typescript-eslint/no-this-alias": "error",
               "@typescript-eslint/no-unnecessary-type-assertion": "error",
               "@typescript-eslint/no-unnecessary-type-constraint": "error",
@@ -451,9 +462,14 @@ exports[`ESLint Config > should export rules 1`] = `
               "@typescript-eslint/no-unsafe-enum-comparison": "error",
               "@typescript-eslint/no-unsafe-member-access": "error",
               "@typescript-eslint/no-unsafe-return": "error",
+              "@typescript-eslint/no-unsafe-unary-minus": "error",
+              "@typescript-eslint/no-unused-expressions": "error",
               "@typescript-eslint/no-unused-vars": "error",
-              "@typescript-eslint/no-var-requires": "error",
+              "@typescript-eslint/no-useless-template-literals": "error",
+              "@typescript-eslint/only-throw-error": "error",
               "@typescript-eslint/prefer-as-const": "error",
+              "@typescript-eslint/prefer-namespace-keyword": "error",
+              "@typescript-eslint/prefer-promise-reject-errors": "error",
               "@typescript-eslint/require-await": "error",
               "@typescript-eslint/restrict-plus-operands": "error",
               "@typescript-eslint/restrict-template-expressions": "error",
@@ -461,8 +477,10 @@ exports[`ESLint Config > should export rules 1`] = `
               "@typescript-eslint/unbound-method": "error",
               "no-array-constructor": "off",
               "no-implied-eval": "off",
-              "no-loss-of-precision": "off",
+              "no-throw-literal": "off",
+              "no-unused-expressions": "off",
               "no-unused-vars": "off",
+              "prefer-promise-reject-errors": "off",
               "require-await": "off",
             },
           },
@@ -473,6 +491,7 @@ exports[`ESLint Config > should export rules 1`] = `
             ],
             "rules": {
               "@typescript-eslint/await-thenable": "error",
+              "@typescript-eslint/no-array-delete": "error",
               "@typescript-eslint/no-base-to-string": "error",
               "@typescript-eslint/no-duplicate-type-constituents": "error",
               "@typescript-eslint/no-floating-promises": "error",
@@ -487,11 +506,17 @@ exports[`ESLint Config > should export rules 1`] = `
               "@typescript-eslint/no-unsafe-enum-comparison": "error",
               "@typescript-eslint/no-unsafe-member-access": "error",
               "@typescript-eslint/no-unsafe-return": "error",
+              "@typescript-eslint/no-unsafe-unary-minus": "error",
+              "@typescript-eslint/no-useless-template-literals": "error",
+              "@typescript-eslint/only-throw-error": "error",
+              "@typescript-eslint/prefer-promise-reject-errors": "error",
               "@typescript-eslint/require-await": "error",
               "@typescript-eslint/restrict-plus-operands": "error",
               "@typescript-eslint/restrict-template-expressions": "error",
               "@typescript-eslint/unbound-method": "error",
               "no-implied-eval": "off",
+              "no-throw-literal": "off",
+              "prefer-promise-reject-errors": "off",
               "require-await": "off",
             },
           },
@@ -511,29 +536,31 @@ exports[`ESLint Config > should export rules 1`] = `
               "@typescript-eslint/no-array-constructor": "error",
               "@typescript-eslint/no-duplicate-enum-values": "error",
               "@typescript-eslint/no-dynamic-delete": "error",
+              "@typescript-eslint/no-empty-object-type": "error",
               "@typescript-eslint/no-explicit-any": "error",
               "@typescript-eslint/no-extra-non-null-assertion": "error",
               "@typescript-eslint/no-extraneous-class": "error",
               "@typescript-eslint/no-invalid-void-type": "error",
-              "@typescript-eslint/no-loss-of-precision": "error",
               "@typescript-eslint/no-misused-new": "error",
               "@typescript-eslint/no-namespace": "error",
               "@typescript-eslint/no-non-null-asserted-nullish-coalescing": "error",
               "@typescript-eslint/no-non-null-asserted-optional-chain": "error",
               "@typescript-eslint/no-non-null-assertion": "error",
+              "@typescript-eslint/no-require-imports": "error",
               "@typescript-eslint/no-this-alias": "error",
               "@typescript-eslint/no-unnecessary-type-constraint": "error",
               "@typescript-eslint/no-unsafe-declaration-merging": "error",
+              "@typescript-eslint/no-unused-expressions": "error",
               "@typescript-eslint/no-unused-vars": "error",
               "@typescript-eslint/no-useless-constructor": "error",
-              "@typescript-eslint/no-var-requires": "error",
               "@typescript-eslint/prefer-as-const": "error",
               "@typescript-eslint/prefer-literal-enum-member": "error",
+              "@typescript-eslint/prefer-namespace-keyword": "error",
               "@typescript-eslint/prefer-ts-expect-error": "error",
               "@typescript-eslint/triple-slash-reference": "error",
               "@typescript-eslint/unified-signatures": "error",
               "no-array-constructor": "off",
-              "no-loss-of-precision": "off",
+              "no-unused-expressions": "off",
               "no-unused-vars": "off",
               "no-useless-constructor": "off",
             },
@@ -559,6 +586,7 @@ exports[`ESLint Config > should export rules 1`] = `
               "@typescript-eslint/no-duplicate-enum-values": "error",
               "@typescript-eslint/no-duplicate-type-constituents": "error",
               "@typescript-eslint/no-dynamic-delete": "error",
+              "@typescript-eslint/no-empty-object-type": "error",
               "@typescript-eslint/no-explicit-any": "error",
               "@typescript-eslint/no-extra-non-null-assertion": "error",
               "@typescript-eslint/no-extraneous-class": "error",
@@ -566,7 +594,6 @@ exports[`ESLint Config > should export rules 1`] = `
               "@typescript-eslint/no-for-in-array": "error",
               "@typescript-eslint/no-implied-eval": "error",
               "@typescript-eslint/no-invalid-void-type": "error",
-              "@typescript-eslint/no-loss-of-precision": "error",
               "@typescript-eslint/no-meaningless-void-operator": "error",
               "@typescript-eslint/no-misused-new": "error",
               "@typescript-eslint/no-misused-promises": "error",
@@ -576,6 +603,7 @@ exports[`ESLint Config > should export rules 1`] = `
               "@typescript-eslint/no-non-null-asserted-optional-chain": "error",
               "@typescript-eslint/no-non-null-assertion": "error",
               "@typescript-eslint/no-redundant-type-constituents": "error",
+              "@typescript-eslint/no-require-imports": "error",
               "@typescript-eslint/no-this-alias": "error",
               "@typescript-eslint/no-unnecessary-boolean-literal-compare": "error",
               "@typescript-eslint/no-unnecessary-condition": "error",
@@ -589,14 +617,15 @@ exports[`ESLint Config > should export rules 1`] = `
               "@typescript-eslint/no-unsafe-enum-comparison": "error",
               "@typescript-eslint/no-unsafe-member-access": "error",
               "@typescript-eslint/no-unsafe-return": "error",
+              "@typescript-eslint/no-unsafe-unary-minus": "error",
+              "@typescript-eslint/no-unused-expressions": "error",
               "@typescript-eslint/no-unused-vars": "error",
               "@typescript-eslint/no-useless-constructor": "error",
               "@typescript-eslint/no-useless-template-literals": "error",
-              "@typescript-eslint/no-var-requires": "error",
               "@typescript-eslint/only-throw-error": "error",
               "@typescript-eslint/prefer-as-const": "error",
-              "@typescript-eslint/prefer-includes": "error",
               "@typescript-eslint/prefer-literal-enum-member": "error",
+              "@typescript-eslint/prefer-namespace-keyword": "error",
               "@typescript-eslint/prefer-promise-reject-errors": "error",
               "@typescript-eslint/prefer-reduce-type-parameter": "error",
               "@typescript-eslint/prefer-return-this-type": "error",
@@ -629,8 +658,8 @@ exports[`ESLint Config > should export rules 1`] = `
               "@typescript-eslint/use-unknown-in-catch-callback-variable": "error",
               "no-array-constructor": "off",
               "no-implied-eval": "off",
-              "no-loss-of-precision": "off",
               "no-throw-literal": "off",
+              "no-unused-expressions": "off",
               "no-unused-vars": "off",
               "no-useless-constructor": "off",
               "prefer-promise-reject-errors": "off",
@@ -665,9 +694,9 @@ exports[`ESLint Config > should export rules 1`] = `
               "@typescript-eslint/no-unsafe-enum-comparison": "error",
               "@typescript-eslint/no-unsafe-member-access": "error",
               "@typescript-eslint/no-unsafe-return": "error",
+              "@typescript-eslint/no-unsafe-unary-minus": "error",
               "@typescript-eslint/no-useless-template-literals": "error",
               "@typescript-eslint/only-throw-error": "error",
-              "@typescript-eslint/prefer-includes": "error",
               "@typescript-eslint/prefer-promise-reject-errors": "error",
               "@typescript-eslint/prefer-reduce-type-parameter": "error",
               "@typescript-eslint/prefer-return-this-type": "error",
@@ -717,11 +746,9 @@ exports[`ESLint Config > should export rules 1`] = `
               "@typescript-eslint/consistent-type-definitions": "error",
               "@typescript-eslint/no-confusing-non-null-assertion": "error",
               "@typescript-eslint/no-empty-function": "error",
-              "@typescript-eslint/no-empty-interface": "error",
               "@typescript-eslint/no-inferrable-types": "error",
               "@typescript-eslint/prefer-for-of": "error",
               "@typescript-eslint/prefer-function-type": "error",
-              "@typescript-eslint/prefer-namespace-keyword": "error",
               "no-empty-function": "off",
             },
           },
@@ -742,14 +769,15 @@ exports[`ESLint Config > should export rules 1`] = `
               "@typescript-eslint/dot-notation": "error",
               "@typescript-eslint/no-confusing-non-null-assertion": "error",
               "@typescript-eslint/no-empty-function": "error",
-              "@typescript-eslint/no-empty-interface": "error",
               "@typescript-eslint/no-inferrable-types": "error",
               "@typescript-eslint/non-nullable-type-assertion-style": "error",
+              "@typescript-eslint/prefer-find": "error",
               "@typescript-eslint/prefer-for-of": "error",
               "@typescript-eslint/prefer-function-type": "error",
-              "@typescript-eslint/prefer-namespace-keyword": "error",
+              "@typescript-eslint/prefer-includes": "error",
               "@typescript-eslint/prefer-nullish-coalescing": "error",
               "@typescript-eslint/prefer-optional-chain": "error",
+              "@typescript-eslint/prefer-regexp-exec": "error",
               "@typescript-eslint/prefer-string-starts-ends-with": "error",
               "dot-notation": "off",
               "no-empty-function": "off",
@@ -763,8 +791,11 @@ exports[`ESLint Config > should export rules 1`] = `
             "rules": {
               "@typescript-eslint/dot-notation": "error",
               "@typescript-eslint/non-nullable-type-assertion-style": "error",
+              "@typescript-eslint/prefer-find": "error",
+              "@typescript-eslint/prefer-includes": "error",
               "@typescript-eslint/prefer-nullish-coalescing": "error",
               "@typescript-eslint/prefer-optional-chain": "error",
+              "@typescript-eslint/prefer-regexp-exec": "error",
               "@typescript-eslint/prefer-string-starts-ends-with": "error",
               "dot-notation": "off",
             },
@@ -772,7 +803,7 @@ exports[`ESLint Config > should export rules 1`] = `
         },
         "meta": {
           "name": "@typescript-eslint/eslint-plugin",
-          "version": "7.5.0",
+          "version": "8.0.0-alpha.20",
         },
         "rules": {
           "adjacent-overload-signatures": {
@@ -1048,85 +1079,6 @@ exports[`ESLint Config > should export rules 1`] = `
               "type": "suggestion",
             },
           },
-          "block-spacing": {
-            "create": [Function],
-            "defaultOptions": [
-              "always",
-            ],
-            "meta": {
-              "deprecated": true,
-              "docs": {
-                "description": "Disallow or enforce spaces inside of blocks after opening block and before closing block",
-                "extendsBaseRule": true,
-                "url": "https://typescript-eslint.io/rules/block-spacing",
-              },
-              "fixable": "whitespace",
-              "hasSuggestions": undefined,
-              "messages": {
-                "extra": "Unexpected space(s) {{location}} '{{token}}'.",
-                "missing": "Requires a space {{location}} '{{token}}'.",
-              },
-              "replacedBy": [
-                "@stylistic/ts/block-spacing",
-              ],
-              "schema": [
-                {
-                  "enum": [
-                    "always",
-                    "never",
-                  ],
-                },
-              ],
-              "type": "layout",
-            },
-          },
-          "brace-style": {
-            "create": [Function],
-            "defaultOptions": [
-              "1tbs",
-            ],
-            "meta": {
-              "deprecated": true,
-              "docs": {
-                "description": "Enforce consistent brace style for blocks",
-                "extendsBaseRule": true,
-                "url": "https://typescript-eslint.io/rules/brace-style",
-              },
-              "fixable": "whitespace",
-              "hasSuggestions": undefined,
-              "messages": {
-                "blockSameLine": "Statement inside of curly braces should be on next line.",
-                "nextLineClose": "Closing curly brace does not appear on the same line as the subsequent block.",
-                "nextLineOpen": "Opening curly brace does not appear on the same line as controlling statement.",
-                "sameLineClose": "Closing curly brace appears on the same line as the subsequent block.",
-                "sameLineOpen": "Opening curly brace appears on the same line as controlling statement.",
-                "singleLineClose": "Closing curly brace should be on the same line as opening curly brace or on the line after the previous block.",
-              },
-              "replacedBy": [
-                "@stylistic/ts/brace-style",
-              ],
-              "schema": [
-                {
-                  "enum": [
-                    "1tbs",
-                    "stroustrup",
-                    "allman",
-                  ],
-                },
-                {
-                  "additionalProperties": false,
-                  "properties": {
-                    "allowSingleLine": {
-                      "default": false,
-                      "type": "boolean",
-                    },
-                  },
-                  "type": "object",
-                },
-              ],
-              "type": "layout",
-            },
-          },
           "class-literal-property-style": {
             "create": [Function],
             "defaultOptions": [
@@ -1218,136 +1170,6 @@ exports[`ESLint Config > should export rules 1`] = `
                 },
               ],
               "type": "suggestion",
-            },
-          },
-          "comma-dangle": {
-            "create": [Function],
-            "defaultOptions": [
-              "never",
-            ],
-            "meta": {
-              "deprecated": true,
-              "docs": {
-                "description": "Require or disallow trailing commas",
-                "extendsBaseRule": true,
-                "url": "https://typescript-eslint.io/rules/comma-dangle",
-              },
-              "fixable": "code",
-              "hasSuggestions": undefined,
-              "messages": {
-                "missing": "Missing trailing comma.",
-                "unexpected": "Unexpected trailing comma.",
-              },
-              "replacedBy": [
-                "@stylistic/ts/comma-dangle",
-              ],
-              "schema": {
-                "$defs": {
-                  "value": {
-                    "enum": [
-                      "always-multiline",
-                      "always",
-                      "never",
-                      "only-multiline",
-                    ],
-                    "type": "string",
-                  },
-                  "valueWithIgnore": {
-                    "enum": [
-                      "always-multiline",
-                      "always",
-                      "never",
-                      "only-multiline",
-                      "ignore",
-                    ],
-                    "type": "string",
-                  },
-                },
-                "additionalItems": false,
-                "items": [
-                  {
-                    "oneOf": [
-                      {
-                        "$ref": "#/$defs/value",
-                      },
-                      {
-                        "additionalProperties": false,
-                        "properties": {
-                          "arrays": {
-                            "$ref": "#/$defs/valueWithIgnore",
-                          },
-                          "enums": {
-                            "$ref": "#/$defs/valueWithIgnore",
-                          },
-                          "exports": {
-                            "$ref": "#/$defs/valueWithIgnore",
-                          },
-                          "functions": {
-                            "$ref": "#/$defs/valueWithIgnore",
-                          },
-                          "generics": {
-                            "$ref": "#/$defs/valueWithIgnore",
-                          },
-                          "imports": {
-                            "$ref": "#/$defs/valueWithIgnore",
-                          },
-                          "objects": {
-                            "$ref": "#/$defs/valueWithIgnore",
-                          },
-                          "tuples": {
-                            "$ref": "#/$defs/valueWithIgnore",
-                          },
-                        },
-                        "type": "object",
-                      },
-                    ],
-                  },
-                ],
-                "type": "array",
-              },
-              "type": "layout",
-            },
-          },
-          "comma-spacing": {
-            "create": [Function],
-            "defaultOptions": [
-              {
-                "after": true,
-                "before": false,
-              },
-            ],
-            "meta": {
-              "deprecated": true,
-              "docs": {
-                "description": "Enforce consistent spacing before and after commas",
-                "extendsBaseRule": true,
-                "url": "https://typescript-eslint.io/rules/comma-spacing",
-              },
-              "fixable": "whitespace",
-              "messages": {
-                "missing": "A space is required {{loc}} ','.",
-                "unexpected": "There should be no space {{loc}} ','.",
-              },
-              "replacedBy": [
-                "@stylistic/ts/comma-spacing",
-              ],
-              "schema": [
-                {
-                  "additionalProperties": false,
-                  "properties": {
-                    "after": {
-                      "default": true,
-                      "type": "boolean",
-                    },
-                    "before": {
-                      "default": false,
-                      "type": "boolean",
-                    },
-                  },
-                  "type": "object",
-                },
-              ],
-              "type": "layout",
             },
           },
           "consistent-generic-constructors": {
@@ -1909,357 +1731,6 @@ You must still type the parameters of the function.",
               "type": "problem",
             },
           },
-          "func-call-spacing": {
-            "create": [Function],
-            "defaultOptions": [
-              "never",
-              {},
-            ],
-            "meta": {
-              "deprecated": true,
-              "docs": {
-                "description": "Require or disallow spacing between function identifiers and their invocations",
-                "extendsBaseRule": true,
-                "url": "https://typescript-eslint.io/rules/func-call-spacing",
-              },
-              "fixable": "whitespace",
-              "messages": {
-                "missing": "Missing space between function name and paren.",
-                "unexpectedNewline": "Unexpected newline between function name and paren.",
-                "unexpectedWhitespace": "Unexpected whitespace between function name and paren.",
-              },
-              "replacedBy": [
-                "@stylistic/ts/func-call-spacing",
-              ],
-              "schema": {
-                "anyOf": [
-                  {
-                    "items": [
-                      {
-                        "enum": [
-                          "never",
-                        ],
-                        "type": "string",
-                      },
-                    ],
-                    "maxItems": 1,
-                    "minItems": 0,
-                    "type": "array",
-                  },
-                  {
-                    "items": [
-                      {
-                        "enum": [
-                          "always",
-                        ],
-                        "type": "string",
-                      },
-                      {
-                        "additionalProperties": false,
-                        "properties": {
-                          "allowNewlines": {
-                            "type": "boolean",
-                          },
-                        },
-                        "type": "object",
-                      },
-                    ],
-                    "maxItems": 2,
-                    "minItems": 0,
-                    "type": "array",
-                  },
-                ],
-              },
-              "type": "layout",
-            },
-          },
-          "indent": {
-            "create": [Function],
-            "defaultOptions": [
-              4,
-              {
-                "SwitchCase": 1,
-                "flatTernaryExpressions": false,
-                "ignoredNodes": [],
-              },
-            ],
-            "meta": {
-              "deprecated": true,
-              "docs": {
-                "description": "Enforce consistent indentation",
-                "extendsBaseRule": true,
-                "url": "https://typescript-eslint.io/rules/indent",
-              },
-              "fixable": "whitespace",
-              "hasSuggestions": undefined,
-              "messages": {
-                "wrongIndentation": "Expected indentation of {{expected}} but found {{actual}}.",
-              },
-              "replacedBy": [
-                "@stylistic/ts/indent",
-              ],
-              "schema": [
-                {
-                  "oneOf": [
-                    {
-                      "enum": [
-                        "tab",
-                      ],
-                    },
-                    {
-                      "minimum": 0,
-                      "type": "integer",
-                    },
-                  ],
-                },
-                {
-                  "additionalProperties": false,
-                  "properties": {
-                    "ArrayExpression": {
-                      "oneOf": [
-                        {
-                          "minimum": 0,
-                          "type": "integer",
-                        },
-                        {
-                          "enum": [
-                            "first",
-                            "off",
-                          ],
-                        },
-                      ],
-                    },
-                    "CallExpression": {
-                      "additionalProperties": false,
-                      "properties": {
-                        "arguments": {
-                          "oneOf": [
-                            {
-                              "minimum": 0,
-                              "type": "integer",
-                            },
-                            {
-                              "enum": [
-                                "first",
-                                "off",
-                              ],
-                            },
-                          ],
-                        },
-                      },
-                      "type": "object",
-                    },
-                    "FunctionDeclaration": {
-                      "additionalProperties": false,
-                      "properties": {
-                        "body": {
-                          "minimum": 0,
-                          "type": "integer",
-                        },
-                        "parameters": {
-                          "oneOf": [
-                            {
-                              "minimum": 0,
-                              "type": "integer",
-                            },
-                            {
-                              "enum": [
-                                "first",
-                                "off",
-                              ],
-                            },
-                          ],
-                        },
-                      },
-                      "type": "object",
-                    },
-                    "FunctionExpression": {
-                      "additionalProperties": false,
-                      "properties": {
-                        "body": {
-                          "minimum": 0,
-                          "type": "integer",
-                        },
-                        "parameters": {
-                          "oneOf": [
-                            {
-                              "minimum": 0,
-                              "type": "integer",
-                            },
-                            {
-                              "enum": [
-                                "first",
-                                "off",
-                              ],
-                            },
-                          ],
-                        },
-                      },
-                      "type": "object",
-                    },
-                    "ImportDeclaration": {
-                      "oneOf": [
-                        {
-                          "minimum": 0,
-                          "type": "integer",
-                        },
-                        {
-                          "enum": [
-                            "first",
-                            "off",
-                          ],
-                        },
-                      ],
-                    },
-                    "MemberExpression": {
-                      "oneOf": [
-                        {
-                          "minimum": 0,
-                          "type": "integer",
-                        },
-                        {
-                          "enum": [
-                            "off",
-                          ],
-                        },
-                      ],
-                    },
-                    "ObjectExpression": {
-                      "oneOf": [
-                        {
-                          "minimum": 0,
-                          "type": "integer",
-                        },
-                        {
-                          "enum": [
-                            "first",
-                            "off",
-                          ],
-                        },
-                      ],
-                    },
-                    "StaticBlock": {
-                      "additionalProperties": false,
-                      "properties": {
-                        "body": {
-                          "minimum": 0,
-                          "type": "integer",
-                        },
-                      },
-                      "type": "object",
-                    },
-                    "SwitchCase": {
-                      "default": 0,
-                      "minimum": 0,
-                      "type": "integer",
-                    },
-                    "VariableDeclarator": {
-                      "oneOf": [
-                        {
-                          "oneOf": [
-                            {
-                              "minimum": 0,
-                              "type": "integer",
-                            },
-                            {
-                              "enum": [
-                                "first",
-                                "off",
-                              ],
-                            },
-                          ],
-                        },
-                        {
-                          "additionalProperties": false,
-                          "properties": {
-                            "const": {
-                              "oneOf": [
-                                {
-                                  "minimum": 0,
-                                  "type": "integer",
-                                },
-                                {
-                                  "enum": [
-                                    "first",
-                                    "off",
-                                  ],
-                                },
-                              ],
-                            },
-                            "let": {
-                              "oneOf": [
-                                {
-                                  "minimum": 0,
-                                  "type": "integer",
-                                },
-                                {
-                                  "enum": [
-                                    "first",
-                                    "off",
-                                  ],
-                                },
-                              ],
-                            },
-                            "var": {
-                              "oneOf": [
-                                {
-                                  "minimum": 0,
-                                  "type": "integer",
-                                },
-                                {
-                                  "enum": [
-                                    "first",
-                                    "off",
-                                  ],
-                                },
-                              ],
-                            },
-                          },
-                          "type": "object",
-                        },
-                      ],
-                    },
-                    "flatTernaryExpressions": {
-                      "default": false,
-                      "type": "boolean",
-                    },
-                    "ignoreComments": {
-                      "default": false,
-                      "type": "boolean",
-                    },
-                    "ignoredNodes": {
-                      "items": {
-                        "not": {
-                          "pattern": ":exit$",
-                        },
-                        "type": "string",
-                      },
-                      "type": "array",
-                    },
-                    "offsetTernaryExpressions": {
-                      "default": false,
-                      "type": "boolean",
-                    },
-                    "outerIIFEBody": {
-                      "oneOf": [
-                        {
-                          "minimum": 0,
-                          "type": "integer",
-                        },
-                        {
-                          "enum": [
-                            "off",
-                          ],
-                        },
-                      ],
-                    },
-                  },
-                  "type": "object",
-                },
-              ],
-              "type": "layout",
-            },
-          },
           "init-declarations": {
             "create": [Function],
             "defaultOptions": [
@@ -2316,1312 +1787,6 @@ You must still type the parameters of the function.",
               "type": "suggestion",
             },
           },
-          "key-spacing": {
-            "create": [Function],
-            "defaultOptions": [
-              {},
-            ],
-            "meta": {
-              "deprecated": true,
-              "docs": {
-                "description": "Enforce consistent spacing between property names and type annotations in types and interfaces",
-                "extendsBaseRule": true,
-                "url": "https://typescript-eslint.io/rules/key-spacing",
-              },
-              "fixable": "whitespace",
-              "hasSuggestions": undefined,
-              "messages": {
-                "extraKey": "Extra space after {{computed}}key '{{key}}'.",
-                "extraValue": "Extra space before value for {{computed}}key '{{key}}'.",
-                "missingKey": "Missing space after {{computed}}key '{{key}}'.",
-                "missingValue": "Missing space before value for {{computed}}key '{{key}}'.",
-              },
-              "replacedBy": [
-                "@stylistic/ts/key-spacing",
-              ],
-              "schema": [
-                {
-                  "anyOf": [
-                    {
-                      "additionalProperties": false,
-                      "properties": {
-                        "afterColon": {
-                          "type": "boolean",
-                        },
-                        "align": {
-                          "anyOf": [
-                            {
-                              "enum": [
-                                "colon",
-                                "value",
-                              ],
-                            },
-                            {
-                              "additionalProperties": false,
-                              "properties": {
-                                "afterColon": {
-                                  "type": "boolean",
-                                },
-                                "beforeColon": {
-                                  "type": "boolean",
-                                },
-                                "mode": {
-                                  "enum": [
-                                    "strict",
-                                    "minimum",
-                                  ],
-                                },
-                                "on": {
-                                  "enum": [
-                                    "colon",
-                                    "value",
-                                  ],
-                                },
-                              },
-                              "type": "object",
-                            },
-                          ],
-                        },
-                        "beforeColon": {
-                          "type": "boolean",
-                        },
-                        "mode": {
-                          "enum": [
-                            "strict",
-                            "minimum",
-                          ],
-                        },
-                      },
-                      "type": "object",
-                    },
-                    {
-                      "additionalProperties": false,
-                      "properties": {
-                        "multiLine": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "afterColon": {
-                              "type": "boolean",
-                            },
-                            "align": {
-                              "anyOf": [
-                                {
-                                  "enum": [
-                                    "colon",
-                                    "value",
-                                  ],
-                                },
-                                {
-                                  "additionalProperties": false,
-                                  "properties": {
-                                    "afterColon": {
-                                      "type": "boolean",
-                                    },
-                                    "beforeColon": {
-                                      "type": "boolean",
-                                    },
-                                    "mode": {
-                                      "enum": [
-                                        "strict",
-                                        "minimum",
-                                      ],
-                                    },
-                                    "on": {
-                                      "enum": [
-                                        "colon",
-                                        "value",
-                                      ],
-                                    },
-                                  },
-                                  "type": "object",
-                                },
-                              ],
-                            },
-                            "beforeColon": {
-                              "type": "boolean",
-                            },
-                            "mode": {
-                              "enum": [
-                                "strict",
-                                "minimum",
-                              ],
-                            },
-                          },
-                          "type": "object",
-                        },
-                        "singleLine": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "afterColon": {
-                              "type": "boolean",
-                            },
-                            "beforeColon": {
-                              "type": "boolean",
-                            },
-                            "mode": {
-                              "enum": [
-                                "strict",
-                                "minimum",
-                              ],
-                            },
-                          },
-                          "type": "object",
-                        },
-                      },
-                      "type": "object",
-                    },
-                    {
-                      "additionalProperties": false,
-                      "properties": {
-                        "align": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "afterColon": {
-                              "type": "boolean",
-                            },
-                            "beforeColon": {
-                              "type": "boolean",
-                            },
-                            "mode": {
-                              "enum": [
-                                "strict",
-                                "minimum",
-                              ],
-                            },
-                            "on": {
-                              "enum": [
-                                "colon",
-                                "value",
-                              ],
-                            },
-                          },
-                          "type": "object",
-                        },
-                        "multiLine": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "afterColon": {
-                              "type": "boolean",
-                            },
-                            "beforeColon": {
-                              "type": "boolean",
-                            },
-                            "mode": {
-                              "enum": [
-                                "strict",
-                                "minimum",
-                              ],
-                            },
-                          },
-                          "type": "object",
-                        },
-                        "singleLine": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "afterColon": {
-                              "type": "boolean",
-                            },
-                            "beforeColon": {
-                              "type": "boolean",
-                            },
-                            "mode": {
-                              "enum": [
-                                "strict",
-                                "minimum",
-                              ],
-                            },
-                          },
-                          "type": "object",
-                        },
-                      },
-                      "type": "object",
-                    },
-                  ],
-                },
-              ],
-              "type": "layout",
-            },
-          },
-          "keyword-spacing": {
-            "create": [Function],
-            "defaultOptions": [
-              {},
-            ],
-            "meta": {
-              "deprecated": true,
-              "docs": {
-                "description": "Enforce consistent spacing before and after keywords",
-                "extendsBaseRule": true,
-                "url": "https://typescript-eslint.io/rules/keyword-spacing",
-              },
-              "fixable": "whitespace",
-              "hasSuggestions": undefined,
-              "messages": {
-                "expectedAfter": "Expected space(s) after "{{value}}".",
-                "expectedBefore": "Expected space(s) before "{{value}}".",
-                "unexpectedAfter": "Unexpected space(s) after "{{value}}".",
-                "unexpectedBefore": "Unexpected space(s) before "{{value}}".",
-              },
-              "replacedBy": [
-                "@stylistic/ts/keyword-spacing",
-              ],
-              "schema": [
-                {
-                  "additionalProperties": false,
-                  "properties": {
-                    "after": {
-                      "default": true,
-                      "type": "boolean",
-                    },
-                    "before": {
-                      "default": true,
-                      "type": "boolean",
-                    },
-                    "overrides": {
-                      "additionalProperties": false,
-                      "properties": {
-                        "abstract": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "after": {
-                              "type": "boolean",
-                            },
-                            "before": {
-                              "type": "boolean",
-                            },
-                          },
-                          "type": "object",
-                        },
-                        "as": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "after": {
-                              "type": "boolean",
-                            },
-                            "before": {
-                              "type": "boolean",
-                            },
-                          },
-                          "type": "object",
-                        },
-                        "async": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "after": {
-                              "type": "boolean",
-                            },
-                            "before": {
-                              "type": "boolean",
-                            },
-                          },
-                          "type": "object",
-                        },
-                        "await": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "after": {
-                              "type": "boolean",
-                            },
-                            "before": {
-                              "type": "boolean",
-                            },
-                          },
-                          "type": "object",
-                        },
-                        "boolean": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "after": {
-                              "type": "boolean",
-                            },
-                            "before": {
-                              "type": "boolean",
-                            },
-                          },
-                          "type": "object",
-                        },
-                        "break": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "after": {
-                              "type": "boolean",
-                            },
-                            "before": {
-                              "type": "boolean",
-                            },
-                          },
-                          "type": "object",
-                        },
-                        "byte": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "after": {
-                              "type": "boolean",
-                            },
-                            "before": {
-                              "type": "boolean",
-                            },
-                          },
-                          "type": "object",
-                        },
-                        "case": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "after": {
-                              "type": "boolean",
-                            },
-                            "before": {
-                              "type": "boolean",
-                            },
-                          },
-                          "type": "object",
-                        },
-                        "catch": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "after": {
-                              "type": "boolean",
-                            },
-                            "before": {
-                              "type": "boolean",
-                            },
-                          },
-                          "type": "object",
-                        },
-                        "char": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "after": {
-                              "type": "boolean",
-                            },
-                            "before": {
-                              "type": "boolean",
-                            },
-                          },
-                          "type": "object",
-                        },
-                        "class": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "after": {
-                              "type": "boolean",
-                            },
-                            "before": {
-                              "type": "boolean",
-                            },
-                          },
-                          "type": "object",
-                        },
-                        "const": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "after": {
-                              "type": "boolean",
-                            },
-                            "before": {
-                              "type": "boolean",
-                            },
-                          },
-                          "type": "object",
-                        },
-                        "continue": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "after": {
-                              "type": "boolean",
-                            },
-                            "before": {
-                              "type": "boolean",
-                            },
-                          },
-                          "type": "object",
-                        },
-                        "debugger": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "after": {
-                              "type": "boolean",
-                            },
-                            "before": {
-                              "type": "boolean",
-                            },
-                          },
-                          "type": "object",
-                        },
-                        "default": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "after": {
-                              "type": "boolean",
-                            },
-                            "before": {
-                              "type": "boolean",
-                            },
-                          },
-                          "type": "object",
-                        },
-                        "delete": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "after": {
-                              "type": "boolean",
-                            },
-                            "before": {
-                              "type": "boolean",
-                            },
-                          },
-                          "type": "object",
-                        },
-                        "do": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "after": {
-                              "type": "boolean",
-                            },
-                            "before": {
-                              "type": "boolean",
-                            },
-                          },
-                          "type": "object",
-                        },
-                        "double": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "after": {
-                              "type": "boolean",
-                            },
-                            "before": {
-                              "type": "boolean",
-                            },
-                          },
-                          "type": "object",
-                        },
-                        "else": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "after": {
-                              "type": "boolean",
-                            },
-                            "before": {
-                              "type": "boolean",
-                            },
-                          },
-                          "type": "object",
-                        },
-                        "enum": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "after": {
-                              "type": "boolean",
-                            },
-                            "before": {
-                              "type": "boolean",
-                            },
-                          },
-                          "type": "object",
-                        },
-                        "export": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "after": {
-                              "type": "boolean",
-                            },
-                            "before": {
-                              "type": "boolean",
-                            },
-                          },
-                          "type": "object",
-                        },
-                        "extends": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "after": {
-                              "type": "boolean",
-                            },
-                            "before": {
-                              "type": "boolean",
-                            },
-                          },
-                          "type": "object",
-                        },
-                        "false": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "after": {
-                              "type": "boolean",
-                            },
-                            "before": {
-                              "type": "boolean",
-                            },
-                          },
-                          "type": "object",
-                        },
-                        "final": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "after": {
-                              "type": "boolean",
-                            },
-                            "before": {
-                              "type": "boolean",
-                            },
-                          },
-                          "type": "object",
-                        },
-                        "finally": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "after": {
-                              "type": "boolean",
-                            },
-                            "before": {
-                              "type": "boolean",
-                            },
-                          },
-                          "type": "object",
-                        },
-                        "float": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "after": {
-                              "type": "boolean",
-                            },
-                            "before": {
-                              "type": "boolean",
-                            },
-                          },
-                          "type": "object",
-                        },
-                        "for": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "after": {
-                              "type": "boolean",
-                            },
-                            "before": {
-                              "type": "boolean",
-                            },
-                          },
-                          "type": "object",
-                        },
-                        "from": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "after": {
-                              "type": "boolean",
-                            },
-                            "before": {
-                              "type": "boolean",
-                            },
-                          },
-                          "type": "object",
-                        },
-                        "function": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "after": {
-                              "type": "boolean",
-                            },
-                            "before": {
-                              "type": "boolean",
-                            },
-                          },
-                          "type": "object",
-                        },
-                        "get": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "after": {
-                              "type": "boolean",
-                            },
-                            "before": {
-                              "type": "boolean",
-                            },
-                          },
-                          "type": "object",
-                        },
-                        "goto": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "after": {
-                              "type": "boolean",
-                            },
-                            "before": {
-                              "type": "boolean",
-                            },
-                          },
-                          "type": "object",
-                        },
-                        "if": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "after": {
-                              "type": "boolean",
-                            },
-                            "before": {
-                              "type": "boolean",
-                            },
-                          },
-                          "type": "object",
-                        },
-                        "implements": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "after": {
-                              "type": "boolean",
-                            },
-                            "before": {
-                              "type": "boolean",
-                            },
-                          },
-                          "type": "object",
-                        },
-                        "import": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "after": {
-                              "type": "boolean",
-                            },
-                            "before": {
-                              "type": "boolean",
-                            },
-                          },
-                          "type": "object",
-                        },
-                        "in": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "after": {
-                              "type": "boolean",
-                            },
-                            "before": {
-                              "type": "boolean",
-                            },
-                          },
-                          "type": "object",
-                        },
-                        "instanceof": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "after": {
-                              "type": "boolean",
-                            },
-                            "before": {
-                              "type": "boolean",
-                            },
-                          },
-                          "type": "object",
-                        },
-                        "int": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "after": {
-                              "type": "boolean",
-                            },
-                            "before": {
-                              "type": "boolean",
-                            },
-                          },
-                          "type": "object",
-                        },
-                        "interface": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "after": {
-                              "type": "boolean",
-                            },
-                            "before": {
-                              "type": "boolean",
-                            },
-                          },
-                          "type": "object",
-                        },
-                        "let": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "after": {
-                              "type": "boolean",
-                            },
-                            "before": {
-                              "type": "boolean",
-                            },
-                          },
-                          "type": "object",
-                        },
-                        "long": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "after": {
-                              "type": "boolean",
-                            },
-                            "before": {
-                              "type": "boolean",
-                            },
-                          },
-                          "type": "object",
-                        },
-                        "native": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "after": {
-                              "type": "boolean",
-                            },
-                            "before": {
-                              "type": "boolean",
-                            },
-                          },
-                          "type": "object",
-                        },
-                        "new": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "after": {
-                              "type": "boolean",
-                            },
-                            "before": {
-                              "type": "boolean",
-                            },
-                          },
-                          "type": "object",
-                        },
-                        "null": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "after": {
-                              "type": "boolean",
-                            },
-                            "before": {
-                              "type": "boolean",
-                            },
-                          },
-                          "type": "object",
-                        },
-                        "of": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "after": {
-                              "type": "boolean",
-                            },
-                            "before": {
-                              "type": "boolean",
-                            },
-                          },
-                          "type": "object",
-                        },
-                        "package": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "after": {
-                              "type": "boolean",
-                            },
-                            "before": {
-                              "type": "boolean",
-                            },
-                          },
-                          "type": "object",
-                        },
-                        "private": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "after": {
-                              "type": "boolean",
-                            },
-                            "before": {
-                              "type": "boolean",
-                            },
-                          },
-                          "type": "object",
-                        },
-                        "protected": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "after": {
-                              "type": "boolean",
-                            },
-                            "before": {
-                              "type": "boolean",
-                            },
-                          },
-                          "type": "object",
-                        },
-                        "public": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "after": {
-                              "type": "boolean",
-                            },
-                            "before": {
-                              "type": "boolean",
-                            },
-                          },
-                          "type": "object",
-                        },
-                        "return": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "after": {
-                              "type": "boolean",
-                            },
-                            "before": {
-                              "type": "boolean",
-                            },
-                          },
-                          "type": "object",
-                        },
-                        "set": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "after": {
-                              "type": "boolean",
-                            },
-                            "before": {
-                              "type": "boolean",
-                            },
-                          },
-                          "type": "object",
-                        },
-                        "short": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "after": {
-                              "type": "boolean",
-                            },
-                            "before": {
-                              "type": "boolean",
-                            },
-                          },
-                          "type": "object",
-                        },
-                        "static": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "after": {
-                              "type": "boolean",
-                            },
-                            "before": {
-                              "type": "boolean",
-                            },
-                          },
-                          "type": "object",
-                        },
-                        "super": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "after": {
-                              "type": "boolean",
-                            },
-                            "before": {
-                              "type": "boolean",
-                            },
-                          },
-                          "type": "object",
-                        },
-                        "switch": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "after": {
-                              "type": "boolean",
-                            },
-                            "before": {
-                              "type": "boolean",
-                            },
-                          },
-                          "type": "object",
-                        },
-                        "synchronized": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "after": {
-                              "type": "boolean",
-                            },
-                            "before": {
-                              "type": "boolean",
-                            },
-                          },
-                          "type": "object",
-                        },
-                        "this": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "after": {
-                              "type": "boolean",
-                            },
-                            "before": {
-                              "type": "boolean",
-                            },
-                          },
-                          "type": "object",
-                        },
-                        "throw": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "after": {
-                              "type": "boolean",
-                            },
-                            "before": {
-                              "type": "boolean",
-                            },
-                          },
-                          "type": "object",
-                        },
-                        "throws": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "after": {
-                              "type": "boolean",
-                            },
-                            "before": {
-                              "type": "boolean",
-                            },
-                          },
-                          "type": "object",
-                        },
-                        "transient": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "after": {
-                              "type": "boolean",
-                            },
-                            "before": {
-                              "type": "boolean",
-                            },
-                          },
-                          "type": "object",
-                        },
-                        "true": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "after": {
-                              "type": "boolean",
-                            },
-                            "before": {
-                              "type": "boolean",
-                            },
-                          },
-                          "type": "object",
-                        },
-                        "try": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "after": {
-                              "type": "boolean",
-                            },
-                            "before": {
-                              "type": "boolean",
-                            },
-                          },
-                          "type": "object",
-                        },
-                        "type": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "after": {
-                              "type": "boolean",
-                            },
-                            "before": {
-                              "type": "boolean",
-                            },
-                          },
-                          "type": "object",
-                        },
-                        "typeof": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "after": {
-                              "type": "boolean",
-                            },
-                            "before": {
-                              "type": "boolean",
-                            },
-                          },
-                          "type": "object",
-                        },
-                        "var": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "after": {
-                              "type": "boolean",
-                            },
-                            "before": {
-                              "type": "boolean",
-                            },
-                          },
-                          "type": "object",
-                        },
-                        "void": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "after": {
-                              "type": "boolean",
-                            },
-                            "before": {
-                              "type": "boolean",
-                            },
-                          },
-                          "type": "object",
-                        },
-                        "volatile": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "after": {
-                              "type": "boolean",
-                            },
-                            "before": {
-                              "type": "boolean",
-                            },
-                          },
-                          "type": "object",
-                        },
-                        "while": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "after": {
-                              "type": "boolean",
-                            },
-                            "before": {
-                              "type": "boolean",
-                            },
-                          },
-                          "type": "object",
-                        },
-                        "with": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "after": {
-                              "type": "boolean",
-                            },
-                            "before": {
-                              "type": "boolean",
-                            },
-                          },
-                          "type": "object",
-                        },
-                        "yield": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "after": {
-                              "type": "boolean",
-                            },
-                            "before": {
-                              "type": "boolean",
-                            },
-                          },
-                          "type": "object",
-                        },
-                      },
-                      "type": "object",
-                    },
-                  },
-                  "type": "object",
-                },
-              ],
-              "type": "layout",
-            },
-          },
-          "lines-around-comment": {
-            "create": [Function],
-            "defaultOptions": [
-              {
-                "beforeBlockComment": true,
-              },
-            ],
-            "meta": {
-              "deprecated": true,
-              "docs": {
-                "description": "Require empty lines around comments",
-                "extendsBaseRule": true,
-                "url": "https://typescript-eslint.io/rules/lines-around-comment",
-              },
-              "fixable": "whitespace",
-              "hasSuggestions": undefined,
-              "messages": {
-                "after": "Expected line after comment.",
-                "before": "Expected line before comment.",
-              },
-              "replacedBy": [
-                "@stylistic/ts/lines-around-comment",
-              ],
-              "schema": [
-                {
-                  "additionalProperties": false,
-                  "properties": {
-                    "afterBlockComment": {
-                      "default": false,
-                      "type": "boolean",
-                    },
-                    "afterLineComment": {
-                      "default": false,
-                      "type": "boolean",
-                    },
-                    "allowArrayEnd": {
-                      "type": "boolean",
-                    },
-                    "allowArrayStart": {
-                      "type": "boolean",
-                    },
-                    "allowBlockEnd": {
-                      "default": false,
-                      "type": "boolean",
-                    },
-                    "allowBlockStart": {
-                      "default": false,
-                      "type": "boolean",
-                    },
-                    "allowClassEnd": {
-                      "type": "boolean",
-                    },
-                    "allowClassStart": {
-                      "type": "boolean",
-                    },
-                    "allowEnumEnd": {
-                      "type": "boolean",
-                    },
-                    "allowEnumStart": {
-                      "type": "boolean",
-                    },
-                    "allowInterfaceEnd": {
-                      "type": "boolean",
-                    },
-                    "allowInterfaceStart": {
-                      "type": "boolean",
-                    },
-                    "allowModuleEnd": {
-                      "type": "boolean",
-                    },
-                    "allowModuleStart": {
-                      "type": "boolean",
-                    },
-                    "allowObjectEnd": {
-                      "type": "boolean",
-                    },
-                    "allowObjectStart": {
-                      "type": "boolean",
-                    },
-                    "allowTypeEnd": {
-                      "type": "boolean",
-                    },
-                    "allowTypeStart": {
-                      "type": "boolean",
-                    },
-                    "applyDefaultIgnorePatterns": {
-                      "type": "boolean",
-                    },
-                    "beforeBlockComment": {
-                      "default": true,
-                      "type": "boolean",
-                    },
-                    "beforeLineComment": {
-                      "default": false,
-                      "type": "boolean",
-                    },
-                    "ignorePattern": {
-                      "type": "string",
-                    },
-                  },
-                  "type": "object",
-                },
-              ],
-              "type": "layout",
-            },
-          },
-          "lines-between-class-members": {
-            "create": [Function],
-            "defaultOptions": [
-              "always",
-              {
-                "exceptAfterOverload": true,
-                "exceptAfterSingleLine": false,
-              },
-            ],
-            "meta": {
-              "deprecated": true,
-              "docs": {
-                "description": "Require or disallow an empty line between class members",
-                "extendsBaseRule": true,
-                "url": "https://typescript-eslint.io/rules/lines-between-class-members",
-              },
-              "fixable": "whitespace",
-              "hasSuggestions": undefined,
-              "messages": {
-                "always": "Expected blank line between class members.",
-                "never": "Unexpected blank line between class members.",
-              },
-              "replacedBy": [
-                "@stylistic/ts/lines-between-class-members",
-              ],
-              "schema": [
-                {
-                  "anyOf": [
-                    {
-                      "additionalProperties": false,
-                      "properties": {
-                        "enforce": {
-                          "items": {
-                            "additionalProperties": false,
-                            "properties": {
-                              "blankLine": {
-                                "enum": [
-                                  "always",
-                                  "never",
-                                ],
-                              },
-                              "next": {
-                                "enum": [
-                                  "method",
-                                  "field",
-                                  "*",
-                                ],
-                              },
-                              "prev": {
-                                "enum": [
-                                  "method",
-                                  "field",
-                                  "*",
-                                ],
-                              },
-                            },
-                            "required": [
-                              "blankLine",
-                              "prev",
-                              "next",
-                            ],
-                            "type": "object",
-                          },
-                          "minItems": 1,
-                          "type": "array",
-                        },
-                      },
-                      "required": [
-                        "enforce",
-                      ],
-                      "type": "object",
-                    },
-                    {
-                      "enum": [
-                        "always",
-                        "never",
-                      ],
-                    },
-                  ],
-                },
-                {
-                  "additionalProperties": false,
-                  "properties": {
-                    "exceptAfterOverload": {
-                      "default": true,
-                      "type": "boolean",
-                    },
-                    "exceptAfterSingleLine": {
-                      "default": false,
-                      "type": "boolean",
-                    },
-                  },
-                  "type": "object",
-                },
-              ],
-              "type": "layout",
-            },
-          },
           "max-params": {
             "create": [Function],
             "defaultOptions": [
@@ -3659,138 +1824,6 @@ You must still type the parameters of the function.",
                 },
               ],
               "type": "suggestion",
-            },
-          },
-          "member-delimiter-style": {
-            "create": [Function],
-            "defaultOptions": [
-              {
-                "multiline": {
-                  "delimiter": "semi",
-                  "requireLast": true,
-                },
-                "multilineDetection": "brackets",
-                "singleline": {
-                  "delimiter": "semi",
-                  "requireLast": false,
-                },
-              },
-            ],
-            "meta": {
-              "deprecated": true,
-              "docs": {
-                "description": "Require a specific member delimiter style for interfaces and type literals",
-                "url": "https://typescript-eslint.io/rules/member-delimiter-style",
-              },
-              "fixable": "whitespace",
-              "messages": {
-                "expectedComma": "Expected a comma.",
-                "expectedSemi": "Expected a semicolon.",
-                "unexpectedComma": "Unexpected separator (,).",
-                "unexpectedSemi": "Unexpected separator (;).",
-              },
-              "replacedBy": [
-                "@stylistic/ts/member-delimiter-style",
-              ],
-              "schema": [
-                {
-                  "$defs": {
-                    "delimiterConfig": {
-                      "additionalProperties": false,
-                      "properties": {
-                        "multiline": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "delimiter": {
-                              "$ref": "#/items/0/$defs/multiLineOption",
-                            },
-                            "requireLast": {
-                              "type": "boolean",
-                            },
-                          },
-                          "type": "object",
-                        },
-                        "singleline": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "delimiter": {
-                              "$ref": "#/items/0/$defs/singleLineOption",
-                            },
-                            "requireLast": {
-                              "type": "boolean",
-                            },
-                          },
-                          "type": "object",
-                        },
-                      },
-                      "type": "object",
-                    },
-                    "multiLineOption": {
-                      "enum": [
-                        "none",
-                        "semi",
-                        "comma",
-                      ],
-                      "type": "string",
-                    },
-                    "singleLineOption": {
-                      "enum": [
-                        "semi",
-                        "comma",
-                      ],
-                      "type": "string",
-                    },
-                  },
-                  "additionalProperties": false,
-                  "properties": {
-                    "multiline": {
-                      "additionalProperties": false,
-                      "properties": {
-                        "delimiter": {
-                          "$ref": "#/items/0/$defs/multiLineOption",
-                        },
-                        "requireLast": {
-                          "type": "boolean",
-                        },
-                      },
-                      "type": "object",
-                    },
-                    "multilineDetection": {
-                      "enum": [
-                        "brackets",
-                        "last-member",
-                      ],
-                      "type": "string",
-                    },
-                    "overrides": {
-                      "additionalProperties": false,
-                      "properties": {
-                        "interface": {
-                          "$ref": "#/items/0/$defs/delimiterConfig",
-                        },
-                        "typeLiteral": {
-                          "$ref": "#/items/0/$defs/delimiterConfig",
-                        },
-                      },
-                      "type": "object",
-                    },
-                    "singleline": {
-                      "additionalProperties": false,
-                      "properties": {
-                        "delimiter": {
-                          "$ref": "#/items/0/$defs/singleLineOption",
-                        },
-                        "requireLast": {
-                          "type": "boolean",
-                        },
-                      },
-                      "type": "object",
-                    },
-                  },
-                  "type": "object",
-                },
-              ],
-              "type": "layout",
             },
           },
           "member-ordering": {
@@ -6272,7 +4305,7 @@ You must still type the parameters of the function.",
             "meta": {
               "docs": {
                 "description": "Disallow using the \`delete\` operator on array values",
-                "recommended": "strict",
+                "recommended": "recommended",
                 "requiresTypeChecking": true,
                 "url": "https://typescript-eslint.io/rules/no-array-delete",
               },
@@ -6536,9 +4569,9 @@ You must still type the parameters of the function.",
               },
             ],
             "meta": {
+              "deprecated": true,
               "docs": {
                 "description": "Disallow the declaration of empty interfaces",
-                "recommended": "stylistic",
                 "url": "https://typescript-eslint.io/rules/no-empty-interface",
               },
               "fixable": "code",
@@ -6547,12 +4580,74 @@ You must still type the parameters of the function.",
                 "noEmpty": "An empty interface is equivalent to \`{}\`.",
                 "noEmptyWithSuper": "An interface declaring no members is equivalent to its supertype.",
               },
+              "replacedBy": [
+                "@typescript-eslint/no-empty-object-type",
+              ],
               "schema": [
                 {
                   "additionalProperties": false,
                   "properties": {
                     "allowSingleExtends": {
                       "type": "boolean",
+                    },
+                  },
+                  "type": "object",
+                },
+              ],
+              "type": "suggestion",
+            },
+          },
+          "no-empty-object-type": {
+            "create": [Function],
+            "defaultOptions": [
+              {
+                "allowInterfaces": "never",
+                "allowObjectTypes": "never",
+              },
+            ],
+            "meta": {
+              "docs": {
+                "description": "Disallow accidentally using the "empty object" type",
+                "recommended": "recommended",
+                "url": "https://typescript-eslint.io/rules/no-empty-object-type",
+              },
+              "hasSuggestions": true,
+              "messages": {
+                "noEmptyInterface": "An empty interface declaration allows any non-nullish value, including literals like \`0\` and \`""\`.
+- If that's what you want, disable this lint rule with an inline comment or configure the '{{ option }}' rule option.
+- If you want a type meaning "any object", you probably want \`object\` instead.
+- If you want a type meaning "any value", you probably want \`unknown\` instead.",
+                "noEmptyInterfaceWithSuper": "An interface declaring no members is equivalent to its supertype.",
+                "noEmptyObject": "The \`{}\` ("empty object") type allows any non-nullish value, including literals like \`0\` and \`""\`.
+- If that's what you want, disable this lint rule with an inline comment or configure the '{{ option }}' rule option.
+- If you want a type meaning "any object", you probably want \`object\` instead.
+- If you want a type meaning "any value", you probably want \`unknown\` instead.",
+                "replaceEmptyInterface": "Replace empty interface with \`{{replacement}}\`.",
+                "replaceEmptyInterfaceWithSuper": "Replace empty interface with a type alias.",
+                "replaceEmptyObjectType": "Replace \`{}\` with \`{{replacement}}\`.",
+              },
+              "schema": [
+                {
+                  "additionalProperties": false,
+                  "properties": {
+                    "allowInterfaces": {
+                      "enum": [
+                        "always",
+                        "never",
+                        "with-single-extends",
+                      ],
+                      "type": "string",
+                    },
+                    "allowObjectTypes": {
+                      "enum": [
+                        "always",
+                        "in-type-alias-with-name",
+                        "never",
+                      ],
+                      "type": "string",
+                    },
+                    "allowWithName": {
+                      "type": "string",
                     },
                   },
                   "type": "object",
@@ -6616,120 +4711,6 @@ You must still type the parameters of the function.",
               },
               "schema": [],
               "type": "problem",
-            },
-          },
-          "no-extra-parens": {
-            "create": [Function],
-            "defaultOptions": [
-              "all",
-            ],
-            "meta": {
-              "deprecated": true,
-              "docs": {
-                "description": "Disallow unnecessary parentheses",
-                "extendsBaseRule": true,
-                "url": "https://typescript-eslint.io/rules/no-extra-parens",
-              },
-              "fixable": "code",
-              "hasSuggestions": undefined,
-              "messages": {
-                "unexpected": "Unnecessary parentheses around expression.",
-              },
-              "replacedBy": [
-                "@stylistic/ts/no-extra-parens",
-              ],
-              "schema": {
-                "anyOf": [
-                  {
-                    "items": [
-                      {
-                        "enum": [
-                          "functions",
-                        ],
-                      },
-                    ],
-                    "maxItems": 1,
-                    "minItems": 0,
-                    "type": "array",
-                  },
-                  {
-                    "items": [
-                      {
-                        "enum": [
-                          "all",
-                        ],
-                      },
-                      {
-                        "additionalProperties": false,
-                        "properties": {
-                          "allowParensAfterCommentPattern": {
-                            "type": "string",
-                          },
-                          "conditionalAssign": {
-                            "type": "boolean",
-                          },
-                          "enforceForArrowConditionals": {
-                            "type": "boolean",
-                          },
-                          "enforceForFunctionPrototypeMethods": {
-                            "type": "boolean",
-                          },
-                          "enforceForNewInMemberExpressions": {
-                            "type": "boolean",
-                          },
-                          "enforceForSequenceExpressions": {
-                            "type": "boolean",
-                          },
-                          "ignoreJSX": {
-                            "enum": [
-                              "none",
-                              "all",
-                              "single-line",
-                              "multi-line",
-                            ],
-                          },
-                          "nestedBinaryExpressions": {
-                            "type": "boolean",
-                          },
-                          "returnAssign": {
-                            "type": "boolean",
-                          },
-                          "ternaryOperandBinaryExpressions": {
-                            "type": "boolean",
-                          },
-                        },
-                        "type": "object",
-                      },
-                    ],
-                    "maxItems": 2,
-                    "minItems": 0,
-                    "type": "array",
-                  },
-                ],
-              },
-              "type": "layout",
-            },
-          },
-          "no-extra-semi": {
-            "create": [Function],
-            "defaultOptions": [],
-            "meta": {
-              "deprecated": true,
-              "docs": {
-                "description": "Disallow unnecessary semicolons",
-                "extendsBaseRule": true,
-                "url": "https://typescript-eslint.io/rules/no-extra-semi",
-              },
-              "fixable": "code",
-              "hasSuggestions": undefined,
-              "messages": {
-                "unexpected": "Unnecessary semicolon.",
-              },
-              "replacedBy": [
-                "@stylistic/ts/no-extra-semi",
-              ],
-              "schema": [],
-              "type": "suggestion",
             },
           },
           "no-extraneous-class": {
@@ -7015,10 +4996,10 @@ You must still type the parameters of the function.",
             "create": [Function],
             "defaultOptions": [],
             "meta": {
+              "deprecated": true,
               "docs": {
                 "description": "Disallow literal numbers that lose precision",
                 "extendsBaseRule": true,
-                "recommended": "recommended",
                 "url": "https://typescript-eslint.io/rules/no-loss-of-precision",
               },
               "hasSuggestions": undefined,
@@ -7400,11 +5381,13 @@ You must still type the parameters of the function.",
             "defaultOptions": [
               {
                 "allow": [],
+                "allowAsImport": false,
               },
             ],
             "meta": {
               "docs": {
                 "description": "Disallow invocation of \`require()\`",
+                "recommended": "recommended",
                 "url": "https://typescript-eslint.io/rules/no-require-imports",
               },
               "messages": {
@@ -7420,6 +5403,10 @@ You must still type the parameters of the function.",
                         "type": "string",
                       },
                       "type": "array",
+                    },
+                    "allowAsImport": {
+                      "description": "Allows \`require\` statements in import declarations.",
+                      "type": "boolean",
                     },
                   },
                   "type": "object",
@@ -7729,46 +5716,6 @@ You must still type the parameters of the function.",
                 },
               ],
               "type": "suggestion",
-            },
-          },
-          "no-throw-literal": {
-            "create": [Function],
-            "defaultOptions": [
-              {
-                "allowThrowingAny": true,
-                "allowThrowingUnknown": true,
-              },
-            ],
-            "meta": {
-              "deprecated": true,
-              "docs": {
-                "description": "Disallow throwing literals as exceptions",
-                "extendsBaseRule": true,
-                "requiresTypeChecking": true,
-                "url": "https://typescript-eslint.io/rules/no-throw-literal",
-              },
-              "messages": {
-                "object": "Expected an error object to be thrown.",
-                "undef": "Do not throw undefined.",
-              },
-              "replacedBy": [
-                "@typescript-eslint/only-throw-error",
-              ],
-              "schema": [
-                {
-                  "additionalProperties": false,
-                  "properties": {
-                    "allowThrowingAny": {
-                      "type": "boolean",
-                    },
-                    "allowThrowingUnknown": {
-                      "type": "boolean",
-                    },
-                  },
-                  "type": "object",
-                },
-              ],
-              "type": "problem",
             },
           },
           "no-type-alias": {
@@ -8182,6 +6129,7 @@ You can try to fix this by turning on the \`noImplicitThis\` compiler option, or
             "meta": {
               "docs": {
                 "description": "Require unary negation to take a number",
+                "recommended": "recommended",
                 "requiresTypeChecking": true,
                 "url": "https://typescript-eslint.io/rules/no-unsafe-unary-minus",
               },
@@ -8205,6 +6153,7 @@ You can try to fix this by turning on the \`noImplicitThis\` compiler option, or
               "docs": {
                 "description": "Disallow unused expressions",
                 "extendsBaseRule": true,
+                "recommended": "recommended",
                 "url": "https://typescript-eslint.io/rules/no-unused-expressions",
               },
               "hasSuggestions": undefined,
@@ -8417,7 +6366,7 @@ You can try to fix this by turning on the \`noImplicitThis\` compiler option, or
             "meta": {
               "docs": {
                 "description": "Disallow unnecessary template literals",
-                "recommended": "strict",
+                "recommended": "recommended",
                 "requiresTypeChecking": true,
                 "url": "https://typescript-eslint.io/rules/no-useless-template-literals",
               },
@@ -8437,14 +6386,17 @@ You can try to fix this by turning on the \`noImplicitThis\` compiler option, or
               },
             ],
             "meta": {
+              "deprecated": true,
               "docs": {
                 "description": "Disallow \`require\` statements except in import statements",
-                "recommended": "recommended",
                 "url": "https://typescript-eslint.io/rules/no-var-requires",
               },
               "messages": {
                 "noVarReqs": "Require statement not part of import statement.",
               },
+              "replacedBy": [
+                "@typescript-eslint/no-require-imports",
+              ],
               "schema": [
                 {
                   "additionalProperties": false,
@@ -8481,51 +6433,6 @@ You can try to fix this by turning on the \`noImplicitThis\` compiler option, or
               "type": "suggestion",
             },
           },
-          "object-curly-spacing": {
-            "create": [Function],
-            "defaultOptions": [
-              "never",
-            ],
-            "meta": {
-              "deprecated": true,
-              "docs": {
-                "description": "Enforce consistent spacing inside braces",
-                "extendsBaseRule": true,
-                "url": "https://typescript-eslint.io/rules/object-curly-spacing",
-              },
-              "fixable": "whitespace",
-              "messages": {
-                "requireSpaceAfter": "A space is required after '{{token}}'.",
-                "requireSpaceBefore": "A space is required before '{{token}}'.",
-                "unexpectedSpaceAfter": "There should be no space after '{{token}}'.",
-                "unexpectedSpaceBefore": "There should be no space before '{{token}}'.",
-              },
-              "replacedBy": [
-                "@stylistic/ts/object-curly-spacing",
-              ],
-              "schema": [
-                {
-                  "enum": [
-                    "always",
-                    "never",
-                  ],
-                },
-                {
-                  "additionalProperties": false,
-                  "properties": {
-                    "arraysInObjects": {
-                      "type": "boolean",
-                    },
-                    "objectsInObjects": {
-                      "type": "boolean",
-                    },
-                  },
-                  "type": "object",
-                },
-              ],
-              "type": "layout",
-            },
-          },
           "only-throw-error": {
             "create": [Function],
             "defaultOptions": [
@@ -8538,7 +6445,7 @@ You can try to fix this by turning on the \`noImplicitThis\` compiler option, or
               "docs": {
                 "description": "Disallow throwing non-\`Error\` values as exceptions",
                 "extendsBaseRule": "no-throw-literal",
-                "recommended": "strict",
+                "recommended": "recommended",
                 "requiresTypeChecking": true,
                 "url": "https://typescript-eslint.io/rules/only-throw-error",
               },
@@ -8561,162 +6468,6 @@ You can try to fix this by turning on the \`noImplicitThis\` compiler option, or
                 },
               ],
               "type": "problem",
-            },
-          },
-          "padding-line-between-statements": {
-            "create": [Function],
-            "defaultOptions": [],
-            "meta": {
-              "deprecated": true,
-              "docs": {
-                "description": "Require or disallow padding lines between statements",
-                "extendsBaseRule": true,
-                "url": "https://typescript-eslint.io/rules/padding-line-between-statements",
-              },
-              "fixable": "whitespace",
-              "hasSuggestions": false,
-              "messages": {
-                "expectedBlankLine": "Expected blank line before this statement.",
-                "unexpectedBlankLine": "Unexpected blank line before this statement.",
-              },
-              "replacedBy": [
-                "@stylistic/ts/padding-line-between-statements",
-              ],
-              "schema": {
-                "$defs": {
-                  "paddingType": {
-                    "enum": [
-                      "any",
-                      "never",
-                      "always",
-                    ],
-                    "type": "string",
-                  },
-                  "statementType": {
-                    "anyOf": [
-                      {
-                        "enum": [
-                          "*",
-                          "block-like",
-                          "exports",
-                          "require",
-                          "directive",
-                          "expression",
-                          "iife",
-                          "multiline-block-like",
-                          "multiline-expression",
-                          "multiline-const",
-                          "multiline-let",
-                          "multiline-var",
-                          "singleline-const",
-                          "singleline-let",
-                          "singleline-var",
-                          "block",
-                          "empty",
-                          "function",
-                          "break",
-                          "case",
-                          "class",
-                          "const",
-                          "continue",
-                          "debugger",
-                          "default",
-                          "do",
-                          "export",
-                          "for",
-                          "if",
-                          "import",
-                          "let",
-                          "return",
-                          "switch",
-                          "throw",
-                          "try",
-                          "var",
-                          "while",
-                          "with",
-                          "interface",
-                          "type",
-                        ],
-                        "type": "string",
-                      },
-                      {
-                        "additionalItems": false,
-                        "items": {
-                          "enum": [
-                            "*",
-                            "block-like",
-                            "exports",
-                            "require",
-                            "directive",
-                            "expression",
-                            "iife",
-                            "multiline-block-like",
-                            "multiline-expression",
-                            "multiline-const",
-                            "multiline-let",
-                            "multiline-var",
-                            "singleline-const",
-                            "singleline-let",
-                            "singleline-var",
-                            "block",
-                            "empty",
-                            "function",
-                            "break",
-                            "case",
-                            "class",
-                            "const",
-                            "continue",
-                            "debugger",
-                            "default",
-                            "do",
-                            "export",
-                            "for",
-                            "if",
-                            "import",
-                            "let",
-                            "return",
-                            "switch",
-                            "throw",
-                            "try",
-                            "var",
-                            "while",
-                            "with",
-                            "interface",
-                            "type",
-                          ],
-                          "type": "string",
-                        },
-                        "minItems": 1,
-                        "type": "array",
-                        "uniqueItems": true,
-                      },
-                    ],
-                  },
-                },
-                "additionalItems": false,
-                "items": {
-                  "additionalProperties": false,
-                  "properties": {
-                    "blankLine": {
-                      "$ref": "#/$defs/paddingType",
-                    },
-                    "next": {
-                      "$ref": "#/$defs/statementType",
-                    },
-                    "prev": {
-                      "$ref": "#/$defs/statementType",
-                    },
-                  },
-                  "required": [
-                    "blankLine",
-                    "prev",
-                    "next",
-                  ],
-                  "type": "object",
-                },
-                "type": "array",
-              },
-              "type": "layout",
             },
           },
           "parameter-properties": {
@@ -8906,6 +6657,7 @@ You can try to fix this by turning on the \`noImplicitThis\` compiler option, or
             "meta": {
               "docs": {
                 "description": "Enforce the use of Array.prototype.find() over Array.prototype.filter() followed by [0] when looking for a single result",
+                "recommended": "stylistic",
                 "requiresTypeChecking": true,
                 "url": "https://typescript-eslint.io/rules/prefer-find",
               },
@@ -8958,7 +6710,7 @@ You can try to fix this by turning on the \`noImplicitThis\` compiler option, or
             "meta": {
               "docs": {
                 "description": "Enforce \`includes\` method over \`indexOf\` method",
-                "recommended": "strict",
+                "recommended": "stylistic",
                 "requiresTypeChecking": true,
                 "url": "https://typescript-eslint.io/rules/prefer-includes",
               },
@@ -9008,7 +6760,7 @@ You can try to fix this by turning on the \`noImplicitThis\` compiler option, or
             "meta": {
               "docs": {
                 "description": "Require using \`namespace\` keyword over \`module\` keyword to declare custom TypeScript modules",
-                "recommended": "stylistic",
+                "recommended": "recommended",
                 "url": "https://typescript-eslint.io/rules/prefer-namespace-keyword",
               },
               "fixable": "code",
@@ -9024,7 +6776,7 @@ You can try to fix this by turning on the \`noImplicitThis\` compiler option, or
             "defaultOptions": [
               {
                 "allowRuleToRunWithoutStrictNullChecksIKnowWhatIAmDoing": false,
-                "ignoreConditionalTests": false,
+                "ignoreConditionalTests": true,
                 "ignoreMixedLogicalExpressions": false,
                 "ignorePrimitives": {
                   "bigint": false,
@@ -9180,7 +6932,7 @@ You can try to fix this by turning on the \`noImplicitThis\` compiler option, or
               "docs": {
                 "description": "Require using Error objects as Promise rejection reasons",
                 "extendsBaseRule": true,
-                "recommended": "strict",
+                "recommended": "recommended",
                 "requiresTypeChecking": true,
                 "url": "https://typescript-eslint.io/rules/prefer-promise-reject-errors",
               },
@@ -9405,6 +7157,7 @@ You can try to fix this by turning on the \`noImplicitThis\` compiler option, or
             "meta": {
               "docs": {
                 "description": "Enforce \`RegExp#exec\` over \`String#match\` if no global flag is provided",
+                "recommended": "stylistic",
                 "requiresTypeChecking": true,
                 "url": "https://typescript-eslint.io/rules/prefer-regexp-exec",
               },
@@ -9543,63 +7296,6 @@ You can try to fix this by turning on the \`noImplicitThis\` compiler option, or
                 },
               ],
               "type": "suggestion",
-            },
-          },
-          "quotes": {
-            "create": [Function],
-            "defaultOptions": [
-              "double",
-              {
-                "allowTemplateLiterals": false,
-                "avoidEscape": false,
-              },
-            ],
-            "meta": {
-              "deprecated": true,
-              "docs": {
-                "description": "Enforce the consistent use of either backticks, double, or single quotes",
-                "extendsBaseRule": true,
-                "url": "https://typescript-eslint.io/rules/quotes",
-              },
-              "fixable": "code",
-              "hasSuggestions": undefined,
-              "messages": {
-                "wrongQuotes": "Strings must use {{description}}.",
-              },
-              "replacedBy": [
-                "@stylistic/ts/quotes",
-              ],
-              "schema": [
-                {
-                  "enum": [
-                    "single",
-                    "double",
-                    "backtick",
-                  ],
-                },
-                {
-                  "anyOf": [
-                    {
-                      "enum": [
-                        "avoid-escape",
-                      ],
-                    },
-                    {
-                      "additionalProperties": false,
-                      "properties": {
-                        "allowTemplateLiterals": {
-                          "type": "boolean",
-                        },
-                        "avoidEscape": {
-                          "type": "boolean",
-                        },
-                      },
-                      "type": "object",
-                    },
-                  ],
-                },
-              ],
-              "type": "layout",
             },
           },
           "require-array-sort-compare": {
@@ -9825,91 +7521,11 @@ You can try to fix this by turning on the \`noImplicitThis\` compiler option, or
               "type": "problem",
             },
           },
-          "semi": {
-            "create": [Function],
-            "defaultOptions": [
-              "always",
-              {
-                "beforeStatementContinuationChars": "any",
-                "omitLastInOneLineBlock": false,
-              },
-            ],
-            "meta": {
-              "deprecated": true,
-              "docs": {
-                "description": "Require or disallow semicolons instead of ASI",
-                "extendsBaseRule": true,
-                "url": "https://typescript-eslint.io/rules/semi",
-              },
-              "fixable": "code",
-              "hasSuggestions": undefined,
-              "messages": {
-                "extraSemi": "Extra semicolon.",
-                "missingSemi": "Missing semicolon.",
-              },
-              "replacedBy": [
-                "@stylistic/ts/semi",
-              ],
-              "schema": {
-                "anyOf": [
-                  {
-                    "items": [
-                      {
-                        "enum": [
-                          "never",
-                        ],
-                      },
-                      {
-                        "additionalProperties": false,
-                        "properties": {
-                          "beforeStatementContinuationChars": {
-                            "enum": [
-                              "always",
-                              "any",
-                              "never",
-                            ],
-                          },
-                        },
-                        "type": "object",
-                      },
-                    ],
-                    "maxItems": 2,
-                    "minItems": 0,
-                    "type": "array",
-                  },
-                  {
-                    "items": [
-                      {
-                        "enum": [
-                          "always",
-                        ],
-                      },
-                      {
-                        "additionalProperties": false,
-                        "properties": {
-                          "omitLastInOneLineBlock": {
-                            "type": "boolean",
-                          },
-                          "omitLastInOneLineClassBody": {
-                            "type": "boolean",
-                          },
-                        },
-                        "type": "object",
-                      },
-                    ],
-                    "maxItems": 2,
-                    "minItems": 0,
-                    "type": "array",
-                  },
-                ],
-              },
-              "type": "layout",
-            },
-          },
           "sort-type-constituents": {
             "create": [Function],
             "defaultOptions": [
               {
+                "caseSensitive": false,
                 "checkIntersections": true,
                 "checkUnions": true,
                 "groupOrder": [
@@ -9944,6 +7560,10 @@ You can try to fix this by turning on the \`noImplicitThis\` compiler option, or
                 {
                   "additionalProperties": false,
                   "properties": {
+                    "caseSensitive": {
+                      "description": "Whether to sort using case sensitive sorting.",
+                      "type": "boolean",
+                    },
                     "checkIntersections": {
                       "description": "Whether to check intersection types.",
                       "type": "boolean",
@@ -9978,172 +7598,6 @@ You can try to fix this by turning on the \`noImplicitThis\` compiler option, or
                 },
               ],
               "type": "suggestion",
-            },
-          },
-          "space-before-blocks": {
-            "create": [Function],
-            "defaultOptions": [
-              "always",
-            ],
-            "meta": {
-              "deprecated": true,
-              "docs": {
-                "description": "Enforce consistent spacing before blocks",
-                "extendsBaseRule": true,
-                "url": "https://typescript-eslint.io/rules/space-before-blocks",
-              },
-              "fixable": "whitespace",
-              "hasSuggestions": undefined,
-              "messages": {
-                "missingSpace": "Missing space before opening brace.",
-                "unexpectedSpace": "Unexpected space before opening brace.",
-              },
-              "replacedBy": [
-                "@stylistic/ts/space-before-blocks",
-              ],
-              "schema": [
-                {
-                  "oneOf": [
-                    {
-                      "enum": [
-                        "always",
-                        "never",
-                      ],
-                    },
-                    {
-                      "additionalProperties": false,
-                      "properties": {
-                        "classes": {
-                          "enum": [
-                            "always",
-                            "never",
-                            "off",
-                          ],
-                        },
-                        "functions": {
-                          "enum": [
-                            "always",
-                            "never",
-                            "off",
-                          ],
-                        },
-                        "keywords": {
-                          "enum": [
-                            "always",
-                            "never",
-                            "off",
-                          ],
-                        },
-                      },
-                      "type": "object",
-                    },
-                  ],
-                },
-              ],
-              "type": "layout",
-            },
-          },
-          "space-before-function-paren": {
-            "create": [Function],
-            "defaultOptions": [
-              "always",
-            ],
-            "meta": {
-              "deprecated": true,
-              "docs": {
-                "description": "Enforce consistent spacing before function parenthesis",
-                "extendsBaseRule": true,
-                "url": "https://typescript-eslint.io/rules/space-before-function-paren",
-              },
-              "fixable": "whitespace",
-              "messages": {
-                "missing": "Missing space before function parentheses.",
-                "unexpected": "Unexpected space before function parentheses.",
-              },
-              "replacedBy": [
-                "@stylistic/ts/space-before-function-paren",
-              ],
-              "schema": [
-                {
-                  "oneOf": [
-                    {
-                      "enum": [
-                        "always",
-                        "never",
-                      ],
-                      "type": "string",
-                    },
-                    {
-                      "additionalProperties": false,
-                      "properties": {
-                        "anonymous": {
-                          "enum": [
-                            "always",
-                            "never",
-                            "ignore",
-                          ],
-                          "type": "string",
-                        },
-                        "asyncArrow": {
-                          "enum": [
-                            "always",
-                            "never",
-                            "ignore",
-                          ],
-                          "type": "string",
-                        },
-                        "named": {
-                          "enum": [
-                            "always",
-                            "never",
-                            "ignore",
-                          ],
-                          "type": "string",
-                        },
-                      },
-                      "type": "object",
-                    },
-                  ],
-                },
-              ],
-              "type": "layout",
-            },
-          },
-          "space-infix-ops": {
-            "create": [Function],
-            "defaultOptions": [
-              {
-                "int32Hint": false,
-              },
-            ],
-            "meta": {
-              "deprecated": true,
-              "docs": {
-                "description": "Require spacing around infix operators",
-                "extendsBaseRule": true,
-                "url": "https://typescript-eslint.io/rules/space-infix-ops",
-              },
-              "fixable": "whitespace",
-              "hasSuggestions": undefined,
-              "messages": {
-                "missingSpace": "Operator '{{operator}}' must be spaced.",
-              },
-              "replacedBy": [
-                "@stylistic/ts/space-infix-ops",
-              ],
-              "schema": [
-                {
-                  "additionalProperties": false,
-                  "properties": {
-                    "int32Hint": {
-                      "default": false,
-                      "type": "boolean",
-                    },
-                  },
-                  "type": "object",
-                },
-              ],
-              "type": "layout",
             },
           },
           "strict-boolean-expressions": {
@@ -10322,83 +7776,6 @@ You can try to fix this by turning on the \`noImplicitThis\` compiler option, or
               "type": "suggestion",
             },
           },
-          "type-annotation-spacing": {
-            "create": [Function],
-            "defaultOptions": [
-              {},
-            ],
-            "meta": {
-              "deprecated": true,
-              "docs": {
-                "description": "Require consistent spacing around type annotations",
-                "url": "https://typescript-eslint.io/rules/type-annotation-spacing",
-              },
-              "fixable": "whitespace",
-              "messages": {
-                "expectedSpaceAfter": "Expected a space after the '{{type}}'.",
-                "expectedSpaceBefore": "Expected a space before the '{{type}}'.",
-                "unexpectedSpaceAfter": "Unexpected space after the '{{type}}'.",
-                "unexpectedSpaceBefore": "Unexpected space before the '{{type}}'.",
-                "unexpectedSpaceBetween": "Unexpected space between the '{{previousToken}}' and the '{{type}}'.",
-              },
-              "replacedBy": [
-                "@stylistic/ts/type-annotation-spacing",
-              ],
-              "schema": [
-                {
-                  "$defs": {
-                    "spacingConfig": {
-                      "additionalProperties": false,
-                      "properties": {
-                        "after": {
-                          "type": "boolean",
-                        },
-                        "before": {
-                          "type": "boolean",
-                        },
-                      },
-                      "type": "object",
-                    },
-                  },
-                  "additionalProperties": false,
-                  "properties": {
-                    "after": {
-                      "type": "boolean",
-                    },
-                    "before": {
-                      "type": "boolean",
-                    },
-                    "overrides": {
-                      "additionalProperties": false,
-                      "properties": {
-                        "arrow": {
-                          "$ref": "#/items/0/$defs/spacingConfig",
-                        },
-                        "colon": {
-                          "$ref": "#/items/0/$defs/spacingConfig",
-                        },
-                        "parameter": {
-                          "$ref": "#/items/0/$defs/spacingConfig",
-                        },
-                        "property": {
-                          "$ref": "#/items/0/$defs/spacingConfig",
-                        },
-                        "returnType": {
-                          "$ref": "#/items/0/$defs/spacingConfig",
-                        },
-                        "variable": {
-                          "$ref": "#/items/0/$defs/spacingConfig",
-                        },
-                      },
-                      "type": "object",
-                    },
-                  },
-                  "type": "object",
-                },
-              ],
-              "type": "layout",
-            },
-          },
           "typedef": {
             "create": [Function],
             "defaultOptions": [
@@ -10561,6 +7938,7 @@ If your function does not access \`this\`, you can annotate it with \`this: void
       "**/*.mts",
       "**/*.cts",
     ],
+    "name": "typescript-eslint/eslint-recommended",
     "rules": {
       "constructor-super": "off",
       "getter-return": "off",
@@ -10570,6 +7948,7 @@ If your function does not access \`this\`, you can annotate it with \`this: void
       "no-dupe-keys": "off",
       "no-func-assign": "off",
       "no-import-assign": "off",
+      "no-new-native-nonconstructor": "off",
       "no-new-symbol": "off",
       "no-obj-calls": "off",
       "no-redeclare": "off",
@@ -10585,26 +7964,29 @@ If your function does not access \`this\`, you can annotate it with \`this: void
     },
   },
   {
+    "name": "typescript-eslint/recommended",
     "rules": {
       "@typescript-eslint/ban-ts-comment": "error",
       "@typescript-eslint/ban-types": "error",
       "@typescript-eslint/no-array-constructor": "error",
       "@typescript-eslint/no-duplicate-enum-values": "error",
+      "@typescript-eslint/no-empty-object-type": "error",
       "@typescript-eslint/no-explicit-any": "error",
       "@typescript-eslint/no-extra-non-null-assertion": "error",
-      "@typescript-eslint/no-loss-of-precision": "error",
       "@typescript-eslint/no-misused-new": "error",
       "@typescript-eslint/no-namespace": "error",
       "@typescript-eslint/no-non-null-asserted-optional-chain": "error",
+      "@typescript-eslint/no-require-imports": "error",
       "@typescript-eslint/no-this-alias": "error",
       "@typescript-eslint/no-unnecessary-type-constraint": "error",
       "@typescript-eslint/no-unsafe-declaration-merging": "error",
+      "@typescript-eslint/no-unused-expressions": "error",
       "@typescript-eslint/no-unused-vars": "error",
-      "@typescript-eslint/no-var-requires": "error",
       "@typescript-eslint/prefer-as-const": "error",
+      "@typescript-eslint/prefer-namespace-keyword": "error",
       "@typescript-eslint/triple-slash-reference": "error",
       "no-array-constructor": "off",
-      "no-loss-of-precision": "off",
+      "no-unused-expressions": "off",
       "no-unused-vars": "off",
     },
   },
@@ -10642,7 +8024,9 @@ If your function does not access \`this\`, you can annotate it with \`this: void
         "AudioScheduledSourceNode": false,
         "AudioSinkInfo": false,
         "AudioWorklet": false,
+        "AudioWorkletGlobalScope": false,
         "AudioWorkletNode": false,
+        "AudioWorkletProcessor": false,
         "AuthenticatorAssertionResponse": false,
         "AuthenticatorAttestationResponse": false,
         "AuthenticatorResponse": false,
@@ -10704,6 +8088,8 @@ If your function does not access \`this\`, you can annotate it with \`this: void
         "CSSNumericValue": false,
         "CSSPageRule": false,
         "CSSPerspective": false,
+        "CSSPositionTryDescriptors": false,
+        "CSSPositionTryRule": false,
         "CSSPositionValue": false,
         "CSSPropertyRule": false,
         "CSSRotate": false,
@@ -10751,6 +8137,7 @@ If your function does not access \`this\`, you can annotate it with \`this: void
         "ContentVisibilityAutoStateChangeEvent": false,
         "ConvolverNode": false,
         "CookieChangeEvent": false,
+        "CookieDeprecationLabel": false,
         "CookieStore": false,
         "CookieStoreManager": false,
         "CountQueuingStrategy": false,
@@ -10813,6 +8200,9 @@ If your function does not access \`this\`, you can annotate it with \`this: void
         "EyeDropper": false,
         "FeaturePolicy": false,
         "FederatedCredential": false,
+        "Fence": false,
+        "FencedFrameConfig": false,
+        "FetchLaterResult": false,
         "File": false,
         "FileList": false,
         "FileReader": false,
@@ -10914,6 +8304,7 @@ If your function does not access \`this\`, you can annotate it with \`this: void
         "HTMLDocument": false,
         "HTMLElement": false,
         "HTMLEmbedElement": false,
+        "HTMLFencedFrameElement": false,
         "HTMLFieldSetElement": false,
         "HTMLFontElement": false,
         "HTMLFormControlsCollection": false,
@@ -11065,6 +8456,7 @@ If your function does not access \`this\`, you can annotate it with \`this: void
         "MediaStreamEvent": false,
         "MediaStreamTrack": false,
         "MediaStreamTrackAudioSourceNode": false,
+        "MediaStreamTrackAudioStats": false,
         "MediaStreamTrackEvent": false,
         "MediaStreamTrackGenerator": false,
         "MediaStreamTrackProcessor": false,
@@ -11074,6 +8466,8 @@ If your function does not access \`this\`, you can annotate it with \`this: void
         "MessagePort": false,
         "MimeType": false,
         "MimeTypeArray": false,
+        "ModelGenericSession": false,
+        "ModelManager": false,
         "MouseEvent": false,
         "MutationEvent": false,
         "MutationObserver": false,
@@ -11097,6 +8491,8 @@ If your function does not access \`this\`, you can annotate it with \`this: void
         "NodeFilter": false,
         "NodeIterator": false,
         "NodeList": false,
+        "NotRestoredReasonDetails": false,
+        "NotRestoredReasons": false,
         "Notification": false,
         "NotifyPaintEvent": false,
         "Number": false,
@@ -11112,6 +8508,7 @@ If your function does not access \`this\`, you can annotate it with \`this: void
         "OverconstrainedError": false,
         "PERSISTENT": false,
         "PageRevealEvent": false,
+        "PageSwapEvent": false,
         "PageTransitionEvent": false,
         "PannerNode": false,
         "PasswordCredential": false,
@@ -11157,11 +8554,14 @@ If your function does not access \`this\`, you can annotate it with \`this: void
         "PresentationConnectionList": false,
         "PresentationReceiver": false,
         "PresentationRequest": false,
+        "PressureObserver": false,
+        "PressureRecord": false,
         "ProcessingInstruction": false,
         "Profiler": false,
         "ProgressEvent": false,
         "Promise": false,
         "PromiseRejectionEvent": false,
+        "ProtectedAudience": false,
         "Proxy": false,
         "PublicKeyCredential": false,
         "PushManager": false,
@@ -11327,6 +8727,8 @@ If your function does not access \`this\`, you can annotate it with \`this: void
         "Set": false,
         "ShadowRoot": false,
         "SharedArrayBuffer": false,
+        "SharedStorage": false,
+        "SharedStorageWorklet": false,
         "SharedWorker": false,
         "SourceBuffer": false,
         "SourceBufferList": false,
@@ -11421,6 +8823,7 @@ If your function does not access \`this\`, you can annotate it with \`this: void
         "VideoPlaybackQuality": false,
         "ViewTimeline": false,
         "ViewTransition": false,
+        "ViewTransitionTypeSet": false,
         "VirtualKeyboard": false,
         "VirtualKeyboardGeometryChangeEvent": false,
         "VisibilityStateEntry": false,
@@ -11450,6 +8853,8 @@ If your function does not access \`this\`, you can annotate it with \`this: void
         "WebGLUniformLocation": false,
         "WebGLVertexArrayObject": false,
         "WebSocket": false,
+        "WebSocketError": false,
+        "WebSocketStream": false,
         "WebTransport": false,
         "WebTransportBidirectionalStream": false,
         "WebTransportDatagramDuplexStream": false,
@@ -11462,6 +8867,7 @@ If your function does not access \`this\`, you can annotate it with \`this: void
         "WindowControlsOverlayGeometryChangeEvent": false,
         "Worker": false,
         "Worklet": false,
+        "WorkletGlobalScope": false,
         "WritableStream": false,
         "WritableStreamDefaultController": false,
         "WritableStreamDefaultWriter": false,
@@ -11536,6 +8942,8 @@ If your function does not access \`this\`, you can annotate it with \`this: void
         "credentialless": false,
         "crossOriginIsolated": false,
         "crypto": false,
+        "currentFrame": false,
+        "currentTime": false,
         "customElements": false,
         "decodeURI": false,
         "decodeURIComponent": false,
@@ -11552,7 +8960,9 @@ If your function does not access \`this\`, you can annotate it with \`this: void
         "expect": false,
         "exports": true,
         "external": false,
+        "fence": false,
         "fetch": false,
+        "fetchLater": false,
         "find": false,
         "fit": false,
         "focus": false,
@@ -11579,6 +8989,7 @@ If your function does not access \`this\`, you can annotate it with \`this: void
         "locationbar": false,
         "matchMedia": false,
         "menubar": false,
+        "model": false,
         "module": false,
         "moveBy": false,
         "moveTo": false,
@@ -11662,6 +9073,7 @@ If your function does not access \`this\`, you can annotate it with \`this: void
         "onpagehide": true,
         "onpagereveal": true,
         "onpageshow": true,
+        "onpageswap": true,
         "onpaste": true,
         "onpause": true,
         "onplay": true,
@@ -11725,6 +9137,7 @@ If your function does not access \`this\`, you can annotate it with \`this: void
         "prompt": false,
         "queryLocalFonts": false,
         "queueMicrotask": false,
+        "registerProcessor": false,
         "removeEventListener": false,
         "reportError": false,
         "requestAnimationFrame": false,
@@ -11732,6 +9145,7 @@ If your function does not access \`this\`, you can annotate it with \`this: void
         "require": false,
         "resizeBy": false,
         "resizeTo": false,
+        "sampleRate": false,
         "scheduler": false,
         "screen": false,
         "screenLeft": false,
@@ -11749,6 +9163,7 @@ If your function does not access \`this\`, you can annotate it with \`this: void
         "setImmediate": false,
         "setInterval": false,
         "setTimeout": false,
+        "sharedStorage": false,
         "showDirectoryPicker": false,
         "showOpenFilePicker": false,
         "showSaveFilePicker": false,
@@ -11849,7 +9264,6 @@ If your function does not access \`this\`, you can annotate it with \`this: void
       "@typescript-eslint/no-namespace": "off",
       "@typescript-eslint/no-non-null-asserted-optional-chain": "error",
       "@typescript-eslint/no-non-null-assertion": "off",
-      "@typescript-eslint/no-throw-literal": "error",
       "@typescript-eslint/no-unnecessary-boolean-literal-compare": "error",
       "@typescript-eslint/no-unnecessary-qualifier": "error",
       "@typescript-eslint/no-unsafe-assignment": "off",
@@ -11861,6 +9275,7 @@ If your function does not access \`this\`, you can annotate it with \`this: void
       "@typescript-eslint/no-use-before-define": "off",
       "@typescript-eslint/no-useless-constructor": "error",
       "@typescript-eslint/no-var-requires": "error",
+      "@typescript-eslint/only-throw-error": "error",
       "@typescript-eslint/prefer-as-const": "error",
       "@typescript-eslint/prefer-for-of": "error",
       "@typescript-eslint/prefer-includes": "error",
