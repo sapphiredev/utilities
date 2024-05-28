@@ -14,6 +14,7 @@ export class ParserResult {
 
 	public parse(parameters: Iterable<Parameter>) {
 		for (const parameter of parameters) {
+			// eslint-disable-next-line @typescript-eslint/no-unused-expressions
 			this.parsePossibleFlag(parameter) || this.parsePossibleOptions(parameter) || this.parseOrdered(parameter);
 		}
 
