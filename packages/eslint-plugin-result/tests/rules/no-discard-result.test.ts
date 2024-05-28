@@ -6,7 +6,7 @@ export const ruleTester = new RuleTester({
 	parserOptions: {
 		ecmaVersion: 2020,
 		tsconfigRootDir: fileURLToPath(new URL('..', import.meta.url)),
-		project: '../tsconfig.json'
+		project: fileURLToPath(new URL('../tsconfig.json', import.meta.url))
 	},
 	parser: '@typescript-eslint/parser'
 });
