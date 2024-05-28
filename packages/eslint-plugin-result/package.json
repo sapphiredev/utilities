@@ -72,12 +72,14 @@
 		"@typescript-eslint/rule-tester": "rc-v8",
 		"@typescript-eslint/typescript-estree": "rc-v8",
 		"@vitest/coverage-v8": "^1.6.0",
+		"eslint": "^9.3.0",
 		"tsup": "^8.0.2",
 		"tsx": "^4.11.0",
 		"typedoc-json-parser": "^10.0.0",
 		"vitest": "^1.6.0"
 	},
 	"dependencies": {
+		"@eslint/eslintrc": "^3.1.0",
 		"@sapphire/result": "workspace:^",
 		"@typescript-eslint/utils": "rc-v8",
 		"tsutils": "^3.21.0",
