@@ -19,7 +19,7 @@ export type DeepRequired<T> = T extends Builtin
 							? WeakSet<DeepRequired<U>>
 							: T extends Promise<infer U>
 								? Promise<DeepRequired<U>>
-								: T extends {} // eslint-disable-line @typescript-eslint/ban-types
+								: T extends {} // eslint-disable-line @typescript-eslint/no-empty-object-type
 									? { [K in keyof T]-?: DeepRequired<T[K]> }
 									: NonNullable<T>;
 
@@ -94,7 +94,7 @@ export type NonNullableProperties<T = unknown> = {
 /**
  * An object that is non nullable, to bypass TypeScript not easily working with `Record<PropertyKey, unknown>` in various instances.
  */
-// eslint-disable-next-line @typescript-eslint/ban-types
+
 export type NonNullObject = {} & object;
 
 /**
