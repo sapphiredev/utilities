@@ -1351,12 +1351,14 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@sapphire/eslint-plugin-result@workspace:packages/eslint-plugin-result"
   dependencies:
+    "@eslint/eslintrc": "npm:^3.1.0"
     "@favware/cliff-jumper": "npm:^3.0.3"
     "@sapphire/result": "workspace:^"
     "@typescript-eslint/rule-tester": "npm:rc-v8"
     "@typescript-eslint/typescript-estree": "npm:rc-v8"
     "@typescript-eslint/utils": "npm:rc-v8"
     "@vitest/coverage-v8": "npm:^1.6.0"
+    eslint: "npm:^9.3.0"
     tsup: "npm:^8.0.2"
     tsutils: "npm:^3.21.0"
     tsx: "npm:^4.11.0"
