@@ -13,48 +13,39 @@ function isType(node: ts.Node): boolean {
 interface ModuleExportNodes {
 	normal: ts.Declaration[];
 	types: ts.Declaration[];
-	exports_all: boolean;
 }
 
 class ModuleFile {
-	public path: ParsedPath;
 	public exports: ModuleExportNodes;
+	public readonly isPrivate: boolean;
+	public readonly path: ParsedPath;
 	private sourceFile: ts.SourceFile;
 
 	public constructor(sourceFile: ts.SourceFile) {
 		this.sourceFile = sourceFile;
 		this.path = parse(sourceFile.fileName);
+		this.isPrivate = this.path.name.startsWith('_');
 		this.exports = this.getExports();
 	}
 
-	public get isPrivate(): boolean {
-		return this.path.name.startsWith('_');
-	}
-
-	public generateExportSpecifiers(which: keyof Omit<ModuleExportNodes, 'exports_all'>, useTypes: boolean) {
+	public generateExportSpecifiers(which: keyof ModuleExportNodes) {
 		return [...new Set(this.exports[which].map((node) => ts.getNameOfDeclaration(node)!.getText(this.sourceFile)!))].map((name) =>
-			ts.factory.createExportSpecifier(useTypes, undefined, name)
+			ts.factory.createExportSpecifier(false, undefined, name)
 		);
 	}
 
 	private getExports(): ModuleExportNodes {
 		const normal: ts.Declaration[] = [];
 		const types: ts.Declaration[] = [];
-		let _nodeCount = 0;
 
 		this.sourceFile.forEachChild((node) => {
-			// imports count as declarations, so exports_all will be inaccurate if this condition is not checked.
-			if (!ts.isDeclarationStatement(node) || ts.isImportDeclaration(node)) return;
-			_nodeCount++;
-			if (!isExported(node)) return;
+			if (!ts.isDeclarationStatement(node) || !isExported(node)) return;
 			isType(node) ? types.push(node) : normal.push(node);
 		});
 
 		return {
 			normal,
-			types,
-			// TODO: find out if there is a better way to do this
-			exports_all: normal.length + types.length === _nodeCount
+			types
 		};
 	}
 }
@@ -63,11 +54,7 @@ class ModuleFile {
  * Rules:
  * 1. If the module begins with `_`, ignore it
  *    a) unless the module contains types, in which case those exclusively should be included
- * 2. If the module contains types
- *    a) use specific exports
- *       i. if it exclusively contains types, use `export type { ... }`
- *      ii. if types are contained, but not the only exported items, use `export { ..., type ... }`
- *    b) if it does not, use `export *`
+ * 2. If the module exclusively contains types, use `export type *`, otherwise use `export *`
  **/
 async function main() {
 	const packageName = process.argv[2];
@@ -87,15 +74,24 @@ async function main() {
 		const sourceFile = indexProgram.getSourceFile(modulePath)!;
 		const module = new ModuleFile(sourceFile);
 
-		// rule 1
-		if (module.isPrivate && !module.exports.types.length) continue;
-		// rule 2
-		const useNormal = !module.isPrivate && module.exports.normal.length > 0;
-		const useTypes = module.exports.types.length > 0;
-		const useIndividualTypes = useNormal && useTypes;
+		// TODO: make these a function of ModuleFile?
+		let useNormal: boolean;
+		let useTypes: boolean;
 
-		const typeExportSpecifiers = module.generateExportSpecifiers('types', useIndividualTypes);
-		const exportSpecifiers = typeExportSpecifiers.concat(useNormal ? module.generateExportSpecifiers('normal', false) : []);
+		if (module.isPrivate) {
+			// rule 1
+			if (!module.exports.types.length) continue;
+			useNormal = false;
+			useTypes = true;
+		} else {
+			// rule 2
+			useNormal = module.exports.normal.length > 0;
+			useTypes = module.exports.types.length > 0;
+		}
+
+		// TODO: make this more efficient
+		const typeExportSpecifiers = module.generateExportSpecifiers('types');
+		const exportSpecifiers = typeExportSpecifiers.concat(useNormal ? module.generateExportSpecifiers('normal') : []);
 
 		console.log(
 			printer.printNode(
@@ -103,7 +99,7 @@ async function main() {
 				ts.factory.createExportDeclaration(
 					undefined,
 					!useNormal && useTypes,
-					useNormal && !useTypes ? undefined : ts.factory.createNamedExports(exportSpecifiers),
+					module.isPrivate ? ts.factory.createNamedExports(exportSpecifiers) : undefined,
 					ts.factory.createStringLiteral(`./${relative(packageDir, module.path.dir)}/${module.path.name}`, true),
 					undefined
 				),
