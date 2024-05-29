@@ -42,6 +42,23 @@ class ModuleFile {
 		);
 	}
 
+	public toExportDeclaration(packageDir: string): ts.ExportDeclaration | undefined {
+		const { useModule, useNormal, useTypes } = this.exportInclusions;
+		if (!useModule) return;
+
+		// TODO: make this more efficient
+		const typeExportSpecifiers = this.generateExportSpecifiers('types');
+		const exportSpecifiers = typeExportSpecifiers.concat(useNormal ? this.generateExportSpecifiers('normal') : []);
+
+		return ts.factory.createExportDeclaration(
+			undefined,
+			!useNormal && useTypes,
+			this.isPrivate ? ts.factory.createNamedExports(exportSpecifiers) : undefined,
+			ts.factory.createStringLiteral(`./${relative(packageDir, this.path.dir)}/${this.path.name}`, true),
+			undefined
+		);
+	}
+
 	private deriveExportInclusions(): ModuleExportInclusions {
 		const typesAvailable = this.exports.types.length > 0;
 
@@ -81,34 +98,21 @@ async function processPackage(packageName: string, printer: ts.Printer): Promise
 	const indexPath = resolve(packageDir, './index.ts');
 
 	// TODO: when we get Array.fromAsync, use that instead
-	let modules = [];
+	const modules = [];
 	for await (const file of findFilesRecursivelyStringEndsWith(packageLibDir, '.ts')) {
 		modules.push(file);
 	}
 	const indexProgram = ts.createProgram([indexPath].concat(modules), {});
-	modules = modules.toSorted().map((moduleFile) => new ModuleFile(indexProgram.getSourceFile(moduleFile)!));
 
-	const accumulator: ts.ExportDeclaration[] = [];
-	// TODO: make this a function of ModuleFile?
-	for (const module of modules) {
-		const { useModule, useNormal, useTypes } = module.exportInclusions;
-		if (!useModule) continue;
-
-		// TODO: make this more efficient
-		const typeExportSpecifiers = module.generateExportSpecifiers('types');
-		const exportSpecifiers = typeExportSpecifiers.concat(useNormal ? module.generateExportSpecifiers('normal') : []);
-
-		accumulator.push(
-			ts.factory.createExportDeclaration(
-				undefined,
-				!useNormal && useTypes,
-				module.isPrivate ? ts.factory.createNamedExports(exportSpecifiers) : undefined,
-				ts.factory.createStringLiteral(`./${relative(packageDir, module.path.dir)}/${module.path.name}`, true),
-				undefined
-			)
-		);
-	}
-	return printer.printList(ts.ListFormat.MultiLine, accumulator as ts.NodeArray<ts.ExportDeclaration>, indexProgram.getSourceFile(indexPath)!);
+	return printer.printList(
+		ts.ListFormat.MultiLine,
+		// @ts-expect-error: normal arrays do not coerce to ts.NodeArray typing, even though this is valid
+		modules
+			.toSorted()
+			.map((moduleFile) => new ModuleFile(indexProgram.getSourceFile(moduleFile)!).toExportDeclaration(packageDir))
+			.filter((node) => node),
+		indexProgram.getSourceFile(indexPath)!
+	);
 }
 
 async function main() {
