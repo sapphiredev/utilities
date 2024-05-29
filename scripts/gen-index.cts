@@ -78,23 +78,19 @@ class ModuleFile {
 async function processPackage(packageName: string, printer: ts.Printer): Promise<string> {
 	const packageDir = resolve(__dirname, `../packages/${packageName}/src`);
 	const packageLibDir = resolve(packageDir, './lib');
+	const indexPath = resolve(packageDir, './index.ts');
 
-	// TODO: i am certain there is a way to collect this iterator
-	const modules = [];
+	// TODO: when we get Array.fromAsync, use that instead
+	let modules = [];
 	for await (const file of findFilesRecursivelyStringEndsWith(packageLibDir, '.ts')) {
 		modules.push(file);
 	}
-	modules.sort();
-
-	const indexPath = resolve(packageDir, './index.ts');
 	const indexProgram = ts.createProgram([indexPath].concat(modules), {});
+	modules = modules.toSorted().map((moduleFile) => new ModuleFile(indexProgram.getSourceFile(moduleFile)!));
+
 	const accumulator: ts.ExportDeclaration[] = [];
 	// TODO: make this a function of ModuleFile?
-	// potential optimisation: since modules are bundled into indexProgram, use indexProgram.getSourceFiles()
-	for (const modulePath of modules) {
-		const sourceFile = indexProgram.getSourceFile(modulePath)!;
-		const module = new ModuleFile(sourceFile);
-
+	for (const module of modules) {
 		const { useModule, useNormal, useTypes } = module.exportInclusions;
 		if (!useModule) continue;
 
