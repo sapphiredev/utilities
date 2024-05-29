@@ -15,17 +15,25 @@ interface ModuleExportNodes {
 	types: ts.Declaration[];
 }
 
+interface ModuleExportInclusions {
+	useModule: boolean;
+	useNormal: boolean;
+	useTypes: boolean;
+}
+
 class ModuleFile {
-	public exports: ModuleExportNodes;
+	public readonly exports: ModuleExportNodes;
 	public readonly isPrivate: boolean;
+	public readonly exportInclusions: ModuleExportInclusions;
 	public readonly path: ParsedPath;
-	private sourceFile: ts.SourceFile;
+	public readonly sourceFile: ts.SourceFile;
 
 	public constructor(sourceFile: ts.SourceFile) {
 		this.sourceFile = sourceFile;
 		this.path = parse(sourceFile.fileName);
 		this.isPrivate = this.path.name.startsWith('_');
-		this.exports = this.getExports();
+		this.exports = this.parseExports();
+		this.exportInclusions = this.deriveExportInclusions();
 	}
 
 	public generateExportSpecifiers(which: keyof ModuleExportNodes) {
@@ -34,10 +42,21 @@ class ModuleFile {
 		);
 	}
 
-	private getExports(): ModuleExportNodes {
+	private deriveExportInclusions(): ModuleExportInclusions {
+		const typesAvailable = this.exports.types.length > 0;
+
+		return {
+			useModule: !this.isPrivate || typesAvailable, // rule 1 & 1a
+			useNormal: !this.isPrivate && this.exports.normal.length > 0,
+			useTypes: typesAvailable
+		};
+	}
+
+	private parseExports(): ModuleExportNodes {
 		const normal: ts.Declaration[] = [];
 		const types: ts.Declaration[] = [];
 
+		// TODO: skip normals where this.isPrivate?
 		this.sourceFile.forEachChild((node) => {
 			if (!ts.isDeclarationStatement(node) || !isExported(node)) return;
 			isType(node) ? types.push(node) : normal.push(node);
@@ -60,7 +79,7 @@ async function processPackage(packageName: string, printer: ts.Printer): Promise
 	const packageDir = resolve(__dirname, `../packages/${packageName}/src`);
 	const packageLibDir = resolve(packageDir, './lib');
 
-	// TODO: surely there's a way to collect the iterator
+	// TODO: i am certain there is a way to collect this iterator
 	const modules = [];
 	for await (const file of findFilesRecursivelyStringEndsWith(packageLibDir, '.ts')) {
 		modules.push(file);
@@ -76,20 +95,8 @@ async function processPackage(packageName: string, printer: ts.Printer): Promise
 		const sourceFile = indexProgram.getSourceFile(modulePath)!;
 		const module = new ModuleFile(sourceFile);
 
-		// TODO: make these a function of ModuleFile?
-		let useNormal: boolean;
-		let useTypes: boolean;
-
-		if (module.isPrivate) {
-			// rule 1
-			if (!module.exports.types.length) continue;
-			useNormal = false;
-			useTypes = true;
-		} else {
-			// rule 2
-			useNormal = module.exports.normal.length > 0;
-			useTypes = module.exports.types.length > 0;
-		}
+		const { useModule, useNormal, useTypes } = module.exportInclusions;
+		if (!useModule) continue;
 
 		// TODO: make this more efficient
 		const typeExportSpecifiers = module.generateExportSpecifiers('types');
