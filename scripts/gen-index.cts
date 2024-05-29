@@ -56,11 +56,11 @@ class ModuleFile {
  *    a) unless the module contains types, in which case those exclusively should be included
  * 2. If the module exclusively contains types, use `export type *`, otherwise use `export *`
  **/
-async function main() {
-	const packageName = process.argv[2];
+async function processPackage(packageName: string, printer: ts.Printer): Promise<string> {
 	const packageDir = resolve(__dirname, `../packages/${packageName}/src`);
 	const packageLibDir = resolve(packageDir, './lib');
 
+	// TODO: surely there's a way to collect the iterator
 	const modules = [];
 	for await (const file of findFilesRecursivelyStringEndsWith(packageLibDir, '.ts')) {
 		modules.push(file);
@@ -69,7 +69,9 @@ async function main() {
 
 	const indexPath = resolve(packageDir, './index.ts');
 	const indexProgram = ts.createProgram([indexPath].concat(modules), {});
-	const printer = ts.createPrinter({ newLine: ts.NewLineKind.LineFeed });
+	const accumulator: ts.ExportDeclaration[] = [];
+	// TODO: make this a function of ModuleFile?
+	// potential optimisation: since modules are bundled into indexProgram, use indexProgram.getSourceFiles()
 	for (const modulePath of modules) {
 		const sourceFile = indexProgram.getSourceFile(modulePath)!;
 		const module = new ModuleFile(sourceFile);
@@ -93,20 +95,24 @@ async function main() {
 		const typeExportSpecifiers = module.generateExportSpecifiers('types');
 		const exportSpecifiers = typeExportSpecifiers.concat(useNormal ? module.generateExportSpecifiers('normal') : []);
 
-		console.log(
-			printer.printNode(
-				ts.EmitHint.Unspecified,
-				ts.factory.createExportDeclaration(
-					undefined,
-					!useNormal && useTypes,
-					module.isPrivate ? ts.factory.createNamedExports(exportSpecifiers) : undefined,
-					ts.factory.createStringLiteral(`./${relative(packageDir, module.path.dir)}/${module.path.name}`, true),
-					undefined
-				),
-				sourceFile
+		accumulator.push(
+			ts.factory.createExportDeclaration(
+				undefined,
+				!useNormal && useTypes,
+				module.isPrivate ? ts.factory.createNamedExports(exportSpecifiers) : undefined,
+				ts.factory.createStringLiteral(`./${relative(packageDir, module.path.dir)}/${module.path.name}`, true),
+				undefined
 			)
 		);
 	}
+	return printer.printList(ts.ListFormat.MultiLine, accumulator as ts.NodeArray<ts.ExportDeclaration>, indexProgram.getSourceFile(indexPath)!);
+}
+
+async function main() {
+	const packageName = process.argv[2];
+	const printer = ts.createPrinter({ newLine: ts.NewLineKind.LineFeed });
+
+	console.log(await processPackage(packageName, printer));
 }
 
 void main();
