@@ -1,6 +1,7 @@
 import ts from 'typescript';
 import { relative, resolve, parse, type ParsedPath } from 'node:path';
 import { findFilesRecursivelyStringEndsWith } from '../packages/node-utilities/src/index';
+import { writeFile } from 'node:fs/promises';
 
 function isExported(node: ts.Declaration): boolean {
 	return (ts.getCombinedModifierFlags(node) & ts.ModifierFlags.Export) > 0;
@@ -42,6 +43,12 @@ class ModuleFile {
 		);
 	}
 
+	/**
+	 * Rules:
+	 * 1. If the module begins with `_`, ignore it
+	 *    a) unless the module contains types, in which case those exclusively should be included
+	 * 2. If the module exclusively contains types, use `export type *`, otherwise use `export *`
+	 **/
 	public toExportDeclaration(packageDir: string): ts.ExportDeclaration | undefined {
 		const { useModule, useNormal, useTypes } = this.exportInclusions;
 		if (!useModule) return;
@@ -86,14 +93,7 @@ class ModuleFile {
 	}
 }
 
-/**
- * Rules:
- * 1. If the module begins with `_`, ignore it
- *    a) unless the module contains types, in which case those exclusively should be included
- * 2. If the module exclusively contains types, use `export type *`, otherwise use `export *`
- **/
-async function processPackage(packageName: string, printer: ts.Printer): Promise<string> {
-	const packageDir = resolve(__dirname, `../packages/${packageName}/src`);
+async function processPackage(packageDir: string, printer: ts.Printer): Promise<string> {
 	const packageLibDir = resolve(packageDir, './lib');
 	const indexPath = resolve(packageDir, './index.ts');
 
@@ -116,10 +116,16 @@ async function processPackage(packageName: string, printer: ts.Printer): Promise
 }
 
 async function main() {
-	const packageName = process.argv[2];
 	const printer = ts.createPrinter({ newLine: ts.NewLineKind.LineFeed });
+	const writeMode = process.argv.includes('-w');
+	const packageName = process.argv.at(-1);
+	const packageDir = resolve(__dirname, `../packages/${packageName}/src`);
 
-	console.log(await processPackage(packageName, printer));
+	const result = await processPackage(packageDir, printer);
+	if (writeMode) {
+		return writeFile(resolve(packageDir, './index.ts'), result);
+	}
+	console.log(result);
 }
 
 void main();
