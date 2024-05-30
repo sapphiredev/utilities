@@ -1,5 +1,5 @@
 import ts from 'typescript';
-import { relative, resolve, parse, type ParsedPath } from 'node:path';
+import { format, relative, resolve, parse, type ParsedPath } from 'node:path';
 import { findFilesRecursivelyStringEndsWith } from '../packages/node-utilities/src/index';
 import { writeFile } from 'node:fs/promises';
 
@@ -61,7 +61,7 @@ class ModuleFile {
 			undefined,
 			!useNormal && useTypes,
 			this.isPrivate ? ts.factory.createNamedExports(exportSpecifiers) : undefined,
-			ts.factory.createStringLiteral(`./${relative(packageDir, this.path.dir)}/${this.path.name}`, true),
+			ts.factory.createStringLiteral(`./${format({ dir: relative(packageDir, this.path.dir), base: this.path.name })}`, true),
 			undefined
 		);
 	}
@@ -94,12 +94,12 @@ class ModuleFile {
 }
 
 async function processPackage(packageDir: string, printer: ts.Printer): Promise<string> {
-	const packageLibDir = resolve(packageDir, './lib');
 	const indexPath = resolve(packageDir, './index.ts');
 
 	// TODO: when we get Array.fromAsync, use that instead
 	const modules = [];
-	for await (const file of findFilesRecursivelyStringEndsWith(packageLibDir, '.ts')) {
+	for await (const file of findFilesRecursivelyStringEndsWith(packageDir, '.ts')) {
+		if (file === indexPath) continue;
 		modules.push(file);
 	}
 	const indexProgram = ts.createProgram([indexPath].concat(modules), {});
