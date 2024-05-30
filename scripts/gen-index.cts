@@ -96,7 +96,7 @@ class ModuleFile {
 async function processPackage(packageDir: string, printer: ts.Printer): Promise<string> {
 	const indexPath = resolve(packageDir, './index.ts');
 
-	// TODO: when we get Array.fromAsync, use that instead
+	// TODO: when Array.fromAsync is stabilised (github.com/tc39/proposal-array-from-async), use that instead
 	const modules = [];
 	for await (const file of findFilesRecursivelyStringEndsWith(packageDir, '.ts')) {
 		if (file === indexPath) continue;
