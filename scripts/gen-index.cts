@@ -100,7 +100,6 @@ async function findIndexOrModules(dir: string, depth: number = 0): Promise<strin
 		const itemPath = join(dir, item.name);
 		if (item.isFile()) {
 			if (!item.name.endsWith('.ts')) continue;
-			// TODO: treat files with the same name as an existing directory as an index for that directory
 			if (item.name === 'index.ts') {
 				// TODO: process index to support re-exports (see #750)
 				if (depth === 0) continue;
@@ -108,9 +107,9 @@ async function findIndexOrModules(dir: string, depth: number = 0): Promise<strin
 				break;
 			}
 			results.push(itemPath);
-		} else if (item.isDirectory()) {
+			// TODO: there are likely more efficient ways to determine if a directory has an auxiliary index
+		} else if (item.isDirectory() && !contents.find((entry) => `${item.name}.ts` === entry.name))
 			results = results.concat(await findIndexOrModules(itemPath, depth + 1));
-		}
 	}
 	return results;
 }
