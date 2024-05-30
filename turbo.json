@@ -45,6 +45,10 @@
 			"dependsOn": ["@sapphire/iterator-utilities#build", "@sapphire/utilities#build"],
 			"outputs": ["package.json"]
 		},
+		"gen-index": {
+			"dependsOn": ["@sapphire/node-utilities#build"],
+			"outputs": ["packages/*/src/index.ts"]
+		},
 		"docs": {
 			"dependsOn": [
 				"@sapphire/node-utilities#build",

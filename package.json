@@ -16,6 +16,7 @@
 		"docs": "turbo run docs",
 		"update": "yarn upgrade-interactive",
 		"check-update": "turbo run check-update",
+		"gen-index": "turbo run gen-index",
 		"au:twemojis": "tsx --tsconfig ./scripts/tsconfig.json ./scripts/twemoji-regex-updater.cts"
 	},
 	"devDependencies": {
