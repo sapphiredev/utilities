@@ -1,7 +1,6 @@
 import ts from 'typescript';
-import { format, relative, resolve, parse, type ParsedPath } from 'node:path';
-import { findFilesRecursivelyStringEndsWith } from '../packages/node-utilities/src/index';
-import { writeFile } from 'node:fs/promises';
+import { join, relative, resolve, parse, type ParsedPath } from 'node:path';
+import { writeFile, readdir } from 'node:fs/promises';
 
 function isExported(node: ts.Declaration): boolean {
 	return (ts.getCombinedModifierFlags(node) & ts.ModifierFlags.Export) > 0;
@@ -56,12 +55,13 @@ class ModuleFile {
 		// TODO: make this more efficient
 		const typeExportSpecifiers = this.generateExportSpecifiers('types');
 		const exportSpecifiers = typeExportSpecifiers.concat(useNormal ? this.generateExportSpecifiers('normal') : []);
+		const relativePath = relative(packageDir, this.path.dir);
 
 		return ts.factory.createExportDeclaration(
 			undefined,
 			!useNormal && useTypes,
 			this.isPrivate ? ts.factory.createNamedExports(exportSpecifiers) : undefined,
-			ts.factory.createStringLiteral(`./${format({ dir: relative(packageDir, this.path.dir), base: this.path.name })}`, true),
+			ts.factory.createStringLiteral(`./${this.path.base === 'index.ts' ? relativePath : join(relativePath, this.path.name)}`, true),
 			undefined
 		);
 	}
@@ -93,15 +93,32 @@ class ModuleFile {
 	}
 }
 
+async function findIndexOrModules(dir: string, depth: number = 0): Promise<string[]> {
+	const contents = await readdir(dir, { withFileTypes: true });
+	let results: string[] = [];
+	for (const item of contents) {
+		const itemPath = join(dir, item.name);
+		if (item.isFile()) {
+			if (!item.name.endsWith('.ts')) continue;
+			// TODO: treat files with the same name as an existing directory as an index for that directory
+			if (item.name === 'index.ts') {
+				// TODO: process index to support re-exports (see #750)
+				if (depth === 0) continue;
+				results = [itemPath];
+				break;
+			}
+			results.push(itemPath);
+		} else if (item.isDirectory()) {
+			results = results.concat(await findIndexOrModules(itemPath, depth + 1));
+		}
+	}
+	return results;
+}
+
 async function processPackage(packageDir: string, printer: ts.Printer): Promise<string> {
 	const indexPath = resolve(packageDir, './index.ts');
 
-	// TODO: when Array.fromAsync is stabilised (github.com/tc39/proposal-array-from-async), use that instead
-	const modules = [];
-	for await (const file of findFilesRecursivelyStringEndsWith(packageDir, '.ts')) {
-		if (file === indexPath) continue;
-		modules.push(file);
-	}
+	const modules = await findIndexOrModules(packageDir);
 	const indexProgram = ts.createProgram([indexPath].concat(modules), {});
 
 	return printer.printList(

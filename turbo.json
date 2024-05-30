@@ -46,7 +46,7 @@
 			"outputs": ["package.json"]
 		},
 		"gen-index": {
-			"dependsOn": ["@sapphire/node-utilities#build"],
+			"dependsOn": [],
 			"outputs": ["packages/*/src/index.ts"]
 		},
 		"docs": {
