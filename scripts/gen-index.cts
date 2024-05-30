@@ -97,6 +97,7 @@ async function findIndexOrModules(dir: string, depth: number = 0): Promise<strin
 	const contents = await readdir(dir, { withFileTypes: true });
 	let results: string[] = [];
 	for (const item of contents) {
+		if (item.name === 'common') continue;
 		const itemPath = join(dir, item.name);
 		if (item.isFile()) {
 			if (!item.name.endsWith('.ts')) continue;
