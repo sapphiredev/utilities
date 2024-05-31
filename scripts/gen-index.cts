@@ -142,7 +142,7 @@ async function main() {
 	});
 	// TODO: use .then with writeFile? see if condensing promises instead of having writeFile await result changes performance
 	if (WRITE_MODE) return Promise.all(packages.map(async ([indexPath, result]) => writeFile(indexPath, await result)));
-	return console.log(await Promise.all(packages.map(([_, result]) => result)));
+	return console.log((await Promise.all(packages.map(([_, result]) => result))).join('\n'));
 }
 
 void main();
