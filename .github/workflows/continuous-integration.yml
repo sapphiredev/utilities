@@ -118,3 +118,37 @@ jobs:
         run: yarn --immutable
       - name: Validate dynamic side effects
         run: yarn build:dynamic-side-effects -- --check
+
+  Check_PackageIndexFiles:
+    name: Check Package Index Files
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Project
+        uses: actions/checkout@v4
+      - name: Use Node.js v20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: yarn
+          registry-url: https://registry.yarnpkg.org/
+      - name: Install Dependencies
+        run: yarn --immutable
+      - name: Restore index cache
+        id: cache-index-restore
+        uses: actions/cache/restore@v4
+        with:
+          path: node_modules/.cache/turbo
+          key: ${{ github.ref_name }}-gen-index
+      - name: Generate index files
+        run: yarn gen-index --parallel --concurrency $(ls packages | wc -l) --output-logs new-only
+      - name: Test for differences
+        run: test -z "$(git diff --name-only)"
+      - name: Display discrepancies
+        if: failure()
+        run: git diff
+      - name: Save index cache
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: node_modules/.cache/turbo
+          key: ${{ steps.cache-index-restore.outputs.cache-primary-key }}
