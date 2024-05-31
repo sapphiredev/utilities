@@ -123,15 +123,13 @@ async function processPackage(packageDir: string): Promise<string> {
 	const indexPath = resolve(packageDir, './index.ts');
 
 	const modules = await findIndexOrModules(packageDir);
+	modules.sort();
 	const indexProgram = ts.createProgram([indexPath].concat(modules), {});
 
 	return PRINTER.printList(
 		ts.ListFormat.MultiLine,
 		// @ts-expect-error: normal arrays do not coerce to ts.NodeArray typing, even though this is valid
-		modules
-			.toSorted()
-			.map((moduleFile) => new ModuleFile(indexProgram.getSourceFile(moduleFile)!).toExportDeclaration(packageDir))
-			.filter((node) => node),
+		modules.map((moduleFile) => new ModuleFile(indexProgram.getSourceFile(moduleFile)!).toExportDeclaration(packageDir)).filter((node) => node),
 		indexProgram.getSourceFile(indexPath)!
 	);
 }
