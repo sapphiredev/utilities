@@ -2,6 +2,10 @@ import ts from 'typescript';
 import { join, relative, resolve, parse, type ParsedPath } from 'node:path';
 import { writeFile, readdir } from 'node:fs/promises';
 
+const PRINTER = ts.createPrinter({ newLine: ts.NewLineKind.LineFeed });
+const WRITE_MODE = process.argv.includes('-w');
+const PACKAGE_NAMES = process.argv.slice(WRITE_MODE ? 3 : 2);
+
 function isExported(node: ts.Declaration): boolean {
 	return (ts.getCombinedModifierFlags(node) & ts.ModifierFlags.Export) > 0;
 }
@@ -115,13 +119,13 @@ async function findIndexOrModules(dir: string, depth: number = 0): Promise<strin
 	return results;
 }
 
-async function processPackage(packageDir: string, printer: ts.Printer): Promise<string> {
+async function processPackage(packageDir: string): Promise<string> {
 	const indexPath = resolve(packageDir, './index.ts');
 
 	const modules = await findIndexOrModules(packageDir);
 	const indexProgram = ts.createProgram([indexPath].concat(modules), {});
 
-	return printer.printList(
+	return PRINTER.printList(
 		ts.ListFormat.MultiLine,
 		// @ts-expect-error: normal arrays do not coerce to ts.NodeArray typing, even though this is valid
 		modules
@@ -133,16 +137,14 @@ async function processPackage(packageDir: string, printer: ts.Printer): Promise<
 }
 
 async function main() {
-	const printer = ts.createPrinter({ newLine: ts.NewLineKind.LineFeed });
-	const writeMode = process.argv.includes('-w');
-	const packageName = process.argv.at(-1);
-	const packageDir = resolve(__dirname, `../packages/${packageName}/src`);
-
-	const result = await processPackage(packageDir, printer);
-	if (writeMode) {
-		return writeFile(resolve(packageDir, './index.ts'), result);
-	}
-	console.log(result);
+	// TODO: explore performance improvements, maybe via parallelism?
+	const packages: [string, Promise<string>][] = PACKAGE_NAMES.map((packageName) => {
+		const packageDir = resolve(__dirname, `../packages/${packageName}/src`);
+		return [join(packageDir, 'index.ts'), processPackage(packageDir)];
+	});
+	// TODO: use .then with writeFile? see if condensing promises instead of having writeFile await result changes performance
+	if (WRITE_MODE) return Promise.all(packages.map(async ([indexPath, result]) => writeFile(indexPath, await result)));
+	return console.log(await Promise.all(packages.map(([_, result]) => result)));
 }
 
 void main();
