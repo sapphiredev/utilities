@@ -133,22 +133,17 @@ jobs:
           registry-url: https://registry.yarnpkg.org/
       - name: Install Dependencies
         run: yarn --immutable
-      - name: Restore index cache
-        id: cache-index-restore
-        uses: actions/cache/restore@v4
-        with:
-          path: node_modules/.cache/turbo
-          key: ${{ github.ref_name }}-gen-index
+      # It would be nice to cache turbo's output, but it passes for all subsequent runs since it doesn't commit to fs
       - name: Generate index files
         run: yarn gen-index --parallel --concurrency $(ls packages | wc -l) --output-logs new-only
       - name: Test for differences
-        run: test -z "$(git diff --name-only)"
-      - name: Display discrepancies
-        if: failure()
-        run: git diff
-      - name: Save index cache
-        if: always()
-        uses: actions/cache/save@v4
-        with:
-          path: node_modules/.cache/turbo
-          key: ${{ steps.cache-index-restore.outputs.cache-primary-key }}
+        run: |
+          git add .;
+          if git diff-index --quiet HEAD --; then
+            echo "No index discrepancies found, exiting with code 0";
+            exit 0;
+          else
+            echo "Index discrepancies found, displaying and exiting with code 1";
+            git diff;
+            exit 1;
+          fi
