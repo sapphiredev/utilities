@@ -123,7 +123,7 @@ async function processPackage(packageDir: string): Promise<string> {
 	const indexPath = resolve(packageDir, './index.ts');
 
 	const modules = await findIndexOrModules(packageDir);
-	modules.sort();
+	modules.sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()));
 	const indexProgram = ts.createProgram([indexPath].concat(modules), {});
 
 	return PRINTER.printList(
