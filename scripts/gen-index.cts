@@ -42,10 +42,11 @@ class ModuleFile {
 		this.exportInclusions = this.deriveExportInclusions();
 	}
 
-	public generateExportSpecifiers(which: keyof ModuleExportNodes) {
-		return [...new Set(this.exports[which].map((node) => ts.getNameOfDeclaration(node)!.getText(this.sourceFile)!))].map((name) =>
-			ts.factory.createExportSpecifier(false, undefined, name)
-		);
+	public generateExportSpecifiers(): ts.ExportSpecifier[] {
+		return this.exports.types
+			.concat(this.exportInclusions.useNormal ? this.exports.normal : [])
+			.map((node) => ts.getNameOfDeclaration(node)!.getText(this.sourceFile)!)
+			.map((name) => ts.factory.createExportSpecifier(false, undefined, name));
 	}
 
 	/**
@@ -58,9 +59,8 @@ class ModuleFile {
 		const { useModule, useNormal, useTypes } = this.exportInclusions;
 		if (!useModule) return;
 
-		// TODO: make this more efficient
-		const typeExportSpecifiers = this.generateExportSpecifiers('types');
-		const exportSpecifiers = typeExportSpecifiers.concat(useNormal ? this.generateExportSpecifiers('normal') : []);
+		const exportSpecifiers = this.generateExportSpecifiers();
+
 		const relativePath = relative(packageDir, this.path.dir);
 		const adjustedPath = (this.path.base === 'index.ts' ? relativePath : join(relativePath, this.path.name)).split(winSep).join(posixSep);
 
@@ -114,7 +114,6 @@ async function findIndexOrModules(dir: string, depth: number = 0): Promise<strin
 				break;
 			}
 			results.push(itemPath);
-			// TODO: there are likely more efficient ways to determine if a directory has an auxiliary index
 		} else if (item.isDirectory() && !contents.find((entry) => `${item.name}.ts` === entry.name))
 			results = results.concat(await findIndexOrModules(itemPath, depth + 1));
 	}
