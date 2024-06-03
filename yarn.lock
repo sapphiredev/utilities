@@ -785,9 +785,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@favware/cliff-jumper@npm:^4.0.1":
-  version: 4.0.1
-  resolution: "@favware/cliff-jumper@npm:4.0.1"
+"@favware/cliff-jumper@npm:4.0.2-next.a15e2b4":
+  version: 4.0.2-next.a15e2b4
+  resolution: "@favware/cliff-jumper@npm:4.0.2-next.a15e2b4"
   dependencies:
     "@favware/colorette-spinner": "npm:^1.0.1"
     "@octokit/auth-token": "npm:^5.1.1"
@@ -806,7 +806,7 @@ __metadata:
   bin:
     cj: ./dist/cli.js
     cliff-jumper: ./dist/cli.js
-  checksum: 10/baf7fa2896a026ac06cea3087525a6ac6e5e5f6691641874cfd2fc5637aa0aa96f90a023d3e7acdfcf8d2d7a1d208ec13a687147f075cf3a44792cab671e4194
+  checksum: 10/34e9393ba7da3735f0cba997da575a56cc0a947feeeefcc67b6b4dd57c5e971e35967f5a105c902188044628cc4884698c2ba0fd4ce9a496c30af7f9f9df5362
   languageName: node
   linkType: hard
 

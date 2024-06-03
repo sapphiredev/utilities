@@ -74,7 +74,8 @@
 	},
 	"resolutions": {
 		"ansi-regex": "^5.0.1",
-		"minimist": "^1.2.8"
+		"minimist": "^1.2.8",
+		"@favware/cliff-jumper": "4.0.2-next.a15e2b4"
 	},
 	"packageManager": "yarn@4.2.2"
 }
