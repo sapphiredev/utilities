@@ -1,12 +1,11 @@
 import { readdir, writeFile } from 'node:fs/promises';
-import { join, parse, relative, resolve, type ParsedPath } from 'node:path';
-import { sep as posixSep } from 'node:path/posix';
-import { sep as win32sep } from 'node:path/win32';
+import { sep as posixSep, join, parse, relative, resolve, type ParsedPath } from 'node:path/posix';
+import { sep as winSep } from 'node:path/win32';
 import ts from 'typescript';
 
 const PRINTER = ts.createPrinter({ newLine: ts.NewLineKind.LineFeed });
 const WRITE_MODE = process.argv.includes('-w');
-const PACKAGE_NAME = process.argv.slice(WRITE_MODE ? 3 : 2).at(0);
+const PACKAGE_NAME = process.argv.at(WRITE_MODE ? 3 : 2);
 
 function isExported(node: ts.Declaration): boolean {
 	return (ts.getCombinedModifierFlags(node) & ts.ModifierFlags.Export) > 0;
@@ -14,10 +13,6 @@ function isExported(node: ts.Declaration): boolean {
 
 function isType(node: ts.Node): boolean {
 	return [ts.SyntaxKind.InterfaceDeclaration, ts.SyntaxKind.TypeAliasDeclaration].includes(node.kind);
-}
-
-function normalizePath(filename: string): string {
-	return filename.split(win32sep).join(posixSep);
 }
 
 interface ModuleExportNodes {
@@ -65,16 +60,13 @@ class ModuleFile {
 		// TODO: make this more efficient
 		const typeExportSpecifiers = this.generateExportSpecifiers('types');
 		const exportSpecifiers = typeExportSpecifiers.concat(useNormal ? this.generateExportSpecifiers('normal') : []);
-		const relativePath = relative(packageDir, this.path.dir);
+		const relativePath = relative(packageDir, this.path.dir).split(winSep).join(posixSep);
 
 		return ts.factory.createExportDeclaration(
 			undefined,
 			!useNormal && useTypes,
 			this.isPrivate ? ts.factory.createNamedExports(exportSpecifiers) : undefined,
-			ts.factory.createStringLiteral(
-				`./${this.path.base === 'index.ts' ? relativePath : normalizePath(join(relativePath, this.path.name))}`,
-				true
-			),
+			ts.factory.createStringLiteral(`./${this.path.base === 'index.ts' ? relativePath : join(relativePath, this.path.name)}`, true),
 			undefined
 		);
 	}
@@ -147,10 +139,7 @@ async function main() {
 	const packageDir = resolve(__dirname, `../packages/${PACKAGE_NAME}/src`);
 	const [indexPath, result] = [join(packageDir, 'index.ts'), await processPackage(packageDir)];
 
-	if (WRITE_MODE) {
-		return writeFile(indexPath, result);
-	}
-
+	if (WRITE_MODE) return writeFile(indexPath, result);
 	return console.log(result);
 }
 
