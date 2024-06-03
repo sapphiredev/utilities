@@ -79,7 +79,8 @@
 	},
 	"resolutions": {
 		"ansi-regex": "^5.0.1",
-		"minimist": "^1.2.8"
+		"minimist": "^1.2.8",
+		"conventional-changelog-angular": "^8.0.0"
 	},
 	"packageManager": "yarn@4.2.2"
 }
