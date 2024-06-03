@@ -2,3 +2,8 @@ name: cron
 org: sapphire
 install: true
 packagePath: packages/cron
+identifierBase: false
+pushTag: true
+githubRelease: true
+githubReleaseLatest: true
+githubRepo: auto

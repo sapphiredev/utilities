@@ -2,3 +2,8 @@ name: discord.js-utilities
 org: sapphire
 install: true
 packagePath: packages/discord.js-utilities
+identifierBase: false
+pushTag: true
+githubRelease: true
+githubReleaseLatest: true
+githubRepo: auto

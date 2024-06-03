@@ -2,3 +2,8 @@ name: ts-config
 org: sapphire
 install: true
 packagePath: packages/ts-config
+identifierBase: false
+pushTag: true
+githubRelease: true
+githubReleaseLatest: true
+githubRepo: auto
