@@ -29,7 +29,7 @@ body = """
 		  {% endif %}\
             {{ commit.message | upper_first }} ([{{ commit.id | truncate(length=7, end="") }}]({{ self::remote_url() }}/commit/{{ commit.id }}))\
             {% if commit.github.pr_number %} (\
-                [#{{ commit.github.pr_number }}]({{ self::remote_url() }}/pull/{{ commit.github.pr_number }})) \
+                [#{{ commit.github.pr_number }}]({{ self::remote_url() }}/pull/{{ commit.github.pr_number }}) by @{{ commit.github.username }}) \
             {%- endif %}\
 		{% if commit.breaking %}\
 			{% for breakingChange in commit.footers %}\
