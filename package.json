@@ -23,7 +23,7 @@
 		"@commitlint/cli": "^19.3.0",
 		"@commitlint/config-conventional": "^19.2.2",
 		"@discordjs/collection": "^1.5.3",
-		"@favware/cliff-jumper": "^4.0.1",
+		"@favware/cliff-jumper": "^4.0.2",
 		"@favware/npm-deprecate": "^1.0.7",
 		"@favware/rollup-type-bundler": "^3.3.0",
 		"@sapphire/framework": "^5.2.1",
@@ -74,8 +74,7 @@
 	},
 	"resolutions": {
 		"ansi-regex": "^5.0.1",
-		"minimist": "^1.2.8",
-		"@favware/cliff-jumper": "4.0.2-next.a15e2b4"
+		"minimist": "^1.2.8"
 	},
 	"packageManager": "yarn@4.2.2"
 }
