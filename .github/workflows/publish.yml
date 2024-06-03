@@ -45,7 +45,7 @@ jobs:
           GITHUB_EMAIL: 41898282+github-actions[bot]@users.noreply.github.com
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Bump Versions and make release
-        run: yarn bump
+        run: yarn bump --verbose
         working-directory: packages/${{ github.event.inputs.package }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

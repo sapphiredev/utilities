@@ -7,3 +7,4 @@ pushTag: true
 githubRelease: true
 githubReleaseLatest: true
 githubRepo: auto
+verbose: true
