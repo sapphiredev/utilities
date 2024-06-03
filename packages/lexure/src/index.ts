@@ -8,6 +8,6 @@ export * from './lib/lexer/streams/raw/TokenStream';
 export * from './lib/parser/Parser';
 export * from './lib/parser/ParserResult';
 export * from './lib/parser/strategies/EmptyStrategy';
-export * from './lib/parser/strategies/IUnorderedStrategy';
+export type * from './lib/parser/strategies/IUnorderedStrategy';
 export * from './lib/parser/strategies/PrefixedStrategy';
 export * from './lib/util/util';
