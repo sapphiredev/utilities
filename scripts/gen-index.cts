@@ -87,7 +87,6 @@ class ModuleFile {
 		const normal: ts.Declaration[] = [];
 		const types: ts.Declaration[] = [];
 
-		// TODO: skip normals where this.isPrivate?
 		this.sourceFile.forEachChild((node) => {
 			if (!ts.isDeclarationStatement(node) || !isExported(node)) return;
 			isType(node) ? types.push(node) : normal.push(node);
