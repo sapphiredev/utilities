@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/eslint-plugin-result@2.0.4](https://github.com/sapphire/eslint-plugin-result/compare/@sapphire/eslint-plugin-result@2.0.3...@sapphire/eslint-plugin-result@2.0.4) - (2024-06-03)
+
+## 🐛 Bug Fixes
+
+- **eslint-plugin-result:** Bump transient dependencies ([6d030e2](https://github.com/sapphire/eslint-plugin-result/commit/6d030e28b6f9b84b309e2729bba0597e7f5898e0))
+- **deps:** Update all non-major dependencies ([7dc491a](https://github.com/sapphire/eslint-plugin-result/commit/7dc491a3eebea3bd320fcc73d3b434067646c7df))
+
 # [@sapphire/eslint-plugin-result@2.0.3](https://github.com/sapphiredev/utilities/compare/@sapphire/eslint-plugin-result@2.0.2...@sapphire/eslint-plugin-result@2.0.3) - (2024-03-11)
 
 ## 🐛 Bug Fixes
