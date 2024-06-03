@@ -1,6 +1,6 @@
 {
 	"name": "@sapphire/iterator-utilities",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"description": "An iterator utility library for JavaScript.",
 	"author": "@sapphire",
 	"license": "MIT",
