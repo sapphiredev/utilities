@@ -64,7 +64,7 @@
 		"access": "public"
 	},
 	"devDependencies": {
-		"@favware/cliff-jumper": "^4.0.0",
+		"@favware/cliff-jumper": "^4.0.1",
 		"@types/jsdom": "^21.1.7",
 		"@vitest/coverage-v8": "^1.6.0",
 		"jsdom": "^24.1.0",

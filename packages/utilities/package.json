@@ -52,7 +52,7 @@
 		"access": "public"
 	},
 	"devDependencies": {
-		"@favware/cliff-jumper": "^4.0.0",
+		"@favware/cliff-jumper": "^4.0.1",
 		"@sapphire/node-utilities": "workspace:^",
 		"@sapphire/prettier-config": "workspace:^",
 		"@vitest/coverage-v8": "^1.6.0",

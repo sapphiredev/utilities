@@ -66,7 +66,7 @@
 		"@sapphire/result": "workspace:^"
 	},
 	"devDependencies": {
-		"@favware/cliff-jumper": "^4.0.0",
+		"@favware/cliff-jumper": "^4.0.1",
 		"@vitest/coverage-v8": "^1.6.0",
 		"tsup": "^8.0.2",
 		"tsx": "^4.11.0",
