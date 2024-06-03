@@ -72,11 +72,6 @@
 		"*": "prettier --ignore-unknown --write",
 		"*.{mjs,js,ts}": "eslint --fix --ext mjs,js,ts"
 	},
-	"config": {
-		"commitizen": {
-			"path": "./node_modules/cz-conventional-changelog"
-		}
-	},
 	"resolutions": {
 		"ansi-regex": "^5.0.1",
 		"minimist": "^1.2.8",
