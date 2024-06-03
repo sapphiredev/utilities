@@ -27,6 +27,14 @@ jobs:
           registry-url: https://registry.yarnpkg.com/
       - name: Install Dependencies
         run: yarn --immutable
+      - name: Build Utilities and Result
+        run: |
+          yarn workspaces foreach \
+            --all \
+            --parallel \
+            --include @sapphire/result \
+            --include @sapphire/utilities \
+            run build
       - name: Configure Git
         run: |
           git remote set-url origin "https://${GITHUB_TOKEN}:x-oauth-basic@github.com/${GITHUB_REPOSITORY}.git"
