@@ -1,5 +1,6 @@
 import { readdir, writeFile } from 'node:fs/promises';
-import { sep as posixSep, join, parse, relative, resolve, type ParsedPath } from 'node:path/posix';
+import { join, parse, relative, resolve, type ParsedPath } from 'node:path';
+import { sep as posixSep } from 'node:path/posix';
 import { sep as winSep } from 'node:path/win32';
 import ts from 'typescript';
 
@@ -60,13 +61,14 @@ class ModuleFile {
 		// TODO: make this more efficient
 		const typeExportSpecifiers = this.generateExportSpecifiers('types');
 		const exportSpecifiers = typeExportSpecifiers.concat(useNormal ? this.generateExportSpecifiers('normal') : []);
-		const relativePath = relative(packageDir, this.path.dir).split(winSep).join(posixSep);
+		const relativePath = relative(packageDir, this.path.dir);
+		const adjustedPath = (this.path.base === 'index.ts' ? relativePath : join(relativePath, this.path.name)).split(winSep).join(posixSep);
 
 		return ts.factory.createExportDeclaration(
 			undefined,
 			!useNormal && useTypes,
 			this.isPrivate ? ts.factory.createNamedExports(exportSpecifiers) : undefined,
-			ts.factory.createStringLiteral(`./${this.path.base === 'index.ts' ? relativePath : join(relativePath, this.path.name)}`, true),
+			ts.factory.createStringLiteral(`./${adjustedPath}`, true),
 			undefined
 		);
 	}
