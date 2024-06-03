@@ -99,6 +99,26 @@ class ModuleFile {
 	}
 }
 
+class IndexModuleFile extends ModuleFile {
+	public readonly externalExports: ts.ExportDeclaration[];
+
+	public constructor(sourceFile: ts.SourceFile) {
+		super(sourceFile);
+		this.externalExports = this.parseExternalExports();
+	}
+
+	private parseExternalExports(): ts.ExportDeclaration[] {
+		const normal: ts.ExportDeclaration[] = [];
+		this.sourceFile.forEachChild((node) => {
+			if (!ts.isExportDeclaration(node)) return;
+			if (node.moduleSpecifier!.getText(this.sourceFile)!.includes('./')) return;
+			normal.push(node);
+		});
+
+		return normal;
+	}
+}
+
 async function findIndexOrModules(dir: string, depth: number = 0): Promise<string[]> {
 	const contents = await readdir(dir, { withFileTypes: true });
 	let results: string[] = [];
@@ -108,7 +128,6 @@ async function findIndexOrModules(dir: string, depth: number = 0): Promise<strin
 		if (item.isFile()) {
 			if (!item.name.endsWith('.ts')) continue;
 			if (item.name === 'index.ts') {
-				// TODO: process index to support re-exports (see #750)
 				if (depth === 0) continue;
 				results = [itemPath];
 				break;
@@ -126,11 +145,17 @@ async function processPackage(packageDir: string): Promise<string> {
 	const modules = await findIndexOrModules(packageDir);
 	modules.sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()));
 	const indexProgram = ts.createProgram([indexPath].concat(modules), {});
+	const indexModule = new IndexModuleFile(indexProgram.getSourceFile(indexPath)!);
 
 	return PRINTER.printList(
 		ts.ListFormat.MultiLine,
 		// @ts-expect-error: normal arrays do not coerce to ts.NodeArray typing, even though this is valid
-		modules.map((moduleFile) => new ModuleFile(indexProgram.getSourceFile(moduleFile)!).toExportDeclaration(packageDir)).filter((node) => node),
+		indexModule.externalExports.concat(
+			// @ts-expect-error: mixing two different types of node
+			modules
+				.map((moduleFile) => new ModuleFile(indexProgram.getSourceFile(moduleFile)!).toExportDeclaration(packageDir))
+				.filter((node) => node)
+		),
 		indexProgram.getSourceFile(indexPath)!
 	);
 }
