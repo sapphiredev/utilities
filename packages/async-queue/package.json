@@ -27,7 +27,7 @@
 		"lint": "eslint src tests --ext ts --fix -c ../../.eslintrc",
 		"docs": "typedoc-json-parser",
 		"build": "yarn gen-index && tsup && yarn build:rename-cjs-index",
-		"build:rename-cjs-index": "tsx --tsconfig ../../scripts/tsconfig.json ../../scripts/rename-cjs-index.cts",
+		"build:rename-cjs-index": "tsx ../../scripts/rename-cjs-index.cts",
 		"prepack": "yarn build",
 		"bump": "cliff-jumper",
 		"check-update": "cliff-jumper --dry-run",
