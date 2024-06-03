@@ -133,7 +133,6 @@ jobs:
           registry-url: https://registry.yarnpkg.org/
       - name: Install Dependencies
         run: yarn --immutable
-      # It would be nice to cache turbo's output, but it passes for all subsequent runs since it doesn't commit to fs
       - name: Generate index files
         run: yarn gen-index --parallel --concurrency $(ls packages | wc -l) --output-logs new-only
       - name: Test for differences
