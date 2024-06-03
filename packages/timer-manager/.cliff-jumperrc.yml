@@ -2,3 +2,8 @@ name: timer-manager
 org: sapphire
 install: true
 packagePath: packages/timer-manager
+identifierBase: false
+pushTag: true
+githubRelease: true
+githubReleaseLatest: true
+githubRepo: auto

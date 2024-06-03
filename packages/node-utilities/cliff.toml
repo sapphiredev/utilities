@@ -5,13 +5,16 @@ header = """
 All notable changes to this project will be documented in this file.\n
 """
 body = """
+{%- macro remote_url() -%}
+  https://github.com/{{ remote.github.owner }}/{{ remote.github.repo }}
+{%- endmacro -%}
 {% if version %}\
     # [{{ version | trim_start_matches(pat="v") }}]\
     {% if previous %}\
         {% if previous.version %}\
-            (https://github.com/sapphiredev/utilities/compare/{{ previous.version }}...{{ version }})\
+            ({{ self::remote_url() }}/compare/{{ previous.version }}...{{ version }})\
         {% else %}\
-            (https://github.com/sapphiredev/utilities/tree/{{ version }})\
+            ({{ self::remote_url() }}/tree/{{ version }})\
         {% endif %}\
     {% endif %} \
     - ({{ timestamp | date(format="%Y-%m-%d") }})
@@ -24,7 +27,10 @@ body = """
 		- {% if commit.scope %}\
 			**{{commit.scope}}:** \
 		  {% endif %}\
-            {{ commit.message | upper_first }} ([{{ commit.id | truncate(length=7, end="") }}](https://github.com/sapphiredev/utilities/commit/{{ commit.id }}))\
+            {{ commit.message | upper_first }} ([{{ commit.id | truncate(length=7, end="") }}]({{ self::remote_url() }}/commit/{{ commit.id }}))\
+            {% if commit.github.pr_number %} (\
+                [#{{ commit.github.pr_number }}]({{ self::remote_url() }}/pull/{{ commit.github.pr_number }})) \
+            {%- endif %}\
 		{% if commit.breaking %}\
 			{% for breakingChange in commit.footers %}\
 				\n{% raw %}  {% endraw %}- 💥 **{{ breakingChange.token }}{{ breakingChange.separator }}** {{ breakingChange.value }}\
@@ -56,8 +62,16 @@ commit_parsers = [
 	{ message = "^build", skip = true },
 	{ body = ".*security", group = "🛡️ Security" },
 ]
+commit_preprocessors = [
+	# remove issue numbers from commits
+	{ pattern = '\s\((\w+\s)?#([0-9]+)\)', replace = "" },
+]
 filter_commits = true
 tag_pattern = "@sapphire/node-utilities@[0-9]*"
 ignore_tags = ""
 topo_order = false
 sort_commits = "newest"
+
+[remote.github]
+owner = "sapphiredev"
+repo = "utilities"
