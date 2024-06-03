@@ -1,5 +1,5 @@
 import ts from 'typescript';
-import { join, relative, resolve, parse, type ParsedPath } from 'node:path';
+import { join, relative, resolve, parse, type ParsedPath } from 'node:path/posix';
 import { writeFile, readdir } from 'node:fs/promises';
 
 const PRINTER = ts.createPrinter({ newLine: ts.NewLineKind.LineFeed });
