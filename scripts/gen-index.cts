@@ -1,10 +1,12 @@
+import { readdir, writeFile } from 'node:fs/promises';
+import { join, parse, relative, resolve, type ParsedPath } from 'node:path';
+import { sep as posixSep } from 'node:path/posix';
+import { sep as win32sep } from 'node:path/win32';
 import ts from 'typescript';
-import { join, relative, resolve, parse, type ParsedPath } from 'node:path/posix';
-import { writeFile, readdir } from 'node:fs/promises';
 
 const PRINTER = ts.createPrinter({ newLine: ts.NewLineKind.LineFeed });
 const WRITE_MODE = process.argv.includes('-w');
-const PACKAGE_NAMES = process.argv.slice(WRITE_MODE ? 3 : 2);
+const PACKAGE_NAME = process.argv.slice(WRITE_MODE ? 3 : 2).at(0);
 
 function isExported(node: ts.Declaration): boolean {
 	return (ts.getCombinedModifierFlags(node) & ts.ModifierFlags.Export) > 0;
@@ -12,6 +14,10 @@ function isExported(node: ts.Declaration): boolean {
 
 function isType(node: ts.Node): boolean {
 	return [ts.SyntaxKind.InterfaceDeclaration, ts.SyntaxKind.TypeAliasDeclaration].includes(node.kind);
+}
+
+function normalizePath(filename: string): string {
+	return filename.split(win32sep).join(posixSep);
 }
 
 interface ModuleExportNodes {
@@ -65,7 +71,10 @@ class ModuleFile {
 			undefined,
 			!useNormal && useTypes,
 			this.isPrivate ? ts.factory.createNamedExports(exportSpecifiers) : undefined,
-			ts.factory.createStringLiteral(`./${this.path.base === 'index.ts' ? relativePath : join(relativePath, this.path.name)}`, true),
+			ts.factory.createStringLiteral(
+				`./${this.path.base === 'index.ts' ? relativePath : normalizePath(join(relativePath, this.path.name))}`,
+				true
+			),
 			undefined
 		);
 	}
@@ -135,14 +144,14 @@ async function processPackage(packageDir: string): Promise<string> {
 }
 
 async function main() {
-	// TODO: explore performance improvements, maybe via parallelism?
-	const packages: [string, Promise<string>][] = PACKAGE_NAMES.map((packageName) => {
-		const packageDir = resolve(__dirname, `../packages/${packageName}/src`);
-		return [join(packageDir, 'index.ts'), processPackage(packageDir)];
-	});
-	// TODO: use .then with writeFile? see if condensing promises instead of having writeFile await result changes performance
-	if (WRITE_MODE) return Promise.all(packages.map(async ([indexPath, result]) => writeFile(indexPath, await result)));
-	return console.log((await Promise.all(packages.map(([_, result]) => result))).join('\n'));
+	const packageDir = resolve(__dirname, `../packages/${PACKAGE_NAME}/src`);
+	const [indexPath, result] = [join(packageDir, 'index.ts'), await processPackage(packageDir)];
+
+	if (WRITE_MODE) {
+		return writeFile(indexPath, result);
+	}
+
+	return console.log(result);
 }
 
 void main();
