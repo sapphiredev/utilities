@@ -1,4 +1,4 @@
-import { AsyncQueueEntry } from './AsyncQueueEntry';
+import { AsyncQueueEntry } from './_AsyncQueueEntry';
 
 /**
  * The AsyncQueue class used to sequentialize burst requests
