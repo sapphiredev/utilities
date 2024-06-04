@@ -137,12 +137,12 @@ jobs:
         run: yarn gen-index --parallel --concurrency $(ls packages | wc -l) --output-logs new-only
       - name: Test for differences
         run: |
-          git add .;
           if git diff-index --quiet HEAD --; then
-            echo "No index discrepancies found, exiting with code 0";
+            echo "No index discrepancies found.";
             exit 0;
           else
-            echo "Index discrepancies found, displaying and exiting with code 1";
-            git diff;
+            for FILE in $(git diff --name-only); do
+              echo "::error file=$FILE::Index discrepancies found. Please review and adjust accordingly.";
+            done
             exit 1;
           fi
