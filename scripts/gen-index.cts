@@ -99,24 +99,15 @@ class ModuleFile {
 	}
 }
 
-class IndexModuleFile extends ModuleFile {
-	public readonly externalExports: ts.ExportDeclaration[];
+function parseExternalExports(sourceFile: ts.SourceFile): ts.ExportDeclaration[] {
+	const normal: ts.ExportDeclaration[] = [];
+	sourceFile.forEachChild((node) => {
+		if (!ts.isExportDeclaration(node)) return;
+		if (node.moduleSpecifier!.getText(sourceFile)!.includes('./')) return;
+		normal.push(node);
+	});
 
-	public constructor(sourceFile: ts.SourceFile) {
-		super(sourceFile);
-		this.externalExports = this.parseExternalExports();
-	}
-
-	private parseExternalExports(): ts.ExportDeclaration[] {
-		const normal: ts.ExportDeclaration[] = [];
-		this.sourceFile.forEachChild((node) => {
-			if (!ts.isExportDeclaration(node)) return;
-			if (node.moduleSpecifier!.getText(this.sourceFile)!.includes('./')) return;
-			normal.push(node);
-		});
-
-		return normal;
-	}
+	return normal;
 }
 
 async function findIndexOrModules(dir: string, depth: number = 0): Promise<string[]> {
@@ -145,13 +136,13 @@ async function processPackage(packageDir: string): Promise<string> {
 	const modules = await findIndexOrModules(packageDir);
 	modules.sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()));
 	const indexProgram = ts.createProgram([indexPath].concat(modules), {});
-	const indexModule = new IndexModuleFile(indexProgram.getSourceFile(indexPath)!);
+	const indexExternalExports = parseExternalExports(indexProgram.getSourceFile(indexPath)!);
 
 	return PRINTER.printList(
 		ts.ListFormat.MultiLine,
 		// @ts-expect-error: normal arrays do not coerce to ts.NodeArray typing, even though this is valid
-		indexModule.externalExports.concat(
-			// @ts-expect-error: mixing two different types of node
+		Array.concat(
+			indexExternalExports,
 			modules
 				.map((moduleFile) => new ModuleFile(indexProgram.getSourceFile(moduleFile)!).toExportDeclaration(packageDir))
 				.filter((node) => node)
