@@ -2,17 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
-# [@sapphire/discord.js-utilities@7.3.0](https://github.com/sapphire/discord.js-utilities/compare/@sapphire/discord.js-utilities@7.2.1...@sapphire/discord.js-utilities@7.3.0) - (2024-06-03)
+# [@sapphire/discord.js-utilities@7.3.0](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@7.2.1...@sapphire/discord.js-utilities@7.3.0) - (2024-06-03)
 
 ## 📝 Documentation
 
-- **discord.js-utilities:** Fix tsdoc comments ([04bc8e2](https://github.com/sapphire/discord.js-utilities/commit/04bc8e220134ab6a576ccdb664f4fb9f8353a089))
-- **discord.js-utilities:** Fix tsdoc comment ([6f16000](https://github.com/sapphire/discord.js-utilities/commit/6f160008982285f49f57811de5668a3648babb27))
-- **discord.js-utilities:** Fix tsdoc comments ([ea3f3d6](https://github.com/sapphire/discord.js-utilities/commit/ea3f3d65b3635abdb5862985f0771d9c8e6e2fba))
+- **discord.js-utilities:** Fix tsdoc comments ([04bc8e2](https://github.com/sapphiredev/utilities/commit/04bc8e220134ab6a576ccdb664f4fb9f8353a089))
+- **discord.js-utilities:** Fix tsdoc comment ([6f16000](https://github.com/sapphiredev/utilities/commit/6f160008982285f49f57811de5668a3648babb27))
+- **discord.js-utilities:** Fix tsdoc comments ([ea3f3d6](https://github.com/sapphiredev/utilities/commit/ea3f3d65b3635abdb5862985f0771d9c8e6e2fba))
 
 ## 🚀 Features
 
-- **discord.js-utilities:** Add attachment type guards ([4660670](https://github.com/sapphire/discord.js-utilities/commit/466067022153e31ed50ff9a9bc6c6948a9afd12d))
+- **discord.js-utilities:** Add attachment type guards ([4660670](https://github.com/sapphiredev/utilities/commit/466067022153e31ed50ff9a9bc6c6948a9afd12d))
 
 # [@sapphire/discord.js-utilities@7.2.1](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@7.2.0...@sapphire/discord.js-utilities@7.2.1) - (2024-05-06)
 
