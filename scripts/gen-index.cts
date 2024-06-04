@@ -141,11 +141,10 @@ async function processPackage(packageDir: string): Promise<string> {
 	return PRINTER.printList(
 		ts.ListFormat.MultiLine,
 		// @ts-expect-error: normal arrays do not coerce to ts.NodeArray typing, even though this is valid
-		Array.concat(
-			indexExternalExports,
+		indexExternalExports.concat(
 			modules
 				.map((moduleFile) => new ModuleFile(indexProgram.getSourceFile(moduleFile)!).toExportDeclaration(packageDir))
-				.filter((node) => node)
+				.filter((node) => node) as ts.ExportDeclaration[]
 		),
 		indexProgram.getSourceFile(indexPath)!
 	);
