@@ -2,3 +2,8 @@ name: stopwatch
 org: sapphire
 install: true
 packagePath: packages/stopwatch
+identifierBase: false
+pushTag: true
+githubRelease: true
+githubReleaseLatest: true
+githubRepo: sapphiredev/utilities

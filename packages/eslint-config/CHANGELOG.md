@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/eslint-config@5.0.5](https://github.com/sapphire/eslint-config/compare/@sapphire/eslint-config@5.0.4...@sapphire/eslint-config@5.0.5) - (2024-06-03)
+
+## 🐛 Bug Fixes
+
+- **eslint-config:** Bump transient dependencies ([f83936d](https://github.com/sapphire/eslint-config/commit/f83936db505bdcda957f5c52bdde557dbb1410b9))
+- **deps:** Update all non-major dependencies ([7dc491a](https://github.com/sapphire/eslint-config/commit/7dc491a3eebea3bd320fcc73d3b434067646c7df))
+
+## 📝 Documentation
+
+- **eslint-config:** Add note on how to use with flat config ([875402c](https://github.com/sapphire/eslint-config/commit/875402c3d1a3611a89ba3680d107b1c8d2be20dd))
+
 # [@sapphire/eslint-config@5.0.4](https://github.com/sapphiredev/utilities/compare/@sapphire/eslint-config@5.0.3...@sapphire/eslint-config@5.0.4) - (2024-03-11)
 
 ## 🐛 Bug Fixes

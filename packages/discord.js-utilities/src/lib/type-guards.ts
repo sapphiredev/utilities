@@ -1,4 +1,4 @@
-import { isNullish, type Nullish } from '@sapphire/utilities';
+import { isNullish, isNullishOrEmpty, isNullishOrZero, type Nullish } from '@sapphire/utilities';
 import {
 	BaseInteraction,
 	ChannelType,
@@ -8,6 +8,7 @@ import {
 	type APIInteractionDataResolvedGuildMember,
 	type APIInteractionGuildMember,
 	type APIMessage,
+	type Attachment,
 	type CategoryChannel,
 	type Channel,
 	type DMChannel,
@@ -298,4 +299,54 @@ export function isGuildMember(
 	member: GuildMember | APIGuildMember | APIInteractionGuildMember | APIInteractionDataResolvedGuildMember | Nullish
 ): member is GuildMember {
 	return member instanceof GuildMember;
+}
+
+/**
+ * Checks whether an attachment is a media attachment, this is done so by checking the content type of the attachment,
+ * if the content type starts with `image/`, `video/` or `audio/` it is considered a media attachment.
+ *
+ * If the content type is `image/` or `video/`, it will also check if the attachment has dimensions defined to ensure
+ * it is a valid media attachment.
+ *
+ * @param attachment - The attachment to check
+ * @returns Whether the attachment is a media attachment
+ *
+ * @since 7.3.0
+ */
+export function isMediaAttachment(attachment: Attachment): boolean {
+	if (isNullishOrEmpty(attachment.contentType)) return false;
+
+	// If the attachment is an audio attachment, return true:
+	if (attachment.contentType.startsWith('audio/')) return true;
+
+	// If the attachment is an image or video attachment, return true if it has dimensions defined:
+	return attachment.contentType.startsWith('image/') || attachment.contentType.startsWith('video/') //
+		? hasDimensionsDefined(attachment)
+		: false;
+}
+
+/**
+ * Checks whether an attachment is an image attachment, this is done so by checking the content type of the attachment,
+ * if the content type starts with `image/` and the attachment has dimensions defined, it is considered an image
+ * attachment.
+ *
+ * @param attachment - The attachment to check
+ * @returns Whether the attachment is an image attachment
+ *
+ * @since 7.3.0
+ */
+export function isImageAttachment(attachment: Attachment): boolean {
+	return (
+		// A content type is required for an image attachment:
+		!isNullishOrEmpty(attachment.contentType) && //
+		// An image attachment must have a content type starting with 'image/':
+		attachment.contentType.startsWith('image/') &&
+		// An image attachment must have dimensions defined:
+		hasDimensionsDefined(attachment)
+	);
+}
+
+/** @internal - function used by {@link isImageAttachment} and {@link isMediaAttachment} */
+function hasDimensionsDefined(attachment: Attachment): boolean {
+	return !isNullishOrZero(attachment.width) && !isNullishOrZero(attachment.height);
 }

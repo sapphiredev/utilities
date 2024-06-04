@@ -80,7 +80,7 @@
 		"access": "public"
 	},
 	"devDependencies": {
-		"@favware/cliff-jumper": "^3.0.3",
+		"@favware/cliff-jumper": "^4.0.2",
 		"@sapphire/eslint-config": "workspace:^",
 		"@sapphire/eslint-plugin-result": "workspace:^",
 		"@vitest/coverage-v8": "^1.6.0",

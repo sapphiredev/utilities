@@ -50,4 +50,4 @@ export * from './lib/throttle';
 export * from './lib/toTitleCase';
 export * from './lib/tryParseJSON';
 export * from './lib/tryParseURL';
-export * from './lib/types';
+export type * from './lib/types';

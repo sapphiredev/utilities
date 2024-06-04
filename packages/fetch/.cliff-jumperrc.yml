@@ -2,3 +2,8 @@ name: fetch
 org: sapphire
 install: true
 packagePath: packages/fetch
+identifierBase: false
+pushTag: true
+githubRelease: true
+githubReleaseLatest: true
+githubRepo: sapphiredev/utilities

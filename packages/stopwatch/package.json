@@ -26,7 +26,7 @@
 		"test": "vitest run",
 		"lint": "eslint src tests --ext ts --fix -c ../../.eslintrc",
 		"build": "tsup && yarn build:rename-cjs-index",
-		"build:rename-cjs-index": "tsx --tsconfig ../../scripts/tsconfig.json ../../scripts/rename-cjs-index.cts",
+		"build:rename-cjs-index": "tsx ../../scripts/rename-cjs-index.cts",
 		"docs": "typedoc-json-parser",
 		"prepack": "yarn build",
 		"bump": "cliff-jumper",
@@ -64,8 +64,8 @@
 		"access": "public"
 	},
 	"devDependencies": {
-		"@favware/cliff-jumper": "^3.0.3",
-		"@types/jsdom": "^21.1.6",
+		"@favware/cliff-jumper": "^4.0.2",
+		"@types/jsdom": "^21.1.7",
 		"@vitest/coverage-v8": "^1.6.0",
 		"jsdom": "^24.1.0",
 		"tsup": "^8.0.2",

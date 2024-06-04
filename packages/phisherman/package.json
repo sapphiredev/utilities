@@ -20,12 +20,13 @@
 	"homepage": "https://github.com/sapphiredev/utilities/tree/main/packages/phisherman",
 	"scripts": {
 		"lint": "eslint src --ext ts --fix",
-		"build": "tsup && yarn build:rename-cjs-index",
-		"build:rename-cjs-index": "tsx --tsconfig ../../scripts/tsconfig.json ../../scripts/rename-cjs-index.cts",
+		"build": "yarn gen-index && tsup && yarn build:rename-cjs-index",
+		"build:rename-cjs-index": "tsx ../../scripts/rename-cjs-index.cts",
 		"docs": "typedoc-json-parser",
 		"prepack": "yarn build",
 		"bump": "cliff-jumper",
-		"check-update": "cliff-jumper --dry-run"
+		"check-update": "cliff-jumper --dry-run",
+		"gen-index": "tsx ../../scripts/gen-index.cts -w phisherman"
 	},
 	"dependencies": {
 		"@sapphire/fetch": "workspace:^"
@@ -60,7 +61,7 @@
 		"access": "public"
 	},
 	"devDependencies": {
-		"@favware/cliff-jumper": "^3.0.3",
+		"@favware/cliff-jumper": "^4.0.2",
 		"@sapphire/result": "workspace:^",
 		"esbuild-plugin-version-injector": "^1.2.1",
 		"tsup": "^8.0.2",

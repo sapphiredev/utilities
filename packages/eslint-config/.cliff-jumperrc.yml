@@ -2,3 +2,8 @@ name: eslint-config
 org: sapphire
 install: true
 packagePath: packages/eslint-config
+identifierBase: false
+pushTag: true
+githubRelease: true
+githubReleaseLatest: true
+githubRepo: sapphiredev/utilities

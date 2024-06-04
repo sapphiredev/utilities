@@ -2,3 +2,8 @@ name: decorators
 org: sapphire
 install: true
 packagePath: packages/decorators
+identifierBase: false
+pushTag: true
+githubRelease: true
+githubReleaseLatest: true
+githubRepo: sapphiredev/utilities

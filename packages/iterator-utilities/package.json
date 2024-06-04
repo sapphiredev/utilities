@@ -1,6 +1,6 @@
 {
 	"name": "@sapphire/iterator-utilities",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"description": "An iterator utility library for JavaScript.",
 	"author": "@sapphire",
 	"license": "MIT",
@@ -13,7 +13,7 @@
 	"scripts": {
 		"test": "vitest run",
 		"lint": "eslint src tests --ext ts --fix -c ../../.eslintrc",
-		"build": "tsup && run-s \"build:*\"",
+		"build": "yarn gen-index && tsup && run-s \"build:*\"",
 		"build:rename-cjs-index": "yarn tsx ../../scripts/rename-cjs-index.cts",
 		"build:dynamic-side-effects": "yarn tsx ../../scripts/dynamic-side-effects.cts iterator-utilities",
 		"build:check-subpath": "yarn tsx ../../scripts/subpath-updater.cts iterator-utilities",
@@ -22,7 +22,8 @@
 		"docs": "typedoc-json-parser",
 		"prepack": "yarn build",
 		"bump": "cliff-jumper",
-		"check-update": "cliff-jumper --dry-run"
+		"check-update": "cliff-jumper --dry-run",
+		"gen-index": "tsx ../../scripts/gen-index.cts -w iterator-utilities"
 	},
 	"repository": {
 		"type": "git",
@@ -52,7 +53,7 @@
 		"access": "public"
 	},
 	"devDependencies": {
-		"@favware/cliff-jumper": "^3.0.3",
+		"@favware/cliff-jumper": "^4.0.2",
 		"@vitest/coverage-v8": "^1.6.0",
 		"npm-run-all2": "^6.2.0",
 		"tsup": "^8.0.2",
