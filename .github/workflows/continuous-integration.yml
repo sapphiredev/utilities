@@ -143,6 +143,7 @@ jobs:
           else
             for FILE in $(git diff --name-only); do
               echo "::error file=$FILE::Index discrepancies found. Please review and adjust accordingly.";
+              echo "$(git diff -p $FILE)";
             done
             exit 1;
           fi
