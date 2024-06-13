@@ -1,4 +1,6 @@
-const REGEXPESC = /[-/\\^$*+?.()|[\]{}]/g;
+import { charIn, createRegExp, global } from 'magic-regexp';
+
+const REGEXPESC = createRegExp(charIn('-/\\^$*+?.()|[]{}'), [global]);
 
 /**
  * Cleans a string from regex injection
