@@ -1,68 +1,104 @@
 {
-	"name": "root-utilities",
-	"private": true,
-	"workspaces": [
-		"packages/*"
-	],
+	"name": "@sapphire/shapeshift",
+	"version": "4.0.0",
+	"description": "Blazing fast input validation and transformation ⚡",
+	"author": "@sapphire",
+	"license": "MIT",
+	"main": "dist/cjs/index.cjs",
+	"module": "dist/esm/index.mjs",
+	"browser": "dist/iife/index.global.js",
+	"unpkg": "dist/iife/index.global.js",
+	"types": "dist/cjs/index.d.cts",
+	"exports": {
+		"import": {
+			"types": "./dist/esm/index.d.mts",
+			"default": "./dist/esm/index.mjs"
+		},
+		"require": {
+			"types": "./dist/cjs/index.d.cts",
+			"default": "./dist/cjs/index.cjs"
+		},
+		"browser": "./dist/iife/index.global.js"
+	},
+	"sideEffects": false,
+	"homepage": "https://www.sapphirejs.dev",
 	"scripts": {
-		"clean": "node scripts/clean.mjs",
-		"clean:full": "node scripts/clean-full.mjs",
-		"lint": "eslint packages --ext mjs,js,ts,tsx --fix",
-		"format": "prettier --ignore-path=.prettierignore --write \"packages/**/{src,tests,scripts}/**/*.{mjs,ts,js}\"",
+		"lint": "eslint src tests --ext ts --fix",
+		"format": "prettier --write \"{src,tests}/**/*.ts\"",
+		"docs": "typedoc-json-parser",
 		"test": "vitest run",
-		"build": "yarn workspace @sapphire/node-utilities build && turbo run build",
-		"build:check-subpath": "turbo run build:check-subpath",
-		"build:dynamic-side-effects": "turbo run build:dynamic-side-effects",
-		"docs": "turbo run docs",
-		"update": "yarn upgrade-interactive",
-		"check-update": "turbo run check-update",
-		"gen-index": "turbo run gen-index",
-		"au:twemojis": "tsx --tsconfig ./scripts/tsconfig.json ./scripts/twemoji-regex-updater.cts"
+		"build": "tsup && yarn build:rename-cjs-index",
+		"build:rename-cjs-index": "node scripts/rename-cjs-index.mjs",
+		"clean": "rimraf dist",
+		"typecheck": "tsc -p tsconfig.eslint.json",
+		"bump": "cliff-jumper",
+		"check-update": "cliff-jumper --dry-run",
+		"prepack": "yarn build"
+	},
+	"dependencies": {
+		"fast-deep-equal": "^3.1.3",
+		"lodash": "^4.17.21"
 	},
 	"devDependencies": {
-		"@actions/core": "^1.10.1",
 		"@commitlint/cli": "^19.3.0",
 		"@commitlint/config-conventional": "^19.2.2",
-		"@discordjs/collection": "^1.5.3",
-		"@favware/cliff-jumper": "^4.0.2",
+		"@favware/cliff-jumper": "^3.0.3",
 		"@favware/npm-deprecate": "^1.0.7",
-		"@favware/rollup-type-bundler": "^3.3.0",
-		"@sapphire/framework": "^5.2.1",
+		"@sapphire/eslint-config": "^5.0.5",
+		"@sapphire/prettier-config": "^2.0.0",
+		"@sapphire/ts-config": "^5.0.1",
+		"@types/jsdom": "^21.1.7",
 		"@types/lodash": "^4.17.5",
-		"@types/node": "^20.14.8",
-		"@types/ws": "^8.5.10",
+		"@types/node": "20.13.0",
 		"@typescript-eslint/eslint-plugin": "^7.13.1",
 		"@typescript-eslint/parser": "^7.13.1",
 		"@vitest/coverage-v8": "^1.6.0",
-		"concurrently": "^8.2.2",
 		"cz-conventional-changelog": "^3.3.0",
-		"discord-api-types": "^0.37.90",
-		"discord.js": "^14.15.3",
+		"esbuild-plugins-node-modules-polyfill": "^1.6.4",
 		"eslint": "^8.57.0",
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-prettier": "^5.1.3",
+		"jsdom": "^24.1.0",
 		"lint-staged": "^15.2.7",
-		"lodash": "^4.17.21",
-		"msw": "^2.3.1",
-		"npm-run-all2": "^6.2.0",
 		"prettier": "^3.3.2",
 		"rimraf": "^5.0.7",
-		"tslib": "^2.6.3",
 		"tsup": "^8.1.0",
-		"tsx": "^4.15.7",
-		"turbo": "^2.0.4",
+		"typedoc": "^0.26.1",
 		"typedoc-json-parser": "^10.0.0",
-		"typescript": "^5.5.2",
-		"vite": "^5.3.1",
+		"typescript": "~5.4.5",
 		"vitest": "^1.6.0"
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/sapphiredev/utilities.git"
+		"url": "git+https://github.com/sapphiredev/shapeshift.git"
 	},
+	"files": [
+		"dist/",
+		"UPGRADING-v3-v4.md"
+	],
 	"engines": {
-		"node": ">=v14.0.0",
-		"npm": ">=7.0.0"
+		"node": ">=v16"
+	},
+	"keywords": [
+		"@sapphire/shapeshift",
+		"shapeshift",
+		"bot",
+		"typescript",
+		"ts",
+		"yarn",
+		"sapphire",
+		"schema",
+		"validation",
+		"type-checking",
+		"checking",
+		"input-validation",
+		"runtime-validation",
+		"ow",
+		"type-validation",
+		"zod"
+	],
+	"bugs": {
+		"url": "https://github.com/sapphiredev/shapeshift/issues"
 	},
 	"commitlint": {
 		"extends": [
@@ -73,7 +109,16 @@
 		"*": "prettier --ignore-unknown --write",
 		"*.{mjs,js,ts}": "eslint --fix --ext mjs,js,ts"
 	},
+	"config": {
+		"commitizen": {
+			"path": "./node_modules/cz-conventional-changelog"
+		}
+	},
+	"publishConfig": {
+		"access": "public"
+	},
 	"resolutions": {
+		"@types/node": "20.13.0",
 		"ansi-regex": "^5.0.1",
 		"minimist": "^1.2.8"
 	},
