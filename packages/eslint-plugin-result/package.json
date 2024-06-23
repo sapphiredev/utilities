@@ -53,8 +53,8 @@
 	},
 	"devDependencies": {
 		"@favware/cliff-jumper": "^4.0.2",
-		"@typescript-eslint/rule-tester": "^7.13.0",
-		"@typescript-eslint/typescript-estree": "^7.13.0",
+		"@typescript-eslint/rule-tester": "^7.13.1",
+		"@typescript-eslint/typescript-estree": "^7.13.1",
 		"@vitest/coverage-v8": "^1.6.0",
 		"tsup": "^8.1.0",
 		"typedoc-json-parser": "^10.0.0",
@@ -62,8 +62,8 @@
 	},
 	"dependencies": {
 		"@sapphire/result": "workspace:^",
-		"@typescript-eslint/utils": "^7.13.0",
+		"@typescript-eslint/utils": "^7.13.1",
 		"tsutils": "^3.21.0",
-		"typescript": "^5.4.5"
+		"typescript": "~5.4.5"
 	}
 }
