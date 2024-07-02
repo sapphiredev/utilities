@@ -1409,6 +1409,25 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@sapphire/paginated-messages@workspace:packages/paginated-messages":
+  version: 0.0.0-use.local
+  resolution: "@sapphire/paginated-messages@workspace:packages/paginated-messages"
+  dependencies:
+    "@favware/cliff-jumper": "npm:^4.0.2"
+    "@favware/rollup-type-bundler": "npm:^3.3.0"
+    "@sapphire/discord-utilities": "workspace:^"
+    "@sapphire/discord.js-utilities": "workspace:^"
+    "@sapphire/duration": "workspace:^"
+    "@sapphire/utilities": "workspace:^"
+    concurrently: "npm:^8.2.2"
+    tsup: "npm:^8.1.0"
+    tsx: "npm:^4.16.0"
+    typedoc: "npm:^0.25.13"
+    typedoc-json-parser: "npm:^10.0.0"
+    typescript: "npm:~5.4.5"
+  languageName: unknown
+  linkType: soft
+
 "@sapphire/phisherman@workspace:packages/phisherman":
   version: 0.0.0-use.local
   resolution: "@sapphire/phisherman@workspace:packages/phisherman"
