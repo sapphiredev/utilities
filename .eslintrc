@@ -8,7 +8,7 @@
 			}
 		},
 		{
-			"files": ["packages/discord.js-utilities/src/lib/PaginatedMessages/PaginatedMessage.ts"],
+			"files": ["packages/paginated-messages/src/lib/PaginatedMessage.ts", "packages/paginated-messages/src/lib/PaginatedMessageV2.ts"],
 			"rules": {
 				"@typescript-eslint/member-ordering": "off"
 			}
