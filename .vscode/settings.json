@@ -3,5 +3,6 @@
 	"sonarlint.connectedMode.project": {
 		"connectionId": "https-sonarqube-sapphirejs-dev",
 		"projectKey": "sapphiredev_utilities_b5113e9c-17f2-46fc-9bab-b746ae1bb78d"
-	}
+	},
+	"cSpell.words": ["Interactable"]
 }

@@ -1,0 +1,79 @@
+{
+	"name": "@sapphire/paginated-messages",
+	"version": "1.0.0",
+	"description": "Paginated Messages for your DiscordJS bot",
+	"author": "@sapphire",
+	"license": "MIT",
+	"main": "dist/cjs/index.cjs",
+	"module": "dist/esm/index.mjs",
+	"types": "dist/cjs/index.d.cts",
+	"exports": {
+		"import": {
+			"types": "./dist/esm/index.d.mts",
+			"default": "./dist/esm/index.mjs"
+		},
+		"require": {
+			"types": "./dist/cjs/index.d.cts",
+			"default": "./dist/cjs/index.cjs"
+		}
+	},
+	"sideEffects": false,
+	"homepage": "https://github.com/sapphiredev/utilities/tree/main/packages/paginated-messages",
+	"scripts": {
+		"lint": "eslint src --ext ts --fix -c ../../.eslintrc",
+		"build": "yarn gen-index && tsup && yarn build:types",
+		"build:types": "concurrently \"yarn:build:types:*\"",
+		"build:types:cjs": "rollup-type-bundler -d dist/cjs -ot .cts",
+		"build:types:esm": "rollup-type-bundler -d dist/esm -t .mts",
+		"docs": "typedoc-json-parser",
+		"prepack": "yarn build",
+		"bump": "cliff-jumper",
+		"check-update": "cliff-jumper --dry-run",
+		"gen-index": "tsx ../../scripts/gen-index.cts -w paginated-messages"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/sapphiredev/utilities.git",
+		"directory": "packages/paginated-messages"
+	},
+	"files": [
+		"dist/"
+	],
+	"engines": {
+		"node": ">=16.6.0",
+		"npm": ">=7.0.0"
+	},
+	"keywords": [
+		"@sapphire/paginated-messages",
+		"paginated messages",
+		"bot",
+		"typescript",
+		"ts",
+		"yarn",
+		"discord",
+		"sapphire",
+		"standalone",
+		"discord.js"
+	],
+	"bugs": {
+		"url": "https://github.com/sapphiredev/utilities/issues"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"dependencies": {
+		"@sapphire/discord-utilities": "workspace:^",
+		"@sapphire/discord.js-utilities": "workspace:^",
+		"@sapphire/utilities": "workspace:^"
+	},
+	"devDependencies": {
+		"@favware/cliff-jumper": "^4.0.2",
+		"@favware/rollup-type-bundler": "^3.3.0",
+		"concurrently": "^8.2.2",
+		"tsup": "^8.1.0",
+		"tsx": "^4.16.0",
+		"typedoc": "^0.25.13",
+		"typedoc-json-parser": "^10.0.0",
+		"typescript": "~5.4.5"
+	}
+}
