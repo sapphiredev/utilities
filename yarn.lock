@@ -1417,7 +1417,6 @@ __metadata:
     "@favware/rollup-type-bundler": "npm:^3.3.0"
     "@sapphire/discord-utilities": "workspace:^"
     "@sapphire/discord.js-utilities": "workspace:^"
-    "@sapphire/duration": "workspace:^"
     "@sapphire/utilities": "workspace:^"
     concurrently: "npm:^8.2.2"
     tsup: "npm:^8.1.0"
