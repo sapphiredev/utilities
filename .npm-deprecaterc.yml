@@ -20,6 +20,7 @@ package:
   - '@sapphire/result'
   - '@sapphire/snowflake'
   - '@sapphire/stopwatch'
+  - '@sapphire/string-store'
   - '@sapphire/time-utilities'
   - '@sapphire/timer-manager'
   - '@sapphire/timestamp'

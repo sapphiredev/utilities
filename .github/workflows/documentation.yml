@@ -72,6 +72,7 @@ jobs:
           - result
           - snowflake
           - stopwatch
+          - string-store
           - time-utilities
           - timer-manager
           - timestamp
