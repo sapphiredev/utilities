@@ -36,6 +36,6 @@ export class MessagePrompterReactionStrategy extends MessagePrompterBaseStrategy
 
 		const response = await this.collectReactions(channel, authorOrFilter, this.reactions);
 
-		return this.explicitReturn ? response : response.reaction ?? response;
+		return this.explicitReturn ? response : (response.reaction ?? response);
 	}
 }
