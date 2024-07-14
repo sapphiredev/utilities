@@ -63,9 +63,9 @@
 	},
 	"devDependencies": {
 		"@favware/cliff-jumper": "^4.0.2",
-		"@vitest/coverage-v8": "^1.6.0",
+		"@vitest/coverage-v8": "^2.0.2",
 		"tsup": "^8.1.0",
 		"typedoc-json-parser": "^10.0.0",
-		"vitest": "^1.6.0"
+		"vitest": "^2.0.2"
 	}
 }
