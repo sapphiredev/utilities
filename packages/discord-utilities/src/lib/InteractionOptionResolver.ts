@@ -61,9 +61,9 @@ export class InteractionOptionResolver {
 	public constructor(interaction: APIApplicationCommandInteraction | APIApplicationCommandAutocompleteInteraction | APIModalSubmitInteraction) {
 		this.interaction = interaction;
 
-		this.data = 'options' in interaction.data ? interaction.data.options ?? null : null;
+		this.data = 'options' in interaction.data ? (interaction.data.options ?? null) : null;
 
-		this.resolved = 'resolved' in interaction.data ? interaction.data.resolved ?? null : null;
+		this.resolved = 'resolved' in interaction.data ? (interaction.data.resolved ?? null) : null;
 
 		this.hoistedOptions = this.data;
 
@@ -154,7 +154,7 @@ export class InteractionOptionResolver {
 	 */
 	public getChannel(name: string, required = false): APIInteractionDataResolvedChannel | null {
 		const option = this.getTypedOption(name, ApplicationCommandOptionType.Channel, required);
-		return option && this.resolved && 'channels' in this.resolved ? this.resolved.channels?.[option.value] ?? null : null;
+		return option && this.resolved && 'channels' in this.resolved ? (this.resolved.channels?.[option.value] ?? null) : null;
 	}
 
 	public getString(name: string, required?: boolean | false): string | null;
@@ -206,7 +206,7 @@ export class InteractionOptionResolver {
 	 */
 	public getUser(name: string, required = false): APIUser | null {
 		const option = this.getTypedOption(name, ApplicationCommandOptionType.User, required);
-		return option && this.resolved && 'users' in this.resolved ? this.resolved.users?.[option.value] ?? null : null;
+		return option && this.resolved && 'users' in this.resolved ? (this.resolved.users?.[option.value] ?? null) : null;
 	}
 
 	public getMember(name: string, required?: boolean | false): APIInteractionDataResolvedGuildMember | null;
@@ -219,7 +219,7 @@ export class InteractionOptionResolver {
 	 */
 	public getMember(name: string, required = false): APIInteractionDataResolvedGuildMember | null {
 		const option = this.getTypedOption(name, ApplicationCommandOptionType.User, required);
-		return option && this.resolved && 'members' in this.resolved ? this.resolved.members?.[option.value] ?? null : null;
+		return option && this.resolved && 'members' in this.resolved ? (this.resolved.members?.[option.value] ?? null) : null;
 	}
 
 	public getRole(name: string, required?: boolean | false): APIRole | null;
@@ -232,7 +232,7 @@ export class InteractionOptionResolver {
 	 */
 	public getRole(name: string, required = false): APIRole | null {
 		const option = this.getTypedOption(name, ApplicationCommandOptionType.Role, required);
-		return option && this.resolved && 'roles' in this.resolved ? this.resolved.roles?.[option.value] ?? null : null;
+		return option && this.resolved && 'roles' in this.resolved ? (this.resolved.roles?.[option.value] ?? null) : null;
 	}
 
 	public getAttachment(name: string, required?: boolean | false): APIAttachment | null;
@@ -245,7 +245,7 @@ export class InteractionOptionResolver {
 	 */
 	public getAttachment(name: string, required = false): APIAttachment | null {
 		const option = this.getTypedOption(name, ApplicationCommandOptionType.Attachment, required);
-		return option && this.resolved && 'attachments' in this.resolved ? this.resolved.attachments?.[option.value] ?? null : null;
+		return option && this.resolved && 'attachments' in this.resolved ? (this.resolved.attachments?.[option.value] ?? null) : null;
 	}
 
 	public getMentionable(name: string, required?: boolean | false): APIUser | APIInteractionDataResolvedGuildMember | APIRole | null;
