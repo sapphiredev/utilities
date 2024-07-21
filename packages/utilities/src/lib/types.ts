@@ -3,6 +3,27 @@ export type Primitive = string | number | boolean | bigint | symbol | undefined 
 // eslint-disable-next-line @typescript-eslint/ban-types
 export type Builtin = Primitive | Function | Date | Error | RegExp;
 
+export type DeepReadonly<T> = T extends Builtin
+	? T
+	: // Skip class constructors and functions
+		T extends AbstractConstructor<unknown> | ((...args: any[]) => unknown)
+		? T
+		: T extends ReadonlyMap<infer K, infer V>
+			? ReadonlyMap<DeepReadonly<K>, DeepReadonly<V>>
+			: T extends ReadonlySet<infer U>
+				? ReadonlySet<DeepReadonly<U>>
+				: T extends readonly [] | readonly [...never[]]
+					? readonly []
+					: T extends readonly [infer U, ...infer V]
+						? readonly [DeepReadonly<U>, ...DeepReadonly<V>]
+						: T extends readonly [...infer U, infer V]
+							? readonly [...DeepReadonly<U>, DeepReadonly<V>]
+							: T extends ReadonlyArray<infer U>
+								? ReadonlyArray<DeepReadonly<U>>
+								: T extends object
+									? { readonly [K in keyof T]: DeepReadonly<T[K]> }
+									: unknown;
+
 export type DeepRequired<T> = T extends Builtin
 	? NonNullable<T>
 	: T extends Map<infer K, infer V>

@@ -67,6 +67,7 @@
         -   [Types](#types)
             -   [`Primitive`](#primitive)
             -   [`Builtin`](#builtin)
+            -   [`DeepReadonly`](#deepreadonly)
             -   [`DeepRequired`](#deeprequired)
             -   [`RequiredExcept`](#requiredexcept)
             -   [`PartialRequired`](#partialrequired)
@@ -587,6 +588,21 @@ A union of all builtin types.
 ```ts
 // Primitive | Function | Date | Error | RegExp
 declare const builtin: Builtin;
+```
+
+##### `DeepReadonly`
+
+Makes all properties in `T` readonly recursively.
+
+```ts
+type Foo = Set<{ bar?: ['foo', { hello: 'world' }] }>;
+
+// ReadonlySet<{
+//     readonly bar?: readonly ["foo", {
+//         readonly hello: "world";
+//     }] | undefined;
+// }>
+declare const foo: DeepRequired<Foo>;
 ```
 
 ##### `DeepRequired`
