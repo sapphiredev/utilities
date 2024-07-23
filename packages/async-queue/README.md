@@ -13,15 +13,19 @@
 
 </div>
 
-## Description
+**Table of Contents**
 
-Ever needed a queue for a set of promises? This is the package for you.
+-   [Features](#features)
+-   [Installation](#installation)
+-   [Usage](#usage)
+-   [Buy us some doughnuts](#buy-us-some-doughnuts)
+-   [Contributors](#contributors)
 
 ## Features
 
 -   Written in TypeScript
 -   Bundled with esbuild so it can be used in NodeJS and browsers
--   Offers CommonJS, ESM and UMD bundles
+-   Offers CommonJS, ESM, and UMD bundles
 -   Fully tested
 
 ## Installation
@@ -32,13 +36,46 @@ You can use the following command to install this package, or replace `npm insta
 npm install @sapphire/async-queue
 ```
 
+## Usage
+
+**Note**: While this section uses `require`, the imports match 1:1 with ESM imports. For example `const { AsyncQueue } = require('@sapphire/async-queue')` equals `import { AsyncQueue } from '@sapphire/async-queue'`.
+
+```typescript
+// Require the AsyncQueue class
+const { AsyncQueue } = require('@sapphire/async-queue');
+
+const queue = new AsyncQueue();
+
+async function request(url, options) {
+	// Wait and lock the queue
+	await queue.wait();
+
+	try {
+		// Perform the operation sequentially
+		return await fetch(url, options);
+	} finally {
+		// Unlock the next promise in the queue
+		queue.shift();
+	}
+}
+
+request(someUrl1, someOptions1);
+// Will call fetch() immediately
+
+request(someUrl2, someOptions2);
+// Will call fetch() after the first finished
+
+request(someUrl3, someOptions3);
+// Will call fetch() after the second finished
+```
+
 ---
 
 ## Buy us some doughnuts
 
 Sapphire Community is and always will be open source, even if we don't get donations. That being said, we know there are amazing people who may still want to donate just to show their appreciation. Thank you very much in advance!
 
-We accept donations through Open Collective, Ko-fi, PayPal, Patreon and GitHub Sponsorships. You can use the buttons below to donate through your method of choice.
+We accept donations through Open Collective, Ko-fi, PayPal, Patreon, and GitHub Sponsorships. You can use the buttons below to donate through your method of choice.
 
 |   Donate With   |                       Address                       |
 | :-------------: | :-------------------------------------------------: |
