@@ -65,7 +65,7 @@
 		"discord-api-types": "^0.37.92"
 	},
 	"devDependencies": {
-		"@favware/cliff-jumper": "^4.0.2",
+		"@favware/cliff-jumper": "^4.0.3",
 		"@vitest/coverage-v8": "^2.0.3",
 		"tsup": "^8.2.1",
 		"tsx": "^4.16.2",

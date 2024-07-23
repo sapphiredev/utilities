@@ -34,7 +34,7 @@
 		"tslib": "^2.6.3"
 	},
 	"devDependencies": {
-		"@favware/cliff-jumper": "^4.0.2",
+		"@favware/cliff-jumper": "^4.0.3",
 		"@sapphire/discord-utilities": "workspace:^",
 		"@sapphire/discord.js-utilities": "workspace:^",
 		"@sapphire/ratelimits": "workspace:^",
