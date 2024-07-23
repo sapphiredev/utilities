@@ -1,4 +1,5 @@
 name: Publish
+run-name: Publish @sapphire/${{ github.event.inputs.package }}
 
 on:
   workflow_dispatch:
