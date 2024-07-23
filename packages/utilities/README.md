@@ -602,7 +602,7 @@ type Foo = Set<{ bar?: ['foo', { hello: 'world' }] }>;
 //         readonly hello: "world";
 //     }] | undefined;
 // }>
-declare const foo: DeepRequired<Foo>;
+declare const foo: DeepReadonly<Foo>;
 ```
 
 ##### `DeepRequired`
