@@ -72,7 +72,9 @@ export function ApplyOptions<T extends Piece.Options>(optionsOrFn: T | ((paramet
 		// Modern ECMAScript decorators
 		if (context !== undefined) {
 			// TODO: This currently doesn't actually apply the settings
-			return context.addInitializer(function decorate(this: any) {
+			return context.addInitializer(function decorate(
+				this: Ctor<[context: Piece.LoaderContext<StoreRegistryKey>, options?: Piece.Options | undefined]>
+			) {
 				return createProxy(classOrTarget as CustomElementConstructor, {
 					construct: (ctor, [context, baseOptions = {} as T]: [Piece.LoaderContext<StoreRegistryKey>, T]) =>
 						new ctor(context, {
