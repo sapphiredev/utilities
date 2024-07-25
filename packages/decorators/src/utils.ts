@@ -40,7 +40,7 @@ export function createMethodDecorator(fn: MethodDecorator): MethodDecorator {
  * @param fn The class to decorate
  * @see {@link ApplyOptions}
  */
-export function createClassDecorator<TFunction extends (...args: any[]) => void>(fn: TFunction): ClassDecorator {
+export function createLegacyClassDecorator<TFunction extends (...args: any[]) => void>(fn: TFunction): ClassDecorator {
 	return fn;
 }
 

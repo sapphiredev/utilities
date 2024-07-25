@@ -1,5 +1,5 @@
 import type { NonNullObject } from '@sapphire/utilities';
-import { createMethodDecorator } from './utils';
+import { createMethodDecorator } from '../utils';
 
 /**
  * Decorator that sets the enumerable property of a class field to the desired value.

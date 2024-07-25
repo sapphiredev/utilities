@@ -1,7 +1,21 @@
-import { container, type Piece } from '@sapphire/framework';
-import type { Container } from '@sapphire/pieces';
+/* eslint-disable @typescript-eslint/unified-signatures */
+
+import { container, type Container, type Piece, type StoreRegistryKey } from '@sapphire/framework';
 import type { Ctor } from '@sapphire/utilities';
-import { createClassDecorator, createProxy } from './utils';
+import { createProxy } from './utils';
+
+/**
+ * Allow for custom element classes with private constructors
+ */
+export type AppliedOptionsPiece = Omit<typeof Piece, 'new'>;
+
+export interface ApplyOptionsDecorator {
+	// Modern ECMAScript decorators
+	(target: AppliedOptionsPiece, context: ClassDecoratorContext<Ctor<ConstructorParameters<typeof Piece>>>): void;
+
+	// Legacy decorators
+	(cls: AppliedOptionsPiece): void;
+}
 
 /**
  * Decorator function that applies given options to any Sapphire piece
@@ -12,7 +26,7 @@ import { createClassDecorator, createProxy } from './utils';
  * import { Command } from '@sapphire/framework';
  * import type { Message } from 'discord.js';
  *
- * @ApplyOptions<Command.Options>({
+ * (at)ApplyOptions<Command.Options>({
  *   description: 'ping pong',
  *   enabled: true
  * })
@@ -32,7 +46,7 @@ import { createClassDecorator, createProxy } from './utils';
  * import { Listener } from '@sapphire/framework';
  * import { GatewayDispatchEvents, GatewayMessageDeleteDispatch } from 'discord.js';
  *
- * @ApplyOptions<Listener.Options>(({ container }) => ({
+ * (at)ApplyOptions<Listener.Options>(({ container }) => ({
  *   description: 'Handle Raw Message Delete events',
  *   emitter: container.client.ws,
  *   event: GatewayDispatchEvents.MessageDelete
@@ -49,16 +63,35 @@ import { createClassDecorator, createProxy } from './utils';
  * }
  * ```
  */
-export function ApplyOptions<T extends Piece.Options>(optionsOrFn: T | ((parameters: ApplyOptionsCallbackParameters) => T)): ClassDecorator {
-	return createClassDecorator((target: Ctor<ConstructorParameters<typeof Piece>, Piece>) =>
-		createProxy(target, {
-			construct: (ctor, [context, baseOptions = {}]: [Piece.LoaderContext, Piece.Options]) =>
+
+export function ApplyOptions<T extends Piece.Options>(optionsOrFn: T | ((parameters: ApplyOptionsCallbackParameters) => T)): ApplyOptionsDecorator {
+	return (
+		classOrTarget: AppliedOptionsPiece | Ctor<ConstructorParameters<typeof Piece>>,
+		context?: ClassDecoratorContext<Ctor<ConstructorParameters<typeof Piece>>>
+	) => {
+		// Modern ECMAScript decorators
+		if (context !== undefined) {
+			// TODO: This currently doesn't actually apply the settings
+			return context.addInitializer(function decorate(this: any) {
+				return createProxy(classOrTarget as CustomElementConstructor, {
+					construct: (ctor, [context, baseOptions = {} as T]: [Piece.LoaderContext<StoreRegistryKey>, T]) =>
+						new ctor(context, {
+							...baseOptions,
+							...(typeof optionsOrFn === 'function' ? optionsOrFn({ container, context }) : optionsOrFn)
+						})
+				});
+			});
+		}
+
+		// Legacy decorators
+		return createProxy(classOrTarget as Ctor<ConstructorParameters<typeof Piece>, Piece>, {
+			construct: (ctor, [context, baseOptions = {} as T]: [Piece.LoaderContext<StoreRegistryKey>, T]) =>
 				new ctor(context, {
 					...baseOptions,
 					...(typeof optionsOrFn === 'function' ? optionsOrFn({ container, context }) : optionsOrFn)
 				})
-		})
-	);
+		});
+	};
 }
 
 export interface ApplyOptionsCallbackParameters {
