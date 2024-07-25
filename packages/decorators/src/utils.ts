@@ -36,9 +36,13 @@ export function createMethodDecorator(fn: MethodDecorator): MethodDecorator {
 }
 
 /**
- * Utility to make a class decorator with lighter syntax and inferred types.
- * @param fn The class to decorate
- * @see {@link ApplyOptions}
+ * Utility to make a legacy class decorator with lighter syntax and inferred types.
+ *
+ * @param fn  - The class to decorate
+ *
+ * @remarks
+ * - This is designed for legacy decorators, not TC39 / ECMAScript decorators. This means that if you do not set
+ * `experimentalDecorators` to `true` in your TypeScript configuration, this method will not be useful.
  */
 export function createLegacyClassDecorator<TFunction extends (...args: any[]) => void>(fn: TFunction): ClassDecorator {
 	return fn;
