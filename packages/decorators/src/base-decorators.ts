@@ -1,25 +1,34 @@
 import { cast, type NonNullObject } from '@sapphire/utilities';
-import { LegacyDecoratorsOnlyError } from './utils';
 
 /**
  * Decorator that sets the enumerable property of a class field to the desired value.
  * @param value Whether the property should be enumerable or not
+ *
+ * @remarks
+ * - Please note that with legacy decorators there is a high chance that this will not work due to how legacy decorators
+ * are implemented. It is recommended to use the modern ECMAScript decorators.
  */
-export function Enumerable(value: boolean) {
-	// @ts-expect-error asd
-	return (target: unknown, key: string, ...args: any[]) => {
-		// Modern ECMAScript decorators do not support setting the enumerable property of a field
+export function Enumerable<ClzArgs extends NonNullObject>(value: boolean): EnumerableDecorator<ClzArgs> {
+	return (target: ClzArgs | undefined, contextOrPropertyKey: (string | symbol) | ClassFieldDecoratorContext<ClzArgs, any>) => {
 		if (target === undefined) {
-			throw new LegacyDecoratorsOnlyError('Enumerable(boolean)');
+			const typedContext = cast<ClassFieldDecoratorContext<ClzArgs, any>>(contextOrPropertyKey);
+			typedContext.addInitializer(function decorate(this: ClzArgs) {
+				Reflect.defineProperty(this, typedContext.name, {
+					value: typedContext.access.get(this),
+					enumerable: value,
+					configurable: true,
+					writable: true
+				});
+			});
 		} else {
-			// Legacy decorators
-			Reflect.defineProperty(target as NonNullObject, key, {
+			const typedPropertyKey = cast<string | symbol>(contextOrPropertyKey);
+			Reflect.defineProperty(target, typedPropertyKey, {
 				enumerable: value,
-				set(this: unknown, val: unknown) {
-					Reflect.defineProperty(this as NonNullObject, key, {
+				set(this: NonNullObject, fieldValue: unknown) {
+					Reflect.defineProperty(this, typedPropertyKey, {
 						configurable: true,
 						enumerable: value,
-						value: val,
+						value: fieldValue,
 						writable: true
 					});
 				}
@@ -62,6 +71,19 @@ export function EnumerableMethod<ClzArgs extends NonNullObject>(value: boolean):
 			});
 		}
 	};
+}
+
+/**
+ * The return type for {@link Enumerable}
+ *
+ * @param ClzArgs - The class constructor arguments
+ */
+export interface EnumerableDecorator<ClzArgs extends NonNullObject> {
+	// Modern ECMAScript decorators
+	(target: undefined, contextOrPropertyKey: ClassFieldDecoratorContext<ClzArgs, any>): void;
+
+	// Legacy decorators
+	(target: ClzArgs, propertyKey: string | symbol): void;
 }
 
 /**
