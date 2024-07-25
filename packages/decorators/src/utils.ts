@@ -1,3 +1,11 @@
+export class LegacyDecoratorsOnlyError extends Error {
+	public constructor(message: string) {
+		super(
+			`@${message} is only supported when using legacy decorators (https://www.typescriptlang.org/docs/handbook/decorators.html). Please enable the 'experimentalDecorators' compiler option, or remove this decorator from your code.`
+		);
+	}
+}
+
 /**
  * The function precondition interface.
  */
