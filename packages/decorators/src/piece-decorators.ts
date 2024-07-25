@@ -65,28 +65,8 @@ export interface ApplyOptionsDecorator {
  */
 
 export function ApplyOptions<T extends Piece.Options>(optionsOrFn: T | ((parameters: ApplyOptionsCallbackParameters) => T)): ApplyOptionsDecorator {
-	return (
-		classOrTarget: AppliedOptionsPiece | Ctor<ConstructorParameters<typeof Piece>>,
-		context?: ClassDecoratorContext<Ctor<ConstructorParameters<typeof Piece>>>
-	) => {
-		// Modern ECMAScript decorators
-		if (context !== undefined) {
-			// TODO: This currently doesn't actually apply the settings
-			return context.addInitializer(function decorate(
-				this: Ctor<[context: Piece.LoaderContext<StoreRegistryKey>, options?: Piece.Options | undefined]>
-			) {
-				return createProxy(classOrTarget as CustomElementConstructor, {
-					construct: (ctor, [context, baseOptions = {} as T]: [Piece.LoaderContext<StoreRegistryKey>, T]) =>
-						new ctor(context, {
-							...baseOptions,
-							...(typeof optionsOrFn === 'function' ? optionsOrFn({ container, context }) : optionsOrFn)
-						})
-				});
-			});
-		}
-
-		// Legacy decorators
-		return createProxy(classOrTarget as Ctor<ConstructorParameters<typeof Piece>, Piece>, {
+	return (classOrTarget: AppliedOptionsPiece | Ctor<ConstructorParameters<typeof Piece>>): void => {
+		createProxy(classOrTarget as Ctor<ConstructorParameters<typeof Piece>, Piece>, {
 			construct: (ctor, [context, baseOptions = {} as T]: [Piece.LoaderContext<StoreRegistryKey>, T]) =>
 				new ctor(context, {
 					...baseOptions,
