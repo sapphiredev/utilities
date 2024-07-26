@@ -302,7 +302,7 @@ export class Schema<Id extends number = number, Entries extends object = object>
 	 *
 	 * The range of values is from -9_223_372_036_854_775_808 to 9_223_372_036_854_775_807, inclusive.
 	 *
-	 * However, it may run into precision issues past `9_007_199_254_740_991`
+	 * However, it may run into precision issues past the range of `-9_007_199_254_740_991` to `9_007_199_254_740_991`
 	 *
 	 * @param name The name of the property
 	 * @returns The modified schema
