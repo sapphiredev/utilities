@@ -19,3 +19,4 @@ export * from './lib/types/Int8';
 export * from './lib/types/Snowflake';
 export * from './lib/types/String';
 export * from './lib/UnalignedUint16Array';
+export * from './lib/utilities';
