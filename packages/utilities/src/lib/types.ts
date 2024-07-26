@@ -60,7 +60,6 @@ export type ArgumentTypes<F extends (...args: any[]) => unknown> = F extends (..
 
 /**
  * A readonly array of any values.
- * @private
  */
 export type Arr = readonly any[];
 
