@@ -1,0 +1,9 @@
+name: string-store
+org: sapphire
+install: true
+packagePath: packages/string-store
+identifierBase: false
+pushTag: true
+githubRelease: true
+githubReleaseLatest: true
+githubRepo: sapphiredev/utilities

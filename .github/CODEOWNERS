@@ -20,6 +20,7 @@
 /packages/result/**/*.ts @kyranet @vladfrangu @favna
 /packages/snowflake/**/*.ts @favna @vladfrangu @kyranet
 /packages/stopwatch/**/*.ts @kyranet @vladfrangu
+/packages/string-store/**/*.ts @kyranet
 /packages/time-utilities/**/*.ts @favna @kyranet @vladfrangu
 /packages/ts-config/**/*.ts @favna
 /packages/utilities/**/*.ts @favna @kyranet @vladfrangu

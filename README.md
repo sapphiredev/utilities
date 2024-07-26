@@ -28,6 +28,7 @@
 [![npm](https://img.shields.io/npm/v/@sapphire/result?color=crimson&logo=npm&style=flat-square&label=@sapphire/result)](https://www.npmjs.com/package/@sapphire/result)
 [![npm](https://img.shields.io/npm/v/@sapphire/snowflake?color=crimson&logo=npm&style=flat-square&label=@sapphire/snowflake)](https://www.npmjs.com/package/@sapphire/snowflake)
 [![npm](https://img.shields.io/npm/v/@sapphire/stopwatch?color=crimson&logo=npm&style=flat-square&label=@sapphire/stopwatch)](https://www.npmjs.com/package/@sapphire/stopwatch)
+[![npm](https://img.shields.io/npm/v/@sapphire/string-store?color=crimson&logo=npm&style=flat-square&label=@sapphire/string-store)](https://www.npmjs.com/package/@sapphire/string-store)
 [![npm](https://img.shields.io/npm/v/@sapphire/time-utilities?color=crimson&logo=npm&style=flat-square&label=@sapphire/time-utilities)](https://www.npmjs.com/package/@sapphire/time-utilities)
 [![npm](https://img.shields.io/npm/v/@sapphire/timer-manager?color=crimson&logo=npm&style=flat-square&label=@sapphire/timer-manager)](https://www.npmjs.com/package/@sapphire/timer-manager)
 [![npm](https://img.shields.io/npm/v/@sapphire/timestamp?color=crimson&logo=npm&style=flat-square&label=@sapphire/timestamp)](https://www.npmjs.com/package/@sapphire/timestamp)
