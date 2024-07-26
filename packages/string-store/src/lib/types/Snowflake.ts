@@ -5,7 +5,7 @@ export const SnowflakeType = {
 		buffer.writeBigInt64(BigInt(value));
 	},
 	deserialize(buffer, offset) {
-		return buffer.readBigInt64(offset);
+		return buffer.readBigUint64(offset);
 	},
 	BIT_SIZE: 64
 } as const satisfies IType<bigint, 64>;

@@ -14,7 +14,7 @@ export function ArrayType<ValueType, ValueBitSize extends number | null>(type: I
 			}
 		},
 		deserialize(buffer, pointer) {
-			const length = buffer.readInt16(pointer);
+			const length = buffer.readUint16(pointer);
 			const value = [];
 			for (let i = 0; i < length; i++) {
 				value.push(type.deserialize(buffer, pointer));

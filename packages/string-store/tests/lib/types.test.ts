@@ -1,27 +1,8 @@
-import {
-	ArrayType,
-	BigInt32Type,
-	BigInt64Type,
-	BitType,
-	BooleanType,
-	FixedLengthArrayType,
-	Float32Type,
-	Float64Type,
-	Int16Type,
-	Int2Type,
-	Int32Type,
-	Int4Type,
-	Int64Type,
-	Int8Type,
-	Pointer,
-	SnowflakeType,
-	StringType,
-	UnalignedUint16Array
-} from '../../src';
+import { Pointer, SnowflakeType, StringType, t, UnalignedUint16Array } from '../../src';
 
 describe('types', () => {
 	describe('Boolean', () => {
-		const type = BooleanType;
+		const type = t.boolean;
 
 		test('GIVEN type THEN it has the correct properties', () => {
 			expect(type.BIT_SIZE).toBe(1);
@@ -38,7 +19,7 @@ describe('types', () => {
 	});
 
 	describe('Bit', () => {
-		const type = BitType;
+		const type = t.bit;
 
 		test('GIVEN type THEN it has the correct properties', () => {
 			expect(type.BIT_SIZE).toBe(1);
@@ -55,143 +36,285 @@ describe('types', () => {
 	});
 
 	describe('Int2', () => {
-		const type = Int2Type;
+		const type = t.int2;
 
 		test('GIVEN type THEN it has the correct properties', () => {
 			expect(type.BIT_SIZE).toBe(2);
 		});
 
-		test('GIVEN a buffer THEN it serializes and deserializes correctly', () => {
+		test.each([-2, -1, 0, -1])('GIVEN a buffer THEN it serializes and deserializes correctly', (value) => {
 			const buffer = new UnalignedUint16Array(10);
 
-			type.serialize(buffer, 3);
+			type.serialize(buffer, value);
 
 			const deserialized = type.deserialize(buffer, new Pointer());
-			expect(deserialized).toEqual(3);
+			expect(deserialized).toEqual(value);
+		});
+	});
+
+	describe('Uint2', () => {
+		const type = t.uint2;
+
+		test('GIVEN type THEN it has the correct properties', () => {
+			expect(type.BIT_SIZE).toBe(2);
+		});
+
+		test.each([0, 1, 2, 3])('GIVEN a buffer THEN it serializes and deserializes correctly', (value) => {
+			const buffer = new UnalignedUint16Array(10);
+
+			type.serialize(buffer, value);
+
+			const deserialized = type.deserialize(buffer, new Pointer());
+			expect(deserialized).toEqual(value);
 		});
 	});
 
 	describe('Int4', () => {
-		const type = Int4Type;
+		const type = t.int4;
 
 		test('GIVEN type THEN it has the correct properties', () => {
 			expect(type.BIT_SIZE).toBe(4);
 		});
 
-		test('GIVEN a buffer THEN it serializes and deserializes correctly', () => {
+		test.each([-8, -6, 0, 7])('GIVEN a buffer THEN it serializes and deserializes correctly', (value) => {
 			const buffer = new UnalignedUint16Array(10);
 
-			type.serialize(buffer, 5);
+			type.serialize(buffer, value);
 
 			const deserialized = type.deserialize(buffer, new Pointer());
-			expect(deserialized).toEqual(5);
+			expect(deserialized).toEqual(value);
+		});
+	});
+
+	describe('Uint4', () => {
+		const type = t.uint4;
+
+		test('GIVEN type THEN it has the correct properties', () => {
+			expect(type.BIT_SIZE).toBe(4);
+		});
+
+		test.each([0, 1, 14, 15])('GIVEN a buffer THEN it serializes and deserializes correctly', (value) => {
+			const buffer = new UnalignedUint16Array(10);
+
+			type.serialize(buffer, value);
+
+			const deserialized = type.deserialize(buffer, new Pointer());
+			expect(deserialized).toEqual(value);
 		});
 	});
 
 	describe('Int8', () => {
-		const type = Int8Type;
+		const type = t.int8;
 
 		test('GIVEN type THEN it has the correct properties', () => {
 			expect(type.BIT_SIZE).toBe(8);
 		});
 
-		test('GIVEN a buffer THEN it serializes and deserializes correctly', () => {
+		test.each([-128, -100, 0, 127])('GIVEN a buffer THEN it serializes and deserializes correctly', (value) => {
 			const buffer = new UnalignedUint16Array(10);
 
-			type.serialize(buffer, 255);
+			type.serialize(buffer, value);
 
 			const deserialized = type.deserialize(buffer, new Pointer());
-			expect(deserialized).toEqual(255);
+			expect(deserialized).toEqual(value);
+		});
+	});
+
+	describe('Uint8', () => {
+		const type = t.uint8;
+
+		test('GIVEN type THEN it has the correct properties', () => {
+			expect(type.BIT_SIZE).toBe(8);
+		});
+
+		test.each([0, 100, 200, 255])('GIVEN a buffer THEN it serializes and deserializes correctly', (value) => {
+			const buffer = new UnalignedUint16Array(10);
+
+			type.serialize(buffer, value);
+
+			const deserialized = type.deserialize(buffer, new Pointer());
+			expect(deserialized).toEqual(value);
 		});
 	});
 
 	describe('Int16', () => {
-		const type = Int16Type;
+		const type = t.int16;
 
 		test('GIVEN type THEN it has the correct properties', () => {
 			expect(type.BIT_SIZE).toBe(16);
 		});
 
-		test('GIVEN a buffer THEN it serializes and deserializes correctly', () => {
+		test.each([-32768, -100, 10, 32767])('GIVEN a buffer THEN it serializes and deserializes correctly', (value) => {
 			const buffer = new UnalignedUint16Array(10);
 
-			type.serialize(buffer, 65535);
+			type.serialize(buffer, value);
 
 			const deserialized = type.deserialize(buffer, new Pointer());
-			expect(deserialized).toEqual(65535);
+			expect(deserialized).toEqual(value);
+		});
+	});
+
+	describe('Uint16', () => {
+		const type = t.uint16;
+
+		test('GIVEN type THEN it has the correct properties', () => {
+			expect(type.BIT_SIZE).toBe(16);
+		});
+
+		test.each([0, 2500, 30000, 65535])('GIVEN a buffer THEN it serializes and deserializes correctly', (value) => {
+			const buffer = new UnalignedUint16Array(10);
+
+			type.serialize(buffer, value);
+
+			const deserialized = type.deserialize(buffer, new Pointer());
+			expect(deserialized).toEqual(value);
 		});
 	});
 
 	describe('Int32', () => {
-		const type = Int32Type;
+		const type = t.int32;
 
 		test('GIVEN type THEN it has the correct properties', () => {
 			expect(type.BIT_SIZE).toBe(32);
 		});
 
-		test('GIVEN a buffer THEN it serializes and deserializes correctly', () => {
+		test.each([-2_147_483_648, -52100, 420, 2_147_483_647])('GIVEN a buffer THEN it serializes and deserializes correctly', (value) => {
 			const buffer = new UnalignedUint16Array(10);
 
-			type.serialize(buffer, 4294967295);
+			type.serialize(buffer, value);
 
 			const deserialized = type.deserialize(buffer, new Pointer());
-			expect(deserialized).toEqual(4294967295);
+			expect(deserialized).toEqual(value);
+		});
+	});
+
+	describe('Uint32', () => {
+		const type = t.uint32;
+
+		test('GIVEN type THEN it has the correct properties', () => {
+			expect(type.BIT_SIZE).toBe(32);
+		});
+
+		test.each([0, 420, 4_294_967_295])('GIVEN a buffer THEN it serializes and deserializes correctly', (value) => {
+			const buffer = new UnalignedUint16Array(10);
+
+			type.serialize(buffer, value);
+
+			const deserialized = type.deserialize(buffer, new Pointer());
+			expect(deserialized).toEqual(value);
 		});
 	});
 
 	describe('Int64', () => {
-		const type = Int64Type;
+		const type = t.int64;
 
 		test('GIVEN type THEN it has the correct properties', () => {
 			expect(type.BIT_SIZE).toBe(64);
 		});
 
-		test('GIVEN a buffer THEN it serializes and deserializes correctly', () => {
+		test.each([-9_007_199_254_740_991, 420_000, 9_007_199_254_740_991])(
+			'GIVEN a buffer THEN it serializes and deserializes correctly',
+			(value) => {
+				const buffer = new UnalignedUint16Array(10);
+
+				type.serialize(buffer, value);
+
+				const deserialized = type.deserialize(buffer, new Pointer());
+				expect(deserialized).toEqual(value);
+			}
+		);
+	});
+
+	describe('Uint64', () => {
+		const type = t.uint64;
+
+		test('GIVEN type THEN it has the correct properties', () => {
+			expect(type.BIT_SIZE).toBe(64);
+		});
+
+		test.each([0, 640_000_420, 9_007_199_254_740_991])('GIVEN a buffer THEN it serializes and deserializes correctly', (value) => {
 			const buffer = new UnalignedUint16Array(10);
 
-			type.serialize(buffer, 3058204829589);
+			type.serialize(buffer, value);
 
 			const deserialized = type.deserialize(buffer, new Pointer());
-			expect(deserialized).toEqual(3058204829589);
+			expect(deserialized).toEqual(value);
 		});
 	});
 
 	describe('BigInt32', () => {
-		const type = BigInt32Type;
+		const type = t.bigInt32;
 
 		test('GIVEN type THEN it has the correct properties', () => {
 			expect(type.BIT_SIZE).toBe(32);
 		});
 
-		test('GIVEN a buffer THEN it serializes and deserializes correctly', () => {
+		test.each([-2_147_483_648n, -52100n, 420n, 2_147_483_647n])('GIVEN a buffer THEN it serializes and deserializes correctly', (value) => {
 			const buffer = new UnalignedUint16Array(10);
 
-			type.serialize(buffer, 4294967295n);
+			type.serialize(buffer, value);
 
 			const deserialized = type.deserialize(buffer, new Pointer());
-			expect(deserialized).toEqual(4294967295n);
+			expect(deserialized).toEqual(value);
+		});
+	});
+
+	describe('BigUint32', () => {
+		const type = t.bigUint32;
+
+		test('GIVEN type THEN it has the correct properties', () => {
+			expect(type.BIT_SIZE).toBe(32);
+		});
+
+		test.each([0n, 420n, 4_294_967_295n])('GIVEN a buffer THEN it serializes and deserializes correctly', (value) => {
+			const buffer = new UnalignedUint16Array(10);
+
+			type.serialize(buffer, value);
+
+			const deserialized = type.deserialize(buffer, new Pointer());
+			expect(deserialized).toEqual(value);
 		});
 	});
 
 	describe('BigInt64', () => {
-		const type = BigInt64Type;
+		const type = t.bigInt64;
 
 		test('GIVEN type THEN it has the correct properties', () => {
 			expect(type.BIT_SIZE).toBe(64);
 		});
 
-		test('GIVEN a buffer THEN it serializes and deserializes correctly', () => {
+		test.each([-9_223_372_036_854_775_808n, -420n, 420n, 9_223_372_036_854_775_807n])(
+			'GIVEN a buffer THEN it serializes and deserializes correctly',
+			(value) => {
+				const buffer = new UnalignedUint16Array(10);
+
+				type.serialize(buffer, value);
+
+				const deserialized = type.deserialize(buffer, new Pointer());
+				expect(deserialized).toEqual(value);
+			}
+		);
+	});
+
+	describe('BigUint64', () => {
+		const type = t.bigUint64;
+
+		test('GIVEN type THEN it has the correct properties', () => {
+			expect(type.BIT_SIZE).toBe(64);
+		});
+
+		test.each([0n, 18_446_744_073_709_551_615n])('GIVEN a buffer THEN it serializes and deserializes correctly', (value) => {
 			const buffer = new UnalignedUint16Array(10);
 
-			type.serialize(buffer, 18446744073709551615n);
+			type.serialize(buffer, value);
 
 			const deserialized = type.deserialize(buffer, new Pointer());
-			expect(deserialized).toEqual(18446744073709551615n);
+			expect(deserialized).toEqual(value);
 		});
 	});
 
 	describe('Float32', () => {
-		const type = Float32Type;
+		const type = t.float32;
 
 		test('GIVEN type THEN it has the correct properties', () => {
 			expect(type.BIT_SIZE).toBe(32);
@@ -208,7 +331,7 @@ describe('types', () => {
 	});
 
 	describe('Float64', () => {
-		const type = Float64Type;
+		const type = t.float64;
 
 		test('GIVEN type THEN it has the correct properties', () => {
 			expect(type.BIT_SIZE).toBe(64);
@@ -225,7 +348,7 @@ describe('types', () => {
 	});
 
 	describe('Array(Bit)', () => {
-		const type = ArrayType(BitType);
+		const type = t.array(t.bit);
 
 		test('GIVEN type THEN it has the correct properties', () => {
 			expect(type.BIT_SIZE).toBeNull();
@@ -251,7 +374,7 @@ describe('types', () => {
 	});
 
 	describe('FixedLengthArray(Bit)', () => {
-		const type = FixedLengthArrayType(BitType, 2);
+		const type = t.fixedLengthArray(t.bit, 2);
 
 		test('GIVEN type THEN it has the correct properties', () => {
 			expect(type.BIT_SIZE).toBe(2);

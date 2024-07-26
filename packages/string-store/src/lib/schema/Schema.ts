@@ -1,21 +1,5 @@
 import { Pointer, type PointerLike } from '../shared/Pointer';
-import { ArrayType } from '../types/Array';
-import type { IType } from '../types/base/IType';
-import { BigInt32Type } from '../types/BigInt32';
-import { BigInt64Type } from '../types/BigInt64';
-import { BitType } from '../types/Bit';
-import { BooleanType } from '../types/Boolean';
-import { FixedLengthArrayType } from '../types/FixedLengthArray';
-import { Float32Type } from '../types/Float32';
-import { Float64Type } from '../types/Float64';
-import { Int16Type } from '../types/Int16';
-import { Int2Type } from '../types/Int2';
-import { Int32Type } from '../types/Int32';
-import { Int4Type } from '../types/Int4';
-import { Int64Type } from '../types/Int64';
-import { Int8Type } from '../types/Int8';
-import { SnowflakeType } from '../types/Snowflake';
-import { StringType } from '../types/String';
+import { t, type IType } from '../types/index';
 import type { UnalignedUint16Array } from '../UnalignedUint16Array';
 
 export class Schema<Id extends number = number, Entries extends object = object> {
@@ -120,7 +104,7 @@ export class Schema<Id extends number = number, Entries extends object = object>
 		name: Name,
 		type: IType<ValueType, ValueBitSize>
 	) {
-		return this.#addType(name, ArrayType(type));
+		return this.#addType(name, t.array(type));
 	}
 
 	/**
@@ -138,7 +122,7 @@ export class Schema<Id extends number = number, Entries extends object = object>
 		type: IType<ValueType, ValueBitSize>,
 		length: number
 	) {
-		return this.#addType(name, FixedLengthArrayType(type, length));
+		return this.#addType(name, t.fixedLengthArray(type, length));
 	}
 
 	/**
@@ -148,7 +132,7 @@ export class Schema<Id extends number = number, Entries extends object = object>
 	 * @returns The modified schema
 	 */
 	public string<const Name extends string>(name: Name) {
-		return this.#addType(name, StringType);
+		return this.#addType(name, t.string);
 	}
 
 	/**
@@ -158,7 +142,7 @@ export class Schema<Id extends number = number, Entries extends object = object>
 	 * @returns The modified schema
 	 */
 	public boolean<const Name extends string>(name: Name) {
-		return this.#addType(name, BooleanType);
+		return this.#addType(name, t.boolean);
 	}
 
 	/**
@@ -168,117 +152,277 @@ export class Schema<Id extends number = number, Entries extends object = object>
 	 * @returns The modified schema
 	 */
 	public bit<const Name extends string>(name: Name) {
-		return this.#addType(name, BitType);
+		return this.#addType(name, t.bit);
 	}
 
 	/**
 	 * Adds a 2-bit integer property to the schema.
 	 *
+	 * @remarks
+	 *
+	 * The range of values is from -2 to 1, inclusive.
+	 *
 	 * @param name The name of the property
 	 * @returns The modified schema
 	 */
 	public int2<const Name extends string>(name: Name) {
-		return this.#addType(name, Int2Type);
+		return this.#addType(name, t.int2);
+	}
+
+	/**
+	 * Adds a 2-bit unsigned integer property to the schema.
+	 *
+	 * @remarks
+	 *
+	 * The range of values is from 0 to 3, inclusive.
+	 *
+	 * @param name The name of the property
+	 * @returns The modified schema
+	 */
+	public uint2<const Name extends string>(name: Name) {
+		return this.#addType(name, t.uint2);
 	}
 
 	/**
 	 * Adds a 4-bit integer property to the schema.
 	 *
+	 * @remarks
+	 *
+	 * The range of values is from -8 to 7, inclusive.
+	 *
 	 * @param name The name of the property
 	 * @returns The modified schema
 	 */
 	public int4<const Name extends string>(name: Name) {
-		return this.#addType(name, Int4Type);
+		return this.#addType(name, t.int4);
+	}
+
+	/**
+	 * Adds a 4-bit unsigned integer property to the schema.
+	 *
+	 * @remarks
+	 *
+	 * The range of values is from 0 to 15, inclusive.
+	 *
+	 * @param name The name of the property
+	 * @returns The modified schema
+	 */
+	public uint4<const Name extends string>(name: Name) {
+		return this.#addType(name, t.uint4);
 	}
 
 	/**
 	 * Adds a 8-bit integer property to the schema.
 	 *
+	 * @remarks
+	 *
+	 * The range of values is from -128 to 127, inclusive.
+	 *
 	 * @param name The name of the property
 	 * @returns The modified schema
 	 */
 	public int8<const Name extends string>(name: Name) {
-		return this.#addType(name, Int8Type);
+		return this.#addType(name, t.int8);
+	}
+
+	/**
+	 * Adds a 8-bit unsigned integer property to the schema.
+	 *
+	 * @remarks
+	 *
+	 * The range of values is from 0 to 255, inclusive.
+	 *
+	 * @param name The name of the property
+	 * @returns The modified schema
+	 */
+	public uint8<const Name extends string>(name: Name) {
+		return this.#addType(name, t.uint8);
 	}
 
 	/**
 	 * Adds a 16-bit integer property to the schema.
 	 *
+	 * @remarks
+	 *
+	 * The range of values is from -32768 to 32767, inclusive.
+	 *
 	 * @param name The name of the property
 	 * @returns The modified schema
 	 */
 	public int16<const Name extends string>(name: Name) {
-		return this.#addType(name, Int16Type);
+		return this.#addType(name, t.int16);
+	}
+
+	/**
+	 * Adds a 16-bit unsigned integer property to the schema.
+	 *
+	 * @remarks
+	 *
+	 * The range of values is from 0 to 65535, inclusive.
+	 *
+	 * @param name The name of the property
+	 * @returns The modified schema
+	 */
+	public uint16<const Name extends string>(name: Name) {
+		return this.#addType(name, t.uint16);
 	}
 
 	/**
 	 * Adds a 32-bit integer property to the schema.
 	 *
+	 * @remarks
+	 *
+	 * The range of values is from -2_147_483_648 to 2_147_483_647, inclusive.
+	 *
 	 * @param name The name of the property
 	 * @returns The modified schema
 	 */
 	public int32<const Name extends string>(name: Name) {
-		return this.#addType(name, Int32Type);
+		return this.#addType(name, t.int32);
+	}
+
+	/**
+	 * Adds a 32-bit unsigned integer property to the schema.
+	 *
+	 * @remarks
+	 *
+	 * The range of values is from 0 to 4_294_967_295, inclusive.
+	 *
+	 * @param name The name of the property
+	 * @returns The modified schema
+	 */
+	public uint32<const Name extends string>(name: Name) {
+		return this.#addType(name, t.uint32);
 	}
 
 	/**
 	 * Adds a 64-bit integer property to the schema.
 	 *
+	 * @remarks
+	 *
+	 * The range of values is from -9_223_372_036_854_775_808 to 9_223_372_036_854_775_807, inclusive.
+	 *
+	 * However, it may run into precision issues past `9_007_199_254_740_991`
+	 *
 	 * @param name The name of the property
 	 * @returns The modified schema
 	 */
 	public int64<const Name extends string>(name: Name) {
-		return this.#addType(name, Int64Type);
+		return this.#addType(name, t.int64);
+	}
+
+	/**
+	 * Adds a 64-bit unsigned integer property to the schema.
+	 *
+	 * @remarks
+	 *
+	 * The range of values is from 0 to 18_446_744_073_709_551_615, inclusive.
+	 *
+	 * However, it may run into precision issues past `9_007_199_254_740_991`
+	 *
+	 * @param name The name of the property
+	 * @returns The modified schema
+	 */
+	public uint64<const Name extends string>(name: Name) {
+		return this.#addType(name, t.uint64);
 	}
 
 	/**
 	 * Adds a 32-bit big integer property to the schema.
 	 *
+	 * @remarks
+	 *
+	 * The range of values is from -2_147_483_648n to 2_147_483_647n, inclusive.
+	 *
 	 * @param name The name of the property
 	 * @returns The modified schema
 	 */
 	public bigInt32<const Name extends string>(name: Name) {
-		return this.#addType(name, BigInt32Type);
+		return this.#addType(name, t.bigInt32);
+	}
+
+	/**
+	 * Adds a 32-bit big integer property to the schema.
+	 *
+	 * @remarks
+	 *
+	 * The range of values is from 0n to 4_294_967_295n, inclusive.
+	 *
+	 * @param name The name of the property
+	 * @returns The modified schema
+	 */
+	public bigUint32<const Name extends string>(name: Name) {
+		return this.#addType(name, t.bigUint32);
 	}
 
 	/**
 	 * Adds a 64-bit big integer property to the schema.
 	 *
+	 * @remarks
+	 *
+	 * The range of values is from -9_223_372_036_854_775_808n to 9_223_372_036_854_775_807n, inclusive.
+	 *
 	 * @param name The name of the property
 	 * @returns The modified schema
 	 */
 	public bigInt64<const Name extends string>(name: Name) {
-		return this.#addType(name, BigInt64Type);
+		return this.#addType(name, t.bigInt64);
+	}
+
+	/**
+	 * Adds a 64-bit big integer property to the schema.
+	 *
+	 * @remarks
+	 *
+	 * The range of values is from 0n to 18_446_744_073_709_551_615n, inclusive.
+	 *
+	 * @param name The name of the property
+	 * @returns The modified schema
+	 */
+	public bigUint64<const Name extends string>(name: Name) {
+		return this.#addType(name, t.bigUint64);
 	}
 
 	/**
 	 * Adds a 32-bit floating point number property to the schema.
 	 *
+	 * @remarks
+	 *
+	 * The range of values is from -3.4028234663852886e+38 to 3.4028234663852886e+38, inclusive.
+	 *
 	 * @param name The name of the property
 	 * @returns The modified schema
 	 */
 	public float32<const Name extends string>(name: Name) {
-		return this.#addType(name, Float32Type);
+		return this.#addType(name, t.float32);
 	}
 
 	/**
 	 * Adds a 64-bit floating point number property to the schema.
 	 *
+	 * @remarks
+	 *
+	 * The range of values is from -1.7976931348623157e+308 to 1.7976931348623157e+308, inclusive.
+	 *
 	 * @param name The name of the property
 	 * @returns The modified schema
 	 */
 	public float64<const Name extends string>(name: Name) {
-		return this.#addType(name, Float64Type);
+		return this.#addType(name, t.float64);
 	}
 
 	/**
-	 * Adds a 64-bit big integer property to the schema, similar to {@link Schema.bigInt64}.
+	 * Adds a 64-bit big integer property to the schema, similar to {@link Schema.bigUint64}.
+	 *
+	 * @remarks
+	 *
+	 * The range of values is from 0n to 18_446_744_073_709_551_615n, inclusive.
 	 *
 	 * @param name The name of the property
 	 * @returns The modified schema
 	 */
 	public snowflake<const Name extends string>(name: Name) {
-		return this.#addType(name, SnowflakeType);
+		return this.#addType(name, t.snowflake);
 	}
 
 	/**

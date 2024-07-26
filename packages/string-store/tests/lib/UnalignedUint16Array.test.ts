@@ -32,19 +32,21 @@ describe('UnalignedUint16Array', () => {
 		expect(buffer.toString()).toBe('\u{3}');
 
 		// Verify that the data can be deserialized correctly
-		expect(buffer.readInt2(0)).toBe(3);
+		expect(buffer.readInt2(0)).toBe(-1);
+		expect(buffer.readUint2(0)).toBe(3);
 	});
 
 	test('GIVEN an instance with a 4-bit integer written THEN it has the correct properties', () => {
 		const buffer = new UnalignedUint16Array(10);
-		buffer.writeInt4(5);
+		buffer.writeInt4(15);
 		expect(buffer.length).toBe(1);
 		expect(buffer.bitLength).toBe(4);
-		expect(buffer.toArray()).toEqual(new Uint16Array([5]));
-		expect(buffer.toString()).toBe('\u{5}');
+		expect(buffer.toArray()).toEqual(new Uint16Array([15]));
+		expect(buffer.toString()).toBe('\u{f}');
 
 		// Verify that the data can be deserialized correctly
-		expect(buffer.readInt4(0)).toBe(5);
+		expect(buffer.readInt4(0)).toBe(-1);
+		expect(buffer.readUint4(0)).toBe(15);
 	});
 
 	test('GIVEN an instance with an 8-bit integer written THEN it has the correct properties', () => {
@@ -56,7 +58,8 @@ describe('UnalignedUint16Array', () => {
 		expect(buffer.toString()).toBe('\u{ff}');
 
 		// Verify that the data can be deserialized correctly
-		expect(buffer.readInt8(0)).toBe(255);
+		expect(buffer.readInt8(0)).toBe(-1);
+		expect(buffer.readUint8(0)).toBe(255);
 	});
 
 	test('GIVEN an instance with a 16-bit integer written THEN it has the correct properties', () => {
@@ -68,7 +71,8 @@ describe('UnalignedUint16Array', () => {
 		expect(buffer.toString()).toBe('\u{ffff}');
 
 		// Verify that the data can be deserialized correctly
-		expect(buffer.readInt16(0)).toBe(65535);
+		expect(buffer.readInt16(0)).toBe(-1);
+		expect(buffer.readUint16(0)).toBe(65535);
 	});
 
 	test('GIVEN an instance with a 32-bit integer written THEN it has the correct properties', () => {
@@ -80,7 +84,8 @@ describe('UnalignedUint16Array', () => {
 		expect(buffer.toString()).toBe('\u{ffff}\u{ffff}');
 
 		// Verify that the data can be deserialized correctly
-		expect(buffer.readInt32(0)).toBe(4294967295);
+		expect(buffer.readInt32(0)).toBe(-1);
+		expect(buffer.readUint32(0)).toBe(4294967295);
 	});
 
 	test('GIVEN an instance with a 64-bit integer written THEN it has the correct properties', () => {
@@ -93,6 +98,7 @@ describe('UnalignedUint16Array', () => {
 
 		// Verify that the data can be deserialized correctly
 		expect(buffer.readInt64(0)).toBe(3058204829589);
+		expect(buffer.readUint64(0)).toBe(3058204829589);
 	});
 
 	test('GIVEN an instance with a 32-bit big integer written THEN it has the correct properties', () => {
@@ -104,7 +110,8 @@ describe('UnalignedUint16Array', () => {
 		expect(buffer.toString()).toBe('\u{ffff}\u{ffff}');
 
 		// Verify that the data can be deserialized correctly
-		expect(buffer.readBigInt32(0)).toBe(4294967295n);
+		expect(buffer.readBigInt32(0)).toBe(-1n);
+		expect(buffer.readBigUint32(0)).toBe(4294967295n);
 	});
 
 	test('GIVEN an instance with a 64-bit big integer written THEN it has the correct properties', () => {
@@ -116,7 +123,8 @@ describe('UnalignedUint16Array', () => {
 		expect(buffer.toString()).toBe('\u{ffff}\u{ffff}\u{ffff}\u{ffff}');
 
 		// Verify that the data can be deserialized correctly
-		expect(buffer.readBigInt64(0)).toBe(18446744073709551615n);
+		expect(buffer.readBigInt64(0)).toBe(-1n);
+		expect(buffer.readBigUint64(0)).toBe(18446744073709551615n);
 	});
 
 	test('GIVEN an instance with a 32-bit float written THEN it has the correct properties', () => {
