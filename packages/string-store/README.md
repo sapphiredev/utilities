@@ -22,7 +22,7 @@ locations such as Discord's `custom_id` field in message components.
 
 -   Written in TypeScript
 -   Bundled with esbuild so it can be used in NodeJS and browsers
--   Offers CommonJS, ESM and UMD bundles
+-   Offers CommonJS, ESM, and UMD bundles
 -   Fully tested
 
 ## Installation
@@ -39,7 +39,7 @@ npm install @sapphire/string-store
 
 ```ts
 // Require the store classes
-const { SchemaStore, Schema } = require('@sapphire/string-store');
+const { SchemaStore, Schema, t } = require('@sapphire/string-store');
 
 const Id = {
   AgeUpdate: 0,
@@ -82,7 +82,7 @@ Adds an array with a dynamic length to the schema.
 ```ts
 // A schema with a single field `names` that is an array of strings:
 
-const schema = new Schema(Id.Planets).array('names', StringType);
+const schema = new Schema(Id.Planets).array('names', t.string);
 // → Schema<Id.Planets, { names: string[] }>
 ```
 
@@ -90,13 +90,13 @@ To track the length of the array, it will serialize a [16-bit](#int16) unsigned 
 
 ### `fixedLengthArray`
 
-An alternative to [`array`](#array) that has a fixed length, will require the exact number of elements to be serialized,
-but it will save space by not storing the length of the array.
+An alternative to [`array`](#array) that has a fixed length. This variant requires the exact number of elements to be
+serialized, but it will save space by not storing the length of the array.
 
 ```ts
 // A schema with a single field `names` that is an array of exactly 3 strings:
 
-const schema = new Schema(Id.Planets).fixedLengthArray('names', StringType, 3);
+const schema = new Schema(Id.Planets).fixedLengthArray('names', t.string, 3);
 // → Schema<Id.Planets, { names: [string, string, string] }>
 ```
 
@@ -354,7 +354,7 @@ const schema = new Schema(Id.User).snowflake('id');
 
 Sapphire Community is and always will be open source, even if we don't get donations. That being said, we know there are amazing people who may still want to donate just to show their appreciation. Thank you very much in advance!
 
-We accept donations through Open Collective, Ko-fi, PayPal, Patreon and GitHub Sponsorships. You can use the buttons below to donate through your method of choice.
+We accept donations through Open Collective, Ko-fi, PayPal, Patreon, and GitHub Sponsorships. You can use the buttons below to donate through your method of choice.
 
 |   Donate With   |                       Address                       |
 | :-------------: | :-------------------------------------------------: |
