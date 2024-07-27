@@ -60,19 +60,18 @@ export type ArgumentTypes<F extends (...args: any[]) => unknown> = F extends (..
 
 /**
  * A readonly array of any values.
- * @private
  */
-export type Arr = readonly any[];
+export type AnyReadonlyArray = readonly any[];
 
 /**
  * A generic constructor with parameters
  */
-export type Ctor<A extends Arr = readonly any[], R = any> = new (...args: A) => R;
+export type Ctor<A extends AnyReadonlyArray = readonly any[], R = any> = new (...args: A) => R;
 
 /**
  * A generic abstract constructor with parameters
  */
-export type AbstractCtor<A extends Arr = readonly any[], R = any> = abstract new (...args: A) => R;
+export type AbstractCtor<A extends AnyReadonlyArray = readonly any[], R = any> = abstract new (...args: A) => R;
 
 /**
  * A generic constructor without parameters
