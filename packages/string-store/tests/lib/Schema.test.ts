@@ -1,23 +1,4 @@
-import {
-	BigInt32Type,
-	BigInt64Type,
-	BitType,
-	BooleanType,
-	Float32Type,
-	Float64Type,
-	Int16Type,
-	Int2Type,
-	Int32Type,
-	Int4Type,
-	Int64Type,
-	Int8Type,
-	Pointer,
-	Schema,
-	SnowflakeType,
-	StringType,
-	UnalignedUint16Array,
-	type IType
-} from '../../src';
+import { Schema, SnowflakeType, StringType, t, UnalignedUint16Array, type IType } from '../../src';
 
 describe('Schema', () => {
 	test('GIVEN a new instance THEN it has the correct properties', () => {
@@ -39,7 +20,7 @@ describe('Schema', () => {
 	describe('types', () => {
 		test('GIVEN a schema with a boolean property THEN it has the correct properties and types', () => {
 			type Key = 'a';
-			type Value = typeof BooleanType;
+			type Value = typeof t.boolean;
 			type Entry = readonly [Key, Value];
 
 			const schema = new Schema(1).boolean('a');
@@ -47,13 +28,13 @@ describe('Schema', () => {
 			expect(schema.bitSize).toBe(1);
 
 			expect<Key[]>([...schema.keys()]).toEqual(['a']);
-			expect<Value[]>([...schema.values()]).toEqual([BooleanType]);
-			expect<Entry[]>([...schema.entries()]).toEqual([['a', BooleanType]]);
+			expect<Value[]>([...schema.values()]).toEqual([t.boolean]);
+			expect<Entry[]>([...schema.entries()]).toEqual([['a', t.boolean]]);
 		});
 
 		test('GIVEN a schema with a bit property THEN it has the correct properties and types', () => {
 			type Key = 'a';
-			type Value = typeof BitType;
+			type Value = typeof t.bit;
 			type Entry = readonly [Key, Value];
 
 			const schema = new Schema(1).bit('a');
@@ -61,13 +42,13 @@ describe('Schema', () => {
 			expect(schema.bitSize).toBe(1);
 
 			expect<Key[]>([...schema.keys()]).toEqual(['a']);
-			expect<Value[]>([...schema.values()]).toEqual([BitType]);
-			expect<Entry[]>([...schema.entries()]).toEqual([['a', BitType]]);
+			expect<Value[]>([...schema.values()]).toEqual([t.bit]);
+			expect<Entry[]>([...schema.entries()]).toEqual([['a', t.bit]]);
 		});
 
 		test('GIVEN a schema with an int2 property THEN it has the correct properties and types', () => {
 			type Key = 'a';
-			type Value = typeof Int2Type;
+			type Value = typeof t.int2;
 			type Entry = readonly [Key, Value];
 
 			const schema = new Schema(1).int2('a');
@@ -75,13 +56,27 @@ describe('Schema', () => {
 			expect(schema.bitSize).toBe(2);
 
 			expect<Key[]>([...schema.keys()]).toEqual(['a']);
-			expect<Value[]>([...schema.values()]).toEqual([Int2Type]);
-			expect<Entry[]>([...schema.entries()]).toEqual([['a', Int2Type]]);
+			expect<Value[]>([...schema.values()]).toEqual([t.int2]);
+			expect<Entry[]>([...schema.entries()]).toEqual([['a', t.int2]]);
+		});
+
+		test('GIVEN a schema with an uint2 property THEN it has the correct properties and types', () => {
+			type Key = 'a';
+			type Value = typeof t.uint2;
+			type Entry = readonly [Key, Value];
+
+			const schema = new Schema(1).uint2('a');
+			expectTypeOf<Schema<1, { a: Value }>>(schema);
+			expect(schema.bitSize).toBe(2);
+
+			expect<Key[]>([...schema.keys()]).toEqual(['a']);
+			expect<Value[]>([...schema.values()]).toEqual([t.uint2]);
+			expect<Entry[]>([...schema.entries()]).toEqual([['a', t.uint2]]);
 		});
 
 		test('GIVEN a schema with an int4 property THEN it has the correct properties and types', () => {
 			type Key = 'a';
-			type Value = typeof Int4Type;
+			type Value = typeof t.int4;
 			type Entry = readonly [Key, Value];
 
 			const schema = new Schema(1).int4('a');
@@ -89,13 +84,27 @@ describe('Schema', () => {
 			expect(schema.bitSize).toBe(4);
 
 			expect<Key[]>([...schema.keys()]).toEqual(['a']);
-			expect<Value[]>([...schema.values()]).toEqual([Int4Type]);
-			expect<Entry[]>([...schema.entries()]).toEqual([['a', Int4Type]]);
+			expect<Value[]>([...schema.values()]).toEqual([t.int4]);
+			expect<Entry[]>([...schema.entries()]).toEqual([['a', t.int4]]);
+		});
+
+		test('GIVEN a schema with an uint4 property THEN it has the correct properties and types', () => {
+			type Key = 'a';
+			type Value = typeof t.uint4;
+			type Entry = readonly [Key, Value];
+
+			const schema = new Schema(1).uint4('a');
+			expectTypeOf<Schema<1, { a: Value }>>(schema);
+			expect(schema.bitSize).toBe(4);
+
+			expect<Key[]>([...schema.keys()]).toEqual(['a']);
+			expect<Value[]>([...schema.values()]).toEqual([t.uint4]);
+			expect<Entry[]>([...schema.entries()]).toEqual([['a', t.uint4]]);
 		});
 
 		test('GIVEN a schema with an int8 property THEN it has the correct properties and types', () => {
 			type Key = 'a';
-			type Value = typeof Int8Type;
+			type Value = typeof t.int8;
 			type Entry = readonly [Key, Value];
 
 			const schema = new Schema(1).int8('a');
@@ -103,13 +112,27 @@ describe('Schema', () => {
 			expect(schema.bitSize).toBe(8);
 
 			expect<Key[]>([...schema.keys()]).toEqual(['a']);
-			expect<Value[]>([...schema.values()]).toEqual([Int8Type]);
-			expect<Entry[]>([...schema.entries()]).toEqual([['a', Int8Type]]);
+			expect<Value[]>([...schema.values()]).toEqual([t.int8]);
+			expect<Entry[]>([...schema.entries()]).toEqual([['a', t.int8]]);
+		});
+
+		test('GIVEN a schema with an uint8 property THEN it has the correct properties and types', () => {
+			type Key = 'a';
+			type Value = typeof t.uint8;
+			type Entry = readonly [Key, Value];
+
+			const schema = new Schema(1).uint8('a');
+			expectTypeOf<Schema<1, { a: Value }>>(schema);
+			expect(schema.bitSize).toBe(8);
+
+			expect<Key[]>([...schema.keys()]).toEqual(['a']);
+			expect<Value[]>([...schema.values()]).toEqual([t.uint8]);
+			expect<Entry[]>([...schema.entries()]).toEqual([['a', t.uint8]]);
 		});
 
 		test('GIVEN a schema with an int16 property THEN it has the correct properties and types', () => {
 			type Key = 'a';
-			type Value = typeof Int16Type;
+			type Value = typeof t.int16;
 			type Entry = readonly [Key, Value];
 
 			const schema = new Schema(1).int16('a');
@@ -117,13 +140,27 @@ describe('Schema', () => {
 			expect(schema.bitSize).toBe(16);
 
 			expect<Key[]>([...schema.keys()]).toEqual(['a']);
-			expect<Value[]>([...schema.values()]).toEqual([Int16Type]);
-			expect<Entry[]>([...schema.entries()]).toEqual([['a', Int16Type]]);
+			expect<Value[]>([...schema.values()]).toEqual([t.int16]);
+			expect<Entry[]>([...schema.entries()]).toEqual([['a', t.int16]]);
+		});
+
+		test('GIVEN a schema with an uint16 property THEN it has the correct properties and types', () => {
+			type Key = 'a';
+			type Value = typeof t.uint16;
+			type Entry = readonly [Key, Value];
+
+			const schema = new Schema(1).uint16('a');
+			expectTypeOf<Schema<1, { a: Value }>>(schema);
+			expect(schema.bitSize).toBe(16);
+
+			expect<Key[]>([...schema.keys()]).toEqual(['a']);
+			expect<Value[]>([...schema.values()]).toEqual([t.uint16]);
+			expect<Entry[]>([...schema.entries()]).toEqual([['a', t.uint16]]);
 		});
 
 		test('GIVEN a schema with an int32 property THEN it has the correct properties and types', () => {
 			type Key = 'a';
-			type Value = typeof Int32Type;
+			type Value = typeof t.int32;
 			type Entry = readonly [Key, Value];
 
 			const schema = new Schema(1).int32('a');
@@ -131,13 +168,27 @@ describe('Schema', () => {
 			expect(schema.bitSize).toBe(32);
 
 			expect<Key[]>([...schema.keys()]).toEqual(['a']);
-			expect<Value[]>([...schema.values()]).toEqual([Int32Type]);
-			expect<Entry[]>([...schema.entries()]).toEqual([['a', Int32Type]]);
+			expect<Value[]>([...schema.values()]).toEqual([t.int32]);
+			expect<Entry[]>([...schema.entries()]).toEqual([['a', t.int32]]);
+		});
+
+		test('GIVEN a schema with an uint32 property THEN it has the correct properties and types', () => {
+			type Key = 'a';
+			type Value = typeof t.uint32;
+			type Entry = readonly [Key, Value];
+
+			const schema = new Schema(1).uint32('a');
+			expectTypeOf<Schema<1, { a: Value }>>(schema);
+			expect(schema.bitSize).toBe(32);
+
+			expect<Key[]>([...schema.keys()]).toEqual(['a']);
+			expect<Value[]>([...schema.values()]).toEqual([t.uint32]);
+			expect<Entry[]>([...schema.entries()]).toEqual([['a', t.uint32]]);
 		});
 
 		test('GIVEN a schema with an int64 property THEN it has the correct properties and types', () => {
 			type Key = 'a';
-			type Value = typeof Int64Type;
+			type Value = typeof t.int64;
 			type Entry = readonly [Key, Value];
 
 			const schema = new Schema(1).int64('a');
@@ -145,13 +196,27 @@ describe('Schema', () => {
 			expect(schema.bitSize).toBe(64);
 
 			expect<Key[]>([...schema.keys()]).toEqual(['a']);
-			expect<Value[]>([...schema.values()]).toEqual([Int64Type]);
-			expect<Entry[]>([...schema.entries()]).toEqual([['a', Int64Type]]);
+			expect<Value[]>([...schema.values()]).toEqual([t.int64]);
+			expect<Entry[]>([...schema.entries()]).toEqual([['a', t.int64]]);
+		});
+
+		test('GIVEN a schema with an uint64 property THEN it has the correct properties and types', () => {
+			type Key = 'a';
+			type Value = typeof t.uint64;
+			type Entry = readonly [Key, Value];
+
+			const schema = new Schema(1).uint64('a');
+			expectTypeOf<Schema<1, { a: Value }>>(schema);
+			expect(schema.bitSize).toBe(64);
+
+			expect<Key[]>([...schema.keys()]).toEqual(['a']);
+			expect<Value[]>([...schema.values()]).toEqual([t.uint64]);
+			expect<Entry[]>([...schema.entries()]).toEqual([['a', t.uint64]]);
 		});
 
 		test('GIVEN a schema with a bigInt32 property THEN it has the correct properties and types', () => {
 			type Key = 'a';
-			type Value = typeof BigInt32Type;
+			type Value = typeof t.bigInt32;
 			type Entry = readonly [Key, Value];
 
 			const schema = new Schema(1).bigInt32('a');
@@ -159,13 +224,27 @@ describe('Schema', () => {
 			expect(schema.bitSize).toBe(32);
 
 			expect<Key[]>([...schema.keys()]).toEqual(['a']);
-			expect<Value[]>([...schema.values()]).toEqual([BigInt32Type]);
-			expect<Entry[]>([...schema.entries()]).toEqual([['a', BigInt32Type]]);
+			expect<Value[]>([...schema.values()]).toEqual([t.bigInt32]);
+			expect<Entry[]>([...schema.entries()]).toEqual([['a', t.bigInt32]]);
+		});
+
+		test('GIVEN a schema with a bigUint32 property THEN it has the correct properties and types', () => {
+			type Key = 'a';
+			type Value = typeof t.bigUint32;
+			type Entry = readonly [Key, Value];
+
+			const schema = new Schema(1).bigUint32('a');
+			expectTypeOf<Schema<1, { a: Value }>>(schema);
+			expect(schema.bitSize).toBe(32);
+
+			expect<Key[]>([...schema.keys()]).toEqual(['a']);
+			expect<Value[]>([...schema.values()]).toEqual([t.bigUint32]);
+			expect<Entry[]>([...schema.entries()]).toEqual([['a', t.bigUint32]]);
 		});
 
 		test('GIVEN a schema with a bigInt64 property THEN it has the correct properties and types', () => {
 			type Key = 'a';
-			type Value = typeof BigInt64Type;
+			type Value = typeof t.bigInt64;
 			type Entry = readonly [Key, Value];
 
 			const schema = new Schema(1).bigInt64('a');
@@ -173,13 +252,27 @@ describe('Schema', () => {
 			expect(schema.bitSize).toBe(64);
 
 			expect<Key[]>([...schema.keys()]).toEqual(['a']);
-			expect<Value[]>([...schema.values()]).toEqual([BigInt64Type]);
-			expect<Entry[]>([...schema.entries()]).toEqual([['a', BigInt64Type]]);
+			expect<Value[]>([...schema.values()]).toEqual([t.bigInt64]);
+			expect<Entry[]>([...schema.entries()]).toEqual([['a', t.bigInt64]]);
+		});
+
+		test('GIVEN a schema with a bigUint64 property THEN it has the correct properties and types', () => {
+			type Key = 'a';
+			type Value = typeof t.bigUint64;
+			type Entry = readonly [Key, Value];
+
+			const schema = new Schema(1).bigUint64('a');
+			expectTypeOf<Schema<1, { a: Value }>>(schema);
+			expect(schema.bitSize).toBe(64);
+
+			expect<Key[]>([...schema.keys()]).toEqual(['a']);
+			expect<Value[]>([...schema.values()]).toEqual([t.bigUint64]);
+			expect<Entry[]>([...schema.entries()]).toEqual([['a', t.bigUint64]]);
 		});
 
 		test('GIVEN a schema with a float32 property THEN it has the correct properties and types', () => {
 			type Key = 'a';
-			type Value = typeof Float32Type;
+			type Value = typeof t.float32;
 			type Entry = readonly [Key, Value];
 
 			const schema = new Schema(1).float32('a');
@@ -187,13 +280,13 @@ describe('Schema', () => {
 			expect(schema.bitSize).toBe(32);
 
 			expect<Key[]>([...schema.keys()]).toEqual(['a']);
-			expect<Value[]>([...schema.values()]).toEqual([Float32Type]);
-			expect<Entry[]>([...schema.entries()]).toEqual([['a', Float32Type]]);
+			expect<Value[]>([...schema.values()]).toEqual([t.float32]);
+			expect<Entry[]>([...schema.entries()]).toEqual([['a', t.float32]]);
 		});
 
 		test('GIVEN a schema with a float64 property THEN it has the correct properties and types', () => {
 			type Key = 'a';
-			type Value = typeof Float64Type;
+			type Value = typeof t.float64;
 			type Entry = readonly [Key, Value];
 
 			const schema = new Schema(1).float64('a');
@@ -201,8 +294,8 @@ describe('Schema', () => {
 			expect(schema.bitSize).toBe(64);
 
 			expect<Key[]>([...schema.keys()]).toEqual(['a']);
-			expect<Value[]>([...schema.values()]).toEqual([Float64Type]);
-			expect<Entry[]>([...schema.entries()]).toEqual([['a', Float64Type]]);
+			expect<Value[]>([...schema.values()]).toEqual([t.float64]);
+			expect<Entry[]>([...schema.entries()]).toEqual([['a', t.float64]]);
 		});
 
 		test('GIVEN a schema with a string property THEN it has the correct properties and types', () => {
@@ -234,7 +327,7 @@ describe('Schema', () => {
 		});
 
 		test('GIVEN a schema with an array THEN it has the correct properties and types', () => {
-			const schema = new Schema(1).array('a', BitType);
+			const schema = new Schema(1).array('a', t.bit);
 			expectTypeOf<Schema<1, { a: Value }>>(schema);
 			expect(schema.bitSize).toBeNull();
 
@@ -250,7 +343,7 @@ describe('Schema', () => {
 		});
 
 		test('GIVEN a schema with a fixed-length array THEN it has the correct properties and types', () => {
-			const schema = new Schema(1).fixedLengthArray('a', BitType, 2);
+			const schema = new Schema(1).fixedLengthArray('a', t.bit, 2);
 			expectTypeOf<Schema<1, { a: Value }>>(schema);
 			expect(schema.bitSize).toBe(2);
 

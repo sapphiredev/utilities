@@ -1,8 +1,15 @@
 import { Pointer, type PointerLike } from './shared/Pointer';
 
-const Converter8 = new Uint8Array(8);
-const ConverterFloat = new Float32Array(Converter8.buffer);
-const ConverterDouble = new Float64Array(Converter8.buffer);
+const ConverterUint8 = new Uint8Array(8);
+const ConverterUint16 = new Uint16Array(ConverterUint8.buffer);
+const ConverterUint32 = new Uint32Array(ConverterUint8.buffer);
+const ConverterUint64 = new BigUint64Array(ConverterUint8.buffer);
+
+const ConverterInt32 = new Int32Array(ConverterUint8.buffer);
+const ConverterInt64 = new BigInt64Array(ConverterUint8.buffer);
+
+const ConverterFloat = new Float32Array(ConverterUint8.buffer);
+const ConverterDouble = new Float64Array(ConverterUint8.buffer);
 
 export class UnalignedUint16Array {
 	#buffer: Uint16Array;
@@ -75,22 +82,22 @@ export class UnalignedUint16Array {
 
 	public writeFloat32(value: number): void {
 		ConverterFloat[0] = value;
-		this.writeInt8(Converter8[0]);
-		this.writeInt8(Converter8[1]);
-		this.writeInt8(Converter8[2]);
-		this.writeInt8(Converter8[3]);
+		this.writeInt8(ConverterUint8[0]);
+		this.writeInt8(ConverterUint8[1]);
+		this.writeInt8(ConverterUint8[2]);
+		this.writeInt8(ConverterUint8[3]);
 	}
 
 	public writeFloat64(value: number): void {
 		ConverterDouble[0] = value;
-		this.writeInt8(Converter8[0]);
-		this.writeInt8(Converter8[1]);
-		this.writeInt8(Converter8[2]);
-		this.writeInt8(Converter8[3]);
-		this.writeInt8(Converter8[4]);
-		this.writeInt8(Converter8[5]);
-		this.writeInt8(Converter8[6]);
-		this.writeInt8(Converter8[7]);
+		this.writeInt8(ConverterUint8[0]);
+		this.writeInt8(ConverterUint8[1]);
+		this.writeInt8(ConverterUint8[2]);
+		this.writeInt8(ConverterUint8[3]);
+		this.writeInt8(ConverterUint8[4]);
+		this.writeInt8(ConverterUint8[5]);
+		this.writeInt8(ConverterUint8[6]);
+		this.writeInt8(ConverterUint8[7]);
 	}
 
 	public readBit(offset: PointerLike): 0 | 1 {
@@ -99,76 +106,95 @@ export class UnalignedUint16Array {
 	}
 
 	public readInt2(offset: PointerLike): number {
+		// Bit shifting to convert 2-bit signed integer to 32-bit signed integer
+		// 0b01 → 0b0100_0000_0000_0000 → 0b000_0000_0000_0001 (1)
+		// 0b10 → 0b1000_0000_0000_0000 → 0b111_1111_1111_1110 (-2)
+		return (this.readUint2(offset) << 30) >> 30;
+	}
+
+	public readUint2(offset: PointerLike): number {
 		const ptr = Pointer.from(offset);
 		return this.#readBit(ptr) | (this.#readBit(ptr) << 1);
 	}
 
 	public readInt4(offset: PointerLike): number {
+		// Bit shifting to convert 4-bit signed integer to 32-bit signed integer,
+		// as shown in `readInt2`.
+		return (this.readUint4(offset) << 28) >> 28;
+	}
+
+	public readUint4(offset: PointerLike): number {
 		const ptr = Pointer.from(offset);
 		return this.#readBit(ptr) | (this.#readBit(ptr) << 1) | (this.#readBit(ptr) << 2) | (this.#readBit(ptr) << 3);
 	}
 
 	public readInt8(offset: PointerLike): number {
+		// Bit shifting to convert 8-bit signed integer to 32-bit signed integer,
+		// as shown in `readInt2`.
+		return (this.readUint8(offset) << 24) >> 24;
+	}
+
+	public readUint8(offset: PointerLike): number {
 		const ptr = Pointer.from(offset);
 		return this.#readByte(ptr);
 	}
 
 	public readInt16(offset: PointerLike): number {
-		const ptr = Pointer.from(offset);
-		return this.#readByte(ptr) | (this.#readByte(ptr) << 8);
+		// Bit shifting to convert 8-bit signed integer to 32-bit signed integer,
+		// as shown in `readInt2`.
+		return (this.readUint16(offset) << 16) >> 16;
+	}
+
+	public readUint16(offset: PointerLike): number {
+		this.#bufferRead16(Pointer.from(offset));
+		return ConverterUint16[0];
 	}
 
 	public readInt32(offset: PointerLike): number {
-		return Number(this.readBigInt32(offset));
+		this.#bufferRead32(Pointer.from(offset));
+		return ConverterInt32[0];
 	}
 
-	public readInt64(offset: PointerLike) {
+	public readUint32(offset: PointerLike): number {
+		this.#bufferRead32(Pointer.from(offset));
+		return ConverterUint32[0];
+	}
+
+	public readInt64(offset: PointerLike): number {
 		return Number(this.readBigInt64(offset));
 	}
 
+	public readUint64(offset: PointerLike) {
+		return Number(this.readBigUint64(offset));
+	}
+
 	public readBigInt32(offset: PointerLike): bigint {
-		const ptr = Pointer.from(offset);
-		return (
-			BigInt(this.#readByte(ptr)) |
-			(BigInt(this.#readByte(ptr)) << 8n) |
-			(BigInt(this.#readByte(ptr)) << 16n) |
-			(BigInt(this.#readByte(ptr)) << 24n)
-		);
+		this.#bufferRead32(Pointer.from(offset));
+		return BigInt(ConverterInt32[0]);
+	}
+
+	public readBigUint32(offset: PointerLike): bigint {
+		this.#bufferRead32(Pointer.from(offset));
+		return BigInt(ConverterUint32[0]);
 	}
 
 	public readBigInt64(offset: PointerLike): bigint {
-		const ptr = Pointer.from(offset);
-		return (
-			BigInt(this.#readByte(ptr)) |
-			(BigInt(this.#readByte(ptr)) << 8n) |
-			(BigInt(this.#readByte(ptr)) << 16n) |
-			(BigInt(this.#readByte(ptr)) << 24n) |
-			(BigInt(this.#readByte(ptr)) << 32n) |
-			(BigInt(this.#readByte(ptr)) << 40n) |
-			(BigInt(this.#readByte(ptr)) << 48n) |
-			(BigInt(this.#readByte(ptr)) << 56n)
-		);
+		this.#bufferRead64(Pointer.from(offset));
+		return ConverterInt64[0];
+	}
+
+	public readBigUint64(offset: PointerLike): bigint {
+		this.#bufferRead64(Pointer.from(offset));
+		return ConverterUint64[0];
 	}
 
 	public readFloat32(offset: PointerLike): number {
-		const ptr = Pointer.from(offset);
-		Converter8[0] = this.#readByte(ptr);
-		Converter8[1] = this.#readByte(ptr);
-		Converter8[2] = this.#readByte(ptr);
-		Converter8[3] = this.#readByte(ptr);
+		this.#bufferRead32(Pointer.from(offset));
 		return ConverterFloat[0];
 	}
 
 	public readFloat64(offset: PointerLike): number {
-		const ptr = Pointer.from(offset);
-		Converter8[0] = this.#readByte(ptr);
-		Converter8[1] = this.#readByte(ptr);
-		Converter8[2] = this.#readByte(ptr);
-		Converter8[3] = this.#readByte(ptr);
-		Converter8[4] = this.#readByte(ptr);
-		Converter8[5] = this.#readByte(ptr);
-		Converter8[6] = this.#readByte(ptr);
-		Converter8[7] = this.#readByte(ptr);
+		this.#bufferRead64(Pointer.from(offset));
 		return ConverterDouble[0];
 	}
 
@@ -204,6 +230,29 @@ export class UnalignedUint16Array {
 			(this.#readBit(ptr) << 6) |
 			(this.#readBit(ptr) << 7)
 		);
+	}
+
+	#bufferRead16(ptr: Pointer): void {
+		ConverterUint8[0] = this.#readByte(ptr);
+		ConverterUint8[1] = this.#readByte(ptr);
+	}
+
+	#bufferRead32(ptr: Pointer): void {
+		ConverterUint8[0] = this.#readByte(ptr);
+		ConverterUint8[1] = this.#readByte(ptr);
+		ConverterUint8[2] = this.#readByte(ptr);
+		ConverterUint8[3] = this.#readByte(ptr);
+	}
+
+	#bufferRead64(ptr: Pointer): void {
+		ConverterUint8[0] = this.#readByte(ptr);
+		ConverterUint8[1] = this.#readByte(ptr);
+		ConverterUint8[2] = this.#readByte(ptr);
+		ConverterUint8[3] = this.#readByte(ptr);
+		ConverterUint8[4] = this.#readByte(ptr);
+		ConverterUint8[5] = this.#readByte(ptr);
+		ConverterUint8[6] = this.#readByte(ptr);
+		ConverterUint8[7] = this.#readByte(ptr);
 	}
 
 	#writeBit(value: number) {
