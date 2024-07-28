@@ -7,6 +7,11 @@ on:
       package:
         description: The package to release, this should be the path segment after packages/, without the @sapphire/ prefix
         required: true
+      skip-automatic-bump:
+        description: Whether to skip the automatic bumping of the packageversion
+        type: boolean
+        required: true
+        default: false
 
 jobs:
   PublishPackage:
@@ -46,7 +51,12 @@ jobs:
           GITHUB_EMAIL: 41898282+github-actions[bot]@users.noreply.github.com
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Bump Versions and make release
-        run: yarn bump
+        run: |
+          if [ "${{ github.event.inputs.skip-automatic-bump }}" = "true" ]; then
+            yarn bump --skip-automatic-bump
+          else
+            yarn bump
+          fi
         working-directory: packages/${{ github.event.inputs.package }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
