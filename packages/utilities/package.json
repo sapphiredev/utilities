@@ -56,15 +56,15 @@
 		"@favware/cliff-jumper": "^4.0.3",
 		"@sapphire/node-utilities": "workspace:^",
 		"@sapphire/prettier-config": "workspace:^",
-		"@vitest/coverage-v8": "^2.0.3",
+		"@vitest/coverage-v8": "^2.0.4",
 		"esbuild-plugin-file-path-extensions": "^2.1.2",
 		"npm-run-all2": "^6.2.2",
-		"tsup": "^8.2.1",
+		"tsup": "^8.2.3",
 		"tsx": "^4.16.2",
 		"typedoc": "^0.25.13",
 		"typedoc-json-parser": "^10.0.0",
 		"typescript": "~5.4.5",
-		"vitest": "^2.0.3"
+		"vitest": "^2.0.4"
 	},
 	"exports": {
 		".": {
