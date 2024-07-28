@@ -10,7 +10,6 @@ on:
       skip-automatic-bump:
         description: Whether to skip the automatic bumping of the packageversion
         type: boolean
-        required: true
         default: false
 
 jobs:
