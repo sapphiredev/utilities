@@ -48,6 +48,15 @@ export class Cron {
 	}
 
 	/**
+	 * Returns the string that represents this cron pattern
+	 *
+	 * @returns The string that represents this cron pattern
+	 */
+	public toString() {
+		return this.cron;
+	}
+
+	/**
 	 * Normalize the pattern
 	 * @param cron The pattern to normalize
 	 */
