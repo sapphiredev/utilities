@@ -29,11 +29,11 @@
 		"@favware/rollup-type-bundler": "^3.3.0",
 		"@sapphire/framework": "^5.2.1",
 		"@types/lodash": "^4.17.7",
-		"@types/node": "^20.14.12",
-		"@types/ws": "^8.5.11",
+		"@types/node": "^20.14.14",
+		"@types/ws": "^8.5.12",
 		"@typescript-eslint/eslint-plugin": "^7.13.1",
 		"@typescript-eslint/parser": "^7.13.1",
-		"@vitest/coverage-v8": "^2.0.4",
+		"@vitest/coverage-v8": "^2.0.5",
 		"concurrently": "^8.2.2",
 		"cz-conventional-changelog": "^3.3.0",
 		"discord-api-types": "^0.37.93",
@@ -41,21 +41,21 @@
 		"eslint": "^8.57.0",
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-prettier": "^5.2.1",
-		"lint-staged": "^15.2.7",
+		"lint-staged": "^15.2.8",
 		"lodash": "^4.17.21",
-		"msw": "^2.3.4",
+		"msw": "^2.3.5",
 		"npm-run-all2": "^6.2.2",
 		"prettier": "^3.3.3",
 		"rimraf": "^6.0.1",
 		"tslib": "^2.6.3",
-		"tsup": "^8.2.3",
-		"tsx": "^4.16.2",
-		"turbo": "^2.0.9",
+		"tsup": "^8.2.4",
+		"tsx": "^4.16.5",
+		"turbo": "^2.0.11",
 		"typedoc": "^0.25.13",
 		"typedoc-json-parser": "^10.0.0",
 		"typescript": "~5.4.5",
 		"vite": "^5.3.5",
-		"vitest": "^2.0.4"
+		"vitest": "^2.0.5"
 	},
 	"repository": {
 		"type": "git",
@@ -78,5 +78,5 @@
 		"ansi-regex": "^5.0.1",
 		"minimist": "^1.2.8"
 	},
-	"packageManager": "yarn@4.3.1"
+	"packageManager": "yarn@4.4.0"
 }
