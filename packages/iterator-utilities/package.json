@@ -57,7 +57,7 @@
 		"@vitest/coverage-v8": "^2.0.5",
 		"npm-run-all2": "^6.2.2",
 		"tsup": "^8.2.4",
-		"tsx": "^4.16.5",
+		"tsx": "^4.17.0",
 		"typedoc": "^0.25.13",
 		"typedoc-json-parser": "^10.0.0",
 		"typescript": "~5.4.5",
