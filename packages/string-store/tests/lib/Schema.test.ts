@@ -377,14 +377,14 @@ describe('Schema', () => {
 
 	describe('serialization', () => {
 		test('GIVEN a schema with a boolean property THEN it serializes correctly', () => {
-			const buffer = new UnalignedUint16Array(2);
-			const schema = new Schema(4).boolean('a');
+			const buffer = new UnalignedUint16Array(3);
+			const schema = new Schema(4).boolean('a').int16('b');
 
-			schema.serialize(buffer, { a: true });
-			expect(buffer.toArray()).toEqual(new Uint16Array([4, 1]));
+			schema.serialize(buffer, { a: true, b: 15234 });
+			expect(buffer.toArray()).toEqual(new Uint16Array([4, 1 + (15234 << 1), 0]));
 
 			const value = schema.deserialize(buffer, 16);
-			expect<{ a: boolean }>(value).toEqual({ a: true });
+			expect<{ a: boolean }>(value).toEqual({ a: true, b: 15234 });
 		});
 	});
 
