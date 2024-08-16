@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/fetch@3.0.3](https://github.com/sapphiredev/utilities/compare/@sapphire/fetch@3.0.2...@sapphire/fetch@3.0.3) - (2024-08-16)
+
+## 🐛 Bug Fixes
+
+- **fetch:** Handle non object bodies properly ([479de10](https://github.com/sapphiredev/utilities/commit/479de10880218eb789c1ad47622fbcd9335c019c)) ([#786](https://github.com/sapphiredev/utilities/pull/786) by @favna)
+- **deps:** Update all non-major dependencies ([083376a](https://github.com/sapphiredev/utilities/commit/083376aac55094dbeddb5194e8a8f0d794b8cceb)) ([#763](https://github.com/sapphiredev/utilities/pull/763) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([e7fdc5d](https://github.com/sapphiredev/utilities/commit/e7fdc5db3632a7f90292ef3978898da32730343a)) ([#752](https://github.com/sapphiredev/utilities/pull/752) by @renovate[bot])
+
+## 📝 Documentation
+
+- **readme:** Fix readme table of contents ([c60e8bd](https://github.com/sapphiredev/utilities/commit/c60e8bd9fc89156cf973871597ec3f0ef0308c08))
+- **fetch:** Fix tsdoc comments ([41517f3](https://github.com/sapphiredev/utilities/commit/41517f351dbc32f0dc0b47d724e62b4207981349))
+
 # [@sapphire/fetch@3.0.2](https://github.com/sapphiredev/utilities/compare/@sapphire/fetch@3.0.2...@sapphire/fetch@3.0.2) - (2024-01-19)
 
 ## 🐛 Bug Fixes

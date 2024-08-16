@@ -1,6 +1,6 @@
 {
 	"name": "@sapphire/fetch",
-	"version": "3.0.2",
+	"version": "3.0.3",
 	"description": "Tiny wrapper around globalThis.fetch for improved TypeScript and data type support",
 	"author": "@sapphire",
 	"license": "MIT",
