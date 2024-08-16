@@ -57,13 +57,12 @@ export class UnalignedUint16Array {
 	}
 
 	public writeInt16(value: number): void {
-		this.writeInt8(value & 0xff);
-		this.writeInt8(value >> 8);
+		this.#bufferWrite16(value);
 	}
 
 	public writeInt32(value: number): void {
-		this.writeInt16(value & 0xffff);
-		this.writeInt16(value >> 16);
+		this.#bufferWrite16(value);
+		this.#bufferWrite16(value >> 16);
 	}
 
 	public writeInt64(value: number): void {
@@ -71,33 +70,31 @@ export class UnalignedUint16Array {
 	}
 
 	public writeBigInt32(value: bigint): void {
-		this.writeInt16(Number(value & 0xffffn));
-		this.writeInt16(Number(value >> 16n));
+		ConverterInt64[0] = value;
+		this.#bufferWrite16(ConverterUint16[0]);
+		this.#bufferWrite16(ConverterUint16[1]);
 	}
 
 	public writeBigInt64(value: bigint): void {
-		this.writeInt32(Number(value & 0xffffffffn));
-		this.writeInt32(Number(value >> 32n));
+		ConverterInt64[0] = value;
+		this.#bufferWrite16(ConverterUint16[0]);
+		this.#bufferWrite16(ConverterUint16[1]);
+		this.#bufferWrite16(ConverterUint16[2]);
+		this.#bufferWrite16(ConverterUint16[3]);
 	}
 
 	public writeFloat32(value: number): void {
 		ConverterFloat[0] = value;
-		this.writeInt8(ConverterUint8[0]);
-		this.writeInt8(ConverterUint8[1]);
-		this.writeInt8(ConverterUint8[2]);
-		this.writeInt8(ConverterUint8[3]);
+		this.#bufferWrite16(ConverterUint16[0]);
+		this.#bufferWrite16(ConverterUint16[1]);
 	}
 
 	public writeFloat64(value: number): void {
 		ConverterDouble[0] = value;
-		this.writeInt8(ConverterUint8[0]);
-		this.writeInt8(ConverterUint8[1]);
-		this.writeInt8(ConverterUint8[2]);
-		this.writeInt8(ConverterUint8[3]);
-		this.writeInt8(ConverterUint8[4]);
-		this.writeInt8(ConverterUint8[5]);
-		this.writeInt8(ConverterUint8[6]);
-		this.writeInt8(ConverterUint8[7]);
+		this.#bufferWrite16(ConverterUint16[0]);
+		this.#bufferWrite16(ConverterUint16[1]);
+		this.#bufferWrite16(ConverterUint16[2]);
+		this.#bufferWrite16(ConverterUint16[3]);
 	}
 
 	public readBit(offset: PointerLike): 0 | 1 {
@@ -269,6 +266,34 @@ export class UnalignedUint16Array {
 		if ((this.#bitLength & 0xf) === 0) this.#wordLength++;
 		this.#bitLength++;
 		if ((this.#bitLength & 0xf) === 0) this.#wordIndex++;
+	}
+
+	#bufferWrite16(value: number) {
+		const wordIndex = this.#wordIndex;
+		const bitIndex = this.bitLength & 0xf;
+
+		// If `bitIndex` is `0`:
+		// - Then the value will fit in the current word.
+		// - In this case, we validate that we can write the current word.
+		//
+		// Otherwise:
+		// - The value will be split between the current word and the next word.
+		// - In this case, we validate that we can write the next word.
+		if (wordIndex + (bitIndex === 0 ? 0 : 1) === this.maxLength) {
+			throw new RangeError(`The buffer is full`);
+		}
+
+		if (bitIndex === 0) {
+			this.#buffer[wordIndex] = value;
+		} else {
+			value &= 0xffff;
+			this.#buffer[wordIndex] |= value << bitIndex;
+			this.#buffer[wordIndex + 1] = value >> (16 - bitIndex);
+		}
+
+		this.#bitLength += 16;
+		this.#wordIndex++;
+		this.#wordLength++;
 	}
 
 	public static from(value: string | UnalignedUint16Array): UnalignedUint16Array {

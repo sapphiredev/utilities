@@ -151,7 +151,13 @@ describe('UnalignedUint16Array', () => {
 		expect(buffer.readFloat64(0)).toBe(0.5);
 	});
 
-	test('GIVEN an instance with insufficient space THEN it throws', () => {
+	test('GIVEN an instance with insufficient space (write bit by bit) THEN it throws', () => {
+		const buffer = new UnalignedUint16Array(1);
+		buffer.writeInt16(1);
+		expect(() => buffer.writeBit(1)).toThrowError('The buffer is full');
+	});
+
+	test('GIVEN an instance with insufficient space (write word by word) THEN it throws', () => {
 		const buffer = new UnalignedUint16Array(1);
 		expect(() => buffer.writeInt32(1)).toThrowError('The buffer is full');
 	});
