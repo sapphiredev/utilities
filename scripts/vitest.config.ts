@@ -17,6 +17,8 @@ export const createVitestConfig = (options: UserConfig = {}) =>
 					'**/node_modules/**',
 					'**/dist/**',
 					'**/tests/**',
+					'**/tsup.config.ts',
+					'**/vitest.config.ts',
 					'packages/utilities/src/lib/debounce/index.ts'
 				]
 			}
