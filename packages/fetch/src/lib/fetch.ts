@@ -189,7 +189,10 @@ export async function fetch(url: URL | string, options?: RequestOptions | FetchR
  * @returns A boolean indicating whether the value should be stringified as JSON.
  */
 function shouldJsonStringify(value: unknown) {
+	// If the value is not an object, it should not be stringified
 	if (typeof value !== 'object') return false;
+	// Buffers should not be stringified
+	if (typeof Buffer !== 'undefined' && Buffer.isBuffer(value)) return false;
 
 	// null object
 	if (value === null) return true;
@@ -199,6 +202,7 @@ function shouldJsonStringify(value: unknown) {
 	if (value.constructor === Object) return true;
 	// Has toJSON method
 	if ('toJSON' in value && typeof value.toJSON === 'function') return true;
+
 	// Anything else (such as streams or unserializables)
 	return false;
 }

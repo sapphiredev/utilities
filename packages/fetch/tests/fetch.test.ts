@@ -110,7 +110,7 @@ describe('fetch', () => {
 			expect(response.test).toBe(true);
 		});
 
-		test('GIVEN fetch w/ File body THEN returns successfully', async () => {
+		test('GIVEN fetch w/ Blob body THEN returns successfully', async () => {
 			const response = await fetch<{ message: string }>(
 				'http://localhost/upload',
 				{
@@ -118,6 +118,19 @@ describe('fetch', () => {
 					body: new Blob(['De Blob'], {
 						type: FetchMediaContentTypes.TextPlain
 					})
+				},
+				FetchResultTypes.JSON
+			);
+
+			expect(response.message).toBe('Failed to parse body as JSON, this is expected!!');
+		});
+
+		test('GIVEN fetch w/ buffer body THEN returns successfully', async () => {
+			const response = await fetch<{ message: string }>(
+				'http://localhost/upload',
+				{
+					method: FetchMethods.Post,
+					body: Buffer.alloc(1)
 				},
 				FetchResultTypes.JSON
 			);
