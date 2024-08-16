@@ -381,7 +381,14 @@ describe('Schema', () => {
 			const schema = new Schema(4).boolean('a').int16('b');
 
 			schema.serialize(buffer, { a: true, b: 15234 });
-			expect(buffer.toArray()).toEqual(new Uint16Array([4, 1 + (15234 << 1), 0]));
+			// The buffer has 3 values:
+			// - 4     (schema:id) & 0xffff (mask)
+			//
+			// - 1     (prop:a)    & 0b0001 (mask)
+			// | 15234 (prop:b)    & 0xffff (mask) << 1 (offset)
+			//
+			// - 15234 (prop:b)    & 0xffff (mask) >> 15 (shift)
+			expect(buffer.toArray()).toEqual(new Uint16Array([4, 30469, 0]));
 
 			const value = schema.deserialize(buffer, 16);
 			expect<{ a: boolean }>(value).toEqual({ a: true, b: 15234 });
