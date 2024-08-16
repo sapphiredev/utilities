@@ -115,8 +115,8 @@ describe('fetch', () => {
 				'http://localhost/upload',
 				{
 					method: FetchMethods.Post,
-					body: new File([''], 'test.txt', {
-						lastModified: Date.now()
+					body: new Blob(['De Blob'], {
+						type: FetchMediaContentTypes.TextPlain
 					})
 				},
 				FetchResultTypes.JSON
