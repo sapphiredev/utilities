@@ -267,5 +267,5 @@ export enum FetchMediaContentTypes {
 }
 
 export interface RequestOptions extends Omit<RequestInit, 'body'> {
-	body?: BodyInit | Record<any, any>;
+	body?: RequestInit['body'] | Record<any, any>;
 }
