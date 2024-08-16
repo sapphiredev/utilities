@@ -14,7 +14,15 @@ describe('fetch', () => {
 
 			return HttpResponse.json({ test: false }, { status: 400 });
 		}),
-		http.get('http://localhost/404', () => HttpResponse.json({ success: false }, { status: 404 }))
+		http.get('http://localhost/404', () => HttpResponse.json({ success: false }, { status: 404 })),
+		http.post('http://localhost/upload', async ({ request }) => {
+			try {
+				await request.json();
+				return HttpResponse.json({ message: 'Successfully parsed body as JSON, this is unexpected!!' }, { status: 200 });
+			} catch (error) {
+				return HttpResponse.json({ message: 'Failed to parse body as JSON, this is expected!!' }, { status: 200 });
+			}
+		})
 	);
 
 	beforeAll(() => server.listen());
@@ -100,6 +108,34 @@ describe('fetch', () => {
 			);
 
 			expect(response.test).toBe(true);
+		});
+
+		test('GIVEN fetch w/ Blob body THEN returns successfully', async () => {
+			const response = await fetch<{ message: string }>(
+				'http://localhost/upload',
+				{
+					method: FetchMethods.Post,
+					body: new Blob(['De Blob'], {
+						type: FetchMediaContentTypes.TextPlain
+					})
+				},
+				FetchResultTypes.JSON
+			);
+
+			expect(response.message).toBe('Failed to parse body as JSON, this is expected!!');
+		});
+
+		test('GIVEN fetch w/ buffer body THEN returns successfully', async () => {
+			const response = await fetch<{ message: string }>(
+				'http://localhost/upload',
+				{
+					method: FetchMethods.Post,
+					body: Buffer.alloc(1)
+				},
+				FetchResultTypes.JSON
+			);
+
+			expect(response.message).toBe('Failed to parse body as JSON, this is expected!!');
 		});
 	});
 

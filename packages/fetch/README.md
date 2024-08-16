@@ -48,9 +48,31 @@ npm install @sapphire/fetch
 
 ## Usage
 
-**Note:** While this section uses `import`, it maps 1:1 with CommonJS' require syntax. For example, `import { fetch } from '@sapphire/fetch'` is the same as `const { fetch } = require('@sapphire/fetch')`.
+> [!NOTE]
+> While this section uses `import`, it maps 1:1 with CommonJS' require syntax. For example,
+>
+> ```ts
+> import { fetch } from '@sapphire/fetch';
+> ```
+>
+> is the same as
+>
+> ```ts
+> const { fetch } = require('@sapphire/fetch');
+> ```
 
-**Note**: `fetch` can also be imported as a default import: `import fetch from '@sapphire/fetch'`.
+> [!IMPORTANT]
+> When providing a serializable object to the `body` option, `@sapphire/fetch` will automatically call `JSON.stringify` on the object. This means you can pass an object directly to the `body` option without having to call `JSON.stringify` yourself.
+> If the body is _not_ serializable (such as a `File`, `Buffer`, or `Blob`), the body will be sent as-is.
+> Serializability is calculated based on:
+>
+> -   If the body is `null`
+> -   If the body's `.constructor` property is `undefined`
+> -   If the body's `.constructor.name` property is `Object`
+> -   If the body has a function property named `toJSON`
+
+> [!WARNING]
+> Because `@sapphire/fetch` aims to be as close to global fetch as possible, it doesn't support proxy options that a library like undici does. If you want to use a proxy, you should use undici directly.
 
 ### `GET`ting JSON data
 
@@ -99,9 +121,7 @@ const responseData = await fetch(
 		headers: {
 			'Content-Type': 'application/json'
 		},
-		body: JSON.stringify({
-			name: 'John Doe'
-		})
+		body: { name: 'John Doe' }
 	},
 	FetchResultTypes.JSON
 );
