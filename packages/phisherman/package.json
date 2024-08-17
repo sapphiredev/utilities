@@ -26,7 +26,7 @@
 		"prepack": "yarn build",
 		"bump": "cliff-jumper",
 		"check-update": "cliff-jumper --dry-run",
-		"gen-index": "tsx ../../scripts/gen-index.cts -w phisherman"
+		"gen-index": "tsx ../../scripts/gen-index.cts phisherman --write"
 	},
 	"dependencies": {
 		"@sapphire/fetch": "workspace:^"

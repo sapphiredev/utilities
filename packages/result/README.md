@@ -7,7 +7,6 @@
 **A TypeScript port of Nightly Rust's Result and Option structs**
 
 [![GitHub](https://img.shields.io/github/license/sapphiredev/utilities)](https://github.com/sapphiredev/utilities/blob/main/LICENSE.md)
-[![codecov](https://codecov.io/gh/sapphiredev/utilities/branch/main/graph/badge.svg?token=OEGIV6RFDO)](https://codecov.io/gh/sapphiredev/utilities)
 [![npm bundle size](https://img.shields.io/bundlephobia/min/@sapphire/result?logo=webpack&style=flat-square)](https://bundlephobia.com/result?p=@sapphire/result)
 [![npm](https://img.shields.io/npm/v/@sapphire/result?color=crimson&logo=npm&style=flat-square)](https://www.npmjs.com/package/@sapphire/result)
 

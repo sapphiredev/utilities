@@ -1,12 +1,13 @@
-import { readdir, writeFile } from 'node:fs/promises';
+import { readdir, readFile, writeFile } from 'node:fs/promises';
 import { join, parse, relative, resolve, type ParsedPath } from 'node:path';
 import { sep as posixSep } from 'node:path/posix';
 import { sep as winSep } from 'node:path/win32';
 import ts from 'typescript';
 
 const PRINTER = ts.createPrinter({ newLine: ts.NewLineKind.LineFeed });
-const WRITE_MODE = process.argv.includes('-w');
-const PACKAGE_NAME = process.argv.at(WRITE_MODE ? 3 : 2);
+const WRITE_MODE = process.argv.includes('--write');
+const CHECK_MODE = process.argv.includes('--check');
+const PACKAGE_NAME = process.argv[2];
 
 function isExported(node: ts.Declaration): boolean {
 	return (ts.getCombinedModifierFlags(node) & ts.ModifierFlags.Export) > 0;
@@ -45,7 +46,7 @@ class ModuleFile {
 	public generateExportSpecifiers(): ts.ExportSpecifier[] {
 		return this.exports.types
 			.concat(this.exportInclusions.useNormal ? this.exports.normal : [])
-			.map((node) => ts.getNameOfDeclaration(node)!.getText(this.sourceFile)!)
+			.map((node) => ts.getNameOfDeclaration(node)!.getText(this.sourceFile))
 			.map((name) => ts.factory.createExportSpecifier(false, undefined, name));
 	}
 
@@ -103,7 +104,7 @@ function parseExternalExports(sourceFile: ts.SourceFile): ts.ExportDeclaration[]
 	const normal: ts.ExportDeclaration[] = [];
 	sourceFile.forEachChild((node) => {
 		if (!ts.isExportDeclaration(node)) return;
-		if (node.moduleSpecifier!.getText(sourceFile)!.includes('./')) return;
+		if (node.moduleSpecifier!.getText(sourceFile).includes('./')) return;
 		normal.push(node);
 	});
 
@@ -127,6 +128,7 @@ async function findIndexOrModules(dir: string, depth: number = 0): Promise<strin
 		} else if (item.isDirectory() && !contents.find((entry) => `${item.name}.ts` === entry.name))
 			results = results.concat(await findIndexOrModules(itemPath, depth + 1));
 	}
+
 	return results;
 }
 
@@ -152,9 +154,16 @@ async function processPackage(packageDir: string): Promise<string> {
 
 async function main() {
 	const packageDir = resolve(__dirname, `../packages/${PACKAGE_NAME}/src`);
-	const [indexPath, result] = [join(packageDir, 'index.ts'), await processPackage(packageDir)];
+	const indexPath = join(packageDir, 'index.ts');
+	const [currentFile, result] = [await readFile(join(packageDir, 'index.ts'), { encoding: 'utf-8' }), await processPackage(packageDir)];
 
-	if (WRITE_MODE) return writeFile(indexPath, result);
+	if (CHECK_MODE && currentFile !== result) {
+		console.error(`Index file for ${PACKAGE_NAME} is out of date.`);
+		process.exit(1);
+	} else if (WRITE_MODE) {
+		return writeFile(indexPath, result);
+	}
+
 	return console.log(result);
 }
 

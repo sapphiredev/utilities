@@ -5,24 +5,26 @@ on:
     inputs:
       prNumber:
         description: The number of the PR that is being deployed
-        required: true
+        required: false
+        type: string
       ref:
         description: The branch that is being deployed. Should be a branch on the given repository
         required: false
         default: main
+        type: string
       repository:
         description: The {owner}/{repository} that is being deployed.
         required: false
         default: sapphiredev/utilities
+        type: string
   push:
     branches:
       - main
 
 jobs:
-  publish:
+  Publish:
     name: Publish Next to npm
-    runs-on: ubuntu-latest
-    if: github.repository_owner == 'sapphiredev'
+    uses: sapphiredev/.github/.github/workflows/reusable-continuous-delivery.yml@main
     strategy:
       fail-fast: false
       matrix:
@@ -52,35 +54,11 @@ jobs:
           - timestamp
           - ts-config
           - utilities
-    steps:
-      - name: Checkout Project
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          repository: ${{ github.event.inputs.repository || 'sapphiredev/utilities' }}
-          ref: ${{ github.event.inputs.ref || 'main' }}
-      - name: Use Node.js v20
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: yarn
-          registry-url: https://registry.yarnpkg.com/
-      - name: Install Dependencies
-        run: yarn --immutable
-      - name: Build all packages
-        run: yarn build
-      - name: Bump Versions & Publish
-        working-directory: packages/${{ matrix.package }}
-        run: |
-          # Resolve the tag to be used. "next" for push events, "pr-{prNumber}" for dispatch events.
-          TAG=$([[ ${{ github.event_name }} == 'push' ]] && echo 'next' || echo 'pr-${{ github.event.inputs.prNumber }}')
-
-          yarn config set npmAuthToken ${NODE_AUTH_TOKEN}
-          yarn config set npmPublishRegistry "https://registry.yarnpkg.com"
-
-          yarn bump --preid "${TAG}.$(git rev-parse --verify --short HEAD)" --skip-changelog
-
-          yarn npm publish --tag ${TAG}
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    with:
+      build: true
+      pr-number: ${{ github.event.inputs.prNumber }}
+      ref: ${{ github.event.inputs.ref }}
+      repository: ${{ github.event.inputs.repository }}
+      working-directory: packages/${{ matrix.package }}
+    secrets:
+      NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}

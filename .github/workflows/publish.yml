@@ -1,5 +1,5 @@
 name: Publish
-run-name: Publish @sapphire/${{ github.event.inputs.package }}
+run-name: Publish @sapphire/${{ inputs.package }}
 
 on:
   workflow_dispatch:
@@ -9,61 +9,19 @@ on:
         required: true
       skip-automatic-bump:
         description: Whether to skip the automatic bumping of the packageversion
-        type: boolean
+        required: false
         default: false
+        type: boolean
 
 jobs:
   PublishPackage:
-    name: Publish @sapphire/${{ github.event.inputs.package}}
-    runs-on: ubuntu-latest
-    if: github.repository_owner == 'sapphiredev'
-    steps:
-      - name: Checkout Project
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          ref: main
-          token: ${{ secrets.SKYRA_TOKEN }}
-      - name: Use Node.js v20
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: yarn
-          registry-url: https://registry.yarnpkg.com/
-      - name: Install Dependencies
-        run: yarn --immutable
-      - name: Build Utilities and Result
-        run: |
-          yarn workspaces foreach \
-            --all \
-            --parallel \
-            --include @sapphire/result \
-            --include @sapphire/utilities \
-            run build
-      - name: Configure Git
-        run: |
-          git remote set-url origin "https://${GITHUB_TOKEN}:x-oauth-basic@github.com/${GITHUB_REPOSITORY}.git"
-          git config --local user.email "${GITHUB_EMAIL}"
-          git config --local user.name "${GITHUB_USER}"
-        env:
-          GITHUB_USER: github-actions[bot]
-          GITHUB_EMAIL: 41898282+github-actions[bot]@users.noreply.github.com
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Bump Versions and make release
-        run: |
-          if [ "${{ github.event.inputs.skip-automatic-bump }}" = "true" ]; then
-            yarn bump --skip-automatic-bump
-          else
-            yarn bump
-          fi
-        working-directory: packages/${{ github.event.inputs.package }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Publish to NPM
-        working-directory: packages/${{ github.event.inputs.package }}
-        run: |
-          yarn config set npmAuthToken ${NODE_AUTH_TOKEN}
-          yarn config set npmPublishRegistry "https://registry.yarnpkg.com"
-          yarn npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
+    name: Publish @sapphire/${{ inputs.package}}
+    uses: sapphiredev/.github/.github/workflows/reusable-publish.yml@main
+    with:
+      build: true
+      project-name: '@sapphire/${{ inputs.package}}'
+      working-directory: packages/${{ inputs.package }}
+      skip-automatic-bump: ${{ inputs.skip-automatic-bump }}
+    secrets:
+      NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
+      SKYRA_TOKEN: ${{ secrets.SKYRA_TOKEN }}

@@ -13,16 +13,10 @@ jobs:
     steps:
       - name: Checkout Project
         uses: actions/checkout@v4
-      - name: Add problem matcher
-        run: echo "::add-matcher::.github/problemMatchers/eslint.json"
-      - name: Use Node.js v20
-        uses: actions/setup-node@v4
+      - name: Install dependencies
+        uses: sapphiredev/.github/actions/install-yarn-dependencies@main
         with:
           node-version: 20
-          cache: yarn
-          registry-url: https://registry.yarnpkg.org/
-      - name: Install Dependencies
-        run: yarn --immutable
       - name: Build ESLint, Prettier and Utilities
         run: |
           yarn workspaces foreach \
@@ -38,113 +32,40 @@ jobs:
       - name: Run ESLint
         run: yarn lint --fix=false
 
-  BuildingAndTesting:
-    name: Building and Testing with node v${{ matrix.node }}
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        node: [18, 19, 20, 21]
-    steps:
-      - name: Checkout Project
-        uses: actions/checkout@v4
-      - name: Use Node.js v${{ matrix.node }}
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ matrix.node }}
-          cache: yarn
-          registry-url: https://registry.yarnpkg.org/
-      - name: Install Dependencies
-        run: yarn --immutable
-      - name: Build Code
-        run: yarn build
-      - name: Run tests
-        run: yarn test
-      - name: Codecov Upload ${{ matrix.node }}
-        uses: codecov/codecov-action@v4
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          files: coverage/cobertura-coverage.xml
-          flags: ${{ matrix.node }}
-          fail_ci_if_error: true
+  build:
+    name: Building
+    uses: sapphiredev/.github/.github/workflows/reusable-build.yml@main
 
   docs:
-    name: Generate Documentation
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Project
-        uses: actions/checkout@v4
-      - name: Use Node.js v20
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: yarn
-          registry-url: https://registry.yarnpkg.org/
-      - name: Install Dependencies
-        run: yarn --immutable
-      - name: Generate Documentation
-        run: yarn docs
+    name: Docgen
+    if: github.event_name == 'pull_request'
+    uses: sapphiredev/.github/.github/workflows/reusable-yarn-job.yml@main
+    with:
+      script-name: docs
 
-  Check_SubPath:
-    name: Check SubPath
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Project
-        uses: actions/checkout@v4
-      - name: Use Node.js v20
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: yarn
-          registry-url: https://registry.yarnpkg.org/
-      - name: Install Dependencies
-        run: yarn --immutable
-      - name: Run Script
-        run: yarn build:check-subpath -- --check
+  test:
+    name: Tests
+    uses: sapphiredev/.github/.github/workflows/reusable-tests.yml@main
+    with:
+      build: true
+      enable-sonar: true
+    secrets:
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
-  Check_DynamicSideEffects:
+  check-subpath:
+    name: Check subpaths
+    uses: sapphiredev/.github/.github/workflows/reusable-yarn-job.yml@main
+    with:
+      script-name: build:check-subpath -- --check
+
+  check-dynamic-side-effects:
     name: Check Dynamic Side Effects
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Project
-        uses: actions/checkout@v4
-      - name: Use Node.js v20
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: yarn
-          registry-url: https://registry.yarnpkg.org/
-      - name: Install Dependencies
-        run: yarn --immutable
-      - name: Validate dynamic side effects
-        run: yarn build:dynamic-side-effects -- --check
+    uses: sapphiredev/.github/.github/workflows/reusable-yarn-job.yml@main
+    with:
+      script-name: build:dynamic-side-effects -- --check
 
-  Check_PackageIndexFiles:
+  check-package-index-files:
     name: Check Package Index Files
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Project
-        uses: actions/checkout@v4
-      - name: Use Node.js v20
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: yarn
-          registry-url: https://registry.yarnpkg.org/
-      - name: Install Dependencies
-        run: yarn --immutable
-      - name: Generate index files
-        run: yarn gen-index --parallel --concurrency $(ls packages | wc -l) --output-logs new-only
-      - name: Test for differences
-        run: |
-          git add .;
-          if git diff-index --quiet HEAD --; then
-            echo "No index discrepancies found.";
-            exit 0;
-          else
-            for FILE in $(git diff --name-only --staged); do
-              echo "::error file=$FILE::Index discrepancies found. Please review and adjust accordingly.";
-              echo "$(git diff -p --staged $FILE)";
-            done
-            exit 1;
-          fi
+    uses: sapphiredev/.github/.github/workflows/reusable-yarn-job.yml@main
+    with:
+      script-name: gen-index --parallel -- --check
