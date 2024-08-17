@@ -46,7 +46,7 @@ class ModuleFile {
 	public generateExportSpecifiers(): ts.ExportSpecifier[] {
 		return this.exports.types
 			.concat(this.exportInclusions.useNormal ? this.exports.normal : [])
-			.map((node) => ts.getNameOfDeclaration(node)!.getText(this.sourceFile)!)
+			.map((node) => ts.getNameOfDeclaration(node)!.getText(this.sourceFile))
 			.map((name) => ts.factory.createExportSpecifier(false, undefined, name));
 	}
 
@@ -104,7 +104,7 @@ function parseExternalExports(sourceFile: ts.SourceFile): ts.ExportDeclaration[]
 	const normal: ts.ExportDeclaration[] = [];
 	sourceFile.forEachChild((node) => {
 		if (!ts.isExportDeclaration(node)) return;
-		if (node.moduleSpecifier!.getText(sourceFile)!.includes('./')) return;
+		if (node.moduleSpecifier!.getText(sourceFile).includes('./')) return;
 		normal.push(node);
 	});
 
@@ -128,6 +128,7 @@ async function findIndexOrModules(dir: string, depth: number = 0): Promise<strin
 		} else if (item.isDirectory() && !contents.find((entry) => `${item.name}.ts` === entry.name))
 			results = results.concat(await findIndexOrModules(itemPath, depth + 1));
 	}
+
 	return results;
 }
 
