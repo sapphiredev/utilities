@@ -7,7 +7,6 @@
 **High-capacity raw data storage in UTF-16 strings.**
 
 [![GitHub](https://img.shields.io/github/license/sapphiredev/utilities)](https://github.com/sapphiredev/utilities/blob/main/LICENSE.md)
-[![codecov](https://codecov.io/gh/sapphiredev/utilities/branch/main/graph/badge.svg?token=OEGIV6RFDO)](https://codecov.io/gh/sapphiredev/utilities)
 [![npm bundle size](https://img.shields.io/bundlephobia/min/@sapphire/string-store?logo=webpack&style=flat-square)](https://bundlephobia.com/result?p=@sapphire/string-store)
 [![npm](https://img.shields.io/npm/v/@sapphire/string-store?color=crimson&logo=npm&style=flat-square)](https://www.npmjs.com/package/@sapphire/string-store)
 
@@ -42,20 +41,20 @@ npm install @sapphire/string-store
 const { SchemaStore, Schema, t } = require('@sapphire/string-store');
 
 const Id = {
-  AgeUpdate: 0,
-  StrengthUpdate: 1,
-  Planet: 2,
-  User: 3
+	AgeUpdate: 0,
+	StrengthUpdate: 1,
+	Planet: 2,
+	User: 3
 };
 
 // Create the store
 const store = new SchemaStore()
-  // Add a schema with an age field stored as a int32:
-  // Schema<Id.AgeUpdate, { age: number }>
-  .add(new Schema(Id.AgeUpdate).int32('age'))
-  // Add a schema with a strength field stored as a float32:
-  // Schema<Id.StrengthUpdate, { strength: number }>
-  .add(new Schema(Id.StrengthUpdate).float32('strength'));
+	// Add a schema with an age field stored as a int32:
+	// Schema<Id.AgeUpdate, { age: number }>
+	.add(new Schema(Id.AgeUpdate).int32('age'))
+	// Add a schema with a strength field stored as a float32:
+	// Schema<Id.StrengthUpdate, { strength: number }>
+	.add(new Schema(Id.StrengthUpdate).float32('strength'));
 
 // Serialize an `Id.AgeUpdate` object into a string containing:
 // - The schema ID (0)
@@ -65,11 +64,12 @@ const buffer = store.serialize(Id.AgeUpdate, { age: 20 }).toString();
 
 > [!Tip]
 > The serialized string is encoded in UTF-16, meaning it can store 16 bits per character. Each type stores a different number of bits, for example, a single character can store:
-> - 16 booleans
-> - 8 2-bit unsigned integers (0-3)
-> - 4 4-bit unsigned integers (0-15)
-> - 2 8-bit unsigned integers (0-255)
-> - 1 16-bit integer (0-65535)
+>
+> -   16 booleans
+> -   8 2-bit unsigned integers (0-3)
+> -   4 4-bit unsigned integers (0-15)
+> -   2 8-bit unsigned integers (0-255)
+> -   1 16-bit integer (0-65535)
 >
 > As a use-case, Discord's `custom_id` field in message components can store up to **100** UTF-16 characters, which means it has a storage of **1600 bits**, below you can see the supported types and their storage in bits. Keep in mind that the schema ID is stored as a [16-bit](#int16) integer, and that the property names are **not** stored.
 

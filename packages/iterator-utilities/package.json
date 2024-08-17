@@ -23,7 +23,7 @@
 		"prepack": "yarn build",
 		"bump": "cliff-jumper",
 		"check-update": "cliff-jumper --dry-run",
-		"gen-index": "tsx ../../scripts/gen-index.cts -w iterator-utilities"
+		"gen-index": "tsx ../../scripts/gen-index.cts iterator-utilities --write"
 	},
 	"repository": {
 		"type": "git",

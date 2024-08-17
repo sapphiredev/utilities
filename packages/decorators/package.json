@@ -28,7 +28,7 @@
 		"prepack": "yarn build",
 		"bump": "cliff-jumper",
 		"check-update": "cliff-jumper --dry-run",
-		"gen-index": "tsx ../../scripts/gen-index.cts -w decorators"
+		"gen-index": "tsx ../../scripts/gen-index.cts decorators --write"
 	},
 	"dependencies": {
 		"tslib": "^2.6.3"

@@ -1,12 +1,13 @@
-import { readdir, writeFile } from 'node:fs/promises';
+import { readdir, readFile, writeFile } from 'node:fs/promises';
 import { join, parse, relative, resolve, type ParsedPath } from 'node:path';
 import { sep as posixSep } from 'node:path/posix';
 import { sep as winSep } from 'node:path/win32';
 import ts from 'typescript';
 
 const PRINTER = ts.createPrinter({ newLine: ts.NewLineKind.LineFeed });
-const WRITE_MODE = process.argv.includes('-w');
-const PACKAGE_NAME = process.argv.at(WRITE_MODE ? 3 : 2);
+const WRITE_MODE = process.argv.includes('--write');
+const CHECK_MODE = process.argv.includes('--check');
+const PACKAGE_NAME = process.argv[2];
 
 function isExported(node: ts.Declaration): boolean {
 	return (ts.getCombinedModifierFlags(node) & ts.ModifierFlags.Export) > 0;
@@ -152,9 +153,16 @@ async function processPackage(packageDir: string): Promise<string> {
 
 async function main() {
 	const packageDir = resolve(__dirname, `../packages/${PACKAGE_NAME}/src`);
-	const [indexPath, result] = [join(packageDir, 'index.ts'), await processPackage(packageDir)];
+	const indexPath = join(packageDir, 'index.ts');
+	const [currentFile, result] = [await readFile(join(packageDir, 'index.ts'), { encoding: 'utf-8' }), await processPackage(packageDir)];
 
-	if (WRITE_MODE) return writeFile(indexPath, result);
+	if (CHECK_MODE && currentFile !== result) {
+		console.error(`Index file for ${PACKAGE_NAME} is out of date.`);
+		process.exit(1);
+	} else if (WRITE_MODE) {
+		return writeFile(indexPath, result);
+	}
+
 	return console.log(result);
 }
 

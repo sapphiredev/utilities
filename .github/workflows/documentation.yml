@@ -8,48 +8,18 @@ on:
       - '**'
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
+  group: ${{ github.workspace }}|${{ github.head_ref || github.ref }}
   cancel-in-progress: true
 
 jobs:
-  build:
-    name: Build Documentation
-    runs-on: ubuntu-latest
-    if: github.repository_owner == 'sapphiredev'
-    outputs:
-      NAME: ${{ steps.env.outputs.NAME }}
-      TYPE: ${{ steps.env.outputs.TYPE }}
-      SHA: ${{ steps.env.outputs.SHA }}
-    steps:
-      - name: Checkout Project
-        uses: actions/checkout@v4
-      - name: Use Node.js v20
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: yarn
-          registry-url: https://registry.yarnpkg.org/
-      - name: Install Dependencies
-        run: yarn --immutable
-      - name: Build Packages
-        run: yarn build
-      - name: Build Documentation
-        run: yarn docs
-      - name: Upload Documentation Artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: docs
-          path: packages/*/docs/api.json
-      - name: Set Output
-        id: env
-        run: |
-          echo "NAME=${GITHUB_REF_NAME}" >> $GITHUB_OUTPUT
-          echo "TYPE=${GITHUB_REF_TYPE}" >> $GITHUB_OUTPUT
-          echo "SHA=${GITHUB_SHA}" >> $GITHUB_OUTPUT
+  docgen:
+    uses: sapphiredev/.github/.github/workflows/reusable-documentation-docgen.yml@main
+    with:
+      mono-repo: true
 
   upload:
-    name: Upload Documentation
-    needs: build
+    needs: docgen
+    uses: sapphiredev/.github/.github/workflows/reusable-documentation-upload.yml@main
     strategy:
       max-parallel: 1
       fail-fast: false
@@ -77,77 +47,13 @@ jobs:
           - timer-manager
           - timestamp
           - utilities
-    runs-on: ubuntu-latest
-    env:
-      NAME: ${{ needs.build.outputs.NAME }}
-      TYPE: ${{ needs.build.outputs.TYPE }}
-      SHA: ${{ needs.build.outputs.SHA }}
-    steps:
-      - name: Checkout Project
-        uses: actions/checkout@v4
-      - name: Use Node.js v20
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: yarn
-          registry-url: https://registry.yarnpkg.org/
-      - name: Install Dependencies
-        run: yarn --immutable
-      - name: Download Documentation Artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: docs
-          path: docs
-      - name: Checkout Documentation Project
-        uses: actions/checkout@v4
-        with:
-          repository: 'sapphiredev/docs'
-          token: ${{ secrets.SKYRA_TOKEN }}
-          path: 'out'
-
-      - name: Extract Package and Semver
-        if: ${{ env.TYPE == 'tag' }}
-        id: extract-tag
-        uses: ./scripts/formatTag
-        with:
-          tag: ${{ env.NAME }}
-      - name: Move Documentation
-        if: ${{ env.TYPE == 'tag' && matrix.package == steps.extract-tag.outputs.package }}
-        env:
-          PACKAGE: ${{ steps.extract-tag.outputs.package }}
-          SEMVER: ${{ steps.extract-tag.outputs.semver }}
-        run: |
-          mkdir -p out/docs/utilities/${PACKAGE}
-          mv docs/${PACKAGE}/docs/api.json out/docs/utilities/${PACKAGE}/${SEMVER}.json
-
-      - name: Move Documentation
-        if: ${{ env.TYPE == 'branch' }}
-        env:
-          PACKAGE: ${{ matrix.package }}
-        run: |
-          mkdir -p out/docs/utilities/${PACKAGE}
-          mv docs/${PACKAGE}/docs/api.json out/docs/utilities/${PACKAGE}/${NAME}.json
-
-      - name: Commit & Push
-        uses: nick-fields/retry@v3
-        env:
-          PACKAGE: ${{ steps.extract-tag.outputs.package || matrix.package }}
-        with:
-          max_attempts: 3
-          retry_on: error
-          timeout_minutes: 1
-          command: |
-            cd out
-            git add .
-            if git diff-index --quiet HEAD --; then
-              echo "No changes to commit, exiting with code 0"
-              exit 0;
-            else
-              git config user.name github-actions[bot]
-              git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-              git config rebase.autostash true
-              git config pull.rebase true
-              git commit -m "docs(${PACKAGE}): build for ${TYPE} ${NAME}: ${SHA}" || true
-              git pull
-              git push
-            fi
+    with:
+      project-name: utilities
+      mono-repo: true
+      name: ${{ needs.docgen.outputs.NAME }}
+      type: ${{ needs.docgen.outputs.TYPE }}
+      sha: ${{ needs.docgen.outputs.SHA }}
+      package: ${{ matrix.package }}
+      artifact-id: ${{ needs.docgen.outputs.artifact-id }}
+    secrets:
+      SKYRA_TOKEN: ${{ secrets.SKYRA_TOKEN }}

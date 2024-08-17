@@ -31,7 +31,7 @@
 		"prepack": "yarn build",
 		"bump": "cliff-jumper",
 		"check-update": "cliff-jumper --dry-run",
-		"gen-index": "tsx ../../scripts/gen-index.cts -w discord-utilities"
+		"gen-index": "tsx ../../scripts/gen-index.cts discord-utilities --write"
 	},
 	"repository": {
 		"type": "git",

@@ -31,7 +31,7 @@
 		"prepack": "yarn build",
 		"bump": "cliff-jumper",
 		"check-update": "cliff-jumper --dry-run",
-		"gen-index": "tsx ../../scripts/gen-index.cts -w fetch"
+		"gen-index": "tsx ../../scripts/gen-index.cts fetch --write"
 	},
 	"repository": {
 		"type": "git",
