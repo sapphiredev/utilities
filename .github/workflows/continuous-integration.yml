@@ -46,6 +46,7 @@ jobs:
     name: Tests
     uses: sapphiredev/.github/.github/workflows/reusable-tests.yml@main
     with:
+      build: true
       enable-sonar: true
     secrets:
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
