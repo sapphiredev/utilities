@@ -62,7 +62,7 @@
 		"access": "public"
 	},
 	"dependencies": {
-		"discord-api-types": "^0.37.93"
+		"discord-api-types": "^0.37.94"
 	},
 	"devDependencies": {
 		"@favware/cliff-jumper": "^4.0.3",
