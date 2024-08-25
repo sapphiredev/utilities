@@ -173,7 +173,7 @@ export class Snowflake {
 	 * @returns The UNIX timestamp that is stored in `id`.
 	 */
 	public timestampFrom(id: string | bigint): number {
-		return Number((BigInt(id) >> 22n) + this[EpochSymbol]);
+		return Math.floor(Number(id) / 2 ** 22) + Number(this[EpochSymbol]);
 	}
 
 	/**
