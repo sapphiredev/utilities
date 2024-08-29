@@ -17,7 +17,7 @@
 		"update": "yarn upgrade-interactive",
 		"check-update": "turbo run check-update",
 		"gen-index": "turbo run gen-index",
-		"au:twemojis": "tsx --tsconfig ./scripts/tsconfig.json ./scripts/twemoji-regex-updater.cts"
+		"au:twemojis": "tsx --tsconfig ./scripts/tsconfig.json ./scripts/twemoji-regex-updater.mts"
 	},
 	"devDependencies": {
 		"@commitlint/cli": "^19.4.0",
