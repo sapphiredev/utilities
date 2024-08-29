@@ -1,6 +1,5 @@
 import { green } from 'colorette';
 import { rm, writeFile } from 'node:fs/promises';
-import { resolve } from 'node:path';
 import { fileURLToPath, URL } from 'node:url';
 import { fetch } from 'undici';
 
