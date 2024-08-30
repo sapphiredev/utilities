@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/discord-utilities@3.4.0](https://github.com/sapphiredev/utilities/compare/@sapphire/discord-utilities@3.3.0...@sapphire/discord-utilities@3.4.0) - (2024-08-30)
+
+## 🐛 Bug Fixes
+
+- **deps:** Update all non-major dependencies ([083376a](https://github.com/sapphiredev/utilities/commit/083376aac55094dbeddb5194e8a8f0d794b8cceb)) ([#763](https://github.com/sapphiredev/utilities/pull/763) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([e7fdc5d](https://github.com/sapphiredev/utilities/commit/e7fdc5db3632a7f90292ef3978898da32730343a)) ([#752](https://github.com/sapphiredev/utilities/pull/752) by @renovate[bot])
+
+## 🚀 Features
+
+- Clonable TwemojiRegex ([f3243e6](https://github.com/sapphiredev/utilities/commit/f3243e677c1581efd3b4bb39144503af973edf46)) ([#794](https://github.com/sapphiredev/utilities/pull/794) by @vladfrangu)
+
 # [@sapphire/discord-utilities@3.3.0](https://github.com/sapphiredev/utilities/compare/@sapphire/discord-utilities@3.2.3...@sapphire/discord-utilities@3.3.0) - (2024-05-22)
 
 ## 🚀 Features
