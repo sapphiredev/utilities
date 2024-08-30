@@ -1,7 +1,6 @@
 import { green } from 'colorette';
 import { rm, writeFile } from 'node:fs/promises';
-import { resolve } from 'node:path';
-import { URL } from 'node:url';
+import { fileURLToPath, URL } from 'node:url';
 import { fetch } from 'undici';
 
 async function importFileFromWeb({ url, temporaryFileName }: { url: string; temporaryFileName: string }) {
@@ -29,13 +28,24 @@ async function main() {
 		'export const TwemojiRegex =',
 		'\t'
 	].join('\n');
-	const fileSuffix = [';', ''].join('\n');
+	const fileSuffix = [
+		';',
+		'',
+		`/**
+ * Creates a fresh instance of the Twemoji regex, which is useful if you don't want to worry about the effects of a global regex and the lastIndex
+ * @returns A clone of the Twemoji regex
+ */
+export function createTwemojiRegex(): RegExp {
+	return new RegExp(TwemojiRegex);
+}`,
+		''
+	].join('\n');
 
-	const twemojiRegexFileUrl = resolve(__dirname, '../packages/discord-utilities/src/lib/TwemojiRegex.ts');
+	const twemojiRegexFileUrl = fileURLToPath(new URL('../packages/discord-utilities/src/lib/TwemojiRegex.ts', import.meta.url));
 
 	const { default: regexFromWeb } = await importFileFromWeb({
 		url: 'https://raw.githubusercontent.com/twitter/twemoji-parser/master/src/lib/regex.js',
-		temporaryFileName: 'regex.mjs'
+		temporaryFileName: './regex.mjs'
 	});
 
 	await writeFile(twemojiRegexFileUrl, `${filePrefix}${regexFromWeb}${fileSuffix}`);
