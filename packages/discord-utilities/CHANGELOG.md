@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/discord-utilities@3.4.1](https://github.com/sapphiredev/utilities/compare/@sapphire/discord-utilities@3.4.0...@sapphire/discord-utilities@3.4.1) - (2024-09-05)
+
+## 🏠 Refactor
+
+- **discord-utilities:** Switch to jdecked twemoji fork ([855b323](https://github.com/sapphiredev/utilities/commit/855b323fc8b4c6afb76578758518c53de01c61a8)) ([#797](https://github.com/sapphiredev/utilities/pull/797) by @SerenModz21)
+
 # [@sapphire/discord-utilities@3.4.0](https://github.com/sapphiredev/utilities/compare/@sapphire/discord-utilities@3.3.0...@sapphire/discord-utilities@3.4.0) - (2024-08-30)
 
 ## 🐛 Bug Fixes
