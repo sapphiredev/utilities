@@ -5,8 +5,36 @@ on:
   workflow_dispatch:
     inputs:
       package:
-        description: The package to release, this should be the path segment after packages/, without the @sapphire/ prefix
+        description: The package to release
         required: true
+        type: choice
+        options:
+          - async-queue
+          - bitfield
+          - cron
+          - decorators
+          - discord-utilities
+          - discord.js-utilities
+          - duration
+          - eslint-config
+          - eslint-plugin-result
+          - event-iterator
+          - fetch
+          - iterator-utilities
+          - lexure
+          - node-utilities
+          - phisherman
+          - prettier-config
+          - ratelimits
+          - result
+          - snowflake
+          - stopwatch
+          - string-store
+          - time-utilities
+          - timer-manager
+          - timestamp
+          - ts-config
+          - utilities
       skip-automatic-bump:
         description: Whether to skip the automatic bumping of the packageversion
         required: false
