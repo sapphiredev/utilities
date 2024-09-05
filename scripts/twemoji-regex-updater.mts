@@ -23,7 +23,7 @@ async function main() {
 	const filePrefix = [
 		'/**',
 		' * Regex that can capture a Twemoji (Twitter Emoji)',
-		' * @raw {@linkplain https://github.com/twitter/twemoji-parser/blob/master/src/lib/regex.js See official source code}',
+		' * @raw {@linkplain https://github.com/jdecked/twemoji-parser/blob/main/src/lib/regex.js See official source code}',
 		' */',
 		'export const TwemojiRegex =',
 		'\t'
@@ -44,7 +44,7 @@ export function createTwemojiRegex(): RegExp {
 	const twemojiRegexFileUrl = fileURLToPath(new URL('../packages/discord-utilities/src/lib/TwemojiRegex.ts', import.meta.url));
 
 	const { default: regexFromWeb } = await importFileFromWeb({
-		url: 'https://raw.githubusercontent.com/twitter/twemoji-parser/master/src/lib/regex.js',
+		url: 'https://raw.githubusercontent.com/jdecked/twemoji-parser/main/src/lib/regex.js',
 		temporaryFileName: './regex.mjs'
 	});
 
