@@ -27,7 +27,7 @@ import {
 	type User
 } from 'discord.js';
 import { MessageBuilder } from '../builders/MessageBuilder';
-import { isAnyInteraction, isGuildBasedChannel, isMessageInstance, isStageChannel } from '../type-guards';
+import { isAnyInteraction, isGuildBasedChannel, isMessageInstance, isTextBasedChannel } from '../type-guards';
 import type { AnyInteractableInteraction } from '../utility-types';
 import type {
 	EmbedResolvable,
@@ -1451,7 +1451,7 @@ export class PaginatedMessage {
 					ephemeral: false
 				});
 			}
-		} else if (!isStageChannel(messageOrInteraction.channel)) {
+		} else if (isTextBasedChannel(messageOrInteraction.channel)) {
 			this.response = await messageOrInteraction.channel.send({ ...page, content: page.content ?? undefined });
 		}
 	}

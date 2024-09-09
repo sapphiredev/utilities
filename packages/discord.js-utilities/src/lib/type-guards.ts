@@ -155,11 +155,18 @@ export function isPrivateThreadChannel(channel: ChannelTypes | Nullish): channel
  * Checks whether a given channel is a {@link TextBasedChannelTypes}. This means it has a `send` method.
  * @param channel The channel to check.
  */
-export function isTextBasedChannel(channel: ChannelTypes | Nullish): channel is TextBasedChannelTypes {
-	if (isNullish(channel) || isStageChannel(channel)) return false;
+export function isTextBasedChannel(channel: ChannelTypes | Nullish): channel is Exclude<TextBasedChannelTypes, StageChannel | PartialGroupDMChannel> {
+	if (
+		isNullish(channel) || //
+		channel.partial ||
+		isGroupChannel(channel as Channel | PartialDMChannel | Nullish) ||
+		isStageChannel(channel)
+	) {
+		return false;
+	}
 
 	// eslint-disable-next-line @typescript-eslint/unbound-method
-	return !isNullish((channel as Exclude<TextBasedChannelTypes, StageChannel>).send);
+	return !isNullish((channel as Exclude<TextBasedChannelTypes, StageChannel | PartialGroupDMChannel>).send);
 }
 
 /**
