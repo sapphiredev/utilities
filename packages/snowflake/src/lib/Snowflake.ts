@@ -1,5 +1,6 @@
 const IncrementSymbol = Symbol('@sapphire/snowflake.increment');
 const EpochSymbol = Symbol('@sapphire/snowflake.epoch');
+const EpochNumberSymbol = Symbol('@sapphire/snowflake.epoch.number');
 const ProcessIdSymbol = Symbol('@sapphire/snowflake.processId');
 const WorkerIdSymbol = Symbol('@sapphire/snowflake.workerId');
 
@@ -17,6 +18,8 @@ export const MaximumProcessId = 0b11111n;
  * The maximum value the `increment` field accepts in snowflakes.
  */
 export const MaximumIncrement = 0b111111111111n;
+
+const TimestampFieldDivisor = 2 ** 22;
 
 /**
  * A class for generating and deconstructing Twitter snowflakes.
@@ -45,6 +48,12 @@ export class Snowflake {
 	private readonly [EpochSymbol]: bigint;
 
 	/**
+	 * Internal reference of the epoch passed in the constructor as a number
+	 * @internal
+	 */
+	private readonly [EpochNumberSymbol]: number;
+
+	/**
 	 * Internal incrementor for generating snowflakes
 	 * @internal
 	 */
@@ -67,13 +76,21 @@ export class Snowflake {
 	 */
 	public constructor(epoch: number | bigint | Date) {
 		this[EpochSymbol] = BigInt(epoch instanceof Date ? epoch.getTime() : epoch);
+		this[EpochNumberSymbol] = Number(this[EpochSymbol]);
 	}
 
 	/**
-	 * The epoch for this snowflake
+	 * The epoch for this snowflake, as a bigint
 	 */
 	public get epoch(): bigint {
 		return this[EpochSymbol];
+	}
+
+	/**
+	 * The epoch for this snowflake, as a number
+	 */
+	public get epochNumber(): number {
+		return this[EpochNumberSymbol];
 	}
 
 	/**
@@ -173,7 +190,7 @@ export class Snowflake {
 	 * @returns The UNIX timestamp that is stored in `id`.
 	 */
 	public timestampFrom(id: string | bigint): number {
-		return Number((BigInt(id) >> 22n) + this[EpochSymbol]);
+		return Math.floor(Number(id) / TimestampFieldDivisor) + this[EpochNumberSymbol];
 	}
 
 	/**
