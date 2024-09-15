@@ -66,13 +66,13 @@
 	"devDependencies": {
 		"@favware/cliff-jumper": "^4.1.0",
 		"@types/jsdom": "^21.1.7",
-		"@vitest/coverage-v8": "^2.0.5",
+		"@vitest/coverage-v8": "^2.1.1",
 		"jsdom": "^25.0.0",
 		"tsup": "^8.2.4",
-		"tsx": "^4.19.0",
+		"tsx": "^4.19.1",
 		"typedoc": "^0.25.13",
 		"typedoc-json-parser": "^10.0.0",
 		"typescript": "~5.4.5",
-		"vitest": "^2.0.5"
+		"vitest": "^2.1.1"
 	}
 }
