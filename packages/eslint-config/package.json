@@ -27,7 +27,7 @@
 	"dependencies": {
 		"@typescript-eslint/eslint-plugin": "^7.13.1",
 		"@typescript-eslint/parser": "^7.13.1",
-		"eslint": "^8.57.0",
+		"eslint": "^8.57.1",
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-prettier": "^5.2.1",
 		"prettier": "^3.3.3",
@@ -64,7 +64,7 @@
 	"devDependencies": {
 		"@favware/cliff-jumper": "^4.1.0",
 		"@vitest/coverage-v8": "^2.1.1",
-		"tsup": "^8.2.4",
+		"tsup": "^8.3.0",
 		"typedoc-json-parser": "^10.0.0",
 		"vitest": "^2.1.1"
 	}
