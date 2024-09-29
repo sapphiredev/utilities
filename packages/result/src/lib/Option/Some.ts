@@ -17,11 +17,11 @@ export class OptionSome<T> implements IOption<T> {
 		return true;
 	}
 
-	public isSomeAnd<R extends boolean>(cb: (value: T) => R): R {
+	public isSomeAnd<R extends boolean>(cb: (value: T) => R): this is OptionSome<T> & R {
 		return cb(this.value);
 	}
 
-	public isNone(): false {
+	public isNone(): this is OptionNone & false {
 		return false;
 	}
 
@@ -159,7 +159,7 @@ export class OptionSome<T> implements IOption<T> {
 	}
 
 	public async intoPromise(): Promise<OptionSome<Awaited<T>>> {
-		return createSome(await this.value);
+		return createSome(await this.value); // NOSONAR
 	}
 
 	public eq(other: OptionNone): false;

@@ -1,5 +1,5 @@
 import type { Awaitable } from '../common/utils';
-import type { Option } from '../Option';
+import type { Option, Some } from '../Option';
 import { createErr, type ResultErr } from '../Result/Err';
 import { createOk, type ResultOk } from '../Result/Ok';
 import type { IOption } from './IOption';
@@ -7,11 +7,11 @@ import { OptionError } from './OptionError';
 import type { OptionSome } from './Some';
 
 export class OptionNone implements IOption<any> {
-	public isSome(): false {
+	public isSome(): this is Some<any> & false {
 		return false;
 	}
 
-	public isSomeAnd(cb?: (value: never) => boolean): false;
+	public isSomeAnd(cb?: (value: never) => boolean): this is Some<any> & false;
 	public isSomeAnd(): false {
 		return false;
 	}
@@ -108,7 +108,7 @@ export class OptionNone implements IOption<any> {
 	}
 
 	public filter(predicate: (value: never) => boolean): OptionNone;
-	public filter(): OptionNone {
+	public filter(): this {
 		return this;
 	}
 
@@ -118,12 +118,12 @@ export class OptionNone implements IOption<any> {
 	}
 
 	public zip(other: Option<any>): OptionNone;
-	public zip(): OptionNone {
+	public zip(): this {
 		return this;
 	}
 
 	public zipWith(other: Option<any>, f: (s: never, o: never) => any): OptionNone;
-	public zipWith(): OptionNone {
+	public zipWith(): this {
 		return this;
 	}
 
@@ -135,7 +135,7 @@ export class OptionNone implements IOption<any> {
 		return createOk(this);
 	}
 
-	public flatten(): OptionNone {
+	public flatten(): this {
 		return this;
 	}
 
