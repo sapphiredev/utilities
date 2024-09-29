@@ -1,9 +1,5 @@
 import { setTimeout as sleep } from 'node:timers/promises';
-import { err, none, ok, Option, Result, ResultError, some } from '../src/index';
-import type { OptionNone } from '../src/lib/Option/None';
-import type { OptionSome } from '../src/lib/Option/Some';
-import type { ResultErr } from '../src/lib/Result/Err';
-import type { ResultOk } from '../src/lib/Result/Ok';
+import { err, none, ok, Option, Result, ResultError, some, type Err, type None, type Ok, type Some } from '../src/index';
 import { error, makeThrow } from './shared';
 
 describe('Result', () => {
@@ -16,7 +12,7 @@ describe('Result', () => {
 
 			test('GIVEN err THEN always returns false', () => {
 				const x = err('Some error message');
-				expect<false>(x.isOk()).toBe(false);
+				expect<boolean>(x.isOk()).toBe(false);
 			});
 		});
 
@@ -45,7 +41,7 @@ describe('Result', () => {
 				const x = err('Some error message');
 				const cb = vi.fn((value: number) => value > 1);
 
-				expect<false>(x.isOkAnd(cb)).toBe(false);
+				expect<boolean>(x.isOkAnd(cb)).toBe(false);
 				expect(cb).not.toHaveBeenCalled();
 			});
 		});
@@ -53,7 +49,7 @@ describe('Result', () => {
 		describe('isErr', () => {
 			test('GIVEN ok THEN returns false', () => {
 				const x = ok(42);
-				expect<false>(x.isErr()).toBe(false);
+				expect<boolean>(x.isErr()).toBe(false);
 			});
 
 			test('GIVEN err THEN returns true', () => {
@@ -98,13 +94,13 @@ describe('Result', () => {
 			test('GIVEN ok THEN returns some', () => {
 				const x = ok(2);
 
-				expect<OptionSome<number>>(x.ok()).toEqual(some(2));
+				expect<Some<number>>(x.ok()).toEqual(some(2));
 			});
 
 			test('GIVEN err THEN returns none', () => {
 				const x = err('Some error message');
 
-				expect<OptionNone>(x.ok()).toEqual(none);
+				expect<None>(x.ok()).toEqual(none);
 			});
 		});
 
@@ -112,13 +108,13 @@ describe('Result', () => {
 			test('GIVEN ok THEN returns none', () => {
 				const x = ok(2);
 
-				expect<OptionNone>(x.err()).toEqual(none);
+				expect<None>(x.err()).toEqual(none);
 			});
 
 			test('GIVEN err THEN returns some', () => {
 				const x = err('Some error message');
 
-				expect<OptionSome<string>>(x.err()).toEqual(Option.some('Some error message'));
+				expect<Some<string>>(x.err()).toEqual(Option.some('Some error message'));
 			});
 		});
 
@@ -127,7 +123,7 @@ describe('Result', () => {
 				const x = ok(2);
 				const cb = vi.fn((value: number) => value > 1);
 
-				expect<ResultOk<boolean>>(x.map(cb)).toEqual(ok(true));
+				expect<Ok<boolean>>(x.map(cb)).toEqual(ok(true));
 				expect(cb).toHaveBeenCalledTimes(1);
 				expect(cb).toHaveBeenCalledWith(2);
 				expect(cb).toHaveLastReturnedWith(true);
@@ -147,7 +143,7 @@ describe('Result', () => {
 				const x = ok(2);
 				const cb = vi.fn((value: number) => ok(value > 1));
 
-				expect<ResultOk<boolean>>(x.mapInto(cb)).toEqual(ok(true));
+				expect<Ok<boolean>>(x.mapInto(cb)).toEqual(ok(true));
 				expect(cb).toHaveBeenCalledTimes(1);
 				expect(cb).toHaveBeenCalledWith(2);
 				expect(cb).toHaveLastReturnedWith(ok(true));
@@ -574,7 +570,7 @@ describe('Result', () => {
 				const a = vi.fn(square);
 				const b = vi.fn(wrapErr);
 
-				expect<ResultOk<number>>(x.orElse(a).orElse(b)).toEqual(ok(9));
+				expect<Ok<number>>(x.orElse(a).orElse(b)).toEqual(ok(9));
 				expect(a).toHaveBeenCalledTimes(1);
 				expect(a).toHaveBeenCalledWith(3);
 				expect(a).toHaveLastReturnedWith(ok(9));
@@ -586,7 +582,7 @@ describe('Result', () => {
 				const a = vi.fn(wrapErr);
 				const b = vi.fn(wrapErr);
 
-				expect<ResultErr<number>>(x.orElse(a).orElse(b)).toEqual(err(3));
+				expect<Err<number>>(x.orElse(a).orElse(b)).toEqual(err(3));
 				expect(a).toHaveBeenCalledTimes(1);
 				expect(a).toHaveBeenCalledWith(3);
 				expect(a).toHaveLastReturnedWith(err(3));
@@ -660,13 +656,13 @@ describe('Result', () => {
 			test('GIVEN Ok<Ok<T>> THEN returns Ok<T>', () => {
 				const x = ok(ok('Hello'));
 
-				expect<ResultOk<string>>(x.flatten()).toEqual(ok('Hello'));
+				expect<Ok<string>>(x.flatten()).toEqual(ok('Hello'));
 			});
 
 			test('GIVEN Ok<Err<E>> THEN returns Err<E>', () => {
 				const x = ok(err(6));
 
-				expect<ResultErr<number>>(x.flatten()).toEqual(err(6));
+				expect<Err<number>>(x.flatten()).toEqual(err(6));
 			});
 
 			test('GIVEN Err<E> THEN returns Err<E>', () => {
@@ -694,13 +690,13 @@ describe('Result', () => {
 			test('GIVEN ok(Promise(s)) THEN returns Promise(ok(s))', async () => {
 				const x = ok(Promise.resolve(3));
 
-				await expect<Promise<ResultOk<number>>>(x.intoPromise()).resolves.toEqual(ok(3));
+				await expect<Promise<Ok<number>>>(x.intoPromise()).resolves.toEqual(ok(3));
 			});
 
 			test('GIVEN err(Promise(e)) THEN returns Promise(err(e))', async () => {
 				const x = err(Promise.resolve(3));
 
-				await expect<Promise<ResultErr<number>>>(x.intoPromise()).resolves.toEqual(err(3));
+				await expect<Promise<Err<number>>>(x.intoPromise()).resolves.toEqual(err(3));
 			});
 		});
 
@@ -824,7 +820,7 @@ describe('Result', () => {
 			const x = ok(42);
 
 			expect<boolean>(x.isOk()).toBe(true);
-			expect<false>(x.isErr()).toBe(false);
+			expect<boolean>(x.isErr()).toBe(false);
 		});
 	});
 
@@ -832,7 +828,7 @@ describe('Result', () => {
 		test('GIVEN err THEN returns { isOk->false, isErr->true }', () => {
 			const x = err(new Error());
 
-			expect<false>(x.isOk()).toBe(false);
+			expect<boolean>(x.isOk()).toBe(false);
 			expect<boolean>(x.isErr()).toBe(true);
 		});
 	});

@@ -18,15 +18,15 @@ export class ResultOk<T> implements IResult<T, any> {
 		return true;
 	}
 
-	public isOkAnd<R extends boolean>(cb: (value: T) => R): R {
+	public isOkAnd<R extends boolean>(cb: (value: T) => R): this is ResultOk<T> & R {
 		return cb(this.value);
 	}
 
-	public isErr(): false {
+	public isErr(): this is ResultErr<any> {
 		return false;
 	}
 
-	public isErrAnd(cb?: (error: never) => boolean): false;
+	public isErrAnd<R extends boolean>(cb: (error: any) => R): this is ResultErr<any> & R;
 	public isErrAnd(): false {
 		return false;
 	}
@@ -166,7 +166,7 @@ export class ResultOk<T> implements IResult<T, any> {
 	}
 
 	public async intoPromise(): Promise<ResultOk<Awaited<T>>> {
-		return createOk(await this.value);
+		return createOk(await this.value); // NOSONAR
 	}
 
 	public eq(other: ResultErr<any>): false;

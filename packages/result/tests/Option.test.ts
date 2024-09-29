@@ -1,9 +1,5 @@
 import { setTimeout as sleep } from 'node:timers/promises';
-import { err, none, ok, Option, OptionError, some } from '../src/index';
-import type { None } from '../src/lib/Option/None';
-import type { Some } from '../src/lib/Option/Some';
-import type { Err } from '../src/lib/Result/Err';
-import type { Ok } from '../src/lib/Result/Ok';
+import { err, none, ok, Option, OptionError, some, type Err, type None, type Ok, type Some } from '../src/index';
 import { error, makeThrow } from './shared';
 
 describe('Option', () => {
@@ -16,7 +12,7 @@ describe('Option', () => {
 
 			test('GIVEN none THEN always returns false', () => {
 				const x = none;
-				expect<false>(x.isSome()).toBe(false);
+				expect<boolean>(x.isSome()).toBe(false);
 			});
 		});
 
@@ -53,7 +49,7 @@ describe('Option', () => {
 		describe('isNone', () => {
 			test('GIVEN some THEN always returns false', () => {
 				const x = some(2);
-				expect<false>(x.isNone()).toBe(false);
+				expect<boolean>(x.isNone()).toBe(false);
 			});
 
 			test('GIVEN none THEN always returns true', () => {
