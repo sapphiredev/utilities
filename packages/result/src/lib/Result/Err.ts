@@ -13,11 +13,11 @@ export class ResultErr<E> implements IResult<any, E> {
 		this.error = error;
 	}
 
-	public isOk(): this is ResultOk<any> & false {
+	public isOk(): this is ResultOk<any> {
 		return false;
 	}
 
-	public isOkAnd<R extends boolean>(cb: (value: any) => R): this is ResultOk<any> & R & false;
+	public isOkAnd<R extends boolean>(cb: (value: any) => R): this is ResultOk<any> & R;
 	public isOkAnd(): false {
 		return false;
 	}

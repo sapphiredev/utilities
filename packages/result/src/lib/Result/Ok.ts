@@ -22,11 +22,11 @@ export class ResultOk<T> implements IResult<T, any> {
 		return cb(this.value);
 	}
 
-	public isErr(): this is ResultErr<any> & false {
+	public isErr(): this is ResultErr<any> {
 		return false;
 	}
 
-	public isErrAnd<R extends boolean>(cb: (error: any) => R): this is ResultErr<any> & R & false;
+	public isErrAnd<R extends boolean>(cb: (error: any) => R): this is ResultErr<any> & R;
 	public isErrAnd(): false {
 		return false;
 	}

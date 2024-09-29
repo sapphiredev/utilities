@@ -1,5 +1,5 @@
 import type { Awaitable } from '../common/utils';
-import type { Option, Some } from '../Option';
+import type { Option } from '../Option';
 import { createErr, type ResultErr } from '../Result/Err';
 import { createOk, type ResultOk } from '../Result/Ok';
 import type { IOption } from './IOption';
@@ -7,11 +7,11 @@ import { OptionError } from './OptionError';
 import type { OptionSome } from './Some';
 
 export class OptionNone implements IOption<any> {
-	public isSome(): this is Some<any> & false {
+	public isSome(): this is OptionSome<any> {
 		return false;
 	}
 
-	public isSomeAnd(cb?: (value: never) => boolean): this is Some<any> & false;
+	public isSomeAnd(cb?: (value: never) => boolean): this is OptionSome<any>;
 	public isSomeAnd(): false {
 		return false;
 	}
@@ -107,7 +107,7 @@ export class OptionNone implements IOption<any> {
 		return option.isSome() ? option : this;
 	}
 
-	public filter(predicate: (value: never) => boolean): OptionNone;
+	public filter(predicate: (value: never) => boolean): this;
 	public filter(): this {
 		return this;
 	}
@@ -117,21 +117,21 @@ export class OptionNone implements IOption<any> {
 		return false;
 	}
 
-	public zip(other: Option<any>): OptionNone;
+	public zip(other: Option<any>): this;
 	public zip(): this {
 		return this;
 	}
 
-	public zipWith(other: Option<any>, f: (s: never, o: never) => any): OptionNone;
+	public zipWith(other: Option<any>, f: (s: never, o: never) => any): this;
 	public zipWith(): this {
 		return this;
 	}
 
-	public unzip(): [OptionNone, OptionNone] {
+	public unzip(): [this, this] {
 		return [this, this];
 	}
 
-	public transpose(): ResultOk<OptionNone> {
+	public transpose(): ResultOk<this> {
 		return createOk(this);
 	}
 

@@ -21,7 +21,7 @@ export class OptionSome<T> implements IOption<T> {
 		return cb(this.value);
 	}
 
-	public isNone(): this is OptionNone & false {
+	public isNone(): this is OptionNone {
 		return false;
 	}
 
