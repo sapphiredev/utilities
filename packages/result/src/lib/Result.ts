@@ -15,7 +15,7 @@ const SuccessProperty = Symbol.for('@sapphire/result:Result.success');
  *
  * @see {@link https://doc.rust-lang.org/std/result/index.html}
  */
-export class Result<T, E, const Success extends boolean = true | false> {
+export class Result<T, E, const Success extends boolean = boolean> {
 	/**
 	 * Branded value to ensure `Success` is typed correctly.
 	 * @internal
