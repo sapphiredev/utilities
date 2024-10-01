@@ -31,5 +31,3 @@ export function dropLast<const ElementType>(iterable: IterableResolvable<Element
 	if (array.length <= count) return empty();
 	return take(array.values(), array.length - count);
 }
-
-export { dropLast as skipLast };
