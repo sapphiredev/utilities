@@ -41,5 +41,3 @@ export function* dropWhile<const ElementType>(
 		}
 	}
 }
-
-export { dropWhile as skipWhile };

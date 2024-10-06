@@ -1,5 +1,5 @@
+import { collect } from './collect';
 import type { IterableResolvable } from './from';
-import { toIterableIterator } from './toIterableIterator';
 
 /**
  * Consumes the iterable and returns a new iterable with the elements in reverse order.
@@ -23,11 +23,7 @@ import { toIterableIterator } from './toIterableIterator';
  * This function collects all elements of the provided iterator into an array before yielding them in reverse order.
  */
 export function* reverse<const ElementType>(iterable: IterableResolvable<ElementType>): IterableIterator<ElementType> {
-	const items: ElementType[] = [];
-	for (const item of toIterableIterator(iterable)) {
-		items.push(item);
-	}
-
+	const items = collect(iterable);
 	for (let i = items.length - 1; i >= 0; i--) {
 		yield items[i];
 	}

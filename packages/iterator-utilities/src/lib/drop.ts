@@ -35,5 +35,3 @@ export function drop<const ElementType>(iterable: IterableResolvable<ElementType
 
 	return resolvedIterable;
 }
-
-export { drop as skip };
