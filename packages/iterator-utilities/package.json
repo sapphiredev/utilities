@@ -75,6 +75,26 @@
 			},
 			"browser": "./dist/iife/index.global.js"
 		},
+		"./all": {
+			"import": {
+				"types": "./dist/esm/lib/all.d.mts",
+				"default": "./dist/esm/lib/all.mjs"
+			},
+			"require": {
+				"types": "./dist/cjs/lib/all.d.cts",
+				"default": "./dist/cjs/lib/all.cjs"
+			}
+		},
+		"./any": {
+			"import": {
+				"types": "./dist/esm/lib/any.d.mts",
+				"default": "./dist/esm/lib/any.mjs"
+			},
+			"require": {
+				"types": "./dist/cjs/lib/any.d.cts",
+				"default": "./dist/cjs/lib/any.cjs"
+			}
+		},
 		"./append": {
 			"import": {
 				"types": "./dist/esm/lib/append.d.mts",
@@ -125,6 +145,26 @@
 				"default": "./dist/cjs/lib/chunk.cjs"
 			}
 		},
+		"./collect": {
+			"import": {
+				"types": "./dist/esm/lib/collect.d.mts",
+				"default": "./dist/esm/lib/collect.mjs"
+			},
+			"require": {
+				"types": "./dist/cjs/lib/collect.d.cts",
+				"default": "./dist/cjs/lib/collect.cjs"
+			}
+		},
+		"./collectInto": {
+			"import": {
+				"types": "./dist/esm/lib/collectInto.d.mts",
+				"default": "./dist/esm/lib/collectInto.mjs"
+			},
+			"require": {
+				"types": "./dist/cjs/lib/collectInto.d.cts",
+				"default": "./dist/cjs/lib/collectInto.cjs"
+			}
+		},
 		"./compact": {
 			"import": {
 				"types": "./dist/esm/lib/compact.d.mts",
@@ -133,6 +173,36 @@
 			"require": {
 				"types": "./dist/cjs/lib/compact.d.cts",
 				"default": "./dist/cjs/lib/compact.cjs"
+			}
+		},
+		"./comparators": {
+			"import": {
+				"types": "./dist/esm/lib/shared/comparators.d.mts",
+				"default": "./dist/esm/lib/shared/comparators.mjs"
+			},
+			"require": {
+				"types": "./dist/cjs/lib/shared/comparators.d.cts",
+				"default": "./dist/cjs/lib/shared/comparators.cjs"
+			}
+		},
+		"./compare": {
+			"import": {
+				"types": "./dist/esm/lib/compare.d.mts",
+				"default": "./dist/esm/lib/compare.mjs"
+			},
+			"require": {
+				"types": "./dist/cjs/lib/compare.d.cts",
+				"default": "./dist/cjs/lib/compare.cjs"
+			}
+		},
+		"./compareBy": {
+			"import": {
+				"types": "./dist/esm/lib/compareBy.d.mts",
+				"default": "./dist/esm/lib/compareBy.mjs"
+			},
+			"require": {
+				"types": "./dist/cjs/lib/compareBy.d.cts",
+				"default": "./dist/cjs/lib/compareBy.cjs"
 			}
 		},
 		"./compress": {
@@ -245,6 +315,26 @@
 				"default": "./dist/cjs/lib/enumerate.cjs"
 			}
 		},
+		"./equal": {
+			"import": {
+				"types": "./dist/esm/lib/equal.d.mts",
+				"default": "./dist/esm/lib/equal.mjs"
+			},
+			"require": {
+				"types": "./dist/cjs/lib/equal.d.cts",
+				"default": "./dist/cjs/lib/equal.cjs"
+			}
+		},
+		"./equalBy": {
+			"import": {
+				"types": "./dist/esm/lib/equalBy.d.mts",
+				"default": "./dist/esm/lib/equalBy.mjs"
+			},
+			"require": {
+				"types": "./dist/cjs/lib/equalBy.d.cts",
+				"default": "./dist/cjs/lib/equalBy.cjs"
+			}
+		},
 		"./every": {
 			"import": {
 				"types": "./dist/esm/lib/every.d.mts",
@@ -345,6 +435,36 @@
 				"default": "./dist/cjs/lib/from.cjs"
 			}
 		},
+		"./fuse": {
+			"import": {
+				"types": "./dist/esm/lib/fuse.d.mts",
+				"default": "./dist/esm/lib/fuse.mjs"
+			},
+			"require": {
+				"types": "./dist/cjs/lib/fuse.d.cts",
+				"default": "./dist/cjs/lib/fuse.cjs"
+			}
+		},
+		"./greaterOrEqualThan": {
+			"import": {
+				"types": "./dist/esm/lib/greaterOrEqualThan.d.mts",
+				"default": "./dist/esm/lib/greaterOrEqualThan.mjs"
+			},
+			"require": {
+				"types": "./dist/cjs/lib/greaterOrEqualThan.d.cts",
+				"default": "./dist/cjs/lib/greaterOrEqualThan.cjs"
+			}
+		},
+		"./greaterThan": {
+			"import": {
+				"types": "./dist/esm/lib/greaterThan.d.mts",
+				"default": "./dist/esm/lib/greaterThan.mjs"
+			},
+			"require": {
+				"types": "./dist/cjs/lib/greaterThan.d.cts",
+				"default": "./dist/cjs/lib/greaterThan.cjs"
+			}
+		},
 		"./indexOf": {
 			"import": {
 				"types": "./dist/esm/lib/indexOf.d.mts",
@@ -353,6 +473,16 @@
 			"require": {
 				"types": "./dist/cjs/lib/indexOf.d.cts",
 				"default": "./dist/cjs/lib/indexOf.cjs"
+			}
+		},
+		"./inspect": {
+			"import": {
+				"types": "./dist/esm/lib/inspect.d.mts",
+				"default": "./dist/esm/lib/inspect.mjs"
+			},
+			"require": {
+				"types": "./dist/cjs/lib/inspect.d.cts",
+				"default": "./dist/cjs/lib/inspect.cjs"
 			}
 		},
 		"./intersect": {
@@ -365,6 +495,16 @@
 				"default": "./dist/cjs/lib/intersect.cjs"
 			}
 		},
+		"./intersperse": {
+			"import": {
+				"types": "./dist/esm/lib/intersperse.d.mts",
+				"default": "./dist/esm/lib/intersperse.mjs"
+			},
+			"require": {
+				"types": "./dist/cjs/lib/intersperse.d.cts",
+				"default": "./dist/cjs/lib/intersperse.cjs"
+			}
+		},
 		"./isEmpty": {
 			"import": {
 				"types": "./dist/esm/lib/isEmpty.d.mts",
@@ -375,6 +515,36 @@
 				"default": "./dist/cjs/lib/isEmpty.cjs"
 			}
 		},
+		"./isSorted": {
+			"import": {
+				"types": "./dist/esm/lib/isSorted.d.mts",
+				"default": "./dist/esm/lib/isSorted.mjs"
+			},
+			"require": {
+				"types": "./dist/cjs/lib/isSorted.d.cts",
+				"default": "./dist/cjs/lib/isSorted.cjs"
+			}
+		},
+		"./isSortedBy": {
+			"import": {
+				"types": "./dist/esm/lib/isSortedBy.d.mts",
+				"default": "./dist/esm/lib/isSortedBy.mjs"
+			},
+			"require": {
+				"types": "./dist/cjs/lib/isSortedBy.d.cts",
+				"default": "./dist/cjs/lib/isSortedBy.cjs"
+			}
+		},
+		"./isSortedByKey": {
+			"import": {
+				"types": "./dist/esm/lib/isSortedByKey.d.mts",
+				"default": "./dist/esm/lib/isSortedByKey.mjs"
+			},
+			"require": {
+				"types": "./dist/cjs/lib/isSortedByKey.d.cts",
+				"default": "./dist/cjs/lib/isSortedByKey.cjs"
+			}
+		},
 		"./last": {
 			"import": {
 				"types": "./dist/esm/lib/last.d.mts",
@@ -383,6 +553,26 @@
 			"require": {
 				"types": "./dist/cjs/lib/last.d.cts",
 				"default": "./dist/cjs/lib/last.cjs"
+			}
+		},
+		"./lessOrEqualThan": {
+			"import": {
+				"types": "./dist/esm/lib/lessOrEqualThan.d.mts",
+				"default": "./dist/esm/lib/lessOrEqualThan.mjs"
+			},
+			"require": {
+				"types": "./dist/cjs/lib/lessOrEqualThan.d.cts",
+				"default": "./dist/cjs/lib/lessOrEqualThan.cjs"
+			}
+		},
+		"./lessThan": {
+			"import": {
+				"types": "./dist/esm/lib/lessThan.d.mts",
+				"default": "./dist/esm/lib/lessThan.mjs"
+			},
+			"require": {
+				"types": "./dist/cjs/lib/lessThan.d.cts",
+				"default": "./dist/cjs/lib/lessThan.cjs"
 			}
 		},
 		"./map": {
@@ -405,6 +595,26 @@
 				"default": "./dist/cjs/lib/max.cjs"
 			}
 		},
+		"./maxBy": {
+			"import": {
+				"types": "./dist/esm/lib/maxBy.d.mts",
+				"default": "./dist/esm/lib/maxBy.mjs"
+			},
+			"require": {
+				"types": "./dist/cjs/lib/maxBy.d.cts",
+				"default": "./dist/cjs/lib/maxBy.cjs"
+			}
+		},
+		"./maxByKey": {
+			"import": {
+				"types": "./dist/esm/lib/maxByKey.d.mts",
+				"default": "./dist/esm/lib/maxByKey.mjs"
+			},
+			"require": {
+				"types": "./dist/cjs/lib/maxByKey.d.cts",
+				"default": "./dist/cjs/lib/maxByKey.cjs"
+			}
+		},
 		"./min": {
 			"import": {
 				"types": "./dist/esm/lib/min.d.mts",
@@ -413,6 +623,46 @@
 			"require": {
 				"types": "./dist/cjs/lib/min.d.cts",
 				"default": "./dist/cjs/lib/min.cjs"
+			}
+		},
+		"./minBy": {
+			"import": {
+				"types": "./dist/esm/lib/minBy.d.mts",
+				"default": "./dist/esm/lib/minBy.mjs"
+			},
+			"require": {
+				"types": "./dist/cjs/lib/minBy.d.cts",
+				"default": "./dist/cjs/lib/minBy.cjs"
+			}
+		},
+		"./minByKey": {
+			"import": {
+				"types": "./dist/esm/lib/minByKey.d.mts",
+				"default": "./dist/esm/lib/minByKey.mjs"
+			},
+			"require": {
+				"types": "./dist/cjs/lib/minByKey.d.cts",
+				"default": "./dist/cjs/lib/minByKey.cjs"
+			}
+		},
+		"./notEqual": {
+			"import": {
+				"types": "./dist/esm/lib/notEqual.d.mts",
+				"default": "./dist/esm/lib/notEqual.mjs"
+			},
+			"require": {
+				"types": "./dist/cjs/lib/notEqual.d.cts",
+				"default": "./dist/cjs/lib/notEqual.cjs"
+			}
+		},
+		"./nth": {
+			"import": {
+				"types": "./dist/esm/lib/nth.d.mts",
+				"default": "./dist/esm/lib/nth.mjs"
+			},
+			"require": {
+				"types": "./dist/cjs/lib/nth.d.cts",
+				"default": "./dist/cjs/lib/nth.cjs"
 			}
 		},
 		"./omit": {
@@ -447,12 +697,12 @@
 		},
 		"./position": {
 			"import": {
-				"types": "./dist/esm/lib/indexOf.d.mts",
-				"default": "./dist/esm/lib/indexOf.mjs"
+				"types": "./dist/esm/lib/position.d.mts",
+				"default": "./dist/esm/lib/position.mjs"
 			},
 			"require": {
-				"types": "./dist/cjs/lib/indexOf.d.cts",
-				"default": "./dist/cjs/lib/indexOf.cjs"
+				"types": "./dist/cjs/lib/position.d.cts",
+				"default": "./dist/cjs/lib/position.cjs"
 			}
 		},
 		"./prepend": {
@@ -517,32 +767,32 @@
 		},
 		"./skip": {
 			"import": {
-				"types": "./dist/esm/lib/drop.d.mts",
-				"default": "./dist/esm/lib/drop.mjs"
+				"types": "./dist/esm/lib/skip.d.mts",
+				"default": "./dist/esm/lib/skip.mjs"
 			},
 			"require": {
-				"types": "./dist/cjs/lib/drop.d.cts",
-				"default": "./dist/cjs/lib/drop.cjs"
+				"types": "./dist/cjs/lib/skip.d.cts",
+				"default": "./dist/cjs/lib/skip.cjs"
 			}
 		},
 		"./skipLast": {
 			"import": {
-				"types": "./dist/esm/lib/dropLast.d.mts",
-				"default": "./dist/esm/lib/dropLast.mjs"
+				"types": "./dist/esm/lib/skipLast.d.mts",
+				"default": "./dist/esm/lib/skipLast.mjs"
 			},
 			"require": {
-				"types": "./dist/cjs/lib/dropLast.d.cts",
-				"default": "./dist/cjs/lib/dropLast.cjs"
+				"types": "./dist/cjs/lib/skipLast.d.cts",
+				"default": "./dist/cjs/lib/skipLast.cjs"
 			}
 		},
 		"./skipWhile": {
 			"import": {
-				"types": "./dist/esm/lib/dropWhile.d.mts",
-				"default": "./dist/esm/lib/dropWhile.mjs"
+				"types": "./dist/esm/lib/skipWhile.d.mts",
+				"default": "./dist/esm/lib/skipWhile.mjs"
 			},
 			"require": {
-				"types": "./dist/cjs/lib/dropWhile.d.cts",
-				"default": "./dist/cjs/lib/dropWhile.cjs"
+				"types": "./dist/cjs/lib/skipWhile.d.cts",
+				"default": "./dist/cjs/lib/skipWhile.cjs"
 			}
 		},
 		"./slice": {
@@ -585,6 +835,16 @@
 				"default": "./dist/cjs/lib/starMap.cjs"
 			}
 		},
+		"./stepBy": {
+			"import": {
+				"types": "./dist/esm/lib/stepBy.d.mts",
+				"default": "./dist/esm/lib/stepBy.mjs"
+			},
+			"require": {
+				"types": "./dist/cjs/lib/stepBy.d.cts",
+				"default": "./dist/cjs/lib/stepBy.cjs"
+			}
+		},
 		"./sum": {
 			"import": {
 				"types": "./dist/esm/lib/sum.d.mts",
@@ -613,6 +873,16 @@
 			"require": {
 				"types": "./dist/cjs/lib/takeLast.d.cts",
 				"default": "./dist/cjs/lib/takeLast.cjs"
+			}
+		},
+		"./takeWhile": {
+			"import": {
+				"types": "./dist/esm/lib/takeWhile.d.mts",
+				"default": "./dist/esm/lib/takeWhile.mjs"
+			},
+			"require": {
+				"types": "./dist/cjs/lib/takeWhile.d.cts",
+				"default": "./dist/cjs/lib/takeWhile.cjs"
 			}
 		},
 		"./tee": {
@@ -687,7 +957,7 @@
 		}
 	},
 	"sideEffects": [
-		"./dist/esm/chunk-G5GHKT7C.mjs",
+		"./dist/esm/chunk-PAWJFY3S.mjs",
 		"./dist/iife/index.global.js"
 	]
 }

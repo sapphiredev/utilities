@@ -46,7 +46,7 @@ async function main() {
 		if (name === 'index') continue;
 		if (name.startsWith('_')) continue;
 
-		if (name === 'debounce') {
+		if (packageName === 'utilities' && name === 'debounce') {
 			exportMap.set(`./${name}`, {
 				import: {
 					types: `./dist/esm/lib/debounce/${name}.d.mts`,
@@ -55,6 +55,17 @@ async function main() {
 				require: {
 					types: `./dist/cjs/lib/debounce/${name}.d.cts`,
 					default: `./dist/cjs/lib/debounce/${name}.cjs`
+				}
+			});
+		} else if (packageName === 'iterator-utilities' && name === 'comparators') {
+			exportMap.set(`./${name}`, {
+				import: {
+					types: `./dist/esm/lib/shared/${name}.d.mts`,
+					default: `./dist/esm/lib/shared/${name}.mjs`
+				},
+				require: {
+					types: `./dist/cjs/lib/shared/${name}.d.cts`,
+					default: `./dist/cjs/lib/shared/${name}.cjs`
 				}
 			});
 		} else {
