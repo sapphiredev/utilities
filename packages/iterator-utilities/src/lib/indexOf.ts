@@ -33,5 +33,3 @@ export function indexOf<const ElementType>(iterable: IterableResolvable<ElementT
 
 	return -1;
 }
-
-export { indexOf as position };

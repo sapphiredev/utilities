@@ -1,19 +1,19 @@
 import { min } from '../src';
 
 describe('min', () => {
-	test('GIVEN iterable with numbers THEN returns the minimum value', () => {
+	test('GIVEN iterable with numbers THEN returns the lexicographic minimum value', () => {
 		const iterable = [5, 2, 8, 1, 10];
 		const result = min(iterable);
 		expect(result).toBe(1);
 	});
 
-	test('GIVEN iterable with negative numbers THEN returns the minimum value', () => {
+	test('GIVEN iterable with negative numbers THEN returns the lexicographic minimum value', () => {
 		const iterable = [-5, -2, -8, -1, -10];
 		const result = min(iterable);
-		expect(result).toBe(-10);
+		expect(result).toBe(-1);
 	});
 
-	test('GIVEN iterable with mixed positive and negative numbers THEN returns the minimum value', () => {
+	test('GIVEN iterable with mixed positive and negative numbers THEN returns the lexicographic minimum value', () => {
 		const iterable = [-5, 2, -8, 1, -10];
 		const result = min(iterable);
 		expect(result).toBe(-10);
@@ -31,9 +31,9 @@ describe('min', () => {
 		expect(result).toBeNull();
 	});
 
-	test('GIVEN iterable with strings THEN throws TypeError', () => {
+	test('GIVEN iterable with strings THEN returns the lexicographic minimum value', () => {
 		const iterable = ['a', 'e', 'c', 'b', 'd'];
-		// @ts-expect-error Testing invalid input
-		expect(() => min(iterable)).toThrow(new TypeError('a must be a non-NaN number'));
+		const result = min(iterable);
+		expect(result).toBe('a');
 	});
 });
