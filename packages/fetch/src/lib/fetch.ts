@@ -188,7 +188,7 @@ export async function fetch(url: URL | string, options?: RequestOptions | FetchR
  * @param value - The value to check.
  * @returns A boolean indicating whether the value should be stringified as JSON.
  */
-function shouldJsonStringify(value: unknown) {
+function shouldJsonStringify(value: unknown): boolean {
 	// If the value is not an object, it should not be stringified
 	if (typeof value !== 'object') return false;
 	// Buffers should not be stringified
