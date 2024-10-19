@@ -9,8 +9,16 @@ describe('roundNumber', () => {
 		expect(roundNumber(5.3346353526)).toEqual(5);
 	});
 
-	test('GIVEN number with decimals that round up THEN returns floored number + 1', () => {
+	test('GIVEN number with decimals that round up THEN returns ceiled number', () => {
 		expect(roundNumber(5.6556697864)).toEqual(6);
+	});
+
+	test('GIVEN number with decimals that round up THEN returns ceiled number', () => {
+		expect(roundNumber(4.365, 2)).toEqual(4.37);
+	});
+
+	test('GIVEN negative number with decimals that round up THEN returns ceiled number', () => {
+		expect(roundNumber(-4.365, 2)).toEqual(-4.36);
 	});
 
 	test('GIVEN number with positive exponent THEN returns exponent scaled number', () => {

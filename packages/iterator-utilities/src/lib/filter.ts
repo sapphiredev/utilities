@@ -37,5 +37,3 @@ export function* filter<ElementType>(
 		if (callbackFn(value, index++)) yield value;
 	}
 }
-
-export { filter as takeWhile };
