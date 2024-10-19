@@ -202,6 +202,8 @@ function shouldJsonStringify(value: unknown) {
 	if (value.constructor === Object) return true;
 	// Has toJSON method
 	if ('toJSON' in value && typeof value.toJSON === 'function') return true;
+	// Array of items, check if every item in the array is serializable
+	if (Array.isArray(value)) return value.every(shouldJsonStringify);
 
 	// Anything else (such as streams or unserializables)
 	return false;
