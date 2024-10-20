@@ -719,14 +719,14 @@ describe('Result', () => {
 				const x = ok(3);
 				const y = err(3);
 
-				expect<false>(x.eq(y)).toBe(false);
+				expect<boolean>(x.eq(y)).toBe(false);
 			});
 
 			test('GIVEN x=err(e), y=ok(t) THEN always returns false', () => {
 				const x = err(3);
 				const y = ok(3);
 
-				expect<false>(x.eq(y)).toBe(false);
+				expect<boolean>(x.eq(y)).toBe(false);
 			});
 
 			test('GIVEN x=err(e), y=err(e) THEN returns true', () => {
@@ -763,14 +763,14 @@ describe('Result', () => {
 				const x = ok(3);
 				const y = err(3);
 
-				expect<true>(x.ne(y)).toBe(true);
+				expect<boolean>(x.ne(y)).toBe(true);
 			});
 
 			test('GIVEN x=err(e), y=ok(t) THEN always returns true', () => {
 				const x = err(3);
 				const y = ok(3);
 
-				expect<true>(x.ne(y)).toBe(true);
+				expect<boolean>(x.ne(y)).toBe(true);
 			});
 
 			test('GIVEN x=err(e), y=err(e) THEN returns false', () => {
@@ -881,7 +881,7 @@ describe('Result', () => {
 			['() => throw E', makeThrow],
 			['() => Promise.reject(E)', () => Promise.reject(error)],
 			['() => Err(E)', () => err(error)],
-			['() => Promise.reject(Err(E))', () => Promise.reject(err(error))]
+			['() => Promise.reject(Err(E))', () => Promise.reject(err(error))] // NOSONAR
 		])('GIVEN fromAsync(%s) THEN returns Err(E)', async (_, resolvable) => {
 			let x = await fromAsync(resolvable);
 
@@ -939,6 +939,16 @@ describe('Result', () => {
 			const c: Result<bigint, string> = err('Error!');
 
 			expect<Expected>(Result.any([a, b, c])).toEqual(err(['Not a number!', 'Not a boolean!', 'Error!']));
+		});
+	});
+
+	describe('@@toStringTag', () => {
+		test('GIVEN Some THEN returns "Some"', () => {
+			expect<string>(ok(1)[Symbol.toStringTag]).toBe('Ok');
+		});
+
+		test('GIVEN None THEN returns "None"', () => {
+			expect<string>(err(1)[Symbol.toStringTag]).toBe('Err');
 		});
 	});
 
