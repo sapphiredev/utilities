@@ -52,7 +52,7 @@
 		"access": "public"
 	},
 	"devDependencies": {
-		"@favware/cliff-jumper": "^4.1.0",
+		"@favware/cliff-jumper": "^5.0.0",
 		"@typescript-eslint/rule-tester": "^7.13.1",
 		"@typescript-eslint/typescript-estree": "^7.13.1",
 		"@vitest/coverage-v8": "^2.1.3",
