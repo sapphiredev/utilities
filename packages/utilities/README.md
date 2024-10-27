@@ -83,6 +83,7 @@
             -   [`NonNullableProperties`](#nonnullableproperties)
             -   [`NonNullObject`](#nonnullobject)
             -   [`AnyObject`](#anyobject)
+            -   [`PrettifyObject`](#prettifyobject)
             -   [`PickByValue`](#pickbyvalue)
             -   [`Mutable`](#mutable)
             -   [`StrictRequired`](#strictrequired)
@@ -794,6 +795,28 @@ const bar: AnyObject = null;
 
 // ❌
 const baz: AnyObject = undefined;
+```
+
+##### `PrettifyObject`
+
+An utility type that fuses intersections of objects.
+
+```ts
+type Objects = {
+  foo: string;
+  bar: number;
+} & {
+  hello: boolean;
+  world: bigint;
+};
+
+type PrettyObjects = PrettifyObject<Objects>;
+// {
+//   foo: string;
+//   bar: number;
+//   hello: boolean;
+//   world: bigint
+// }
 ```
 
 ##### `PickByValue`
