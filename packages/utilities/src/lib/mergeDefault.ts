@@ -1,6 +1,6 @@
 import { deepClone } from './deepClone';
 import { isObject } from './isObject';
-import type { DeepRequired, NonNullObject } from './types';
+import type { DeepRequired } from './types';
 
 /**
  * Deep merges 2 objects. Properties from the second parameter are applied to the first.
@@ -40,7 +40,7 @@ import type { DeepRequired, NonNullObject } from './types';
  * mergeDefault(base, overwrites) // { a: { b: 5 } };
  * ```
  */
-export function mergeDefault<A extends NonNullObject, B extends Partial<A>>(base: A, overwrites?: B): DeepRequired<A & B> {
+export function mergeDefault<A extends object, B extends Partial<A>>(base: A, overwrites?: B): DeepRequired<A & B> {
 	// If no overwrites are specified then deep clone the base
 	if (!overwrites) return deepClone(base) as DeepRequired<A & B>;
 
@@ -50,7 +50,7 @@ export function mergeDefault<A extends NonNullObject, B extends Partial<A>>(base
 		if (typeof overwritesValueAtBaseKey === 'undefined') {
 			Reflect.set(overwrites, baseKey, deepClone(baseValue));
 		} else if (isObject(overwritesValueAtBaseKey)) {
-			Reflect.set(overwrites, baseKey, mergeDefault((baseValue ?? {}) as NonNullObject, overwritesValueAtBaseKey));
+			Reflect.set(overwrites, baseKey, mergeDefault((baseValue ?? {}) as object, overwritesValueAtBaseKey));
 		}
 	}
 

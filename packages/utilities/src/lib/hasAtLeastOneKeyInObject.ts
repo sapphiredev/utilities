@@ -1,5 +1,4 @@
 import { isNullish } from './isNullOrUndefined';
-import type { NonNullObject } from './types';
 
 /**
  * Checks whether any of the {@link keys} are in the {@link obj}
@@ -14,9 +13,6 @@ import type { NonNullObject } from './types';
  * console.log(hasAtLeastOneKeyInObject(obj, ['d'])); // false
  * ```
  */
-export function hasAtLeastOneKeyInObject<T extends NonNullObject, K extends PropertyKey>(
-	obj: T,
-	keys: readonly K[]
-): obj is T & { [key in K]-?: unknown } {
+export function hasAtLeastOneKeyInObject<T extends object, K extends PropertyKey>(obj: T, keys: readonly K[]): obj is T & { [key in K]-?: unknown } {
 	return !isNullish(obj) && keys.some((key) => Object.hasOwn(obj, key));
 }

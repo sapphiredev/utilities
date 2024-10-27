@@ -1,5 +1,4 @@
 import { isNullOrUndefinedOrEmpty } from './isNullOrUndefinedOrEmpty';
-import type { AnyObject } from './types';
 
 /**
  * Flattens an object to a list of its keys, traversing deeply into nested objects and arrays of objects.
@@ -12,12 +11,12 @@ import type { AnyObject } from './types';
  * @param options The options with which to customize the output of this function
  * @returns An array of strings holding the keys of the object
  */
-export function getDeepObjectKeys<T>(obj: AnyObject<T>, options?: GetDeepObjectKeysOptions): string[] {
+export function getDeepObjectKeys(obj: object, options?: GetDeepObjectKeysOptions): string[] {
 	return [...getDeepObjectKeysGenerator(obj, options)];
 }
 
-function* getDeepObjectKeysGenerator<T>(
-	obj: AnyObject<T>,
+function* getDeepObjectKeysGenerator(
+	obj: object,
 	{ arrayKeysIndexStyle = 'dotted' }: GetDeepObjectKeysOptions = { arrayKeysIndexStyle: 'dotted' }
 ): Generator<string> {
 	if (Array.isArray(obj)) {

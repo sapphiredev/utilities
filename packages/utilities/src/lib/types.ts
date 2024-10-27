@@ -113,6 +113,8 @@ export type NonNullableProperties<T = unknown> = {
 
 /**
  * An object that is non nullable, to bypass TypeScript not easily working with `Record<PropertyKey, unknown>` in various instances.
+ *
+ * @deprecated Use the `object` type instead.
  */
 // eslint-disable-next-line @typescript-eslint/ban-types
 export type NonNullObject = {} & object;
@@ -122,6 +124,8 @@ export type NonNullObject = {} & object;
  * that leads to unexpected type resolutions.
  *
  * Note that this is still a strictly typed type, it is not simply aliasing `any`
+ *
+ * @deprecated Use the `object` type instead.
  */
 export type AnyObject<T> = {
 	[K in keyof T]: T[K];
@@ -194,7 +198,7 @@ export type PickByValue<T, V> = {
  * ```
  */
 export type Mutable<T> = {
-	-readonly [P in keyof T]: T[P] extends Array<unknown> | NonNullObject ? Mutable<T[P]> : T[P];
+	-readonly [P in keyof T]: T[P] extends Array<unknown> | object ? Mutable<T[P]> : T[P];
 };
 
 /**

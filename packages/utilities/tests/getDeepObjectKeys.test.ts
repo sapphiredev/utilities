@@ -1,4 +1,4 @@
-import { getDeepObjectKeys, type GetDeepObjectKeysOptions, type NonNullObject } from '../src';
+import { getDeepObjectKeys, type GetDeepObjectKeysOptions } from '../src';
 
 describe('getDeepObjectKeys', () => {
 	const scenarios: Scenario[] = [
@@ -19,4 +19,4 @@ describe('getDeepObjectKeys', () => {
 	});
 });
 
-type Scenario = [NonNullObject, GetDeepObjectKeysOptions, string[]];
+type Scenario = [object, GetDeepObjectKeysOptions, string[]];

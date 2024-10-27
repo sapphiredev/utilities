@@ -81,8 +81,8 @@
             -   [`Awaitable`](#awaitable)
             -   [`Nullish`](#nullish)
             -   [`NonNullableProperties`](#nonnullableproperties)
-            -   [`NonNullObject`](#nonnullobject)
-            -   [`AnyObject`](#anyobject)
+            -   [`NonNullObject`](#nonnullobject-deprecated)
+            -   [`AnyObject`](#anyobject-deprecated)
             -   [`PrettifyObject`](#prettifyobject)
             -   [`PickByValue`](#pickbyvalue)
             -   [`Mutable`](#mutable)
@@ -767,7 +767,7 @@ interface Foo {
 declare const foo: NonNullableProperties<Foo>;
 ```
 
-##### `NonNullObject`
+##### `NonNullObject` (deprecated)
 
 A type that represents an object that is not `null` or `undefined`.
 
@@ -782,7 +782,7 @@ const bar: NonNullObject = null;
 const baz: NonNullObject = undefined;
 ```
 
-##### `AnyObject`
+##### `AnyObject` (deprecated)
 
 An object that can have any structure. Similar to `NonNullObject`, and to be used as an alternative if the aforementioned type leads to unexpected behaviors.
 
