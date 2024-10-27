@@ -152,7 +152,7 @@ export type AnyObject<T> = {
  */
 export type PrettifyObject<T extends object> = {
 	[K in keyof T]: T[K];
-}
+};
 
 /**
  * Gets all the keys (as a string union) from a type `T` that match value `V`
