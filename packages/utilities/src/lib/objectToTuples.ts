@@ -1,12 +1,11 @@
 import { isObject } from './isObject';
-import type { AnyObject } from './types';
 
 /**
  * Convert an object to a tuple
  * @param obj The object to convert
  * @param prefix The prefix for the key
  */
-export function objectToTuples<T>(obj: AnyObject<T>, prefix = ''): [keyof T, T[keyof T]][] {
+export function objectToTuples<T extends object>(obj: T, prefix = ''): [keyof T, T[keyof T]][] {
 	const entries: [keyof T, T[keyof T]][] = [];
 
 	for (const [key, value] of Object.entries(obj)) {
