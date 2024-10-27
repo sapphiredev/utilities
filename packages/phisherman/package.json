@@ -61,7 +61,7 @@
 		"access": "public"
 	},
 	"devDependencies": {
-		"@favware/cliff-jumper": "^4.1.0",
+		"@favware/cliff-jumper": "^5.0.0",
 		"@sapphire/result": "workspace:^",
 		"esbuild-plugin-version-injector": "^1.2.1",
 		"tsup": "^8.3.0",

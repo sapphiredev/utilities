@@ -6,4 +6,5 @@ identifierBase: false
 pushTag: true
 githubRelease: true
 githubReleaseLatest: true
-githubRepo: sapphiredev/utilities
+gitRepo: sapphiredev/utilities
+gitHostVariant: github
