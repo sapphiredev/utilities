@@ -70,8 +70,8 @@
 		"@favware/cliff-jumper": "^5.0.0",
 		"@favware/rollup-type-bundler": "^3.3.0",
 		"concurrently": "^9.0.1",
-		"tsup": "^8.3.0",
-		"tsx": "^4.19.1",
+		"tsup": "^8.3.5",
+		"tsx": "^4.19.2",
 		"typedoc": "^0.25.13",
 		"typedoc-json-parser": "^10.0.0",
 		"typescript": "~5.4.5"
