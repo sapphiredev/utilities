@@ -20,7 +20,6 @@ import {
 	type APIUser,
 	type APIUserInteractionDataResolved
 } from 'discord-api-types/v10';
-import type { RequiredIf } from './_utils';
 
 /**
  * Utility class for resolving command interaction options while working with the raw API.
@@ -366,3 +365,11 @@ type _TypeToOptionMap = {
 type TypeToOptionMap = {
 	[Option in keyof _TypeToOptionMap]: _TypeToOptionMap[Option];
 };
+
+type If<Value extends boolean, TrueResult, FalseResult> = Value extends true
+	? TrueResult
+	: Value extends false
+		? FalseResult
+		: TrueResult | FalseResult;
+
+type RequiredIf<Value extends boolean, ValueType, FallbackType = null> = If<Value, ValueType, ValueType | FallbackType>;
