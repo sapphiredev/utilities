@@ -816,18 +816,40 @@ describe('Result', () => {
 	});
 
 	describe('ok', () => {
-		test('GIVEN ok THEN returns { isOk->true, isErr->false }', () => {
+		test('GIVEN ok without an argument THEN returns Ok<undefined>', () => {
+			const x = ok();
+
+			expectTypeOf(x).toMatchTypeOf<Ok<undefined>>();
+			expectTypeOf(x).toMatchTypeOf<Result<undefined, Error>>();
+			expect<boolean>(x.isOk()).toBe(true);
+			expect<boolean>(x.isErr()).toBe(false);
+		});
+
+		test('GIVEN ok with an argument THEN returns Ok<T>', () => {
 			const x = ok(42);
 
+			expectTypeOf(x).toMatchTypeOf<Ok<number>>();
+			expectTypeOf(x).toMatchTypeOf<Result<number, Error>>();
 			expect<boolean>(x.isOk()).toBe(true);
 			expect<boolean>(x.isErr()).toBe(false);
 		});
 	});
 
 	describe('err', () => {
-		test('GIVEN err THEN returns { isOk->false, isErr->true }', () => {
+		test('GIVEN err without an argument THEN returns Err<undefined>', () => {
+			const x = err();
+
+			expectTypeOf(x).toMatchTypeOf<Err<undefined>>();
+			expectTypeOf(x).toMatchTypeOf<Result<number, undefined>>();
+			expect<boolean>(x.isOk()).toBe(false);
+			expect<boolean>(x.isErr()).toBe(true);
+		});
+
+		test('GIVEN err with an argument THEN returns Err<T>', () => {
 			const x = err(new Error());
 
+			expectTypeOf(x).toMatchTypeOf<Err<Error>>();
+			expectTypeOf(x).toMatchTypeOf<Result<number, Error>>();
 			expect<boolean>(x.isOk()).toBe(false);
 			expect<boolean>(x.isErr()).toBe(true);
 		});

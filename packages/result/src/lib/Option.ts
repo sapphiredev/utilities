@@ -902,6 +902,8 @@ export class Option<T, Exists extends boolean = boolean> {
 	public static readonly none = new Option<any, false>(null, false);
 
 	// eslint-disable-next-line @typescript-eslint/no-invalid-void-type
+	public static some<T = undefined>(this: void, value?: T): Some<T>;
+	// eslint-disable-next-line @typescript-eslint/no-invalid-void-type
 	public static some<T>(this: void, value: T): Some<T> {
 		return new Option<T, true>(value, true);
 	}
