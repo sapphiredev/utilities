@@ -110,9 +110,9 @@ export class Option<T, Exists extends boolean = boolean> {
 	 * @see {@link https://doc.rust-lang.org/std/option/enum.Option.html#method.is_none}
 	 */
 	public isNoneOr<R extends T>(cb: (value: T) => value is R): this is None | Some<R>;
-	public isNoneOr<R extends boolean>(cb: (value: T) => R): this is None & R;
-	public isNoneOr<R extends boolean>(cb: (value: T) => R): this is None & R {
-		return this.isNone() || cb(this[ValueProperty] as T);
+	public isNoneOr<R extends boolean>(cb: (value: T) => R): If<Exists, R, true>;
+	public isNoneOr<R extends boolean>(cb: (value: T) => R): If<Exists, R, true> {
+		return this.match({ some: (value) => cb(value), none: () => true });
 	}
 
 	/**
