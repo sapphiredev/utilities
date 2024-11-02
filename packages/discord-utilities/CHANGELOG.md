@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/discord-utilities@3.4.2](https://github.com/sapphiredev/utilities/compare/@sapphire/discord-utilities@3.4.1...@sapphire/discord-utilities@3.4.2) - (2024-11-02)
+
+## 🏠 Refactor
+
+- Resolve several sonar issues ([ba915f9](https://github.com/sapphiredev/utilities/commit/ba915f93ce0907828ba17b2d5ae009631ceb860d)) ([#823](https://github.com/sapphiredev/utilities/pull/823) by @favna)
+
+## 🐛 Bug Fixes
+
+- Sync discord-api-types to discordjs ([78b9303](https://github.com/sapphiredev/utilities/commit/78b93032a4de14453b0c8717619fa1ef82f6a763))
+- Move browser imports ([100ffb0](https://github.com/sapphiredev/utilities/commit/100ffb0a2471bb9f74cc580d282d11059e1a0a68)) ([#826](https://github.com/sapphiredev/utilities/pull/826) by @kyranet)
+- Update for latest discord.js ([86dab68](https://github.com/sapphiredev/utilities/commit/86dab688e6d56f72b65848028ebb31b90ed8acc0)) ([#799](https://github.com/sapphiredev/utilities/pull/799) by @favna)
+
 # [@sapphire/discord-utilities@3.4.1](https://github.com/sapphiredev/utilities/compare/@sapphire/discord-utilities@3.4.0...@sapphire/discord-utilities@3.4.1) - (2024-09-05)
 
 ## 🏠 Refactor
