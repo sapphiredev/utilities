@@ -1122,26 +1122,33 @@ export class Result<T, E, const Success extends boolean = boolean> {
 export namespace Result {
 	export type Ok<T, E = any> = Result<T, E, true>;
 	export type Err<E, T = any> = Result<T, E, false>;
+	export type Any = Result<any, any>;
+	export type Resolvable<T, E = any, Success extends boolean = boolean> = T | Result<T, E, Success>;
+	export type UnwrapOk<T extends AnyResult> = T extends Ok<infer S> ? S : never;
+	export type UnwrapErr<T extends AnyResult> = T extends Err<infer S> ? S : never;
+
+	export type UnwrapOkArray<T extends readonly AnyResult[] | []> = {
+		-readonly [P in keyof T]: UnwrapOk<T[P]>;
+	};
+	export type UnwrapErrArray<T extends readonly AnyResult[] | []> = {
+		-readonly [P in keyof T]: UnwrapErr<T[P]>;
+	};
 }
-
-export type ResultResolvable<T, E = any, Success extends boolean = boolean> = T | Result<T, E, Success>;
-
-export type Ok<T, E = any> = Result<T, E, true>;
-export type Err<E, T = any> = Result<T, E, false>;
-export type AnyResult = Result<any, any>;
 
 export const { ok, err } = Result;
 
-function resolve<T, E>(value: ResultResolvable<T, E>): Result<T, E> {
+function resolve<T, E>(value: Result.Resolvable<T, E>): Result<T, E> {
 	return Result.isResult(value) ? value : ok(value);
 }
 
-export type UnwrapOk<T extends AnyResult> = T extends Ok<infer S> ? S : never;
-export type UnwrapErr<T extends AnyResult> = T extends Err<infer S> ? S : never;
+export type ResultResolvable<T, E = any, Success extends boolean = boolean> = Result.Resolvable<T, E, Success>;
 
-export type UnwrapOkArray<T extends readonly AnyResult[] | []> = {
-	-readonly [P in keyof T]: UnwrapOk<T[P]>;
-};
-export type UnwrapErrArray<T extends readonly AnyResult[] | []> = {
-	-readonly [P in keyof T]: UnwrapErr<T[P]>;
-};
+export type Ok<T, E = any> = Result.Ok<T, E>;
+export type Err<E, T = any> = Result.Err<E, T>;
+export type AnyResult = Result.Any;
+
+export type UnwrapOk<T extends AnyResult> = Result.UnwrapOk<T>;
+export type UnwrapErr<T extends AnyResult> = Result.UnwrapErr<T>;
+
+export type UnwrapOkArray<T extends readonly AnyResult[] | []> = Result.UnwrapOkArray<T>;
+export type UnwrapErrArray<T extends readonly AnyResult[] | []> = Result.UnwrapErrArray<T>;

@@ -985,23 +985,27 @@ export class Option<T, Exists extends boolean = boolean> {
 export namespace Option {
 	export type Some<T> = Option<T, true>;
 	export type None<T = any> = Option<T, false>;
+	export type Any = Option<any>;
+	export type Resolvable<T, Exists extends boolean = boolean> = T | null | undefined | Option<T, Exists>;
+	export type UnwrapSome<T extends AnyOption> = T extends Some<infer S> ? S : never;
+	export type UnwrapSomeArray<T extends readonly AnyOption[] | []> = {
+		-readonly [P in keyof T]: UnwrapSome<T[P]>;
+	};
 }
-
-export type OptionResolvable<T, Exists extends boolean = boolean> = T | null | undefined | Option<T, Exists>;
-
-export type Some<T> = Option<T, true>;
-export type None<T = any> = Option<T, false>;
-export type AnyOption = Option<any>;
 
 export const { some, none } = Option;
 
-function resolve<T>(value: OptionResolvable<T>): Option<T> {
+function resolve<T>(value: Option.Resolvable<T>): Option<T> {
 	if (value === null || value === undefined) return none;
 	if (Option.isOption(value)) return value;
 	return some(value);
 }
 
-export type UnwrapSome<T extends AnyOption> = T extends Some<infer S> ? S : never;
-export type UnwrapSomeArray<T extends readonly AnyOption[] | []> = {
-	-readonly [P in keyof T]: UnwrapSome<T[P]>;
-};
+export type OptionResolvable<T, Exists extends boolean = boolean> = Option.Resolvable<T, Exists>;
+
+export type Some<T> = Option.Some<T>;
+export type None<T = any> = Option.None<T>;
+export type AnyOption = Option.Any;
+
+export type UnwrapSome<T extends AnyOption> = Option.UnwrapSome<T>;
+export type UnwrapSomeArray<T extends readonly AnyOption[] | []> = Option.UnwrapSomeArray<T>;
