@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/result@2.7.0](https://github.com/sapphiredev/utilities/compare/@sapphire/result@2.6.6...@sapphire/result@2.7.0) - (2024-11-02)
+
+## 🐛 Bug Fixes
+
+- Move browser imports ([100ffb0](https://github.com/sapphiredev/utilities/commit/100ffb0a2471bb9f74cc580d282d11059e1a0a68)) ([#826](https://github.com/sapphiredev/utilities/pull/826) by @kyranet)
+- Resolve build errors ([809c41c](https://github.com/sapphiredev/utilities/commit/809c41cef869bb9095cd630a416981be6870e83a)) ([#806](https://github.com/sapphiredev/utilities/pull/806) by @kyranet)
+- **deps:** Update all non-major dependencies ([083376a](https://github.com/sapphiredev/utilities/commit/083376aac55094dbeddb5194e8a8f0d794b8cceb)) ([#763](https://github.com/sapphiredev/utilities/pull/763) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([e7fdc5d](https://github.com/sapphiredev/utilities/commit/e7fdc5db3632a7f90292ef3978898da32730343a)) ([#752](https://github.com/sapphiredev/utilities/pull/752) by @renovate[bot])
+
+## 📝 Documentation
+
+- **result:** Update readme url for website ([804cc21](https://github.com/sapphiredev/utilities/commit/804cc21e4f71a528b36bcce7ed58d038d3e8ff87))
+
+## 🚀 Features
+
+- **Option:** Add `isNoneOr` ([bb6c889](https://github.com/sapphiredev/utilities/commit/bb6c889127063e8e9eaa6d5808b4bd2fa38cbe92)) ([#824](https://github.com/sapphiredev/utilities/pull/824) by @kyranet)
+- Rewrite `/result` ([4b7c3e6](https://github.com/sapphiredev/utilities/commit/4b7c3e6c354797a2f166a5b97cadd33f1a4a11ca)) ([#808](https://github.com/sapphiredev/utilities/pull/808) by @kyranet)
+
+## 🧪 Testing
+
+- **result:** Update test case ([5932a43](https://github.com/sapphiredev/utilities/commit/5932a4375a5b980a4ff91f744941c0463bbe0d66))
+
 # [@sapphire/result@2.6.6](https://github.com/sapphiredev/utilities/compare/@sapphire/result@2.6.6...@sapphire/result@2.6.6) - (2024-01-19)
 
 ## 🐛 Bug Fixes
