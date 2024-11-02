@@ -1025,6 +1025,26 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	}
 
 	/**
+	 * @deprecated Use {@link Result.isResult} instead.
+	 *
+	 * Checks if the `instance` object is an instance of `Result`, or if it is a `Result`-like object.
+	 *
+	 * @param instance The instance to check.
+	 * @returns true if the instance is a `Result` or a `Result`-like object, false otherwise.
+	 *
+	 * @example
+	 * ```typescript
+	 * import { Result } from '@sapphire/result';
+	 * const { ok } = require('@sapphire/result');
+	 *
+	 * Result.isResult(ok(2)); // true
+	 * ```
+	 */
+	public static is(instance: unknown): instance is AnyResult {
+		return Result[Symbol.hasInstance](instance);
+	}
+
+	/**
 	 * Checks if the `instance` object is an instance of `Result`, or if it is a `Result`-like object.
 	 *
 	 * @param instance The instance to check.

@@ -900,6 +900,26 @@ export class Option<T, Exists extends boolean = boolean> {
 	}
 
 	/**
+	 * @deprecated Use {@link Option.isOption} instead.
+	 *
+	 * Checks if the `instance` object is an instance of `Option`, or if it is a `Option`-like object.
+	 *
+	 * @param instance The instance to check.
+	 * @returns true if the instance is a `Option` or a `Option`-like object, false otherwise.
+	 *
+	 * @example
+	 * ```typescript
+	 * import { Option } from '@sapphire/result';
+	 * const { some } = require('@sapphire/result');
+	 *
+	 * Option.isOption(some(2)); // true
+	 * ```
+	 */
+	public static is(instance: unknown): instance is AnyOption {
+		return Option[Symbol.hasInstance](instance);
+	}
+
+	/**
 	 * Checks if the `instance` object is an instance of `Option`, or if it is a `Option`-like object.
 	 *
 	 * @param instance The instance to check.
