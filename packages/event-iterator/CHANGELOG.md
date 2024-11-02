@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/event-iterator@1.7.3](https://github.com/sapphiredev/utilities/compare/@sapphire/event-iterator@1.7.2...@sapphire/event-iterator@1.7.3) - (2024-11-02)
+
+## 🏠 Refactor
+
+- Resolve several sonar issues ([ba915f9](https://github.com/sapphiredev/utilities/commit/ba915f93ce0907828ba17b2d5ae009631ceb860d)) ([#823](https://github.com/sapphiredev/utilities/pull/823) by @favna)
+
+## 🐛 Bug Fixes
+
+- **deps:** Update all non-major dependencies ([083376a](https://github.com/sapphiredev/utilities/commit/083376aac55094dbeddb5194e8a8f0d794b8cceb)) ([#763](https://github.com/sapphiredev/utilities/pull/763) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([e7fdc5d](https://github.com/sapphiredev/utilities/commit/e7fdc5db3632a7f90292ef3978898da32730343a)) ([#752](https://github.com/sapphiredev/utilities/pull/752) by @renovate[bot])
+
+## 📝 Documentation
+
+- **readme:** Fix readme table of contents ([c60e8bd](https://github.com/sapphiredev/utilities/commit/c60e8bd9fc89156cf973871597ec3f0ef0308c08))
+- **event-iterator:** Fix tsdoc comments ([85e1063](https://github.com/sapphiredev/utilities/commit/85e1063b72187dbaf00e2be15a1ea4d2d91b43a0))
+
 # [@sapphire/event-iterator@1.7.2](https://github.com/sapphiredev/utilities/compare/@sapphire/event-iterator@1.7.2...@sapphire/event-iterator@1.7.2) - (2024-01-19)
 
 ## 🐛 Bug Fixes
