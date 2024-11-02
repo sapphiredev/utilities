@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/fetch@3.0.4](https://github.com/sapphiredev/utilities/compare/@sapphire/fetch@3.0.3...@sapphire/fetch@3.0.4) - (2024-11-02)
+
+## 🐛 Bug Fixes
+
+- Move browser imports ([100ffb0](https://github.com/sapphiredev/utilities/commit/100ffb0a2471bb9f74cc580d282d11059e1a0a68)) ([#826](https://github.com/sapphiredev/utilities/pull/826) by @kyranet)
+- **fetch:** Support stringifying arrays ([6752976](https://github.com/sapphiredev/utilities/commit/675297617855882f177766b713c754679550d105)) ([#814](https://github.com/sapphiredev/utilities/pull/814) by @favna)
+
 # [@sapphire/fetch@3.0.3](https://github.com/sapphiredev/utilities/compare/@sapphire/fetch@3.0.2...@sapphire/fetch@3.0.3) - (2024-08-16)
 
 ## 🐛 Bug Fixes
