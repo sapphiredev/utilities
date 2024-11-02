@@ -89,7 +89,7 @@ export class Option<T, Exists extends boolean = boolean> {
 	}
 
 	/**
-	 * Returns `true` if the option is a `None` value.
+	 * Returns `true` if the option is a `None` value or the value inside of it matches a predicate.
 	 *
 	 * @example
 	 * ```typescript
@@ -107,7 +107,7 @@ export class Option<T, Exists extends boolean = boolean> {
 	 * assert.equal(x.isNoneOr((x) => x > 1), true);
 	 * ```
 	 *
-	 * @see {@link https://doc.rust-lang.org/std/option/enum.Option.html#method.is_none}
+	 * @see {@link https://doc.rust-lang.org/std/option/enum.Option.html#method.is_none_or}
 	 */
 	public isNoneOr<R extends T>(cb: (value: T) => value is R): this is None | Some<R>;
 	public isNoneOr<R extends boolean>(cb: (value: T) => R): If<Exists, R, true>;
