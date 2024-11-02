@@ -20,7 +20,7 @@ import {
 	type APIUser,
 	type APIUserInteractionDataResolved
 } from 'discord-api-types/v10';
-import type { If } from './utils';
+import type { RequiredIf } from './_utils';
 
 /**
  * Utility class for resolving command interaction options while working with the raw API.
@@ -86,7 +86,11 @@ export class InteractionOptionResolver {
 	 * @param name The name of the option
 	 * @param required Whether to throw an error if the option is not found
 	 */
-	public get<const Required extends boolean = false>(name: string, required?: Required): If<Required, APIApplicationCommandInteractionDataOption>;
+	public get<const Required extends boolean = false>(
+		name: string,
+		required?: Required
+	): RequiredIf<Required, APIApplicationCommandInteractionDataOption>;
+
 	public get(name: string, required = false): APIApplicationCommandInteractionDataOption | null {
 		const option = this.hoistedOptions?.find((opt) => opt.name === name);
 		if (!option) {
@@ -104,7 +108,7 @@ export class InteractionOptionResolver {
 	 * Gets the selected subcommand
 	 * @param required Whether to throw an error if there is no subcommand
 	 */
-	public getSubcommand<const Required extends boolean = false>(required?: Required): If<Required, string>;
+	public getSubcommand<const Required extends boolean = false>(required?: Required): RequiredIf<Required, string>;
 	public getSubcommand(required = true): string | null {
 		if (required && !this.subcommand) {
 			throw new Error('A subcommand was not selected');
@@ -117,7 +121,7 @@ export class InteractionOptionResolver {
 	 * Gets the selected subcommand group
 	 * @param required Whether to throw an error if there is no subcommand group
 	 */
-	public getSubcommandGroup<const Required extends boolean = false>(required?: Required): If<Required, string>;
+	public getSubcommandGroup<const Required extends boolean = false>(required?: Required): RequiredIf<Required, string>;
 	public getSubcommandGroup(required = true): string | null {
 		if (required && !this.group) {
 			throw new Error('A subcommand group was not selected');
@@ -131,7 +135,7 @@ export class InteractionOptionResolver {
 	 * @param name The name of the option
 	 * @param required Whether to throw an error if the option is not found
 	 */
-	public getBoolean<const Required extends boolean = false>(name: string, required?: Required): If<Required, boolean>;
+	public getBoolean<const Required extends boolean = false>(name: string, required?: Required): RequiredIf<Required, boolean>;
 	public getBoolean(name: string, required = false): boolean | null {
 		const option = this.getTypedOption(name, ApplicationCommandOptionType.Boolean, required);
 		return option?.value ?? null;
@@ -142,7 +146,11 @@ export class InteractionOptionResolver {
 	 * @param name The name of the option
 	 * @param required Whether to throw an error if the option is not found
 	 */
-	public getChannel<const Required extends boolean = false>(name: string, required?: Required): If<Required, APIInteractionDataResolvedChannel>;
+	public getChannel<const Required extends boolean = false>(
+		name: string,
+		required?: Required
+	): RequiredIf<Required, APIInteractionDataResolvedChannel>;
+
 	public getChannel(name: string, required = false): APIInteractionDataResolvedChannel | null {
 		const option = this.getTypedOption(name, ApplicationCommandOptionType.Channel, required);
 		return option && this.resolved && 'channels' in this.resolved ? (this.resolved.channels?.[option.value] ?? null) : null;
@@ -153,7 +161,7 @@ export class InteractionOptionResolver {
 	 * @param name The name of the option
 	 * @param required Whether to throw an error if the option is not found
 	 */
-	public getString<const Required extends boolean = false>(name: string, required?: Required): If<Required, string>;
+	public getString<const Required extends boolean = false>(name: string, required?: Required): RequiredIf<Required, string>;
 	public getString(name: string, required = false): string | null {
 		const option = this.getTypedOption(name, ApplicationCommandOptionType.String, required);
 		return option?.value ?? null;
@@ -164,7 +172,7 @@ export class InteractionOptionResolver {
 	 * @param name The name of the option
 	 * @param required Whether to throw an error if the option is not found
 	 */
-	public getInteger<const Required extends boolean = false>(name: string, required?: Required): If<Required, number>;
+	public getInteger<const Required extends boolean = false>(name: string, required?: Required): RequiredIf<Required, number>;
 	public getInteger(name: string, required = false): number | null {
 		const option = this.getTypedOption(name, ApplicationCommandOptionType.Integer, required);
 		return option?.value ?? null;
@@ -175,7 +183,7 @@ export class InteractionOptionResolver {
 	 * @param name The name of the option
 	 * @param required Whether to throw an error if the option is not found
 	 */
-	public getNumber<const Required extends boolean = false>(name: string, required?: Required): If<Required, number>;
+	public getNumber<const Required extends boolean = false>(name: string, required?: Required): RequiredIf<Required, number>;
 	public getNumber(name: string, required = false): number | null {
 		const option = this.getTypedOption(name, ApplicationCommandOptionType.Number, required);
 		return option?.value ?? null;
@@ -186,7 +194,7 @@ export class InteractionOptionResolver {
 	 * @param name The name of the option
 	 * @param required Whether to throw an error if the option is not found
 	 */
-	public getUser<const Required extends boolean = false>(name: string, required?: Required): If<Required, APIUser>;
+	public getUser<const Required extends boolean = false>(name: string, required?: Required): RequiredIf<Required, APIUser>;
 	public getUser(name: string, required = false): APIUser | null {
 		const option = this.getTypedOption(name, ApplicationCommandOptionType.User, required);
 		return option && this.resolved && 'users' in this.resolved ? (this.resolved.users?.[option.value] ?? null) : null;
@@ -197,7 +205,11 @@ export class InteractionOptionResolver {
 	 * @param name The name of the option
 	 * @param required Whether to throw an error if the option is not found
 	 */
-	public getMember<const Required extends boolean = false>(name: string, required?: Required): If<Required, APIInteractionDataResolvedGuildMember>;
+	public getMember<const Required extends boolean = false>(
+		name: string,
+		required?: Required
+	): RequiredIf<Required, APIInteractionDataResolvedGuildMember>;
+
 	public getMember(name: string, required = false): APIInteractionDataResolvedGuildMember | null {
 		const option = this.getTypedOption(name, ApplicationCommandOptionType.User, required);
 		return option && this.resolved && 'members' in this.resolved ? (this.resolved.members?.[option.value] ?? null) : null;
@@ -208,7 +220,7 @@ export class InteractionOptionResolver {
 	 * @param name The name of the option
 	 * @param required Whether to throw an error if the option is not found
 	 */
-	public getRole<const Required extends boolean = false>(name: string, required?: Required): If<Required, APIRole>;
+	public getRole<const Required extends boolean = false>(name: string, required?: Required): RequiredIf<Required, APIRole>;
 	public getRole(name: string, required = false): APIRole | null {
 		const option = this.getTypedOption(name, ApplicationCommandOptionType.Role, required);
 		return option && this.resolved && 'roles' in this.resolved ? (this.resolved.roles?.[option.value] ?? null) : null;
@@ -219,7 +231,7 @@ export class InteractionOptionResolver {
 	 * @param name The name of the option
 	 * @param required Whether to throw an error if the option is not found
 	 */
-	public getAttachment<const Required extends boolean = false>(name: string, required?: Required): If<Required, APIAttachment>;
+	public getAttachment<const Required extends boolean = false>(name: string, required?: Required): RequiredIf<Required, APIAttachment>;
 	public getAttachment(name: string, required = false): APIAttachment | null {
 		const option = this.getTypedOption(name, ApplicationCommandOptionType.Attachment, required);
 		return option && this.resolved && 'attachments' in this.resolved ? (this.resolved.attachments?.[option.value] ?? null) : null;
@@ -233,7 +245,7 @@ export class InteractionOptionResolver {
 	public getMentionable<const Required extends boolean = false>(
 		name: string,
 		required?: Required
-	): If<Required, APIUser | APIInteractionDataResolvedGuildMember | APIRole>;
+	): RequiredIf<Required, APIUser | APIInteractionDataResolvedGuildMember | APIRole>;
 
 	public getMentionable(name: string, required = false): APIUser | APIInteractionDataResolvedGuildMember | APIRole | null {
 		const option = this.getTypedOption(name, ApplicationCommandOptionType.Mentionable, required);
@@ -272,7 +284,7 @@ export class InteractionOptionResolver {
 	 * Gets the target member for a context menu interaction
 	 * @param required Whether to throw an error if the member data is not present
 	 */
-	public getTargetMember<const Required extends boolean = false>(required?: Required): If<Required, APIInteractionDataResolvedGuildMember>;
+	public getTargetMember<const Required extends boolean = false>(required?: Required): RequiredIf<Required, APIInteractionDataResolvedGuildMember>;
 	public getTargetMember(required = false): APIInteractionDataResolvedGuildMember | null {
 		if (this.interaction.type !== InteractionType.ApplicationCommand || this.interaction.data.type !== ApplicationCommandType.User) {
 			throw new Error('This method can only be used on user context menu interactions');
@@ -326,7 +338,7 @@ export class InteractionOptionResolver {
 		name: string,
 		type: Option,
 		required: Required
-	): If<Required, TypeToOptionMap[Option]>;
+	): RequiredIf<Required, TypeToOptionMap[Option]>;
 
 	private getTypedOption<Option extends BasicApplicationCommandOptionType>(
 		name: string,
