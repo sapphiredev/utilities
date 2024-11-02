@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/result@2.7.1](https://github.com/sapphiredev/utilities/compare/@sapphire/result@2.7.0...@sapphire/result@2.7.1) - (2024-11-02)
+
+## 🐛 Bug Fixes
+
+- **types:** Resolve regression ([a29026e](https://github.com/sapphiredev/utilities/commit/a29026e85a54bdfb36899c7b58ec1fc1e11987e8)) ([#827](https://github.com/sapphiredev/utilities/pull/827) by @kyranet)
+
 # [@sapphire/result@2.7.0](https://github.com/sapphiredev/utilities/compare/@sapphire/result@2.6.6...@sapphire/result@2.7.0) - (2024-11-02)
 
 ## 🐛 Bug Fixes
