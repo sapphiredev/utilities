@@ -235,3 +235,49 @@ export type StrictRequired<T> = {
  * ```
  */
 export type ArrayElementType<T> = T extends (infer K)[] ? K : T extends readonly (infer RK)[] ? RK : T;
+
+/**
+ * A type utility that allows branching of types depending on the `Value` parameter.
+ * @example
+ * ```typescript
+ * declare function get<const GetValues extends boolean = false>(
+ *   getValues?: GetValues
+ * ): If<GetValues, string, string[]>;
+ *
+ * const a = get(true);
+ * //    ^? string
+ *
+ * const b = get(false);
+ * //    ^? string[]
+ *
+ * declare const someBoolean: boolean;
+ * const c = get(someBoolean);
+ * //    ^? string | string[]
+ * ```
+ */
+export type If<Value extends boolean, TrueResult, FalseResult> = Value extends true
+	? TrueResult
+	: Value extends false
+		? FalseResult
+		: TrueResult | FalseResult;
+
+/**
+ * A type utility that allows branching of an union type on the `Value` parameter.
+ * @example
+ * ```typescript
+ * declare function get<const Required extends boolean = false>(
+ *   required?: Required
+ * ): If<Required, string>;
+ *
+ * const a = get(true);
+ * //    ^? string
+ *
+ * const b = get(false);
+ * //    ^? string | null
+ *
+ * declare const someBoolean: boolean;
+ * const c = get(someBoolean);
+ * //    ^? string | null
+ * ```
+ */
+export type RequiredIf<Value extends boolean, ValueType, FallbackType = null> = If<Value, ValueType, ValueType | FallbackType>;
