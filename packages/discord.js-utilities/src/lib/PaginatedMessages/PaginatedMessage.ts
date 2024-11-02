@@ -1202,12 +1202,15 @@ export class PaginatedMessage {
 	public addPageAction(action: PaginatedMessageAction, index: number): this {
 		if (index < 0 || index > this.pages.length - 1) throw new Error('Provided index is out of bounds');
 
-		this.pageActions[index] ??= new Map<string, PaginatedMessageAction>();
+		const pageActionAtIndex = this.pageActions[index] ?? new Map<string, PaginatedMessageAction>();
+
 		if (actionIsLinkButton(action)) {
-			this.pageActions[index]?.set(action.url, action);
+			pageActionAtIndex.set(action.url, action);
 		} else if (actionIsButtonOrMenu(action)) {
-			this.pageActions[index]?.set(action.customId, action);
+			pageActionAtIndex.set(action.customId, action);
 		}
+
+		this.pageActions[index] = pageActionAtIndex;
 
 		return this;
 	}
