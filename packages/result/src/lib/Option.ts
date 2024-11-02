@@ -89,6 +89,33 @@ export class Option<T, Exists extends boolean = boolean> {
 	}
 
 	/**
+	 * Returns `true` if the option is a `None` value or the value inside of it matches a predicate.
+	 *
+	 * @example
+	 * ```typescript
+	 * const x: Option<number> = some(2);
+	 * assert.equal(x.isNoneOr((x) => x > 1), true);
+	 * ```
+	 * @example
+	 * ```typescript
+	 * const x: Option<number> = some(0);
+	 * assert.equal(x.isNoneOr((x) => x > 1), false);
+	 * ```
+	 * @example
+	 * ```typescript
+	 * const x: Option<number> = none;
+	 * assert.equal(x.isNoneOr((x) => x > 1), true);
+	 * ```
+	 *
+	 * @see {@link https://doc.rust-lang.org/std/option/enum.Option.html#method.is_none_or}
+	 */
+	public isNoneOr<R extends T>(cb: (value: T) => value is R): this is None | Some<R>;
+	public isNoneOr<R extends boolean>(cb: (value: T) => R): If<Exists, R, true>;
+	public isNoneOr<R extends boolean>(cb: (value: T) => R): If<Exists, R, true> {
+		return this.match({ some: (value) => cb(value), none: () => true });
+	}
+
+	/**
 	 * Returns the contained `Some` value.
 	 * @param message The message for the error.
 	 * If the value is an `Err`, it throws an {@link OptionError} with the given message.

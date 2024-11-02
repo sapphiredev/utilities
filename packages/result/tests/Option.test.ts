@@ -58,6 +58,36 @@ describe('Option', () => {
 			});
 		});
 
+		describe('isNoneOr', () => {
+			test('GIVEN some AND true-returning callback THEN returns true', () => {
+				const x = some(2);
+				const cb = vi.fn((value: number) => value > 1);
+
+				expect(x.isNoneOr(cb)).toBe(true);
+				expect(cb).toHaveBeenCalledTimes(1);
+				expect(cb).toHaveBeenCalledWith(2);
+				expect(cb).toHaveLastReturnedWith(true);
+			});
+
+			test('GIVEN some AND false-returning callback THEN returns false', () => {
+				const x = some(0);
+				const cb = vi.fn((value: number) => value > 1);
+
+				expect(x.isNoneOr(cb)).toBe(false);
+				expect(cb).toHaveBeenCalledTimes(1);
+				expect(cb).toHaveBeenCalledWith(0);
+				expect(cb).toHaveLastReturnedWith(false);
+			});
+
+			test('GIVEN none THEN always returns false', () => {
+				const x = none;
+				const cb = vi.fn((value: number) => value > 1);
+
+				expect(x.isNoneOr(cb)).toBe(true);
+				expect(cb).not.toHaveBeenCalled();
+			});
+		});
+
 		describe('expect', () => {
 			test('GIVEN ok THEN returns value', () => {
 				const x = some(2);
