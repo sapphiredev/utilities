@@ -10,7 +10,7 @@ import {
 	type APIApplicationCommandInteractionDataOption,
 	type APIApplicationCommandInteractionDataStringOption,
 	type APIAttachment,
-	type APIChatInputApplicationCommandInteractionDataResolved,
+	type APIInteractionDataResolved,
 	type APIInteractionDataResolvedChannel,
 	type APIInteractionDataResolvedGuildMember,
 	type APIMessage,
@@ -18,7 +18,7 @@ import {
 	type APIModalSubmitInteraction,
 	type APIRole,
 	type APIUser,
-	type APIUserApplicationCommandInteractionDataResolved
+	type APIUserInteractionDataResolved
 } from 'discord-api-types/v10';
 
 /**
@@ -37,8 +37,8 @@ export class InteractionOptionResolver {
 	 * The interaction resolved data
 	 */
 	private readonly resolved:
-		| APIChatInputApplicationCommandInteractionDataResolved
-		| APIUserApplicationCommandInteractionDataResolved
+		| APIInteractionDataResolved
+		| APIUserInteractionDataResolved
 		| APIMessageApplicationCommandInteractionDataResolved
 		| null = null;
 
@@ -80,7 +80,7 @@ export class InteractionOptionResolver {
 		}
 	}
 
-	public get(name: string, required?: boolean | false): APIApplicationCommandInteractionDataOption | null;
+	public get(name: string, required?: boolean): APIApplicationCommandInteractionDataOption | null;
 	public get(name: string, required: true): APIApplicationCommandInteractionDataOption;
 
 	/**
@@ -101,7 +101,7 @@ export class InteractionOptionResolver {
 		return option;
 	}
 
-	public getSubcommand(required?: boolean | false): string | null;
+	public getSubcommand(required?: boolean): string | null;
 	public getSubcommand(required: true): string;
 
 	/**
@@ -116,7 +116,7 @@ export class InteractionOptionResolver {
 		return this.subcommand;
 	}
 
-	public getSubcommandGroup(required?: boolean | false): string | null;
+	public getSubcommandGroup(required?: boolean): string | null;
 	public getSubcommandGroup(required: true): string;
 
 	/**
@@ -131,7 +131,7 @@ export class InteractionOptionResolver {
 		return this.group;
 	}
 
-	public getBoolean(name: string, required?: boolean | false): boolean | null;
+	public getBoolean(name: string, required?: boolean): boolean | null;
 	public getBoolean(name: string, required: true): boolean;
 
 	/**
@@ -144,7 +144,7 @@ export class InteractionOptionResolver {
 		return option?.value ?? null;
 	}
 
-	public getChannel(name: string, required?: boolean | false): APIInteractionDataResolvedChannel | null;
+	public getChannel(name: string, required?: boolean): APIInteractionDataResolvedChannel | null;
 	public getChannel(name: string, required: true): APIInteractionDataResolvedChannel;
 
 	/**
@@ -157,7 +157,7 @@ export class InteractionOptionResolver {
 		return option && this.resolved && 'channels' in this.resolved ? (this.resolved.channels?.[option.value] ?? null) : null;
 	}
 
-	public getString(name: string, required?: boolean | false): string | null;
+	public getString(name: string, required?: boolean): string | null;
 	public getString(name: string, required: true): string;
 
 	/**
@@ -170,7 +170,7 @@ export class InteractionOptionResolver {
 		return option?.value ?? null;
 	}
 
-	public getInteger(name: string, required?: boolean | false): number | null;
+	public getInteger(name: string, required?: boolean): number | null;
 	public getInteger(name: string, required: true): number;
 
 	/**
@@ -183,7 +183,7 @@ export class InteractionOptionResolver {
 		return option?.value ?? null;
 	}
 
-	public getNumber(name: string, required?: boolean | false): number | null;
+	public getNumber(name: string, required?: boolean): number | null;
 	public getNumber(name: string, required: true): number;
 
 	/**
@@ -196,7 +196,7 @@ export class InteractionOptionResolver {
 		return option?.value ?? null;
 	}
 
-	public getUser(name: string, required?: boolean | false): APIUser | null;
+	public getUser(name: string, required?: boolean): APIUser | null;
 	public getUser(name: string, required: true): APIUser;
 
 	/**
@@ -209,7 +209,7 @@ export class InteractionOptionResolver {
 		return option && this.resolved && 'users' in this.resolved ? (this.resolved.users?.[option.value] ?? null) : null;
 	}
 
-	public getMember(name: string, required?: boolean | false): APIInteractionDataResolvedGuildMember | null;
+	public getMember(name: string, required?: boolean): APIInteractionDataResolvedGuildMember | null;
 	public getMember(name: string, required: true): APIInteractionDataResolvedGuildMember;
 
 	/**
@@ -222,7 +222,7 @@ export class InteractionOptionResolver {
 		return option && this.resolved && 'members' in this.resolved ? (this.resolved.members?.[option.value] ?? null) : null;
 	}
 
-	public getRole(name: string, required?: boolean | false): APIRole | null;
+	public getRole(name: string, required?: boolean): APIRole | null;
 	public getRole(name: string, required: true): APIRole;
 
 	/**
@@ -235,7 +235,7 @@ export class InteractionOptionResolver {
 		return option && this.resolved && 'roles' in this.resolved ? (this.resolved.roles?.[option.value] ?? null) : null;
 	}
 
-	public getAttachment(name: string, required?: boolean | false): APIAttachment | null;
+	public getAttachment(name: string, required?: boolean): APIAttachment | null;
 	public getAttachment(name: string, required: true): APIAttachment;
 
 	/**
@@ -248,7 +248,7 @@ export class InteractionOptionResolver {
 		return option && this.resolved && 'attachments' in this.resolved ? (this.resolved.attachments?.[option.value] ?? null) : null;
 	}
 
-	public getMentionable(name: string, required?: boolean | false): APIUser | APIInteractionDataResolvedGuildMember | APIRole | null;
+	public getMentionable(name: string, required?: boolean): APIUser | APIInteractionDataResolvedGuildMember | APIRole | null;
 	public getMentionable(name: string, required: true): APIUser | APIInteractionDataResolvedGuildMember | APIRole;
 
 	/**
@@ -286,10 +286,10 @@ export class InteractionOptionResolver {
 			throw new Error('This method can only be used on user context menu interactions');
 		}
 
-		return (this.resolved as APIUserApplicationCommandInteractionDataResolved).users[this.interaction.data.target_id];
+		return (this.resolved as APIUserInteractionDataResolved).users[this.interaction.data.target_id];
 	}
 
-	public getTargetMember(required?: boolean | false): APIInteractionDataResolvedGuildMember | null;
+	public getTargetMember(required?: boolean): APIInteractionDataResolvedGuildMember | null;
 	public getTargetMember(required: true): APIInteractionDataResolvedGuildMember;
 
 	/**
@@ -301,7 +301,7 @@ export class InteractionOptionResolver {
 			throw new Error('This method can only be used on user context menu interactions');
 		}
 
-		const member = (this.resolved as APIUserApplicationCommandInteractionDataResolved).members?.[this.interaction.data.target_id] ?? null;
+		const member = (this.resolved as APIUserInteractionDataResolved).members?.[this.interaction.data.target_id] ?? null;
 
 		if (!member && required) {
 			throw new Error('Member data is not present');
@@ -348,7 +348,7 @@ export class InteractionOptionResolver {
 	private getTypedOption<Option extends BasicApplicationCommandOptionType>(
 		name: string,
 		type: Option,
-		required?: boolean | false
+		required?: boolean
 	): TypeToOptionMap[Option] | null;
 
 	private getTypedOption<Option extends BasicApplicationCommandOptionType>(name: string, type: Option, required: true): TypeToOptionMap[Option];

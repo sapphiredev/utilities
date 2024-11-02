@@ -1,4 +1,3 @@
-import type { NonNullObject } from '@sapphire/utilities';
 import { createMethodDecorator } from './utils';
 
 /**
@@ -7,10 +6,10 @@ import { createMethodDecorator } from './utils';
  */
 export function Enumerable(value: boolean) {
 	return (target: unknown, key: string) => {
-		Reflect.defineProperty(target as NonNullObject, key, {
+		Reflect.defineProperty(target as object, key, {
 			enumerable: value,
 			set(this: unknown, val: unknown) {
-				Reflect.defineProperty(this as NonNullObject, key, {
+				Reflect.defineProperty(this as object, key, {
 					configurable: true,
 					enumerable: value,
 					value: val,

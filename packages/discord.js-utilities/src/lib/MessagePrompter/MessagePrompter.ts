@@ -146,7 +146,7 @@ export class MessagePrompter<S extends keyof StrategyReturns = 'confirm'> {
 	/**
 	 * The available strategies
 	 */
-	public static strategies: Map<
+	public static readonly strategies: Map<
 		keyof StrategyReturns,
 		Ctor<
 			| ConstructorParameters<typeof MessagePrompterConfirmStrategy>

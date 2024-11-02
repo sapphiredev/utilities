@@ -507,7 +507,7 @@ export class PaginatedMessage {
 
 	// #region private class fields
 	/** The response we send when someone gets into an invalid flow */
-	#thisMazeWasNotMeantForYouContent = { content: "This maze wasn't meant for you...what did you do." };
+	readonly #thisMazeWasNotMeantForYouContent = { content: "This maze wasn't meant for you...what did you do." };
 	// #endregion
 
 	/**
@@ -1202,14 +1202,14 @@ export class PaginatedMessage {
 	public addPageAction(action: PaginatedMessageAction, index: number): this {
 		if (index < 0 || index > this.pages.length - 1) throw new Error('Provided index is out of bounds');
 
-		if (!this.pageActions[index]) {
+		if (!this.pageActions.at(index)) {
 			this.pageActions[index] = new Map<string, PaginatedMessageAction>();
 		}
 
 		if (actionIsLinkButton(action)) {
-			this.pageActions[index]!.set(action.url, action);
+			this.pageActions.at(index)!.set(action.url, action);
 		} else if (actionIsButtonOrMenu(action)) {
-			this.pageActions[index]!.set(action.customId, action);
+			this.pageActions.at(index)!.set(action.customId, action);
 		}
 
 		return this;
@@ -1328,7 +1328,7 @@ export class PaginatedMessage {
 		if (this.collector) {
 			this.collector.once('end', () => {
 				PaginatedMessage.messages.delete(messageId);
-				PaginatedMessage.handlers.delete(target!.id);
+				PaginatedMessage.handlers.delete(target.id);
 			});
 
 			PaginatedMessage.messages.set(messageId, this);
@@ -1467,8 +1467,7 @@ export class PaginatedMessage {
 				filter: (interaction) => {
 					if (!isNullish(this.response) && interaction.isMessageComponent()) {
 						const customIdValidation =
-							this.actions.has(interaction.customId) ||
-							this.pageActions.some((actions) => actions && actions.has(interaction.customId));
+							this.actions.has(interaction.customId) || this.pageActions.some((actions) => actions?.has(interaction.customId));
 
 						if (isAnyInteraction(messageOrInteraction) && messageOrInteraction.ephemeral) {
 							return interaction.user.id === targetUser.id && customIdValidation;
@@ -1602,7 +1601,7 @@ export class PaginatedMessage {
 					handler: this,
 					author: targetUser,
 					channel,
-					response: this.response!,
+					response: this.response,
 					collector: this.collector!
 				});
 

@@ -23,7 +23,7 @@ export class AsyncQueue {
 	/**
 	 * The promises array
 	 */
-	private promises: AsyncQueueEntry[] = [];
+	private readonly promises: AsyncQueueEntry[] = [];
 
 	/**
 	 * Waits for last promise and queues a new one

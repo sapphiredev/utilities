@@ -346,7 +346,7 @@ export interface PaginatedMessageInternationalizationContext {
  * Represents the parameters for safely replying to an interaction.
  * @template T - The type of message method ('edit', 'reply', or never).
  */
-export interface SafeReplyToInteractionParameters<T extends 'edit' | 'reply' | never = never> {
+export interface SafeReplyToInteractionParameters<T extends 'edit' | 'reply' = never> {
 	/**
 	 * The message or interaction to reply to.
 	 */
