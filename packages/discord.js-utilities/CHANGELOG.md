@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/discord.js-utilities@7.3.1](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@7.3.0...@sapphire/discord.js-utilities@7.3.1) - (2024-11-02)
+
+## 🏠 Refactor
+
+- Resolve several sonar issues ([ba915f9](https://github.com/sapphiredev/utilities/commit/ba915f93ce0907828ba17b2d5ae009631ceb860d)) ([#823](https://github.com/sapphiredev/utilities/pull/823) by @favna)
+
+## 🐛 Bug Fixes
+
+- Update for latest discord.js ([86dab68](https://github.com/sapphiredev/utilities/commit/86dab688e6d56f72b65848028ebb31b90ed8acc0)) ([#799](https://github.com/sapphiredev/utilities/pull/799) by @favna)
+
 # [@sapphire/discord.js-utilities@7.3.0](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@7.2.1...@sapphire/discord.js-utilities@7.3.0) - (2024-06-03)
 
 ## 📝 Documentation
