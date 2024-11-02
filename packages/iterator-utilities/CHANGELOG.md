@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/iterator-utilities@2.0.0](https://github.com/sapphiredev/utilities/compare/@sapphire/iterator-utilities@1.0.2...@sapphire/iterator-utilities@2.0.0) - (2024-11-02)
+
+## 🐛 Bug Fixes
+
+- Move browser imports ([100ffb0](https://github.com/sapphiredev/utilities/commit/100ffb0a2471bb9f74cc580d282d11059e1a0a68)) ([#826](https://github.com/sapphiredev/utilities/pull/826) by @kyranet)
+- **deps:** Update all non-major dependencies ([083376a](https://github.com/sapphiredev/utilities/commit/083376aac55094dbeddb5194e8a8f0d794b8cceb)) ([#763](https://github.com/sapphiredev/utilities/pull/763) by @renovate[bot])
+
+## 🚀 Features
+
+- **iterator-utilities:** Add more methods ([65ad816](https://github.com/sapphiredev/utilities/commit/65ad8163b787db55ac67f58aa454e12f07753af5)) ([#809](https://github.com/sapphiredev/utilities/pull/809) by @kyranet)
+  - 💥 **BREAKING CHANGE:** `min` now uses a lexicographical comparison by default. Use `minBy` for custom comparisons.
+  - 💥 **BREAKING CHANGE:** `max` now uses a lexicographical comparison by default. Use `maxBy` for custom comparisons.
+
 # [@sapphire/iterator-utilities@1.0.2](https://github.com/sapphiredev/utilities/compare/@sapphire/iterator-utilities@1.0.1...@sapphire/iterator-utilities@1.0.2) - (2024-06-03)
 
 ## 🐛 Bug Fixes
