@@ -1204,9 +1204,9 @@ export class PaginatedMessage {
 
 		this.pageActions[index] ??= new Map<string, PaginatedMessageAction>();
 		if (actionIsLinkButton(action)) {
-			this.pageActions[index].set(action.url, action);
+			this.pageActions[index]?.set(action.url, action);
 		} else if (actionIsButtonOrMenu(action)) {
-			this.pageActions[index].set(action.customId, action);
+			this.pageActions[index]?.set(action.customId, action);
 		}
 
 		return this;
