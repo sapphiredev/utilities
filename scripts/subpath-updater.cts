@@ -26,6 +26,7 @@ async function main() {
 		[
 			'.',
 			{
+				browser: './dist/iife/index.global.js',
 				import: {
 					types: './dist/esm/index.d.mts',
 					default: './dist/esm/index.mjs'
@@ -33,8 +34,7 @@ async function main() {
 				require: {
 					types: './dist/cjs/index.d.cts',
 					default: './dist/cjs/index.cjs'
-				},
-				browser: './dist/iife/index.global.js'
+				}
 			}
 		]
 	]);
