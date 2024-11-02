@@ -1925,7 +1925,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@sapphire/utilities@npm:3.17.0, @sapphire/utilities@npm:^3.15.2, @sapphire/utilities@npm:^3.15.3, @sapphire/utilities@npm:^3.16.2, @sapphire/utilities@npm:^3.17.0, @sapphire/utilities@workspace:^, @sapphire/utilities@workspace:packages/utilities":
+"@sapphire/utilities@npm:3.17.0":
+  version: 3.17.0
+  resolution: "@sapphire/utilities@npm:3.17.0"
+  checksum: 10/cfdf604be06e1e4f7fd26f10c198586eef9012001b83dcc8178886d88145334db06e164725aadf5bfb065b39ecdefaa8286c695576e7674b5a3bc9280ce02e0d
+  languageName: node
+  linkType: hard
+
+"@sapphire/utilities@npm:^3.15.2, @sapphire/utilities@npm:^3.15.3, @sapphire/utilities@npm:^3.16.2, @sapphire/utilities@npm:^3.17.0, @sapphire/utilities@workspace:^, @sapphire/utilities@workspace:packages/utilities":
   version: 0.0.0-use.local
   resolution: "@sapphire/utilities@workspace:packages/utilities"
   dependencies:

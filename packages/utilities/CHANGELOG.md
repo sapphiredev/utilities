@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/utilities@3.18.0](https://github.com/sapphiredev/utilities/compare/@sapphire/utilities@3.17.0...@sapphire/utilities@3.18.0) - (2024-11-02)
+
+## 🏠 Refactor
+
+- Deprecate `NonNullObject` and `AnyObject` ([0dce7d6](https://github.com/sapphiredev/utilities/commit/0dce7d6332acad34b49a7aa780371a4d35748774)) ([#821](https://github.com/sapphiredev/utilities/pull/821) by @kyranet)
+- **cutText:** Improve algorithm ([db34661](https://github.com/sapphiredev/utilities/commit/db34661f35b54b40c067f54f79a834eb20450256)) ([#820](https://github.com/sapphiredev/utilities/pull/820) by @kyranet)
+- Rewrite `roundNumber` ([1e7d2de](https://github.com/sapphiredev/utilities/commit/1e7d2dece33bb78e3c99bc0944b0e4b105d0effb)) ([#810](https://github.com/sapphiredev/utilities/pull/810) by @kyranet)
+
+## 🐛 Bug Fixes
+
+- Move browser imports ([100ffb0](https://github.com/sapphiredev/utilities/commit/100ffb0a2471bb9f74cc580d282d11059e1a0a68)) ([#826](https://github.com/sapphiredev/utilities/pull/826) by @kyranet)
+
+## 🚀 Features
+
+- **types:** Add `If` and `RequiredIf` ([143375f](https://github.com/sapphiredev/utilities/commit/143375f7f7194347ff071b66dc35a6da5422b6f9)) ([#825](https://github.com/sapphiredev/utilities/pull/825) by @kyranet)
+- Add `PrettifyObject` type ([5ac3f24](https://github.com/sapphiredev/utilities/commit/5ac3f24679bfcc914abd2da5ae460b24197e3458)) ([#822](https://github.com/sapphiredev/utilities/pull/822) by @kyranet)
+- **utilities:** Expose `Arr` to the docs ([997614c](https://github.com/sapphiredev/utilities/commit/997614c68bb6078191cc03fa24642f0ac8efd04b)) ([#780](https://github.com/sapphiredev/utilities/pull/780) by @favna)
+
 # [@sapphire/utilities@3.17.0](https://github.com/sapphiredev/utilities/compare/@sapphire/utilities@3.16.2...@sapphire/utilities@3.17.0) - (2024-07-23)
 
 ## 🏠 Refactor
