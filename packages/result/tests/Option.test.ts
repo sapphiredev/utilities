@@ -798,9 +798,18 @@ describe('Option', () => {
 	});
 
 	describe('some', () => {
-		test('GIVEN some THEN returns Some', () => {
+		test('GIVEN some without an argument THEN returns Some<undefined>', () => {
+			const x = some();
+
+			expectTypeOf(x).toMatchTypeOf<Some<undefined>>();
+			expect(x.isSome()).toBe(true);
+			expect(x.isNone()).toBe(false);
+		});
+
+		test('GIVEN some with an argument THEN returns Some<T>', () => {
 			const x = some(42);
 
+			expectTypeOf(x).toMatchTypeOf<Some<number>>();
 			expect(x.isSome()).toBe(true);
 			expect(x.isNone()).toBe(false);
 		});

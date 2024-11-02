@@ -995,10 +995,14 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	}
 
 	// eslint-disable-next-line @typescript-eslint/no-invalid-void-type
+	public static ok<T = undefined, E = any>(this: void, value?: T): Ok<T, E>;
+	// eslint-disable-next-line @typescript-eslint/no-invalid-void-type
 	public static ok<T, E = any>(this: void, value: T): Ok<T, E> {
 		return new Result<T, E, true>(value, true);
 	}
 
+	// eslint-disable-next-line @typescript-eslint/no-invalid-void-type
+	public static err<E = undefined, T = any>(this: void, value?: E): Err<E, T>;
 	// eslint-disable-next-line @typescript-eslint/no-invalid-void-type
 	public static err<E, T = any>(this: void, value: E): Err<E, T> {
 		return new Result<T, E, false>(value, false);
