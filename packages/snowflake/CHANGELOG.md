@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/snowflake@3.5.4](https://github.com/sapphiredev/utilities/compare/@sapphire/snowflake@3.5.3...@sapphire/snowflake@3.5.4) - (2024-11-02)
+
+## 🏃 Performance
+
+- **snowflake:** Optimize Snowflake.timestampFrom ([b97b30c](https://github.com/sapphiredev/utilities/commit/b97b30cddf7e92eac42e908745a9812011d0f3ff)) ([#792](https://github.com/sapphiredev/utilities/pull/792) by @advaith1)
+
+## 🐛 Bug Fixes
+
+- Move browser imports ([100ffb0](https://github.com/sapphiredev/utilities/commit/100ffb0a2471bb9f74cc580d282d11059e1a0a68)) ([#826](https://github.com/sapphiredev/utilities/pull/826) by @kyranet)
+- **deps:** Update all non-major dependencies ([083376a](https://github.com/sapphiredev/utilities/commit/083376aac55094dbeddb5194e8a8f0d794b8cceb)) ([#763](https://github.com/sapphiredev/utilities/pull/763) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([e7fdc5d](https://github.com/sapphiredev/utilities/commit/e7fdc5db3632a7f90292ef3978898da32730343a)) ([#752](https://github.com/sapphiredev/utilities/pull/752) by @renovate[bot])
+
+## 📝 Documentation
+
+- **readme:** Fix readme table of contents ([c60e8bd](https://github.com/sapphiredev/utilities/commit/c60e8bd9fc89156cf973871597ec3f0ef0308c08))
+
 # [@sapphire/snowflake@3.5.3](https://github.com/sapphiredev/utilities/compare/@sapphire/snowflake@3.5.3...@sapphire/snowflake@3.5.3) - (2024-01-19)
 
 ## 🐛 Bug Fixes
