@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/async-queue@1.5.4](https://github.com/sapphiredev/utilities/compare/@sapphire/async-queue@1.5.3...@sapphire/async-queue@1.5.4) - (2024-11-02)
+
+## 🏠 Refactor
+
+- Resolve several sonar issues ([ba915f9](https://github.com/sapphiredev/utilities/commit/ba915f93ce0907828ba17b2d5ae009631ceb860d)) ([#823](https://github.com/sapphiredev/utilities/pull/823) by @favna)
+
+## 🐛 Bug Fixes
+
+- Move browser imports ([100ffb0](https://github.com/sapphiredev/utilities/commit/100ffb0a2471bb9f74cc580d282d11059e1a0a68)) ([#826](https://github.com/sapphiredev/utilities/pull/826) by @kyranet)
+
 # [@sapphire/async-queue@1.5.3](https://github.com/sapphiredev/utilities/compare/@sapphire/async-queue@1.5.2...@sapphire/async-queue@1.5.3) - (2024-07-23)
 
 ## 🐛 Bug Fixes
