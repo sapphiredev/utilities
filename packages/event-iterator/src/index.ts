@@ -52,7 +52,7 @@ export class EventIterator<V extends unknown[]> implements AsyncIterableIterator
 	/**
 	 * The amount of idle time in ms before moving on.
 	 */
-	#idle?: number;
+	readonly #idle?: number;
 
 	/**
 	 * The queue of received values.
@@ -67,17 +67,17 @@ export class EventIterator<V extends unknown[]> implements AsyncIterableIterator
 	/**
 	 * The limit before ending the EventIterator.
 	 */
-	#limit: number;
+	readonly #limit: number;
 
 	/**
 	 * The timer to track when this will idle out.
 	 */
-	#idleTimer: NodeJS.Timeout | undefined | null = null;
+	readonly #idleTimer: NodeJS.Timeout | undefined | null = null;
 
 	/**
 	 * The push handler with context bound to the instance.
 	 */
-	#push: (this: EventIterator<V>, ...value: V) => void;
+	readonly #push: (this: EventIterator<V>, ...value: V) => void;
 
 	/**
 	 * @param emitter The event emitter to listen to.

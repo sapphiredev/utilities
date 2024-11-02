@@ -1,7 +1,7 @@
 import type { ESBuildOptions } from 'vite';
-import { defineConfig, type UserConfig } from 'vitest/config';
+import { defineConfig, type ViteUserConfig } from 'vitest/config';
 
-export const createVitestConfig = (options: UserConfig = {}) =>
+export const createVitestConfig = (options: ViteUserConfig = {}) =>
 	defineConfig({
 		...options,
 		test: {
