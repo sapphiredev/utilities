@@ -5,8 +5,8 @@ import { createMethodDecorator } from './utils';
  * @param value Whether the property should be enumerable or not
  */
 export function Enumerable(value: boolean) {
-	return (target: unknown, key: string) => {
-		Reflect.defineProperty(target as object, key, {
+	return (target: object, key: string) => {
+		Reflect.defineProperty(target, key, {
 			enumerable: value,
 			set(this: unknown, val: unknown) {
 				Reflect.defineProperty(this as object, key, {
