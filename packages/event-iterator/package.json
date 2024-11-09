@@ -1,6 +1,6 @@
 {
 	"name": "@sapphire/event-iterator",
-	"version": "1.7.3",
+	"version": "1.7.4",
 	"description": "Turns event emitter events into async iterators.",
 	"author": "@sapphire",
 	"license": "MIT",
