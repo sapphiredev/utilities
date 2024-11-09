@@ -1,6 +1,6 @@
 {
 	"name": "@sapphire/string-store",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "High-capacity raw data storage in UTF-16 strings",
 	"author": "@sapphire",
 	"license": "MIT",
