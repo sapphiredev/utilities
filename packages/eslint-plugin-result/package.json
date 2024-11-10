@@ -57,7 +57,7 @@
 		"@typescript-eslint/typescript-estree": "^7.18.0",
 		"@vitest/coverage-v8": "^2.1.4",
 		"tsup": "^8.3.5",
-		"typedoc-json-parser": "^10.1.6",
+		"typedoc-json-parser": "^10.2.0",
 		"vitest": "^2.1.4"
 	},
 	"dependencies": {
