@@ -136,6 +136,15 @@ describe('Result', () => {
 				expect(x.map(cb)).toEqual(err('Some error message'));
 				expect(cb).not.toHaveBeenCalled();
 			});
+
+			test('Given ok THEN chain map and mapErr THEN returns Ok<number, string>', () => {
+				const x = Result.from<number, Error>(2);
+				const cb = vi.fn((value: number) => value);
+				const mapChain = x.map(cb).mapErr((error) => error.message);
+
+				expectTypeOf(mapChain).toMatchTypeOf<Result<number, string>>();
+				expect<Result<number, string>>(mapChain).toEqual(ok(2));
+			});
 		});
 
 		describe('mapInto', () => {
@@ -221,6 +230,15 @@ describe('Result', () => {
 				expect(cb).toHaveBeenCalledTimes(1);
 				expect(cb).toHaveBeenCalledWith('Some error message');
 				expect(cb).toHaveLastReturnedWith(18);
+			});
+
+			test('Given ok THEN chain mapErr and map THEN returns Ok<number, string>', () => {
+				const x = Result.from<number, string>(42);
+				const cb = vi.fn((error: string) => error);
+				const mapChain = x.mapErr(cb).map((value) => value + 1);
+
+				expectTypeOf(mapChain).toMatchTypeOf<Result<number, string>>();
+				expect<Result<number, string>>(mapChain).toEqual(ok(43));
 			});
 		});
 
@@ -835,35 +853,6 @@ describe('Result', () => {
 		});
 	});
 
-	describe('map', () => {
-		test('GIVEN err THEN returns itself', () => {
-			const x = err(new Error());
-			const cb = vi.fn((value: number) => value > 1);
-
-			expect<typeof x>(x.map(cb)).toBe(x);
-			expect(cb).not.toHaveBeenCalled();
-		});
-
-		test('GIVEN ok THEN returns Ok with mapped value', () => {
-			const x = ok(2);
-			const cb = vi.fn((value: number) => value > 1);
-
-			expect<Ok<boolean>>(x.map(cb)).toEqual(ok(true));
-			expect(cb).toHaveBeenCalledTimes(1);
-			expect(cb).toHaveBeenCalledWith(2);
-			expect(cb).toHaveLastReturnedWith(true);
-		});
-
-		test('Given ok THEN chain map and mapErr THEN returns Ok<number, string>', () => {
-			const x = Result.from<number, Error>(2);
-			const cb = vi.fn((value: number) => value);
-			const mapChain = x.map(cb).mapErr((error) => error.message);
-
-			expectTypeOf(mapChain).toMatchTypeOf<Result<number, string>>();
-			expect<Result<number, string>>(mapChain).toEqual(ok(2));
-		});
-	});
-
 	describe('err', () => {
 		test('GIVEN err without an argument THEN returns Err<undefined>', () => {
 			const x = err();
@@ -881,35 +870,6 @@ describe('Result', () => {
 			expectTypeOf(x).toMatchTypeOf<Result<number, Error>>();
 			expect<boolean>(x.isOk()).toBe(false);
 			expect<boolean>(x.isErr()).toBe(true);
-		});
-	});
-
-	describe('mapErr', () => {
-		test('GIVEN ok THEN returns itself', () => {
-			const x = ok(42);
-			const cb = vi.fn((error: string) => error.length);
-
-			expect<typeof x>(x.mapErr(cb)).toBe(x);
-			expect(cb).not.toHaveBeenCalled();
-		});
-
-		test('GIVEN err THEN returns Err with mapped value', () => {
-			const x = err('Some error message');
-			const cb = vi.fn((error: string) => error.length);
-
-			expect<Result<number, number>>(x.mapErr(cb)).toEqual(err(18));
-			expect(cb).toHaveBeenCalledTimes(1);
-			expect(cb).toHaveBeenCalledWith('Some error message');
-			expect(cb).toHaveLastReturnedWith(18);
-		});
-
-		test('Given ok THEN chain mapErr and map THEN returns Ok<number, string>', () => {
-			const x = Result.from<number, string>(42);
-			const cb = vi.fn((error: string) => error);
-			const mapChain = x.mapErr(cb).map((value) => value + 1);
-
-			expectTypeOf(mapChain).toMatchTypeOf<Result<number, string>>();
-			expect<Result<number, string>>(mapChain).toEqual(ok(43));
 		});
 	});
 
