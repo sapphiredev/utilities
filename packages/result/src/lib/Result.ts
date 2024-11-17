@@ -273,7 +273,10 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 *
 	 * @see {@link https://doc.rust-lang.org/std/result/enum.Result.html#method.map_or_else}
 	 */
-	public mapOrElse<OutputValue, OutputError>(op: (error: If<Success, never, E>) => OutputError, cb: (value: If<Success, T, never>) => OutputValue): If<Success, OutputValue, OutputError> {
+	public mapOrElse<OutputValue, OutputError>(
+		op: (error: If<Success, never, E>) => OutputError,
+		cb: (value: If<Success, T, never>) => OutputValue
+	): If<Success, OutputValue, OutputError> {
 		return this.match({ ok: (value) => cb(value), err: (error) => op(error) });
 	}
 
