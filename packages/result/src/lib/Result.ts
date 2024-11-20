@@ -187,7 +187,8 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 *
 	 * @see {@link https://doc.rust-lang.org/std/result/enum.Result.html#method.map}
 	 */
-	public map<OutputValue>(cb: (value: If<Success, T, never>) => OutputValue): If<Success, Ok<OutputValue, E>, Err<E>> {
+	public map<OutputValue>(cb: (value: If<Success, T, never>) => OutputValue): Result<OutputValue, E, Success> {
+		// @ts-expect-error Complex types
 		return this.match({ ok: (value) => ok(cb(value)), err: returnThis });
 	}
 
@@ -300,7 +301,8 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 *
 	 * @see {@link https://doc.rust-lang.org/std/result/enum.Result.html#method.map_err}
 	 */
-	public mapErr<OutputError>(cb: (error: If<Success, never, E>) => OutputError): If<Success, Ok<T>, Err<OutputError>> {
+	public mapErr<OutputError>(cb: (error: If<Success, never, E>) => OutputError): Result<T, OutputError, Success> {
+		// @ts-expect-error Complex types
 		return this.match({ ok: returnThis, err: (error) => err(cb(error)) });
 	}
 

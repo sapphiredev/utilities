@@ -165,6 +165,15 @@ describe('Result', () => {
 				expect(x.mapInto(cb)).toBe(x);
 				expect(cb).not.toHaveBeenCalled();
 			});
+
+			test('Given ok THEN chain mapInto and map THEN returns Ok<number, string>', () => {
+				const x = Result.from<number, string>(2);
+				const cb = vi.fn((value: number) => ok(value));
+				const mapChain = x.mapInto(cb).map((value) => value + 1);
+
+				expectTypeOf(mapChain).toMatchTypeOf<Result<number, string>>();
+				expect<Result<number, string>>(mapChain).toEqual(ok(3));
+			});
 		});
 
 		describe('mapOr', () => {
