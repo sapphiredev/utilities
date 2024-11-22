@@ -187,7 +187,8 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 *
 	 * @see {@link https://doc.rust-lang.org/std/result/enum.Result.html#method.map}
 	 */
-	public map<OutputValue>(cb: (value: T) => OutputValue): If<Success, Ok<OutputValue, E>, Err<E>> {
+	public map<OutputValue>(cb: (value: If<Success, T, never>) => OutputValue): Result<OutputValue, E, Success> {
+		// @ts-expect-error Complex types
 		return this.match({ ok: (value) => ok(cb(value)), err: returnThis });
 	}
 
@@ -220,7 +221,7 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 *
 	 * @note This is an extension not supported in Rust
 	 */
-	public mapInto<OutputResult extends AnyResult>(cb: (value: T) => OutputResult): If<Success, OutputResult, Err<E>> {
+	public mapInto<OutputResult extends AnyResult>(cb: (value: If<Success, T, never>) => OutputResult): If<Success, OutputResult, Err<E>> {
 		return this.match({ ok: (value) => cb(value), err: returnThis });
 	}
 
@@ -247,7 +248,7 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 */
 	public mapOr<MappedOutputValue, DefaultOutputValue>(
 		defaultValue: DefaultOutputValue,
-		cb: (value: T) => MappedOutputValue
+		cb: (value: If<Success, T, never>) => MappedOutputValue
 	): If<Success, MappedOutputValue, DefaultOutputValue> {
 		return this.match({ ok: (value) => cb(value), err: () => defaultValue });
 	}
@@ -273,7 +274,10 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 *
 	 * @see {@link https://doc.rust-lang.org/std/result/enum.Result.html#method.map_or_else}
 	 */
-	public mapOrElse<OutputValue, OutputError>(op: (error: E) => OutputError, cb: (value: T) => OutputValue): If<Success, OutputValue, OutputError> {
+	public mapOrElse<OutputValue, OutputError>(
+		op: (error: If<Success, never, E>) => OutputError,
+		cb: (value: If<Success, T, never>) => OutputValue
+	): If<Success, OutputValue, OutputError> {
 		return this.match({ ok: (value) => cb(value), err: (error) => op(error) });
 	}
 
@@ -297,7 +301,8 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 *
 	 * @see {@link https://doc.rust-lang.org/std/result/enum.Result.html#method.map_err}
 	 */
-	public mapErr<OutputError>(cb: (error: E) => OutputError): If<Success, Ok<T>, Err<OutputError>> {
+	public mapErr<OutputError>(cb: (error: If<Success, never, E>) => OutputError): Result<T, OutputError, Success> {
+		// @ts-expect-error Complex types
 		return this.match({ ok: returnThis, err: (error) => err(cb(error)) });
 	}
 
@@ -329,7 +334,7 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 *
 	 * @note This is an extension not supported in Rust
 	 */
-	public mapErrInto<OutputResult extends AnyResult>(cb: (error: E) => OutputResult): If<Success, Ok<T>, OutputResult> {
+	public mapErrInto<OutputResult extends AnyResult>(cb: (error: If<Success, never, E>) => OutputResult): If<Success, Ok<T>, OutputResult> {
 		return this.match({ ok: returnThis, err: (error) => cb(error) });
 	}
 
@@ -902,9 +907,12 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 *
 	 * @note This is an extension not supported in Rust
 	 */
-	public intoPromise(): If<Success, Promise<Ok<Awaited<T>>>, Promise<Err<Awaited<E>>>> {
-		return this.match({
+	public intoPromise(): Promise<If<Success, Ok<Awaited<T>>, Err<Awaited<E>>>> {
+		// @ts-expect-error Complex types
+		return this.match<Ok<Awaited<T>>, Err<Awaited<E>>>({
+			// @ts-expect-error Complex types
 			ok: async (value) => ok(await value), // NOSONAR
+			// @ts-expect-error Complex types
 			err: async (error) => err(await error) // NOSONAR
 		});
 	}
@@ -954,8 +962,8 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * ```
 	 */
 	public match<OkValue, ErrValue>(branches: {
-		ok(this: Ok<T>, value: T): OkValue;
-		err(this: Err<E>, error: E): ErrValue;
+		ok(this: Ok<T>, value: If<Success, T, never>): OkValue;
+		err(this: Err<E>, error: If<Success, never, E>): ErrValue;
 	}): If<Success, OkValue, ErrValue> {
 		// @ts-expect-error Complex types
 		return this.isOk() ? branches.ok.call(this, this[ValueProperty]) : branches.err.call(this, this[ValueProperty] as E);
