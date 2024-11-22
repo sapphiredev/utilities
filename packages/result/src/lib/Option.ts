@@ -766,7 +766,6 @@ export class Option<T, Exists extends boolean = boolean> {
 		this: Option<Result<ResultValue, ResultError, ResultSuccess>, Exists>
 	): If<Exists, Result<Some<ResultValue>, ResultError, ResultSuccess>, Ok<None>> {
 		return this.match<Result<Some<ResultValue>, ResultError, ResultSuccess>, Ok<None>>({
-			// @ts-expect-error Complex types
 			some: (result) => result.map(some),
 			none: () => ok(none)
 		});
