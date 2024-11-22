@@ -84,4 +84,5 @@ export * from './lib/toIterableIterator';
 export * from './lib/union';
 export * from './lib/unique';
 export * from './lib/unzip';
+export * from './lib/windows';
 export * from './lib/zip';
