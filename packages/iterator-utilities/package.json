@@ -945,6 +945,16 @@
 				"default": "./dist/cjs/lib/unzip.cjs"
 			}
 		},
+		"./windows": {
+			"import": {
+				"types": "./dist/esm/lib/windows.d.mts",
+				"default": "./dist/esm/lib/windows.mjs"
+			},
+			"require": {
+				"types": "./dist/cjs/lib/windows.d.cts",
+				"default": "./dist/cjs/lib/windows.cjs"
+			}
+		},
 		"./zip": {
 			"import": {
 				"types": "./dist/esm/lib/zip.d.mts",

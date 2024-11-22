@@ -19,7 +19,10 @@ describe('windows', () => {
 		const iterable = [1, 2, 3];
 		const limit = 2;
 		const result = [...windows(iterable, limit)];
-		expect(result).toEqual([[1, 2], [2, 3]]);
+		expect(result).toEqual([
+			[1, 2],
+			[2, 3]
+		]);
 	});
 
 	test('GIVEN empty iterable THEN returns empty iterable', () => {
@@ -38,6 +41,6 @@ describe('windows', () => {
 	test('GIVEN iterable and limit less than 0 THEN throws RangeError', () => {
 		const iterable = [1, 2, 3];
 		const limit = -1;
-		expect(() => windows(iterable, limit)).toThrowError(new RangeError('-1 must be a non-negative number'));
+		expect(() => windows(iterable, limit)).toThrowError(new RangeError('-1 must be a positive number'));
 	});
 });
