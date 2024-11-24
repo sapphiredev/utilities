@@ -31,6 +31,9 @@ describe('SchemaStore', () => {
 			const buffer = store.serialize(2, { name: 'Mario', height: 1.8 });
 			const deserialized = store.deserialize(buffer);
 			expect<{ id: 2; data: { height: number } }>(deserialized).toEqual({ id: 2, data: { name: 'Mario', height: 1.8 } });
+
+			expect<2>(store.getIdentifier(buffer)).toBe(2);
+			expect<2>(store.getIdentifier(buffer.toString())).toBe(2);
 		});
 
 		test('GIVEN a schema and a value THEN it serializes and deserializes the binary string correctly', () => {
@@ -39,6 +42,9 @@ describe('SchemaStore', () => {
 			const buffer = store.serialize(2, { name: 'Mario', height: 1.8 });
 			const deserialized = store.deserialize(buffer.toString());
 			expect<{ id: 2; data: { height: number } }>(deserialized).toEqual({ id: 2, data: { name: 'Mario', height: 1.8 } });
+
+			expect<2>(store.getIdentifier(buffer)).toBe(2);
+			expect<2>(store.getIdentifier(buffer.toString())).toBe(2);
 		});
 	});
 

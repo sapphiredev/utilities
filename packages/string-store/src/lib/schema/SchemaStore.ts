@@ -8,7 +8,7 @@ export class SchemaStore<Entries extends object = object> {
 	 */
 	public defaultMaximumArrayLength: number;
 
-	#schemas = new Map<number, Schema>();
+	readonly #schemas = new Map<number, Schema>();
 
 	/**
 	 * Creates a new schema store
@@ -80,6 +80,21 @@ export class SchemaStore<Entries extends object = object> {
 		const id = buffer.readInt16(pointer) as KeyOfStore<this>;
 		const schema = this.get(id) as Schema<number, object>;
 		return { id, data: schema.deserialize(buffer, pointer) } as unknown as DeserializationResult<Entries>;
+	}
+
+	/**
+	 * Gets the serialized ID from a buffer
+	 *
+	 * @param buffer The buffer to read the ID from
+	 * @returns The deserialized ID
+	 */
+	public getIdentifier(buffer: string | UnalignedUint16Array): KeyOfStore<this> {
+		if (typeof buffer === 'string') {
+			// We only need to read the first character:
+			buffer = UnalignedUint16Array.from(buffer[0]);
+		}
+
+		return buffer.at(0) as KeyOfStore<this>;
 	}
 
 	/**
