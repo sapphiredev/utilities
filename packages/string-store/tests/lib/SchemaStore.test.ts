@@ -1,4 +1,4 @@
-import { Float64Type, Schema, SchemaStore } from '../../src';
+import { Float64Type, Schema, SchemaStore, UnalignedUint16Array } from '../../src';
 
 describe('SchemaStore', () => {
 	test('GIVEN an empty SchemaStore THEN it should be empty', () => {
@@ -59,6 +59,11 @@ describe('SchemaStore', () => {
 			const store = new SchemaStore();
 			// @ts-expect-error Testing invalid input
 			expect(() => store.get(2)).toThrowError('Schema with id 2 does not exist');
+		});
+
+		test.each(['', UnalignedUint16Array.from('')])('GIVEN an empty value to `getIdentifier` THEN it throws', (value) => {
+			const store = new SchemaStore();
+			expect(() => store.getIdentifier(value)).toThrowError('Expected a non-empty value');
 		});
 	});
 });

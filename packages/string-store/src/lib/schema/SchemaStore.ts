@@ -87,8 +87,16 @@ export class SchemaStore<Entries extends object = object> {
 	 *
 	 * @param buffer The buffer to read the ID from
 	 * @returns The deserialized ID
+	 *
+	 * @remarks
+	 *
+	 * If an empty value is passed, a {@linkcode RangeError} will be thrown.
 	 */
 	public getIdentifier(buffer: string | UnalignedUint16Array): KeyOfStore<this> {
+		if (buffer.length === 0) {
+			throw new RangeError('Expected a non-empty value');
+		}
+
 		if (typeof buffer === 'string') {
 			// We only need to read the first character:
 			buffer = UnalignedUint16Array.from(buffer[0]);
