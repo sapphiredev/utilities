@@ -40,15 +40,16 @@ npm install @sapphire/string-store
 // Require the store classes
 const { SchemaStore, Schema, t } = require('@sapphire/string-store');
 
-const Id = {
+// Define the enum with the IDs and export it
+export const Id = Object.freeze({
 	AgeUpdate: 0,
 	StrengthUpdate: 1,
 	Planet: 2,
 	User: 3
-};
+});
 
-// Create the store
-const store = new SchemaStore()
+// Create the store in a file and export it
+export const store = new SchemaStore()
 	// Add a schema with an age field stored as a int32:
 	// Schema<Id.AgeUpdate, { age: number }>
 	.add(new Schema(Id.AgeUpdate).int32('age'))
@@ -61,6 +62,16 @@ const store = new SchemaStore()
 // - The age field (20)
 const buffer = store.serialize(Id.AgeUpdate, { age: 20 }).toString();
 ```
+
+> [!Important]
+> The IDs passed in the `Schema` constant need to be known at compile time, this can be done in the following ways:
+>
+> -   (TS) An `enum` object, which has all of its members strictly typed.
+> -   (TS) An object with `as const`, which makes the values known at compile time.
+> -   An object with `Object.freeze` as shown in the example, which is equivalent as the previous.
+> -   An object with a JSDoc defining the types as the specific values.
+> -   Multiple `const`ants for each value, or
+>     -   (TS) Class fields marked as `readonly`.
 
 > [!Tip]
 > The serialized string is encoded in UTF-16, meaning it can store 16 bits per character. Each type stores a different number of bits, for example, a single character can store:
