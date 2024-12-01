@@ -83,8 +83,8 @@
 		"@favware/cliff-jumper": "^5.0.0",
 		"@sapphire/eslint-config": "workspace:^",
 		"@sapphire/eslint-plugin-result": "workspace:^",
-		"@vitest/coverage-v8": "^2.1.5",
+		"@vitest/coverage-v8": "^2.1.6",
 		"typedoc-json-parser": "^10.2.0",
-		"vitest": "^2.1.5"
+		"vitest": "^2.1.6"
 	}
 }
