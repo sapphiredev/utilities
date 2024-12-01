@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/string-store@1.1.0](https://github.com/sapphiredev/utilities/compare/@sapphire/string-store@1.0.1...@sapphire/string-store@1.1.0) - (2024-12-01)
+
+## 📝 Documentation
+
+- Added remark on compile-time value types ([0c59968](https://github.com/sapphiredev/utilities/commit/0c59968d077155686106bdf62e94a317121f16cb)) ([#839](https://github.com/sapphiredev/utilities/pull/839) by @kyranet)
+
+## 🚀 Features
+
+- **SchemaStore:** Add `getIdentifier` method ([5127445](https://github.com/sapphiredev/utilities/commit/5127445079b13092968c0ab37924136e7819af28)) ([#838](https://github.com/sapphiredev/utilities/pull/838) by @kyranet)
+
 # [@sapphire/string-store@1.0.0](https://github.com/sapphiredev/utilities/tree/@sapphire/string-store@1.0.0) - (2024-11-02)
 
 ## 🏃 Performance
