@@ -21,6 +21,10 @@ export class UnalignedUint16Array {
 		this.#buffer = new Uint16Array(maxLength);
 	}
 
+	public at(index: number): number | undefined {
+		return this.#buffer.at(index);
+	}
+
 	public get maxLength(): number {
 		return this.#buffer.length;
 	}
