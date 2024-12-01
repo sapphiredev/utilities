@@ -20,7 +20,7 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * Branded value to ensure `Success` is typed correctly.
 	 * @internal
 	 */
-	protected declare __STATUS__: Success;
+	declare protected __STATUS__: Success;
 
 	private readonly [ValueProperty]: If<Success, T, E>;
 	private readonly [SuccessProperty]: Success;

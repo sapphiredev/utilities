@@ -10,7 +10,7 @@ export class Option<T, Exists extends boolean = boolean> {
 	 * Branded value to ensure `Success` is typed correctly.
 	 * @internal
 	 */
-	protected declare __STATUS__: Exists;
+	declare protected __STATUS__: Exists;
 
 	private readonly [ValueProperty]: If<Exists, T, null>;
 	private readonly [ExistsProperty]: Exists;
