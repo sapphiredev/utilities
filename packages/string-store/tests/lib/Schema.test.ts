@@ -312,6 +312,22 @@ describe('Schema', () => {
 			expect<Entry[]>([...schema.entries()]).toEqual([['a', StringType]]);
 		});
 
+		test('GIVEN a schema with a nullable property THEN it has the correct properties and types', () => {
+			const schema = new Schema(1).nullable('a', t.bit);
+			expectTypeOf<Schema<1, { a: Value }>>(schema);
+			expect(schema.bitSize).toBe(null);
+
+			type Key = 'a';
+			type Value = IType<number | null | undefined, null>;
+			type Entry = readonly [Key, Value];
+
+			const value = schema.get('a');
+
+			expect<Key[]>([...schema.keys()]).toEqual(['a']);
+			expect<Value[]>([...schema.values()]).toEqual([value]);
+			expect<Entry[]>([...schema.entries()]).toEqual([['a', value]]);
+		});
+
 		test('GIVEN a schema with a snowflake property THEN it has the correct properties and types', () => {
 			const schema = new Schema(1).snowflake('a');
 			expectTypeOf<Schema<1, { a: Value }>>(schema);

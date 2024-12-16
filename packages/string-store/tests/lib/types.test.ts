@@ -347,6 +347,32 @@ describe('types', () => {
 		});
 	});
 
+	describe('Nullable', () => {
+		const type = t.nullable(t.int16);
+
+		test('GIVEN type THEN it has the correct properties', () => {
+			expect(type.BIT_SIZE).toBe(null);
+		});
+
+		test.each([null, undefined])('GIVEN a null value THEN it serializes and deserializes correctly', (input) => {
+			const buffer = new UnalignedUint16Array(2);
+
+			type.serialize(buffer, input);
+
+			const deserialized = type.deserialize(buffer, new Pointer());
+			expect(deserialized).toBe(null);
+		});
+
+		test('GIVEN a non-null value THEN it serializes and deserializes correctly', () => {
+			const buffer = new UnalignedUint16Array(2);
+
+			type.serialize(buffer, 42);
+
+			const deserialized = type.deserialize(buffer, new Pointer());
+			expect(deserialized).toBe(42);
+		});
+	});
+
 	describe('Array(Bit)', () => {
 		const type = t.array(t.bit);
 

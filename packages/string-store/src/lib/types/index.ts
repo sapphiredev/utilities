@@ -15,6 +15,7 @@ import { Int32Type } from './Int32';
 import { Int4Type } from './Int4';
 import { Int64Type } from './Int64';
 import { Int8Type } from './Int8';
+import { NullableType } from './Nullable';
 import { SnowflakeType } from './Snowflake';
 import { StringType } from './String';
 import { Uint16Type } from './Uint16';
@@ -41,6 +42,7 @@ export const t = {
 	int4: Int4Type,
 	int64: Int64Type,
 	int8: Int8Type,
+	nullable: NullableType,
 	snowflake: SnowflakeType,
 	string: StringType,
 	uint16: Uint16Type,
@@ -68,6 +70,7 @@ export {
 	Int4Type,
 	Int64Type,
 	Int8Type,
+	NullableType,
 	SnowflakeType,
 	StringType,
 	Uint16Type,
