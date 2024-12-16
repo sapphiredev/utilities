@@ -412,6 +412,20 @@ export class Schema<Id extends number = number, Entries extends object = object>
 	}
 
 	/**
+	 * Adds a nullable property to the schema.
+	 *
+	 * @param name The name of the property
+	 * @param type The type of the underlying value
+	 * @returns The modified schema
+	 */
+	public nullable<const Name extends string, const ValueType, const ValueBitSize extends number | null>(
+		name: Name,
+		type: IType<ValueType, ValueBitSize>
+	) {
+		return this.#addType(name, t.nullable(type));
+	}
+
+	/**
 	 * Adds a 64-bit big integer property to the schema, similar to {@link Schema.bigUint64}.
 	 *
 	 * @remarks
