@@ -532,9 +532,9 @@ export type ValueOfSchema<SchemaValue extends object> =
 export type EntryOfSchema<SchemaValue extends object> =
 	SchemaValue extends Schema<infer _, infer Type> ? { [K in keyof Type]: readonly [K, Type[K]] }[keyof Type] : never;
 
-export type UnwrapSchemaType<Type extends object> = Type extends IType<infer T, infer _> ? T : never;
+export type UnwrapSchemaType<Type extends object> = Type extends IType<infer ValueType, infer _BitSize, infer _InputType> ? ValueType : never;
 export type UnwrapSchemaEntries<Entries extends object> = { [K in keyof Entries]: UnwrapSchemaType<Entries[K] & object> } & object;
-export type UnwrapSchema<SchemaValue extends object> = SchemaValue extends Schema<infer _, infer Type> ? UnwrapSchemaEntries<Type> : never;
+export type UnwrapSchema<SchemaValue extends object> = SchemaValue extends Schema<infer _Id, infer Type> ? UnwrapSchemaEntries<Type> : never;
 
 type OmitNever<T> = { [K in keyof T as T[K] extends never ? never : K]: T[K] };
 export type SerializeValueType<Type extends object> = Type extends IType<infer _ValueType, infer _BitSize, infer InputType> ? InputType : never;
