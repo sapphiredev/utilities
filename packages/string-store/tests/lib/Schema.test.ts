@@ -389,6 +389,22 @@ describe('Schema', () => {
 			expect<Value[]>([...schema.values()]).toEqual([value]);
 			expect<Entry[]>([...schema.entries()]).toEqual([['a', value]]);
 		});
+
+		test('GIVEN a schema with a constant property THEN it has the correct properties and types', () => {
+			const schema = new Schema(1).constant('a', 'Hello There!');
+			expectTypeOf<Schema<1, { a: Value }>>(schema);
+			expect(schema.bitSize).toBe(0);
+
+			type Key = 'a';
+			type Value = IType<'Hello There!', 0>;
+			type Entry = readonly [Key, Value];
+
+			const value = schema.get('a');
+
+			expect<Key[]>([...schema.keys()]).toEqual(['a']);
+			expect<Value[]>([...schema.values()]).toEqual([value]);
+			expect<Entry[]>([...schema.entries()]).toEqual([['a', value]]);
+		});
 	});
 
 	describe('serialization', () => {

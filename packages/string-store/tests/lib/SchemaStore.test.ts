@@ -46,6 +46,17 @@ describe('SchemaStore', () => {
 			expect<2>(store.getIdentifier(buffer)).toBe(2);
 			expect<2>(store.getIdentifier(buffer.toString())).toBe(2);
 		});
+
+		test('GIVEN a schema with a constant THEN it serializes and deserializes the buffer correctly', () => {
+			const store = new SchemaStore(10).add(new Schema(2).constant('runner', 'vitest'));
+
+			const buffer = store.serialize(2, {});
+			const deserialized = store.deserialize(buffer);
+			expect<{ id: 2; data: { runner: 'vitest' } }>(deserialized).toEqual({ id: 2, data: { runner: 'vitest' } });
+
+			expect<2>(store.getIdentifier(buffer)).toBe(2);
+			expect<2>(store.getIdentifier(buffer.toString())).toBe(2);
+		});
 	});
 
 	describe('exceptions', () => {
