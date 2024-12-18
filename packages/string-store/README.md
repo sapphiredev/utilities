@@ -119,7 +119,7 @@ Adds a nullable property of the specified type to the schema.
 // A schema with a single field `capitalId` that is a nullable string:
 
 const schema = new Schema(Id.Planets).nullable('capitalId', t.uint32);
-// → Schema<Id.Planets, { capitalId: string | null }>
+// → Schema<Id.Planets, { capitalId: number | null }>
 ```
 
 To track whether or not a property is optional, it will serialize a [bit](#bit), which signals whether or not the value
