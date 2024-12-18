@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/string-store@1.2.0](https://github.com/sapphiredev/utilities/compare/@sapphire/string-store@1.1.0...@sapphire/string-store@1.2.0) - (2024-12-18)
+
+## 🏠 Refactor
+
+- Improve types for `t.constant` and `t.nullable` ([80c79c3](https://github.com/sapphiredev/utilities/commit/80c79c3faf6520acc1c4c8a67797d2a2c64e0e1d)) ([#849](https://github.com/sapphiredev/utilities/pull/849) by @kyranet)
+
+## 📝 Documentation
+
+- Add `nullable` to the README ([86690e3](https://github.com/sapphiredev/utilities/commit/86690e35df6020c6b2eaaa5adf1194a075e07160)) ([#847](https://github.com/sapphiredev/utilities/pull/847) by @kyranet)
+
+## 🚀 Features
+
+- Added `constant` type ([4414462](https://github.com/sapphiredev/utilities/commit/4414462a0147de444122df2ebe0f6ed20d2164ac)) ([#848](https://github.com/sapphiredev/utilities/pull/848) by @kyranet)
+- Added `nullable` type ([3b1a353](https://github.com/sapphiredev/utilities/commit/3b1a353cb9ae6ffc3a0baf50cc27e2be26553a9b)) ([#846](https://github.com/sapphiredev/utilities/pull/846) by @kyranet)
+
 # [@sapphire/string-store@1.1.0](https://github.com/sapphiredev/utilities/compare/@sapphire/string-store@1.0.1...@sapphire/string-store@1.1.0) - (2024-12-01)
 
 ## 📝 Documentation
