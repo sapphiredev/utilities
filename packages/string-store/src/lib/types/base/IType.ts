@@ -1,14 +1,14 @@
 import type { Pointer } from '../../shared/Pointer';
 import type { UnalignedUint16Array } from '../../UnalignedUint16Array';
 
-export interface IType<ValueType, BitSize extends number | null> {
+export interface IType<ValueType, BitSize extends number | null, InputValue = ValueType> {
 	/**
 	 * Serialize a value to a buffer.
 	 *
 	 * @param buffer The buffer to write to
 	 * @param value The value to write
 	 */
-	serialize(buffer: UnalignedUint16Array, value: Readonly<ValueType>): void;
+	serialize(buffer: UnalignedUint16Array, value: InputValue): void;
 
 	/**
 	 * Deserialize a value from a buffer.

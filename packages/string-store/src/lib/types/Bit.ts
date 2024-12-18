@@ -1,6 +1,6 @@
 import type { IType } from './base/IType';
 
-export const BitType: IType<number, 1> = {
+export const BitType: IType<0 | 1, 1, number> = {
 	serialize(buffer, value) {
 		buffer.writeBit(value & 0b1);
 	},

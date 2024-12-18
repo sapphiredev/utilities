@@ -425,6 +425,24 @@ describe('types', () => {
 		);
 	});
 
+	describe('Constant', () => {
+		const type = t.constant('Hello World!');
+
+		test('GIVEN type THEN it has the correct properties', () => {
+			expect(type.BIT_SIZE).toBe(0);
+		});
+
+		test('GIVEN a buffer THEN it serializes and deserializes correctly', () => {
+			const buffer = new UnalignedUint16Array(10);
+
+			type.serialize(buffer, undefined as never);
+			expect(buffer.bitLength).toEqual(0);
+
+			const deserialized = type.deserialize(buffer, new Pointer());
+			expect(deserialized).toEqual('Hello World!');
+		});
+	});
+
 	describe('String', () => {
 		const type = StringType;
 

@@ -6,6 +6,7 @@ import { BigUint32Type } from './BigUint32';
 import { BigUint64Type } from './BigUint64';
 import { BitType } from './Bit';
 import { BooleanType } from './Boolean';
+import { ConstantType } from './Constant';
 import { FixedLengthArrayType } from './FixedLengthArray';
 import { Float32Type } from './Float32';
 import { Float64Type } from './Float64';
@@ -33,6 +34,7 @@ export const t = {
 	bigUint64: BigUint64Type,
 	bit: BitType,
 	boolean: BooleanType,
+	constant: ConstantType,
 	fixedLengthArray: FixedLengthArrayType,
 	float32: Float32Type,
 	float64: Float64Type,
@@ -61,6 +63,7 @@ export {
 	BigUint64Type,
 	BitType,
 	BooleanType,
+	ConstantType,
 	FixedLengthArrayType,
 	Float32Type,
 	Float64Type,

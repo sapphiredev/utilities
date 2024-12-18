@@ -24,7 +24,7 @@ export class Schema<Id extends number = number, Entries extends object = object>
 	}
 
 	/**
-	 * The total bit size of the schema.
+	 * The bit size of the entries in the schema.
 	 *
 	 * @remarks
 	 *
@@ -33,6 +33,18 @@ export class Schema<Id extends number = number, Entries extends object = object>
 	 */
 	public get bitSize(): number | null {
 		return this.#bitSize;
+	}
+
+	/**
+	 * The total bit size of the entries in the schema and the ID.
+	 *
+	 * @remarks
+	 *
+	 * If any of the entries have a bit size of `null`, the total bit size of
+	 * the schema will also be `null`.
+	 */
+	public get totalBitSize(): number | null {
+		return this.#bitSize === null ? null : this.#bitSize + 16;
 	}
 
 	/**
@@ -62,7 +74,7 @@ export class Schema<Id extends number = number, Entries extends object = object>
 	 * The schema's ID is written to the buffer first, followed by each property
 	 * in the schema.
 	 */
-	public serialize(buffer: UnalignedUint16Array, value: Readonly<UnwrapSchemaEntries<Entries>>): void {
+	public serialize(buffer: UnalignedUint16Array, value: Readonly<SerializeValueEntries<Entries>>): void {
 		buffer.writeInt16(this.#id);
 		for (const [name, type] of this) {
 			(type as IType<any, number | null>).serialize(buffer, (value as any)[name]);
@@ -440,6 +452,18 @@ export class Schema<Id extends number = number, Entries extends object = object>
 	}
 
 	/**
+	 * Adds a constant value in the schema, this will **not** be serialized and
+	 * can be used to add extra data without making the payload bigger.
+	 *
+	 * @param name The name of the property
+	 * @param constantValue The value to add to the schema
+	 * @returns The modified schema
+	 */
+	public constant<const Name extends string, const ValueType>(name: Name, constantValue: ValueType) {
+		return this.#addType(name, t.constant(constantValue));
+	}
+
+	/**
 	 * Iterates over the schema's property names.
 	 *
 	 * @returns An iterator for the schema's property names
@@ -475,9 +499,9 @@ export class Schema<Id extends number = number, Entries extends object = object>
 		return this.entries();
 	}
 
-	#addType<const EntryName extends string, const ValueType, const ValueBitSize extends number | null>(
+	#addType<const EntryName extends string, const ValueType, const ValueBitSize extends number | null, InputValue>(
 		name: EntryName,
-		type: IType<ValueType, ValueBitSize>
+		type: IType<ValueType, ValueBitSize, InputValue>
 	): Merge<Id, Entries, EntryName, typeof type> {
 		if (this.#types.has(name)) {
 			throw new Error(`Schema with id ${this.#id} already has a property with name "${name}"`);
@@ -511,3 +535,8 @@ export type EntryOfSchema<SchemaValue extends object> =
 export type UnwrapSchemaType<Type extends object> = Type extends IType<infer T, infer _> ? T : never;
 export type UnwrapSchemaEntries<Entries extends object> = { [K in keyof Entries]: UnwrapSchemaType<Entries[K] & object> } & object;
 export type UnwrapSchema<SchemaValue extends object> = SchemaValue extends Schema<infer _, infer Type> ? UnwrapSchemaEntries<Type> : never;
+
+type OmitNever<T> = { [K in keyof T as T[K] extends never ? never : K]: T[K] };
+export type SerializeValueType<Type extends object> = Type extends IType<infer _ValueType, infer _BitSize, infer InputType> ? InputType : never;
+export type SerializeValueEntries<Entries extends object> = OmitNever<{ [K in keyof Entries]: SerializeValueType<Entries[K] & object> }>;
+export type SerializeValue<SchemaValue extends object> = SchemaValue extends Schema<infer _Id, infer Type> ? SerializeValueEntries<Type> : never;

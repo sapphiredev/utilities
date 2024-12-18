@@ -359,6 +359,18 @@ const schema = new Schema(Id.User).snowflake('id');
 // → Schema<Id.User, { id: bigint }>
 ```
 
+### `constant`
+
+A constant value that will not get serialized into the buffer, useful for adding
+extra information to the resulting payloads, such as the name of a piece to run.
+
+```ts
+// A schema with a single field `handlerName` that is a specific constant:
+
+const schema = new Schema(Id.Planets).constant('handlerFileName', 'planets.ts');
+// → Schema<Id.Planets, { handlerFileName: 'planets.ts' }>
+```
+
 ---
 
 ## Buy us some doughnuts
