@@ -318,7 +318,7 @@ describe('Schema', () => {
 			expect(schema.bitSize).toBe(null);
 
 			type Key = 'a';
-			type Value = IType<number | null | undefined, null>;
+			type Value = IType<number | null, null, number | null | undefined>;
 			type Entry = readonly [Key, Value];
 
 			const value = schema.get('a');

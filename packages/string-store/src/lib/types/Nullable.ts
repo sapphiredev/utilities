@@ -2,9 +2,9 @@ import type { IType } from './base/IType';
 
 export function NullableType<ValueType, ValueBitSize extends number | null>(
 	type: IType<ValueType, ValueBitSize>
-): IType<ValueType | null | undefined, null> {
+): IType<ValueType | null, null, ValueType | null | undefined> {
 	return {
-		serialize(buffer, value: Readonly<ValueType | null>) {
+		serialize(buffer, value) {
 			if (value === null || value === undefined) {
 				buffer.writeBit(0);
 			} else {
