@@ -111,6 +111,20 @@ const schema = new Schema(Id.Planets).fixedLengthArray('names', t.string, 3);
 // → Schema<Id.Planets, { names: [string, string, string] }>
 ```
 
+### `nullable`
+
+Adds a nullable property of the specified type to the schema.
+
+```ts
+// A schema with a single field `capitalId` that is a nullable string:
+
+const schema = new Schema(Id.Planets).nullable('capitalId', t.uint32);
+// → Schema<Id.Planets, { capitalId: string | null }>
+```
+
+To track whether or not a property is optional, it will serialize a [bit](#bit), which signals whether or not the value
+is defined, due to this, its bit size is `null`.
+
 ### `string`
 
 Adds a string to the schema.
