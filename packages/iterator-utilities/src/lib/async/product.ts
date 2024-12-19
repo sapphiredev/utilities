@@ -1,0 +1,31 @@
+import { toNumberOrThrow } from '../shared/_toNumberOrThrow';
+import type { AsyncIterableResolvable } from './from';
+import { mapAsync } from './map';
+
+/**
+ * Consumes the iterable and returns the product of all the elements. If the iterable is empty, it returns `1`.
+ *
+ * @param iterable An iterator to calculate the product of.
+ * @returns The product of the elements in the input iterator.
+ *
+ * @example
+ * ```typescript
+ * import { productAsync } from '@sapphire/iterator-utilities';
+ *
+ * const iterable = [1, 2, 3, 4, 5];
+ * console.log(await productAsync(iterable));
+ * // Output: 120
+ *
+ * const iterable = [1, 2, 3, 4, 5, 0];
+ * console.log(await productAsync(iterable));
+ * // Output: 0
+ * ```
+ */
+export async function productAsync(iterable: AsyncIterableResolvable<number>): Promise<number> {
+	let result = 1;
+	for await (const value of mapAsync(iterable, toNumberOrThrow)) {
+		result *= value;
+	}
+
+	return result;
+}
