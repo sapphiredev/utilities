@@ -1,7 +1,3 @@
 {
-	"files.eol": "\n",
-	"sonarlint.connectedMode.project": {
-		"connectionId": "sapphiredev",
-		"projectKey": "sapphiredev_utilities"
-	}
+	"files.eol": "\n"
 }
