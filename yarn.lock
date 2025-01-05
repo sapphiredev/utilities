@@ -1573,7 +1573,7 @@ __metadata:
   dependencies:
     "@favware/cliff-jumper": "npm:^5.0.0"
     "@vitest/coverage-v8": "npm:^2.1.8"
-    discord-api-types: "npm:0.37.100"
+    discord-api-types: "npm:^0.37.114"
     tsup: "npm:^8.3.5"
     tsx: "npm:^4.19.2"
     typedoc: "npm:^0.26.11"
@@ -3307,13 +3307,6 @@ __metadata:
   dependencies:
     path-type: "npm:^4.0.0"
   checksum: 10/fa05e18324510d7283f55862f3161c6759a3f2f8dbce491a2fc14c8324c498286c54282c1f0e933cb930da8419b30679389499b919122952a4f8592362ef4615
-  languageName: node
-  linkType: hard
-
-"discord-api-types@npm:0.37.100":
-  version: 0.37.100
-  resolution: "discord-api-types@npm:0.37.100"
-  checksum: 10/44b7366784b11e32d9015709658d2429d040a643748c0b8733752a1d2b0db328dc1ab9fa3210f93423d6b3762561e60ada6ba781ac1edd7fddf6174e3c645311
   languageName: node
   linkType: hard
 
@@ -6675,7 +6668,7 @@ __metadata:
     "@vitest/coverage-v8": "npm:^2.1.8"
     concurrently: "npm:^9.1.2"
     cz-conventional-changelog: "npm:^3.3.0"
-    discord-api-types: "npm:0.37.100"
+    discord-api-types: "npm:^0.37.114"
     discord.js: "npm:^14.17.2"
     eslint: "npm:^8.57.1"
     eslint-config-prettier: "npm:^9.1.0"
