@@ -27,16 +27,16 @@
 		"@favware/npm-deprecate": "^2.0.0",
 		"@favware/rollup-type-bundler": "^3.3.0",
 		"@sapphire/framework": "^5.3.1",
-		"@types/lodash": "^4.17.13",
-		"@types/node": "^22.10.2",
+		"@types/lodash": "^4.17.14",
+		"@types/node": "^22.10.5",
 		"@types/ws": "^8.5.13",
 		"@typescript-eslint/eslint-plugin": "^7.18.0",
 		"@typescript-eslint/parser": "^7.18.0",
 		"@vitest/coverage-v8": "^2.1.8",
-		"concurrently": "^9.1.1",
+		"concurrently": "^9.1.2",
 		"cz-conventional-changelog": "^3.3.0",
 		"discord-api-types": "0.37.100",
-		"discord.js": "^14.16.3",
+		"discord.js": "^14.17.2",
 		"eslint": "^8.57.1",
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-prettier": "^5.2.1",
@@ -53,7 +53,7 @@
 		"typedoc": "^0.26.11",
 		"typedoc-json-parser": "^10.2.0",
 		"typescript": "~5.4.5",
-		"vite": "^6.0.6",
+		"vite": "^6.0.7",
 		"vitest": "^2.1.8"
 	},
 	"repository": {
@@ -77,5 +77,5 @@
 		"ansi-regex": "^5.0.1",
 		"minimist": "^1.2.8"
 	},
-	"packageManager": "yarn@4.5.3"
+	"packageManager": "yarn@4.6.0"
 }

@@ -69,7 +69,7 @@
 	"devDependencies": {
 		"@favware/cliff-jumper": "^5.0.0",
 		"@favware/rollup-type-bundler": "^3.3.0",
-		"concurrently": "^9.1.1",
+		"concurrently": "^9.1.2",
 		"tsup": "^8.3.5",
 		"tsx": "^4.19.2",
 		"typedoc": "^0.26.11",
