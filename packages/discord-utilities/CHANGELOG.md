@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/discord-utilities@3.4.4](https://github.com/sapphiredev/utilities/compare/@sapphire/discord-utilities@3.4.3...@sapphire/discord-utilities@3.4.4) - (2025-01-05)
+
+## 🐛 Bug Fixes
+
+- **discord-utilities:** Bump discord-api-types to `^0.37.114` to match discord.js ([7acb7cf](https://github.com/sapphiredev/utilities/commit/7acb7cfe06316bc60c7517dfd5324f34a36a37f9))
+
 # [@sapphire/discord-utilities@3.4.2](https://github.com/sapphiredev/utilities/compare/@sapphire/discord-utilities@3.4.1...@sapphire/discord-utilities@3.4.2) - (2024-11-02)
 
 ## 🏠 Refactor
