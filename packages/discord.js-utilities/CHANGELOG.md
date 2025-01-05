@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/discord.js-utilities@7.3.2](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@7.3.1...@sapphire/discord.js-utilities@7.3.2) - (2025-01-05)
+
+## 🐛 Bug Fixes
+
+- **discord.js:** Update code for latest discord.js and discord-api-types ([15bf4d5](https://github.com/sapphiredev/utilities/commit/15bf4d536ff7cc4f5414431360f937b04c2f7e1a)) ([#852](https://github.com/sapphiredev/utilities/pull/852) by @favna)
+
 # [@sapphire/discord.js-utilities@7.3.1](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@7.3.0...@sapphire/discord.js-utilities@7.3.1) - (2024-11-02)
 
 ## 🏠 Refactor
