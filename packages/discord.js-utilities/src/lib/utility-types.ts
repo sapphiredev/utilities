@@ -5,6 +5,7 @@ import type {
 	Channel,
 	ChatInputCommandInteraction,
 	DMChannel,
+	DirectoryChannel,
 	GuildChannel,
 	Interaction,
 	Message,
@@ -25,6 +26,7 @@ import type {
 export type ChannelTypes =
 	| CategoryChannel
 	| DMChannel
+	| DirectoryChannel
 	| PartialDMChannel
 	| NewsChannel
 	| StageChannel
