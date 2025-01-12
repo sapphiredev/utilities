@@ -23,7 +23,7 @@
 		"lint": "eslint src --ext ts --fix -c ../../.eslintrc",
 		"build": "yarn gen-index && tsup && yarn build:types",
 		"build:types": "concurrently \"yarn:build:types:*\"",
-		"build:types:cjs": "rollup-type-bundler -d dist/cjs -ot .cts",
+		"build:types:cjs": "rollup-type-bundler -d dist/cjs --output-typings-file-extension .cts",
 		"build:types:esm": "rollup-type-bundler -d dist/esm -t .mts",
 		"docs": "typedoc-json-parser",
 		"prepack": "yarn build",
@@ -68,7 +68,7 @@
 	},
 	"devDependencies": {
 		"@favware/cliff-jumper": "^6.0.0",
-		"@favware/rollup-type-bundler": "^3.3.0",
+		"@favware/rollup-type-bundler": "^4.0.0",
 		"concurrently": "^9.1.2",
 		"tsup": "^8.3.5",
 		"tsx": "^4.19.2",
