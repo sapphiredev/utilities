@@ -38,7 +38,7 @@
 		"discord-api-types": "^0.37.114",
 		"discord.js": "^14.17.3",
 		"eslint": "^8.57.1",
-		"eslint-config-prettier": "^9.1.0",
+		"eslint-config-prettier": "^10.0.1",
 		"eslint-plugin-prettier": "^5.2.3",
 		"lint-staged": "^15.4.1",
 		"lodash": "^4.17.21",
