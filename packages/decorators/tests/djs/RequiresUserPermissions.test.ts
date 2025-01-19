@@ -4,8 +4,8 @@ import {
 	Message as DJSMessage,
 	PermissionFlagsBits,
 	PermissionsBitField,
-	type PermissionsString,
-	type PermissionResolvable
+	type PermissionResolvable,
+	type PermissionsString
 } from 'discord.js';
 import diff from 'lodash/difference';
 import { DecoratorIdentifiers, RequiresUserPermissions } from '../../src';
@@ -82,7 +82,7 @@ describe('RequiresUserPermissions', () => {
 						identifier: DecoratorIdentifiers.RequiresUserPermissionsMissingPermissions,
 						message: 'Sorry, but you are not allowed to do that. You are missing the permissions: SendMessages,AttachFiles',
 						context: {
-							missing: [PermissionFlagsBits.SendMessages, PermissionFlagsBits.AttachFiles]
+							missing: ['SendMessages', 'AttachFiles']
 						}
 					})
 				);
