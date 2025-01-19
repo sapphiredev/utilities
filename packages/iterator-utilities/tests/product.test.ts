@@ -34,6 +34,6 @@ describe('product', () => {
 	test('GIVEN iterable with strings THEN returns the maximum value', () => {
 		const iterable = ['a', 'e', 'c', 'b', 'd'];
 		// @ts-expect-error Testing invalid input
-		expect(() => product(iterable)).toThrow(new TypeError('a must be a non-NaN number'));
+		expect(() => product(iterable)).toThrow(new RangeError('a must be a non-NaN number'));
 	});
 });

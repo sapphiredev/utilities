@@ -38,10 +38,10 @@ describe('chunk', () => {
 		expect(() => [...chunk(iterable, chunkSize)]).toThrowError(new RangeError('-1 must be a positive number'));
 	});
 
-	test('GIVEN iterable and NaN chunk size THEN throws TypeError', () => {
+	test('GIVEN iterable and NaN chunk size THEN throws RangeError', () => {
 		const iterable = [1, 2, 3];
 		const chunkSize = NaN;
-		expect(() => [...chunk(iterable, chunkSize)]).toThrowError(new TypeError('NaN must be a non-NaN number'));
+		expect(() => [...chunk(iterable, chunkSize)]).toThrowError(new RangeError('NaN must be a non-NaN number'));
 	});
 
 	test('GIVEN iterable and Infinity chunk size THEN throws RangeError', () => {

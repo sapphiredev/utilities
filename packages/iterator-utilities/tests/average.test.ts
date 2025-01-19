@@ -25,9 +25,9 @@ describe('average', () => {
 		expect(result).toBe(-3);
 	});
 
-	test('GIVEN iterable with strings THEN throws TypeError', () => {
+	test('GIVEN iterable with strings THEN throws RangeError', () => {
 		const iterable = ['a', 'e', 'c', 'b', 'd'];
 		// @ts-expect-error Testing invalid input
-		expect(() => average(iterable)).toThrow(new TypeError('a must be a non-NaN number'));
+		expect(() => average(iterable)).toThrow(new RangeError('a must be a non-NaN number'));
 	});
 });
