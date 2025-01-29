@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/utilities@3.18.2](https://github.com/sapphiredev/utilities/compare/@sapphire/utilities@3.18.1...@sapphire/utilities@3.18.2) - (2025-01-29)
+
+## 🐛 Bug Fixes
+
+- **utilities:** Ensure consistent typing for `objectEntries`, `objectKeys` and `objectValues` ([598c24a](https://github.com/sapphiredev/utilities/commit/598c24a313d5b442c94304f0a9ff73b2782fb982)) ([#857](https://github.com/sapphiredev/utilities/pull/857) by @GeniusTimo)
+
 # [@sapphire/utilities@3.18.0](https://github.com/sapphiredev/utilities/compare/@sapphire/utilities@3.17.0...@sapphire/utilities@3.18.0) - (2024-11-02)
 
 ## 🏠 Refactor
