@@ -6,7 +6,7 @@ describe('objectEntries', () => {
 		const expected = [
 			['a', 'Hello'],
 			['b', 420]
-		] as [string, unknown][];
+		];
 
 		expect<['a' | 'b', 'Hello' | 420][]>(objectEntries(source)).toEqual(expected);
 	});
@@ -17,9 +17,19 @@ describe('objectEntries', () => {
 			['a', 'Hello'],
 			['b', 420],
 			['deep', { i: [] }]
-		] as [string, unknown][];
+		];
 
 		expect<['a' | 'b' | 'deep', 'Hello' | 420 | { i: readonly [] }][]>(objectEntries(source)).toEqual(expected);
+	});
+
+	test('GIVEN array readonly THEN returns expected', () => {
+		const source = ['Hello', 420] as const;
+		const expected = [
+			['0', 'Hello'],
+			['1', 420]
+		];
+
+		expect<[`${number}`, 'Hello' | 420][]>(objectEntries(source)).toEqual(expected);
 	});
 
 	test('GIVEN basic THEN returns expected', () => {
@@ -27,9 +37,9 @@ describe('objectEntries', () => {
 		const expected = [
 			['a', 'Hello'],
 			['b', 420]
-		] as [string, unknown][];
+		];
 
-		expect(objectEntries(source)).toEqual(expected);
+		expect<['a' | 'b', string | number][]>(objectEntries(source)).toEqual(expected);
 	});
 
 	test('GIVEN deep THEN returns expected', () => {
@@ -38,8 +48,18 @@ describe('objectEntries', () => {
 			['a', 'Hello'],
 			['b', 420],
 			['deep', { i: [] }]
-		] as [string, unknown][];
+		];
 
-		expect(objectEntries(source)).toEqual(expected);
+		expect<['a' | 'b' | 'deep', string | number | { i: never[] }][]>(objectEntries(source)).toEqual(expected);
+	});
+
+	test('GIVEN array THEN returns expected', () => {
+		const source = ['Hello', 420];
+		const expected = [
+			['0', 'Hello'],
+			['1', 420]
+		];
+
+		expect<[`${number}`, string | number][]>(objectEntries(source)).toEqual(expected);
 	});
 });
