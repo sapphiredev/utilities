@@ -59,9 +59,20 @@ export class SchemaStore<Entries extends object = object> {
 	 *
 	 * @param id The id of the schema to use for serialization
 	 * @param value The value to serialize
+	 * @returns The serialized string
+	 */
+	public serialize<const Id extends KeyOfStore<this>>(id: Id, value: SerializeValue<Entries[Id] & object>): string {
+		return this.serializeRaw(id, value).toString();
+	}
+
+	/**
+	 * Serializes a value using the schema with the given id
+	 *
+	 * @param id The id of the schema to use for serialization
+	 * @param value The value to serialize
 	 * @returns The serialized buffer
 	 */
-	public serialize<const Id extends KeyOfStore<this>>(id: Id, value: SerializeValue<Entries[Id] & object>): UnalignedUint16Array {
+	public serializeRaw<const Id extends KeyOfStore<this>>(id: Id, value: SerializeValue<Entries[Id] & object>): UnalignedUint16Array {
 		const schema = this.get(id) as Schema<Id, object>;
 		const buffer = new UnalignedUint16Array(schema.totalBitSize ?? this.defaultMaximumArrayLength);
 		schema.serialize(buffer, value);

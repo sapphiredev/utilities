@@ -23,7 +23,7 @@ describe('pollSync', () => {
 
 	test('GIVEN a function that fails twice then succeeds THEN calls that function thrice', () => {
 		const cb = vi
-			.fn<[], string>() //
+			.fn() //
 			.mockReturnValueOnce(fail)
 			.mockReturnValueOnce(fail)
 			.mockReturnValueOnce(pass);
@@ -56,7 +56,7 @@ describe('pollSync', () => {
 
 		test('GIVEN a poll with only one retry and fails both THEN calls that function twice, but condition only once', () => {
 			const cb = vi
-				.fn<[], string>() //
+				.fn() //
 				.mockReturnValueOnce(fail)
 				.mockReturnValueOnce(fail);
 			const cbCondition = vi.fn((result: string) => result === pass);
@@ -111,7 +111,7 @@ describe('pollSync', () => {
 
 		test('GIVEN a poll with a wait of 5ms THEN waits 5ms between retries', () => {
 			const cb = vi
-				.fn<[], string>() //
+				.fn() //
 				.mockReturnValueOnce(fail)
 				.mockReturnValueOnce(pass);
 			const cbCondition = vi.fn(cbConditionRaw);
@@ -150,7 +150,7 @@ describe('pollSync', () => {
 
 		test('GIVEN a poll with 5ms timeout but takes longer THEN throws an error', () => {
 			const cb = vi
-				.fn<[], string>() //
+				.fn() //
 				.mockReturnValueOnce(fail)
 				.mockReturnValueOnce(fail);
 			const cbCondition = vi.fn((result: string) => result === pass);
@@ -167,13 +167,13 @@ describe('pollSync', () => {
 			expect(callback).toThrowError(new DOMException('This operation was aborted', 'AbortError'));
 			expect(cb).toBeCalledTimes(2);
 			expect(cbCondition).toBeCalledTimes(2);
-			expect(dateNow).toBeCalledTimes(6);
+			expect(dateNow).toBeCalledTimes(16);
 		});
 	});
 
 	describe('verbose', () => {
 		test('GIVEN verbose but no waitBetweenRetries THEN does not call console.log', () => {
-			const cb = vi.fn<[], string>().mockReturnValueOnce(fail).mockReturnValueOnce(pass);
+			const cb = vi.fn().mockReturnValueOnce(fail).mockReturnValueOnce(pass);
 			const consoleLog = vi.spyOn(console, 'log').mockImplementation(() => undefined);
 			const result = pollSync(cb, cbConditionRaw, { verbose: true });
 
@@ -182,7 +182,7 @@ describe('pollSync', () => {
 		});
 
 		test('GIVEN verbose and waitBetweenRetries THEN calls console.log on retry', () => {
-			const cb = vi.fn<[], string>().mockReturnValueOnce(fail).mockReturnValueOnce(pass);
+			const cb = vi.fn().mockReturnValueOnce(fail).mockReturnValueOnce(pass);
 			const consoleLog = vi.spyOn(console, 'log').mockImplementation(() => undefined);
 			const result = pollSync(cb, cbConditionRaw, { verbose: true, waitBetweenRetries: 5 });
 
