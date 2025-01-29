@@ -74,9 +74,7 @@ export class SchemaStore<Entries extends object = object> {
 	 */
 	public serializeRaw<const Id extends KeyOfStore<this>>(id: Id, value: SerializeValue<Entries[Id] & object>): UnalignedUint16Array {
 		const schema = this.get(id) as Schema<Id, object>;
-		const buffer = new UnalignedUint16Array(schema.totalBitSize ?? this.defaultMaximumArrayLength);
-		schema.serialize(buffer, value);
-		return buffer;
+		return schema.serializeRaw(value, this.defaultMaximumArrayLength);
 	}
 
 	/**
