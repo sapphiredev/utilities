@@ -1,5 +1,5 @@
+import type { DuplexBuffer } from '../../buffer/DuplexBuffer';
 import type { Pointer } from '../../shared/Pointer';
-import type { UnalignedUint16Array } from '../../UnalignedUint16Array';
 
 export interface IType<ValueType, BitSize extends number | null, InputValue = ValueType> {
 	/**
@@ -8,7 +8,7 @@ export interface IType<ValueType, BitSize extends number | null, InputValue = Va
 	 * @param buffer The buffer to write to
 	 * @param value The value to write
 	 */
-	serialize(buffer: UnalignedUint16Array, value: InputValue): void;
+	serialize(buffer: DuplexBuffer, value: InputValue): void;
 
 	/**
 	 * Deserialize a value from a buffer.
@@ -16,7 +16,7 @@ export interface IType<ValueType, BitSize extends number | null, InputValue = Va
 	 * @param buffer The buffer to read from
 	 * @param pointer The pointer indicating the current position in the buffer
 	 */
-	deserialize(buffer: UnalignedUint16Array, pointer: Pointer): ValueType;
+	deserialize(buffer: DuplexBuffer, pointer: Pointer): ValueType;
 
 	/**
 	 * The size of the value in bits, or `null` if the size is variable.

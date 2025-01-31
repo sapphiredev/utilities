@@ -1,6 +1,7 @@
+import type { DuplexBuffer } from '../buffer/DuplexBuffer';
+import { UnalignedUint16Array } from '../buffer/UnalignedUint16Array';
 import { Pointer, type PointerLike } from '../shared/Pointer';
 import { t, type IType } from '../types/index';
-import { UnalignedUint16Array } from '../UnalignedUint16Array';
 
 export class Schema<Id extends number = number, Entries extends object = object> {
 	readonly #id: Id;
@@ -83,7 +84,7 @@ export class Schema<Id extends number = number, Entries extends object = object>
 	 * @param defaultMaximumArrayLength The default maximum array length, if any
 	 * @returns The newly created buffer.
 	 */
-	public serializeRaw(value: Readonly<SerializeValueEntries<Entries>>, defaultMaximumArrayLength = 100): UnalignedUint16Array {
+	public serializeRaw(value: Readonly<SerializeValueEntries<Entries>>, defaultMaximumArrayLength = 100): DuplexBuffer {
 		const buffer = new UnalignedUint16Array(this.totalBitSize ?? defaultMaximumArrayLength);
 		this.serializeInto(buffer, value);
 		return buffer;
@@ -100,7 +101,7 @@ export class Schema<Id extends number = number, Entries extends object = object>
 	 * The schema's ID is written to the buffer first, followed by each property
 	 * in the schema.
 	 */
-	public serializeInto(buffer: UnalignedUint16Array, value: Readonly<SerializeValueEntries<Entries>>): void {
+	public serializeInto(buffer: DuplexBuffer, value: Readonly<SerializeValueEntries<Entries>>): void {
 		buffer.writeInt16(this.#id);
 		for (const [name, type] of this) {
 			(type as IType<any, number | null>).serialize(buffer, (value as any)[name]);
@@ -119,7 +120,7 @@ export class Schema<Id extends number = number, Entries extends object = object>
 	 * Unlike {@link Schema.serializeInto}, this method does not read the schema's ID
 	 * from the buffer, that is reserved for the {@link SchemaStore}.
 	 */
-	public deserialize(buffer: UnalignedUint16Array | string, pointer: PointerLike): UnwrapSchemaEntries<Entries> {
+	public deserialize(buffer: DuplexBuffer | string, pointer: PointerLike): UnwrapSchemaEntries<Entries> {
 		buffer = UnalignedUint16Array.from(buffer);
 		pointer = Pointer.from(pointer);
 		const result = Object.create(null) as UnwrapSchemaEntries<Entries>;
