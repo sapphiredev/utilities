@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/string-store@2.0.0](https://github.com/sapphiredev/utilities/compare/@sapphire/string-store@1.2.0...@sapphire/string-store@2.0.0) - (2025-01-31)
+
+## 🏠 Refactor
+
+- Add `DuplexBuffer` interface ([548200f](https://github.com/sapphiredev/utilities/commit/548200f1af067ae2f017c27a3c5d056ec6dd7ff8)) ([#865](https://github.com/sapphiredev/utilities/pull/865) by @kyranet)
+- **SchemaStore:** Introduce `serializeRaw` ([5141559](https://github.com/sapphiredev/utilities/commit/51415597fa4b8ed0e17ba71743e73f3963a6803b)) ([#862](https://github.com/sapphiredev/utilities/pull/862) by @kyranet)
+  - 💥 **BREAKING CHANGE:** `serialize` no longer returns an `UnalignedUint16Array`, if you desire the old behaviour, use `serializeRaw`
+
+## 🚀 Features
+
+- **Schema:** Add serialization helpers ([8a922c4](https://github.com/sapphiredev/utilities/commit/8a922c421576707dcd1e74379544f20a8c43d785)) ([#864](https://github.com/sapphiredev/utilities/pull/864) by @kyranet)
+  - 💥 **BREAKING CHANGE:** `serialize` has been renamed to `serializeInto`
+
 # [@sapphire/string-store@1.2.0](https://github.com/sapphiredev/utilities/compare/@sapphire/string-store@1.1.0...@sapphire/string-store@1.2.0) - (2024-12-18)
 
 ## 🏠 Refactor
