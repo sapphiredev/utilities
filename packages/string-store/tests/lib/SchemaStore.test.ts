@@ -1,4 +1,4 @@
-import { Float64Type, Schema, SchemaStore, UnalignedUint16Array } from '../../src';
+import { Float64Type, Schema, SchemaStore, UnalignedUint16Array, type DuplexBuffer } from '../../src';
 
 describe('SchemaStore', () => {
 	test('GIVEN an empty SchemaStore THEN it should be empty', () => {
@@ -35,7 +35,7 @@ describe('SchemaStore', () => {
 			expect<2>(store.getIdentifier(buffer)).toBe(2);
 			expect<2>(store.getIdentifier(buffer.toString())).toBe(2);
 
-			expectTypeOf(buffer).toEqualTypeOf<UnalignedUint16Array>();
+			expectTypeOf(buffer).toEqualTypeOf<DuplexBuffer>();
 		});
 
 		test('GIVEN a schema and a value THEN it serializes and deserializes the binary string correctly', () => {
