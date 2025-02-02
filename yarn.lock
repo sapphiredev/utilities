@@ -1980,10 +1980,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/lodash@npm:^4.17.14":
-  version: 4.17.14
-  resolution: "@types/lodash@npm:4.17.14"
-  checksum: 10/6ee40725f3e192f5ef1f493caca19210aa7acd7adc3136b8dba84d418a35be0abea0668105aed9f696ad62a54310a9c0d328971ad4b157f5bcda700424ed5aae
+"@types/lodash@npm:^4.17.15":
+  version: 4.17.15
+  resolution: "@types/lodash@npm:4.17.15"
+  checksum: 10/27b348b5971b9c670215331b52448a13d7d65bf1fbd320a7049c9c153c1186ff5d116ba75f05f07d32d7ece8a992b26a30c7bdc9be22a3d1e4e3e6068aa04603
   languageName: node
   linkType: hard
 
@@ -1996,12 +1996,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^22.10.10":
-  version: 22.10.10
-  resolution: "@types/node@npm:22.10.10"
+"@types/node@npm:*, @types/node@npm:^22.13.0":
+  version: 22.13.0
+  resolution: "@types/node@npm:22.13.0"
   dependencies:
     undici-types: "npm:~6.20.0"
-  checksum: 10/61559b62bc7e62b947876e097c99472dd01317dd3b5916b538e2c40db8d68a1fc23c8de48149ef04cd2790a97bf2c005ea60cbb067e55ddbefd013d73da7a147
+  checksum: 10/a7563e57df48cb7e28f936dbabe228316dcdb4c7c3a88a6c1659fae898ffde2647a7193a9e29e0cbcb7dacc05a91fb3bc30c1a1d6fc9294694a734ff71a5f12e
   languageName: node
   linkType: hard
 
@@ -4954,9 +4954,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lint-staged@npm:^15.4.2":
-  version: 15.4.2
-  resolution: "lint-staged@npm:15.4.2"
+"lint-staged@npm:^15.4.3":
+  version: 15.4.3
+  resolution: "lint-staged@npm:15.4.3"
   dependencies:
     chalk: "npm:^5.4.1"
     commander: "npm:^13.1.0"
@@ -4970,7 +4970,7 @@ __metadata:
     yaml: "npm:^2.7.0"
   bin:
     lint-staged: bin/lint-staged.js
-  checksum: 10/19f85db74d002b46901b8d1acf8af195e116eab53a1c3790be89d6d175b2fdf62098df86d6b5d0db2822ce4e0ccae8dc954f2dd2a79b656b7837d2f5af65c563
+  checksum: 10/14a6a9cb9b5e8027b1347cb24e114839d618d343d5c724c26def7d45ca9b9a9b813b585531c68f5a3d13332407c2dba198987a73f0350df483d99a876ba69c60
   languageName: node
   linkType: hard
 
@@ -6485,8 +6485,8 @@ __metadata:
     "@favware/npm-deprecate": "npm:^2.0.0"
     "@favware/rollup-type-bundler": "npm:^4.0.0"
     "@sapphire/framework": "npm:^5.3.2"
-    "@types/lodash": "npm:^4.17.14"
-    "@types/node": "npm:^22.10.10"
+    "@types/lodash": "npm:^4.17.15"
+    "@types/node": "npm:^22.13.0"
     "@types/ws": "npm:^8.5.14"
     "@typescript-eslint/eslint-plugin": "npm:^7.18.0"
     "@typescript-eslint/parser": "npm:^7.18.0"
@@ -6498,7 +6498,7 @@ __metadata:
     eslint: "npm:^8.57.1"
     eslint-config-prettier: "npm:^10.0.1"
     eslint-plugin-prettier: "npm:^5.2.3"
-    lint-staged: "npm:^15.4.2"
+    lint-staged: "npm:^15.4.3"
     lodash: "npm:^4.17.21"
     msw: "npm:^2.7.0"
     npm-run-all2: "npm:^7.0.2"
@@ -6507,7 +6507,7 @@ __metadata:
     tslib: "npm:^2.8.1"
     tsup: "npm:^8.3.6"
     tsx: "npm:^4.19.2"
-    turbo: "npm:^2.3.4"
+    turbo: "npm:^2.4.0"
     typedoc: "npm:^0.26.11"
     typedoc-json-parser: "npm:^10.2.0"
     typescript: "npm:~5.4.5"
@@ -7269,58 +7269,58 @@ __metadata:
   languageName: node
   linkType: hard
 
-"turbo-darwin-64@npm:2.3.4":
-  version: 2.3.4
-  resolution: "turbo-darwin-64@npm:2.3.4"
+"turbo-darwin-64@npm:2.4.0":
+  version: 2.4.0
+  resolution: "turbo-darwin-64@npm:2.4.0"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"turbo-darwin-arm64@npm:2.3.4":
-  version: 2.3.4
-  resolution: "turbo-darwin-arm64@npm:2.3.4"
+"turbo-darwin-arm64@npm:2.4.0":
+  version: 2.4.0
+  resolution: "turbo-darwin-arm64@npm:2.4.0"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"turbo-linux-64@npm:2.3.4":
-  version: 2.3.4
-  resolution: "turbo-linux-64@npm:2.3.4"
+"turbo-linux-64@npm:2.4.0":
+  version: 2.4.0
+  resolution: "turbo-linux-64@npm:2.4.0"
   conditions: os=linux & cpu=x64
   languageName: node
   linkType: hard
 
-"turbo-linux-arm64@npm:2.3.4":
-  version: 2.3.4
-  resolution: "turbo-linux-arm64@npm:2.3.4"
+"turbo-linux-arm64@npm:2.4.0":
+  version: 2.4.0
+  resolution: "turbo-linux-arm64@npm:2.4.0"
   conditions: os=linux & cpu=arm64
   languageName: node
   linkType: hard
 
-"turbo-windows-64@npm:2.3.4":
-  version: 2.3.4
-  resolution: "turbo-windows-64@npm:2.3.4"
+"turbo-windows-64@npm:2.4.0":
+  version: 2.4.0
+  resolution: "turbo-windows-64@npm:2.4.0"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
 
-"turbo-windows-arm64@npm:2.3.4":
-  version: 2.3.4
-  resolution: "turbo-windows-arm64@npm:2.3.4"
+"turbo-windows-arm64@npm:2.4.0":
+  version: 2.4.0
+  resolution: "turbo-windows-arm64@npm:2.4.0"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"turbo@npm:^2.3.4":
-  version: 2.3.4
-  resolution: "turbo@npm:2.3.4"
+"turbo@npm:^2.4.0":
+  version: 2.4.0
+  resolution: "turbo@npm:2.4.0"
   dependencies:
-    turbo-darwin-64: "npm:2.3.4"
-    turbo-darwin-arm64: "npm:2.3.4"
-    turbo-linux-64: "npm:2.3.4"
-    turbo-linux-arm64: "npm:2.3.4"
-    turbo-windows-64: "npm:2.3.4"
-    turbo-windows-arm64: "npm:2.3.4"
+    turbo-darwin-64: "npm:2.4.0"
+    turbo-darwin-arm64: "npm:2.4.0"
+    turbo-linux-64: "npm:2.4.0"
+    turbo-linux-arm64: "npm:2.4.0"
+    turbo-windows-64: "npm:2.4.0"
+    turbo-windows-arm64: "npm:2.4.0"
   dependenciesMeta:
     turbo-darwin-64:
       optional: true
@@ -7336,7 +7336,7 @@ __metadata:
       optional: true
   bin:
     turbo: bin/turbo
-  checksum: 10/e1ea94c1977c7d907dff50796b09dca8dc4713590ef0f3a5697abb2de41b9a465e6ca25b8d417d12cadb4db5e65a2c247dd60486c85eaaf69a1888ff9f0d604a
+  checksum: 10/074e612c5258132e52d1aeed3152178c6f8b2a8c77625ec734b5eb71a77ab123639446404b6c9ea126a382594359e4a095c4fafa860c2bc451dbec8846cebdab
   languageName: node
   linkType: hard
 
