@@ -35,7 +35,7 @@
 		"@vitest/coverage-v8": "^3.0.5",
 		"concurrently": "^9.1.2",
 		"cz-conventional-changelog": "^3.3.0",
-		"discord-api-types": "^0.37.114",
+		"discord-api-types": "^0.37.119",
 		"discord.js": "^14.18.0",
 		"eslint": "^8.57.1",
 		"eslint-config-prettier": "^10.0.1",

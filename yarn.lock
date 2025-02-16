@@ -1472,7 +1472,7 @@ __metadata:
   dependencies:
     "@favware/cliff-jumper": "npm:^6.0.0"
     "@vitest/coverage-v8": "npm:^3.0.5"
-    discord-api-types: "npm:^0.37.114"
+    discord-api-types: "npm:^0.37.119"
     tsup: "npm:^8.3.6"
     tsx: "npm:^4.19.2"
     typedoc: "npm:^0.26.11"
@@ -6493,7 +6493,7 @@ __metadata:
     "@vitest/coverage-v8": "npm:^3.0.5"
     concurrently: "npm:^9.1.2"
     cz-conventional-changelog: "npm:^3.3.0"
-    discord-api-types: "npm:^0.37.114"
+    discord-api-types: "npm:^0.37.119"
     discord.js: "npm:^14.18.0"
     eslint: "npm:^8.57.1"
     eslint-config-prettier: "npm:^10.0.1"
