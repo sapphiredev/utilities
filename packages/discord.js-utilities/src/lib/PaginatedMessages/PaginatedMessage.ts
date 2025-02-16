@@ -1434,6 +1434,7 @@ export class PaginatedMessage {
 				if (this.response.replied || this.response.deferred) {
 					await this.response.editReply(page);
 				} else {
+					// @ts-ignore There are conflicting types with 'flags" not being checked properly within DiscordJS and differing discord-api-types versions
 					await this.response.reply({ ...page, content: page.content ?? undefined });
 				}
 			} else if (isMessageInstance(this.response)) {
@@ -1444,6 +1445,7 @@ export class PaginatedMessage {
 				const editReplyResponse = await messageOrInteraction.editReply(page);
 				this.response = messageOrInteraction.ephemeral ? messageOrInteraction : editReplyResponse;
 			} else {
+				// @ts-ignore There are conflicting types with 'flags" not being checked properly within DiscordJS and differing discord-api-types versions
 				this.response = await messageOrInteraction.reply({
 					...page,
 					content: page.content ?? undefined,
@@ -1452,6 +1454,7 @@ export class PaginatedMessage {
 				});
 			}
 		} else if (isTextBasedChannel(messageOrInteraction.channel)) {
+			// @ts-ignore There are conflicting types with 'flags" not being checked properly within DiscordJS and differing discord-api-types versions
 			this.response = await messageOrInteraction.channel.send({ ...page, content: page.content ?? undefined });
 		}
 	}
