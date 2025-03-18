@@ -1434,7 +1434,6 @@ export class PaginatedMessage {
 				if (this.response.replied || this.response.deferred) {
 					await this.response.editReply(page);
 				} else {
-					// @ts-expect-error issue with discord.js that has funky with flags and ephemeral
 					await this.response.reply({ ...page, content: page.content ?? undefined });
 				}
 			} else if (isMessageInstance(this.response)) {
@@ -1445,7 +1444,6 @@ export class PaginatedMessage {
 				const editReplyResponse = await messageOrInteraction.editReply(page);
 				this.response = messageOrInteraction.ephemeral ? messageOrInteraction : editReplyResponse;
 			} else {
-				// @ts-expect-error issue with discord.js that has funky with flags and ephemeral
 				this.response = await messageOrInteraction.reply({
 					...page,
 					content: page.content ?? undefined,
@@ -1454,7 +1452,6 @@ export class PaginatedMessage {
 				});
 			}
 		} else if (isTextBasedChannel(messageOrInteraction.channel)) {
-			// @ts-expect-error issue with discord.js that has funky with flags and ephemeral
 			this.response = await messageOrInteraction.channel.send({ ...page, content: page.content ?? undefined });
 		}
 	}

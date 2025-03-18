@@ -265,7 +265,7 @@ export type PaginatedMessagePage =
  * It can be either a `BaseMessageOptions` object with the `flags` property omitted,
  * or a `WebhookMessageEditOptions` object.
  */
-export type PaginatedMessageResolvedPage = Omit<BaseMessageOptions, 'flags'> | WebhookMessageEditOptions;
+export type PaginatedMessageResolvedPage = Omit<BaseMessageOptions, 'flags'> | Omit<WebhookMessageEditOptions, 'flags'>;
 
 /**
  * The type of the custom function that can be set for the {@link PaginatedMessage.selectMenuOptions}
