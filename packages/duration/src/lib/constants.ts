@@ -59,5 +59,6 @@ export const DEFAULT_UNITS: DurationFormatAssetsTime = {
 
 export const DEFAULT_SEPARATORS: DurationFormatSeparators = {
 	left: ' ',
-	right: ' '
+	right: ' ',
+	final: ' '
 };

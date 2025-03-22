@@ -27,7 +27,8 @@ export class DurationFormatter {
 		precision = 7,
 		{
 			left: leftSeparator = DEFAULT_SEPARATORS.left,
-			right: rightSeparator = DEFAULT_SEPARATORS.right
+			right: rightSeparator = DEFAULT_SEPARATORS.right,
+			final: finalSeparator = DEFAULT_SEPARATORS.final
 		}: DurationFormatSeparators = DEFAULT_SEPARATORS
 	) {
 		const output: string[] = [];
@@ -46,7 +47,15 @@ export class DurationFormatter {
 			if (output.length >= precision) break;
 		}
 
-		return `${negative ? '-' : ''}${output.join(rightSeparator) || addUnit(0, this.units.second, leftSeparator!)}`;
+		if (output.length === 0) return addUnit(0, this.units[TimeTypes.Second], leftSeparator!);
+		if (negative) output[0] = `-${output[0]}`;
+
+		if (output.length > 1) {
+			const last = output.pop();
+			return `${output.join(rightSeparator!)}${finalSeparator}${last}`;
+		}
+
+		return output.join(rightSeparator!);
 	}
 }
 
@@ -63,6 +72,7 @@ function addUnit(time: number, unit: DurationFormatAssetsUnit, separator: string
 export interface DurationFormatSeparators {
 	left?: string;
 	right?: string;
+	final?: string;
 }
 
 export interface DurationFormatAssetsUnit extends Record<number, string> {
