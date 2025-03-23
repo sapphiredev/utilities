@@ -28,7 +28,7 @@
 		"@favware/rollup-type-bundler": "^4.0.0",
 		"@sapphire/framework": "^5.3.2",
 		"@types/lodash": "^4.17.16",
-		"@types/node": "^22.13.10",
+		"@types/node": "^22.13.11",
 		"@types/ws": "^8.18.0",
 		"@typescript-eslint/eslint-plugin": "^7.18.0",
 		"@typescript-eslint/parser": "^7.18.0",
@@ -77,5 +77,5 @@
 		"ansi-regex": "^5.0.1",
 		"minimist": "^1.2.8"
 	},
-	"packageManager": "yarn@4.6.0"
+	"packageManager": "yarn@4.7.0"
 }
