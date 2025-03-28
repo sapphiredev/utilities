@@ -1,9 +1,13 @@
-import { DurationFormatter, Time } from '../../src';
+import { DurationFormatter, Time, type DurationFormatSeparators } from '../../src';
 
 const formatter = new DurationFormatter();
 
 function durationImpl(time: number, precision?: number) {
 	return formatter.format(time, precision);
+}
+
+function durationSeparatorImpl(time: number, separators: DurationFormatSeparators) {
+	return formatter.format(time, 7, separators);
 }
 
 describe('FriendlyDuration', () => {
@@ -21,6 +25,10 @@ describe('FriendlyDuration', () => {
 
 	test('GIVEN 1 day, 3 hours and 2 minutes w/ precision of 2 THEN shows 1 day and 3 hours', () => {
 		expect(durationImpl(Time.Day + Time.Hour * 3 + Time.Minute * 2, 2)).toEqual('1 day 3 hours');
+	});
+
+	test('GIVEN 1 day, 3 hours and 2 minutes w/ final separator THEN shows 1 day 3 hours and 2 minutes', () => {
+		expect(durationSeparatorImpl(Time.Day + Time.Hour * 3 + Time.Minute * 2, { final: ' and ' })).toEqual('1 day 3 hours and 2 minutes');
 	});
 
 	test('GIVEN negative duration THEN prepends hyphen', () => {
