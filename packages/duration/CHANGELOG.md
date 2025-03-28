@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/duration@1.2.0](https://github.com/sapphiredev/utilities/compare/@sapphire/duration@1.1.4...@sapphire/duration@1.2.0) - (2025-03-28)
+
+## 🐛 Bug Fixes
+
+- **deps:** Update all non-major dependencies ([bc2f01c](https://github.com/sapphiredev/utilities/commit/bc2f01ce7d6932c9a0e02faa7cc081ecbae9640d)) ([#869](https://github.com/sapphiredev/utilities/pull/869) by @renovate[bot])
+
+## 🚀 Features
+
+- **duration:** Add final separator to DurationFormatter ([75165d3](https://github.com/sapphiredev/utilities/commit/75165d3629194c4cd507fe11a6d7dc1c9f5e71c8)) ([#870](https://github.com/sapphiredev/utilities/pull/870) by @camdzic)
+
 # [@sapphire/duration@1.1.3](https://github.com/sapphiredev/utilities/compare/@sapphire/duration@1.1.2...@sapphire/duration@1.1.3) - (2024-11-02)
 
 ## 🐛 Bug Fixes
