@@ -87,6 +87,20 @@ export function ApplyOptions<T extends Piece.Options>(optionsOrFn: T | ((paramet
  * ```
  * @example
  * ```typescript
+ * import { Command } from '@sapphire/framework';
+ *
+ * (at)RegisterChatInputCommand((builder) => builder
+ *   .setName('hi')
+ *   .setDescription('Sends a hi message')
+ * )
+ * export class UserCommand extends Command {
+ * 	 public override chatInputRun(interaction: Command.ChatInputCommandInteraction) {
+ * 	   	return interaction.reply({ content: 'HI!' });
+ * 	 }
+ * }
+ * ```
+ * @example
+ * ```typescript
  * import { ApplyOptions } from '@sapphire/decorators';
  * import { Command } from '@sapphire/framework';
  * import type { Message } from 'discord.js';
@@ -141,7 +155,23 @@ export function RegisterChatInputCommand<Command extends FrameworkCommand = Fram
  * (at)RegisterMessageContextMenuCommand((builder, command) => builder
  * 	 .setName(command.name)
  * 	 .setContexts(InteractionContextType.Guild)
- *	 .setIntegrationTypes(ApplicationIntegrationType.GuildInstall)
+ * 	 .setIntegrationTypes(ApplicationIntegrationType.GuildInstall)
+ * )
+ * export class UserCommand extends Command {
+ * 	public override contextMenuRun(interaction: MessageContextMenuCommandInteraction) {
+ * 		return interaction.reply({ content: 'HI!' })
+ * 	}
+ * }
+ * ```
+ * @example
+ * ```typescript
+ * import { Command } from '@sapphire/framework';
+ * import { ApplicationIntegrationType, InteractionContextType, type MessageContextMenuCommandInteraction } from 'discord.js';
+ *
+ * (at)RegisterMessageContextMenuCommand((builder) => builder
+ * 	 .setName('Send HI')
+ * 	 .setContexts(InteractionContextType.Guild)
+ * 	 .setIntegrationTypes(ApplicationIntegrationType.GuildInstall)
  * )
  * export class UserCommand extends Command {
  * 	public override contextMenuRun(interaction: MessageContextMenuCommandInteraction) {
@@ -161,7 +191,7 @@ export function RegisterChatInputCommand<Command extends FrameworkCommand = Fram
  * (at)RegisterMessageContextMenuCommand((builder, command) => builder
  * 	 .setName(command.name)
  * 	 .setContexts(InteractionContextType.Guild)
- *	 .setIntegrationTypes(ApplicationIntegrationType.GuildInstall)
+ * 	 .setIntegrationTypes(ApplicationIntegrationType.GuildInstall)
  * )
  * export class UserCommand extends Command {
  * 	public override contextMenuRun(interaction: MessageContextMenuCommandInteraction) {
@@ -215,6 +245,22 @@ export function RegisterMessageContextMenuCommand<Command extends FrameworkComma
  * ```
  * @example
  * ```typescript
+ * import { Command } from '@sapphire/framework';
+ * import { ApplicationIntegrationType, InteractionContextType, type UserContextMenuCommandInteraction } from 'discord.js';
+ *
+ * (at)RegisterUserContextMenuCommand((builder, command) => builder
+ * 	 .setName('Send HI')
+ * 	 .setContexts(InteractionContextType.Guild)
+ * 	 .setIntegrationTypes(ApplicationIntegrationType.GuildInstall)
+ * )
+ * export class UserCommand extends Command {
+ * 	public override contextMenuRun(interaction: UserContextMenuCommandInteraction) {
+ * 		return interaction.reply({ content: `HI ${interaction.targetUser}!` })
+ * 	}
+ * }
+ * ```
+ * @example
+ * ```typescript
  * import { ApplyOptions } from '@sapphire/decorators';
  * import { Command } from '@sapphire/framework';
  * import { ApplicationIntegrationType, InteractionContextType, type UserContextMenuCommandInteraction } from 'discord.js';
@@ -225,7 +271,7 @@ export function RegisterMessageContextMenuCommand<Command extends FrameworkComma
  * (at)RegisterUserContextMenuCommand((builder, command) => builder
  * 	 .setName(command.name)
  * 	 .setContexts(InteractionContextType.Guild)
- *   .setIntegrationTypes(ApplicationIntegrationType.GuildInstall)
+ * 	 .setIntegrationTypes(ApplicationIntegrationType.GuildInstall)
  * )
  * export class UserCommand extends Command {
  * 	public override contextMenuRun(interaction: MessageContextMenuCommandInteraction) {
