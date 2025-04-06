@@ -1,4 +1,4 @@
-import { container, type Command as FrameworkCommand, type Piece } from '@sapphire/framework';
+import { container, type Command, type Piece } from '@sapphire/framework';
 import type { Container } from '@sapphire/pieces';
 import type { Ctor } from '@sapphire/utilities';
 import {
@@ -120,19 +120,19 @@ export function ApplyOptions<T extends Piece.Options>(optionsOrFn: T | ((paramet
  * }
  * ```
  */
-export function RegisterChatInputCommand<Command extends FrameworkCommand = FrameworkCommand>(
+export function RegisterChatInputCommand<CMD extends Command = Command>(
 	optionsFn: (
 		builder: SlashCommandBuilder,
-		command: ThisType<Command> & Command
+		command: ThisType<CMD> & CMD
 	) => SlashCommandBuilder | SlashCommandSubcommandsOnlyBuilder | SlashCommandOptionsOnlyBuilder
 ): ClassDecorator {
-	return createClassDecorator((target: Ctor<ConstructorParameters<typeof FrameworkCommand>, Command>) =>
+	return createClassDecorator((target: Ctor<ConstructorParameters<typeof Command>, CMD>) =>
 		createProxy(target, {
 			construct(target, argArray) {
-				const command: Command = Reflect.construct(target, argArray);
+				const command: CMD = Reflect.construct(target, argArray);
 
 				const originalRegister = command.registerApplicationCommands?.bind(command);
-				command.registerApplicationCommands = function registerApplicationCommands(registry: FrameworkCommand.Registry) {
+				command.registerApplicationCommands = function registerApplicationCommands(registry: Command.Registry) {
 					registry.registerChatInputCommand((builder) => optionsFn(builder, command));
 
 					if (originalRegister) return originalRegister.call(this, registry);
@@ -200,19 +200,19 @@ export function RegisterChatInputCommand<Command extends FrameworkCommand = Fram
  * }
  * ```
  */
-export function RegisterMessageContextMenuCommand<Command extends FrameworkCommand = FrameworkCommand>(
+export function RegisterMessageContextMenuCommand<CMD extends Command = Command>(
 	optionsFn: (
 		builder: ContextMenuCommandBuilder, //
-		command: ThisType<Command> & Command
+		command: ThisType<CMD> & CMD
 	) => ContextMenuCommandBuilder
 ): ClassDecorator {
-	return createClassDecorator((target: Ctor<ConstructorParameters<typeof FrameworkCommand>, Command>) =>
+	return createClassDecorator((target: Ctor<ConstructorParameters<typeof Command>, CMD>) =>
 		createProxy(target, {
 			construct(target, argArray) {
-				const command: Command = Reflect.construct(target, argArray);
+				const command: CMD = Reflect.construct(target, argArray);
 
 				const originalRegister = command.registerApplicationCommands?.bind(command);
-				command.registerApplicationCommands = function registerApplicationCommands(registry: FrameworkCommand.Registry) {
+				command.registerApplicationCommands = function registerApplicationCommands(registry: Command.Registry) {
 					registry.registerContextMenuCommand((builder) => optionsFn(builder, command).setType(ApplicationCommandType.Message));
 
 					if (originalRegister) return originalRegister.call(this, registry);
@@ -280,19 +280,19 @@ export function RegisterMessageContextMenuCommand<Command extends FrameworkComma
  * }
  * ```
  */
-export function RegisterUserContextMenuCommand<Command extends FrameworkCommand = FrameworkCommand>(
+export function RegisterUserContextMenuCommand<CMD extends Command = Command>(
 	optionsFn: (
 		builder: ContextMenuCommandBuilder, //
-		command: ThisType<Command> & Command
+		command: ThisType<CMD> & CMD
 	) => ContextMenuCommandBuilder
 ): ClassDecorator {
-	return createClassDecorator((target: Ctor<ConstructorParameters<typeof FrameworkCommand>, Command>) =>
+	return createClassDecorator((target: Ctor<ConstructorParameters<typeof Command>, CMD>) =>
 		createProxy(target, {
 			construct(target, argArray) {
-				const command: Command = Reflect.construct(target, argArray);
+				const command: CMD = Reflect.construct(target, argArray);
 
 				const originalRegister = command.registerApplicationCommands?.bind(command);
-				command.registerApplicationCommands = function registerApplicationCommands(registry: FrameworkCommand.Registry) {
+				command.registerApplicationCommands = function registerApplicationCommands(registry: Command.Registry) {
 					registry.registerContextMenuCommand((builder) => optionsFn(builder, command).setType(ApplicationCommandType.User));
 
 					if (originalRegister) return originalRegister.call(this, registry);
