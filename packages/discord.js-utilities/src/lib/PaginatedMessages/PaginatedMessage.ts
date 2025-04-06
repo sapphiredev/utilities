@@ -11,6 +11,7 @@ import {
 	InteractionCollector,
 	InteractionType,
 	MentionableSelectMenuBuilder,
+	MessageFlags,
 	Partials,
 	RoleSelectMenuBuilder,
 	StringSelectMenuBuilder,
@@ -308,7 +309,7 @@ export class PaginatedMessage {
 	 * When modifying this it is recommended that the message is set to be ephemeral so only the user that is pressing the buttons can see them.
 	 * Furthermore, we also recommend setting `allowedMentions: { users: [], roles: [] }`, so you don't have to worry about accidentally pinging anyone.
 	 *
-	 * When setting just a string, we will add `{ ephemeral: true, allowedMentions: { users: [], roles: [] } }` for you.
+	 * When setting just a string, we will add `{ flags: MessageFlags.Ephemeral, allowedMentions: { users: [], roles: [] } }` for you.
 	 *
 	 * @param targetUser The {@link User} this {@link PaginatedMessage} was intended for.
 	 * @param interactionUser The {@link User} that actually clicked the button.
@@ -318,7 +319,7 @@ export class PaginatedMessage {
 	 *
 	 * {
 	 * 	content: `Please stop interacting with the components on this message. They are only for ${userMention(targetUser.id)}.`,
-	 * 	ephemeral: true,
+	 * 	flags: MessageFlags.Ephemeral,
 	 * 	allowedMentions: { users: [], roles: [] }
 	 * }
 	 * ```
@@ -343,14 +344,14 @@ export class PaginatedMessage {
 	 * 	content: `These buttons are only for ${userMention(
 	 * 		targetUser.id
 	 * 	)}. Press them as much as you want, but I won't do anything with your clicks.`,
-	 * 	ephemeral: true,
+	 * 	flags: MessageFlags.Ephemeral,
 	 * 	allowedMentions: { users: [], roles: [] }
 	 * });
 	 * ```
 	 */
 	public static wrongUserInteractionReply: PaginatedMessageWrongUserInteractionReplyFunction = (targetUser: User) => ({
 		content: `Please stop interacting with the components on this message. They are only for ${userMention(targetUser.id)}.`,
-		ephemeral: true,
+		flags: MessageFlags.Ephemeral,
 		allowedMentions: { users: [], roles: [] }
 	});
 	// #endregion
@@ -1287,7 +1288,7 @@ export class PaginatedMessage {
 			await safelyReplyToInteraction({
 				messageOrInteraction,
 				interactionEditReplyContent: this.#thisMazeWasNotMeantForYouContent,
-				interactionReplyContent: { ...this.#thisMazeWasNotMeantForYouContent, ephemeral: true },
+				interactionReplyContent: { ...this.#thisMazeWasNotMeantForYouContent, flags: MessageFlags.Ephemeral },
 				componentUpdateContent: this.#thisMazeWasNotMeantForYouContent,
 				messageMethod: 'reply',
 				messageMethodContent: this.#thisMazeWasNotMeantForYouContent
@@ -1612,7 +1613,7 @@ export class PaginatedMessage {
 					await safelyReplyToInteraction({
 						messageOrInteraction: interaction,
 						interactionEditReplyContent: updateOptions,
-						interactionReplyContent: { ...this.#thisMazeWasNotMeantForYouContent, ephemeral: true },
+						interactionReplyContent: { ...this.#thisMazeWasNotMeantForYouContent, flags: MessageFlags.Ephemeral },
 						componentUpdateContent: updateOptions
 					});
 				}
@@ -1627,7 +1628,7 @@ export class PaginatedMessage {
 			await interaction.reply(
 				isObject(interactionReplyOptions)
 					? interactionReplyOptions
-					: { content: interactionReplyOptions, ephemeral: true, allowedMentions: { users: [], roles: [] } }
+					: { content: interactionReplyOptions, flags: MessageFlags.Ephemeral, allowedMentions: { users: [], roles: [] } }
 			);
 		}
 	}
@@ -1655,7 +1656,7 @@ export class PaginatedMessage {
 			void safelyReplyToInteraction({
 				messageOrInteraction: this.response,
 				interactionEditReplyContent: { components: [] },
-				interactionReplyContent: { ...this.#thisMazeWasNotMeantForYouContent, ephemeral: true },
+				interactionReplyContent: { ...this.#thisMazeWasNotMeantForYouContent, flags: MessageFlags.Ephemeral },
 				componentUpdateContent: { components: [] },
 				messageMethod: 'edit',
 				messageMethodContent: { components: [] }
