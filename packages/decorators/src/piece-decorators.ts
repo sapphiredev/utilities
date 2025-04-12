@@ -1,4 +1,4 @@
-import { container, type Command, type Piece } from '@sapphire/framework';
+import { container, type ApplicationCommandRegistryRegisterOptions, type Command, type Piece } from '@sapphire/framework';
 import type { Container } from '@sapphire/pieces';
 import type { Ctor } from '@sapphire/utilities';
 import {
@@ -73,6 +73,7 @@ export function ApplyOptions<T extends Piece.Options>(optionsOrFn: T | ((paramet
  * @param optionsFn The function that returns options to pass to the registry.
  * @example
  * ```typescript
+ * import { RegisterChatInputCommand } from '@sapphire/decorators';
  * import { Command } from '@sapphire/framework';
  *
  * (at)RegisterChatInputCommand((builder, command) => builder
@@ -87,6 +88,26 @@ export function ApplyOptions<T extends Piece.Options>(optionsOrFn: T | ((paramet
  * ```
  * @example
  * ```typescript
+ * import { RegisterChatInputCommand } from '@sapphire/decorators';
+ * import { Command } from '@sapphire/framework';
+ *
+ * (at)RegisterChatInputCommand((builder, command) => builder
+ *		.setName(command.name)
+ *		.setDescription(command.description),
+ *	{
+ *		idHints: ['737141877803057244'],
+ *		guildIds: ['737141877803057244']
+ *	}
+ * )
+ * export class UserCommand extends Command {
+ * 	 public override chatInputRun(interaction: Command.ChatInputCommandInteraction) {
+ * 	   	return interaction.reply({ content: 'HI!' });
+ * 	 }
+ * }
+ * ```
+ * @example
+ * ```typescript
+ * import { RegisterChatInputCommand } from '@sapphire/decorators';
  * import { Command } from '@sapphire/framework';
  *
  * (at)RegisterChatInputCommand((builder) => builder
@@ -101,7 +122,7 @@ export function ApplyOptions<T extends Piece.Options>(optionsOrFn: T | ((paramet
  * ```
  * @example
  * ```typescript
- * import { ApplyOptions } from '@sapphire/decorators';
+ * import { ApplyOptions, RegisterChatInputCommand } from '@sapphire/decorators';
  * import { Command } from '@sapphire/framework';
  * import type { Message } from 'discord.js';
  *
@@ -124,7 +145,8 @@ export function RegisterChatInputCommand<CMD extends Command = Command>(
 	optionsFn: (
 		builder: SlashCommandBuilder,
 		command: ThisType<CMD> & CMD
-	) => SlashCommandBuilder | SlashCommandSubcommandsOnlyBuilder | SlashCommandOptionsOnlyBuilder
+	) => SlashCommandBuilder | SlashCommandSubcommandsOnlyBuilder | SlashCommandOptionsOnlyBuilder,
+	registryOptions?: ApplicationCommandRegistryRegisterOptions
 ): ClassDecorator {
 	return createClassDecorator((target: Ctor<ConstructorParameters<typeof Command>, CMD>) =>
 		createProxy(target, {
@@ -133,7 +155,7 @@ export function RegisterChatInputCommand<CMD extends Command = Command>(
 
 				const originalRegister = command.registerApplicationCommands?.bind(command);
 				command.registerApplicationCommands = function registerApplicationCommands(registry: Command.Registry) {
-					registry.registerChatInputCommand((builder) => optionsFn(builder, command));
+					registry.registerChatInputCommand((builder) => optionsFn(builder, command), registryOptions);
 
 					if (originalRegister) return originalRegister.call(this, registry);
 				};
@@ -149,6 +171,7 @@ export function RegisterChatInputCommand<CMD extends Command = Command>(
  * @param optionsFn The function that returns options to pass to the registry.
  * @example
  * ```typescript
+ * import { RegisterMessageContextMenuCommand } from '@sapphire/decorators';
  * import { Command } from '@sapphire/framework';
  * import { ApplicationIntegrationType, InteractionContextType, type MessageContextMenuCommandInteraction } from 'discord.js';
  *
@@ -165,6 +188,45 @@ export function RegisterChatInputCommand<CMD extends Command = Command>(
  * ```
  * @example
  * ```typescript
+ * import { RegisterMessageContextMenuCommand } from '@sapphire/decorators';
+ * import { Command } from '@sapphire/framework';
+ * import { ApplicationIntegrationType, InteractionContextType, type MessageContextMenuCommandInteraction } from 'discord.js';
+ *
+ * (at)RegisterMessageContextMenuCommand((builder, command) => builder
+ * 	 .setName(command.name)
+ * 	 .setContexts(InteractionContextType.Guild)
+ * 	 .setIntegrationTypes(ApplicationIntegrationType.GuildInstall),
+ *	{
+ *		idHints: ['737141877803057244'],
+ *		guildIds: ['737141877803057244']
+ *	}
+ * )
+ * export class UserCommand extends Command {
+ * 	public override contextMenuRun(interaction: MessageContextMenuCommandInteraction) {
+ * 		return interaction.reply({ content: 'HI!' })
+ * 	}
+ * }
+ * ```
+ * @example
+ * ```typescript
+ * import { RegisterMessageContextMenuCommand } from '@sapphire/decorators';
+ * import { Command } from '@sapphire/framework';
+ * import { ApplicationIntegrationType, InteractionContextType, type MessageContextMenuCommandInteraction } from 'discord.js';
+ *
+ * (at)RegisterMessageContextMenuCommand((builder, command) => builder
+ * 	 .setName(command.name)
+ * 	 .setContexts(InteractionContextType.Guild)
+ * 	 .setIntegrationTypes(ApplicationIntegrationType.GuildInstall)
+ * )
+ * export class UserCommand extends Command {
+ * 	public override contextMenuRun(interaction: MessageContextMenuCommandInteraction) {
+ * 		return interaction.reply({ content: 'HI!' })
+ * 	}
+ * }
+ * ```
+ * @example
+ * ```typescript
+ * import { RegisterMessageContextMenuCommand } from '@sapphire/decorators';
  * import { Command } from '@sapphire/framework';
  * import { ApplicationIntegrationType, InteractionContextType, type MessageContextMenuCommandInteraction } from 'discord.js';
  *
@@ -181,7 +243,7 @@ export function RegisterChatInputCommand<CMD extends Command = Command>(
  * ```
  * @example
  * ```typescript
- * import { ApplyOptions } from '@sapphire/decorators';
+ * import { ApplyOptions, RegisterMessageContextMenuCommand } from '@sapphire/decorators';
  * import { Command } from '@sapphire/framework';
  * import { ApplicationIntegrationType, InteractionContextType, type MessageContextMenuCommandInteraction } from 'discord.js';
  *
@@ -204,7 +266,8 @@ export function RegisterMessageContextMenuCommand<CMD extends Command = Command>
 	optionsFn: (
 		builder: ContextMenuCommandBuilder, //
 		command: ThisType<CMD> & CMD
-	) => ContextMenuCommandBuilder
+	) => ContextMenuCommandBuilder,
+	registryOptions?: ApplicationCommandRegistryRegisterOptions
 ): ClassDecorator {
 	return createClassDecorator((target: Ctor<ConstructorParameters<typeof Command>, CMD>) =>
 		createProxy(target, {
@@ -213,7 +276,10 @@ export function RegisterMessageContextMenuCommand<CMD extends Command = Command>
 
 				const originalRegister = command.registerApplicationCommands?.bind(command);
 				command.registerApplicationCommands = function registerApplicationCommands(registry: Command.Registry) {
-					registry.registerContextMenuCommand((builder) => optionsFn(builder, command).setType(ApplicationCommandType.Message));
+					registry.registerContextMenuCommand(
+						(builder) => optionsFn(builder, command).setType(ApplicationCommandType.Message),
+						registryOptions
+					);
 
 					if (originalRegister) return originalRegister.call(this, registry);
 				};
@@ -229,6 +295,7 @@ export function RegisterMessageContextMenuCommand<CMD extends Command = Command>
  * @param optionsFn The function that returns options to pass to the registry.
  * @example
  * ```typescript
+ * import { RegisterUserContextMenuCommand } from '@sapphire/decorators';
  * import { Command } from '@sapphire/framework';
  * import { ApplicationIntegrationType, InteractionContextType, type UserContextMenuCommandInteraction } from 'discord.js';
  *
@@ -243,8 +310,31 @@ export function RegisterMessageContextMenuCommand<CMD extends Command = Command>
  * 	}
  * }
  * ```
+ * ```
  * @example
  * ```typescript
+ * import { RegisterUserContextMenuCommand } from '@sapphire/decorators';
+ * import { Command } from '@sapphire/framework';
+ * import { ApplicationIntegrationType, InteractionContextType, type MessageContextMenuCommandInteraction } from 'discord.js';
+ *
+ * (at)RegisterUserContextMenuCommand((builder, command) => builder
+ * 	 .setName(command.name)
+ * 	 .setContexts(InteractionContextType.Guild)
+ * 	 .setIntegrationTypes(ApplicationIntegrationType.GuildInstall),
+ *	{
+ *		idHints: ['737141877803057244'],
+ *		guildIds: ['737141877803057244']
+ *	}
+ * )
+ * export class UserCommand extends Command {
+ * 	public override contextMenuRun(interaction: MessageContextMenuCommandInteraction) {
+ * 		return interaction.reply({ content: 'HI!' })
+ * 	}
+ * }
+ * ```
+ * @example
+ * ```typescript
+ * import { RegisterUserContextMenuCommand } from '@sapphire/decorators';
  * import { Command } from '@sapphire/framework';
  * import { ApplicationIntegrationType, InteractionContextType, type UserContextMenuCommandInteraction } from 'discord.js';
  *
@@ -261,7 +351,7 @@ export function RegisterMessageContextMenuCommand<CMD extends Command = Command>
  * ```
  * @example
  * ```typescript
- * import { ApplyOptions } from '@sapphire/decorators';
+ * import { ApplyOptions, RegisterUserContextMenuCommand } from '@sapphire/decorators';
  * import { Command } from '@sapphire/framework';
  * import { ApplicationIntegrationType, InteractionContextType, type UserContextMenuCommandInteraction } from 'discord.js';
  *
@@ -284,7 +374,8 @@ export function RegisterUserContextMenuCommand<CMD extends Command = Command>(
 	optionsFn: (
 		builder: ContextMenuCommandBuilder, //
 		command: ThisType<CMD> & CMD
-	) => ContextMenuCommandBuilder
+	) => ContextMenuCommandBuilder,
+	registryOptions?: ApplicationCommandRegistryRegisterOptions
 ): ClassDecorator {
 	return createClassDecorator((target: Ctor<ConstructorParameters<typeof Command>, CMD>) =>
 		createProxy(target, {
@@ -293,7 +384,10 @@ export function RegisterUserContextMenuCommand<CMD extends Command = Command>(
 
 				const originalRegister = command.registerApplicationCommands?.bind(command);
 				command.registerApplicationCommands = function registerApplicationCommands(registry: Command.Registry) {
-					registry.registerContextMenuCommand((builder) => optionsFn(builder, command).setType(ApplicationCommandType.User));
+					registry.registerContextMenuCommand(
+						(builder) => optionsFn(builder, command).setType(ApplicationCommandType.User),
+						registryOptions
+					);
 
 					if (originalRegister) return originalRegister.call(this, registry);
 				};
