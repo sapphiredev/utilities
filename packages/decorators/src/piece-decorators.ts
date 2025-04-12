@@ -371,20 +371,14 @@ function constructApplicationCommandDecorator<CMD extends Command>(
 	target: Ctor<ConstructorParameters<typeof Command>, CMD>,
 	argArray: any[],
 	type: 'RegisterChatInputCommand',
-	optionsFn: (
-		builder: SlashCommandBuilder,
-		command: ThisType<CMD> & CMD
-	) => SlashCommandBuilder | SlashCommandSubcommandsOnlyBuilder | SlashCommandOptionsOnlyBuilder,
+	optionsFn: ChatInputCommandDecoratorsMap<CMD>['optionsFn'],
 	registryOptions?: ApplicationCommandRegistryRegisterOptions
 ): CMD;
 function constructApplicationCommandDecorator<CMD extends Command>(
 	target: Ctor<ConstructorParameters<typeof Command>, CMD>,
 	argArray: any[],
 	type: 'RegisterMessageContextMenuCommand' | 'RegisterUserContextMenuCommand',
-	optionsFn: (
-		builder: ContextMenuCommandBuilder, //
-		command: ThisType<CMD> & CMD
-	) => ContextMenuCommandBuilder,
+	optionsFn: ContextMenuCommandDecoratorsMap<CMD>['optionsFn'],
 	registryOptions?: ApplicationCommandRegistryRegisterOptions
 ): CMD;
 function constructApplicationCommandDecorator<CMD extends Command>(
