@@ -10,6 +10,8 @@ import {
 } from 'discord.js';
 import { createClassDecorator, createProxy } from './utils';
 
+const applicationDecoratorsMap = new WeakMap<Ctor<ConstructorParameters<typeof Command>, Command>, DecoratorMap<any>[]>();
+
 /**
  * Decorator function that applies given options to any Sapphire piece
  * @param optionsOrFn The options or function that returns options to pass to the piece constructor
@@ -151,16 +153,7 @@ export function RegisterChatInputCommand<CMD extends Command = Command>(
 	return createClassDecorator((target: Ctor<ConstructorParameters<typeof Command>, CMD>) =>
 		createProxy(target, {
 			construct(target, argArray) {
-				const command: CMD = Reflect.construct(target, argArray);
-
-				const originalRegister = command.registerApplicationCommands?.bind(command);
-				command.registerApplicationCommands = function registerApplicationCommands(registry: Command.Registry) {
-					registry.registerChatInputCommand((builder) => optionsFn(builder, command), registryOptions);
-
-					if (originalRegister) return originalRegister.call(this, registry);
-				};
-
-				return command;
+				return constructApplicationCommandDecorator(target, argArray, 'RegisterChatInputCommand', optionsFn, registryOptions);
 			}
 		})
 	);
@@ -272,19 +265,7 @@ export function RegisterMessageContextMenuCommand<CMD extends Command = Command>
 	return createClassDecorator((target: Ctor<ConstructorParameters<typeof Command>, CMD>) =>
 		createProxy(target, {
 			construct(target, argArray) {
-				const command: CMD = Reflect.construct(target, argArray);
-
-				const originalRegister = command.registerApplicationCommands?.bind(command);
-				command.registerApplicationCommands = function registerApplicationCommands(registry: Command.Registry) {
-					registry.registerContextMenuCommand(
-						(builder) => optionsFn(builder, command).setType(ApplicationCommandType.Message),
-						registryOptions
-					);
-
-					if (originalRegister) return originalRegister.call(this, registry);
-				};
-
-				return command;
+				return constructApplicationCommandDecorator(target, argArray, 'RegisterMessageContextMenuCommand', optionsFn, registryOptions);
 			}
 		})
 	);
@@ -380,25 +361,109 @@ export function RegisterUserContextMenuCommand<CMD extends Command = Command>(
 	return createClassDecorator((target: Ctor<ConstructorParameters<typeof Command>, CMD>) =>
 		createProxy(target, {
 			construct(target, argArray) {
-				const command: CMD = Reflect.construct(target, argArray);
-
-				const originalRegister = command.registerApplicationCommands?.bind(command);
-				command.registerApplicationCommands = function registerApplicationCommands(registry: Command.Registry) {
-					registry.registerContextMenuCommand(
-						(builder) => optionsFn(builder, command).setType(ApplicationCommandType.User),
-						registryOptions
-					);
-
-					if (originalRegister) return originalRegister.call(this, registry);
-				};
-
-				return command;
+				return constructApplicationCommandDecorator(target, argArray, 'RegisterUserContextMenuCommand', optionsFn, registryOptions);
 			}
 		})
 	);
+}
+
+function constructApplicationCommandDecorator<CMD extends Command>(
+	target: Ctor<ConstructorParameters<typeof Command>, CMD>,
+	argArray: any[],
+	type: 'RegisterChatInputCommand',
+	optionsFn: (
+		builder: SlashCommandBuilder,
+		command: ThisType<CMD> & CMD
+	) => SlashCommandBuilder | SlashCommandSubcommandsOnlyBuilder | SlashCommandOptionsOnlyBuilder,
+	registryOptions?: ApplicationCommandRegistryRegisterOptions
+): CMD;
+function constructApplicationCommandDecorator<CMD extends Command>(
+	target: Ctor<ConstructorParameters<typeof Command>, CMD>,
+	argArray: any[],
+	type: 'RegisterMessageContextMenuCommand' | 'RegisterUserContextMenuCommand',
+	optionsFn: (
+		builder: ContextMenuCommandBuilder, //
+		command: ThisType<CMD> & CMD
+	) => ContextMenuCommandBuilder,
+	registryOptions?: ApplicationCommandRegistryRegisterOptions
+): CMD;
+function constructApplicationCommandDecorator<CMD extends Command>(
+	target: Ctor<ConstructorParameters<typeof Command>, CMD>,
+	argArray: any[],
+	type: DecoratorMap<CMD>['type'],
+	optionsFn: DecoratorMap<CMD>['optionsFn'],
+	registryOptions?: ApplicationCommandRegistryRegisterOptions
+): CMD {
+	const applied = applicationDecoratorsMap.get(target) || [];
+	if (type === 'RegisterChatInputCommand') {
+		applied.push({
+			type,
+			optionsFn: optionsFn as ChatInputCommandDecoratorsMap<CMD>['optionsFn'],
+			registryOptions
+		});
+	} else {
+		applied.push({
+			type,
+			optionsFn: optionsFn as ContextMenuCommandDecoratorsMap<CMD>['optionsFn'],
+			registryOptions
+		});
+	}
+
+	applicationDecoratorsMap.set(target, applied);
+
+	const command: CMD = Reflect.construct(target, argArray);
+
+	if (applied.length === 1) {
+		const originalRegister = command.registerApplicationCommands?.bind(command);
+		command.registerApplicationCommands = function registerApplicationCommands(registry: Command.Registry) {
+			for (const decorator of applicationDecoratorsMap.get(target)! as DecoratorMap<CMD>[]) {
+				switch (decorator.type) {
+					case 'RegisterChatInputCommand':
+						registry.registerChatInputCommand((builder) => decorator.optionsFn(builder, command), registryOptions);
+						break;
+					case 'RegisterMessageContextMenuCommand':
+						registry.registerContextMenuCommand(
+							(builder) => decorator.optionsFn(builder, command).setType(ApplicationCommandType.Message),
+							registryOptions
+						);
+						break;
+					case 'RegisterUserContextMenuCommand':
+						registry.registerContextMenuCommand(
+							(builder) => decorator.optionsFn(builder, command).setType(ApplicationCommandType.User),
+							registryOptions
+						);
+						break;
+				}
+			}
+
+			if (originalRegister) return originalRegister.call(command, registry);
+		};
+	}
+
+	return command;
 }
 
 export interface ApplyOptionsCallbackParameters {
 	container: Container;
 	context: Piece.LoaderContext;
 }
+
+interface ChatInputCommandDecoratorsMap<CMD extends Command> {
+	type: 'RegisterChatInputCommand';
+	optionsFn: (
+		builder: SlashCommandBuilder,
+		command: ThisType<CMD> & CMD
+	) => SlashCommandBuilder | SlashCommandSubcommandsOnlyBuilder | SlashCommandOptionsOnlyBuilder;
+	registryOptions?: ApplicationCommandRegistryRegisterOptions;
+}
+
+interface ContextMenuCommandDecoratorsMap<CMD extends Command> {
+	type: 'RegisterMessageContextMenuCommand' | 'RegisterUserContextMenuCommand';
+	optionsFn: (
+		builder: ContextMenuCommandBuilder, //
+		command: ThisType<CMD> & CMD
+	) => ContextMenuCommandBuilder;
+	registryOptions?: ApplicationCommandRegistryRegisterOptions;
+}
+
+type DecoratorMap<CMD extends Command> = ChatInputCommandDecoratorsMap<CMD> | ContextMenuCommandDecoratorsMap<CMD>;

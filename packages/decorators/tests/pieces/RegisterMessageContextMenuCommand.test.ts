@@ -10,7 +10,7 @@ import {
 	ApplicationCommandType,
 	ApplicationIntegrationType,
 	InteractionContextType,
-	type RESTPostAPIChatInputApplicationCommandsJSONBody
+	type RESTPostAPIContextMenuApplicationCommandsJSONBody
 } from 'discord.js';
 import { RegisterMessageContextMenuCommand } from '../../src';
 
@@ -84,8 +84,8 @@ describe('RegisterMessageContextMenuCommand', () => {
 		expect(apiCall.builtData.type).toBe(ApplicationCommandType.Message);
 		expect(apiCall.builtData.contexts).toEqual([0]);
 		expect(apiCall.builtData.integration_types).toEqual([0]);
-		expect(apiCall.registerOptions.guildIds).toEqual(['737141877803057244']);
 		expect(apiCall.registerOptions.idHints).toEqual(['737141877803057244']);
+		expect(apiCall.registerOptions.guildIds).toEqual(['737141877803057244']);
 	});
 });
 
@@ -94,7 +94,7 @@ type InternalRegisterOptions = Omit<ApplicationCommandRegistry.RegisterOptions, 
 };
 
 interface InternalAPICall {
-	builtData: RESTPostAPIChatInputApplicationCommandsJSONBody;
+	builtData: RESTPostAPIContextMenuApplicationCommandsJSONBody;
 	registerOptions: InternalRegisterOptions;
-	type: InternalRegistryAPIType.ChatInput;
+	type: InternalRegistryAPIType.ContextMenu;
 }

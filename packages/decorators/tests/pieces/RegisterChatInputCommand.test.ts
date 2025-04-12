@@ -99,8 +99,8 @@ describe('RegisterChatInputCommand', () => {
 		expect(apiCall.builtData.options![0].type).toBe(ApplicationCommandOptionType.Integer);
 		expect((apiCall.builtData.options![0] as APIApplicationCommandIntegerOption).min_value).toBe(1);
 		expect((apiCall.builtData.options![0] as APIApplicationCommandIntegerOption).max_value).toBe(10);
-		expect(apiCall.registerOptions.guildIds).toEqual(['737141877803057244']);
 		expect(apiCall.registerOptions.idHints).toEqual(['737141877803057244']);
+		expect(apiCall.registerOptions.guildIds).toEqual(['737141877803057244']);
 	});
 });
 
