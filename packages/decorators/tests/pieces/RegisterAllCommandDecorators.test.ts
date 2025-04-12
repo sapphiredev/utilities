@@ -17,7 +17,7 @@ import {
 } from 'discord.js';
 import { RegisterChatInputCommand, RegisterMessageContextMenuCommand, RegisterUserContextMenuCommand } from '../../src';
 
-describe('RegisterChatInputCommand', () => {
+describe('RegisterALLCommand', () => {
 	beforeAll(() => {
 		Reflect.set(container, 'client', { options: {} });
 	});
