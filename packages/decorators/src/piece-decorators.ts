@@ -355,13 +355,8 @@ function collectApplicationCommandDecorators<CMD extends Command>(target: Comman
 	exisiting.push(decorator);
 	applicationDecoratorsMap.set(original, exisiting);
 
-	if (originalApplicationCommandToProxy.has(original)) {
-		console.log('Returning existing proxy');
-		return originalApplicationCommandToProxy.get(original)!;
-	}
+	if (originalApplicationCommandToProxy.has(original)) return originalApplicationCommandToProxy.get(original)!;
 
-	console.log('Creating new proxy');
-	console.log('Creating new proxy - decorators', applicationDecoratorsMap.get(original));
 	const proxied = createProxy(target, {
 		construct(originalTarget, argArray) {
 			const command: CMD = Reflect.construct(originalTarget, argArray);
