@@ -188,7 +188,7 @@ type InternalRegisterOptions = Omit<ApplicationCommandRegistry.RegisterOptions, 
 	behaviorWhenNotIdentical?: RegisterBehavior;
 };
 
-export type InternalAPICall =
+type InternalAPICall =
 	| {
 			builtData: RESTPostAPIChatInputApplicationCommandsJSONBody;
 			registerOptions: InternalRegisterOptions;
