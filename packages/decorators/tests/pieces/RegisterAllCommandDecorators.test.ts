@@ -63,9 +63,9 @@ describe('RegisterALLCommand', () => {
 		);
 		await instance.registerApplicationCommands!(instance.applicationCommandRegistry);
 		const apiCalls = instance.applicationCommandRegistry['apiCalls'] as InternalAPICall[];
-		const chatInput = apiCalls[0] as Omit<InternalAPICall, 'builtData'> & { builtData: RESTPostAPIChatInputApplicationCommandsJSONBody };
+		const chatInput = apiCalls[2] as Omit<InternalAPICall, 'builtData'> & { builtData: RESTPostAPIChatInputApplicationCommandsJSONBody };
 		const messageContext = apiCalls[1] as Omit<InternalAPICall, 'builtData'> & { builtData: RESTPostAPIContextMenuApplicationCommandsJSONBody };
-		const userContext = apiCalls[2] as Omit<InternalAPICall, 'builtData'> & { builtData: RESTPostAPIContextMenuApplicationCommandsJSONBody };
+		const userContext = apiCalls[0] as Omit<InternalAPICall, 'builtData'> & { builtData: RESTPostAPIContextMenuApplicationCommandsJSONBody };
 
 		expect(instance.applicationCommandRegistry.commandName).toBe('test');
 
@@ -148,9 +148,9 @@ describe('RegisterALLCommand', () => {
 		);
 		await instance.registerApplicationCommands!(instance.applicationCommandRegistry);
 		const apiCalls = instance.applicationCommandRegistry['apiCalls'] as InternalAPICall[];
-		const chatInput = apiCalls[0] as Omit<InternalAPICall, 'builtData'> & { builtData: RESTPostAPIChatInputApplicationCommandsJSONBody };
+		const chatInput = apiCalls[2] as Omit<InternalAPICall, 'builtData'> & { builtData: RESTPostAPIChatInputApplicationCommandsJSONBody };
 		const messageContext = apiCalls[1] as Omit<InternalAPICall, 'builtData'> & { builtData: RESTPostAPIContextMenuApplicationCommandsJSONBody };
-		const userContext = apiCalls[2] as Omit<InternalAPICall, 'builtData'> & { builtData: RESTPostAPIContextMenuApplicationCommandsJSONBody };
+		const userContext = apiCalls[0] as Omit<InternalAPICall, 'builtData'> & { builtData: RESTPostAPIContextMenuApplicationCommandsJSONBody };
 
 		expect(instance.applicationCommandRegistry.commandName).toBe('test-registry');
 
