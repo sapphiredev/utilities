@@ -17,6 +17,8 @@ jobs:
         uses: sapphiredev/.github/actions/install-yarn-dependencies@main
         with:
           node-version: 20
+      - name: Build prettier config
+        run: yarn workspace @sapphire/prettier-config build
       - name: Run updater
         run: yarn au:twemojis
       - name: Run prettier on the code
