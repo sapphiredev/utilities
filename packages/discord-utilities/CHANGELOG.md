@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/discord-utilities@3.5.0](https://github.com/sapphiredev/utilities/compare/@sapphire/discord-utilities@3.4.4...@sapphire/discord-utilities@3.5.0) - (2025-04-19)
+
+## 🐛 Bug Fixes
+
+- **deps:** Update all non-major dependencies ([4bc5591](https://github.com/sapphiredev/utilities/commit/4bc55911f95456a2caee10a3588c7b5f1542fb00)) ([#879](https://github.com/sapphiredev/utilities/pull/879) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([bc2f01c](https://github.com/sapphiredev/utilities/commit/bc2f01ce7d6932c9a0e02faa7cc081ecbae9640d)) ([#869](https://github.com/sapphiredev/utilities/pull/869) by @renovate[bot])
+
+## 🚀 Features
+
+- Update Twemoji Regex ([beeba83](https://github.com/sapphiredev/utilities/commit/beeba83b201a5394c12ccdc465947ac8fcbdfae0)) ([#885](https://github.com/sapphiredev/utilities/pull/885) by @github-actions[bot])
+
 # [@sapphire/discord-utilities@3.4.4](https://github.com/sapphiredev/utilities/compare/@sapphire/discord-utilities@3.4.3...@sapphire/discord-utilities@3.4.4) - (2025-01-05)
 
 ## 🐛 Bug Fixes
