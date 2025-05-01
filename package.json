@@ -36,7 +36,7 @@
 		"concurrently": "^9.1.2",
 		"cz-conventional-changelog": "^3.3.0",
 		"discord-api-types": "^0.37.119",
-		"discord.js": "^14.18.0",
+		"discord.js": "^14.19.2",
 		"eslint": "^8.57.1",
 		"eslint-config-prettier": "^10.1.2",
 		"eslint-plugin-prettier": "^5.2.6",
