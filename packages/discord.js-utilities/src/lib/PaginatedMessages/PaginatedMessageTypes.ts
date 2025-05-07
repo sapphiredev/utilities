@@ -3,7 +3,7 @@ import type {
 	APIActionRowComponent,
 	APIEmbed,
 	APIMessage,
-	APIMessageActionRowComponent,
+	APIComponentInMessageActionRow,
 	ActionRowComponentOptions,
 	ActionRowData,
 	BaseMessageOptions,
@@ -313,14 +313,14 @@ export type PaginatedMessageInteractionUnion = Exclude<CollectedInteraction, Mod
 /**
  * Represents a union type for components in a paginated message.
  * It can be one of the following types:
- * - `JSONEncodable<APIActionRowComponent<APIMessageActionRowComponent>>`
+ * - `JSONEncodable<APIActionRowComponent<APIComponentInMessageActionRow>>`
  * - `ActionRowData<ActionRowComponentOptions | MessageActionRowComponentBuilder>`
- * - `APIActionRowComponent<APIMessageActionRowComponent>`
+ * - `APIActionRowComponent<APIComponentInMessageActionRow>`
  */
 export type PaginatedMessageComponentUnion =
-	| JSONEncodable<APIActionRowComponent<APIMessageActionRowComponent>>
+	| JSONEncodable<APIActionRowComponent<APIComponentInMessageActionRow>>
 	| ActionRowData<ActionRowComponentOptions | MessageActionRowComponentBuilder>
-	| APIActionRowComponent<APIMessageActionRowComponent>;
+	| APIActionRowComponent<APIComponentInMessageActionRow>;
 
 /**
  * @internal This is a duplicate of the same interface in `@sapphire/plugin-i18next`
