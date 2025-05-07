@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/discord.js-utilities@7.3.3](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@7.3.2...@sapphire/discord.js-utilities@7.3.3) - (2025-05-07)
+
+## 🏠 Refactor
+
+- **discord.js-utilities:** Replace ephemeral with message flags ([cfb8940](https://github.com/sapphiredev/utilities/commit/cfb8940c5bbcf8b7df51803c5a770ca78a2098a8)) ([#876](https://github.com/sapphiredev/utilities/pull/876) by @SerenModz21)
+
+## 🐛 Bug Fixes
+
+- **discord.js-utilities:** Update the action row component type ([3b2a6fa](https://github.com/sapphiredev/utilities/commit/3b2a6faefb4a371678f901e2f973ea64a466e7f5)) ([#888](https://github.com/sapphiredev/utilities/pull/888) by @SerenModz21)
+- **paginatedmessage:** Resolve ts-expect-error by omitting flags from `WebhookMessageEditOptions` ([87bbf48](https://github.com/sapphiredev/utilities/commit/87bbf48fc1b572efe53ec4c3dc64101325c3ff85))
+- **deps:** Update all non-major dependencies ([bc2f01c](https://github.com/sapphiredev/utilities/commit/bc2f01ce7d6932c9a0e02faa7cc081ecbae9640d)) ([#869](https://github.com/sapphiredev/utilities/pull/869) by @renovate[bot])
+
 # [@sapphire/discord.js-utilities@7.3.2](https://github.com/sapphiredev/utilities/compare/@sapphire/discord.js-utilities@7.3.1...@sapphire/discord.js-utilities@7.3.2) - (2025-01-05)
 
 ## 🐛 Bug Fixes
