@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/eslint-config@5.0.6](https://github.com/sapphiredev/utilities/compare/@sapphire/eslint-config@5.0.5...@sapphire/eslint-config@5.0.6) - (2025-05-08)
+
+## 🐛 Bug Fixes
+
+- **eslint-config:** Update dependencies ([349a1d1](https://github.com/sapphiredev/utilities/commit/349a1d185eebdf950408f09fbbb85557c56b9107))
+- **deps:** Update all non-major dependencies ([2237f1c](https://github.com/sapphiredev/utilities/commit/2237f1c6bcd768a6a07a63c703f426858c330e41)) ([#881](https://github.com/sapphiredev/utilities/pull/881) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([4bc5591](https://github.com/sapphiredev/utilities/commit/4bc55911f95456a2caee10a3588c7b5f1542fb00)) ([#879](https://github.com/sapphiredev/utilities/pull/879) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([1b923ad](https://github.com/sapphiredev/utilities/commit/1b923add4a4861105ade39d7e23db8cdcf824769)) ([#873](https://github.com/sapphiredev/utilities/pull/873) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([bc2f01c](https://github.com/sapphiredev/utilities/commit/bc2f01ce7d6932c9a0e02faa7cc081ecbae9640d)) ([#869](https://github.com/sapphiredev/utilities/pull/869) by @renovate[bot])
+- **deps:** Update dependency eslint-config-prettier to v10 ([5d7bdbb](https://github.com/sapphiredev/utilities/commit/5d7bdbbc92175f249a0dcaa2b024bac91d41274b)) ([#860](https://github.com/sapphiredev/utilities/pull/860) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([ab1708e](https://github.com/sapphiredev/utilities/commit/ab1708e3c2866463316ba559d0102e414592dfed)) ([#858](https://github.com/sapphiredev/utilities/pull/858) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([083376a](https://github.com/sapphiredev/utilities/commit/083376aac55094dbeddb5194e8a8f0d794b8cceb)) ([#763](https://github.com/sapphiredev/utilities/pull/763) by @renovate[bot])
+
+## 📝 Documentation
+
+- Fix changelog urls ([a3da0ab](https://github.com/sapphiredev/utilities/commit/a3da0ab0cfd94f3823c792887e76bb898686a89b)) ([#759](https://github.com/sapphiredev/utilities/pull/759) by @favna)
+
 # [@sapphire/eslint-config@5.0.5](https://github.com/sapphiredev/utilities/compare/@sapphire/eslint-config@5.0.4...@sapphire/eslint-config@5.0.5) - (2024-06-03)
 
 ## 🐛 Bug Fixes
