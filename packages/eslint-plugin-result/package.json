@@ -55,10 +55,10 @@
 		"@favware/cliff-jumper": "^6.0.0",
 		"@typescript-eslint/rule-tester": "^7.18.0",
 		"@typescript-eslint/typescript-estree": "^7.18.0",
-		"@vitest/coverage-v8": "^3.1.1",
-		"tsup": "^8.4.0",
+		"@vitest/coverage-v8": "^3.2.2",
+		"tsup": "^8.5.0",
 		"typedoc-json-parser": "^10.2.0",
-		"vitest": "^3.1.1"
+		"vitest": "^3.2.2"
 	},
 	"dependencies": {
 		"@sapphire/result": "workspace:^",

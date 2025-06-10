@@ -168,7 +168,7 @@ export class InteractionOptionResolver {
 	public getInteger<Required extends boolean = false>(name: string, required?: Required): RequiredIf<Required, number>;
 	public getInteger(name: string, required = false): number | null {
 		const option = this.getTypedOption(name, ApplicationCommandOptionType.Integer, required);
-		return option?.value ?? null;
+		return (option?.value as number | null) ?? null;
 	}
 
 	/**
@@ -179,7 +179,7 @@ export class InteractionOptionResolver {
 	public getNumber<Required extends boolean = false>(name: string, required?: Required): RequiredIf<Required, number>;
 	public getNumber(name: string, required = false): number | null {
 		const option = this.getTypedOption(name, ApplicationCommandOptionType.Number, required);
-		return option?.value ?? null;
+		return (option?.value as number | null) ?? null;
 	}
 
 	/**

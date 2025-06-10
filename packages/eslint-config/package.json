@@ -1,6 +1,6 @@
 {
 	"name": "@sapphire/eslint-config",
-	"version": "5.0.5",
+	"version": "5.0.6",
 	"description": "Standard ESLint config for the Sapphire Community",
 	"author": "@sapphire",
 	"license": "MIT",
@@ -28,8 +28,8 @@
 		"@typescript-eslint/eslint-plugin": "^7.18.0",
 		"@typescript-eslint/parser": "^7.18.0",
 		"eslint": "^8.57.1",
-		"eslint-config-prettier": "^10.1.2",
-		"eslint-plugin-prettier": "^5.2.6",
+		"eslint-config-prettier": "^10.1.5",
+		"eslint-plugin-prettier": "^5.4.1",
 		"prettier": "^3.5.3",
 		"typescript": "~5.4.5"
 	},
@@ -63,9 +63,9 @@
 	},
 	"devDependencies": {
 		"@favware/cliff-jumper": "^6.0.0",
-		"@vitest/coverage-v8": "^3.1.1",
-		"tsup": "^8.4.0",
+		"@vitest/coverage-v8": "^3.2.2",
+		"tsup": "^8.5.0",
 		"typedoc-json-parser": "^10.2.0",
-		"vitest": "^3.1.1"
+		"vitest": "^3.2.2"
 	}
 }

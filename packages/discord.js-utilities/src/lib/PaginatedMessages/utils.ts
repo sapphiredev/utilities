@@ -5,7 +5,7 @@ import {
 	ButtonStyle,
 	ComponentType,
 	type APIActionRowComponent,
-	type APIMessageActionRowComponent,
+	type APIComponentInMessageActionRow,
 	type ActionRowComponentOptions,
 	type ButtonComponentData,
 	type ChannelSelectMenuComponentData,
@@ -184,7 +184,7 @@ export function isActionChannelMenu(action: PaginatedMessageAction): action is P
 /**
  * Creates partitioned message rows based on the provided components.
  * @param components The array of MessageActionRowComponentBuilder objects.
- * @returns An array of `APIActionRowComponent<APIMessageActionRowComponent>` objects.
+ * @returns An array of `APIActionRowComponent<APIComponentInMessageActionRow>` objects.
  */
 export function createPartitionedMessageRow(components: MessageActionRowComponentBuilder[]): PaginatedMessageComponentUnion[] {
 	// Partition the components into two groups: buttons and select menus
@@ -217,7 +217,7 @@ export function createPartitionedMessageRow(components: MessageActionRowComponen
 
 	return [...messageActionButtonActionRows, ...selectMenuActionRows, ...messageLinkButtonActionRows].map((actionRow) =>
 		actionRow.toJSON()
-	) as APIActionRowComponent<APIMessageActionRowComponent>[];
+	) as APIActionRowComponent<APIComponentInMessageActionRow>[];
 }
 
 /**
