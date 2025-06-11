@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/decorators@6.2.0](https://github.com/sapphiredev/utilities/compare/@sapphire/decorators@6.1.1...@sapphire/decorators@6.2.0) - (2025-06-11)
+
+## 🐛 Bug Fixes
+
+- **deps:** Update all non-major dependencies ([4bc5591](https://github.com/sapphiredev/utilities/commit/4bc55911f95456a2caee10a3588c7b5f1542fb00)) ([#879](https://github.com/sapphiredev/utilities/pull/879) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([bc2f01c](https://github.com/sapphiredev/utilities/commit/bc2f01ce7d6932c9a0e02faa7cc081ecbae9640d)) ([#869](https://github.com/sapphiredev/utilities/pull/869) by @renovate[bot])
+
+## 🚀 Features
+
+- **decorators:** Register application commands decorators ([da07d09](https://github.com/sapphiredev/utilities/commit/da07d0985da60c6c556ad4ead9c7a9fd20cd619d)) ([#877](https://github.com/sapphiredev/utilities/pull/877) by @yuansheng1549)
+
 # [@sapphire/decorators@6.1.1](https://github.com/sapphiredev/utilities/compare/@sapphire/decorators@6.1.0...@sapphire/decorators@6.1.1) - (2024-11-02)
 
 ## 🏠 Refactor
