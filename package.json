@@ -27,12 +27,12 @@
 		"@favware/rollup-type-bundler": "^4.0.0",
 		"@sapphire/framework": "^5.3.6",
 		"@types/lodash": "^4.17.20",
-		"@types/node": "^22.17.2",
+		"@types/node": "^22.18.0",
 		"@types/ws": "^8.18.1",
 		"@typescript-eslint/eslint-plugin": "^7.18.0",
 		"@typescript-eslint/parser": "^7.18.0",
 		"@vitest/coverage-v8": "^3.2.4",
-		"concurrently": "^9.2.0",
+		"concurrently": "^9.2.1",
 		"cz-conventional-changelog": "^3.3.0",
 		"discord.js": "^14.22.1",
 		"eslint": "^8.57.1",
@@ -40,7 +40,7 @@
 		"eslint-plugin-prettier": "^5.5.4",
 		"lint-staged": "^16.1.5",
 		"lodash": "^4.17.21",
-		"msw": "^2.10.5",
+		"msw": "^2.11.0",
 		"npm-run-all2": "^8.0.4",
 		"prettier": "^3.6.2",
 		"rimraf": "^6.0.1",
@@ -75,5 +75,5 @@
 		"ansi-regex": "^5.0.1",
 		"minimist": "^1.2.8"
 	},
-	"packageManager": "yarn@4.9.3"
+	"packageManager": "yarn@4.9.4"
 }
