@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/lexure@1.1.11](https://github.com/sapphiredev/utilities/compare/@sapphire/lexure@1.1.10...@sapphire/lexure@1.1.11) - (2025-09-24)
+
+## 🐛 Bug Fixes
+
+- **deps:** Update all non-major dependencies ([636a5ee](https://github.com/sapphiredev/utilities/commit/636a5eed0939fd96a82213bf8459846aedd54037)) ([#897](https://github.com/sapphiredev/utilities/pull/897) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([4bc5591](https://github.com/sapphiredev/utilities/commit/4bc55911f95456a2caee10a3588c7b5f1542fb00)) ([#879](https://github.com/sapphiredev/utilities/pull/879) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([bc2f01c](https://github.com/sapphiredev/utilities/commit/bc2f01ce7d6932c9a0e02faa7cc081ecbae9640d)) ([#869](https://github.com/sapphiredev/utilities/pull/869) by @renovate[bot])
+
 # [@sapphire/lexure@1.1.8](https://github.com/sapphiredev/utilities/compare/@sapphire/lexure@1.1.7...@sapphire/lexure@1.1.8) - (2024-11-02)
 
 ## 🐛 Bug Fixes
