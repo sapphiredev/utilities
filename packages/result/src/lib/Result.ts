@@ -4,6 +4,7 @@ import { ResultError } from './ResultError';
 
 const ValueProperty = Symbol.for('@sapphire/result:Result.value');
 const SuccessProperty = Symbol.for('@sapphire/result:Result.success');
+const UnwrapSafeProperty = Symbol.for('@sapphire/result:Result.safeUnwrap');
 
 /**
  * A type used to express computations that can fail, it can be used for returning and propagating errors. This is a
@@ -522,6 +523,7 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * @seealso {@link unwrapOrElse}
 	 * @seealso {@link unwrapErr}
 	 * @seealso {@link unwrapRaw}
+	 * @seealso {@link unwrapSafe}
 	 *
 	 * @example
 	 * ```typescript
@@ -553,6 +555,7 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * @seealso {@link unwrapOr}
 	 * @seealso {@link unwrapOrElse}
 	 * @seealso {@link unwrapRaw}
+	 * @seealso {@link unwrapSafe}
 	 *
 	 * @example
 	 * ```typescript
@@ -585,6 +588,7 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * @seealso {@link unwrapOrElse}
 	 * @seealso {@link unwrapErr}
 	 * @seealso {@link unwrapRaw}
+	 * @seealso {@link unwrapSafe}
 	 *
 	 * @param defaultValue The default value.
 	 *
@@ -611,6 +615,7 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * @seealso {@link unwrapOr}
 	 * @seealso {@link unwrapErr}
 	 * @seealso {@link unwrapRaw}
+	 * @seealso {@link unwrapSafe}
 	 *
 	 * @param op The predicate.
 	 *
@@ -636,6 +641,7 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * @seealso {@link unwrapOr}
 	 * @seealso {@link unwrapOrElse}
 	 * @seealso {@link unwrapErr}
+	 * @seealso {@link unwrapSafe}
 	 *
 	 * @example
 	 * ```typescript
@@ -657,6 +663,28 @@ export class Result<T, E, const Success extends boolean = boolean> {
 		if (this.isErr()) throw this[ValueProperty];
 		// @ts-expect-error Complex types
 		return this[ValueProperty] as T;
+	}
+
+	/**
+	 * Returns the contained `Ok` value or yelds the contained `Err` value.
+	 * Emulates Rust's `?` operator in `safeTry`'s body. See also {@link Result.safeTry}.
+	 *
+	 * If used outside of a `safeTry`'s' body, throws the contained error.
+	 * @seealso {@link unwrap}
+	 * @seealso {@link unwrapOr}
+	 * @seealso {@link unwrapErr}
+	 * @seealso {@link unwrapRaw}
+	 * @seealso {@link unwrapSafe}
+	 *
+	 * @see {@link https://doc.rust-lang.org/std/result/enum.Result.html#method.unwrap_safe}
+	 */
+	public *unwrapSafe(): Generator<Err<E, T>, T> {
+		if (this.isOk()) {
+			return this[ValueProperty];
+		}
+
+		yield this as Err<E, T>;
+		throw new ResultError('Should not be used outside of a safe try generator', this[ValueProperty]);
 	}
 
 	/**
@@ -1003,6 +1031,17 @@ export class Result<T, E, const Success extends boolean = boolean> {
 		return this.match({ ok: () => 'Ok', err: () => 'Err' });
 	}
 
+	/**
+	 * This function, in combination with `[$]`, is intended to emulate
+	 * Rust's ? operator.
+	 *
+	 * @see {@link Result.safeTry}
+	 * @see {@link https://doc.rust-lang.org/std/result/enum.Result.html#method.safeTry}
+	 */
+	public get [UnwrapSafeProperty](): Generator<Err<E, T>, T> {
+		return this.unwrapSafe();
+	}
+
 	// eslint-disable-next-line @typescript-eslint/no-invalid-void-type
 	public static ok<T = undefined, E = any>(this: void, value?: T): Ok<T, E>;
 	// eslint-disable-next-line @typescript-eslint/no-invalid-void-type
@@ -1150,6 +1189,100 @@ export class Result<T, E, const Success extends boolean = boolean> {
 
 		return err(errors as UnwrapErrArray<Entries>);
 	}
+
+	/**
+	 * Evaluates the given generator to a Result returned or an Err yielded from it,
+	 * whichever comes first.
+	 *
+	 * This function, in combination with `[$]`, is intended to emulate
+	 * Rust's ? operator.
+	 *
+	 * @example
+	 * ```typescript
+	 *	const result = Result.safeTry(function* ({ $ }) {
+	 *	  const first = yield* ok(1)[$];
+	 *	  const second = yield* ok(1)[$];
+	 *
+	 *	  return ok(first + second);
+	 *  });
+	 *
+	 *	result.match({
+	 *	  ok: (value) => value, // 2
+	 *	  err: (error) => {}
+	 *	});
+	 *```
+	 *
+	 * @example
+	 * ```typescript
+	 *	const resultAsync = Result.safeTry(async function* ({ $async }) {
+	 *	  const first = yield* $async(Result.fromAsync(() => Promise.resolve(1)));
+	 *	  const second = yield* ok(1)[$];
+	 *
+	 *	  return ok(first + second);
+	 *  });
+	 *
+	 *	resultAsync.match({
+	 *	  ok: (value) => value, // 2
+	 *	  err: (error) => {}
+	 *	});
+	 * ```
+	 * @param body - What is evaluated. In body, `yield* result[$]` works as
+	 * Rust's `result?` expression.
+	 * @returns The first occurence of either an yielded Err or a returned Result.
+	 */
+	public static safeTry<T, E>(body: (options: SafeTryOptions) => Generator<Err<E>, Result<T, E>>): Result<T, E>;
+
+	/**
+	 * Evaluates the given generator to a Result returned or an Err yielded from it,
+	 * whichever comes first.
+	 *
+	 * This function, in combination with `[$]`, is intended to emulate
+	 * Rust's ? operator.
+	 *
+	 * @example
+	 * ```typescript
+	 *	const result = Result.safeTry(function* ({ $ }) {
+	 *	  const first = yield* ok(1)[$];
+	 *	  const second = yield* ok(1)[$];
+	 *
+	 *	  return ok(first + second);
+	 *  });
+	 *
+	 *	result.match({
+	 *	  ok: (value) => value, // 2
+	 *	  err: (error) => {}
+	 *	});
+	 *```
+	 *
+	 * @example
+	 * ```typescript
+	 *	const resultAsync = Result.safeTry(async function* ({ $async }) {
+	 *	  const first = yield* $async(Result.fromAsync(() => Promise.resolve(1)));
+	 *	  const second = yield* ok(1)[$];
+	 *
+	 *	  return ok(first + second);
+	 *  });
+	 *
+	 *	resultAsync.match({
+	 *	  ok: (value) => value, // 2
+	 *	  err: (error) => {}
+	 *	});
+	 * ```
+	 * @param body - What is evaluated. In body, `yield* result[$]` works as
+	 * Rust's `result?` expression.
+	 * @returns The first occurence of either an yielded Err or a returned Result.
+	 */
+	public static safeTry<T, E>(body: (options: SafeTryOptions) => AsyncGenerator<Err<E>, Result<T, E>>): Promise<Result<T, E>>;
+	public static safeTry<T, E>(
+		body: ((options: SafeTryOptions) => Generator<Err<E>, Result<T, E>>) | ((options: SafeTryOptions) => AsyncGenerator<Err<E>, Result<T, E>>)
+	): Result<T, E> | Promise<Result<T, E>> {
+		const n = body({ $: UnwrapSafeProperty, $async: unwrapSafeAsync }).next();
+		if (n instanceof Promise) {
+			return n.then((r) => r.value);
+		}
+
+		return n.value;
+	}
 }
 
 export namespace Result {
@@ -1174,6 +1307,11 @@ function resolve<T, E>(value: Result.Resolvable<T, E>): Result<T, E> {
 	return Result.isResult(value) ? value : ok(value);
 }
 
+async function* unwrapSafeAsync<T, E>(result: Promise<Result<T, E>>): AsyncGenerator<Err<E>, T> {
+	const _result = await result;
+	return yield* _result.unwrapSafe();
+}
+
 export type ResultResolvable<T, E = any, Success extends boolean = boolean> = Result.Resolvable<T, E, Success>;
 
 export type Ok<T, E = any> = Result.Ok<T, E>;
@@ -1185,3 +1323,8 @@ export type UnwrapErr<T extends AnyResult> = Result.UnwrapErr<T>;
 
 export type UnwrapOkArray<T extends readonly AnyResult[] | []> = Result.UnwrapOkArray<T>;
 export type UnwrapErrArray<T extends readonly AnyResult[] | []> = Result.UnwrapErrArray<T>;
+
+interface SafeTryOptions {
+	$: typeof UnwrapSafeProperty;
+	$async: <T, E>(result: Promise<Result<T, E>>) => AsyncGenerator<Err<E>, T>;
+}
