@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/result@2.7.3](https://github.com/sapphiredev/utilities/compare/@sapphire/result@2.7.2...@sapphire/result@2.7.3) - (2025-09-24)
+
+## 🐛 Bug Fixes
+
+- **deps:** Update all non-major dependencies ([636a5ee](https://github.com/sapphiredev/utilities/commit/636a5eed0939fd96a82213bf8459846aedd54037)) ([#897](https://github.com/sapphiredev/utilities/pull/897) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([4bc5591](https://github.com/sapphiredev/utilities/commit/4bc55911f95456a2caee10a3588c7b5f1542fb00)) ([#879](https://github.com/sapphiredev/utilities/pull/879) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([bc2f01c](https://github.com/sapphiredev/utilities/commit/bc2f01ce7d6932c9a0e02faa7cc081ecbae9640d)) ([#869](https://github.com/sapphiredev/utilities/pull/869) by @renovate[bot])
+- Result value types losing types after mapping ([44fccf0](https://github.com/sapphiredev/utilities/commit/44fccf0029e31862a03d2097bb1585b3fc3df074)) ([#833](https://github.com/sapphiredev/utilities/pull/833) by @OfficialSirH)
+
+## 📝 Documentation
+
+- Update documentation link for usage examples ([e79994f](https://github.com/sapphiredev/utilities/commit/e79994f106295457df404565efdf785306fa5e98)) ([#883](https://github.com/sapphiredev/utilities/pull/883) by @favna)
+
 # [@sapphire/result@2.7.1](https://github.com/sapphiredev/utilities/compare/@sapphire/result@2.7.0...@sapphire/result@2.7.1) - (2024-11-02)
 
 ## 🐛 Bug Fixes
