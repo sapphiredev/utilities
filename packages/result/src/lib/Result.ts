@@ -1324,7 +1324,7 @@ export type UnwrapErr<T extends AnyResult> = Result.UnwrapErr<T>;
 export type UnwrapOkArray<T extends readonly AnyResult[] | []> = Result.UnwrapOkArray<T>;
 export type UnwrapErrArray<T extends readonly AnyResult[] | []> = Result.UnwrapErrArray<T>;
 
-interface SafeTryOptions {
+export interface SafeTryOptions {
 	$: typeof UnwrapSafeProperty;
 	$async: <T, E>(result: Promise<Result<T, E>>) => AsyncGenerator<Err<E>, T>;
 }
