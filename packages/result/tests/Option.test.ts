@@ -174,6 +174,15 @@ describe('Option', () => {
 				expect<None>(x.map(op)).toBe(none);
 				expect(op).not.toHaveBeenCalled();
 			});
+
+			test('GIVEN option THEN chain map THEN Return Option<string>', () => {
+				const x = Option.from(5);
+				const cb = vi.fn((value: number) => `${value}`);
+				const mapChain = x.map(cb);
+
+				expectTypeOf(mapChain).toMatchTypeOf<Option<string>>();
+				expect<Option<string>>(mapChain).toEqual(some('5'));
+			});
 		});
 
 		describe('mapInto', () => {
@@ -191,7 +200,7 @@ describe('Option', () => {
 				const x = none;
 				const op = vi.fn((value: string) => some(value.length));
 
-				expect<None>(x.mapInto(op)).toBe(none);
+				expect(x.mapInto(op)).toBe(none);
 				expect(op).not.toHaveBeenCalled();
 			});
 		});
@@ -406,8 +415,17 @@ describe('Option', () => {
 				const x = none;
 				const op = vi.fn(cb);
 
-				expect<typeof x>(x.andThen(op)).toBe(none);
+				expect(x.andThen(op)).toBe(none);
 				expect(op).not.toHaveBeenCalled();
+			});
+
+			test('GIVEN option THEN andThen and chain map THEN Return Option<number>', () => {
+				const x = Option.from(5);
+				const cb = vi.fn((value: number) => some(`${value}`));
+				const mapChain = x.andThen(cb).map((value) => Number(value));
+
+				expectTypeOf(mapChain).toMatchTypeOf<Option<number>>();
+				expect<Option<number>>(mapChain).toEqual(some(5));
 			});
 		});
 
