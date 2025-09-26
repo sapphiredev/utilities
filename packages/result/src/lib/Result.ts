@@ -707,7 +707,8 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 *
 	 * @see {@link https://doc.rust-lang.org/std/result/enum.Result.html#method.and_then}
 	 */
-	public andThen<OutputResult extends AnyResult>(cb: (value: T) => OutputResult): If<Success, OutputResult, Err<E>> {
+	public andThen<OutputResult extends AnyResult>(cb: (value: T) => OutputResult): OutputResult {
+		// @ts-expect-error Complex types
 		return this.match({ ok: (value) => cb(value), err: returnThis });
 	}
 
