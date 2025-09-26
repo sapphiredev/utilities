@@ -533,8 +533,17 @@ describe('Result', () => {
 				const x = err('not a number');
 				const op = vi.fn(cb);
 
-				expect<typeof x>(x.andThen(op)).toBe(x);
+				expect(x.andThen(op)).toBe(x);
 				expect(op).not.toHaveBeenCalled();
+			});
+
+			test('GIVEN ok THEN chain andThen and map THEN returns Ok<number, string>', () => {
+				const x = Result.from<number, Error>(1);
+				const cb = vi.fn((value: number) => ok(`${value}`));
+				const mapChain = x.andThen(cb).map((value) => Number(value));
+
+				expectTypeOf(mapChain).toMatchTypeOf<Result<number, string>>();
+				expect<Result<number, string>>(mapChain).toEqual(ok(1));
 			});
 		});
 
