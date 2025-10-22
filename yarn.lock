@@ -3081,17 +3081,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"discord-api-types@npm:^0.38.1, discord-api-types@npm:^0.38.16, discord-api-types@npm:^0.38.26, discord-api-types@npm:^0.38.29":
+"discord-api-types@npm:^0.38.1, discord-api-types@npm:^0.38.16, discord-api-types@npm:^0.38.26, discord-api-types@npm:^0.38.29, discord-api-types@npm:^0.38.4":
   version: 0.38.29
   resolution: "discord-api-types@npm:0.38.29"
   checksum: 10/dc4bd18e7a55099883dd80b4915ff2b72115ec94a6ab640ce93e065dc0b315d0e9e3e61b172670bcdb23eceb09a1cd7daa7e3251dafb3b1a40dc905aef5e5fe9
-  languageName: node
-  linkType: hard
-
-"discord-api-types@npm:^0.38.4":
-  version: 0.38.30
-  resolution: "discord-api-types@npm:0.38.30"
-  checksum: 10/78e1f9b071e0a6cc243de0e4e168fac0b16f3086286ec9b3d30e8b6d9f60759e22f10544607f2b2e5af954bebdaec7dba248f8c9d8d8584cf4b8c9ad26900f7e
   languageName: node
   linkType: hard
 
