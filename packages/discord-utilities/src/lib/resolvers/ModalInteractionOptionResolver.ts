@@ -12,7 +12,7 @@ import {
 import type { ModalComponentType, TypeToModalComponentMap } from './util';
 
 /**
- * Utility class for resolving command interaction options while working with the raw API.
+ * Utility class for resolving (modal) interaction options while working with the raw API.
  * Based on {@linkplain https://github.com/discordjs/discord.js/blob/main/packages/discord.js/src/structures/CommandInteractionOptionResolver.js}
  */
 export class ModalInteractionOptionResolver {

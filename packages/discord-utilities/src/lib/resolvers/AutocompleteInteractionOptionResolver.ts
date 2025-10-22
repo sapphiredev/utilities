@@ -10,7 +10,7 @@ import {
 import type { RequiredIf } from './util';
 
 /**
- * Utility class for resolving command interaction options while working with the raw API.
+ * Utility class for resolving (autocomplete) interaction options while working with the raw API.
  * Based on {@linkplain https://github.com/discordjs/discord.js/blob/main/packages/discord.js/src/structures/CommandInteractionOptionResolver.js}
  */
 export class AutocompleteInteractionOptionResolver {
