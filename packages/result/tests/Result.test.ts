@@ -952,6 +952,102 @@ describe('Result', () => {
 		});
 	});
 
+	describe('safeTry', () => {
+		/* eslint-disable func-names, require-yield */
+		test('GIVEN a successful result THEN return Ok', () => {
+			const result = Result.safeTry(function* () {
+				return ok(42);
+			});
+
+			expect(result).toEqual(ok(42));
+		});
+
+		test('GIVEN a async successful result THEN return Ok', async () => {
+			const result = await Result.safeTry(async function* () {
+				return Result.fromAsync(() => Promise.resolve(42));
+			});
+
+			expect(result).toEqual(ok(42));
+		});
+
+		test('GIVEN a unsuccessful result THEN return Err', () => {
+			const result = Result.safeTry(function* () {
+				return err('Error!');
+			});
+
+			expect(result).toEqual(err('Error!'));
+		});
+
+		test('GIVEN a async unsuccessful result THEN return Err', async () => {
+			const result = await Result.safeTry(async function* () {
+				return Result.fromAsync(() => Promise.reject(new Error('Error!')));
+			});
+
+			expect(result).toEqual(err(new Error('Error!')));
+		});
+
+		test('GIVEN a mixed successful results THEN should return the last OK', () => {
+			const result = Result.safeTry(function* ({ $ }) {
+				const first = yield* ok(1)[$];
+				const second = yield* ok(2)[$];
+				return ok(first + second);
+			});
+
+			expect(result).toEqual(ok(3));
+		});
+
+		test('GIVEN a mixed async successful results THEN should return the last OK', async () => {
+			const result = await Result.safeTry(async function* ({ $, $async }) {
+				const first = yield* ok(1)[$];
+				const second = yield* $async(Result.fromAsync(() => Promise.resolve(2)));
+				return ok(first + second);
+			});
+
+			expect(result).toEqual(ok(3));
+		});
+
+		test('GIVEN a mixed results THEN should stop and return first Err', () => {
+			const values: number[] = [];
+
+			const result = Result.safeTry(function* ({ $ }) {
+				const first = yield* ok(1)[$];
+				values.push(first);
+
+				const second = yield* ok(2)[$];
+				values.push(second);
+
+				yield* err('Error!')[$];
+				const third = yield* ok(3)[$];
+
+				return ok(first + second + third);
+			});
+
+			expect(result).toEqual(err('Error!'));
+			expect(values).toEqual([1, 2]);
+		});
+
+		test('GIVEN a mixed async results THEN should stop and return first Err', async () => {
+			const values: number[] = [];
+
+			const result = await Result.safeTry(async function* ({ $, $async }) {
+				const first = yield* ok(1)[$];
+				values.push(first);
+
+				const second = yield* $async(Result.fromAsync(() => Promise.resolve(2)));
+				values.push(second);
+
+				yield* err('Error!')[$];
+				const third = yield* ok(3)[$];
+
+				return ok(first + second + third);
+			});
+
+			expect(result).toEqual(err('Error!'));
+			expect(values).toEqual([1, 2]);
+		});
+		/* eslint-enable func-names, require-yield */
+	});
+
 	describe('all', () => {
 		test('GIVEN empty array THEN returns Result<[], never>', () => {
 			expect<Result<[], never>>(Result.all([])).toEqual(ok([]));
