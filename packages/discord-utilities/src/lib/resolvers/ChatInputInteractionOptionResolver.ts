@@ -1,33 +1,21 @@
 import {
 	ApplicationCommandOptionType,
-	ApplicationCommandType,
-	InteractionType,
-	type APIApplicationCommandAutocompleteInteraction,
-	type APIApplicationCommandInteraction,
-	type APIApplicationCommandInteractionDataBasicOption,
-	type APIApplicationCommandInteractionDataIntegerOption,
-	type APIApplicationCommandInteractionDataNumberOption,
 	type APIApplicationCommandInteractionDataOption,
-	type APIApplicationCommandInteractionDataStringOption,
 	type APIAttachment,
+	type APIChatInputApplicationCommandInteraction,
 	type APIInteractionDataResolved,
 	type APIInteractionDataResolvedChannel,
 	type APIInteractionDataResolvedGuildMember,
-	type APIMessage,
-	type APIMessageApplicationCommandInteractionDataResolved,
-	type APIModalSubmitInteraction,
 	type APIRole,
-	type APIUser,
-	type APIUserInteractionDataResolved
+	type APIUser
 } from 'discord-api-types/v10';
+import type { BasicApplicationCommandOptionType, RequiredIf, TypeToOptionMap } from './util';
 
 /**
- * Utility class for resolving command interaction options while working with the raw API.
+ * Utility class for resolving (application command) interaction options while working with the raw API.
  * Based on {@linkplain https://github.com/discordjs/discord.js/blob/main/packages/discord.js/src/structures/CommandInteractionOptionResolver.js}
  */
-export class InteractionOptionResolver {
-	private readonly interaction: APIApplicationCommandInteraction | APIApplicationCommandAutocompleteInteraction | APIModalSubmitInteraction;
-
+export class ChatInputInteractionOptionResolver {
 	/**
 	 * The interaction options array
 	 */
@@ -36,11 +24,7 @@ export class InteractionOptionResolver {
 	/**
 	 * The interaction resolved data
 	 */
-	private readonly resolved:
-		| APIInteractionDataResolved
-		| APIUserInteractionDataResolved
-		| APIMessageApplicationCommandInteractionDataResolved
-		| null = null;
+	private readonly resolved: APIInteractionDataResolved | null = null;
 
 	/**
 	 * Bottom-level options for the interaction
@@ -58,9 +42,7 @@ export class InteractionOptionResolver {
 	 */
 	private readonly subcommand: string | null = null;
 
-	public constructor(interaction: APIApplicationCommandInteraction | APIApplicationCommandAutocompleteInteraction | APIModalSubmitInteraction) {
-		this.interaction = interaction;
-
+	public constructor(interaction: APIChatInputApplicationCommandInteraction) {
 		this.data = 'options' in interaction.data ? (interaction.data.options ?? null) : null;
 
 		this.resolved = 'resolved' in interaction.data ? (interaction.data.resolved ?? null) : null;
@@ -86,7 +68,6 @@ export class InteractionOptionResolver {
 	 * @param required Whether to throw an error if the option is not found
 	 */
 	public get<Required extends boolean = false>(name: string, required?: Required): RequiredIf<Required, APIApplicationCommandInteractionDataOption>;
-
 	public get(name: string, required = false): APIApplicationCommandInteractionDataOption | null {
 		const option = this.hoistedOptions?.find((opt) => opt.name === name);
 		if (!option) {
@@ -143,7 +124,6 @@ export class InteractionOptionResolver {
 	 * @param required Whether to throw an error if the option is not found
 	 */
 	public getChannel<Required extends boolean = false>(name: string, required?: Required): RequiredIf<Required, APIInteractionDataResolvedChannel>;
-
 	public getChannel(name: string, required = false): APIInteractionDataResolvedChannel | null {
 		const option = this.getTypedOption(name, ApplicationCommandOptionType.Channel, required);
 		return option && this.resolved && 'channels' in this.resolved ? (this.resolved.channels?.[option.value] ?? null) : null;
@@ -190,7 +170,7 @@ export class InteractionOptionResolver {
 	public getUser<Required extends boolean = false>(name: string, required?: Required): RequiredIf<Required, APIUser>;
 	public getUser(name: string, required = false): APIUser | null {
 		const option = this.getTypedOption(name, ApplicationCommandOptionType.User, required);
-		return option && this.resolved && 'users' in this.resolved ? (this.resolved.users?.[option.value] ?? null) : null;
+		return option?.value ? this.resolved!.users![option.value] : null;
 	}
 
 	/**
@@ -205,7 +185,7 @@ export class InteractionOptionResolver {
 
 	public getMember(name: string, required = false): APIInteractionDataResolvedGuildMember | null {
 		const option = this.getTypedOption(name, ApplicationCommandOptionType.User, required);
-		return option && this.resolved && 'members' in this.resolved ? (this.resolved.members?.[option.value] ?? null) : null;
+		return option?.value ? this.resolved!.members![option.value] : null;
 	}
 
 	/**
@@ -216,7 +196,7 @@ export class InteractionOptionResolver {
 	public getRole<Required extends boolean = false>(name: string, required?: Required): RequiredIf<Required, APIRole>;
 	public getRole(name: string, required = false): APIRole | null {
 		const option = this.getTypedOption(name, ApplicationCommandOptionType.Role, required);
-		return option && this.resolved && 'roles' in this.resolved ? (this.resolved.roles?.[option.value] ?? null) : null;
+		return option?.value ? this.resolved!.roles![option.value] : null;
 	}
 
 	/**
@@ -227,7 +207,7 @@ export class InteractionOptionResolver {
 	public getAttachment<Required extends boolean = false>(name: string, required?: Required): RequiredIf<Required, APIAttachment>;
 	public getAttachment(name: string, required = false): APIAttachment | null {
 		const option = this.getTypedOption(name, ApplicationCommandOptionType.Attachment, required);
-		return option && this.resolved && 'attachments' in this.resolved ? (this.resolved.attachments?.[option.value] ?? null) : null;
+		return option?.value ? this.resolved!.attachments![option.value] : null;
 	}
 
 	/**
@@ -262,71 +242,6 @@ export class InteractionOptionResolver {
 		return null;
 	}
 
-	/**
-	 * Gets the target user for a context menu interaction
-	 */
-	public getTargetUser(): APIUser {
-		if (this.interaction.type !== InteractionType.ApplicationCommand || this.interaction.data.type !== ApplicationCommandType.User) {
-			throw new Error('This method can only be used on user context menu interactions');
-		}
-
-		return (this.resolved as APIUserInteractionDataResolved).users[this.interaction.data.target_id];
-	}
-
-	/**
-	 * Gets the target member for a context menu interaction
-	 * @param required Whether to throw an error if the member data is not present
-	 */
-	public getTargetMember<Required extends boolean = false>(required?: Required): RequiredIf<Required, APIInteractionDataResolvedGuildMember>;
-	public getTargetMember(required = false): APIInteractionDataResolvedGuildMember | null {
-		if (this.interaction.type !== InteractionType.ApplicationCommand || this.interaction.data.type !== ApplicationCommandType.User) {
-			throw new Error('This method can only be used on user context menu interactions');
-		}
-
-		const member = (this.resolved as APIUserInteractionDataResolved).members?.[this.interaction.data.target_id] ?? null;
-
-		if (!member && required) {
-			throw new Error('Member data is not present');
-		}
-
-		return member;
-	}
-
-	/**
-	 * Gets the target message for a context menu interaction
-	 */
-	public getTargetMessage(): APIMessage {
-		if (this.interaction.type !== InteractionType.ApplicationCommand || this.interaction.data.type !== ApplicationCommandType.Message) {
-			throw new Error('This method can only be used on message context menu interactions');
-		}
-
-		return (this.resolved as APIMessageApplicationCommandInteractionDataResolved).messages[this.interaction.data.target_id];
-	}
-
-	/**
-	 * Gets the focused option for an autocomplete interaction
-	 */
-	public getFocusedOption() {
-		if (this.interaction.type !== InteractionType.ApplicationCommandAutocomplete) {
-			throw new Error('This method can only be used on autocomplete interactions');
-		}
-
-		const focusedOption = this.hoistedOptions?.find((option) => 'focused' in option && option.focused) as
-			| APIApplicationCommandInteractionDataStringOption
-			| APIApplicationCommandInteractionDataIntegerOption
-			| APIApplicationCommandInteractionDataNumberOption
-			| undefined;
-
-		// Considering the earlier check, this should be impossible, but it's here for good measure
-		if (!focusedOption) {
-			throw new Error('No focused option for autocomplete interaction');
-		}
-
-		const { focused, ...option } = focusedOption;
-
-		return option;
-	}
-
 	private getTypedOption<Option extends BasicApplicationCommandOptionType, Required extends boolean = false>(
 		name: string,
 		type: Option,
@@ -348,22 +263,3 @@ export class InteractionOptionResolver {
 		return option as TypeToOptionMap[Option];
 	}
 }
-
-type BasicApplicationCommandOptionType = APIApplicationCommandInteractionDataBasicOption['type'];
-
-// This extra type is required because apparently just inlining what `_TypeToOptionMap` does into `TypeToOptionMap` does not behave the same
-type _TypeToOptionMap = {
-	[Option in BasicApplicationCommandOptionType]: APIApplicationCommandInteractionDataBasicOption & { type: Option };
-};
-
-type TypeToOptionMap = {
-	[Option in keyof _TypeToOptionMap]: _TypeToOptionMap[Option];
-};
-
-type If<Value extends boolean, TrueResult, FalseResult> = Value extends true
-	? TrueResult
-	: Value extends false
-		? FalseResult
-		: TrueResult | FalseResult;
-
-type RequiredIf<Value extends boolean, ValueType, FallbackType = null> = If<Value, ValueType, ValueType | FallbackType>;
