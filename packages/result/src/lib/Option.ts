@@ -224,7 +224,8 @@ export class Option<T, Exists extends boolean = boolean> {
 	 *
 	 * @see {@link https://doc.rust-lang.org/std/option/enum.Option.html#method.map}
 	 */
-	public map<U>(cb: (value: T) => U): If<Exists, Some<U>, None> {
+	public map<U>(cb: (value: T) => U): Option<U, Exists> {
+		// @ts-expect-error Complex types
 		return this.match({ some: (value) => some(cb(value)), none: returnThis });
 	}
 
@@ -250,7 +251,8 @@ export class Option<T, Exists extends boolean = boolean> {
 	 *
 	 * @note This is an extension not supported in Rust
 	 */
-	public mapInto<OutputOption extends AnyOption>(cb: (value: T) => OutputOption): If<Exists, OutputOption, None> {
+	public mapInto<OutputOption extends AnyOption>(cb: (value: T) => OutputOption): OutputOption {
+		// @ts-expect-error Complex types
 		return this.match({ some: (value) => cb(value), none: returnThis });
 	}
 
@@ -504,7 +506,8 @@ export class Option<T, Exists extends boolean = boolean> {
 	 *
 	 * @see {@link https://doc.rust-lang.org/std/result/enum.Result.html#method.and_then}
 	 */
-	public andThen<OutputOption extends AnyOption>(cb: (value: T) => OutputOption): If<Exists, OutputOption, None> {
+	public andThen<OutputOption extends AnyOption>(cb: (value: T) => OutputOption): OutputOption {
+		// @ts-expect-error Complex types
 		return this.match({ some: (value) => cb(value), none: returnThis });
 	}
 
