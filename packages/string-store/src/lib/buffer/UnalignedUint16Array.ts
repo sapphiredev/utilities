@@ -202,8 +202,7 @@ export class UnalignedUint16Array implements DuplexBuffer {
 	}
 
 	#uint16ToCodepoint(index: number): number {
-		if (index >= codepointRanges[0].indexStart && index <= codepointRanges[0].indexEnd)
-			return codepointRanges[0].start + index;
+		if (index >= codepointRanges[0].indexStart && index <= codepointRanges[0].indexEnd) return codepointRanges[0].start + index;
 		if (index >= codepointRanges[1].indexStart && index <= codepointRanges[1].indexEnd)
 			return codepointRanges[1].start + (index - codepointRanges[1].indexStart);
 		if (index >= codepointRanges[2].indexStart && index <= codepointRanges[2].indexEnd)
@@ -314,8 +313,7 @@ export class UnalignedUint16Array implements DuplexBuffer {
 	}
 
 	static #codepointToUint16(codepoint: number): number {
-		if (codepoint >= codepointRanges[0].start && codepoint <= codepointRanges[0].end)
-			return codepoint - codepointRanges[0].start;
+		if (codepoint >= codepointRanges[0].start && codepoint <= codepointRanges[0].end) return codepoint - codepointRanges[0].start;
 		if (codepoint >= codepointRanges[1].start && codepoint <= codepointRanges[1].end)
 			return codepointRanges[1].indexStart + (codepoint - codepointRanges[1].start);
 		if (codepoint >= codepointRanges[2].start && codepoint <= codepointRanges[2].end)
