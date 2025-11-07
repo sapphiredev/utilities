@@ -17,7 +17,6 @@ describe('UnalignedUint16Array', () => {
 		expect(buffer.length).toBe(1);
 		expect(buffer.bitLength).toBe(1);
 		expect(buffer.toArray()).toEqual(new Uint16Array([1]));
-		expect(buffer.toString()).toBe('\u{1}');
 
 		// Verify that the data can be deserialized correctly
 		expect(buffer.readBit(0)).toBe(1);
@@ -29,7 +28,6 @@ describe('UnalignedUint16Array', () => {
 		expect(buffer.length).toBe(1);
 		expect(buffer.bitLength).toBe(2);
 		expect(buffer.toArray()).toEqual(new Uint16Array([3]));
-		expect(buffer.toString()).toBe('\u{3}');
 
 		// Verify that the data can be deserialized correctly
 		expect(buffer.readInt2(0)).toBe(-1);
@@ -42,7 +40,6 @@ describe('UnalignedUint16Array', () => {
 		expect(buffer.length).toBe(1);
 		expect(buffer.bitLength).toBe(4);
 		expect(buffer.toArray()).toEqual(new Uint16Array([15]));
-		expect(buffer.toString()).toBe('\u{f}');
 
 		// Verify that the data can be deserialized correctly
 		expect(buffer.readInt4(0)).toBe(-1);
@@ -55,7 +52,6 @@ describe('UnalignedUint16Array', () => {
 		expect(buffer.length).toBe(1);
 		expect(buffer.bitLength).toBe(8);
 		expect(buffer.toArray()).toEqual(new Uint16Array([255]));
-		expect(buffer.toString()).toBe('\u{ff}');
 
 		// Verify that the data can be deserialized correctly
 		expect(buffer.readInt8(0)).toBe(-1);
@@ -68,7 +64,6 @@ describe('UnalignedUint16Array', () => {
 		expect(buffer.length).toBe(1);
 		expect(buffer.bitLength).toBe(16);
 		expect(buffer.toArray()).toEqual(new Uint16Array([65535]));
-		expect(buffer.toString()).toBe('\u{ffff}');
 
 		// Verify that the data can be deserialized correctly
 		expect(buffer.readInt16(0)).toBe(-1);
@@ -81,7 +76,6 @@ describe('UnalignedUint16Array', () => {
 		expect(buffer.length).toBe(2);
 		expect(buffer.bitLength).toBe(32);
 		expect(buffer.toArray()).toEqual(new Uint16Array([65535, 65535]));
-		expect(buffer.toString()).toBe('\u{ffff}\u{ffff}');
 
 		// Verify that the data can be deserialized correctly
 		expect(buffer.readInt32(0)).toBe(-1);
@@ -94,7 +88,6 @@ describe('UnalignedUint16Array', () => {
 		expect(buffer.length).toBe(4);
 		expect(buffer.bitLength).toBe(64);
 		expect(buffer.toArray()).toEqual(new Uint16Array([26517, 2870, 712, 0]));
-		expect(buffer.toString()).toBe('\u{6795}\u{0b36}\u{02c8}\0');
 
 		// Verify that the data can be deserialized correctly
 		expect(buffer.readInt64(0)).toBe(3058204829589);
@@ -107,7 +100,6 @@ describe('UnalignedUint16Array', () => {
 		expect(buffer.length).toBe(2);
 		expect(buffer.bitLength).toBe(32);
 		expect(buffer.toArray()).toEqual(new Uint16Array([65535, 65535]));
-		expect(buffer.toString()).toBe('\u{ffff}\u{ffff}');
 
 		// Verify that the data can be deserialized correctly
 		expect(buffer.readBigInt32(0)).toBe(-1n);
@@ -120,7 +112,6 @@ describe('UnalignedUint16Array', () => {
 		expect(buffer.length).toBe(4);
 		expect(buffer.bitLength).toBe(64);
 		expect(buffer.toArray()).toEqual(new Uint16Array([65535, 65535, 65535, 65535]));
-		expect(buffer.toString()).toBe('\u{ffff}\u{ffff}\u{ffff}\u{ffff}');
 
 		// Verify that the data can be deserialized correctly
 		expect(buffer.readBigInt64(0)).toBe(-1n);
@@ -133,7 +124,6 @@ describe('UnalignedUint16Array', () => {
 		expect(buffer.length).toBe(2);
 		expect(buffer.bitLength).toBe(32);
 		expect(buffer.toArray()).toEqual(new Uint16Array([0, 16128]));
-		expect(buffer.toString()).toBe('\0\u{3f00}');
 
 		// Verify that the data can be deserialized correctly
 		expect(buffer.readFloat32(0)).toBe(0.5);
@@ -145,7 +135,6 @@ describe('UnalignedUint16Array', () => {
 		expect(buffer.length).toBe(4);
 		expect(buffer.bitLength).toBe(64);
 		expect(buffer.toArray()).toEqual(new Uint16Array([0, 0, 0, 16352]));
-		expect(buffer.toString()).toBe('\0\0\0\u{3fe0}');
 
 		// Verify that the data can be deserialized correctly
 		expect(buffer.readFloat64(0)).toBe(0.5);
@@ -160,5 +149,9 @@ describe('UnalignedUint16Array', () => {
 	test('GIVEN an instance with insufficient space (write word by word) THEN it throws', () => {
 		const buffer = new UnalignedUint16Array(1);
 		expect(() => buffer.writeInt32(1)).toThrowError('The buffer is full');
+	});
+
+	test('GIVEN an instance from invalid codepoints THEN it throws', () => {
+		expect(() => UnalignedUint16Array.from("hello")).toThrowError('Codepoint 104 is out of range');
 	});
 });

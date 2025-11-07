@@ -1,3 +1,4 @@
+import { codepointRanges } from '../shared/codepoints';
 import { Pointer, type PointerLike } from '../shared/Pointer';
 import type { DuplexBuffer } from './DuplexBuffer';
 
@@ -200,10 +201,21 @@ export class UnalignedUint16Array implements DuplexBuffer {
 		return ConverterDouble[0];
 	}
 
+	#uint16ToCodepoint(index: number): number {
+		if (index >= codepointRanges[0].indexStart && index <= codepointRanges[0].indexEnd)
+			return codepointRanges[0].start + index;
+		if (index >= codepointRanges[1].indexStart && index <= codepointRanges[1].indexEnd)
+			return codepointRanges[1].start + (index - codepointRanges[1].indexStart);
+		if (index >= codepointRanges[2].indexStart && index <= codepointRanges[2].indexEnd)
+			return codepointRanges[2].start + (index - codepointRanges[2].indexStart);
+		throw new RangeError(`Index ${index} is out of range`);
+	}
+
 	public toString() {
 		let result = '';
+
 		for (let i = 0; i < this.length; i++) {
-			result += String.fromCharCode(this.#buffer[i]);
+			result += String.fromCodePoint(this.#uint16ToCodepoint(this.#buffer[i]));
 		}
 
 		return result;
@@ -301,12 +313,25 @@ export class UnalignedUint16Array implements DuplexBuffer {
 		this.#wordLength++;
 	}
 
+	static #codepointToUint16(codepoint: number): number {
+		if (codepoint >= codepointRanges[0].start && codepoint <= codepointRanges[0].end)
+			return codepoint - codepointRanges[0].start;
+		if (codepoint >= codepointRanges[1].start && codepoint <= codepointRanges[1].end)
+			return codepointRanges[1].indexStart + (codepoint - codepointRanges[1].start);
+		if (codepoint >= codepointRanges[2].start && codepoint <= codepointRanges[2].end)
+			return codepointRanges[2].indexStart + (codepoint - codepointRanges[2].start);
+		throw new RangeError(`Codepoint ${codepoint} is out of range`);
+	}
+
 	public static from(value: string | DuplexBuffer): DuplexBuffer {
 		if (typeof value !== 'string') return value;
 
+		const codepoints = Array.from(value, (char) => char.codePointAt(0)!);
 		const buffer = new UnalignedUint16Array(value.length);
-		for (let i = 0; i < value.length; i++) {
-			buffer.#buffer[i] = value.charCodeAt(i);
+
+		for (let i = 0; i < codepoints.length; i++) {
+			const index = UnalignedUint16Array.#codepointToUint16(codepoints[i]);
+			buffer.#buffer[i] = index;
 		}
 
 		buffer.#bitLength = value.length << 4;
