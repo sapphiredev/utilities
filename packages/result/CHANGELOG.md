@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/result@2.8.0](https://github.com/sapphiredev/utilities/compare/@sapphire/result@2.7.3...@sapphire/result@2.8.0) - (2025-11-08)
+
+## 🚀 Features
+
+- Add safeTry to emulate rust ? operator ([6abc552](https://github.com/sapphiredev/utilities/commit/6abc55224deb9de8f54896227b4906b133c5a2b6)) ([#917](https://github.com/sapphiredev/utilities/pull/917) by @feelsantiago)
+- Improve result and options types ([f3515ea](https://github.com/sapphiredev/utilities/commit/f3515ea3b465eb8e4e0cdce4bd0c5189c67570c6)) ([#918](https://github.com/sapphiredev/utilities/pull/918) by @feelsantiago)
+
 # [@sapphire/result@2.7.3](https://github.com/sapphiredev/utilities/compare/@sapphire/result@2.7.2...@sapphire/result@2.7.3) - (2025-09-24)
 
 ## 🐛 Bug Fixes
