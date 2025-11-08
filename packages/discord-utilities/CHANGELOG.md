@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/discord-utilities@4.0.0](https://github.com/sapphiredev/utilities/compare/@sapphire/discord-utilities@3.5.0...@sapphire/discord-utilities@4.0.0) - (2025-11-08)
+
+## 🏠 Refactor
+
+- Interaction resolvers ([7bd080f](https://github.com/sapphiredev/utilities/commit/7bd080f807759c11ca09027a49a60be474081c60)) ([#926](https://github.com/sapphiredev/utilities/pull/926) by @didinele)
+
+## 🐛 Bug Fixes
+
+- **deps:** Update all non-major dependencies ([636a5ee](https://github.com/sapphiredev/utilities/commit/636a5eed0939fd96a82213bf8459846aedd54037)) ([#897](https://github.com/sapphiredev/utilities/pull/897) by @renovate[bot])
+- **discord-utilities:** Update discord-api-types ([a41a8cc](https://github.com/sapphiredev/utilities/commit/a41a8cc4dd6e348bb61072e51c7e801fbb0daedf))
+- **discord-utilities:** Update for latest discord-api-types ([d716762](https://github.com/sapphiredev/utilities/commit/d7167620590d7c6f265b193dc98eb4e01fe58584))
+
+## 🚀 Features
+
+- Update Twemoji Regex ([23a909c](https://github.com/sapphiredev/utilities/commit/23a909c50beaa996db58cf852ec526d9a4e50420)) ([#931](https://github.com/sapphiredev/utilities/pull/931) by @github-actions[bot])
+
 # [@sapphire/discord-utilities@3.5.0](https://github.com/sapphiredev/utilities/compare/@sapphire/discord-utilities@3.4.4...@sapphire/discord-utilities@3.5.0) - (2025-04-19)
 
 ## 🐛 Bug Fixes

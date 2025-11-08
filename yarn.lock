@@ -1329,7 +1329,16 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@sapphire/discord-utilities@npm:^3.5.0, @sapphire/discord-utilities@workspace:^, @sapphire/discord-utilities@workspace:packages/discord-utilities":
+"@sapphire/discord-utilities@npm:^3.5.0":
+  version: 3.5.0
+  resolution: "@sapphire/discord-utilities@npm:3.5.0"
+  dependencies:
+    discord-api-types: "npm:^0.38.1"
+  checksum: 10/6142d7807a58243ca12137189557b217527be45c61ccb1801bd05c54915eacfa379e894226c799af1992fa8c9f0eae9e0ee1a62cd8149fa5598fd219f592e534
+  languageName: node
+  linkType: hard
+
+"@sapphire/discord-utilities@workspace:^, @sapphire/discord-utilities@workspace:packages/discord-utilities":
   version: 0.0.0-use.local
   resolution: "@sapphire/discord-utilities@workspace:packages/discord-utilities"
   dependencies:
