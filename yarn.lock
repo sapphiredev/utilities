@@ -5389,9 +5389,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"msw@npm:^2.12.0":
-  version: 2.12.0
-  resolution: "msw@npm:2.12.0"
+"msw@npm:^2.12.1":
+  version: 2.12.1
+  resolution: "msw@npm:2.12.1"
   dependencies:
     "@inquirer/confirm": "npm:^5.0.0"
     "@mswjs/interceptors": "npm:^0.40.0"
@@ -5418,7 +5418,7 @@ __metadata:
       optional: true
   bin:
     msw: cli/index.js
-  checksum: 10/aee1906ad57097b978d8581ccb7e001103de86983048923bc86b2962c9ba37874408c327b974d77d28ed18771ac5558b21f39a09d966a070ff371175c8b4595a
+  checksum: 10/00fdc9ba057b6b4aba1261c3f270a3b330247b48f4597fcfc8a9eff4802cf446ab4ce427ef8971f4678e4c5ca5c7520aada1c1fd40dc14ef8a267b78a9c98295
   languageName: node
   linkType: hard
 
@@ -6327,7 +6327,7 @@ __metadata:
     eslint-plugin-prettier: "npm:^5.5.4"
     lint-staged: "npm:^16.2.6"
     lodash: "npm:^4.17.21"
-    msw: "npm:^2.12.0"
+    msw: "npm:^2.12.1"
     npm-run-all2: "npm:^8.0.4"
     prettier: "npm:^3.6.2"
     rimraf: "npm:^6.1.0"
