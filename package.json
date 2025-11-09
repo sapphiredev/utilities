@@ -25,7 +25,7 @@
 		"@favware/cliff-jumper": "^6.0.0",
 		"@favware/npm-deprecate": "^2.0.0",
 		"@favware/rollup-type-bundler": "^4.0.0",
-		"@sapphire/framework": "^5.3.7",
+		"@sapphire/framework": "^5.4.0",
 		"@types/lodash": "^4.17.20",
 		"@types/node": "^24.10.0",
 		"@types/ws": "^8.18.1",
@@ -40,7 +40,7 @@
 		"eslint-plugin-prettier": "^5.5.4",
 		"lint-staged": "^16.2.6",
 		"lodash": "^4.17.21",
-		"msw": "^2.11.6",
+		"msw": "^2.12.0",
 		"npm-run-all2": "^8.0.4",
 		"prettier": "^3.6.2",
 		"rimraf": "^6.1.0",
@@ -51,7 +51,7 @@
 		"typedoc": "^0.26.11",
 		"typedoc-json-parser": "^10.2.0",
 		"typescript": "~5.4.5",
-		"vite": "^7.1.12",
+		"vite": "^7.2.2",
 		"vitest": "^3.2.4"
 	},
 	"repository": {
@@ -75,5 +75,5 @@
 		"ansi-regex": "^5.0.1",
 		"minimist": "^1.2.8"
 	},
-	"packageManager": "yarn@4.10.3"
+	"packageManager": "yarn@4.11.0"
 }
