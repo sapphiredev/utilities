@@ -62,7 +62,7 @@
 	"devDependencies": {
 		"@favware/cliff-jumper": "^6.0.0",
 		"@vitest/coverage-v8": "^3.2.4",
-		"tsup": "^8.5.0",
+		"tsup": "^8.5.1",
 		"tsx": "^4.20.6",
 		"typedoc": "^0.26.11",
 		"typedoc-json-parser": "^10.2.0",
