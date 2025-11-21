@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/ts-config@5.0.2](https://github.com/sapphiredev/utilities/compare/@sapphire/ts-config@5.0.1...@sapphire/ts-config@5.0.2) - (2025-11-21)
+
+## 🏠 Refactor
+
+- Relocate tsconfig files to the package root for rolldown compatibility ([b7f8a51](https://github.com/sapphiredev/utilities/commit/b7f8a511a02d2c574504c09f259aadc90ba3ca05))
+
+## 🐛 Bug Fixes
+
+- **deps:** Update all non-major dependencies ([636a5ee](https://github.com/sapphiredev/utilities/commit/636a5eed0939fd96a82213bf8459846aedd54037)) ([#897](https://github.com/sapphiredev/utilities/pull/897) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([4bc5591](https://github.com/sapphiredev/utilities/commit/4bc55911f95456a2caee10a3588c7b5f1542fb00)) ([#879](https://github.com/sapphiredev/utilities/pull/879) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([bc2f01c](https://github.com/sapphiredev/utilities/commit/bc2f01ce7d6932c9a0e02faa7cc081ecbae9640d)) ([#869](https://github.com/sapphiredev/utilities/pull/869) by @renovate[bot])
+
+## 📝 Documentation
+
+- **readme:** Fix readme table of contents ([c60e8bd](https://github.com/sapphiredev/utilities/commit/c60e8bd9fc89156cf973871597ec3f0ef0308c08))
+
 # [@sapphire/ts-config@5.0.1](https://github.com/sapphiredev/utilities/compare/@sapphire/ts-config@5.0.0...@sapphire/ts-config@5.0.1) - (2024-03-11)
 
 ## 🐛 Bug Fixes
