@@ -4,39 +4,6 @@
 	"description": "Shareable TypeScript configuration for the Sapphire Community",
 	"author": "@sapphire",
 	"license": "MIT",
-	"main": "src/tsconfig.json",
-	"exports": {
-		".": {
-			"types": "./src/tsconfig.json",
-			"import": "./src/tsconfig.json",
-			"require": "./src/tsconfig.json"
-		},
-		"./base": {
-			"types": "./src/tsconfig.json",
-			"import": "./src/tsconfig.json",
-			"require": "./src/tsconfig.json"
-		},
-		"./decorators": {
-			"types": "./src/decorators.json",
-			"import": "./src/decorators.json",
-			"require": "./src/decorators.json"
-		},
-		"./extra-strict": {
-			"types": "./src/extra-strict.json",
-			"import": "./src/extra-strict.json",
-			"require": "./src/extra-strict.json"
-		},
-		"./verbatim": {
-			"types": "./src/verbatim.json",
-			"import": "./src/verbatim.json",
-			"require": "./src/verbatim.json"
-		},
-		"./bundler": {
-			"types": "./src/bundler.json",
-			"import": "./src/bundler.json",
-			"require": "./src/bundler.json"
-		}
-	},
 	"sideEffects": false,
 	"homepage": "https://github.com/sapphiredev/utilities/tree/main/packages/ts-config",
 	"scripts": {
@@ -51,7 +18,9 @@
 		"typescript": "~5.4.5"
 	},
 	"files": [
-		"src",
+		"*.json",
+		"!tests/**",
+		"!tsconfig.eslint.json",
 		"UPGRADING-*.md"
 	],
 	"engines": {
