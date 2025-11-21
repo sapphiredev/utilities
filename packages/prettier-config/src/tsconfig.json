@@ -1,5 +1,5 @@
 {
-	"extends": ["../../ts-config/src/tsconfig.json", "../../ts-config/src/extra-strict.json", "../../ts-config/src/verbatim.json"],
+	"extends": ["../../ts-config/tsconfig.json", "../../ts-config/extra-strict.json", "../../ts-config/verbatim.json"],
 	"compilerOptions": {
 		"rootDir": "./",
 		"outDir": "../dist",
