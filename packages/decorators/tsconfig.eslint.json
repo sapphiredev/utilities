@@ -1,5 +1,5 @@
 {
-	"extends": ["../../tsconfig.base.json", "../ts-config/src/decorators.json"],
+	"extends": ["../../tsconfig.base.json", "../ts-config/decorators.json"],
 	"compilerOptions": {
 		"allowJs": true,
 		"checkJs": true
