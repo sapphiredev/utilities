@@ -152,6 +152,6 @@ describe('UnalignedUint16Array', () => {
 	});
 
 	test('GIVEN an instance from invalid codepoints THEN it throws', () => {
-		expect(() => UnalignedUint16Array.from('invalid input')).toThrowError('Codepoint 104 is out of range');
+		expect(() => UnalignedUint16Array.from('invalid input')).toThrowError(`Codepoint ${'i'.codePointAt(0)} is out of range`);
 	});
 });
