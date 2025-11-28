@@ -1502,7 +1502,7 @@ __metadata:
   dependencies:
     "@favware/cliff-jumper": "npm:^6.0.0"
     "@vitest/coverage-v8": "npm:^4.0.14"
-    discord-api-types: "npm:^0.38.30"
+    discord-api-types: "npm:^0.38.34"
     tsup: "npm:^8.5.1"
     tsx: "npm:^4.20.6"
     typedoc: "npm:^0.26.11"
@@ -1557,7 +1557,7 @@ __metadata:
     eslint: "npm:^8.57.1"
     eslint-config-prettier: "npm:^10.1.8"
     eslint-plugin-prettier: "npm:^5.5.4"
-    prettier: "npm:^3.6.2"
+    prettier: "npm:^3.7.1"
     tsup: "npm:^8.5.1"
     typedoc-json-parser: "npm:^10.2.0"
     typescript: "npm:~5.4.5"
@@ -1711,7 +1711,7 @@ __metadata:
   dependencies:
     "@favware/cliff-jumper": "npm:^6.0.0"
     "@vitest/coverage-v8": "npm:^4.0.14"
-    prettier: "npm:^3.6.2"
+    prettier: "npm:^3.7.1"
     typedoc-json-parser: "npm:^10.2.0"
     typescript: "npm:~5.4.5"
     vitest: "npm:^4.0.14"
@@ -2058,10 +2058,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/statuses@npm:^2.0.4":
-  version: 2.0.5
-  resolution: "@types/statuses@npm:2.0.5"
-  checksum: 10/3f2609f660b45a878c6782f2fb2cef9f08bbd4e89194bf7512e747b8a73b056839be1ad6f64b1353765528cd8a5e93adeffc471cde24d0d9f7b528264e7154e5
+"@types/statuses@npm:^2.0.6":
+  version: 2.0.6
+  resolution: "@types/statuses@npm:2.0.6"
+  checksum: 10/dadfbb4f32a16d3106a8e2a957dab17b1ae99fc4788e1fd96aeaf82355e3b2b069d5ea0f5fb887efa830def033828955a5bbdfd35454ba2088822537aed9e5db
   languageName: node
   linkType: hard
 
@@ -3246,7 +3246,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"discord-api-types@npm:^0.38.1, discord-api-types@npm:^0.38.16, discord-api-types@npm:^0.38.30, discord-api-types@npm:^0.38.31, discord-api-types@npm:^0.38.33":
+"discord-api-types@npm:^0.38.1, discord-api-types@npm:^0.38.16, discord-api-types@npm:^0.38.31, discord-api-types@npm:^0.38.33, discord-api-types@npm:^0.38.34":
   version: 0.38.34
   resolution: "discord-api-types@npm:0.38.34"
   checksum: 10/7e62941c1a85d38563a5cfc3b81a15c30115cfda243d8ce66e9b273ec7f3418597827aab9c4541cb32843ed37fa083cc45a7ff28d3c776e5caf184a2e41626eb
@@ -4329,10 +4329,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"graphql@npm:^16.8.1":
-  version: 16.9.0
-  resolution: "graphql@npm:16.9.0"
-  checksum: 10/5833f82bb6c31bec120bbf9cd400eda873e1bb7ef5c17974fa262cd82dc68728fda5d4cb859dc8aaa4c4fe4f6fe1103a9c47efc01a12c02ae5cb581d8e4029e2
+"graphql@npm:^16.12.0":
+  version: 16.12.0
+  resolution: "graphql@npm:16.12.0"
+  checksum: 10/e299bc97cca178e549c8c1ed4cb164f631f07be987d3657f76cdf18c0250040cc0d456d4b6d41c87b855cac97b15a62ed345557527efcb0546492895a893bb87
   languageName: node
   linkType: hard
 
@@ -5592,16 +5592,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"msw@npm:^2.12.2":
-  version: 2.12.2
-  resolution: "msw@npm:2.12.2"
+"msw@npm:^2.12.3":
+  version: 2.12.3
+  resolution: "msw@npm:2.12.3"
   dependencies:
     "@inquirer/confirm": "npm:^5.0.0"
     "@mswjs/interceptors": "npm:^0.40.0"
     "@open-draft/deferred-promise": "npm:^2.2.0"
-    "@types/statuses": "npm:^2.0.4"
+    "@types/statuses": "npm:^2.0.6"
     cookie: "npm:^1.0.2"
-    graphql: "npm:^16.8.1"
+    graphql: "npm:^16.12.0"
     headers-polyfill: "npm:^4.0.2"
     is-node-process: "npm:^1.2.0"
     outvariant: "npm:^1.4.3"
@@ -5611,7 +5611,7 @@ __metadata:
     statuses: "npm:^2.0.2"
     strict-event-emitter: "npm:^0.5.1"
     tough-cookie: "npm:^6.0.0"
-    type-fest: "npm:^4.26.1"
+    type-fest: "npm:^5.2.0"
     until-async: "npm:^3.0.2"
     yargs: "npm:^17.7.2"
   peerDependencies:
@@ -5621,7 +5621,7 @@ __metadata:
       optional: true
   bin:
     msw: cli/index.js
-  checksum: 10/029bdc2d7f03a66068cfe3fb2dc1334e62f9cb5f1207feb8055747dcfe80d48049e8e3814e3380a5acdc408997e5a46d310512cdbb1b06c172bcedcc8cd16e96
+  checksum: 10/fcc0557921dc7675b6a2f01d7d4115de8a2e3d52d6f6867356f1fecf6dd331a56216915a29749947024b3419bef47d3fa79ceaad3ab73e814031508594ee0621
   languageName: node
   linkType: hard
 
@@ -6183,12 +6183,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier@npm:^3.6.2":
-  version: 3.6.2
-  resolution: "prettier@npm:3.6.2"
+"prettier@npm:^3.7.1":
+  version: 3.7.1
+  resolution: "prettier@npm:3.7.1"
   bin:
     prettier: bin/prettier.cjs
-  checksum: 10/1213691706bcef1371d16ef72773c8111106c3533b660b1cc8ec158bd109cdf1462804125f87f981f23c4a3dba053b6efafda30ab0114cc5b4a725606bb9ff26
+  checksum: 10/59fa89769246d395de30dec976e0ad31c8d2fe3889733765d89398c95c2b9d6cd341553a850fe14fe187407c9bfb2262a2ab1823c6de1f0205a968e2012f0f11
   languageName: node
   linkType: hard
 
@@ -6530,9 +6530,9 @@ __metadata:
     eslint-plugin-prettier: "npm:^5.5.4"
     lint-staged: "npm:^16.2.7"
     lodash: "npm:^4.17.21"
-    msw: "npm:^2.12.2"
+    msw: "npm:^2.12.3"
     npm-run-all2: "npm:^8.0.4"
-    prettier: "npm:^3.6.2"
+    prettier: "npm:^3.7.1"
     rimraf: "npm:^6.1.2"
     tslib: "npm:^2.8.1"
     tsup: "npm:^8.5.1"
@@ -6970,6 +6970,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"tagged-tag@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "tagged-tag@npm:1.0.0"
+  checksum: 10/e37653df3e495daa7ea7790cb161b810b00075bba2e4d6c93fb06a709e747e3ae9da11a120d0489833203926511b39e038a2affbd9d279cfb7a2f3fcccd30b5d
+  languageName: node
+  linkType: hard
+
 "tar@npm:^6.1.11, tar@npm:^6.2.1":
   version: 6.2.1
   resolution: "tar@npm:6.2.1"
@@ -7345,10 +7352,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"type-fest@npm:^4.26.1":
-  version: 4.26.1
-  resolution: "type-fest@npm:4.26.1"
-  checksum: 10/b82676194f80af228cb852e320d2ea8381c89d667d2e4d9f2bdfc8f254bccc039c7741a90c53617a4de0c9fdca8265ed18eb0888cd628f391c5c381c33a9f94b
+"type-fest@npm:^5.2.0":
+  version: 5.2.0
+  resolution: "type-fest@npm:5.2.0"
+  dependencies:
+    tagged-tag: "npm:^1.0.0"
+  checksum: 10/4ce526139c05e92a1d92fa905840ff9ae725b8058df5a5571380bca1827db1f2e4e204c9d561fd63e972d45591dd4d38eab5f5529c0af93d6cfb5f99109aa74a
   languageName: node
   linkType: hard
 
