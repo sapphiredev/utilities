@@ -1,3 +1,4 @@
+import { codepointRanges } from '../shared/codepoints';
 import { Pointer, type PointerLike } from '../shared/Pointer';
 import type { DuplexBuffer } from './DuplexBuffer';
 
@@ -202,8 +203,9 @@ export class UnalignedUint16Array implements DuplexBuffer {
 
 	public toString() {
 		let result = '';
+
 		for (let i = 0; i < this.length; i++) {
-			result += String.fromCharCode(this.#buffer[i]);
+			result += String.fromCodePoint(this.#uint16ToCodepoint(this.#buffer[i]));
 		}
 
 		return result;
@@ -211,6 +213,16 @@ export class UnalignedUint16Array implements DuplexBuffer {
 
 	public toArray(): Uint16Array {
 		return this.#buffer.slice(0, this.length);
+	}
+
+	#uint16ToCodepoint(index: number): number {
+		for (const range of codepointRanges) {
+			if (index >= range.indexStart && index <= range.indexEnd) {
+				return range.start + (index - range.indexStart);
+			}
+		}
+
+		throw new RangeError(`Index ${index} is out of range`);
 	}
 
 	#readBit(pointer: Pointer) {
@@ -304,12 +316,25 @@ export class UnalignedUint16Array implements DuplexBuffer {
 	public static from(value: string | DuplexBuffer): DuplexBuffer {
 		if (typeof value !== 'string') return value;
 
+		const codepoints = Array.from(value, (char) => char.codePointAt(0)!);
 		const buffer = new UnalignedUint16Array(value.length);
-		for (let i = 0; i < value.length; i++) {
-			buffer.#buffer[i] = value.charCodeAt(i);
+
+		for (let i = 0; i < codepoints.length; i++) {
+			const index = UnalignedUint16Array.#codepointToUint16(codepoints[i]);
+			buffer.#buffer[i] = index;
 		}
 
 		buffer.#bitLength = value.length << 4;
 		return buffer;
+	}
+
+	static #codepointToUint16(codepoint: number): number {
+		for (const range of codepointRanges) {
+			if (codepoint >= range.start && codepoint <= range.end) {
+				return range.indexStart + (codepoint - range.start);
+			}
+		}
+
+		throw new RangeError(`Codepoint ${codepoint} is out of range`);
 	}
 }

@@ -419,7 +419,7 @@ describe('Schema', () => {
 			// | 15234 (prop:b)    & 0xffff (mask) << 1 (offset)
 			//
 			// - 15234 (prop:b)    & 0xffff (mask) >> 15 (shift)
-			expect(buffer).toBe('\x04\u{7705}\0');
+			expect(buffer).toBe('\u4e04\u{20d0f}\u4e00');
 
 			const value = schema.deserialize(buffer, 16);
 			expect<{ a: boolean }>(value).toEqual({ a: true, b: 15234 });
