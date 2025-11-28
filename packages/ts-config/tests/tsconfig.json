@@ -1,5 +1,5 @@
 {
-	"extends": ["../tsconfig.json", "../extra-strict.json"],
+	"extends": ["../src/tsconfig.json", "../src/extra-strict.json"],
 	"compilerOptions": {
 		"lib": ["ESNext", "DOM"],
 		"noEmit": true,
