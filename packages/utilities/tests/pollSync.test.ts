@@ -167,7 +167,7 @@ describe('pollSync', () => {
 			expect(callback).toThrowError(new DOMException('This operation was aborted', 'AbortError'));
 			expect(cb).toBeCalledTimes(2);
 			expect(cbCondition).toBeCalledTimes(2);
-			expect(dateNow).toBeCalledTimes(6);
+			expect(dateNow).toBeCalledTimes(16);
 		});
 	});
 
