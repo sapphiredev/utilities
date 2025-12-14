@@ -27,7 +27,7 @@
 		"@favware/rollup-type-bundler": "^4.0.0",
 		"@sapphire/framework": "^5.4.0",
 		"@types/lodash": "^4.17.21",
-		"@types/node": "^24.10.1",
+		"@types/node": "^24.10.4",
 		"@types/ws": "^8.18.1",
 		"@typescript-eslint/eslint-plugin": "^7.18.0",
 		"@typescript-eslint/parser": "^7.18.0",
@@ -51,7 +51,7 @@
 		"typedoc": "^0.26.11",
 		"typedoc-json-parser": "^10.2.0",
 		"typescript": "~5.4.5",
-		"vite": "^7.2.6",
+		"vite": "^7.2.7",
 		"vitest": "^4.0.15"
 	},
 	"repository": {
