@@ -443,24 +443,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/aix-ppc64@npm:0.25.1":
-  version: 0.25.1
-  resolution: "@esbuild/aix-ppc64@npm:0.25.1"
-  conditions: os=aix & cpu=ppc64
-  languageName: node
-  linkType: hard
-
 "@esbuild/aix-ppc64@npm:0.27.1":
   version: 0.27.1
   resolution: "@esbuild/aix-ppc64@npm:0.27.1"
   conditions: os=aix & cpu=ppc64
-  languageName: node
-  linkType: hard
-
-"@esbuild/android-arm64@npm:0.25.1":
-  version: 0.25.1
-  resolution: "@esbuild/android-arm64@npm:0.25.1"
-  conditions: os=android & cpu=arm64
   languageName: node
   linkType: hard
 
@@ -471,24 +457,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/android-arm@npm:0.25.1":
-  version: 0.25.1
-  resolution: "@esbuild/android-arm@npm:0.25.1"
-  conditions: os=android & cpu=arm
-  languageName: node
-  linkType: hard
-
 "@esbuild/android-arm@npm:0.27.1":
   version: 0.27.1
   resolution: "@esbuild/android-arm@npm:0.27.1"
   conditions: os=android & cpu=arm
-  languageName: node
-  linkType: hard
-
-"@esbuild/android-x64@npm:0.25.1":
-  version: 0.25.1
-  resolution: "@esbuild/android-x64@npm:0.25.1"
-  conditions: os=android & cpu=x64
   languageName: node
   linkType: hard
 
@@ -499,24 +471,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/darwin-arm64@npm:0.25.1":
-  version: 0.25.1
-  resolution: "@esbuild/darwin-arm64@npm:0.25.1"
-  conditions: os=darwin & cpu=arm64
-  languageName: node
-  linkType: hard
-
 "@esbuild/darwin-arm64@npm:0.27.1":
   version: 0.27.1
   resolution: "@esbuild/darwin-arm64@npm:0.27.1"
   conditions: os=darwin & cpu=arm64
-  languageName: node
-  linkType: hard
-
-"@esbuild/darwin-x64@npm:0.25.1":
-  version: 0.25.1
-  resolution: "@esbuild/darwin-x64@npm:0.25.1"
-  conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
@@ -527,24 +485,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/freebsd-arm64@npm:0.25.1":
-  version: 0.25.1
-  resolution: "@esbuild/freebsd-arm64@npm:0.25.1"
-  conditions: os=freebsd & cpu=arm64
-  languageName: node
-  linkType: hard
-
 "@esbuild/freebsd-arm64@npm:0.27.1":
   version: 0.27.1
   resolution: "@esbuild/freebsd-arm64@npm:0.27.1"
   conditions: os=freebsd & cpu=arm64
-  languageName: node
-  linkType: hard
-
-"@esbuild/freebsd-x64@npm:0.25.1":
-  version: 0.25.1
-  resolution: "@esbuild/freebsd-x64@npm:0.25.1"
-  conditions: os=freebsd & cpu=x64
   languageName: node
   linkType: hard
 
@@ -555,24 +499,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/linux-arm64@npm:0.25.1":
-  version: 0.25.1
-  resolution: "@esbuild/linux-arm64@npm:0.25.1"
-  conditions: os=linux & cpu=arm64
-  languageName: node
-  linkType: hard
-
 "@esbuild/linux-arm64@npm:0.27.1":
   version: 0.27.1
   resolution: "@esbuild/linux-arm64@npm:0.27.1"
   conditions: os=linux & cpu=arm64
-  languageName: node
-  linkType: hard
-
-"@esbuild/linux-arm@npm:0.25.1":
-  version: 0.25.1
-  resolution: "@esbuild/linux-arm@npm:0.25.1"
-  conditions: os=linux & cpu=arm
   languageName: node
   linkType: hard
 
@@ -583,24 +513,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/linux-ia32@npm:0.25.1":
-  version: 0.25.1
-  resolution: "@esbuild/linux-ia32@npm:0.25.1"
-  conditions: os=linux & cpu=ia32
-  languageName: node
-  linkType: hard
-
 "@esbuild/linux-ia32@npm:0.27.1":
   version: 0.27.1
   resolution: "@esbuild/linux-ia32@npm:0.27.1"
   conditions: os=linux & cpu=ia32
-  languageName: node
-  linkType: hard
-
-"@esbuild/linux-loong64@npm:0.25.1":
-  version: 0.25.1
-  resolution: "@esbuild/linux-loong64@npm:0.25.1"
-  conditions: os=linux & cpu=loong64
   languageName: node
   linkType: hard
 
@@ -611,24 +527,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/linux-mips64el@npm:0.25.1":
-  version: 0.25.1
-  resolution: "@esbuild/linux-mips64el@npm:0.25.1"
-  conditions: os=linux & cpu=mips64el
-  languageName: node
-  linkType: hard
-
 "@esbuild/linux-mips64el@npm:0.27.1":
   version: 0.27.1
   resolution: "@esbuild/linux-mips64el@npm:0.27.1"
   conditions: os=linux & cpu=mips64el
-  languageName: node
-  linkType: hard
-
-"@esbuild/linux-ppc64@npm:0.25.1":
-  version: 0.25.1
-  resolution: "@esbuild/linux-ppc64@npm:0.25.1"
-  conditions: os=linux & cpu=ppc64
   languageName: node
   linkType: hard
 
@@ -639,24 +541,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/linux-riscv64@npm:0.25.1":
-  version: 0.25.1
-  resolution: "@esbuild/linux-riscv64@npm:0.25.1"
-  conditions: os=linux & cpu=riscv64
-  languageName: node
-  linkType: hard
-
 "@esbuild/linux-riscv64@npm:0.27.1":
   version: 0.27.1
   resolution: "@esbuild/linux-riscv64@npm:0.27.1"
   conditions: os=linux & cpu=riscv64
-  languageName: node
-  linkType: hard
-
-"@esbuild/linux-s390x@npm:0.25.1":
-  version: 0.25.1
-  resolution: "@esbuild/linux-s390x@npm:0.25.1"
-  conditions: os=linux & cpu=s390x
   languageName: node
   linkType: hard
 
@@ -667,24 +555,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/linux-x64@npm:0.25.1":
-  version: 0.25.1
-  resolution: "@esbuild/linux-x64@npm:0.25.1"
-  conditions: os=linux & cpu=x64
-  languageName: node
-  linkType: hard
-
 "@esbuild/linux-x64@npm:0.27.1":
   version: 0.27.1
   resolution: "@esbuild/linux-x64@npm:0.27.1"
   conditions: os=linux & cpu=x64
-  languageName: node
-  linkType: hard
-
-"@esbuild/netbsd-arm64@npm:0.25.1":
-  version: 0.25.1
-  resolution: "@esbuild/netbsd-arm64@npm:0.25.1"
-  conditions: os=netbsd & cpu=arm64
   languageName: node
   linkType: hard
 
@@ -695,13 +569,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/netbsd-x64@npm:0.25.1":
-  version: 0.25.1
-  resolution: "@esbuild/netbsd-x64@npm:0.25.1"
-  conditions: os=netbsd & cpu=x64
-  languageName: node
-  linkType: hard
-
 "@esbuild/netbsd-x64@npm:0.27.1":
   version: 0.27.1
   resolution: "@esbuild/netbsd-x64@npm:0.27.1"
@@ -709,24 +576,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/openbsd-arm64@npm:0.25.1":
-  version: 0.25.1
-  resolution: "@esbuild/openbsd-arm64@npm:0.25.1"
-  conditions: os=openbsd & cpu=arm64
-  languageName: node
-  linkType: hard
-
 "@esbuild/openbsd-arm64@npm:0.27.1":
   version: 0.27.1
   resolution: "@esbuild/openbsd-arm64@npm:0.27.1"
   conditions: os=openbsd & cpu=arm64
-  languageName: node
-  linkType: hard
-
-"@esbuild/openbsd-x64@npm:0.25.1":
-  version: 0.25.1
-  resolution: "@esbuild/openbsd-x64@npm:0.25.1"
-  conditions: os=openbsd & cpu=x64
   languageName: node
   linkType: hard
 
@@ -744,24 +597,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/sunos-x64@npm:0.25.1":
-  version: 0.25.1
-  resolution: "@esbuild/sunos-x64@npm:0.25.1"
-  conditions: os=sunos & cpu=x64
-  languageName: node
-  linkType: hard
-
 "@esbuild/sunos-x64@npm:0.27.1":
   version: 0.27.1
   resolution: "@esbuild/sunos-x64@npm:0.27.1"
   conditions: os=sunos & cpu=x64
-  languageName: node
-  linkType: hard
-
-"@esbuild/win32-arm64@npm:0.25.1":
-  version: 0.25.1
-  resolution: "@esbuild/win32-arm64@npm:0.25.1"
-  conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
@@ -772,24 +611,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/win32-ia32@npm:0.25.1":
-  version: 0.25.1
-  resolution: "@esbuild/win32-ia32@npm:0.25.1"
-  conditions: os=win32 & cpu=ia32
-  languageName: node
-  linkType: hard
-
 "@esbuild/win32-ia32@npm:0.27.1":
   version: 0.27.1
   resolution: "@esbuild/win32-ia32@npm:0.27.1"
   conditions: os=win32 & cpu=ia32
-  languageName: node
-  linkType: hard
-
-"@esbuild/win32-x64@npm:0.25.1":
-  version: 0.25.1
-  resolution: "@esbuild/win32-x64@npm:0.25.1"
-  conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
 
@@ -1434,13 +1259,13 @@ __metadata:
   resolution: "@sapphire/async-queue@workspace:packages/async-queue"
   dependencies:
     "@favware/cliff-jumper": "npm:^6.0.0"
-    "@vitest/coverage-v8": "npm:^4.0.15"
+    "@vitest/coverage-v8": "npm:^4.0.16"
     tsup: "npm:^8.5.1"
     tsx: "npm:^4.21.0"
     typedoc: "npm:^0.26.11"
     typedoc-json-parser: "npm:^10.2.0"
     typescript: "npm:~5.4.5"
-    vitest: "npm:^4.0.15"
+    vitest: "npm:^4.0.16"
   languageName: unknown
   linkType: soft
 
@@ -1449,13 +1274,13 @@ __metadata:
   resolution: "@sapphire/bitfield@workspace:packages/bitfield"
   dependencies:
     "@favware/cliff-jumper": "npm:^6.0.0"
-    "@vitest/coverage-v8": "npm:^4.0.15"
+    "@vitest/coverage-v8": "npm:^4.0.16"
     tsup: "npm:^8.5.1"
     tsx: "npm:^4.21.0"
     typedoc: "npm:^0.26.11"
     typedoc-json-parser: "npm:^10.2.0"
     typescript: "npm:~5.4.5"
-    vitest: "npm:^4.0.15"
+    vitest: "npm:^4.0.16"
   languageName: unknown
   linkType: soft
 
@@ -1465,13 +1290,13 @@ __metadata:
   dependencies:
     "@favware/cliff-jumper": "npm:^6.0.0"
     "@sapphire/utilities": "workspace:^"
-    "@vitest/coverage-v8": "npm:^4.0.15"
+    "@vitest/coverage-v8": "npm:^4.0.16"
     tsup: "npm:^8.5.1"
     tsx: "npm:^4.21.0"
     typedoc: "npm:^0.26.11"
     typedoc-json-parser: "npm:^10.2.0"
     typescript: "npm:~5.4.5"
-    vitest: "npm:^4.0.15"
+    vitest: "npm:^4.0.16"
   languageName: unknown
   linkType: soft
 
@@ -1485,14 +1310,14 @@ __metadata:
     "@sapphire/ratelimits": "workspace:^"
     "@sapphire/result": "workspace:^"
     "@sapphire/utilities": "workspace:^"
-    "@vitest/coverage-v8": "npm:^4.0.15"
+    "@vitest/coverage-v8": "npm:^4.0.16"
     tslib: "npm:^2.8.1"
     tsup: "npm:^8.5.1"
     tsx: "npm:^4.21.0"
     typedoc: "npm:^0.26.11"
     typedoc-json-parser: "npm:^10.2.0"
     typescript: "npm:~5.4.5"
-    vitest: "npm:^4.0.15"
+    vitest: "npm:^4.0.16"
   languageName: unknown
   linkType: soft
 
@@ -1501,14 +1326,14 @@ __metadata:
   resolution: "@sapphire/discord-utilities@workspace:packages/discord-utilities"
   dependencies:
     "@favware/cliff-jumper": "npm:^6.0.0"
-    "@vitest/coverage-v8": "npm:^4.0.15"
+    "@vitest/coverage-v8": "npm:^4.0.16"
     discord-api-types: "npm:^0.38.34"
     tsup: "npm:^8.5.1"
     tsx: "npm:^4.21.0"
     typedoc: "npm:^0.26.11"
     typedoc-json-parser: "npm:^10.2.0"
     typescript: "npm:~5.4.5"
-    vitest: "npm:^4.0.15"
+    vitest: "npm:^4.0.16"
   languageName: unknown
   linkType: soft
 
@@ -1536,13 +1361,13 @@ __metadata:
   resolution: "@sapphire/duration@workspace:packages/duration"
   dependencies:
     "@favware/cliff-jumper": "npm:^6.0.0"
-    "@vitest/coverage-v8": "npm:^4.0.15"
+    "@vitest/coverage-v8": "npm:^4.0.16"
     tsup: "npm:^8.5.1"
     tsx: "npm:^4.21.0"
     typedoc: "npm:^0.26.11"
     typedoc-json-parser: "npm:^10.2.0"
     typescript: "npm:~5.4.5"
-    vitest: "npm:^4.0.15"
+    vitest: "npm:^4.0.16"
   languageName: unknown
   linkType: soft
 
@@ -1553,7 +1378,7 @@ __metadata:
     "@favware/cliff-jumper": "npm:^6.0.0"
     "@typescript-eslint/eslint-plugin": "npm:^7.18.0"
     "@typescript-eslint/parser": "npm:^7.18.0"
-    "@vitest/coverage-v8": "npm:^4.0.15"
+    "@vitest/coverage-v8": "npm:^4.0.16"
     eslint: "npm:^8.57.1"
     eslint-config-prettier: "npm:^10.1.8"
     eslint-plugin-prettier: "npm:^5.5.4"
@@ -1561,7 +1386,7 @@ __metadata:
     tsup: "npm:^8.5.1"
     typedoc-json-parser: "npm:^10.2.0"
     typescript: "npm:~5.4.5"
-    vitest: "npm:^4.0.15"
+    vitest: "npm:^4.0.16"
   languageName: unknown
   linkType: soft
 
@@ -1574,12 +1399,12 @@ __metadata:
     "@typescript-eslint/rule-tester": "npm:^7.18.0"
     "@typescript-eslint/typescript-estree": "npm:^7.18.0"
     "@typescript-eslint/utils": "npm:^7.18.0"
-    "@vitest/coverage-v8": "npm:^4.0.15"
+    "@vitest/coverage-v8": "npm:^4.0.16"
     tsup: "npm:^8.5.1"
     tsutils: "npm:^3.21.0"
     typedoc-json-parser: "npm:^10.2.0"
     typescript: "npm:~5.4.5"
-    vitest: "npm:^4.0.15"
+    vitest: "npm:^4.0.16"
   languageName: unknown
   linkType: soft
 
@@ -1588,14 +1413,14 @@ __metadata:
   resolution: "@sapphire/event-iterator@workspace:packages/event-iterator"
   dependencies:
     "@favware/cliff-jumper": "npm:^6.0.0"
-    "@vitest/coverage-v8": "npm:^4.0.15"
+    "@vitest/coverage-v8": "npm:^4.0.16"
     tslib: "npm:^2.8.1"
     tsup: "npm:^8.5.1"
     tsx: "npm:^4.21.0"
     typedoc: "npm:^0.26.11"
     typedoc-json-parser: "npm:^10.2.0"
     typescript: "npm:~5.4.5"
-    vitest: "npm:^4.0.15"
+    vitest: "npm:^4.0.16"
   languageName: unknown
   linkType: soft
 
@@ -1604,13 +1429,13 @@ __metadata:
   resolution: "@sapphire/fetch@workspace:packages/fetch"
   dependencies:
     "@favware/cliff-jumper": "npm:^6.0.0"
-    "@vitest/coverage-v8": "npm:^4.0.15"
+    "@vitest/coverage-v8": "npm:^4.0.16"
     tsup: "npm:^8.5.1"
     tsx: "npm:^4.21.0"
     typedoc: "npm:^0.26.11"
     typedoc-json-parser: "npm:^10.2.0"
     typescript: "npm:~5.4.5"
-    vitest: "npm:^4.0.15"
+    vitest: "npm:^4.0.16"
   languageName: unknown
   linkType: soft
 
@@ -1636,14 +1461,14 @@ __metadata:
   resolution: "@sapphire/iterator-utilities@workspace:packages/iterator-utilities"
   dependencies:
     "@favware/cliff-jumper": "npm:^6.0.0"
-    "@vitest/coverage-v8": "npm:^4.0.15"
+    "@vitest/coverage-v8": "npm:^4.0.16"
     npm-run-all2: "npm:^8.0.4"
     tsup: "npm:^8.5.1"
     tsx: "npm:^4.21.0"
     typedoc: "npm:^0.26.11"
     typedoc-json-parser: "npm:^10.2.0"
     typescript: "npm:~5.4.5"
-    vitest: "npm:^4.0.15"
+    vitest: "npm:^4.0.16"
   languageName: unknown
   linkType: soft
 
@@ -1653,13 +1478,13 @@ __metadata:
   dependencies:
     "@favware/cliff-jumper": "npm:^6.0.0"
     "@sapphire/result": "workspace:^"
-    "@vitest/coverage-v8": "npm:^4.0.15"
+    "@vitest/coverage-v8": "npm:^4.0.16"
     tsup: "npm:^8.5.1"
     tsx: "npm:^4.21.0"
     typedoc: "npm:^0.26.11"
     typedoc-json-parser: "npm:^10.2.0"
     typescript: "npm:~5.4.5"
-    vitest: "npm:^4.0.15"
+    vitest: "npm:^4.0.16"
   languageName: unknown
   linkType: soft
 
@@ -1668,13 +1493,13 @@ __metadata:
   resolution: "@sapphire/node-utilities@workspace:packages/node-utilities"
   dependencies:
     "@favware/cliff-jumper": "npm:^6.0.0"
-    "@vitest/coverage-v8": "npm:^4.0.15"
+    "@vitest/coverage-v8": "npm:^4.0.16"
     tsup: "npm:^8.5.1"
     tsx: "npm:^4.21.0"
     typedoc: "npm:^0.26.11"
     typedoc-json-parser: "npm:^10.2.0"
     typescript: "npm:~5.4.5"
-    vitest: "npm:^4.0.15"
+    vitest: "npm:^4.0.16"
   languageName: unknown
   linkType: soft
 
@@ -1710,11 +1535,11 @@ __metadata:
   resolution: "@sapphire/prettier-config@workspace:packages/prettier-config"
   dependencies:
     "@favware/cliff-jumper": "npm:^6.0.0"
-    "@vitest/coverage-v8": "npm:^4.0.15"
+    "@vitest/coverage-v8": "npm:^4.0.16"
     prettier: "npm:^3.7.4"
     typedoc-json-parser: "npm:^10.2.0"
     typescript: "npm:~5.4.5"
-    vitest: "npm:^4.0.15"
+    vitest: "npm:^4.0.16"
   languageName: unknown
   linkType: soft
 
@@ -1723,13 +1548,13 @@ __metadata:
   resolution: "@sapphire/ratelimits@workspace:packages/ratelimits"
   dependencies:
     "@favware/cliff-jumper": "npm:^6.0.0"
-    "@vitest/coverage-v8": "npm:^4.0.15"
+    "@vitest/coverage-v8": "npm:^4.0.16"
     tsup: "npm:^8.5.1"
     tsx: "npm:^4.21.0"
     typedoc: "npm:^0.26.11"
     typedoc-json-parser: "npm:^10.2.0"
     typescript: "npm:~5.4.5"
-    vitest: "npm:^4.0.15"
+    vitest: "npm:^4.0.16"
   languageName: unknown
   linkType: soft
 
@@ -1738,13 +1563,13 @@ __metadata:
   resolution: "@sapphire/result@workspace:packages/result"
   dependencies:
     "@favware/cliff-jumper": "npm:^6.0.0"
-    "@vitest/coverage-v8": "npm:^4.0.15"
+    "@vitest/coverage-v8": "npm:^4.0.16"
     tsup: "npm:^8.5.1"
     tsx: "npm:^4.21.0"
     typedoc: "npm:^0.26.11"
     typedoc-json-parser: "npm:^10.2.0"
     typescript: "npm:~5.4.5"
-    vitest: "npm:^4.0.15"
+    vitest: "npm:^4.0.16"
   languageName: unknown
   linkType: soft
 
@@ -1770,13 +1595,13 @@ __metadata:
   resolution: "@sapphire/snowflake@workspace:packages/snowflake"
   dependencies:
     "@favware/cliff-jumper": "npm:^6.0.0"
-    "@vitest/coverage-v8": "npm:^4.0.15"
+    "@vitest/coverage-v8": "npm:^4.0.16"
     tsup: "npm:^8.5.1"
     tsx: "npm:^4.21.0"
     typedoc: "npm:^0.26.11"
     typedoc-json-parser: "npm:^10.2.0"
     typescript: "npm:~5.4.5"
-    vitest: "npm:^4.0.15"
+    vitest: "npm:^4.0.16"
   languageName: unknown
   linkType: soft
 
@@ -1786,7 +1611,7 @@ __metadata:
   dependencies:
     "@favware/cliff-jumper": "npm:^6.0.0"
     "@types/jsdom": "npm:^27.0.0"
-    "@vitest/coverage-v8": "npm:^4.0.15"
+    "@vitest/coverage-v8": "npm:^4.0.16"
     jsdom: "npm:^27.3.0"
     tslib: "npm:^2.8.1"
     tsup: "npm:^8.5.1"
@@ -1794,7 +1619,7 @@ __metadata:
     typedoc: "npm:^0.26.11"
     typedoc-json-parser: "npm:^10.2.0"
     typescript: "npm:~5.4.5"
-    vitest: "npm:^4.0.15"
+    vitest: "npm:^4.0.16"
   languageName: unknown
   linkType: soft
 
@@ -1803,13 +1628,13 @@ __metadata:
   resolution: "@sapphire/string-store@workspace:packages/string-store"
   dependencies:
     "@favware/cliff-jumper": "npm:^6.0.0"
-    "@vitest/coverage-v8": "npm:^4.0.15"
+    "@vitest/coverage-v8": "npm:^4.0.16"
     tsup: "npm:^8.5.1"
     tsx: "npm:^4.21.0"
     typedoc: "npm:^0.26.11"
     typedoc-json-parser: "npm:^10.2.0"
     typescript: "npm:~5.4.5"
-    vitest: "npm:^4.0.15"
+    vitest: "npm:^4.0.16"
   languageName: unknown
   linkType: soft
 
@@ -1835,13 +1660,13 @@ __metadata:
   resolution: "@sapphire/timer-manager@workspace:packages/timer-manager"
   dependencies:
     "@favware/cliff-jumper": "npm:^6.0.0"
-    "@vitest/coverage-v8": "npm:^4.0.15"
+    "@vitest/coverage-v8": "npm:^4.0.16"
     tsup: "npm:^8.5.1"
     tsx: "npm:^4.21.0"
     typedoc: "npm:^0.26.11"
     typedoc-json-parser: "npm:^10.2.0"
     typescript: "npm:~5.4.5"
-    vitest: "npm:^4.0.15"
+    vitest: "npm:^4.0.16"
   languageName: unknown
   linkType: soft
 
@@ -1850,13 +1675,13 @@ __metadata:
   resolution: "@sapphire/timestamp@workspace:packages/timestamp"
   dependencies:
     "@favware/cliff-jumper": "npm:^6.0.0"
-    "@vitest/coverage-v8": "npm:^4.0.15"
+    "@vitest/coverage-v8": "npm:^4.0.16"
     tsup: "npm:^8.5.1"
     tsx: "npm:^4.21.0"
     typedoc: "npm:^0.26.11"
     typedoc-json-parser: "npm:^10.2.0"
     typescript: "npm:~5.4.5"
-    vitest: "npm:^4.0.15"
+    vitest: "npm:^4.0.16"
   languageName: unknown
   linkType: soft
 
@@ -1867,11 +1692,11 @@ __metadata:
     "@favware/cliff-jumper": "npm:^6.0.0"
     "@sapphire/eslint-config": "workspace:^"
     "@sapphire/eslint-plugin-result": "workspace:^"
-    "@vitest/coverage-v8": "npm:^4.0.15"
+    "@vitest/coverage-v8": "npm:^4.0.16"
     tslib: "npm:^2.8.1"
     typedoc-json-parser: "npm:^10.2.0"
     typescript: "npm:~5.4.5"
-    vitest: "npm:^4.0.15"
+    vitest: "npm:^4.0.16"
   languageName: unknown
   linkType: soft
 
@@ -1889,7 +1714,7 @@ __metadata:
     "@favware/cliff-jumper": "npm:^6.0.0"
     "@sapphire/node-utilities": "workspace:^"
     "@sapphire/prettier-config": "workspace:^"
-    "@vitest/coverage-v8": "npm:^4.0.15"
+    "@vitest/coverage-v8": "npm:^4.0.16"
     esbuild-plugin-file-path-extensions: "npm:^2.1.4"
     npm-run-all2: "npm:^8.0.4"
     tsup: "npm:^8.5.1"
@@ -1897,7 +1722,7 @@ __metadata:
     typedoc: "npm:^0.26.11"
     typedoc-json-parser: "npm:^10.2.0"
     typescript: "npm:~5.4.5"
-    vitest: "npm:^4.0.15"
+    vitest: "npm:^4.0.16"
   languageName: unknown
   linkType: soft
 
@@ -2230,12 +2055,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vitest/coverage-v8@npm:^4.0.15":
-  version: 4.0.15
-  resolution: "@vitest/coverage-v8@npm:4.0.15"
+"@vitest/coverage-v8@npm:^4.0.16":
+  version: 4.0.16
+  resolution: "@vitest/coverage-v8@npm:4.0.16"
   dependencies:
     "@bcoe/v8-coverage": "npm:^1.0.2"
-    "@vitest/utils": "npm:4.0.15"
+    "@vitest/utils": "npm:4.0.16"
     ast-v8-to-istanbul: "npm:^0.3.8"
     istanbul-lib-coverage: "npm:^3.2.2"
     istanbul-lib-report: "npm:^3.0.1"
@@ -2246,34 +2071,34 @@ __metadata:
     std-env: "npm:^3.10.0"
     tinyrainbow: "npm:^3.0.3"
   peerDependencies:
-    "@vitest/browser": 4.0.15
-    vitest: 4.0.15
+    "@vitest/browser": 4.0.16
+    vitest: 4.0.16
   peerDependenciesMeta:
     "@vitest/browser":
       optional: true
-  checksum: 10/cdf5d26ba7f6f3895f72662549298e216f810a6cfce8a337d81d8b738df62f0766e0bb5c74f44b09d1282d4a83e14ac63e65c95cef461ac066f4b348c228f9a6
+  checksum: 10/cfb0095db60baa7ec8f76d4a9d09a92f1d9f2bfe83adfbbfca32a9b1a6dd76447db33bbba2fd8882f551ca206ef86f74f6ed436643a036537ecea6398a6825f1
   languageName: node
   linkType: hard
 
-"@vitest/expect@npm:4.0.15":
-  version: 4.0.15
-  resolution: "@vitest/expect@npm:4.0.15"
+"@vitest/expect@npm:4.0.16":
+  version: 4.0.16
+  resolution: "@vitest/expect@npm:4.0.16"
   dependencies:
     "@standard-schema/spec": "npm:^1.0.0"
     "@types/chai": "npm:^5.2.2"
-    "@vitest/spy": "npm:4.0.15"
-    "@vitest/utils": "npm:4.0.15"
+    "@vitest/spy": "npm:4.0.16"
+    "@vitest/utils": "npm:4.0.16"
     chai: "npm:^6.2.1"
     tinyrainbow: "npm:^3.0.3"
-  checksum: 10/cfb1822012a7ba66d46224c94d2951a780668729199a81eed918103d74110333bd1296e8f598cf2345bac0998f01a71803146da97c8bb69d2775abf3918f02c9
+  checksum: 10/1da98c86d394a4955bef381ac2c63a52d2eec0086f55e18858083da928cfdf51e7a30bfd88b1814e861906dae44d089aeab0fcc67b2597a4a8073c70cd14bdf7
   languageName: node
   linkType: hard
 
-"@vitest/mocker@npm:4.0.15":
-  version: 4.0.15
-  resolution: "@vitest/mocker@npm:4.0.15"
+"@vitest/mocker@npm:4.0.16":
+  version: 4.0.16
+  resolution: "@vitest/mocker@npm:4.0.16"
   dependencies:
-    "@vitest/spy": "npm:4.0.15"
+    "@vitest/spy": "npm:4.0.16"
     estree-walker: "npm:^3.0.3"
     magic-string: "npm:^0.30.21"
   peerDependencies:
@@ -2284,54 +2109,54 @@ __metadata:
       optional: true
     vite:
       optional: true
-  checksum: 10/9f2aed963bd1bbe13f8acb5d05a95e3cf09d50e57708fb9e88cb4f18b0c0c9c854290bdffd8900914b64796ebdec4c068634487ec2fe55e7984941fff404601a
+  checksum: 10/3a34c6571ef278b80d33feabb8389d6cf7cfd248fe592b8b2a373650ab460b95805fde65e6bd76aebc75729fc0c94b4d8b9bba25fa55e21c2745ae03c10316bf
   languageName: node
   linkType: hard
 
-"@vitest/pretty-format@npm:4.0.15":
-  version: 4.0.15
-  resolution: "@vitest/pretty-format@npm:4.0.15"
+"@vitest/pretty-format@npm:4.0.16":
+  version: 4.0.16
+  resolution: "@vitest/pretty-format@npm:4.0.16"
   dependencies:
     tinyrainbow: "npm:^3.0.3"
-  checksum: 10/c8ef240027ac340ae420a9b3eb77683a6399edd066832e27793eae19c189e567c5a225c1f26848aa2a2b7545dcc0c9019d6ff0a643cbf0eae004a05117fc2b05
+  checksum: 10/914d5d35fb3b0aa67f8e6065ac3d1f1798b7774e1ad9d1e873e7c6efdc7925c98e0f8188bb13c4f3feb4d80b756c337f7a55cd4f78c50fe786330d0aaede7cfd
   languageName: node
   linkType: hard
 
-"@vitest/runner@npm:4.0.15":
-  version: 4.0.15
-  resolution: "@vitest/runner@npm:4.0.15"
+"@vitest/runner@npm:4.0.16":
+  version: 4.0.16
+  resolution: "@vitest/runner@npm:4.0.16"
   dependencies:
-    "@vitest/utils": "npm:4.0.15"
+    "@vitest/utils": "npm:4.0.16"
     pathe: "npm:^2.0.3"
-  checksum: 10/682c070d00d0505bc4568e807a746238fe726290bcaea2695a009016ce2c396f8a3c090e5ed12795c1b65bcab4188d2fd8c513ce8324abf978272f319e445d19
+  checksum: 10/2aed39bb46ba747bd4fd5acf081e9e500192fec19c1887399f6a1701bbfdab05f3d3b45c00e4af5b90a0832853c959a0f64e676b05c67f5457b7c6984f844aa2
   languageName: node
   linkType: hard
 
-"@vitest/snapshot@npm:4.0.15":
-  version: 4.0.15
-  resolution: "@vitest/snapshot@npm:4.0.15"
+"@vitest/snapshot@npm:4.0.16":
+  version: 4.0.16
+  resolution: "@vitest/snapshot@npm:4.0.16"
   dependencies:
-    "@vitest/pretty-format": "npm:4.0.15"
+    "@vitest/pretty-format": "npm:4.0.16"
     magic-string: "npm:^0.30.21"
     pathe: "npm:^2.0.3"
-  checksum: 10/f881257fc1c520541131296f9762d627ad61eb167a3d7129942a5c2dce46e870af1a8446fbf94d2fcdc5a31ab787ffff113f2b8dbd75b15d0494fe43db649682
+  checksum: 10/30f2977c96645c018b9d1f658e758f4f886ac63966dca909e9f736d6c9d6d0a6dabdeaedf9abcc13e1000458e4069283632c0140033972847dc1f4b4ac38e076
   languageName: node
   linkType: hard
 
-"@vitest/spy@npm:4.0.15":
-  version: 4.0.15
-  resolution: "@vitest/spy@npm:4.0.15"
-  checksum: 10/700b06beb4fd33c1430bc5061e7c3055df9ad1e64500a0a02edba6a52e37ba3bf800eadfda1f617e1eeca53d7ab6941a69ba2812980347fcc3c3b736c5ae5a56
+"@vitest/spy@npm:4.0.16":
+  version: 4.0.16
+  resolution: "@vitest/spy@npm:4.0.16"
+  checksum: 10/76cbabfdd77adf16904d5c128de67abca650bbc2ed36acc68fca548dc51844c7fc1ac516e384d07341b25ae39318c7c2feb499ffa7283a1a838f762cb0cda6ab
   languageName: node
   linkType: hard
 
-"@vitest/utils@npm:4.0.15":
-  version: 4.0.15
-  resolution: "@vitest/utils@npm:4.0.15"
+"@vitest/utils@npm:4.0.16":
+  version: 4.0.16
+  resolution: "@vitest/utils@npm:4.0.16"
   dependencies:
-    "@vitest/pretty-format": "npm:4.0.15"
+    "@vitest/pretty-format": "npm:4.0.16"
     tinyrainbow: "npm:^3.0.3"
-  checksum: 10/54d3fd272e05ad43913d842a25dce705eb71db8591511f28fa4a6d0c28fd5eb109c580072e9f8dbc0f431425c890b74494c9d0b14f78d0be18ab87071f06d020
+  checksum: 10/07fb3c96867656ff080df7ae6056a8dc23931d0f8bc16e15994c576c580dc6e2dcf71af0964fee197ea7eea4f4ad72c256f56cd3b81599f9e0ba63a228968d50
   languageName: node
   linkType: hard
 
@@ -3393,92 +3218,6 @@ __metadata:
   dependencies:
     "@sapphire/result": "npm:^2.6.4"
   checksum: 10/d45704bb67af33544bc14dc9b4bcc92e51571e5ac4a47df616e1249ae5f6ae1be0c01cff3aef767955db7a84d606639ff0244f49e55d3b91ed860651ef81ffdd
-  languageName: node
-  linkType: hard
-
-"esbuild@npm:^0.25.0":
-  version: 0.25.1
-  resolution: "esbuild@npm:0.25.1"
-  dependencies:
-    "@esbuild/aix-ppc64": "npm:0.25.1"
-    "@esbuild/android-arm": "npm:0.25.1"
-    "@esbuild/android-arm64": "npm:0.25.1"
-    "@esbuild/android-x64": "npm:0.25.1"
-    "@esbuild/darwin-arm64": "npm:0.25.1"
-    "@esbuild/darwin-x64": "npm:0.25.1"
-    "@esbuild/freebsd-arm64": "npm:0.25.1"
-    "@esbuild/freebsd-x64": "npm:0.25.1"
-    "@esbuild/linux-arm": "npm:0.25.1"
-    "@esbuild/linux-arm64": "npm:0.25.1"
-    "@esbuild/linux-ia32": "npm:0.25.1"
-    "@esbuild/linux-loong64": "npm:0.25.1"
-    "@esbuild/linux-mips64el": "npm:0.25.1"
-    "@esbuild/linux-ppc64": "npm:0.25.1"
-    "@esbuild/linux-riscv64": "npm:0.25.1"
-    "@esbuild/linux-s390x": "npm:0.25.1"
-    "@esbuild/linux-x64": "npm:0.25.1"
-    "@esbuild/netbsd-arm64": "npm:0.25.1"
-    "@esbuild/netbsd-x64": "npm:0.25.1"
-    "@esbuild/openbsd-arm64": "npm:0.25.1"
-    "@esbuild/openbsd-x64": "npm:0.25.1"
-    "@esbuild/sunos-x64": "npm:0.25.1"
-    "@esbuild/win32-arm64": "npm:0.25.1"
-    "@esbuild/win32-ia32": "npm:0.25.1"
-    "@esbuild/win32-x64": "npm:0.25.1"
-  dependenciesMeta:
-    "@esbuild/aix-ppc64":
-      optional: true
-    "@esbuild/android-arm":
-      optional: true
-    "@esbuild/android-arm64":
-      optional: true
-    "@esbuild/android-x64":
-      optional: true
-    "@esbuild/darwin-arm64":
-      optional: true
-    "@esbuild/darwin-x64":
-      optional: true
-    "@esbuild/freebsd-arm64":
-      optional: true
-    "@esbuild/freebsd-x64":
-      optional: true
-    "@esbuild/linux-arm":
-      optional: true
-    "@esbuild/linux-arm64":
-      optional: true
-    "@esbuild/linux-ia32":
-      optional: true
-    "@esbuild/linux-loong64":
-      optional: true
-    "@esbuild/linux-mips64el":
-      optional: true
-    "@esbuild/linux-ppc64":
-      optional: true
-    "@esbuild/linux-riscv64":
-      optional: true
-    "@esbuild/linux-s390x":
-      optional: true
-    "@esbuild/linux-x64":
-      optional: true
-    "@esbuild/netbsd-arm64":
-      optional: true
-    "@esbuild/netbsd-x64":
-      optional: true
-    "@esbuild/openbsd-arm64":
-      optional: true
-    "@esbuild/openbsd-x64":
-      optional: true
-    "@esbuild/sunos-x64":
-      optional: true
-    "@esbuild/win32-arm64":
-      optional: true
-    "@esbuild/win32-ia32":
-      optional: true
-    "@esbuild/win32-x64":
-      optional: true
-  bin:
-    esbuild: bin/esbuild
-  checksum: 10/f1dcaa7c72133c4e130dc7a6c05158d48d7ccf6643efb12fd0c5a9727226a9249d3ea4a4ea34f879c4559819d9dd706a968fd34d5c180ae019ea0403246c5564
   languageName: node
   linkType: hard
 
@@ -6521,7 +6260,7 @@ __metadata:
     "@types/ws": "npm:^8.18.1"
     "@typescript-eslint/eslint-plugin": "npm:^7.18.0"
     "@typescript-eslint/parser": "npm:^7.18.0"
-    "@vitest/coverage-v8": "npm:^4.0.15"
+    "@vitest/coverage-v8": "npm:^4.0.16"
     concurrently: "npm:^9.2.1"
     cz-conventional-changelog: "npm:^3.3.0"
     discord.js: "npm:^14.25.1"
@@ -6537,12 +6276,12 @@ __metadata:
     tslib: "npm:^2.8.1"
     tsup: "npm:^8.5.1"
     tsx: "npm:^4.21.0"
-    turbo: "npm:^2.6.3"
+    turbo: "npm:^2.7.1"
     typedoc: "npm:^0.26.11"
     typedoc-json-parser: "npm:^10.2.0"
     typescript: "npm:~5.4.5"
-    vite: "npm:^7.2.7"
-    vitest: "npm:^4.0.15"
+    vite: "npm:^7.3.0"
+    vitest: "npm:^4.0.16"
   languageName: unknown
   linkType: soft
 
@@ -7258,58 +6997,58 @@ __metadata:
   languageName: node
   linkType: hard
 
-"turbo-darwin-64@npm:2.6.3":
-  version: 2.6.3
-  resolution: "turbo-darwin-64@npm:2.6.3"
+"turbo-darwin-64@npm:2.7.1":
+  version: 2.7.1
+  resolution: "turbo-darwin-64@npm:2.7.1"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"turbo-darwin-arm64@npm:2.6.3":
-  version: 2.6.3
-  resolution: "turbo-darwin-arm64@npm:2.6.3"
+"turbo-darwin-arm64@npm:2.7.1":
+  version: 2.7.1
+  resolution: "turbo-darwin-arm64@npm:2.7.1"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"turbo-linux-64@npm:2.6.3":
-  version: 2.6.3
-  resolution: "turbo-linux-64@npm:2.6.3"
+"turbo-linux-64@npm:2.7.1":
+  version: 2.7.1
+  resolution: "turbo-linux-64@npm:2.7.1"
   conditions: os=linux & cpu=x64
   languageName: node
   linkType: hard
 
-"turbo-linux-arm64@npm:2.6.3":
-  version: 2.6.3
-  resolution: "turbo-linux-arm64@npm:2.6.3"
+"turbo-linux-arm64@npm:2.7.1":
+  version: 2.7.1
+  resolution: "turbo-linux-arm64@npm:2.7.1"
   conditions: os=linux & cpu=arm64
   languageName: node
   linkType: hard
 
-"turbo-windows-64@npm:2.6.3":
-  version: 2.6.3
-  resolution: "turbo-windows-64@npm:2.6.3"
+"turbo-windows-64@npm:2.7.1":
+  version: 2.7.1
+  resolution: "turbo-windows-64@npm:2.7.1"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
 
-"turbo-windows-arm64@npm:2.6.3":
-  version: 2.6.3
-  resolution: "turbo-windows-arm64@npm:2.6.3"
+"turbo-windows-arm64@npm:2.7.1":
+  version: 2.7.1
+  resolution: "turbo-windows-arm64@npm:2.7.1"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"turbo@npm:^2.6.3":
-  version: 2.6.3
-  resolution: "turbo@npm:2.6.3"
+"turbo@npm:^2.7.1":
+  version: 2.7.1
+  resolution: "turbo@npm:2.7.1"
   dependencies:
-    turbo-darwin-64: "npm:2.6.3"
-    turbo-darwin-arm64: "npm:2.6.3"
-    turbo-linux-64: "npm:2.6.3"
-    turbo-linux-arm64: "npm:2.6.3"
-    turbo-windows-64: "npm:2.6.3"
-    turbo-windows-arm64: "npm:2.6.3"
+    turbo-darwin-64: "npm:2.7.1"
+    turbo-darwin-arm64: "npm:2.7.1"
+    turbo-linux-64: "npm:2.7.1"
+    turbo-linux-arm64: "npm:2.7.1"
+    turbo-windows-64: "npm:2.7.1"
+    turbo-windows-arm64: "npm:2.7.1"
   dependenciesMeta:
     turbo-darwin-64:
       optional: true
@@ -7325,7 +7064,7 @@ __metadata:
       optional: true
   bin:
     turbo: bin/turbo
-  checksum: 10/81301581f00d586397aa49cdeecf0e4d90a277c0ba74b42544065065e0e0dd6a25675e8cb04cf7c9d49a21c2d45a38da5809235379a6a7916e616c45c634b0cf
+  checksum: 10/0497f55a9d26499914d871b5393354ce6b84d946ce61970564c5e1ce05346980e5d96164cffee975e78d80fc50f040ddc9f2ef608ba0bfd1c645de2e225ee7d7
   languageName: node
   linkType: hard
 
@@ -7626,11 +7365,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:^6.0.0 || ^7.0.0, vite@npm:^7.2.7":
-  version: 7.2.7
-  resolution: "vite@npm:7.2.7"
+"vite@npm:^6.0.0 || ^7.0.0, vite@npm:^7.3.0":
+  version: 7.3.0
+  resolution: "vite@npm:7.3.0"
   dependencies:
-    esbuild: "npm:^0.25.0"
+    esbuild: "npm:^0.27.0"
     fdir: "npm:^6.5.0"
     fsevents: "npm:~2.3.3"
     picomatch: "npm:^4.0.3"
@@ -7677,21 +7416,21 @@ __metadata:
       optional: true
   bin:
     vite: bin/vite.js
-  checksum: 10/ec7c588db66c8a3e50a24fc26422c6ef27c2e08a0ceccd200162e45be90d7d12c0a06d8ccc8c88139a657d51be5e10ddc83df9807daf6a1362c2e5ecdaf2a07e
+  checksum: 10/044490133aaf4cc024700995edaac10ff182262c721a44a8ac7839207b3e5af435c8b9dd8ee4658dc0f47147fa4211632cca3120177aa4bab99a7cb095e5149e
   languageName: node
   linkType: hard
 
-"vitest@npm:^4.0.15":
-  version: 4.0.15
-  resolution: "vitest@npm:4.0.15"
+"vitest@npm:^4.0.16":
+  version: 4.0.16
+  resolution: "vitest@npm:4.0.16"
   dependencies:
-    "@vitest/expect": "npm:4.0.15"
-    "@vitest/mocker": "npm:4.0.15"
-    "@vitest/pretty-format": "npm:4.0.15"
-    "@vitest/runner": "npm:4.0.15"
-    "@vitest/snapshot": "npm:4.0.15"
-    "@vitest/spy": "npm:4.0.15"
-    "@vitest/utils": "npm:4.0.15"
+    "@vitest/expect": "npm:4.0.16"
+    "@vitest/mocker": "npm:4.0.16"
+    "@vitest/pretty-format": "npm:4.0.16"
+    "@vitest/runner": "npm:4.0.16"
+    "@vitest/snapshot": "npm:4.0.16"
+    "@vitest/spy": "npm:4.0.16"
+    "@vitest/utils": "npm:4.0.16"
     es-module-lexer: "npm:^1.7.0"
     expect-type: "npm:^1.2.2"
     magic-string: "npm:^0.30.21"
@@ -7709,10 +7448,10 @@ __metadata:
     "@edge-runtime/vm": "*"
     "@opentelemetry/api": ^1.9.0
     "@types/node": ^20.0.0 || ^22.0.0 || >=24.0.0
-    "@vitest/browser-playwright": 4.0.15
-    "@vitest/browser-preview": 4.0.15
-    "@vitest/browser-webdriverio": 4.0.15
-    "@vitest/ui": 4.0.15
+    "@vitest/browser-playwright": 4.0.16
+    "@vitest/browser-preview": 4.0.16
+    "@vitest/browser-webdriverio": 4.0.16
+    "@vitest/ui": 4.0.16
     happy-dom: "*"
     jsdom: "*"
   peerDependenciesMeta:
@@ -7736,7 +7475,7 @@ __metadata:
       optional: true
   bin:
     vitest: vitest.mjs
-  checksum: 10/b6df3d07b3f858ce1efc072d90753bc76d278a29245317b70e7bab0ded8bfaf81fc1e41aa30687365fef6d0e4110727867716440bc745e8948ae217a67f9d77b
+  checksum: 10/22b3806988ab186be4a6a133903a70c62835198e8e749f6ed751957d23bc1e3f0466e310a1a79d0b70a354b2e308e574486191eb39711257b3fe61e4fe00d1c8
   languageName: node
   linkType: hard
 
