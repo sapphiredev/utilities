@@ -40,13 +40,13 @@
 		"@sapphire/ratelimits": "workspace:^",
 		"@sapphire/result": "workspace:^",
 		"@sapphire/utilities": "workspace:^",
-		"@vitest/coverage-v8": "^4.0.15",
+		"@vitest/coverage-v8": "^4.0.16",
 		"tsup": "^8.5.1",
 		"tsx": "^4.21.0",
 		"typedoc": "^0.26.11",
 		"typedoc-json-parser": "^10.2.0",
 		"typescript": "~5.4.5",
-		"vitest": "^4.0.15"
+		"vitest": "^4.0.16"
 	},
 	"repository": {
 		"type": "git",
