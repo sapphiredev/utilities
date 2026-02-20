@@ -440,6 +440,21 @@ export const SelectMenuLimits = {
 } as const;
 
 /**
+ * Namespace containing limits related to Labels.
+ */
+export const LabelLimits = {
+	/**
+	 * Maximum characters allowed in a label text.
+	 */
+	MaximumLabelCharacters: 45,
+
+	/**
+	 * Maximum characters allowed in a label description.
+	 */
+	MaximumDescriptionCharacters: 100
+} as const;
+
+/**
  * Namespace containing limits related to File Uploads.
  */
 export const FileUploadLimits = {
