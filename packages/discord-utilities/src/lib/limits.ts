@@ -440,6 +440,26 @@ export const SelectMenuLimits = {
 } as const;
 
 /**
+ * Namespace containing limits related to File Uploads.
+ */
+export const FileUploadLimits = {
+	/**
+	 * Maximum characters allowed in a file upload custom ID.
+	 */
+	MaximumCustomIdCharacters: 100,
+
+	/**
+	 * Maximum "minimum" values allowed in a file upload.
+	 */
+	MaximumMinValuesSize: 10,
+
+	/**
+	 * Maximum "maximum" values allowed in a file upload.
+	 */
+	MaximumMaxValuesSize: 10
+} as const;
+
+/**
  * Namespace containing limits related to Radio Groups.
  */
 export const RadioGroupLimits = {
