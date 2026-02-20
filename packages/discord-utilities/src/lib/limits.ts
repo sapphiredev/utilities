@@ -440,6 +440,36 @@ export const SelectMenuLimits = {
 } as const;
 
 /**
+ * Namespace containing limits related to Radio Groups.
+ */
+export const RadioGroupLimits = {
+	/**
+	 * Maximum characters allowed in a radio group custom ID.
+	 */
+	MaximumCustomIdCharacters: 100,
+
+	/**
+	 * Maximum amount of options allowed in a radio group
+	 */
+	MaximumOptionsLength: 10,
+
+	/**
+	 * Maximum characters allowed in a radio group option's value.
+	 */
+	MaximumLengthOfValueOfOption: 100,
+
+	/**
+	 * Maximum characters allowed in a radio group option's label.
+	 */
+	MaximumLengthOfLabelOfOption: 100,
+
+	/**
+	 * Maximum characters allowed in a radio group option's description.
+	 */
+	MaximumLengthOfDescriptionOfOption: 100
+} as const;
+
+/**
  * Namespace containing limits related to Discord messages.
  */
 export const MessageLimits = {
