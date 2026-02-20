@@ -470,6 +470,46 @@ export const RadioGroupLimits = {
 } as const;
 
 /**
+ * Namespace containing limits related to Checkbox Groups.
+ */
+export const CheckboxGroupLimits = {
+	/**
+	 * Maximum characters allowed in a checkbox group custom ID.
+	 */
+	MaximumCustomIdCharacters: 100,
+
+	/**
+	 * Maximum amount of options allowed in a checkbox group.
+	 */
+	MaximumOptionsLength: 10,
+
+	/**
+	 * Maximum "minimum" values allowed in a checkbox group.
+	 */
+	MaximumMinValuesSize: 10,
+
+	/**
+	 * Maximum "maximum" values allowed in a checkbox group.
+	 */
+	MaximumMaxValuesSize: 10,
+
+	/**
+	 * Maximum characters allowed in a checkbox group option's value.
+	 */
+	MaximumLengthOfValueOfOption: 100,
+
+	/**
+	 * Maximum characters allowed in a checkbox group option's label.
+	 */
+	MaximumLengthOfLabelOfOption: 100,
+
+	/**
+	 * Maximum characters allowed in a checkbox group option's description.
+	 */
+	MaximumLengthOfDescriptionOfOption: 100
+} as const;
+
+/**
  * Namespace containing limits related to Discord messages.
  */
 export const MessageLimits = {
