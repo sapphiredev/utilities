@@ -510,6 +510,16 @@ export const CheckboxGroupLimits = {
 } as const;
 
 /**
+ * Namespace containing limits related to Checkbox.
+ */
+export const CheckboxLimits = {
+	/**
+	 * Maximum characters allowed in a checkbox custom ID.
+	 */
+	MaximumCustomIdCharacters: 100
+} as const;
+
+/**
  * Namespace containing limits related to Discord messages.
  */
 export const MessageLimits = {
