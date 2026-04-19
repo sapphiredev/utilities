@@ -60,7 +60,7 @@
 		"access": "public"
 	},
 	"devDependencies": {
-		"@favware/cliff-jumper": "^6.0.0",
+		"@favware/cliff-jumper": "^6.1.0",
 		"@vitest/coverage-v8": "^4.1.4",
 		"tsup": "^8.5.1",
 		"tsx": "^4.21.0",

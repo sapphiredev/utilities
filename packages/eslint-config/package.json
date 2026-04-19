@@ -30,7 +30,7 @@
 		"eslint": "^8.57.1",
 		"eslint-config-prettier": "^10.1.8",
 		"eslint-plugin-prettier": "^5.5.5",
-		"prettier": "^3.8.2",
+		"prettier": "^3.8.3",
 		"typescript": "~5.4.5"
 	},
 	"repository": {
@@ -62,7 +62,7 @@
 		"access": "public"
 	},
 	"devDependencies": {
-		"@favware/cliff-jumper": "^6.0.0",
+		"@favware/cliff-jumper": "^6.1.0",
 		"@vitest/coverage-v8": "^4.1.4",
 		"tsup": "^8.5.1",
 		"typedoc-json-parser": "^10.2.0",
