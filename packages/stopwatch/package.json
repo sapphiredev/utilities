@@ -65,7 +65,7 @@
 	},
 	"devDependencies": {
 		"@favware/cliff-jumper": "^6.1.0",
-		"@types/jsdom": "^27.0.0",
+		"@types/jsdom": "^28.0.1",
 		"@vitest/coverage-v8": "^4.1.5",
 		"jsdom": "^27.4.0",
 		"tsup": "^8.5.1",
