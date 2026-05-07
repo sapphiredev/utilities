@@ -440,6 +440,121 @@ export const SelectMenuLimits = {
 } as const;
 
 /**
+ * Namespace containing limits related to Labels.
+ */
+export const LabelLimits = {
+	/**
+	 * Maximum characters allowed in a label text.
+	 */
+	MaximumLabelCharacters: 45,
+
+	/**
+	 * Maximum characters allowed in a label description.
+	 */
+	MaximumDescriptionCharacters: 100
+} as const;
+
+/**
+ * Namespace containing limits related to File Uploads.
+ */
+export const FileUploadLimits = {
+	/**
+	 * Maximum characters allowed in a file upload custom ID.
+	 */
+	MaximumCustomIdCharacters: 100,
+
+	/**
+	 * Maximum "minimum" values allowed in a file upload.
+	 */
+	MaximumMinValuesSize: 10,
+
+	/**
+	 * Maximum "maximum" values allowed in a file upload.
+	 */
+	MaximumMaxValuesSize: 10
+} as const;
+
+/**
+ * Namespace containing limits related to Radio Groups.
+ */
+export const RadioGroupLimits = {
+	/**
+	 * Maximum characters allowed in a radio group custom ID.
+	 */
+	MaximumCustomIdCharacters: 100,
+
+	/**
+	 * Maximum amount of options allowed in a radio group
+	 */
+	MaximumOptionsLength: 10,
+
+	/**
+	 * Maximum characters allowed in a radio group option's value.
+	 */
+	MaximumLengthOfValueOfOption: 100,
+
+	/**
+	 * Maximum characters allowed in a radio group option's label.
+	 */
+	MaximumLengthOfLabelOfOption: 100,
+
+	/**
+	 * Maximum characters allowed in a radio group option's description.
+	 */
+	MaximumLengthOfDescriptionOfOption: 100
+} as const;
+
+/**
+ * Namespace containing limits related to Checkbox Groups.
+ */
+export const CheckboxGroupLimits = {
+	/**
+	 * Maximum characters allowed in a checkbox group custom ID.
+	 */
+	MaximumCustomIdCharacters: 100,
+
+	/**
+	 * Maximum amount of options allowed in a checkbox group.
+	 */
+	MaximumOptionsLength: 10,
+
+	/**
+	 * Maximum "minimum" values allowed in a checkbox group.
+	 */
+	MaximumMinValuesSize: 10,
+
+	/**
+	 * Maximum "maximum" values allowed in a checkbox group.
+	 */
+	MaximumMaxValuesSize: 10,
+
+	/**
+	 * Maximum characters allowed in a checkbox group option's value.
+	 */
+	MaximumLengthOfValueOfOption: 100,
+
+	/**
+	 * Maximum characters allowed in a checkbox group option's label.
+	 */
+	MaximumLengthOfLabelOfOption: 100,
+
+	/**
+	 * Maximum characters allowed in a checkbox group option's description.
+	 */
+	MaximumLengthOfDescriptionOfOption: 100
+} as const;
+
+/**
+ * Namespace containing limits related to Checkbox.
+ */
+export const CheckboxLimits = {
+	/**
+	 * Maximum characters allowed in a checkbox custom ID.
+	 */
+	MaximumCustomIdCharacters: 100
+} as const;
+
+/**
  * Namespace containing limits related to Discord messages.
  */
 export const MessageLimits = {
