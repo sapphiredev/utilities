@@ -1984,44 +1984,44 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@turbo/darwin-64@npm:2.9.8":
-  version: 2.9.8
-  resolution: "@turbo/darwin-64@npm:2.9.8"
+"@turbo/darwin-64@npm:2.9.12":
+  version: 2.9.12
+  resolution: "@turbo/darwin-64@npm:2.9.12"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@turbo/darwin-arm64@npm:2.9.8":
-  version: 2.9.8
-  resolution: "@turbo/darwin-arm64@npm:2.9.8"
+"@turbo/darwin-arm64@npm:2.9.12":
+  version: 2.9.12
+  resolution: "@turbo/darwin-arm64@npm:2.9.12"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@turbo/linux-64@npm:2.9.8":
-  version: 2.9.8
-  resolution: "@turbo/linux-64@npm:2.9.8"
+"@turbo/linux-64@npm:2.9.12":
+  version: 2.9.12
+  resolution: "@turbo/linux-64@npm:2.9.12"
   conditions: os=linux & cpu=x64
   languageName: node
   linkType: hard
 
-"@turbo/linux-arm64@npm:2.9.8":
-  version: 2.9.8
-  resolution: "@turbo/linux-arm64@npm:2.9.8"
+"@turbo/linux-arm64@npm:2.9.12":
+  version: 2.9.12
+  resolution: "@turbo/linux-arm64@npm:2.9.12"
   conditions: os=linux & cpu=arm64
   languageName: node
   linkType: hard
 
-"@turbo/windows-64@npm:2.9.8":
-  version: 2.9.8
-  resolution: "@turbo/windows-64@npm:2.9.8"
+"@turbo/windows-64@npm:2.9.12":
+  version: 2.9.12
+  resolution: "@turbo/windows-64@npm:2.9.12"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
 
-"@turbo/windows-arm64@npm:2.9.8":
-  version: 2.9.8
-  resolution: "@turbo/windows-arm64@npm:2.9.8"
+"@turbo/windows-arm64@npm:2.9.12":
+  version: 2.9.12
+  resolution: "@turbo/windows-arm64@npm:2.9.12"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
@@ -2094,12 +2094,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^24.12.2":
-  version: 24.12.2
-  resolution: "@types/node@npm:24.12.2"
+"@types/node@npm:*, @types/node@npm:^24.12.3":
+  version: 24.12.3
+  resolution: "@types/node@npm:24.12.3"
   dependencies:
     undici-types: "npm:~7.16.0"
-  checksum: 10/99b9f15e67a4b3c39b39ad83ee0febad7f0b4709c004863104d7acfa4146dd7e58c12a08a9a7ff2be8c2eefd0063bf991fade0879d7c4a370a0ee7fd4c799e8a
+  checksum: 10/a7441f1505fee5c049b0c64c70707b5081cdeb945537fd9249a4304d636c27213ee9973bfd68cec5e5326e0cab5506d2a45e60d6528882bc8096c6e1195b661a
   languageName: node
   linkType: hard
 
@@ -5576,9 +5576,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"msw@npm:^2.14.2":
-  version: 2.14.2
-  resolution: "msw@npm:2.14.2"
+"msw@npm:^2.14.5":
+  version: 2.14.5
+  resolution: "msw@npm:2.14.5"
   dependencies:
     "@inquirer/confirm": "npm:^6.0.11"
     "@mswjs/interceptors": "npm:^0.41.3"
@@ -5591,7 +5591,7 @@ __metadata:
     outvariant: "npm:^1.4.3"
     path-to-regexp: "npm:^6.3.0"
     picocolors: "npm:^1.1.1"
-    rettime: "npm:^0.11.7"
+    rettime: "npm:^0.11.11"
     statuses: "npm:^2.0.2"
     strict-event-emitter: "npm:^0.5.1"
     tough-cookie: "npm:^6.0.1"
@@ -5605,7 +5605,7 @@ __metadata:
       optional: true
   bin:
     msw: cli/index.js
-  checksum: 10/af2b6d45991f539674fa51aaff599a409de620863ae991ff821fcec8893687a38d793ab837e5444934396ca4003ded99bb2a313daa4d7ae04e0b199fba42847a
+  checksum: 10/bb8014e2c9c9a02d6c89133b20917f0ebbf03291eed448b31bc13f97b90b2982afa63e4d5b6b7276c3108916a85c5c20cf923cc52b844c4afceca0098e6fb857
   languageName: node
   linkType: hard
 
@@ -6294,10 +6294,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rettime@npm:^0.11.7":
-  version: 0.11.7
-  resolution: "rettime@npm:0.11.7"
-  checksum: 10/bb986507587a110f6af68ab28176bd788ac59bd1864671a7c0426f29a3d50a1f3328638e6043515f78c3d3af715d6b77b5cb1d1f281b6d123f63634a465e5339
+"rettime@npm:^0.11.11":
+  version: 0.11.11
+  resolution: "rettime@npm:0.11.11"
+  checksum: 10/4e21795ca6dee6fde1f120d1228c2b9b0e0f061f7b0ea82b985f63c1b508ba9d35c839a2d70320a4dc4da6c027366868ed59b73a32497ae33581b8ef0adea11f
   languageName: node
   linkType: hard
 
@@ -6509,7 +6509,7 @@ __metadata:
     "@favware/rollup-type-bundler": "npm:^4.0.0"
     "@sapphire/framework": "npm:^5.5.0"
     "@types/lodash": "npm:^4.17.24"
-    "@types/node": "npm:^24.12.2"
+    "@types/node": "npm:^24.12.3"
     "@types/ws": "npm:^8.18.1"
     "@typescript-eslint/eslint-plugin": "npm:^7.18.0"
     "@typescript-eslint/parser": "npm:^7.18.0"
@@ -6522,18 +6522,18 @@ __metadata:
     eslint-plugin-prettier: "npm:^5.5.5"
     lint-staged: "npm:^16.4.0"
     lodash: "npm:^4.18.1"
-    msw: "npm:^2.14.2"
+    msw: "npm:^2.14.5"
     npm-run-all2: "npm:^8.0.4"
     prettier: "npm:^3.8.3"
     rimraf: "npm:^6.1.3"
     tslib: "npm:^2.8.1"
     tsup: "npm:^8.5.1"
     tsx: "npm:^4.21.0"
-    turbo: "npm:^2.9.8"
+    turbo: "npm:^2.9.12"
     typedoc: "npm:^0.26.11"
     typedoc-json-parser: "npm:^10.2.0"
     typescript: "npm:~5.4.5"
-    vite: "npm:^7.3.2"
+    vite: "npm:^7.3.3"
     vitest: "npm:^4.1.5"
   languageName: unknown
   linkType: soft
@@ -7236,16 +7236,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"turbo@npm:^2.9.8":
-  version: 2.9.8
-  resolution: "turbo@npm:2.9.8"
+"turbo@npm:^2.9.12":
+  version: 2.9.12
+  resolution: "turbo@npm:2.9.12"
   dependencies:
-    "@turbo/darwin-64": "npm:2.9.8"
-    "@turbo/darwin-arm64": "npm:2.9.8"
-    "@turbo/linux-64": "npm:2.9.8"
-    "@turbo/linux-arm64": "npm:2.9.8"
-    "@turbo/windows-64": "npm:2.9.8"
-    "@turbo/windows-arm64": "npm:2.9.8"
+    "@turbo/darwin-64": "npm:2.9.12"
+    "@turbo/darwin-arm64": "npm:2.9.12"
+    "@turbo/linux-64": "npm:2.9.12"
+    "@turbo/linux-arm64": "npm:2.9.12"
+    "@turbo/windows-64": "npm:2.9.12"
+    "@turbo/windows-arm64": "npm:2.9.12"
   dependenciesMeta:
     "@turbo/darwin-64":
       optional: true
@@ -7261,7 +7261,7 @@ __metadata:
       optional: true
   bin:
     turbo: bin/turbo
-  checksum: 10/03d972a27d02f86dcae186bba9a6df97f2aa5c6d339c5a40bc4bb5e84bd486e85750291ede5de176dd342c0d608b76828d60f0524d40aa702cf8dce81caf66b3
+  checksum: 10/bf7601b09f85bced5fa94ea054782afc284a42a1c7736b5c6883110cdb868523dc69d4a4c6acfbd4173d5e9932379410953fdf52344baf3814698a05dd7a564c
   languageName: node
   linkType: hard
 
@@ -7612,9 +7612,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:^7.3.2":
-  version: 7.3.2
-  resolution: "vite@npm:7.3.2"
+"vite@npm:^7.3.3":
+  version: 7.3.3
+  resolution: "vite@npm:7.3.3"
   dependencies:
     esbuild: "npm:^0.27.0"
     fdir: "npm:^6.5.0"
@@ -7663,7 +7663,7 @@ __metadata:
       optional: true
   bin:
     vite: bin/vite.js
-  checksum: 10/c5f7a9a60011c41c836cedf31c8ee7624102aff9b6a7f3aab2ff47639721bba0916f81994c3a3ea6577a16c4f0dfee1e7dbd244e0da8edd5954e3c6d48daaaa2
+  checksum: 10/c7fa17bc0aa530313417a28a144edcf910466b936cb192ce2c8cf7d6075e4b8e481b08a55ef71a7486757b03465b054d8c2cb49473d6fc9a0db8ac1dd641edff
   languageName: node
   linkType: hard
 
