@@ -1786,7 +1786,7 @@ __metadata:
   resolution: "@sapphire/stopwatch@workspace:packages/stopwatch"
   dependencies:
     "@favware/cliff-jumper": "npm:^6.1.0"
-    "@types/jsdom": "npm:^27.0.0"
+    "@types/jsdom": "npm:^28.0.3"
     "@vitest/coverage-v8": "npm:^4.1.5"
     jsdom: "npm:^27.4.0"
     tslib: "npm:^2.8.1"
@@ -2067,14 +2067,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/jsdom@npm:^27.0.0":
-  version: 27.0.0
-  resolution: "@types/jsdom@npm:27.0.0"
+"@types/jsdom@npm:^28.0.3":
+  version: 28.0.3
+  resolution: "@types/jsdom@npm:28.0.3"
   dependencies:
     "@types/node": "npm:*"
     "@types/tough-cookie": "npm:*"
-    parse5: "npm:^7.0.0"
-  checksum: 10/67dc284f74960e1ba0787599dfb0a46ca94ea4443242d3fc1e513b0c5313d2d4136176764acce2b03b8c66dec942ff4ab15322208ccc17b7c1dccc8cd01d4cc2
+    parse5: "npm:^8.0.0"
+    undici-types: "npm:^7.21.0"
+  checksum: 10/a98a86449245372a1c02fee45299bef8eae9bdebe22863e02f785f05fd1f27c51c381aefe72054247994612f94ee0f45520a6eaa32c5d91d36639d208b578e87
   languageName: node
   linkType: hard
 
@@ -5932,15 +5933,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"parse5@npm:^7.0.0":
-  version: 7.3.0
-  resolution: "parse5@npm:7.3.0"
-  dependencies:
-    entities: "npm:^6.0.0"
-  checksum: 10/b0e48be20b820c655b138b86fa6fb3a790de6c891aa2aba536524f8027b4dca4fe538f11a0e5cf2f6f847d120dbb9e4822dcaeb933ff1e10850a2ef0154d1d88
-  languageName: node
-  linkType: hard
-
 "parse5@npm:^8.0.0":
   version: 8.0.0
   resolution: "parse5@npm:8.0.0"
@@ -7383,6 +7375,13 @@ __metadata:
   version: 1.6.1
   resolution: "ufo@npm:1.6.1"
   checksum: 10/088a68133b93af183b093e5a8730a40fe7fd675d3dc0656ea7512f180af45c92300c294f14d4d46d4b2b553e3e52d3b13d4856b9885e620e7001edf85531234e
+  languageName: node
+  linkType: hard
+
+"undici-types@npm:^7.21.0":
+  version: 7.25.0
+  resolution: "undici-types@npm:7.25.0"
+  checksum: 10/66f3a460cbc9e83e73c11c3a1869c32eef6c92b32450cc9dc677c671d958b9d1bb8635ff36a421019e4b1114dfc79d187aecf4dc75cf167a85535e03559b9250
   languageName: node
   linkType: hard
 
