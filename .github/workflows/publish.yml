@@ -40,6 +40,24 @@ on:
         required: false
         default: false
         type: boolean
+      prNumber:
+        description: The number of the PR that is being deployed
+        required: false
+        type: string
+      ref:
+        description: The branch that is being deployed. Should be a branch on the given repository
+        required: false
+        default: main
+        type: string
+      prerelease:
+        description: Whether to publish a prerelease version (default `false`)
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  id-token: write
+  contents: write
 
 jobs:
   PublishPackage:
@@ -50,6 +68,8 @@ jobs:
       project-name: '@sapphire/${{ inputs.package}}'
       working-directory: packages/${{ inputs.package }}
       skip-automatic-bump: ${{ inputs.skip-automatic-bump }}
+      pr-number: ${{ inputs.prNumber }}
+      ref: ${{ inputs.ref }}
+      prerelease: ${{ inputs.prerelease }}
     secrets:
-      NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
       SKYRA_TOKEN: ${{ secrets.SKYRA_TOKEN }}
