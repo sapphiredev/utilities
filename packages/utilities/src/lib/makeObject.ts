@@ -5,7 +5,7 @@
  * @param obj The object to edit
  * @throws If the path contains a segment that can mutate an object's prototype.
  */
-export function makeObject(path: string, value: unknown, obj: Record<string, unknown> = {}): Record<string, unknown> {
+export function makeObject(path: string, value: unknown, obj: Record<string, unknown> = Object.create(null)): Record<string, unknown> {
 	const route = path.split('.');
 	if (route.some((key) => key === '__proto__' || key === 'constructor' || key === 'prototype')) {
 		throw new TypeError('path cannot contain __proto__, constructor, or prototype');
@@ -15,7 +15,7 @@ export function makeObject(path: string, value: unknown, obj: Record<string, unk
 		const lastKey = route.pop() as string;
 		let reference = obj;
 		for (const key of route) {
-			if (!Object.prototype.hasOwnProperty.call(reference, key) || !reference[key]) reference[key] = {};
+			if (!Object.prototype.hasOwnProperty.call(reference, key) || !reference[key]) reference[key] = Object.create(null);
 			reference = reference[key] as Record<string, unknown>;
 		}
 		reference[lastKey] = value;
