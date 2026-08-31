@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/utilities@3.18.3](https://github.com/sapphiredev/utilities/compare/@sapphire/utilities@3.18.2...@sapphire/utilities@3.18.3) - (2026-08-31)
+
+## 🏠 Refactor
+
+- Create `null` objects ([93e06b3](https://github.com/sapphiredev/utilities/commit/93e06b336c6ac8f2aef1d793cc0a81f5565a5f36))
+
+## 🐛 Bug Fixes
+
+- **makeobject:** Resolve prototype pollution ([d4bbbb3](https://github.com/sapphiredev/utilities/commit/d4bbbb38cd7f6b68d981dbc513f4ec6101fb95b4))
+- **deps:** Update all non-major dependencies ([09c1811](https://github.com/sapphiredev/utilities/commit/09c1811dae117f501f4e03b2015d8288e28734f8)) ([#982](https://github.com/sapphiredev/utilities/pull/982) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([72499d9](https://github.com/sapphiredev/utilities/commit/72499d99a9feb107fd3dccea601da462f1f725c1)) ([#980](https://github.com/sapphiredev/utilities/pull/980) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([e6d4bac](https://github.com/sapphiredev/utilities/commit/e6d4bac47e65e9e0ec95ebaaa1b679cfc01bd107)) ([#953](https://github.com/sapphiredev/utilities/pull/953) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([3f9fe93](https://github.com/sapphiredev/utilities/commit/3f9fe93b770479fd72b7fd56f476244c040fcb41)) ([#952](https://github.com/sapphiredev/utilities/pull/952) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([841436f](https://github.com/sapphiredev/utilities/commit/841436f1b501f468b002790283a25298561768d6)) ([#946](https://github.com/sapphiredev/utilities/pull/946) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([636a5ee](https://github.com/sapphiredev/utilities/commit/636a5eed0939fd96a82213bf8459846aedd54037)) ([#897](https://github.com/sapphiredev/utilities/pull/897) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([da56be5](https://github.com/sapphiredev/utilities/commit/da56be564ed75f128acbff76b8d7df677e3bef5b)) ([#894](https://github.com/sapphiredev/utilities/pull/894) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([4bc5591](https://github.com/sapphiredev/utilities/commit/4bc55911f95456a2caee10a3588c7b5f1542fb00)) ([#879](https://github.com/sapphiredev/utilities/pull/879) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([bc2f01c](https://github.com/sapphiredev/utilities/commit/bc2f01ce7d6932c9a0e02faa7cc081ecbae9640d)) ([#869](https://github.com/sapphiredev/utilities/pull/869) by @renovate[bot])
+
+## 📝 Documentation
+
+- Refine typedoc ([41c0e91](https://github.com/sapphiredev/utilities/commit/41c0e91a5b715dd03fe6e757e116c7a80cf5b4de)) ([#996](https://github.com/sapphiredev/utilities/pull/996) by @favna)
+
 # [@sapphire/utilities@3.18.2](https://github.com/sapphiredev/utilities/compare/@sapphire/utilities@3.18.1...@sapphire/utilities@3.18.2) - (2025-01-29)
 
 ## 🐛 Bug Fixes
