@@ -58,7 +58,7 @@
 		"@sapphire/prettier-config": "workspace:^",
 		"@vitest/coverage-v8": "^4.1.5",
 		"esbuild-plugin-file-path-extensions": "^2.1.4",
-		"npm-run-all2": "^8.0.4",
+		"npm-run-all2": "^9.0.3",
 		"tsup": "^8.5.1",
 		"tsx": "^4.21.0",
 		"typedoc": "^0.26.11",
