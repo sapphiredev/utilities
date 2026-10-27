@@ -68,7 +68,7 @@
 		"@favware/cliff-jumper": "^6.1.0",
 		"@favware/rollup-type-bundler": "^4.0.0",
 		"concurrently": "^10.0.6",
-		"tsdown": "^0.23.2",
+		"tsdown": "0.23.1",
 		"typescript": "~7.0.2",
 		"unrun": "^0.3.1"
 	}
