@@ -23,12 +23,11 @@
 		"test": "vitest run",
 		"lint": "eslint src tests --ext ts --fix -c ../../.eslintrc",
 		"build": "yarn gen-index && tsup && yarn build:rename-cjs-index",
-		"build:rename-cjs-index": "tsx ../../scripts/rename-cjs-index.cts",
-		"docs": "typedoc-json-parser",
+		"build:rename-cjs-index": "unrun ../../scripts/rename-cjs-index.cts",
 		"prepack": "yarn build",
 		"bump": "cliff-jumper",
 		"check-update": "cliff-jumper --dry-run",
-		"gen-index": "tsx ../../scripts/gen-index.cts node-utilities --write"
+		"gen-index": "unrun ../../scripts/gen-index.cts node-utilities --write"
 	},
 	"repository": {
 		"type": "git",
@@ -61,12 +60,10 @@
 	},
 	"devDependencies": {
 		"@favware/cliff-jumper": "^6.1.0",
-		"@vitest/coverage-v8": "^4.1.5",
-		"tsup": "^8.5.1",
-		"tsx": "^4.21.0",
-		"typedoc": "^0.26.11",
-		"typedoc-json-parser": "^10.2.0",
-		"typescript": "~5.4.5",
-		"vitest": "^4.1.5"
+		"@vitest/coverage-v8": "^5.0.5",
+		"tsdown": "^0.23.2",
+		"typescript": "~7.0.2",
+		"unrun": "^0.3.1",
+		"vitest": "^5.0.5"
 	}
 }
