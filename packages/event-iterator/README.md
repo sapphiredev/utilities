@@ -14,13 +14,13 @@
 
 **Table of Contents**
 
--   [Description](#description)
--   [Features](#features)
--   [Installation](#installation)
--   [Usage](#usage)
-    -   [Basic Usage](#basic-usage)
--   [Buy us some doughnuts](#buy-us-some-doughnuts)
--   [Contributors](#contributors)
+- [Description](#description)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+    - [Basic Usage](#basic-usage)
+- [Buy us some doughnuts](#buy-us-some-doughnuts)
+- [Contributors](#contributors)
 
 ## Description
 
@@ -28,10 +28,10 @@ There is often a need to have async iterators with fine control, timeouts, limit
 
 ## Features
 
--   Written in TypeScript
--   Bundled with esbuild so it can be used in NodeJS and browsers
--   Offers CommonJS, ESM and UMD bundles
--   Fully tested
+- Written in TypeScript
+- Published as ESM for Node.js and modern bundlers
+- Publishes ESM-only output
+- Fully tested
 
 ## Installation
 
@@ -43,13 +43,11 @@ npm install @sapphire/event-iterator
 
 ## Usage
 
-**Note:** While this section uses `require`, the imports match 1:1 with ESM imports. For example `const { EventIterator } = require('@sapphire/event-iterator')` equals `import { EventIterator } from '@sapphire/event-iterator'`.
-
 ### Basic Usage
 
 ```typescript
 // Import the EventIterator class
-const { EventIterator } = require('@sapphire/event-iterator');
+import { EventIterator } from '@sapphire/event-iterator';
 
 // Define an event iterator with a limit of 2 entries
 const iterator = new EventIterator(emitter, 'message', { limit: 2 });

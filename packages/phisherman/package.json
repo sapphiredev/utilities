@@ -4,28 +4,21 @@
 	"description": "Wrapper around phisherman to easily check and report domains",
 	"author": "@sapphire",
 	"license": "MIT",
-	"main": "dist/cjs/index.cjs",
-	"module": "dist/esm/index.mjs",
-	"types": "dist/cjs/index.d.cts",
+	"main": "dist/index.mjs",
+	"module": "dist/index.mjs",
+	"types": "dist/index.d.mts",
 	"exports": {
-		"import": {
-			"types": "./dist/esm/index.d.mts",
-			"default": "./dist/esm/index.mjs"
-		},
-		"require": {
-			"types": "./dist/cjs/index.d.cts",
-			"default": "./dist/cjs/index.cjs"
-		}
+		"types": "./dist/index.d.mts",
+		"default": "./dist/index.mjs"
 	},
 	"homepage": "https://github.com/sapphiredev/utilities/tree/main/packages/phisherman",
 	"scripts": {
 		"lint": "eslint src --ext ts --fix",
-		"build": "yarn gen-index && tsup && yarn build:rename-cjs-index",
-		"build:rename-cjs-index": "unrun ../../scripts/rename-cjs-index.cts",
+		"build": "yarn gen-index && tsdown",
 		"prepack": "yarn build",
 		"bump": "cliff-jumper",
 		"check-update": "cliff-jumper --dry-run",
-		"gen-index": "unrun ../../scripts/gen-index.cts phisherman --write"
+		"gen-index": "unrun ../../scripts/gen-index.ts phisherman --write"
 	},
 	"dependencies": {
 		"@sapphire/fetch": "workspace:^"
@@ -62,9 +55,10 @@
 	"devDependencies": {
 		"@favware/cliff-jumper": "^6.1.0",
 		"@sapphire/result": "workspace:^",
-		"esbuild-plugin-version-injector": "^1.2.1",
 		"tsdown": "0.23.1",
 		"typescript": "~7.0.2",
+		"unplugin-replace": "^0.9.1",
 		"unrun": "^0.3.1"
-	}
+	},
+	"type": "module"
 }

@@ -8,15 +8,14 @@
 	"module": "dist/index.mjs",
 	"type": "module",
 	"exports": {
-		"import": "./dist/index.mjs",
-		"require": "./dist/index.mjs"
+		"import": "./dist/index.mjs"
 	},
 	"sideEffects": false,
 	"homepage": "https://github.com/sapphiredev/utilities/tree/main/packages/prettier-config",
 	"scripts": {
 		"test": "vitest run",
 		"lint": "yarn test && yarn build && eslint src tests --ext ts --fix -c ../../.eslintrc",
-		"build": "tsc -b src",
+		"build": "tsdown",
 		"prepack": "yarn build",
 		"bump": "cliff-jumper",
 		"check-update": "cliff-jumper --dry-run"

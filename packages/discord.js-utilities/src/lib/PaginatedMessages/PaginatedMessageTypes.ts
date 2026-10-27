@@ -382,16 +382,7 @@ export interface SafeReplyToInteractionParameters<T extends 'edit' | 'reply' = n
  * Represents the possible reasons for stopping a paginated message.
  */
 export type PaginatedMessageStopReasons =
-	| 'time'
-	| 'idle'
-	| 'user'
-	| 'messageDelete'
-	| 'channelDelete'
-	| 'threadDelete'
-	| 'guildDelete'
-	| 'limit'
-	| 'componentLimit'
-	| 'userLimit';
+	'time' | 'idle' | 'user' | 'messageDelete' | 'channelDelete' | 'threadDelete' | 'guildDelete' | 'limit' | 'componentLimit' | 'userLimit';
 
 /**
  * Represents a resolvable object that can be used to create an embed in Discord.

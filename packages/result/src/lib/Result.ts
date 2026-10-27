@@ -1067,7 +1067,7 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * @example
 	 * ```typescript
 	 * import { Result } from '@sapphire/result';
-	 * const { ok } = require('@sapphire/result');
+	 * import { ok } from '@sapphire/result';
 	 *
 	 * ok(2) instanceof Result; // true
 	 * ```
@@ -1087,7 +1087,7 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * @example
 	 * ```typescript
 	 * import { Result } from '@sapphire/result';
-	 * const { ok } = require('@sapphire/result');
+	 * import { ok } from '@sapphire/result';
 	 *
 	 * Result.isResult(ok(2)); // true
 	 * ```
@@ -1105,7 +1105,7 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * @example
 	 * ```typescript
 	 * import { Result } from '@sapphire/result';
-	 * const { ok } = require('@sapphire/result');
+	 * import { ok } from '@sapphire/result';
 	 *
 	 * Result.isResult(ok(2)); // true
 	 * ```

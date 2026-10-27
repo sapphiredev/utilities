@@ -18,7 +18,7 @@ describe('range', () => {
 	});
 
 	test('GIVEN negative min,max positive step THEN throws error', () => {
-		expect(() => range(-1, -3, 1)).toThrowError(new RangeError('Invalid array length'));
+		expect(() => range(-1, -3, 1)).toThrow(new RangeError('Invalid array length'));
 	});
 
 	test('GIVEN negative min (lower than max),max positive step THEN gives negative range', () => {

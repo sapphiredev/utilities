@@ -14,19 +14,19 @@
 
 **Table of Contents**
 
--   [Features](#features)
--   [Installation](#installation)
--   [Usage](#usage)
-    -   [Basic Usage](#basic-usage)
--   [Buy us some doughnuts](#buy-us-some-doughnuts)
--   [Contributors](#contributors)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+    - [Basic Usage](#basic-usage)
+- [Buy us some doughnuts](#buy-us-some-doughnuts)
+- [Contributors](#contributors)
 
 ## Features
 
--   Written in TypeScript
--   Bundled with esbuild so it can be used in NodeJS and browsers
--   Offers CommonJS, ESM and UMD bundles
--   Fully tested
+- Written in TypeScript
+- Published as ESM for Node.js and modern bundlers
+- Publishes ESM-only output
+- Fully tested
 
 ## Installation
 
@@ -38,13 +38,11 @@ npm install @sapphire/timer-manager
 
 ## Usage
 
-**Note:** While this section uses `require`, the imports match 1:1 with ESM imports. For example `const { TimerManager } = require('@sapphire/timer-manager')` equals `import { TimerManager } from '@sapphire/timer-manager'`.
-
 ### Basic Usage
 
 ```typescript
 // Import the TimerManager class
-const { TimerManager } = require('@sapphire/timer-manager');
+import { TimerManager } from '@sapphire/timer-manager';
 
 // Use the class for timeouts
 const timeout = TimerManager.setTimeout(() => console.log('Hello, world!'), 1000);

@@ -472,7 +472,7 @@ describe('Result', () => {
 				const error = new Error('Some error message');
 				const x = err(error);
 
-				expect(() => x.unwrapRaw()).toThrowError(error);
+				expect(() => x.unwrapRaw()).toThrow(error);
 			});
 		});
 

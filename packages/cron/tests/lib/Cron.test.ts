@@ -337,6 +337,6 @@ describe('Cron', () => {
 	});
 
 	test('bad cron', () => {
-		expect(() => new Cron('? ?')).toThrowError('Invalid Cron Provided');
+		expect(() => new Cron('? ?')).toThrow('Invalid Cron Provided');
 	});
 });

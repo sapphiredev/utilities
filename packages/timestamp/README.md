@@ -14,20 +14,20 @@
 
 **Table of Contents**
 
--   [Features](#features)
--   [Installation](#installation)
--   [Usage](#usage)
-    -   [Human Readable Milliseconds](#human-readable-milliseconds)
-    -   [Formatting a Date](#formatting-a-date)
--   [Buy us some doughnuts](#buy-us-some-doughnuts)
--   [Contributors](#contributors)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+    - [Human Readable Milliseconds](#human-readable-milliseconds)
+    - [Formatting a Date](#formatting-a-date)
+- [Buy us some doughnuts](#buy-us-some-doughnuts)
+- [Contributors](#contributors)
 
 ## Features
 
--   Written in TypeScript
--   Bundled with esbuild so it can be used in NodeJS and browsers
--   Offers CommonJS, ESM and UMD bundles
--   Fully tested
+- Written in TypeScript
+- Published as ESM for Node.js and modern bundlers
+- Publishes ESM-only output
+- Fully tested
 
 ## Installation
 
@@ -39,8 +39,6 @@ npm install @sapphire/timestamp
 
 ## Usage
 
-**Note:** While this section uses `require`, the imports match 1:1 with ESM imports. For example `const { Timestamp } = require('@sapphire/timestamp')` equals `import { Timestamp } from '@sapphire/timestamp'`.
-
 ### Human Readable Milliseconds
 
 Milliseconds are often hard for humans to quickly parse, so it's nice to use
@@ -48,7 +46,7 @@ named Enum members to make it easier to read.
 
 ```typescript
 // Import the Time enum
-const { Time } = require('@sapphire/timestamp');
+import { Time } from '@sapphire/timestamp';
 
 setTimeout(() => {
 	// Do something in half a second
@@ -67,7 +65,7 @@ setTimeout(() => {
 
 ```typescript
 // Import the Timestamp class
-const { Timestamp } = require('@sapphire/timestamp');
+import { Timestamp } from '@sapphire/timestamp';
 
 // Saturday 9th March 2019, at 16:20:35:500
 const date = new Date(2019, 2, 9, 16, 20, 35, 1);

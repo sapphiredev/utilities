@@ -4,22 +4,17 @@
 	"description": "Standard ESLint config for the Sapphire Community",
 	"author": "@sapphire",
 	"license": "MIT",
-	"main": "dist/cjs/index.cjs",
-	"module": "dist/esm/index.mjs",
+	"main": "dist/index.mjs",
+	"module": "dist/index.mjs",
 	"exports": {
-		"import": {
-			"default": "./dist/esm/index.mjs"
-		},
-		"require": {
-			"default": "./dist/cjs/index.cjs"
-		}
+		"default": "./dist/index.mjs"
 	},
 	"sideEffects": false,
 	"homepage": "https://github.com/sapphiredev/utilities/tree/main/packages/eslint-config",
 	"scripts": {
 		"test": "vitest run",
 		"prelint": "yarn test && yarn build",
-		"build": "tsup",
+		"build": "tsdown",
 		"prepack": "yarn build",
 		"bump": "cliff-jumper",
 		"check-update": "cliff-jumper --dry-run"
@@ -67,5 +62,6 @@
 		"tsdown": "0.23.1",
 		"unrun": "^0.3.1",
 		"vitest": "^5.0.5"
-	}
+	},
+	"type": "module"
 }

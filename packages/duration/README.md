@@ -14,22 +14,22 @@
 
 **Table of Contents**
 
--   [Features](#features)
--   [Installation](#installation)
--   [Usage](#usage)
-    -   [Human Readable Milliseconds](#human-readable-milliseconds)
-    -   [Parsing a Duration](#parsing-a-duration)
-    -   [Serializing a Duration](#serializing-a-duration)
-    -   [Localizing with Durations](#localizing-with-durations)
--   [Buy us some doughnuts](#buy-us-some-doughnuts)
--   [Contributors](#contributors)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+    - [Human Readable Milliseconds](#human-readable-milliseconds)
+    - [Parsing a Duration](#parsing-a-duration)
+    - [Serializing a Duration](#serializing-a-duration)
+    - [Localizing with Durations](#localizing-with-durations)
+- [Buy us some doughnuts](#buy-us-some-doughnuts)
+- [Contributors](#contributors)
 
 ## Features
 
--   Written in TypeScript
--   Bundled with esbuild so it can be used in NodeJS and browsers
--   Offers CommonJS, ESM and UMD bundles
--   Fully tested
+- Written in TypeScript
+- Published as ESM for Node.js and modern bundlers
+- Publishes ESM-only output
+- Fully tested
 
 ## Installation
 
@@ -41,8 +41,6 @@ npm install @sapphire/duration
 
 ## Usage
 
-**Note:** While this section uses `require`, the imports match 1:1 with ESM imports. For example `const { Duration } = require('@sapphire/duration')` equals `import { Duration } from '@sapphire/duration'`.
-
 ### Human Readable Milliseconds
 
 Milliseconds are often hard for humans to quickly parse, so it's nice to use
@@ -50,7 +48,7 @@ named enum members to make it easier to read.
 
 ```typescript
 // Import the Time enum
-const { Time } = require('@sapphire/duration');
+import { Time } from '@sapphire/duration';
 
 setTimeout(() => {
 	// Do something in half a second
@@ -69,7 +67,7 @@ setTimeout(() => {
 
 ```typescript
 // Import the Duration class
-const { Duration } = require('@sapphire/duration');
+import { Duration } from '@sapphire/duration';
 
 // Create a Duration from a string
 new Duration('1d3h15m3s').offset; // 98103000
@@ -142,7 +140,7 @@ new Duration('1 y').offset; // 31557600000
 
 ```typescript
 // Import the DurationFormatter class
-const { DurationFormatter } = require('@sapphire/duration');
+import { DurationFormatter } from '@sapphire/duration';
 
 const formatter = new DurationFormatter();
 
@@ -158,7 +156,7 @@ formatter.format(98103000, 2); // 1 day 3 hours
 
 ```typescript
 // Import the DurationFormatter class
-const { DurationFormatter, TimeTypes } = require('@sapphire/duration');
+import { DurationFormatter, TimeTypes } from '@sapphire/duration';
 
 // Create custom unit names
 const units = {

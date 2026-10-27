@@ -18,15 +18,15 @@ There many functions that are always extremely useful to have when developing bo
 
 ## Features
 
--   Written in TypeScript.
--   Bundled with esbuild to provide size-optimal bundles.
--   Offers CommonJS and ESM bundles.
+- Written in TypeScript.
+- Bundled with esbuild to provide size-optimal bundles.
+- Publishes ESM-only output
 
 ## Installation
 
 `@sapphire/discord.js-utilities` depends on the following packages. Be sure to install these along with this package!
 
--   [`discord.js`](https://www.npmjs.com/package/discord.js)
+- [`discord.js`](https://www.npmjs.com/package/discord.js)
 
 You can use the following command to install this package, or replace `npm install` with your package manager of choice.
 

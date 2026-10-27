@@ -20,15 +20,15 @@ The code in this package has been greatly inspired by [lexure] from [1Computer1]
 
 ## Features
 
--   Written in TypeScript
--   Bundled with esbuild so it can be used in NodeJS and browsers
--   Offers CommonJS, ESM and UMD bundles
--   Fully tested
--   Parses quoted input with multiple quote styles
--   Parses flags and options with a customizable strategy system
--   Keeps leading whitespace
--   Includes a convenient wrapper to retrieve the parsed arguments
--   Includes custom argument delimiter
+- Written in TypeScript
+- Published as ESM for Node.js and modern bundlers
+- Publishes ESM-only output
+- Fully tested
+- Parses quoted input with multiple quote styles
+- Parses flags and options with a customizable strategy system
+- Keeps leading whitespace
+- Includes a convenient wrapper to retrieve the parsed arguments
+- Includes custom argument delimiter
 
 ## Installation
 
@@ -39,8 +39,6 @@ npm install @sapphire/lexure
 ```
 
 ## Usage
-
-**Note:** While this section uses `require`, the imports match 1:1 with ESM imports. For example `const { Parser } = require('@sapphire/lexure')` equals `import { Parser } from '@sapphire/lexure'`.
 
 ```typescript
 const parser = new Parser(new PrefixedStrategy(['--', '/'], ['=', ':']));

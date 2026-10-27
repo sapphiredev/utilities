@@ -14,18 +14,18 @@
 
 **Table of Contents**
 
--   [Features](#features)
--   [Installation](#installation)
--   [Usage](#usage)
--   [Buy us some doughnuts](#buy-us-some-doughnuts)
--   [Contributors](#contributors)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Buy us some doughnuts](#buy-us-some-doughnuts)
+- [Contributors](#contributors)
 
 ## Features
 
--   Written in TypeScript
--   Bundled with esbuild so it can be used in NodeJS and browsers
--   Offers CommonJS, ESM, and UMD bundles
--   Fully tested
+- Written in TypeScript
+- Published as ESM for Node.js and modern bundlers
+- Publishes ESM-only output
+- Fully tested
 
 ## Installation
 
@@ -37,11 +37,9 @@ npm install @sapphire/async-queue
 
 ## Usage
 
-**Note**: While this section uses `require`, the imports match 1:1 with ESM imports. For example `const { AsyncQueue } = require('@sapphire/async-queue')` equals `import { AsyncQueue } from '@sapphire/async-queue'`.
-
 ```typescript
 // Require the AsyncQueue class
-const { AsyncQueue } = require('@sapphire/async-queue');
+import { AsyncQueue } from '@sapphire/async-queue';
 
 const queue = new AsyncQueue();
 

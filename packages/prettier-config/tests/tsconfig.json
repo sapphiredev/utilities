@@ -4,7 +4,7 @@
 		"noEmit": true,
 		"incremental": false,
 		"moduleResolution": "Node16",
-		"types": ["vitest/globals"]
+		"types": ["node", "vitest/globals"]
 	},
 	"include": ["./"]
 }

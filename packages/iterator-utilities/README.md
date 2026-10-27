@@ -14,73 +14,73 @@
 
 **Table of Contents**
 
--   [Features](#features)
--   [Installation](#installation)
--   [Usage](#usage)
-    -   [`append`](#append)
-    -   [`at`](#at)
-    -   [`average`](#average)
-    -   [`chain`](#chain)
-    -   [`chunk`](#chunk)
-    -   [`compact`](#compact)
-    -   [`compress`](#compress)
-    -   [`contains`](#contains)
-    -   [`count`](#count)
-    -   [`cycle`](#cycle)
-    -   [`difference`](#difference)
-    -   [`drop`](#drop)
-    -   [`dropLast`](#droplast)
-    -   [`dropWhile`](#dropwhile)
-    -   [`empty`](#empty)
-    -   [`enumerate`](#enumerate)
-    -   [`every`](#every)
-    -   [`filter`](#filter)
-    -   [`find`](#find)
-    -   [`findIndex`](#findindex)
-    -   [`first`](#first)
-    -   [`flat`](#flat)
-    -   [`flatMap`](#flatmap)
-    -   [`forEach`](#foreach)
-    -   [`from`](#from)
-    -   [`indexOf`](#indexof)
-    -   [`intersect`](#intersect)
-    -   [`isEmpty`](#isempty)
-    -   [`last`](#last)
-    -   [`map`](#map)
-    -   [`max`](#max)
-    -   [`min`](#min)
-    -   [`partition`](#partition)
-    -   [`peekable`](#peekable)
-    -   [`prepend`](#prepend)
-    -   [`product`](#product)
-    -   [`range`](#range)
-    -   [`reduce`](#reduce)
-    -   [`repeat`](#repeat)
-    -   [`reverse`](#reverse)
-    -   [`slice`](#slice)
-    -   [`some`](#some)
-    -   [`sorted`](#sorted)
-    -   [`starMap`](#starmap)
-    -   [`sum`](#sum)
-    -   [`take`](#take)
-    -   [`takeLast`](#takelast)
-    -   [`takeWhile`](#takewhile)
-    -   [`tee`](#tee)
-    -   [`toArray`](#toarray)
-    -   [`toIterableIterator`](#toiterableiterator)
-    -   [`union`](#union)
-    -   [`unique`](#unique)
-    -   [`unzip`](#unzip)
-    -   [`zip`](#zip)
--   [Buy us some doughnuts](#buy-us-some-doughnuts)
--   [Contributors](#contributors)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+    - [`append`](#append)
+    - [`at`](#at)
+    - [`average`](#average)
+    - [`chain`](#chain)
+    - [`chunk`](#chunk)
+    - [`compact`](#compact)
+    - [`compress`](#compress)
+    - [`contains`](#contains)
+    - [`count`](#count)
+    - [`cycle`](#cycle)
+    - [`difference`](#difference)
+    - [`drop`](#drop)
+    - [`dropLast`](#droplast)
+    - [`dropWhile`](#dropwhile)
+    - [`empty`](#empty)
+    - [`enumerate`](#enumerate)
+    - [`every`](#every)
+    - [`filter`](#filter)
+    - [`find`](#find)
+    - [`findIndex`](#findindex)
+    - [`first`](#first)
+    - [`flat`](#flat)
+    - [`flatMap`](#flatmap)
+    - [`forEach`](#foreach)
+    - [`from`](#from)
+    - [`indexOf`](#indexof)
+    - [`intersect`](#intersect)
+    - [`isEmpty`](#isempty)
+    - [`last`](#last)
+    - [`map`](#map)
+    - [`max`](#max)
+    - [`min`](#min)
+    - [`partition`](#partition)
+    - [`peekable`](#peekable)
+    - [`prepend`](#prepend)
+    - [`product`](#product)
+    - [`range`](#range)
+    - [`reduce`](#reduce)
+    - [`repeat`](#repeat)
+    - [`reverse`](#reverse)
+    - [`slice`](#slice)
+    - [`some`](#some)
+    - [`sorted`](#sorted)
+    - [`starMap`](#starmap)
+    - [`sum`](#sum)
+    - [`take`](#take)
+    - [`takeLast`](#takelast)
+    - [`takeWhile`](#takewhile)
+    - [`tee`](#tee)
+    - [`toArray`](#toarray)
+    - [`toIterableIterator`](#toiterableiterator)
+    - [`union`](#union)
+    - [`unique`](#unique)
+    - [`unzip`](#unzip)
+    - [`zip`](#zip)
+- [Buy us some doughnuts](#buy-us-some-doughnuts)
+- [Contributors](#contributors)
 
 ## Features
 
--   Written in TypeScript
--   Bundled with esbuild so it can be used in NodeJS and browsers
--   Offers CommonJS, ESM and UMD bundles
--   Fully tested
+- Written in TypeScript
+- Published as ESM for Node.js and modern bundlers
+- Publishes ESM-only output
+- Fully tested
 
 ## Installation
 
@@ -96,14 +96,14 @@ For any of the following examples, you can import the utilities from the index f
 
 ```ts
 import { append } from '@sapphire/iterator-utilities';
-const { append } = require('@sapphire/iterator-utilities');
+import { append } from '@sapphire/iterator-utilities';
 ```
 
 Or you can import the utilities directly:
 
 ```ts
 import { append } from '@sapphire/iterator-utilities/append';
-const { append } = require('@sapphire/iterator-utilities/append');
+import { append } from '@sapphire/iterator-utilities/append';
 ```
 
 ### `append`

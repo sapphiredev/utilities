@@ -7,7 +7,7 @@ describe('TimerManager', () => {
 	});
 
 	test('GIVEN "new" THEN  throws error', () => {
-		expect(() => new TimerManager()).toThrowError('Super constructor null of TimerManager is not a constructor');
+		expect(() => new TimerManager()).toThrow('Super constructor null of TimerManager is not a constructor');
 	});
 
 	test('GIVEN setTimeout static THEN creates and resolves timeout', async () => {

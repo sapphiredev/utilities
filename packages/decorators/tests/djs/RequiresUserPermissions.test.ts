@@ -63,7 +63,7 @@ describe('RequiresUserPermissions', () => {
 			test('GIVEN lacking 1 permission THEN throws UserError', async () => {
 				const result = instance.getValue(buildMessage(ChannelType.GuildText, PermissionFlagsBits.SendMessages));
 
-				await expect(result).rejects.toThrowError(
+				await expect(result).rejects.toThrow(
 					new UserError({
 						identifier: DecoratorIdentifiers.RequiresUserPermissionsMissingPermissions,
 						message: 'Sorry, but you are not allowed to do that. You are missing the permissions: AttachFiles',
@@ -77,7 +77,7 @@ describe('RequiresUserPermissions', () => {
 			test('GIVEN lacking 2 permissions THEN throws UserError', async () => {
 				const result = instance.getValue(buildMessage(ChannelType.GuildText));
 
-				await expect(result).rejects.toThrowError(
+				await expect(result).rejects.toThrow(
 					new UserError({
 						identifier: DecoratorIdentifiers.RequiresUserPermissionsMissingPermissions,
 						message: 'Sorry, but you are not allowed to do that. You are missing the permissions: SendMessages,AttachFiles',
@@ -112,7 +112,7 @@ describe('RequiresUserPermissions', () => {
 			test('GIVEN no additional permissions THEN resolves', async () => {
 				const result = instance.getValue(buildMessage(ChannelType.DM));
 
-				await expect(result).rejects.toThrowError(
+				await expect(result).rejects.toThrow(
 					new UserError({
 						identifier: DecoratorIdentifiers.RequiresUserPermissionsGuildOnly,
 						message: 'Sorry, but that command can only be used in a server because you do not have sufficient permissions in DMs'

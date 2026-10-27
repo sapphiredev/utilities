@@ -18,8 +18,8 @@ There's some best practices for using `@sapphire/result` - such as never discard
 
 ## Features
 
--   Written in TypeScript
--   Fully tested
+- Written in TypeScript
+- Fully tested
 
 ## Installation
 

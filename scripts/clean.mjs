@@ -29,7 +29,7 @@ const paths = [
 	new URL('time-utilities/dist/', packagesDir),
 	new URL('timer-manager/dist/', packagesDir),
 	new URL('timestamp/dist/', packagesDir),
-	new URL('utilities/dist/', packagesDir),
+	new URL('utilities/dist/', packagesDir)
 ];
 
 await Promise.all(paths.map((path) => rm(path, options)));

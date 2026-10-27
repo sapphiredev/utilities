@@ -464,13 +464,13 @@ describe('Schema', () => {
 	describe('exceptions', () => {
 		test('GIVEN a schema with a duplicate property THEN it throws', () => {
 			const schema = new Schema(1).boolean('a');
-			expect(() => schema.boolean('a')).toThrowError('Schema with id 1 already has a property with name "a"');
+			expect(() => schema.boolean('a')).toThrow('Schema with id 1 already has a property with name "a"');
 		});
 
 		test('GIVEN a schema with a non-existent property name THEN it throws', () => {
 			const schema = new Schema(1).boolean('a');
 			// @ts-expect-error Testing invalid input
-			expect(() => schema.get('b')).toThrowError('Schema with id 1 does not have a property with name "b"');
+			expect(() => schema.get('b')).toThrow('Schema with id 1 does not have a property with name "b"');
 		});
 	});
 });

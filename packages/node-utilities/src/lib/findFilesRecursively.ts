@@ -11,10 +11,10 @@ import { join } from 'node:path';
  *
  * @example
  * ```typescript
- * // With CommonJS: To find all files ending with `.ts` in the src directory:
- * const path = require('node:path');
+ * // Find all files ending with `.ts` in the src directory:
+ * import { join } from 'node:path';
  *
- * for await (const file of findFilesRecursively(path.join(__dirname, 'src'), (filePath) => filePath.endsWith('.ts'))) {
+ * for await (const file of findFilesRecursively(join(process.cwd(), 'src'), (filePath) => filePath.endsWith('.ts'))) {
  *   console.log(file);
  * }
  * ```

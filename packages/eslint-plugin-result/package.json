@@ -4,22 +4,16 @@
 	"description": "A TypeScript ESLint plugin for @sapphire/result",
 	"author": "@sapphire",
 	"license": "MIT",
-	"main": "dist/cjs/index.cjs",
-	"module": "dist/esm/index.mjs",
+	"main": "dist/index.mjs",
+	"module": "dist/index.mjs",
 	"exports": {
-		"import": {
-			"default": "./dist/esm/index.mjs"
-		},
-		"require": {
-			"default": "./dist/cjs/index.cjs"
-		}
+		"default": "./dist/index.mjs"
 	},
 	"sideEffects": false,
 	"homepage": "https://github.com/sapphiredev/utilities/tree/main/packages/eslint-plugin-result",
 	"scripts": {
-		"test": "vitest run",
 		"lint": "eslint src tests --ext ts --fix -c ../../.eslintrc",
-		"build": "tsup",
+		"build": "tsdown",
 		"prepack": "yarn build",
 		"bump": "cliff-jumper",
 		"check-update": "cliff-jumper --dry-run"
@@ -55,15 +49,14 @@
 		"@favware/cliff-jumper": "^6.1.0",
 		"@typescript-eslint/rule-tester": "^7.18.0",
 		"@typescript-eslint/typescript-estree": "^7.18.0",
-		"@vitest/coverage-v8": "^5.0.5",
 		"tsdown": "0.23.1",
-		"unrun": "^0.3.1",
-		"vitest": "^5.0.5"
+		"unrun": "^0.3.1"
 	},
 	"dependencies": {
 		"@sapphire/result": "workspace:^",
 		"@typescript-eslint/utils": "^7.18.0",
 		"tsutils": "^3.21.0",
 		"typescript": "~7.0.2"
-	}
+	},
+	"type": "module"
 }
