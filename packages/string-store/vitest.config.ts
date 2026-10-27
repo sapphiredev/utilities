@@ -7,11 +7,7 @@ export default defineConfig({
 			provider: 'v8',
 			enabled: true,
 			reporter: ['text', 'lcov'],
-			exclude: [
-				...defaultExclude,
-				'src/lib/buffer/DuplexBuffer.ts',
-				'src/lib/types/base/IType.ts'
-			]
+			exclude: [...defaultExclude, 'src/lib/buffer/DuplexBuffer.ts', 'src/lib/types/base/IType.ts']
 		}
 	}
 });
