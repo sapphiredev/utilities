@@ -659,7 +659,6 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * ```
 	 */
 	public unwrapRaw(): If<Success, T, never> {
-		// eslint-disable-next-line @typescript-eslint/no-throw-literal
 		if (this.isErr()) throw this[ValueProperty];
 		// @ts-expect-error Complex types
 		return this[ValueProperty] as T;

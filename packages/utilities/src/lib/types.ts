@@ -1,6 +1,6 @@
 export type Primitive = string | number | boolean | bigint | symbol | undefined | null;
 
-// eslint-disable-next-line @typescript-eslint/ban-types
+// eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
 export type Builtin = Primitive | Function | Date | Error | RegExp;
 
 export type DeepReadonly<T> = T extends Builtin
@@ -40,7 +40,7 @@ export type DeepRequired<T> = T extends Builtin
 							? WeakSet<DeepRequired<U>>
 							: T extends Promise<infer U>
 								? Promise<DeepRequired<U>>
-								: T extends {} // eslint-disable-line @typescript-eslint/ban-types
+								: T extends {} // eslint-disable-line @typescript-eslint/no-empty-object-type
 									? { [K in keyof T]-?: DeepRequired<T[K]> }
 									: NonNullable<T>;
 
@@ -116,7 +116,6 @@ export type NonNullableProperties<T = unknown> = {
  *
  * @deprecated Use the `object` type instead.
  */
-// eslint-disable-next-line @typescript-eslint/ban-types
 export type NonNullObject = {} & object;
 
 /**

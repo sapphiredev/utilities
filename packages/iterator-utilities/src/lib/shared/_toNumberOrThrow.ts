@@ -1,4 +1,5 @@
 export function toNumberOrThrow(value: NumberResolvable): number {
+	// eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check
 	switch (typeof value) {
 		case 'bigint':
 			throw new TypeError('Cannot convert a BigInt value to a number');
