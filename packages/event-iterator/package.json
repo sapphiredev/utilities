@@ -15,7 +15,7 @@
 	"homepage": "https://github.com/sapphiredev/utilities/tree/main/packages/event-iterator",
 	"scripts": {
 		"test": "vitest run",
-		"lint": "eslint src tests --ext ts --fix -c ../../.eslintrc",
+		"lint": "eslint src tests --ext ts --fix",
 		"build": "tsdown",
 		"prepack": "yarn build",
 		"bump": "cliff-jumper",

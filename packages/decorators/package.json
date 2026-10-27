@@ -15,7 +15,7 @@
 	"homepage": "https://github.com/sapphiredev/utilities/tree/main/packages/decorators",
 	"scripts": {
 		"test": "vitest run",
-		"lint": "eslint src tests --ext ts --fix -c ../../.eslintrc",
+		"lint": "eslint src tests --ext ts --fix",
 		"build": "yarn gen-index && tsdown",
 		"prepack": "yarn build",
 		"bump": "cliff-jumper",
@@ -30,6 +30,7 @@
 		"@sapphire/result": "workspace:^",
 		"@sapphire/utilities": "workspace:^",
 		"@vitest/coverage-v8": "^5.0.5",
+		"eslint": "^10.13.0",
 		"tsdown": "0.23.1",
 		"typescript": "~6.0.3",
 		"unrun": "^0.3.1",

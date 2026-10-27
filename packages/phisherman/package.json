@@ -55,6 +55,7 @@
 	"devDependencies": {
 		"@favware/cliff-jumper": "^6.1.0",
 		"@sapphire/result": "workspace:^",
+		"eslint": "^10.13.0",
 		"tsdown": "0.23.1",
 		"typescript": "~6.0.3",
 		"unplugin-replace": "^0.9.1",

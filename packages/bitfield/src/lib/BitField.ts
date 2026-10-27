@@ -62,6 +62,7 @@ export class BitField<Flags extends Record<string, number> | Record<string, bigi
 	 * @returns The resolved value.
 	 */
 	public resolve(resolvable: ValueResolvable<this>): ValueType<this> {
+		// eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check
 		switch (typeof resolvable) {
 			case 'string':
 				if ((resolvable as string) in this.flags) return this.flags[resolvable as keyof Flags] as any;
