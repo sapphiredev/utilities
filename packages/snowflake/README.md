@@ -14,20 +14,20 @@
 
 **Table of Contents**
 
--   [Description](#description)
--   [Features](#features)
--   [Installation](#installation)
--   [Usage](#usage)
-    -   [Constructing snowflakes](#constructing-snowflakes)
-        -   [Snowflakes with custom epoch](#snowflakes-with-custom-epoch)
-        -   [Snowflake with Discord epoch constant](#snowflake-with-discord-epoch-constant)
-        -   [Snowflake with Twitter epoch constant](#snowflake-with-twitter-epoch-constant)
-    -   [Deconstructing snowflakes](#deconstructing-snowflakes)
-        -   [Snowflakes with custom epoch](#snowflakes-with-custom-epoch-1)
-        -   [Snowflake with Discord epoch constant](#snowflake-with-discord-epoch-constant-1)
-        -   [Snowflake with Twitter epoch constant](#snowflake-with-twitter-epoch-constant-1)
--   [Buy us some doughnuts](#buy-us-some-doughnuts)
--   [Contributors](#contributors)
+- [Description](#description)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+    - [Constructing snowflakes](#constructing-snowflakes)
+        - [Snowflakes with custom epoch](#snowflakes-with-custom-epoch)
+        - [Snowflake with Discord epoch constant](#snowflake-with-discord-epoch-constant)
+        - [Snowflake with Twitter epoch constant](#snowflake-with-twitter-epoch-constant)
+    - [Deconstructing snowflakes](#deconstructing-snowflakes)
+        - [Snowflakes with custom epoch](#snowflakes-with-custom-epoch-1)
+        - [Snowflake with Discord epoch constant](#snowflake-with-discord-epoch-constant-1)
+        - [Snowflake with Twitter epoch constant](#snowflake-with-twitter-epoch-constant-1)
+- [Buy us some doughnuts](#buy-us-some-doughnuts)
+- [Contributors](#contributors)
 
 ## Description
 
@@ -35,11 +35,11 @@ There is often a need to get a unique ID for entities, be that for Discord messa
 
 ## Features
 
--   Written in TypeScript
--   Bundled with esbuild so it can be used in NodeJS and browsers
--   Offers CommonJS, ESM and UMD bundles
--   Offers predefined epochs for Discord and Twitter
--   Fully tested
+- Written in TypeScript
+- Published as ESM for Node.js and modern bundlers
+- Publishes ESM-only output
+- Offers predefined epochs for Discord and Twitter
+- Fully tested
 
 ## Installation
 
@@ -51,15 +51,13 @@ npm install @sapphire/snowflake
 
 ## Usage
 
-**Note:** While this section uses `require`, the imports match 1:1 with ESM imports. For example `const { Snowflake } = require('@sapphire/snowflake')` equals `import { Snowflake } from '@sapphire/snowflake'`.
-
 ### Constructing snowflakes
 
 #### Snowflakes with custom epoch
 
 ```typescript
 // Import the Snowflake class
-const { Snowflake } = require('@sapphire/snowflake');
+import { Snowflake } from '@sapphire/snowflake';
 
 // Define a custom epoch
 const epoch = new Date('2000-01-01T00:00:00.000Z');
@@ -75,7 +73,7 @@ const uniqueId = snowflake.generate();
 
 ```typescript
 // Import the Snowflake class
-const { DiscordSnowflake } = require('@sapphire/snowflake');
+import { DiscordSnowflake } from '@sapphire/snowflake';
 
 // Generate a snowflake with Discord's epoch
 const uniqueId = DiscordSnowflake.generate();
@@ -88,7 +86,7 @@ const uniqueId = DiscordSnowflake.generate();
 
 ```typescript
 // Import the Snowflake class
-const { TwitterSnowflake } = require('@sapphire/snowflake');
+import { TwitterSnowflake } from '@sapphire/snowflake';
 
 // Generate a snowflake with Twitter's epoch
 const uniqueId = TwitterSnowflake.generate();
@@ -103,7 +101,7 @@ const uniqueId = TwitterSnowflake.generate();
 
 ```typescript
 // Import the Snowflake class
-const { Snowflake } = require('@sapphire/snowflake');
+import { Snowflake } from '@sapphire/snowflake';
 
 // Define a custom epoch
 const epoch = new Date('2000-01-01T00:00:00.000Z');
@@ -119,7 +117,7 @@ const uniqueId = snowflake.deconstruct('3971046231244935168');
 
 ```typescript
 // Import the Snowflake class
-const { DiscordSnowflake } = require('@sapphire/snowflake');
+import { DiscordSnowflake } from '@sapphire/snowflake';
 
 // Deconstruct a snowflake with Discord's epoch
 const uniqueId = DiscordSnowflake.deconstruct('3971046231244935168');
@@ -132,7 +130,7 @@ const uniqueId = DiscordSnowflake.deconstruct('3971046231244935168');
 
 ```typescript
 // Import the Snowflake class
-const { TwitterSnowflake } = require('@sapphire/snowflake');
+import { TwitterSnowflake } from '@sapphire/snowflake';
 
 // Deconstruct a snowflake with Twitter's epoch
 const uniqueId = TwitterSnowflake.deconstruct('3971046231244935168');

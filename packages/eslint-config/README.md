@@ -43,15 +43,15 @@ Or to `eslintrc.js` / `.eslintrc.json`:
 }
 ```
 
-Or to `eslint.config.js`:
+Or to `eslint.config.mjs`:
 
 ```
-const { FlatCompat } = require('@eslint/eslintrc')
-const sapphireEslintConfig = require('@sapphire/eslint-config')
+import { FlatCompat } from '@eslint/eslintrc';
+import sapphireEslintConfig from '@sapphire/eslint-config';
 
-const compat = new FlatCompat()
+const compat = new FlatCompat();
 
-module.exports = [
+export default [
 	...compat.config(sapphireEslintConfig),
 	{
 		// other configs

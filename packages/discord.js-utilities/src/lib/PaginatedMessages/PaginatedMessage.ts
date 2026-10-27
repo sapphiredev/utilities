@@ -799,8 +799,8 @@ export class PaginatedMessage {
 	 * @param builder Either a callback whose first parameter is `new MessageBuilder()`, or an already constructed {@link MessageBuilder}
 	 * @example
 	 * ```typescript
-	 * const { PaginatedMessage } = require('@sapphire/discord.js-utilities');
-	 * const { EmbedBuilder } = require('discord.js');
+	 * import { PaginatedMessage } from '@sapphire/discord.js-utilities';
+	 * import { EmbedBuilder } from 'discord.js';
 	 *
 	 * const paginatedMessage = new PaginatedMessage()
 	 * 	.addPageBuilder((builder) => {
@@ -815,8 +815,8 @@ export class PaginatedMessage {
 	 * ```
 	 * @example
 	 * ```typescript
-	 * const { EmbedBuilder } = require('discord.js');
-	 * const { MessageBuilder, PaginatedMessage } = require('@sapphire/discord.js-utilities');
+	 * import { EmbedBuilder } from 'discord.js';
+	 * import { MessageBuilder, PaginatedMessage } from '@sapphire/discord.js-utilities';
 	 *
 	 * const embed = new EmbedBuilder()
 	 * 	.setColor('#FF0000')
@@ -839,8 +839,8 @@ export class PaginatedMessage {
 	 * @param builder Either a callback whose first parameter is `new MessageBuilder()`, or an already constructed {@link MessageBuilder}
 	 * @example
 	 * ```typescript
-	 * const { PaginatedMessage } = require('@sapphire/discord.js-utilities');
-	 * const { EmbedBuilder } = require('discord.js');
+	 * import { PaginatedMessage } from '@sapphire/discord.js-utilities';
+	 * import { EmbedBuilder } from 'discord.js';
 	 *
 	 * const paginatedMessage = new PaginatedMessage()
 	 * 	.addAsyncPageBuilder(async (builder) => {
@@ -865,7 +865,7 @@ export class PaginatedMessage {
 	 * @param content The content to set.
 	 * @example
 	 * ```typescript
-	 * const { PaginatedMessage } = require('@sapphire/discord.js-utilities');
+	 * import { PaginatedMessage } from '@sapphire/discord.js-utilities';
 	 *
 	 * const paginatedMessage = new PaginatedMessage()
 	 * 	.addPageContent('example content');
@@ -880,7 +880,7 @@ export class PaginatedMessage {
 	 * @param embed Either a callback whose first parameter is `new EmbedBuilder()`, or an already constructed {@link EmbedBuilder}
 	 * @example
 	 * ```typescript
-	 * const { PaginatedMessage } = require('@sapphire/discord.js-utilities');
+	 * import { PaginatedMessage } from '@sapphire/discord.js-utilities';
 	 *
 	 * const paginatedMessage = new PaginatedMessage()
 	 * 	.addPageEmbed((embed) => {
@@ -893,7 +893,7 @@ export class PaginatedMessage {
 	 * ```
 	 * @example
 	 * ```typescript
-	 * const { PaginatedMessage } = require('@sapphire/discord.js-utilities');
+	 * import { PaginatedMessage } from '@sapphire/discord.js-utilities';
 	 *
 	 * const embed = new EmbedBuilder()
 	 * 	.setColor('#FF0000')
@@ -912,7 +912,7 @@ export class PaginatedMessage {
 	 * @param embed Either a callback whose first parameter is `new EmbedBuilder()`, or an already constructed {@link EmbedBuilder}
 	 * @example
 	 * ```typescript
-	 * const { PaginatedMessage } = require('@sapphire/discord.js-utilities');
+	 * import { PaginatedMessage } from '@sapphire/discord.js-utilities';
 	 *
 	 * const paginatedMessage = new PaginatedMessage()
 	 * 	.addAsyncPageEmbed(async (embed) => {
@@ -938,7 +938,7 @@ export class PaginatedMessage {
 	 * @param embeds Either a callback which receives 10 parameters of `new EmbedBuilder()`, or an array of already constructed {@link EmbedBuilder}'s
 	 * @example
 	 * ```typescript
-	 * const { PaginatedMessage } = require('@sapphire/discord.js-utilities');
+	 * import { PaginatedMessage } from '@sapphire/discord.js-utilities';
 	 *
 	 * const paginatedMessage = new PaginatedMessage()
 	 * 	.addPageEmbeds((embed1, embed2, embed3) => { // You can add up to 10 embeds
@@ -959,7 +959,7 @@ export class PaginatedMessage {
 	 * ```
 	 * @example
 	 * ```typescript
-	 * const { PaginatedMessage } = require('@sapphire/discord.js-utilities');
+	 * import { PaginatedMessage } from '@sapphire/discord.js-utilities';
 	 *
 	 * const embed1 = new EmbedBuilder()
 	 * 	.setColor('#FF0000')
@@ -1023,7 +1023,7 @@ export class PaginatedMessage {
 	 * @param embeds Either a callback which receives 10 parameters of `new EmbedBuilder()`, or an array of already constructed {@link EmbedBuilder}'s
 	 * @example
 	 * ```typescript
-	 * const { PaginatedMessage } = require('@sapphire/discord.js-utilities');
+	 * import { PaginatedMessage } from '@sapphire/discord.js-utilities';
 	 *
 	 * const paginatedMessage = new PaginatedMessage().addAsyncPageEmbeds(async (embed0, embed1, embed2) => {
 	 * 	const someRemoteData = (await fetch('https://contoso.com/api/users')) as any;
@@ -1050,7 +1050,7 @@ export class PaginatedMessage {
 	 * ```
 	 * @example
 	 * ```typescript
-	 * const { PaginatedMessage } = require('@sapphire/discord.js-utilities');
+	 * import { PaginatedMessage } from '@sapphire/discord.js-utilities';
 	 *
 	 * const embed1 = new EmbedBuilder()
 	 * 	.setColor('#FF0000')

@@ -60,7 +60,7 @@ export interface StrategyFilters {
  *
  * @example
  * ```typescript
- * const { MessagePrompter } = require('@sapphire/discord.js-utilities');
+ * import { MessagePrompter } from '@sapphire/discord.js-utilities';
  *
  * const handler = new MessagePrompter('Are you sure you want to continue?');
  * const result = await handler.run(channel, author);
@@ -68,7 +68,7 @@ export interface StrategyFilters {
  *
  * @example
  * ```typescript
- * const { MessagePrompter } = require('@sapphire/discord.js-utilities');
+ * import { MessagePrompter } from '@sapphire/discord.js-utilities';
  *
  * const handler = new MessagePrompter('Choose a number between 5 and 10?', 'number', {
  * 		start: 5,
@@ -79,7 +79,7 @@ export interface StrategyFilters {
  *
  * @example
  * ```typescript
- * const { MessagePrompter } = require('@sapphire/discord.js-utilities');
+ * import { MessagePrompter } from '@sapphire/discord.js-utilities';
  *
  * const handler = new MessagePrompter('Are you happy or sad?', 'reaction', {
  * 		reactions: ['🙂', '🙁']
@@ -89,7 +89,7 @@ export interface StrategyFilters {
  *
  * @example
  * ```typescript
- * const { MessagePrompter } = require('@sapphire/discord.js-utilities');
+ * import { MessagePrompter } from '@sapphire/discord.js-utilities';
  *
  * const handler = new MessagePrompter('Do you love me?', 'message');
  * const result = await handler.run(channel, author);
@@ -134,7 +134,7 @@ export class MessagePrompter<S extends keyof StrategyReturns = 'confirm'> {
 	 * @param channel The channel to use.
 	 * @param authorOrFilter An author object to validate or a {@linkplain https://discord.js.org/docs/packages/discord.js/main/CollectorFilter:TypeAlias CollectorFilter} predicate callback.
 	 */
-	public run<Filter extends S extends keyof StrategyFilters ? StrategyFilters[S] : unknown[]>(
+	public run<Filter extends (S extends keyof StrategyFilters ? StrategyFilters[S] : unknown[])>(
 		channel: MessagePrompterChannelTypes,
 		authorOrFilter: User | CollectorFilter<Filter>
 	): S extends keyof StrategyReturns ? Promise<StrategyReturns[S]> : never {

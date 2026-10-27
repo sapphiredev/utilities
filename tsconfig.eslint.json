@@ -1,9 +1,4 @@
 {
 	"extends": "./tsconfig.base.json",
-	"include": [
-		"vitest.config.ts",
-		"vitest.workspace.ts",
-		"packages/",
-		"scripts/"
-	]
+	"include": ["vitest.config.ts", "packages/", "scripts/"]
 }

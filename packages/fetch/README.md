@@ -14,15 +14,15 @@
 
 **Table of Contents**
 
--   [Description](#description)
--   [Features](#features)
--   [Installation](#installation)
--   [Usage](#usage)
-    -   [`GET`ting JSON data](#getting-json-data)
-    -   [`GET`ting Buffer data (images, etc.)](#getting-buffer-data-images-etc)
-    -   [`POST`ing JSON data](#posting-json-data)
--   [Buy us some doughnuts](#buy-us-some-doughnuts)
--   [Contributors](#contributors)
+- [Description](#description)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+    - [`GET`ting JSON data](#getting-json-data)
+    - [`GET`ting Buffer data (images, etc.)](#getting-buffer-data-images-etc)
+    - [`POST`ing JSON data](#posting-json-data)
+- [Buy us some doughnuts](#buy-us-some-doughnuts)
+- [Contributors](#contributors)
 
 ## Description
 
@@ -30,12 +30,12 @@ Node has a great global `fetch` (powered by [undici]) for making API calls, but 
 
 ## Features
 
--   Written in TypeScript
--   Fully tested
--   Exported `enum` for the common return data types
--   Throws distinctive errors when the API returns a "not ok" status code to make them easier to understand
--   Enforces casting the return type when requesting JSON data, to ensure your return data is strictly typed
--   Uses global `fetch`, which for NodeJS is [undici] and for browsers is the [Fetch API][fetch-mdn]
+- Written in TypeScript
+- Fully tested
+- Exported `enum` for the common return data types
+- Throws distinctive errors when the API returns a "not ok" status code to make them easier to understand
+- Enforces casting the return type when requesting JSON data, to ensure your return data is strictly typed
+- Uses global `fetch`, which for NodeJS is [undici] and for browsers is the [Fetch API][fetch-mdn]
 
 ## Installation
 
@@ -48,7 +48,6 @@ npm install @sapphire/fetch
 ## Usage
 
 > [!NOTE]
-> While this section uses `import`, it maps 1:1 with CommonJS' require syntax. For example,
 >
 > ```ts
 > import { fetch } from '@sapphire/fetch';
@@ -57,7 +56,7 @@ npm install @sapphire/fetch
 > is the same as
 >
 > ```ts
-> const { fetch } = require('@sapphire/fetch');
+> import { fetch } from '@sapphire/fetch';
 > ```
 
 > [!IMPORTANT]
@@ -65,10 +64,10 @@ npm install @sapphire/fetch
 > If the body is _not_ serializable (such as a `File`, `Buffer`, or `Blob`), the body will be sent as-is.
 > Serializability is calculated based on:
 >
-> -   If the body is `null`
-> -   If the body's `.constructor` property is `undefined`
-> -   If the body's `.constructor.name` property is `Object`
-> -   If the body has a function property named `toJSON`
+> - If the body is `null`
+> - If the body's `.constructor` property is `undefined`
+> - If the body's `.constructor.name` property is `Object`
+> - If the body has a function property named `toJSON`
 
 > [!WARNING]
 > Because `@sapphire/fetch` aims to be as close to global fetch as possible, it doesn't support proxy options that a library like undici does. If you want to use a proxy, you should use undici directly.

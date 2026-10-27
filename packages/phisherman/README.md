@@ -20,9 +20,9 @@ Note: Phisherman is currently in early access. For more information or to reques
 
 ## Features
 
--   Fully ready for TypeScript!
--   Includes ESM ready entrypoint
--   Easy to use
+- Fully ready for TypeScript!
+- Includes ESM ready entrypoint
+- Easy to use
 
 ## Installation
 
@@ -35,8 +35,6 @@ npm install @sapphire/phisherman
 ---
 
 ## Usage
-
-**Note:** While this section uses `import`, it maps 1:1 with CommonJS' require syntax. For example, `import { checkDomain } from '@sapphire/phisherman'` is the same as `const { checkDomain } = require('@sapphire/phisherman')`.
 
 Before you do anything make sure to set the apiKey like this:
 

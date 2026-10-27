@@ -47,6 +47,7 @@
 		"check-update": "cliff-jumper --dry-run"
 	},
 	"dependencies": {
+		"@types/node": "*",
 		"typescript": "~7.0.2"
 	},
 	"files": [
@@ -86,5 +87,6 @@
 		"tsdown": "0.23.1",
 		"unrun": "^0.3.1",
 		"vitest": "^5.0.5"
-	}
+	},
+	"type": "module"
 }

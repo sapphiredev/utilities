@@ -17,9 +17,9 @@ describe('poll', () => {
 		const result = poll(cb, cbCondition, { maximumRetries: 0 });
 
 		await expect(result).resolves.toBe(pass);
-		expect(cb).toBeCalledTimes(1);
+		expect(cb).toHaveBeenCalledTimes(1);
 		expect(cb).toHaveBeenCalledWith(undefined);
-		expect(cbCondition).toBeCalledTimes(0);
+		expect(cbCondition).toHaveBeenCalledTimes(0);
 	});
 
 	test('GIVEN a function that fails twice then succeeds THEN calls that function thrice', async () => {
@@ -32,8 +32,8 @@ describe('poll', () => {
 		const result = poll(cb, cbCondition);
 
 		await expect(result).resolves.toBe(pass);
-		expect(cb).toBeCalledTimes(3);
-		expect(cbCondition).toBeCalledTimes(3);
+		expect(cb).toHaveBeenCalledTimes(3);
+		expect(cbCondition).toHaveBeenCalledTimes(3);
 	});
 
 	describe('signal', () => {
@@ -43,8 +43,8 @@ describe('poll', () => {
 			const result = poll(cb, cbCondition, { signal: AbortSignal.abort() });
 
 			await expect(result).rejects.toStrictEqual(new DOMException('This operation was aborted', 'AbortError'));
-			expect(cb).toBeCalledTimes(0);
-			expect(cbCondition).toBeCalledTimes(0);
+			expect(cb).toHaveBeenCalledTimes(0);
+			expect(cbCondition).toHaveBeenCalledTimes(0);
 		});
 
 		test('GIVEN an AbortSignal that is aborted in the condition THEN throws without retry', async () => {
@@ -57,8 +57,8 @@ describe('poll', () => {
 			const result = poll(cb, cbCondition, { signal: controller.signal });
 
 			await expect(result).rejects.toStrictEqual(new DOMException('This operation was aborted', 'AbortError'));
-			expect(cb).toBeCalledTimes(1);
-			expect(cbCondition).toBeCalledTimes(1);
+			expect(cb).toHaveBeenCalledTimes(1);
+			expect(cbCondition).toHaveBeenCalledTimes(1);
 		});
 	});
 
@@ -90,8 +90,8 @@ describe('poll', () => {
 			const result = poll(cb, cbCondition, { maximumRetries: 1 });
 
 			await expect(result).resolves.toBe(fail);
-			expect(cb).toBeCalledTimes(2);
-			expect(cbCondition).toBeCalledTimes(1);
+			expect(cb).toHaveBeenCalledTimes(2);
+			expect(cbCondition).toHaveBeenCalledTimes(1);
 		});
 
 		test('GIVEN a poll with two retries and succeeds first THEN calls that function and condition once', async () => {
@@ -100,8 +100,8 @@ describe('poll', () => {
 			const result = poll(cb, cbCondition, { maximumRetries: 2 });
 
 			await expect(result).resolves.toBe(pass);
-			expect(cb).toBeCalledTimes(1);
-			expect(cbCondition).toBeCalledTimes(1);
+			expect(cb).toHaveBeenCalledTimes(1);
+			expect(cbCondition).toHaveBeenCalledTimes(1);
 		});
 	});
 
@@ -112,8 +112,8 @@ describe('poll', () => {
 			const result = poll(cb, cbCondition, { waitBetweenRetries });
 
 			await expect(result).resolves.toBe(pass);
-			expect(cb).toBeCalledTimes(1);
-			expect(cbCondition).toBeCalledTimes(1);
+			expect(cb).toHaveBeenCalledTimes(1);
+			expect(cbCondition).toHaveBeenCalledTimes(1);
 		});
 
 		test.each(['foo', true])('GIVEN %j THEN throws TypeError', async (waitBetweenRetries) => {
@@ -122,8 +122,8 @@ describe('poll', () => {
 			const result = poll(cb, cbCondition, { waitBetweenRetries: waitBetweenRetries as any });
 
 			await expect(result).rejects.toStrictEqual(new TypeError('Expected waitBetweenRetries to be a number'));
-			expect(cb).toBeCalledTimes(0);
-			expect(cbCondition).toBeCalledTimes(0);
+			expect(cb).toHaveBeenCalledTimes(0);
+			expect(cbCondition).toHaveBeenCalledTimes(0);
 		});
 
 		test.each([NaN, -NaN, -Infinity, -5, Infinity, 5.5])('GIVEN %j THEN throws RangeError', async (waitBetweenRetries) => {
@@ -132,8 +132,8 @@ describe('poll', () => {
 			const result = poll(cb, cbCondition, { waitBetweenRetries });
 
 			await expect(result).rejects.toStrictEqual(new RangeError('Expected waitBetweenRetries to be a positive safe integer'));
-			expect(cb).toBeCalledTimes(0);
-			expect(cbCondition).toBeCalledTimes(0);
+			expect(cb).toHaveBeenCalledTimes(0);
+			expect(cbCondition).toHaveBeenCalledTimes(0);
 		});
 
 		test('GIVEN a poll with a wait of 5ms THEN waits 5ms between retries', async () => {
@@ -149,7 +149,7 @@ describe('poll', () => {
 			});
 			const result = poll(cb, cbCondition, { waitBetweenRetries: 5 });
 			await expect(result).resolves.toBe(pass);
-			expect(timeout).toBeCalledTimes(1);
+			expect(timeout).toHaveBeenCalledTimes(1);
 			expect(timeout.mock.calls[0][1]).toBe(5);
 		});
 
@@ -166,9 +166,9 @@ describe('poll', () => {
 			vi.useRealTimers();
 
 			await expect(result).rejects.toStrictEqual(new DOMException('The operation was aborted due to timeout', 'TimeoutError'));
-			expect(cb).toBeCalledTimes(1);
+			expect(cb).toHaveBeenCalledTimes(1);
 			expect(cb).toHaveBeenCalledWith(signal);
-			expect(cbCondition).toBeCalledTimes(1);
+			expect(cbCondition).toHaveBeenCalledTimes(1);
 			expect(cbCondition).toHaveBeenCalledWith(fail, signal);
 		});
 	});

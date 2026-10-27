@@ -14,11 +14,11 @@
 
 **Table of Contents**
 
--   [Description](#description)
--   [Features](#features)
--   [Installation](#installation)
--   [Buy us some doughnuts](#buy-us-some-doughnuts)
--   [Contributors](#contributors)
+- [Description](#description)
+- [Features](#features)
+- [Installation](#installation)
+- [Buy us some doughnuts](#buy-us-some-doughnuts)
+- [Contributors](#contributors)
 
 ## Description
 
@@ -28,10 +28,10 @@ Note that this package only re-exports everything from the four packages [`@sapp
 
 ## Features
 
--   Written in TypeScript
--   Bundled with esbuild so it can be used in NodeJS and browsers
--   Offers CommonJS, ESM and UMD bundles
--   Fully tested
+- Written in TypeScript
+- Published as ESM for Node.js and modern bundlers
+- Publishes ESM-only output
+- Fully tested
 
 ## Installation
 

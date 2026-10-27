@@ -20,11 +20,11 @@ When developing Discord bots or frameworks for Discord bots we often run into ce
 
 ## Features
 
--   Written in TypeScript
--   Bundled with esbuild so it can be used in NodeJS and browsers
--   Offers CommonJS, ESM and UMD bundles
--   Fully tested
--   Discord library agnostic
+- Written in TypeScript
+- Published as ESM for Node.js and modern bundlers
+- Publishes ESM-only output
+- Fully tested
+- Discord library agnostic
 
 ## Installation
 

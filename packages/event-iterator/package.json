@@ -4,26 +4,19 @@
 	"description": "Turns event emitter events into async iterators.",
 	"author": "@sapphire",
 	"license": "MIT",
-	"main": "dist/cjs/index.cjs",
-	"module": "dist/esm/index.mjs",
-	"types": "dist/cjs/index.d.cts",
+	"main": "dist/index.mjs",
+	"module": "dist/index.mjs",
+	"types": "dist/index.d.mts",
 	"exports": {
-		"import": {
-			"types": "./dist/esm/index.d.mts",
-			"default": "./dist/esm/index.mjs"
-		},
-		"require": {
-			"types": "./dist/cjs/index.d.cts",
-			"default": "./dist/cjs/index.cjs"
-		}
+		"types": "./dist/index.d.mts",
+		"default": "./dist/index.mjs"
 	},
 	"sideEffects": false,
 	"homepage": "https://github.com/sapphiredev/utilities/tree/main/packages/event-iterator",
 	"scripts": {
 		"test": "vitest run",
 		"lint": "eslint src tests --ext ts --fix -c ../../.eslintrc",
-		"build": "tsup && yarn build:rename-cjs-index",
-		"build:rename-cjs-index": "unrun ../../scripts/rename-cjs-index.cts",
+		"build": "tsdown",
 		"prepack": "yarn build",
 		"bump": "cliff-jumper",
 		"check-update": "cliff-jumper --dry-run"
@@ -63,5 +56,6 @@
 		"typescript": "~7.0.2",
 		"unrun": "^0.3.1",
 		"vitest": "^5.0.5"
-	}
+	},
+	"type": "module"
 }

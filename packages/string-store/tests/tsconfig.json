@@ -4,7 +4,7 @@
 		"target": "ES2021",
 		"noEmit": true,
 		"incremental": false,
-		"types": ["vitest/globals"]
+		"types": ["node", "vitest/globals"]
 	},
 	"include": ["./"]
 }

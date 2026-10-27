@@ -39,6 +39,6 @@ describe('take', () => {
 	test('GIVEN iterable and limit less than 0 THEN throws RangeError', () => {
 		const iterable = [1, 2, 3];
 		const limit = -1;
-		expect(() => take(iterable, limit)).toThrowError(new RangeError('-1 must be a non-negative number'));
+		expect(() => take(iterable, limit)).toThrow(new RangeError('-1 must be a non-negative number'));
 	});
 });

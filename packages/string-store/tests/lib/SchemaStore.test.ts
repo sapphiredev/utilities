@@ -66,18 +66,18 @@ describe('SchemaStore', () => {
 		test('GIVEN a schema ID that already exists THEN it throws', () => {
 			const schema = new Schema(2).float64('height');
 			const store = new SchemaStore().add(schema);
-			expect(() => store.add(schema)).toThrowError('Schema with id 2 already exists');
+			expect(() => store.add(schema)).toThrow('Schema with id 2 already exists');
 		});
 
 		test('GIVEN a schema ID that does not exist THEN it throws', () => {
 			const store = new SchemaStore();
 			// @ts-expect-error Testing invalid input
-			expect(() => store.get(2)).toThrowError('Schema with id 2 does not exist');
+			expect(() => store.get(2)).toThrow('Schema with id 2 does not exist');
 		});
 
 		test.each(['', UnalignedUint16Array.from('')])('GIVEN an empty value to `getIdentifier` THEN it throws', (value) => {
 			const store = new SchemaStore();
-			expect(() => store.getIdentifier(value)).toThrowError('Expected a non-empty value');
+			expect(() => store.getIdentifier(value)).toThrow('Expected a non-empty value');
 		});
 	});
 });

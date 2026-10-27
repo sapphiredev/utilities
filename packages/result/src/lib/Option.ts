@@ -921,7 +921,7 @@ export class Option<T, Exists extends boolean = boolean> {
 	 * @example
 	 * ```typescript
 	 * import { Option } from '@sapphire/result';
-	 * const { some } = require('@sapphire/result');
+	 * import { some } from '@sapphire/result';
 	 *
 	 * some(2) instanceof Option; // true
 	 * ```
@@ -941,7 +941,7 @@ export class Option<T, Exists extends boolean = boolean> {
 	 * @example
 	 * ```typescript
 	 * import { Option } from '@sapphire/result';
-	 * const { some } = require('@sapphire/result');
+	 * import { some } from '@sapphire/result';
 	 *
 	 * Option.isOption(some(2)); // true
 	 * ```
@@ -959,7 +959,7 @@ export class Option<T, Exists extends boolean = boolean> {
 	 * @example
 	 * ```typescript
 	 * import { Option } from '@sapphire/result';
-	 * const { some } = require('@sapphire/result');
+	 * import { some } from '@sapphire/result';
 	 *
 	 * Option.isOption(some(2)); // true
 	 * ```

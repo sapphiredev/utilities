@@ -14,13 +14,13 @@
 
 **Table of Contents**
 
--   [Description](#description)
--   [Features](#features)
--   [Installation](#installation)
--   [Usage](#usage)
-    -   [Basic Usage](#basic-usage)
--   [Buy us some doughnuts](#buy-us-some-doughnuts)
--   [Contributors](#contributors)
+- [Description](#description)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+    - [Basic Usage](#basic-usage)
+- [Buy us some doughnuts](#buy-us-some-doughnuts)
+- [Contributors](#contributors)
 
 ## Description
 
@@ -28,9 +28,9 @@ Provides a set of methods and properties that you can use to accurately measure 
 
 ## Features
 
--   Written in TypeScript
--   Offers CommonJS, ESM and UMD bundles
--   Fully tested
+- Written in TypeScript
+- Publishes ESM-only output
+- Fully tested
 
 ## Installation
 
@@ -42,13 +42,11 @@ npm install @sapphire/stopwatch
 
 ## Usage
 
-**Note:** While this section uses `require`, the imports match 1:1 with ESM imports. For example `const { Stopwatch } = require('@sapphire/stopwatch')` equals `import { Stopwatch } from '@sapphire/stopwatch'`.
-
 ### Basic Usage
 
 ```typescript
 // Import the Stopwatch class
-const { Stopwatch } = require('@sapphire/stopwatch');
+import { Stopwatch } from '@sapphire/stopwatch';
 
 // Create a new Stopwatch (which also starts it immediately)
 const stopwatch = new Stopwatch();

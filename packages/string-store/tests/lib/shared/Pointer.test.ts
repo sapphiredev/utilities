@@ -15,7 +15,7 @@ describe('Pointer', () => {
 	test.each(['foo', () => {}, -1, 2147483648])('GIVEN a pointer with an invalid length value THEN throws', (value) => {
 		const pointer = new Pointer();
 		// @ts-expect-error Testing invalid input
-		expect(() => pointer.add(value)).toThrowError('The pointer value cannot be an invalid length value');
+		expect(() => pointer.add(value)).toThrow('The pointer value cannot be an invalid length value');
 	});
 
 	describe('from', () => {
@@ -26,7 +26,7 @@ describe('Pointer', () => {
 
 		test.each(['foo', () => {}, -1, 2147483648, 5.5])('GIVEN an invalid length value THEN throws', (value) => {
 			// @ts-expect-error Testing invalid input
-			expect(() => Pointer.from(value)).toThrowError('The pointer value cannot be an invalid length value');
+			expect(() => Pointer.from(value)).toThrow('The pointer value cannot be an invalid length value');
 		});
 	});
 });

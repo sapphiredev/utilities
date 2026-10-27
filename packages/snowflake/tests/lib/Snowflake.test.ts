@@ -104,13 +104,13 @@ describe('Snowflake', () => {
 			})();
 
 			const snowflake = new Snowflake(sampleEpoch);
-			expect(() => snowflake.generate({ timestamp: NaN })).toThrowError(bigIntNaNErrorMessage);
+			expect(() => snowflake.generate({ timestamp: NaN })).toThrow(bigIntNaNErrorMessage);
 		});
 
 		test('GIVEN timestamp as boolean THEN returns error', () => {
 			const snowflake = new Snowflake(sampleEpoch);
 			// @ts-expect-error testing fail case
-			expect(() => snowflake.generate({ timestamp: true })).toThrowError(
+			expect(() => snowflake.generate({ timestamp: true })).toThrow(
 				'"timestamp" argument must be a number, bigint, or Date (received boolean)'
 			);
 		});

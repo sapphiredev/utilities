@@ -4,31 +4,22 @@
 	"description": "Discord.js specific utilities for your JavaScript/TypeScript bots",
 	"author": "@sapphire",
 	"license": "MIT",
-	"main": "dist/cjs/index.cjs",
-	"module": "dist/esm/index.mjs",
-	"types": "dist/cjs/index.d.cts",
+	"main": "dist/index.mjs",
+	"module": "dist/index.mjs",
+	"types": "dist/index.d.mts",
 	"exports": {
-		"import": {
-			"types": "./dist/esm/index.d.mts",
-			"default": "./dist/esm/index.mjs"
-		},
-		"require": {
-			"types": "./dist/cjs/index.d.cts",
-			"default": "./dist/cjs/index.cjs"
-		}
+		"types": "./dist/index.d.mts",
+		"default": "./dist/index.mjs"
 	},
 	"sideEffects": false,
 	"homepage": "https://github.com/sapphiredev/utilities/tree/main/packages/discord.js-utilities",
 	"scripts": {
 		"lint": "eslint src --ext ts --fix -c ../../.eslintrc",
-		"build": "yarn gen-index && tsup && yarn build:types",
-		"build:types": "concurrently \"yarn:build:types:*\"",
-		"build:types:cjs": "rollup-type-bundler -d dist/cjs --output-typings-file-extension .cts",
-		"build:types:esm": "rollup-type-bundler -d dist/esm -t .mts",
+		"build": "yarn gen-index && tsdown",
 		"prepack": "yarn build",
 		"bump": "cliff-jumper",
 		"check-update": "cliff-jumper --dry-run",
-		"gen-index": "unrun ../../scripts/gen-index.cts discord.js-utilities --write"
+		"gen-index": "unrun ../../scripts/gen-index.ts discord.js-utilities --write"
 	},
 	"repository": {
 		"type": "git",
@@ -66,10 +57,9 @@
 	},
 	"devDependencies": {
 		"@favware/cliff-jumper": "^6.1.0",
-		"@favware/rollup-type-bundler": "^4.0.0",
-		"concurrently": "^10.0.6",
 		"tsdown": "0.23.1",
 		"typescript": "~7.0.2",
 		"unrun": "^0.3.1"
-	}
+	},
+	"type": "module"
 }

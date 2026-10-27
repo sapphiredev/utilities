@@ -18,11 +18,11 @@ When having many `try-catch` blocks after one another, or multiple `try-catch` b
 
 ## Features
 
--   Written in TypeScript
--   Bundled with esbuild so it can be used in NodeJS and browsers
--   Offers CommonJS, ESM and UMD bundles
--   Full feature parity with Nightly Rust's `Result<T, E>` and `Option<T>`
--   Fully tested
+- Written in TypeScript
+- Published as ESM for Node.js and modern bundlers
+- Publishes ESM-only output
+- Full feature parity with Nightly Rust's `Result<T, E>` and `Option<T>`
+- Fully tested
 
 ## Installation
 
@@ -33,8 +33,6 @@ npm install @sapphire/result
 ```
 
 ## Usage
-
-**Note 1:** While this section uses `require`, the imports match 1:1 with ESM imports. For example `const { Result } = require('@sapphire/result')` equals `import { Result } from '@sapphire/result'`.
 
 **Note 2:** For more thorough examples check out the generated documentation on [our website here](https://www.sapphirejs.dev/docs/Documentation/api-utilities/@sapphire/result/)
 
@@ -57,7 +55,7 @@ try {
 **New Code with `Result.from`:**
 
 ```typescript
-const { Result } = require('@sapphire/result');
+import { Result } from '@sapphire/result';
 
 const returnCode = Result.from(() => someFunctionThatMightThrow());
 
@@ -86,7 +84,7 @@ try {
 **New Code with `Result.fromAsync`:**
 
 ```typescript
-const { Result } = require('@sapphire/result');
+import { Result } from '@sapphire/result';
 
 const returnCode = await Result.fromAsync(async () => someFunctionThatReturnsAPromiseAndMightReject());
 

@@ -14,14 +14,14 @@
 
 **Table of Contents**
 
--   [Description](#description)
--   [Features](#features)
--   [Installation](#installation)
--   [Usage](#usage)
-    -   [Token RateLimitManager](#token-ratelimitmanager)
-    -   [Leaky RateLimitManager](#leaky-ratelimitmanager)
--   [Buy us some doughnuts](#buy-us-some-doughnuts)
--   [Contributors](#contributors)
+- [Description](#description)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+    - [Token RateLimitManager](#token-ratelimitmanager)
+    - [Leaky RateLimitManager](#leaky-ratelimitmanager)
+- [Buy us some doughnuts](#buy-us-some-doughnuts)
+- [Contributors](#contributors)
 
 ## Description
 
@@ -29,10 +29,10 @@ There is often a need to apply ratelimits to protect a network from excessive tr
 
 ## Features
 
--   Written in TypeScript
--   Bundled with esbuild so it can be used in NodeJS and browsers
--   Offers CommonJS, ESM and UMD bundles
--   Fully tested
+- Written in TypeScript
+- Published as ESM for Node.js and modern bundlers
+- Publishes ESM-only output
+- Fully tested
 
 ## Installation
 
@@ -44,13 +44,11 @@ npm install @sapphire/ratelimits
 
 ## Usage
 
-**Note:** While this section uses `require`, the imports match 1:1 with ESM imports. For example `const { RateLimitManager } = require('@sapphire/ratelimits')` equals `import { RateLimitManager } from '@sapphire/ratelimits'`.
-
 ### Token RateLimitManager
 
 ```typescript
 // Import the Bucket class
-const { RateLimitManager } = require('@sapphire/ratelimits');
+import { RateLimitManager } from '@sapphire/ratelimits';
 
 // Define a bucket with 1 usage every 5 seconds
 const rateLimitManager = new RateLimitManager(5000);
@@ -73,7 +71,7 @@ ratelimit.consume();
 
 ```typescript
 // Import the Bucket class
-const { RateLimitManager } = require('@sapphire/ratelimits');
+import { RateLimitManager } from '@sapphire/ratelimits';
 
 // Define a bucket with 2 usages every 5 seconds
 const rateLimitManager = new RateLimitManager(5000, 2);

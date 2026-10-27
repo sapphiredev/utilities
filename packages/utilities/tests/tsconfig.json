@@ -4,7 +4,7 @@
 		"lib": ["dom", "esnext"],
 		"noEmit": true,
 		"incremental": false,
-		"types": ["vitest/globals"]
+		"types": ["node", "vitest/globals"]
 	},
 	"include": ["./"]
 }

@@ -4,24 +4,24 @@ Between major version 4 and 5 of `@sapphire/ts-config`, the package has been rew
 
 The following configs have been removed:
 
--   `@sapphire/ts-config/extra-strict-without-decorators`
--   `@sapphire/ts-config/without-decorators`
+- `@sapphire/ts-config/extra-strict-without-decorators`
+- `@sapphire/ts-config/without-decorators`
 
 The following changes have been applied to the base config:
 
--   `experimentalDecorators` is now `false` by default
--   `emitDecoratorMetadata` is now `false` by default
--   `verbatimModuleSyntax` is now `false` by default. It gets set to true by `@sapphire/ts-config/verbatim`.
-    -   Note that you should not enable `@sapphire/ts-config/verbatim` without also setting `"type"` in `package.json`
-        to either `"commonjs"` or `"module"`
+- `experimentalDecorators` is now `false` by default
+- `emitDecoratorMetadata` is now `false` by default
+- `verbatimModuleSyntax` is now `false` by default. It gets set to true by `@sapphire/ts-config/verbatim`.
+    - Note that you should not enable `@sapphire/ts-config/verbatim` without also setting `"type"` in `package.json`
+      to either `"commonjs"` or `"module"`
 
 The following configs have been added:
 
--   `@sapphire/ts-config/extra-strict`
--   `@sapphire/ts-config/decorators`
--   `@sapphire/ts-config/base` -> This is identical to `@sapphire/ts-config`
--   `@sapphire/ts-config/verbatim`
--   `@sapphire/ts-config/bundler`
+- `@sapphire/ts-config/extra-strict`
+- `@sapphire/ts-config/decorators`
+- `@sapphire/ts-config/base` -> This is identical to `@sapphire/ts-config`
+- `@sapphire/ts-config/verbatim`
+- `@sapphire/ts-config/bundler`
 
 In order to achieve the following old configs you now need to use:
 

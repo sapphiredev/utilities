@@ -7,7 +7,7 @@
  * }
  * ```
  */
-const eslintConfig = {
+export const eslintConfig = {
 	root: true,
 	parser: '@typescript-eslint/parser',
 	parserOptions: {
@@ -341,4 +341,4 @@ const eslintConfig = {
 	}
 };
 
-module.exports = eslintConfig;
+export default eslintConfig;

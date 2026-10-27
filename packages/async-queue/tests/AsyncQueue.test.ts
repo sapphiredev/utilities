@@ -85,7 +85,7 @@ describe('AsyncQueue', () => {
 		await expect(first).resolves.toBe(1);
 		expect(queue.remaining).toBe(0);
 
-		await expect(second).rejects.toThrowError('Request aborted manually');
+		await expect(second).rejects.toThrow('Request aborted manually');
 		await expect(third).resolves.toBe(2);
 	});
 
@@ -158,8 +158,8 @@ describe('AsyncQueue', () => {
 			expect(thirdSpy).toHaveBeenCalledOnce();
 
 			await expect(first).resolves.toBe(1);
-			await expect(second).rejects.toThrowError('Request aborted manually');
-			await expect(third).rejects.toThrowError('Request aborted manually');
+			await expect(second).rejects.toThrow('Request aborted manually');
+			await expect(third).rejects.toThrow('Request aborted manually');
 		});
 	});
 });

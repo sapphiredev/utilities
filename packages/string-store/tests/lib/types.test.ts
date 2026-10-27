@@ -394,7 +394,7 @@ describe('types', () => {
 			(value) => {
 				const buffer = new UnalignedUint16Array(10);
 				// @ts-expect-error Testing invalid input
-				expect(() => type.serialize(buffer, value)).toThrowError();
+				expect(() => type.serialize(buffer, value)).toThrow();
 			}
 		);
 	});
@@ -420,7 +420,7 @@ describe('types', () => {
 			(value) => {
 				const buffer = new UnalignedUint16Array(10);
 				// @ts-expect-error Testing invalid input
-				expect(() => type.serialize(buffer, value)).toThrowError();
+				expect(() => type.serialize(buffer, value)).toThrow();
 			}
 		);
 	});

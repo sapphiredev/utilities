@@ -75,18 +75,13 @@ export type ChannelTypeString = ChannelTypes['type'] | 'UNKNOWN';
  * A union of {@link ChatInputCommandInteraction}, {@link UserContextMenuCommandInteraction} and {@link MessageContextMenuCommandInteraction}. Similar to {@link CommandInteraction} class but as a type union.
  */
 export type ChatInputOrContextMenuCommandInteraction =
-	| ChatInputCommandInteraction
-	| UserContextMenuCommandInteraction
-	| MessageContextMenuCommandInteraction;
+	ChatInputCommandInteraction | UserContextMenuCommandInteraction | MessageContextMenuCommandInteraction;
 
 /**
  * A union of {@link ChatInputCommandInteraction}{@link UserContextMenuCommandInteraction}, {@link MessageContextMenuCommandInteraction}, {@link AutocompleteInteraction}, {@link StringSelectMenuInteraction} and {@link ButtonInteraction}
  */
 export type NonModalInteraction =
-	| ChatInputOrContextMenuCommandInteraction
-	| AutocompleteInteraction
-	| StringSelectMenuInteraction
-	| ButtonInteraction;
+	ChatInputOrContextMenuCommandInteraction | AutocompleteInteraction | StringSelectMenuInteraction | ButtonInteraction;
 
 /**
  * A union of {@link ChatInputCommandInteraction}{@link UserContextMenuCommandInteraction}, {@link MessageContextMenuCommandInteraction}, {@link AutocompleteInteraction}, {@link StringSelectMenuInteraction}, {@link ButtonInteraction}, and {@link ModalSubmitInteraction}

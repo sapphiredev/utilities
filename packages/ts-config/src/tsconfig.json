@@ -23,7 +23,8 @@
 		"resolveJsonModule": true,
 		"sourceMap": true,
 		"strict": true,
-		"target": "ES2020",
-		"useDefineForClassFields": true
+		"target": "es2024",
+		"useDefineForClassFields": true,
+		"types": ["node"]
 	}
 }

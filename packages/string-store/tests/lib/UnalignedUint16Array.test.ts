@@ -143,15 +143,15 @@ describe('UnalignedUint16Array', () => {
 	test('GIVEN an instance with insufficient space (write bit by bit) THEN it throws', () => {
 		const buffer = new UnalignedUint16Array(1);
 		buffer.writeInt16(1);
-		expect(() => buffer.writeBit(1)).toThrowError('The buffer is full');
+		expect(() => buffer.writeBit(1)).toThrow('The buffer is full');
 	});
 
 	test('GIVEN an instance with insufficient space (write word by word) THEN it throws', () => {
 		const buffer = new UnalignedUint16Array(1);
-		expect(() => buffer.writeInt32(1)).toThrowError('The buffer is full');
+		expect(() => buffer.writeInt32(1)).toThrow('The buffer is full');
 	});
 
 	test('GIVEN an instance from invalid codepoints THEN it throws', () => {
-		expect(() => UnalignedUint16Array.from('invalid input')).toThrowError(`Codepoint ${'i'.codePointAt(0)} is out of range`);
+		expect(() => UnalignedUint16Array.from('invalid input')).toThrow(`Codepoint ${'i'.codePointAt(0)} is out of range`);
 	});
 });

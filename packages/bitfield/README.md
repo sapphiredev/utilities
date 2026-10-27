@@ -14,26 +14,26 @@
 
 **Table of Contents**
 
--   [Features](#features)
--   [Installation](#installation)
--   [Usage](#usage)
-    -   [Resolving](#resolving)
-    -   [Checking for the existence of any bit](#checking-for-the-existence-of-any-bit)
-    -   [Checking for the existence of one or multiple bits](#checking-for-the-existence-of-one-or-multiple-bits)
-    -   [Getting the field's complement](#getting-the-fields-complement)
-    -   [Getting the union of different fields](#getting-the-union-of-different-fields)
-    -   [Getting the intersection between different fields](#getting-the-intersection-between-different-fields)
-    -   [Getting the symmetric difference between different fields](#getting-the-symmetric-difference-between-different-fields)
-    -   [Formatting a field](#formatting-a-field)
--   [Buy us some doughnuts](#buy-us-some-doughnuts)
--   [Contributors](#contributors)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+    - [Resolving](#resolving)
+    - [Checking for the existence of any bit](#checking-for-the-existence-of-any-bit)
+    - [Checking for the existence of one or multiple bits](#checking-for-the-existence-of-one-or-multiple-bits)
+    - [Getting the field's complement](#getting-the-fields-complement)
+    - [Getting the union of different fields](#getting-the-union-of-different-fields)
+    - [Getting the intersection between different fields](#getting-the-intersection-between-different-fields)
+    - [Getting the symmetric difference between different fields](#getting-the-symmetric-difference-between-different-fields)
+    - [Formatting a field](#formatting-a-field)
+- [Buy us some doughnuts](#buy-us-some-doughnuts)
+- [Contributors](#contributors)
 
 ## Features
 
--   Written in TypeScript
--   Bundled with esbuild so it can be used in NodeJS and browsers
--   Offers CommonJS, ESM and UMD bundles
--   Fully tested
+- Written in TypeScript
+- Published as ESM for Node.js and modern bundlers
+- Publishes ESM-only output
+- Fully tested
 
 ## Installation
 
@@ -45,11 +45,9 @@ npm install @sapphire/bitfield
 
 ## Usage
 
-**Note:** While this section uses `require`, the imports match 1:1 with ESM imports. For example `const { BitField } = require('@sapphire/bitfield')` equals `import { BitField } from '@sapphire/bitfield'`.
-
 ```typescript
 // Require the BitField class
-const { BitField } = require('@sapphire/bitfield');
+import { BitField } from '@sapphire/bitfield';
 
 const PermissionFlags = {
 	Read: 1 << 0,
@@ -72,8 +70,8 @@ const DetailedPermissionsBitField = new BitField(DetailedPermissionsFlags);
 > **Warning**: If the source is a TypeScript enum of numbers, you may use the `enumToObject` utility to turn it into a strict typed 1-way object.
 
 ```typescript
-const { BitField, enumToObject } = require('@sapphire/bitfield');
-const { ActivityFlags } = require('discord-api-types/v10');
+import { BitField, enumToObject } from '@sapphire/bitfield';
+import { ActivityFlags } from 'discord-api-types/v10';
 
 const PermissionsBitField = new BitField(enumToObject(ActivityFlags));
 ```

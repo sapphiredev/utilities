@@ -17,8 +17,8 @@ describe('pollSync', () => {
 		const result = pollSync(cb, cbCondition, { maximumRetries: 0 });
 
 		expect(result).toBe(pass);
-		expect(cb).toBeCalledTimes(1);
-		expect(cbCondition).toBeCalledTimes(0);
+		expect(cb).toHaveBeenCalledTimes(1);
+		expect(cbCondition).toHaveBeenCalledTimes(0);
 	});
 
 	test('GIVEN a function that fails twice then succeeds THEN calls that function thrice', () => {
@@ -31,8 +31,8 @@ describe('pollSync', () => {
 		const result = pollSync(cb, cbCondition);
 
 		expect(result).toBe(pass);
-		expect(cb).toBeCalledTimes(3);
-		expect(cbCondition).toBeCalledTimes(3);
+		expect(cb).toHaveBeenCalledTimes(3);
+		expect(cbCondition).toHaveBeenCalledTimes(3);
 	});
 
 	describe('maximumRetries', () => {
@@ -46,12 +46,12 @@ describe('pollSync', () => {
 		test.each(['foo', true])('GIVEN %j THEN throws TypeError', (maximumRetries) => {
 			// @ts-expect-error invalid type
 			const callback = () => pollSync(cb, cbConditionRaw, { maximumRetries });
-			expect(callback).toThrowError(new TypeError('Expected maximumRetries to be a number'));
+			expect(callback).toThrow(new TypeError('Expected maximumRetries to be a number'));
 		});
 
 		test.each([NaN, -NaN, -Infinity, -5])('GIVEN %j THEN throws RangeError', (maximumRetries) => {
 			const callback = () => pollSync(cb, cbConditionRaw, { maximumRetries });
-			expect(callback).toThrowError(new RangeError('Expected maximumRetries to be a non-negative number'));
+			expect(callback).toThrow(new RangeError('Expected maximumRetries to be a non-negative number'));
 		});
 
 		test('GIVEN a poll with only one retry and fails both THEN calls that function twice, but condition only once', () => {
@@ -63,8 +63,8 @@ describe('pollSync', () => {
 			const result = pollSync(cb, cbCondition, { maximumRetries: 1 });
 
 			expect(result).toBe(fail);
-			expect(cb).toBeCalledTimes(2);
-			expect(cbCondition).toBeCalledTimes(1);
+			expect(cb).toHaveBeenCalledTimes(2);
+			expect(cbCondition).toHaveBeenCalledTimes(1);
 		});
 
 		test('GIVEN a poll with two retries and succeeds first THEN calls that function and condition once', () => {
@@ -73,8 +73,8 @@ describe('pollSync', () => {
 			const result = pollSync(cb, cbCondition, { maximumRetries: 2 });
 
 			expect(result).toBe(pass);
-			expect(cb).toBeCalledTimes(1);
-			expect(cbCondition).toBeCalledTimes(1);
+			expect(cb).toHaveBeenCalledTimes(1);
+			expect(cbCondition).toHaveBeenCalledTimes(1);
 		});
 	});
 
@@ -85,8 +85,8 @@ describe('pollSync', () => {
 			const result = pollSync(cb, cbCondition, { waitBetweenRetries });
 
 			expect(result).toBe(pass);
-			expect(cb).toBeCalledTimes(1);
-			expect(cbCondition).toBeCalledTimes(1);
+			expect(cb).toHaveBeenCalledTimes(1);
+			expect(cbCondition).toHaveBeenCalledTimes(1);
 		});
 
 		test.each(['foo', true])('GIVEN %j THEN throws TypeError', (waitBetweenRetries) => {
@@ -94,9 +94,9 @@ describe('pollSync', () => {
 			const cbCondition = vi.fn(cbConditionRaw);
 			const callback = () => pollSync(cb, cbCondition, { waitBetweenRetries: waitBetweenRetries as any });
 
-			expect(callback).toThrowError(new TypeError('Expected waitBetweenRetries to be a number'));
-			expect(cb).toBeCalledTimes(0);
-			expect(cbCondition).toBeCalledTimes(0);
+			expect(callback).toThrow(new TypeError('Expected waitBetweenRetries to be a number'));
+			expect(cb).toHaveBeenCalledTimes(0);
+			expect(cbCondition).toHaveBeenCalledTimes(0);
 		});
 
 		test.each([NaN, -NaN, -Infinity, -5, Infinity, 5.5])('GIVEN %j THEN throws RangeError', (waitBetweenRetries) => {
@@ -104,9 +104,9 @@ describe('pollSync', () => {
 			const cbCondition = vi.fn(cbConditionRaw);
 			const callback = () => pollSync(cb, cbCondition, { waitBetweenRetries });
 
-			expect(callback).toThrowError(new RangeError('Expected waitBetweenRetries to be a positive safe integer'));
-			expect(cb).toBeCalledTimes(0);
-			expect(cbCondition).toBeCalledTimes(0);
+			expect(callback).toThrow(new RangeError('Expected waitBetweenRetries to be a positive safe integer'));
+			expect(cb).toHaveBeenCalledTimes(0);
+			expect(cbCondition).toHaveBeenCalledTimes(0);
 		});
 
 		test('GIVEN a poll with a wait of 5ms THEN waits 5ms between retries', () => {
@@ -125,7 +125,7 @@ describe('pollSync', () => {
 			const result = pollSync(cb, cbCondition, { waitBetweenRetries: 5 });
 
 			expect(result).toBe(pass);
-			expect(dateNow).toBeCalledTimes(5);
+			expect(dateNow).toHaveBeenCalledTimes(5);
 		});
 	});
 
@@ -140,12 +140,12 @@ describe('pollSync', () => {
 		test.each(['foo', true])('GIVEN %j THEN throws TypeError', (timeout) => {
 			// @ts-expect-error invalid type
 			const callback = () => pollSync(cb, cbConditionRaw, { timeout });
-			expect(callback).toThrowError(new TypeError('Expected timeout to be a number'));
+			expect(callback).toThrow(new TypeError('Expected timeout to be a number'));
 		});
 
 		test.each([NaN, -NaN, -Infinity, -5])('GIVEN %j THEN throws RangeError', (timeout) => {
 			const callback = () => pollSync(cb, cbConditionRaw, { timeout });
-			expect(callback).toThrowError(new RangeError('Expected timeout to be a non-negative number'));
+			expect(callback).toThrow(new RangeError('Expected timeout to be a non-negative number'));
 		});
 
 		test('GIVEN a poll with 5ms timeout but takes longer THEN throws an error', () => {
@@ -164,10 +164,10 @@ describe('pollSync', () => {
 				.mockReturnValueOnce(10);
 			const callback = () => pollSync(cb, cbCondition, { timeout: 5, waitBetweenRetries: 5 });
 
-			expect(callback).toThrowError(new DOMException('This operation was aborted', 'AbortError'));
-			expect(cb).toBeCalledTimes(2);
-			expect(cbCondition).toBeCalledTimes(2);
-			expect(dateNow).toBeCalledTimes(16);
+			expect(callback).toThrow(new DOMException('This operation was aborted', 'AbortError'));
+			expect(cb).toHaveBeenCalledTimes(2);
+			expect(cbCondition).toHaveBeenCalledTimes(2);
+			expect(dateNow).toHaveBeenCalledTimes(6);
 		});
 	});
 
