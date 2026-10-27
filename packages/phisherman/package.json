@@ -21,12 +21,11 @@
 	"scripts": {
 		"lint": "eslint src --ext ts --fix",
 		"build": "yarn gen-index && tsup && yarn build:rename-cjs-index",
-		"build:rename-cjs-index": "tsx ../../scripts/rename-cjs-index.cts",
-		"docs": "typedoc-json-parser",
+		"build:rename-cjs-index": "unrun ../../scripts/rename-cjs-index.cts",
 		"prepack": "yarn build",
 		"bump": "cliff-jumper",
 		"check-update": "cliff-jumper --dry-run",
-		"gen-index": "tsx ../../scripts/gen-index.cts phisherman --write"
+		"gen-index": "unrun ../../scripts/gen-index.cts phisherman --write"
 	},
 	"dependencies": {
 		"@sapphire/fetch": "workspace:^"
@@ -64,10 +63,8 @@
 		"@favware/cliff-jumper": "^6.1.0",
 		"@sapphire/result": "workspace:^",
 		"esbuild-plugin-version-injector": "^1.2.1",
-		"tsup": "^8.5.1",
-		"tsx": "^4.21.0",
-		"typedoc": "^0.26.11",
-		"typedoc-json-parser": "^10.2.0",
-		"typescript": "~5.4.5"
+		"tsdown": "^0.23.2",
+		"typescript": "~7.0.2",
+		"unrun": "^0.3.1"
 	}
 }

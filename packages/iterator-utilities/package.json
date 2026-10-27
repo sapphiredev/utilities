@@ -14,16 +14,14 @@
 		"test": "vitest run",
 		"lint": "eslint src tests --ext ts --fix -c ../../.eslintrc",
 		"build": "yarn gen-index && tsup && run-s \"build:*\"",
-		"build:rename-cjs-index": "yarn tsx ../../scripts/rename-cjs-index.cts",
-		"build:dynamic-side-effects": "yarn tsx ../../scripts/dynamic-side-effects.cts iterator-utilities",
-		"build:check-subpath": "yarn tsx ../../scripts/subpath-updater.cts iterator-utilities",
-		"build:fix-dcts-imports": "yarn tsx ../../scripts/fix-dcts-imports.cts",
-		"tsx": "tsx --tsconfig ../../scripts/tsconfig.json",
-		"docs": "typedoc-json-parser",
+		"build:rename-cjs-index": "unrun ../../scripts/rename-cjs-index.cts",
+		"build:dynamic-side-effects": "unrun ../../scripts/dynamic-side-effects.cts iterator-utilities",
+		"build:check-subpath": "unrun ../../scripts/subpath-updater.cts iterator-utilities",
+		"build:fix-dcts-imports": "unrun ../../scripts/fix-dcts-imports.cts",
 		"prepack": "yarn build",
 		"bump": "cliff-jumper",
 		"check-update": "cliff-jumper --dry-run",
-		"gen-index": "tsx ../../scripts/gen-index.cts iterator-utilities --write"
+		"gen-index": "unrun ../../scripts/gen-index.cts iterator-utilities --write"
 	},
 	"repository": {
 		"type": "git",
@@ -54,14 +52,12 @@
 	},
 	"devDependencies": {
 		"@favware/cliff-jumper": "^6.1.0",
-		"@vitest/coverage-v8": "^4.1.5",
-		"npm-run-all2": "^8.0.4",
-		"tsup": "^8.5.1",
-		"tsx": "^4.21.0",
-		"typedoc": "^0.26.11",
-		"typedoc-json-parser": "^10.2.0",
-		"typescript": "~5.4.5",
-		"vitest": "^4.1.5"
+		"@vitest/coverage-v8": "^5.0.5",
+		"npm-run-all2": "^9.0.4",
+		"tsdown": "^0.23.2",
+		"typescript": "~7.0.2",
+		"unrun": "^0.3.1",
+		"vitest": "^5.0.5"
 	},
 	"exports": {
 		".": {

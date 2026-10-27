@@ -25,11 +25,10 @@
 		"build:types": "concurrently \"yarn:build:types:*\"",
 		"build:types:cjs": "rollup-type-bundler -d dist/cjs --output-typings-file-extension .cts",
 		"build:types:esm": "rollup-type-bundler -d dist/esm -t .mts",
-		"docs": "typedoc-json-parser",
 		"prepack": "yarn build",
 		"bump": "cliff-jumper",
 		"check-update": "cliff-jumper --dry-run",
-		"gen-index": "tsx ../../scripts/gen-index.cts discord.js-utilities --write"
+		"gen-index": "unrun ../../scripts/gen-index.cts discord.js-utilities --write"
 	},
 	"repository": {
 		"type": "git",
@@ -63,17 +62,14 @@
 	"dependencies": {
 		"@sapphire/discord-utilities": "workspace:^",
 		"@sapphire/duration": "workspace:^",
-		"@sapphire/utilities": "workspace:^",
-		"tslib": "^2.8.1"
+		"@sapphire/utilities": "workspace:^"
 	},
 	"devDependencies": {
 		"@favware/cliff-jumper": "^6.1.0",
 		"@favware/rollup-type-bundler": "^4.0.0",
-		"concurrently": "^9.2.1",
-		"tsup": "^8.5.1",
-		"tsx": "^4.21.0",
-		"typedoc": "^0.26.11",
-		"typedoc-json-parser": "^10.2.0",
-		"typescript": "~5.4.5"
+		"concurrently": "^10.0.6",
+		"tsdown": "^0.23.2",
+		"typescript": "~7.0.2",
+		"unrun": "^0.3.1"
 	}
 }
