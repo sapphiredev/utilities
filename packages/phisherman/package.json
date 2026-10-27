@@ -63,7 +63,7 @@
 		"@favware/cliff-jumper": "^6.1.0",
 		"@sapphire/result": "workspace:^",
 		"esbuild-plugin-version-injector": "^1.2.1",
-		"tsdown": "^0.23.2",
+		"tsdown": "0.23.1",
 		"typescript": "~7.0.2",
 		"unrun": "^0.3.1"
 	}
