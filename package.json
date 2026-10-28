@@ -15,7 +15,7 @@
 		"update": "yarn upgrade-interactive",
 		"check-update": "yarn workspaces foreach --all --exclude root-utilities run check-update",
 		"gen-index": "yarn workspaces foreach --all --exclude root-utilities run gen-index",
-		"au:twemojis": "unrun ./scripts/twemoji-regex-updater.ts"
+		"au:twemojis": "node ./scripts/twemoji-regex-updater.ts"
 	},
 	"devDependencies": {
 		"@babel/parser": "^8.0.8",
@@ -44,7 +44,6 @@
 		"tsdown": "^0.23.3",
 		"typescript": "~6.0.3",
 		"undici": "^8.12.3",
-		"unrun": "^0.3.1",
 		"vite": "^8.3.5",
 		"vitest": "^5.0.5"
 	},

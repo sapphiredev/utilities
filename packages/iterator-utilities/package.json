@@ -13,12 +13,12 @@
 		"test": "vitest run",
 		"lint": "eslint src tests --ext ts --fix",
 		"build": "yarn gen-index && tsdown && yarn build:update-subpath",
-		"build:check-subpath": "unrun ../../scripts/subpath-updater.ts iterator-utilities --check",
+		"build:check-subpath": "node ../../scripts/subpath-updater.ts iterator-utilities --check",
 		"prepack": "yarn build",
 		"bump": "cliff-jumper",
 		"check-update": "cliff-jumper --dry-run",
-		"gen-index": "unrun ../../scripts/gen-index.ts iterator-utilities --write",
-		"build:update-subpath": "unrun ../../scripts/subpath-updater.ts iterator-utilities"
+		"gen-index": "node ../../scripts/gen-index.ts iterator-utilities --write",
+		"build:update-subpath": "node ../../scripts/subpath-updater.ts iterator-utilities"
 	},
 	"repository": {
 		"type": "git",
@@ -53,7 +53,6 @@
 		"eslint": "^10.13.0",
 		"tsdown": "^0.23.3",
 		"typescript": "~6.0.3",
-		"unrun": "^0.3.1",
 		"vitest": "^5.0.5"
 	},
 	"exports": {
