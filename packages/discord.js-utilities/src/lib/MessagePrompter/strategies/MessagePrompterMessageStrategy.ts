@@ -2,6 +2,7 @@ import { isNullish, type ArgumentTypes } from '@sapphire/utilities';
 import type { CollectorFilter, CollectorOptions, Message, User } from 'discord.js';
 import { isStageChannel, isTextBasedChannel } from '../../type-guards';
 import type { IMessagePrompterExplicitMessageReturn } from '../ExplicitReturnTypes';
+import type { MessagePrompter } from '../MessagePrompter';
 import type { MessagePrompterChannelTypes, MessagePrompterMessage } from '../constants';
 import type { IMessagePrompterStrategyOptions } from '../strategyOptions';
 import { MessagePrompterBaseStrategy } from './MessagePrompterBaseStrategy';
@@ -10,7 +11,7 @@ export class MessagePrompterMessageStrategy extends MessagePrompterBaseStrategy 
 	/**
 	 * Constructor for the {@link MessagePrompterBaseStrategy} class
 	 *
-	 * @param message The message instance for this {@link MessagePrompter}
+	 * @param message The message instance for this {@link MessagePrompter}.
 	 * @param options Overrideable options if needed.
 	 */
 	public constructor(message: MessagePrompterMessage, options: IMessagePrompterStrategyOptions) {
@@ -18,7 +19,7 @@ export class MessagePrompterMessageStrategy extends MessagePrompterBaseStrategy 
 	}
 
 	/**
-	 * This executes the {@link MessagePrompter} and sends the message if {@link IMessagePrompterOptions.type} equals message.
+	 * This executes the {@link MessagePrompter} and sends the message if its `type` option equals `message`.
 	 * The handler will wait for one (1) message.
 	 *
 	 * @param channel The channel to use.

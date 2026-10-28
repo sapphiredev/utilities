@@ -1,5 +1,6 @@
 import type { CollectorFilter, EmojiResolvable, MessageReaction, User } from 'discord.js';
 import type { IMessagePrompterExplicitConfirmReturn } from '../ExplicitReturnTypes';
+import type { MessagePrompter } from '../MessagePrompter';
 import type { MessagePrompterChannelTypes, MessagePrompterMessage } from '../constants';
 import type { IMessagePrompterConfirmStrategyOptions } from '../strategyOptions';
 import { MessagePrompterBaseStrategy } from './MessagePrompterBaseStrategy';
@@ -29,7 +30,7 @@ export class MessagePrompterConfirmStrategy extends MessagePrompterBaseStrategy 
 	}
 
 	/**
-	 * This executes the {@link MessagePrompter} and sends the message if {@link IMessagePrompterOptions.type} equals confirm.
+	 * This executes the {@link MessagePrompter} and sends the message if its `type` option equals `confirm`.
 	 * The handler will wait for one (1) reaction.
 	 *
 	 * @param channel The channel to use.

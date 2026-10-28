@@ -176,7 +176,7 @@ export class Duration {
 	/**
 	 * The RegExp used for the pattern parsing
 	 */
-	private static readonly patternRegex = /(-?\d*\.?\d+(?:e[+-]?\d+)?)\s*([a-zμ]*)/gi;
+	private static readonly patternRegex = /(?<pattern>-?\d*\.?\d+(?:e[+-]?\d+)?)\s*(?<pattern2>[a-zμ]*)/gi;
 
 	/**
 	 * The RegExp used for removing commas

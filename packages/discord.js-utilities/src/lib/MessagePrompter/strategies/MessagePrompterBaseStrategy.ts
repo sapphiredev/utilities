@@ -2,6 +2,7 @@ import { isNullish, type ArgumentTypes, type Awaitable } from '@sapphire/utiliti
 import type { CollectorFilter, CollectorOptions, EmojiIdentifierResolvable, Message, MessageReaction, User } from 'discord.js';
 import { isStageChannel, isTextBasedChannel } from '../../type-guards';
 import type { IMessagePrompterExplicitReturnBase } from '../ExplicitReturnTypes';
+import type { MessagePrompter } from '../MessagePrompter';
 import type { MessagePrompterChannelTypes, MessagePrompterMessage } from '../constants';
 import type { IMessagePrompterStrategyOptions } from '../strategyOptions';
 
@@ -73,8 +74,8 @@ export abstract class MessagePrompterBaseStrategy {
 
 			let resolved = false;
 			const collected: Promise<MessageReaction> = new Promise<MessageReaction>((resolve, reject) => {
-				collector.on('collect', (r) => {
-					resolve(r);
+				collector.on('collect', (reaction) => {
+					resolve(reaction);
 					resolved = true;
 					collector.stop();
 				});
@@ -94,7 +95,7 @@ export abstract class MessagePrompterBaseStrategy {
 			const firstReaction = await collected;
 			const emoji = firstReaction?.emoji;
 
-			const reaction = reactions.find((r) => (emoji?.id ?? emoji?.name) === r);
+			const reaction = reactions.find((reactionEmoji) => (emoji?.id ?? emoji?.name) === reactionEmoji);
 
 			return {
 				emoji,

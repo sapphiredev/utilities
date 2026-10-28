@@ -851,6 +851,7 @@ describe('Option', () => {
 			['Some(T)', some(42)],
 			['() => T', () => 42],
 			['() => Some(T)', () => some(42)]
+			// eslint-disable-next-line promise/prefer-await-to-callbacks
 		])('GIVEN from(%s) THEN returns Some(T)', (_, cb) => {
 			const x = from(cb);
 
@@ -882,6 +883,7 @@ describe('Option', () => {
 			['() => Some(T)', () => some(42)],
 			['() => Promise.resolve(T)', async () => 42],
 			['() => Promise.resolve(Some(T))', async () => some(42)]
+			// eslint-disable-next-line promise/prefer-await-to-callbacks
 		])('GIVEN fromAsync(%s) THEN returns Some(T)', async (_, cb) => {
 			const x = await fromAsync(cb);
 
@@ -978,6 +980,7 @@ describe('Option', () => {
 	});
 });
 
+// eslint-disable-next-line promise/prefer-await-to-callbacks
 function expectOptionError(message: string, cb: () => any) {
 	try {
 		// eslint-disable-next-line promise/prefer-await-to-callbacks, n/callback-return

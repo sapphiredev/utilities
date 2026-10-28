@@ -11,7 +11,7 @@ export enum Time {
 	Year = Day * 365
 }
 
-export const partRegex = /^(?:(\*)|(\d+)(?:-(\d+))?)(?:\/(\d+))?$/;
+export const partRegex = /^(?:(?<part1>\*)|(?<part2>\d+)(?:-(?<part3>\d+))?)(?:\/(?<part4>\d+))?$/;
 
 export const wildcardRegex = /\bh\b|\B\?\B/g;
 

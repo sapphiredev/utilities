@@ -143,7 +143,9 @@ describe('poll', () => {
 				.mockReturnValueOnce(pass);
 			const cbCondition = vi.fn(cbConditionRaw);
 
+			// eslint-disable-next-line promise/prefer-await-to-callbacks
 			const timeout = vi.spyOn(global, 'setTimeout').mockImplementationOnce((cb) => {
+				// eslint-disable-next-line promise/prefer-await-to-callbacks
 				cb();
 				return 0 as any;
 			});

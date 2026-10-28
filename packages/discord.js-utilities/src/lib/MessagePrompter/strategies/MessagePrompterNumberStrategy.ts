@@ -1,5 +1,6 @@
 import type { CollectorFilter, EmojiIdentifierResolvable, MessageReaction, User } from 'discord.js';
 import type { IMessagePrompterExplicitNumberReturn } from '../ExplicitReturnTypes';
+import type { MessagePrompter } from '../MessagePrompter';
 import type { MessagePrompterChannelTypes, MessagePrompterMessage } from '../constants';
 import type { IMessagePrompterNumberStrategyOptions } from '../strategyOptions';
 import { MessagePrompterBaseStrategy } from './MessagePrompterBaseStrategy';
@@ -23,7 +24,7 @@ export class MessagePrompterNumberStrategy extends MessagePrompterBaseStrategy i
 	/**
 	 * Constructor for the {@link MessagePrompterBaseStrategy} class
 	 *
-	 * @param message The message instance for this {@link MessagePrompter}
+	 * @param message The message instance for this {@link MessagePrompter}.
 	 * @param options Overrideable options if needed.
 	 */
 	public constructor(message: MessagePrompterMessage, options: IMessagePrompterNumberStrategyOptions) {
@@ -35,7 +36,7 @@ export class MessagePrompterNumberStrategy extends MessagePrompterBaseStrategy i
 	}
 
 	/**
-	 * This executes the {@link MessagePrompter} and sends the message if {@link IMessagePrompterOptions.type} equals number.
+	 * This executes the message prompter and sends the message if its `type` option equals `number`.
 	 * The handler will wait for one (1) reaction.
 	 *
 	 * @param channel The channel to use.
@@ -50,11 +51,14 @@ export class MessagePrompterNumberStrategy extends MessagePrompterBaseStrategy i
 		if (this.start < 0) throw new TypeError('Starting number cannot be less than 0.');
 		if (this.end > 10) throw new TypeError('Ending number cannot be more than 10.');
 
-		const numbers = Array.from({ length: this.end - this.start + 1 }, (_, n: number) => n + this.start);
+		const numbers = Array.from({ length: this.end - this.start + 1 }, (_, index: number) => index + this.start);
 		const emojis = this.numberEmojis.slice(this.start, this.end);
 		const response = await this.collectReactions(channel, authorOrFilter, emojis);
 
-		const emojiIndex = emojis.indexOf(response?.emoji?.id ?? response?.emoji?.name);
+		const emojiIdentifier = response?.emoji?.id ?? response?.emoji?.name;
+		if (!emojiIdentifier) throw new TypeError('The response reaction must have an emoji ID or name.');
+
+		const emojiIndex = emojis.indexOf(emojiIdentifier);
 		const number = numbers[emojiIndex];
 
 		// prettier-ignore

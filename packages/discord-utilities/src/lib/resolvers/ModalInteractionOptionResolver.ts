@@ -51,7 +51,7 @@ export class ModalInteractionOptionResolver {
 	 * @param customId The custom ID of the component to get.
 	 */
 	public get(customId: string): ModalSubmitComponent {
-		const component = this.hoistedComponents.find((c) => c.custom_id === customId);
+		const component = this.hoistedComponents.find((candidate) => candidate.custom_id === customId);
 		if (!component) {
 			throw new Error(`Component with custom ID "${customId}" not found.`);
 		}

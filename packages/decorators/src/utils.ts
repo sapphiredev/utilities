@@ -1,3 +1,5 @@
+import type { ApplyOptions } from './piece-decorators';
+
 /**
  * The function precondition interface.
  */

@@ -9,7 +9,7 @@
  * ```
  */
 export function snakeToCamelCase(str: string) {
-	return str.toLowerCase().replaceAll(/([_-][a-z])/g, (group: string) => group.slice(1).toUpperCase());
+	return str.toLowerCase().replaceAll(/(?<capture>[_-][a-z])/g, (group: string) => group.slice(1).toUpperCase());
 }
 
 export { snakeToCamelCase as kebabToCamelCase };

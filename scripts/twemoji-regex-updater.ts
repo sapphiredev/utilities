@@ -3,7 +3,7 @@ import { rm, writeFile } from 'node:fs/promises';
 import { fileURLToPath, URL } from 'node:url';
 import { fetch } from 'undici';
 
-async function importFileFromWeb({ url, temporaryFileName }: { url: string; temporaryFileName: string }) {
+async function importFileFromWeb({ url, temporaryFileName }: { temporaryFileName: string; url: string }) {
 	const result = await fetch(url);
 	const body = await result.text();
 
@@ -21,6 +21,8 @@ async function importFileFromWeb({ url, temporaryFileName }: { url: string; temp
 
 async function main() {
 	const filePrefix = [
+		'/* eslint-disable prefer-named-capture-group */',
+		'',
 		'/**',
 		' * Regex that can capture a Twemoji (Twitter Emoji)',
 		' * @raw {@linkplain https://github.com/jdecked/twemoji-parser/blob/main/src/lib/regex.js See official source code}',

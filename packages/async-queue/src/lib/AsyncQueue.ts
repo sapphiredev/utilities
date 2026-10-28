@@ -90,8 +90,8 @@ export class AsyncQueue {
 
 		// Abort all the entries except the head, that is why the loop starts at
 		// 1 and not at 0.
-		for (let i = 1; i < this.promises.length; ++i) {
-			this.promises[i].abort();
+		for (let index = 1; index < this.promises.length; ++index) {
+			this.promises[index].abort();
 		}
 
 		this.promises.length = 1;

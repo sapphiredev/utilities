@@ -1,4 +1,4 @@
-const zws = String.fromCharCode(8_203);
+const zws = String.fromCodePoint(8_203);
 
 /**
  * Wraps the content inside a codeblock with no language

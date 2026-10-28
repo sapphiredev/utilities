@@ -1,3 +1,5 @@
+/* eslint-disable prefer-named-capture-group */
+
 /**
  * Regex that can capture a Twemoji (Twitter Emoji)
  *
