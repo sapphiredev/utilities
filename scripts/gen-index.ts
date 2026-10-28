@@ -8,6 +8,7 @@ const WRITE_MODE = process.argv.includes('--write');
 const CHECK_MODE = process.argv.includes('--check');
 const PACKAGE_NAME = process.argv[2];
 const SCRIPTS_DIR = dirname(fileURLToPath(import.meta.url));
+const PACKAGES_DIR = resolve(SCRIPTS_DIR, '../packages');
 
 if (!PACKAGE_NAME) {
 	throw new Error('A package name is required.');
@@ -121,7 +122,13 @@ async function processPackage(packageDir: string): Promise<string> {
 }
 
 async function main() {
-	const packageDir = resolve(SCRIPTS_DIR, '../packages', PACKAGE_NAME, 'src');
+	const packageEntries = await readdir(PACKAGES_DIR, { withFileTypes: true });
+	if (!packageEntries.some((entry) => entry.isDirectory() && entry.name === PACKAGE_NAME)) {
+		throw new Error('The package name must identify a direct child directory of the packages directory.');
+	}
+
+	const packageRoot = resolve(PACKAGES_DIR, PACKAGE_NAME);
+	const packageDir = join(packageRoot, 'src');
 	const indexPath = join(packageDir, 'index.ts');
 	const [currentFile, result] = [await readFile(indexPath, 'utf8'), await processPackage(packageDir)];
 
