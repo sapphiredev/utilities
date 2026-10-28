@@ -4,8 +4,8 @@ import { toIterableIterator } from './toIterableIterator';
 /**
  * Advances the iterable until it finds the element, returning its index if it's found and `-1` otherwise.
  *
- * @param iterable An iterator to search for a value in.
- * @param value The value to search for.
+ * @param iterable - An iterator to search for a value in.
+ * @param value - The value to search for.
  * @returns The index of the first occurrence of the value in the iterator, or `-1` if the value is not found.
  * @example
  * ```typescript

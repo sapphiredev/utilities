@@ -10,16 +10,16 @@ export interface IType<ValueType, BitSize extends number | null, InputValue = Va
 	/**
 	 * Deserialize a value from a buffer.
 	 *
-	 * @param buffer The buffer to read from
-	 * @param pointer The pointer indicating the current position in the buffer
+	 * @param buffer - The buffer to read from
+	 * @param pointer - The pointer indicating the current position in the buffer
 	 */
 	deserialize(buffer: DuplexBuffer, pointer: Pointer): ValueType;
 
 	/**
 	 * Serialize a value to a buffer.
 	 *
-	 * @param buffer The buffer to write to
-	 * @param value The value to write
+	 * @param buffer - The buffer to write to
+	 * @param value - The value to write
 	 */
 	serialize(buffer: DuplexBuffer, value: InputValue): void;
 }

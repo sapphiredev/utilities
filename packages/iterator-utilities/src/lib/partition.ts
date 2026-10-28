@@ -5,8 +5,8 @@ import { toIterableIterator } from './toIterableIterator';
 /**
  * Consumes the iterable and creates two arrays, one with the elements that pass the test and another with the elements that don't.
  *
- * @param iterable An iterator to partition.
- * @param predicate A function that determines which partition an element belongs to.
+ * @param iterable - An iterator to partition.
+ * @param predicate - A function that determines which partition an element belongs to.
  * @returns An array containing two iterators. The first iterator contains elements that satisfy the predicate, and the
  * second iterator contains elements that do not.
  * @example

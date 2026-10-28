@@ -4,7 +4,7 @@ import { toIterableIterator } from './toIterableIterator';
 /**
  * Creates an iterable with the elements that are in either input iterable.
  *
- * @param iterables The iterators to combine.
+ * @param iterables - The iterators to combine.
  * @returns An iterator that yields the union of the provided iterators.
  * @example
  * ```typescript

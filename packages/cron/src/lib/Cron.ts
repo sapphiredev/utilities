@@ -22,7 +22,7 @@ export class Cron {
 	public dows: number[];
 
 	/**
-	 * @param cron The cron pattern to use
+	 * @param cron - The cron pattern to use
 	 */
 	public constructor(cron: string) {
 		this.cron = cron.toLowerCase();
@@ -33,8 +33,8 @@ export class Cron {
 	/**
 	 * Get the next date that matches with the current pattern
 	 *
-	 * @param outset The Date instance to compare with
-	 * @param origin Whether this next call is origin
+	 * @param outset - The Date instance to compare with
+	 * @param origin - Whether this next call is origin
 	 */
 	public next(outset: Date = new Date(), origin = true): Date {
 		if (!this.days.includes(outset.getUTCDate()) || !this.months.includes(outset.getUTCMonth() + 1) || !this.dows.includes(outset.getUTCDay())) {
@@ -68,7 +68,7 @@ export class Cron {
 	/**
 	 * Normalize the pattern
 	 *
-	 * @param cron The pattern to normalize
+	 * @param cron - The pattern to normalize
 	 */
 	private static normalize(cron: string): string {
 		if (Reflect.has(predefined, cron)) return Reflect.get(predefined, cron);
@@ -106,7 +106,7 @@ export class Cron {
 	/**
 	 * Parse the pattern
 	 *
-	 * @param cron The pattern to parse
+	 * @param cron - The pattern to parse
 	 */
 	private static parseString(cron: string): number[][] {
 		const parts = cron.split(' ');
@@ -117,8 +117,8 @@ export class Cron {
 	/**
 	 * Parse the current part
 	 *
-	 * @param cronPart The part of the pattern to parse
-	 * @param id The id that identifies the current part
+	 * @param cronPart - The part of the pattern to parse
+	 * @param id - The id that identifies the current part
 	 */
 	private static parsePart(cronPart: string, id: number): number[] {
 		if (cronPart.includes(',')) {

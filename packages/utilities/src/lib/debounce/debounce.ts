@@ -13,14 +13,14 @@ export interface DebounceSettings {
 	/**
 	 * The maximum time `func` is allowed to be delayed before it's invoked
 	 *
-	 * @default null
+	 * @defaultValue null
 	 */
 	maxWait?: number | null;
 
 	/**
 	 * The number of milliseconds to delay.
 	 *
-	 * @default 0
+	 * @defaultValue 0
 	 */
 	wait?: number;
 }
@@ -64,9 +64,9 @@ export interface DebouncedFunc<FnArgumentsType extends any[], FnReturnType> {
  *
  * See David Corbacho’s article for details over the differences between _.debounce and _.throttle.
  *
- * @param func The function to debounce.
- * @param options The options object.
- * @return Returns the new debounced function.
+ * @param func - The function to debounce.
+ * @param options - The options object.
+ * @returns Returns the new debounced function.
  */
 export function debounce<FnArgumentsType extends any[], FnReturnType>(
 	func: (...args: FnArgumentsType) => FnReturnType,

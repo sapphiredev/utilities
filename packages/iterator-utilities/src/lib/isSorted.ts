@@ -12,9 +12,9 @@ import { defaultCompare } from './shared/comparators';
  * This function uses the default comparator (lexicographically), which means it will compare the elements as strings.
  * If this is undesirable, use {@link isSortedBy} instead.
  *
- * @seealso {@link isSortedBy} for a version that allows custom comparators.
- * @seealso {@link isSortedByKey} for a version that allows custom key extractors.
- * @param iterable The iterator to compare.
+ * @see {@link isSortedBy} for a version that allows custom comparators.
+ * @see {@link isSortedByKey} for a version that allows custom key extractors.
+ * @param iterable - The iterator to compare.
  * @example
  * ```typescript
  * import { isSorted } from '@sapphire/iterator-utilities';

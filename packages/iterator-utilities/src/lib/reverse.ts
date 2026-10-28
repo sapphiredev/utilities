@@ -4,7 +4,7 @@ import type { IterableResolvable } from './from';
 /**
  * Consumes the iterable and returns a new iterable with the elements in reverse order.
  *
- * @param iterable The iterator to reverse.
+ * @param iterable - The iterator to reverse.
  * @returns An iterator whose element correspond to the elements of the provided iterator in reverse order.
  * @example
  * ```typescript

@@ -63,7 +63,7 @@ export class PaginatedFieldMessageEmbed<T> extends PaginatedMessage {
 	/**
 	 * Set the items to paginate.
 	 *
-	 * @param items The pages to set
+	 * @param items - The pages to set
 	 */
 	public setItems(items: T[]) {
 		this.items = items;
@@ -73,7 +73,7 @@ export class PaginatedFieldMessageEmbed<T> extends PaginatedMessage {
 	/**
 	 * Set the title of the embed field that will be used to paginate the items.
 	 *
-	 * @param title The field title
+	 * @param title - The field title
 	 */
 	public setTitleField(title: string) {
 		this.fieldTitle = title;
@@ -83,7 +83,7 @@ export class PaginatedFieldMessageEmbed<T> extends PaginatedMessage {
 	/**
 	 * Sets the amount of items that should be shown per page.
 	 *
-	 * @param itemsPerPage The number of items
+	 * @param itemsPerPage - The number of items
 	 */
 	public setItemsPerPage(itemsPerPage: number) {
 		this.itemsPerPage = itemsPerPage;
@@ -93,7 +93,7 @@ export class PaginatedFieldMessageEmbed<T> extends PaginatedMessage {
 	/**
 	 * Sets the template to be used to display the embed fields as pages. This template can either be set from a template {@link EmbedBuilder} instance or an object with embed options.
 	 *
-	 * @param template EmbedBuilder
+	 * @param template - EmbedBuilder
 	 * @example
 	 * ```typescript
 	 * import { PaginatedFieldMessageEmbed } from '@sapphire/discord.js-utilities';
@@ -132,7 +132,7 @@ export class PaginatedFieldMessageEmbed<T> extends PaginatedMessage {
 	 *    .make()
 	 *    .run(message);
 	 * ```
-	 * @param formatter The formatter callback to be applied to each embed item
+	 * @param formatter - The formatter callback to be applied to each embed item
 	 */
 	public formatItems(formatter: (item: T, index: number, array: T[]) => any) {
 		this.items = this.items.map(formatter);
@@ -193,10 +193,10 @@ export class PaginatedFieldMessageEmbed<T> extends PaginatedMessage {
 	/**
 	 * Paginates an array of items.
 	 *
-	 * @template T The type of items in the array.
-	 * @param items The array of items to paginate.
-	 * @param currentPage The current page number.
-	 * @param perPageItems The number of items per page.
+	 * @typeParam T - The type of items in the array.
+	 * @param items - The array of items to paginate.
+	 * @param currentPage - The current page number.
+	 * @param perPageItems - The number of items per page.
 	 * @returns The paginated array of items.
 	 */
 	private paginateArray(items: T[], currentPage: number, perPageItems: number) {

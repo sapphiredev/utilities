@@ -4,7 +4,7 @@ import { toIterableIterator } from './toIterableIterator';
 /**
  * Creates a new iterable that yields the index and value of each element.
  *
- * @param iterable An iterator to enumerate.
+ * @param iterable - An iterator to enumerate.
  * @returns An iterator that yields the index and value of each element in the source iterator.
  * @example
  * ```typescript

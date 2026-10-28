@@ -6,8 +6,8 @@ import { toIntegerOrInfinityOrThrow } from './shared/_toIntegerOrInfinityOrThrow
 /**
  * Creates an iterator starting at the same point, but stepping by the given amount at each iteration.
  *
- * @param iterable An iterator to map over.
- * @param step A positive integer representing the step to take at each iteration.
+ * @param iterable - An iterator to map over.
+ * @param step - A positive integer representing the step to take at each iteration.
  * @example
  * ```typescript
  * import { stepBy } from '@sapphire/iterator-utilities';

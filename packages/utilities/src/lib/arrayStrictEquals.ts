@@ -1,8 +1,8 @@
 /**
  * Compare if both arrays are strictly equal
  *
- * @param arr1 The array to compare to
- * @param arr2 The array to compare with
+ * @param arr1 - The array to compare to
+ * @param arr2 - The array to compare with
  */
 export function arrayStrictEquals<T extends readonly unknown[]>(arr1: T, arr2: T): boolean {
 	if (arr1 === arr2) return true;

@@ -17,7 +17,7 @@ export class RateLimit<K = string> {
 	private readonly manager: RateLimitManager<K>;
 
 	/**
-	 * @param manager The manager for this entry.
+	 * @param manager - The manager for this entry.
 	 */
 	public constructor(manager: RateLimitManager<K>) {
 		this.manager = manager;

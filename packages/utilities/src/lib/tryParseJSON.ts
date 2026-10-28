@@ -1,8 +1,8 @@
 /**
  * Try parse a stringified JSON string.
  *
- * @param value The string to parse as JSON.
- * @param reviver A function that transforms the results. This function is recursively called for each member of the object.
+ * @param value - The string to parse as JSON.
+ * @param reviver - A function that transforms the results. This function is recursively called for each member of the object.
  */
 export function tryParseJSON(
 	value: string,

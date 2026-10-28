@@ -25,7 +25,7 @@ async function main() {
 		'',
 		'/**',
 		' * Regex that can capture a Twemoji (Twitter Emoji)',
-		' * @raw {@linkplain https://github.com/jdecked/twemoji-parser/blob/main/src/lib/regex.js See official source code}',
+		' * {@link https://github.com/jdecked/twemoji-parser/blob/main/src/lib/regex.js | See official source code}',
 		' */',
 		'export const TwemojiRegex =',
 		'\t'

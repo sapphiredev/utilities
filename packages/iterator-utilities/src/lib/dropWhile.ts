@@ -6,8 +6,8 @@ import { toIterableIterator } from './toIterableIterator';
 /**
  * Creates a new iterator without the elements that satisfy the specified test.
  *
- * @param iterable An iterator to drop values from.
- * @param callbackFn A function to execute for each element produced by the iterator. It should return a falsy value to make the element yielded by the iterator helper, and a truthy value otherwise.
+ * @param iterable - An iterator to drop values from.
+ * @param callbackFn - A function to execute for each element produced by the iterator. It should return a falsy value to make the element yielded by the iterator helper, and a truthy value otherwise.
  * @returns An iterator that produces elements from the given iterator that don't satisfy the specified test.
  * @example
  * ```typescript
@@ -17,7 +17,7 @@ import { toIterableIterator } from './toIterableIterator';
  * console.log([...iterable]);
  * // Output: [3, 4, 5]
  * ```
- * @seealso {@link filter} or {@link takeWhile} for the opposite behavior.
+ * @see `filter` or {@link takeWhile} for the opposite behavior.
  */
 export function dropWhile<const ElementType, const FilteredType extends ElementType>(
 	iterable: IterableResolvable<ElementType>,

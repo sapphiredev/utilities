@@ -8,13 +8,18 @@ const ValueProperty = Symbol.for('@sapphire/result:Result.value');
 const SuccessProperty = Symbol.for('@sapphire/result:Result.success');
 const UnwrapSafeProperty = Symbol.for('@sapphire/result:Result.safeUnwrap');
 
+type ResultMatchBranches<T, E, OkValue, ErrValue, Success extends boolean> = {
+	err(this: Err<E>, error: If<Success, never, E>): ErrValue;
+	ok(this: Ok<T>, value: If<Success, T, never>): OkValue;
+};
+
 /**
  * A type used to express computations that can fail, it can be used for returning and propagating errors. This is a
  * type union with the variants `Ok(T)`, representing success and containing a value, and `Err(E)`, representing error
  * and containing an error value.
  *
- * @typeparam T The result's type.
- * @typeparam E The error's type.
+ * @typeParam T - The result's type.
+ * @typeParam E - The error's type.
  * @see {@link https://doc.rust-lang.org/std/result/index.html}
  */
 export class Result<T, E, const Success extends boolean = boolean> {
@@ -101,7 +106,7 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	/**
 	 * Returns `true` if the result is `Err` and the value inside of it matches a predicate.
 	 *
-	 * @param cb The predicate.
+	 * @param cb - The predicate.
 	 * @example
 	 * ```typescript
 	 * const x = ok(2);
@@ -171,7 +176,7 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * Maps a `Result<T, E>` to `Result<U, E>` by applying a function to a contained `Ok` value, leaving an `Err` value
 	 * untouched.
 	 *
-	 * @param cb The predicate.
+	 * @param cb - The predicate.
 	 * @example
 	 * ```typescript
 	 * const x: Result<number, string> = ok(2);
@@ -196,7 +201,7 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * Unlike {@link map}, this method does not wrap the returned value inside `Ok`, but instead, it returns the
 	 * returned value.
 	 *
-	 * @param cb The predicate.
+	 * @param cb - The predicate.
 	 * @example
 	 * ```typescript
 	 * const x: Result<number, string> = ok(2);
@@ -215,7 +220,7 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * const x: Result<number, string> = err('Some error message');
 	 * assert.equal(x.mapInto((value) => ok(4)), err('Some error message'));
 	 * ```
-	 * @note This is an extension not supported in Rust
+	 * This is an extension not supported in Rust
 	 */
 	public mapInto<OutputResult extends AnyResult>(cb: (value: If<Success, T, never>) => OutputResult): If<Success, OutputResult, Err<E>> {
 		return this.match({ ok: (value) => cb(value), err: returnThis });
@@ -227,8 +232,8 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * Arguments passed to `mapOr` are eagerly evaluated; if you are passing the result of a function call, it is
 	 * recommended to use `mapOrElse`, which is lazily evaluated.
 	 *
-	 * @param defaultValue The default value to use.
-	 * @param cb The predicate.
+	 * @param defaultValue - The default value to use.
+	 * @param cb - The predicate.
 	 * @example
 	 * ```typescript
 	 * const x = ok('hello');
@@ -254,8 +259,8 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 *
 	 * This function can be used to unpack a successful result while handling an error.
 	 *
-	 * @param op The predicate that is run on `Err`.
-	 * @param cb The predicate that is run on `Ok`.
+	 * @param op - The predicate that is run on `Err`.
+	 * @param cb - The predicate that is run on `Ok`.
 	 * @example
 	 * ```typescript
 	 * const x: Result<string, string> = ok('hello');
@@ -281,7 +286,7 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 *
 	 * This function can be used to pass through a successful result while handling an error.
 	 *
-	 * @param cb The predicate.
+	 * @param cb - The predicate.
 	 * @example
 	 * ```typescript
 	 * const x: Result<number, Error> = ok(2);
@@ -308,7 +313,7 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * Unlike {@link mapErr}, this method does not wrap the returned value inside `Err`, but instead, it returns the
 	 * returned value.
 	 *
-	 * @param cb The predicate.
+	 * @param cb - The predicate.
 	 * @example
 	 * ```typescript
 	 * const x: Result<number, Error> = ok(2);
@@ -324,7 +329,7 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * const x: Result<number, Error> = err(new Error('Some error message'));
 	 * assert.equal(x.mapErrInto((error) => ok(4)), ok(4));
 	 * ```
-	 * @note This is an extension not supported in Rust
+	 * This is an extension not supported in Rust
 	 */
 	public mapErrInto<OutputResult extends AnyResult>(cb: (error: If<Success, never, E>) => OutputResult): If<Success, Ok<T>, OutputResult> {
 		return this.match({ ok: returnThis, err: (error) => cb(error) });
@@ -333,8 +338,8 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	/**
 	 * Calls the provided closure with a reference to the contained value (if `Ok`).
 	 *
-	 * @param cb The predicate.
-	 * @seealso {@link inspectAsync} for the awaitable version.
+	 * @param cb - The predicate.
+	 * @see {@link inspectAsync} for the awaitable version.
 	 * @example
 	 * ```typescript
 	 * ok(2).inspect(console.log);
@@ -356,8 +361,8 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	/**
 	 * Calls the provided closure with a reference to the contained value (if `Ok`) and awaits it.
 	 *
-	 * @param cb The predicate.
-	 * @seealso {@link inspect} for the sync version.
+	 * @param cb - The predicate.
+	 * @see {@link inspect} for the sync version.
 	 * @example
 	 * ```typescript
 	 * await ok(2).inspectAsync(console.log);
@@ -368,7 +373,7 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * await err('Some error message').inspectAsync(console.log);
 	 * // Doesn't log
 	 * ```
-	 * @note This is an extension not supported in Rust
+	 * This is an extension not supported in Rust
 	 */
 	public async inspectAsync(cb: (value: T) => Awaitable<unknown>): Promise<this> {
 		// eslint-disable-next-line n/callback-return
@@ -379,8 +384,8 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	/**
 	 * Calls the provided closure with a reference to the contained error (if `Err`).
 	 *
-	 * @param cb The predicate.
-	 * @seealso {@link inspectErrAsync} for the awaitable version.
+	 * @param cb - The predicate.
+	 * @see {@link inspectErrAsync} for the awaitable version.
 	 * @example
 	 * ```typescript
 	 * ok(2).inspectErr(console.log);
@@ -402,8 +407,8 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	/**
 	 * Calls the provided closure with a reference to the contained error (if `Err`) and awaits it.
 	 *
-	 * @param cb The predicate.
-	 * @seealso {@link inspectErr} for the sync version.
+	 * @param cb - The predicate.
+	 * @see {@link inspectErr} for the sync version.
 	 * @example
 	 * ```typescript
 	 * await ok(2).inspectErrAsync(console.log);
@@ -414,7 +419,7 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * await err('Some error message').inspectErrAsync(console.log);
 	 * // Logs: Some error message
 	 * ```
-	 * @note This is an extension not supported in Rust
+	 * This is an extension not supported in Rust
 	 */
 	public async inspectErrAsync(cb: (error: E) => Awaitable<unknown>): Promise<this> {
 		// eslint-disable-next-line n/callback-return
@@ -454,7 +459,7 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 *
 	 * If the value is an `Err`, it throws a {@link ResultError} with the given message and the content of the `Err`.
 	 *
-	 * @param message The message for the error.
+	 * @param message - The message for the error.
 	 * @example
 	 * ```typescript
 	 * const x = ok(2);
@@ -481,7 +486,7 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 *
 	 * If the value is an `Ok`, it throws a {@link ResultError} with the given message and the content of the `Ok`.
 	 *
-	 * @param message The message for the error.
+	 * @param message - The message for the error.
 	 * @example
 	 * ```typescript
 	 * const x = ok(2);
@@ -508,11 +513,11 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 *
 	 * If the value is an `Err`, it throws a {@link ResultError} with the message, and the content of the `Err`.
 	 *
-	 * @seealso {@link unwrapOr}
-	 * @seealso {@link unwrapOrElse}
-	 * @seealso {@link unwrapErr}
-	 * @seealso {@link unwrapRaw}
-	 * @seealso {@link unwrapSafe}
+	 * @see {@link unwrapOr}
+	 * @see {@link unwrapOrElse}
+	 * @see {@link unwrapErr}
+	 * @see {@link unwrapRaw}
+	 * @see {@link unwrapSafe}
 	 * @example
 	 * ```typescript
 	 * const x = ok(2);
@@ -539,11 +544,11 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 *
 	 * If the value is an `Ok`, it throws a {@link ResultError} with the message, and the content of the `Ok`.
 	 *
-	 * @seealso {@link unwrap}
-	 * @seealso {@link unwrapOr}
-	 * @seealso {@link unwrapOrElse}
-	 * @seealso {@link unwrapRaw}
-	 * @seealso {@link unwrapSafe}
+	 * @see {@link unwrap}
+	 * @see {@link unwrapOr}
+	 * @see {@link unwrapOrElse}
+	 * @see {@link unwrapRaw}
+	 * @see {@link unwrapSafe}
 	 * @example
 	 * ```typescript
 	 * const x = ok(2);
@@ -571,12 +576,12 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * Arguments passed to `unwrapOr` are eagerly evaluated; if you are passing the result of a function call, it is
 	 * recommended to use {@link unwrapOrElse}, which is lazily evaluated.
 	 *
-	 * @seealso {@link unwrap}
-	 * @seealso {@link unwrapOrElse}
-	 * @seealso {@link unwrapErr}
-	 * @seealso {@link unwrapRaw}
-	 * @seealso {@link unwrapSafe}
-	 * @param defaultValue The default value.
+	 * @see {@link unwrap}
+	 * @see {@link unwrapOrElse}
+	 * @see {@link unwrapErr}
+	 * @see {@link unwrapRaw}
+	 * @see {@link unwrapSafe}
+	 * @param defaultValue - The default value.
 	 * @example
 	 * ```typescript
 	 * const x: Result<number, string> = ok(9);
@@ -596,12 +601,12 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	/**
 	 * Returns the contained `Ok` value or computes it from a closure.
 	 *
-	 * @seealso {@link unwrap}
-	 * @seealso {@link unwrapOr}
-	 * @seealso {@link unwrapErr}
-	 * @seealso {@link unwrapRaw}
-	 * @seealso {@link unwrapSafe}
-	 * @param op The predicate.
+	 * @see {@link unwrap}
+	 * @see {@link unwrapOr}
+	 * @see {@link unwrapErr}
+	 * @see {@link unwrapRaw}
+	 * @see {@link unwrapSafe}
+	 * @param op - The predicate.
 	 * @example
 	 * ```typescript
 	 * const count = (x: string) => x.length;
@@ -620,11 +625,11 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 *
 	 * If the value is an `Err`, it throws the contained error.
 	 *
-	 * @seealso {@link unwrap}
-	 * @seealso {@link unwrapOr}
-	 * @seealso {@link unwrapOrElse}
-	 * @seealso {@link unwrapErr}
-	 * @seealso {@link unwrapSafe}
+	 * @see {@link unwrap}
+	 * @see {@link unwrapOr}
+	 * @see {@link unwrapOrElse}
+	 * @see {@link unwrapErr}
+	 * @see {@link unwrapSafe}
 	 * @example
 	 * ```typescript
 	 * const x = ok(2);
@@ -653,11 +658,11 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 *
 	 * If used outside of a `safeTry`'s' body, throws the contained error.
 	 *
-	 * @seealso {@link unwrap}
-	 * @seealso {@link unwrapOr}
-	 * @seealso {@link unwrapErr}
-	 * @seealso {@link unwrapRaw}
-	 * @seealso {@link unwrapSafe}
+	 * @see {@link unwrap}
+	 * @see {@link unwrapOr}
+	 * @see {@link unwrapErr}
+	 * @see {@link unwrapRaw}
+	 * @see {@link unwrapSafe}
 	 * @see {@link https://doc.rust-lang.org/std/result/enum.Result.html#method.unwrap_safe}
 	 */
 	public *unwrapSafe(): Generator<Err<E, T>, T> {
@@ -672,7 +677,7 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	/**
 	 * Returns `result` if the result is `Ok`, otherwise returns the `Err` value of itself.
 	 *
-	 * @param result The result to check.
+	 * @param result - The result to check.
 	 * @example
 	 * ```typescript
 	 * const x: Result<number, string> = ok(2);
@@ -702,7 +707,7 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 *
 	 * This function can be used for control flow based on `Result` values.
 	 *
-	 * @param cb The predicate.
+	 * @param cb - The predicate.
 	 * @example
 	 * ```typescript
 	 * function fractionOf4(value: number) {
@@ -726,7 +731,7 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * Arguments passed to or are eagerly evaluated; if you are passing the result of a function call, it is recommended
 	 * to use {@link orElse}, which is lazily evaluated.
 	 *
-	 * @param result The result to check.
+	 * @param result - The result to check.
 	 * @example
 	 * ```typescript
 	 * const x: Result<number, string> = ok(2);
@@ -762,7 +767,7 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 *
 	 * This function can be used for control flow based on result values.
 	 *
-	 * @param cb The predicate.
+	 * @param cb - The predicate.
 	 * @example
 	 * ```typescript
 	 * const square = (x: number): Result<number, string> => ok(x * x);
@@ -782,7 +787,7 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	/**
 	 * Returns `true` if the result is an `Ok` and the given value strict equals it.
 	 *
-	 * @param value The value to compare.
+	 * @param value - The value to compare.
 	 * @example
 	 * ```typescript
 	 * const x: Result<number, string> = ok(2);
@@ -809,7 +814,7 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	/**
 	 * Returns `true` if the result is an `Err` and the given error strict equals it.
 	 *
-	 * @param error The error to compare.
+	 * @param error - The error to compare.
 	 * @example
 	 * ```typescript
 	 * const x: Result<number, string> = ok(2);
@@ -906,7 +911,7 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * let x = ok(Promise.resolve(3));
 	 * assert.equal(await x.intoPromise(), ok(3));
 	 * ```
-	 * @note This is an extension not supported in Rust
+	 * This is an extension not supported in Rust
 	 */
 	public async intoPromise(): Promise<If<Success, Ok<Awaited<T>>, Err<Awaited<E>>>> {
 		return this.match<Ok<Awaited<T>>, Err<Awaited<E>>>({
@@ -922,7 +927,7 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	/**
 	 * Checks whether or not `other` equals with self.
 	 *
-	 * @param other The other result to compare.
+	 * @param other - The other result to compare.
 	 * @see {@link https://doc.rust-lang.org/std/cmp/trait.PartialEq.html#tymethod.eq}
 	 */
 	public eq<OtherValue extends T, OtherError extends E, OtherSuccess extends boolean>(
@@ -935,7 +940,7 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	/**
 	 * Checks whether or not `other` doesn't equal with self.
 	 *
-	 * @param other The other result to compare.
+	 * @param other - The other result to compare.
 	 * @see {@link https://doc.rust-lang.org/std/cmp/trait.PartialEq.html#method.ne}
 	 */
 	public ne(other: Result<T, E>): boolean {
@@ -945,7 +950,7 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	/**
 	 * Runs `ok` function if self is `Ok`, otherwise runs `err` function.
 	 *
-	 * @param branches The branches to match.
+	 * @param branches - The callbacks to run: `err` handles `Err` and receives its error value, while `ok` handles `Ok` and receives its success value.
 	 * @example
 	 * ```typescript
 	 * const result = ok(4).match({
@@ -963,10 +968,7 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * assert.equal(result, 0);
 	 * ```
 	 */
-	public match<OkValue, ErrValue>(branches: {
-		err(this: Err<E>, error: If<Success, never, E>): ErrValue;
-		ok(this: Ok<T>, value: If<Success, T, never>): OkValue;
-	}): If<Success, OkValue, ErrValue> {
+	public match<OkValue, ErrValue>(branches: ResultMatchBranches<T, E, OkValue, ErrValue, Success>): If<Success, OkValue, ErrValue> {
 		// @ts-expect-error Complex types
 		return this.isOk() ? branches.ok.call(this, this[ValueProperty]) : branches.err.call(this, this[ValueProperty] as E);
 	}
@@ -1031,7 +1033,7 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * exists to interoperate with other versions of this class, such as the one coming from another version of this
 	 * library or from a different build.
 	 *
-	 * @param instance The instance to check.
+	 * @param instance - The instance to check.
 	 * @returns Whether or not the instance is a `Result`.
 	 * @example
 	 * ```typescript
@@ -1049,7 +1051,7 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * @deprecated Use {@link Result.isResult} instead.
 	 *
 	 * Checks if the `instance` object is an instance of `Result`, or if it is a `Result`-like object.
-	 * @param instance The instance to check.
+	 * @param instance - The instance to check.
 	 * @returns true if the instance is a `Result` or a `Result`-like object, false otherwise.
 	 * @example
 	 * ```typescript
@@ -1066,7 +1068,7 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	/**
 	 * Checks if the `instance` object is an instance of `Result`, or if it is a `Result`-like object.
 	 *
-	 * @param instance The instance to check.
+	 * @param instance - The instance to check.
 	 * @returns true if the instance is a `Result` or a `Result`-like object, false otherwise.
 	 * @example
 	 * ```typescript
@@ -1083,8 +1085,8 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	/**
 	 * Creates a {@link Result} out of a callback.
 	 *
-	 * @typeparam T The result's type.
-	 * @typeparam E The error's type.
+	 * @typeParam T - The result's type.
+	 * @typeParam E - The error's type.
 	 */
 
 	public static from<T, E = unknown>(this: void, op: ResultResolvable<T, E> | (() => ResultResolvable<T, E>)): Result<T, E> {
@@ -1098,8 +1100,8 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	/**
 	 * Creates a {@link Result} out of a promise or async callback.
 	 *
-	 * @typeparam T The result's type.
-	 * @typeparam E The error's type.
+	 * @typeParam T - The result's type.
+	 * @typeParam E - The error's type.
 	 */
 	public static async fromAsync<T, E = unknown>(
 		this: void,
@@ -1116,7 +1118,7 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * Creates an {@link Ok} that is the combination of all collected {@link Ok} values as an array, or the first
 	 * {@link Err} encountered.
 	 *
-	 * @param results An array of {@link Result}s.
+	 * @param results - An array of {@link Result}s.
 	 * @returns A new {@link Result}.
 	 */
 	public static all<const Entries extends readonly AnyResult[]>(
@@ -1136,7 +1138,7 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	/**
 	 * Returns the first encountered {@link Ok}, or an {@link Err} that is the combination of all collected error values.
 	 *
-	 * @param results An array of {@link Result}s.
+	 * @param results - An array of {@link Result}s.
 	 * @returns A new {@link Result}.
 	 */
 	public static any<const Entries extends readonly AnyResult[]>(

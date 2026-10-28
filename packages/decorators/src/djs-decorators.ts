@@ -41,9 +41,10 @@ const DMAvailableUserPermissions = new PermissionsBitField(
 /**
  * Allows you to set permissions required for individual methods. This is particularly useful for subcommands that require specific permissions.
  *
- * @remark This decorator applies to the client that is to execute the command. For setting permissions required user of the command see {@link RequiresUserPermissions}
- * @remark This decorator makes the decorated function asynchronous, so any result should be `await`ed.
- * @param permissionsResolvable Permissions that the method should have.
+ * This decorator applies to the client that is to execute the command. For setting permissions required user of the command see {@link RequiresUserPermissions}
+ * This decorator makes the decorated function asynchronous, so any result should be `await`ed.
+ *
+ * @param permissionsResolvable - Permissions that the method should have.
  * @example
  * ```typescript
  * import { ApplyOptions, RequiresClientPermissions } from '@sapphire/decorators';
@@ -114,9 +115,10 @@ export const RequiresClientPermissions = (...permissionsResolvable: PermissionRe
 /**
  * Allows you to set permissions required for individual methods. This is particularly useful for subcommands that require specific permissions.
  *
- * @remark This decorator applies to the user of the command. For setting permissions required for the client see {@link RequiresClientPermissions}
- * @remark This decorator makes the decorated function asynchronous, so any result should be `await`ed.
- * @param permissionsResolvable Permissions that the method should have.
+ * This decorator applies to the user of the command. For setting permissions required for the client see {@link RequiresClientPermissions}
+ * This decorator makes the decorated function asynchronous, so any result should be `await`ed.
+ *
+ * @param permissionsResolvable - Permissions that the method should have.
  * @example
  * ```typescript
  * import { ApplyOptions, RequiresUserPermissions } from '@sapphire/decorators';
@@ -187,8 +189,7 @@ export const RequiresUserPermissions = (...permissionsResolvable: PermissionReso
 /**
  * Requires the message to be run in a guild context, this decorator requires the first argument to be a {@link Message} or {@link BaseInteraction} instance which includes all interaction types
  *
- * @since 1.0.0
- * @param fallback The fallback value passed to {@link createFunctionPrecondition}
+ * @param fallback - The fallback value passed to {@link createFunctionPrecondition}
  */
 export function RequiresGuildContext(fallback: FunctionFallback = (): void => undefined): MethodDecorator {
 	return createFunctionPrecondition((context: BaseInteraction | Message) => context.guild !== null, fallback);
@@ -197,8 +198,7 @@ export function RequiresGuildContext(fallback: FunctionFallback = (): void => un
 /**
  * Requires the message to be run in a dm context, this decorator requires the first argument to be a {@link Message} or {@link BaseInteraction} instance which includes all interaction types
  *
- * @since 1.0.0
- * @param fallback The fallback value passed to {@link createFunctionPrecondition}
+ * @param fallback - The fallback value passed to {@link createFunctionPrecondition}
  */
 export function RequiresDMContext(fallback: FunctionFallback = (): void => undefined): MethodDecorator {
 	return createFunctionPrecondition((context: BaseInteraction | Message) => context.guild === null, fallback);

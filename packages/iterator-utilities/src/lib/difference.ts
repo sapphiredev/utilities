@@ -5,8 +5,8 @@ import { toIterableIterator } from './toIterableIterator';
 /**
  * Creates an iterable with the elements of the first iterable that are not in the second iterable.
  *
- * @param first An iterator to return elements from.
- * @param second An iterator that contains elements to exclude from the result.
+ * @param first - An iterator to return elements from.
+ * @param second - An iterator that contains elements to exclude from the result.
  * @example
  * ```typescript
  * import { difference } from '@sapphire/iterator-utilities';

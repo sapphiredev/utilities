@@ -6,7 +6,7 @@ export interface SleepOptions {
 	 * Set to `false` to indicate that the scheduled `Timeout`
 	 * should not require the Node.js event loop to remain active.
 	 *
-	 * @default true
+	 * @defaultValue true
 	 */
 	ref?: boolean | undefined;
 
@@ -20,8 +20,8 @@ export interface SleepOptions {
  * Sleeps for the specified number of milliseconds.
  * For a synchronous variant, see [sleepSync](./sleepSync.d.ts).
  *
- * @param ms The number of milliseconds to sleep.
- * @param value A value with which the promise is fulfilled.
+ * @param ms - The number of milliseconds to sleep.
+ * @param value - A value with which the promise is fulfilled.
  * @see {@link sleepSync} for a synchronous version.
  */
 export async function sleep<T = undefined>(ms: number, value?: T, options?: SleepOptions): Promise<T> {

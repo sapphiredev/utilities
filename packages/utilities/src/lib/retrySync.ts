@@ -2,8 +2,8 @@
  * Synchronously calls the callback function until it either succeeds or it runs out of retries.
  * For an asynchronous variant, see [retry](./retry.d.ts).
  *
- * @param cb The function to be retried is passed in as a callback function.
- * @param retries The number of retries is also passed in as a parameter. Minimum of 0.
+ * @param cb - The function to be retried is passed in as a callback function.
+ * @param retries - The number of retries is also passed in as a parameter. Minimum of 0.
  * @returns The result of the callback function is returned.
  */
 export function retrySync<T>(cb: () => T, retries: number): T {

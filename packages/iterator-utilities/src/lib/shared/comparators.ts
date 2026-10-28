@@ -10,9 +10,9 @@ function swap<const ElementType>(cb: CompareByComparator<ElementType>): CompareB
 /**
  * Compares two elements lexicographically using the default comparison algorithm.
  *
- * @seealso 23.1.3.30.2 CompareArrayElements ({@link https://tc39.es/ecma262/#sec-comparearrayelements})
- * @param x The first element to compare.
- * @param y The second element to compare.
+ * @see 23.1.3.30.2 CompareArrayElements ({@link https://tc39.es/ecma262/#sec-comparearrayelements})
+ * @param x - The first element to compare.
+ * @param y - The second element to compare.
  * @returns The lexicographic comparison of the two elements.
  * @remarks
  *
@@ -31,8 +31,8 @@ export const descString = swap(defaultCompare);
 /**
  * Compares two elements using the default comparison algorithm.
  *
- * @param x The first element to compare.
- * @param y The second element to compare.
+ * @param x - The first element to compare.
+ * @param y - The second element to compare.
  * @returns The numeric comparison of the two elements.
  * @privateRemarks
  *

@@ -11,10 +11,10 @@ import { toIterableIterator } from './toIterableIterator';
  *
  * If several elements are equally minimum, the last element is returned. If the iterator is empty, `null` is returned.
  *
- * @seealso {@link min} for a version that uses the default comparator.
- * @seealso {@link minBy} for a version that allows custom comparators.
- * @param iterable An iterator of number values to determine the minimum value of.
- * @param callbackFn A function to execute for each element produced by the iterator. It should return a number value.
+ * @see {@link min} for a version that uses the default comparator.
+ * @see {@link minBy} for a version that allows custom comparators.
+ * @param iterable - An iterator of number values to determine the minimum value of.
+ * @param callbackFn - A function to execute for each element produced by the iterator. It should return a number value.
  * @returns The element that gives the minimum value from the specified function, or `null` if the iterator is empty.
  * @example
  * ```typescript

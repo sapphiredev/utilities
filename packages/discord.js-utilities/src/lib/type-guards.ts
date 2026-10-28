@@ -50,7 +50,7 @@ import type {
  * Checks whether a given channel is a {@link CategoryChannel}
  * This checks for {@link ChannelType.GuildCategory}.
  *
- * @param channel The channel to check
+ * @param channel - The channel to check
  */
 export function isCategoryChannel(channel: ChannelTypes | Nullish): channel is CategoryChannel {
 	return channel?.type === ChannelType.GuildCategory;
@@ -60,7 +60,7 @@ export function isCategoryChannel(channel: ChannelTypes | Nullish): channel is C
  * Checks whether a given channel is a {@link DMChannel}
  * This checks for {@link ChannelType.DM}.
  *
- * @param channel The channel to check
+ * @param channel - The channel to check
  */
 export function isDMChannel(channel: ChannelTypes | Nullish): channel is DMChannel | PartialDMChannel {
 	return channel?.type === ChannelType.DM;
@@ -70,7 +70,7 @@ export function isDMChannel(channel: ChannelTypes | Nullish): channel is DMChann
  * Checks whether a given channel is a {@link PartialGroupDMChannel}
  * This checks for {@link ChannelType.GroupDM}.
  *
- * @param channel The channel to check
+ * @param channel - The channel to check
  */
 export function isGroupChannel(channel: Channel | Nullish | PartialDMChannel): channel is PartialGroupDMChannel {
 	return channel?.type === ChannelType.GroupDM;
@@ -80,7 +80,7 @@ export function isGroupChannel(channel: Channel | Nullish | PartialDMChannel): c
  * Checks if a channel comes from a guild.
  * This checks that the channel is **not** {@link ChannelType.DM}.
  *
- * @param channel The channel to check
+ * @param channel - The channel to check
  * @returns Whether or not the channel is guild-based.
  */
 export function isGuildBasedChannel(channel: ChannelTypes | Nullish): channel is GuildTextBasedChannelTypes {
@@ -90,8 +90,9 @@ export function isGuildBasedChannel(channel: ChannelTypes | Nullish): channel is
 /**
  * Checks whether or not a channel comes from a guild.
  *
- * @remark As opposed to {@link isGuildBasedChannel} this checks if there is `guild` property on the channel.
- * @param channel The channel to check.
+ * As opposed to {@link isGuildBasedChannel} this checks if there is `guild` property on the channel.
+ *
+ * @param channel - The channel to check.
  * @returns Whether or not the channel is guild-based.
  */
 export function isGuildBasedChannelByGuildKey(channel: ChannelTypes | Nullish): channel is GuildTextBasedChannelTypes {
@@ -102,7 +103,7 @@ export function isGuildBasedChannelByGuildKey(channel: ChannelTypes | Nullish): 
  * Checks whether a given channel is a {@link NewsChannel}.
  * This checks for {@link ChannelType.GuildAnnouncement}.
  *
- * @param channel The channel to check.
+ * @param channel - The channel to check.
  */
 export function isNewsChannel(channel: ChannelTypes | Nullish): channel is NewsChannel {
 	return channel?.type === ChannelType.GuildAnnouncement;
@@ -112,7 +113,7 @@ export function isNewsChannel(channel: ChannelTypes | Nullish): channel is NewsC
  * Checks whether a given channel is a {@link TextChannel}.
  * This checks for {@link ChannelType.GuildText}.
  *
- * @param channel The channel to check.
+ * @param channel - The channel to check.
  */
 export function isTextChannel(channel: ChannelTypes | Nullish): channel is TextChannel {
 	return channel?.type === ChannelType.GuildText;
@@ -122,7 +123,7 @@ export function isTextChannel(channel: ChannelTypes | Nullish): channel is TextC
  * Checks whether a given channel is a {@link VoiceChannel}
  * This checks for {@link ChannelType.GuildVoice}.
  *
- * @param channel The channel to check
+ * @param channel - The channel to check
  */
 export function isVoiceChannel(channel: ChannelTypes | Nullish): channel is VoiceChannel {
 	return channel?.type === ChannelType.GuildVoice;
@@ -132,7 +133,7 @@ export function isVoiceChannel(channel: ChannelTypes | Nullish): channel is Voic
  * Checks whether a given channel is a {@link StageChannel}
  * This checks for {@link ChannelType.GuildStageVoice}.
  *
- * @param channel The channel to check
+ * @param channel - The channel to check
  */
 export function isStageChannel(channel: ChannelTypes | Nullish): channel is StageChannel {
 	return channel?.type === ChannelType.GuildStageVoice;
@@ -140,9 +141,9 @@ export function isStageChannel(channel: ChannelTypes | Nullish): channel is Stag
 
 /**
  * Checks whether a given channel is a {@link ThreadChannel}
- * This checks for {@link ChannelTypes.isThread()}.
+ * This checks for `ChannelTypes.isThread()`.
  *
- * @param channel The channel to check.
+ * @param channel - The channel to check.
  */
 export function isThreadChannel(channel: ChannelTypes | Nullish): channel is ThreadChannel {
 	return channel?.isThread() ?? false;
@@ -152,7 +153,7 @@ export function isThreadChannel(channel: ChannelTypes | Nullish): channel is Thr
  * Checks whether a given channel is an Announcement {@link PublicThreadChannel}
  * This checks for {@link ChannelType.AnnouncementThread}.
  *
- * @param channel The channel to check.
+ * @param channel - The channel to check.
  */
 export function isNewsThreadChannel(channel: ChannelTypes | Nullish): channel is PublicThreadChannel {
 	return channel?.type === ChannelType.AnnouncementThread;
@@ -162,7 +163,7 @@ export function isNewsThreadChannel(channel: ChannelTypes | Nullish): channel is
  * Checks whether a given channel is a {@link PublicThreadChannel}
  * This checks for {@link ChannelType.PublicThread}.
  *
- * @param channel The channel to check.
+ * @param channel - The channel to check.
  */
 export function isPublicThreadChannel(channel: ChannelTypes | Nullish): channel is PublicThreadChannel {
 	return channel?.type === ChannelType.PublicThread;
@@ -172,7 +173,7 @@ export function isPublicThreadChannel(channel: ChannelTypes | Nullish): channel 
  * Checks whether a given channel is a {@link PrivateThreadChannel}
  * This checks for {@link ChannelType.PrivateThread}.
  *
- * @param channel The channel to check.
+ * @param channel - The channel to check.
  */
 export function isPrivateThreadChannel(channel: ChannelTypes | Nullish): channel is PrivateThreadChannel {
 	return channel?.type === ChannelType.PrivateThread;
@@ -181,7 +182,7 @@ export function isPrivateThreadChannel(channel: ChannelTypes | Nullish): channel
 /**
  * Checks whether a given channel is a {@link TextBasedChannelTypes}. This means it has a `send` method.
  *
- * @param channel The channel to check.
+ * @param channel - The channel to check.
  */
 export function isTextBasedChannel(channel: ChannelTypes | Nullish): channel is Exclude<TextBasedChannelTypes, PartialGroupDMChannel | StageChannel> {
 	if (
@@ -199,7 +200,7 @@ export function isTextBasedChannel(channel: ChannelTypes | Nullish): channel is 
 
 /**
  * Checks whether a given channel is a {@link VoiceBasedChannel}.
- * This checks for {@link Channel.isVoiceBased()}.
+ * This checks for `Channel.isVoiceBased()`.
  *
  * @param channel - The channel to check.
  */
@@ -231,7 +232,7 @@ export function isVoiceBasedChannel(channel: Channel | Nullish): channel is Voic
  * - {@link ChannelType.PublicThread}
  * - {@link ChannelType.MediaChannel}
  *
- * @param channel The channel to check.
+ * @param channel - The channel to check.
  */
 export function isNsfwChannel(channel: ChannelTypes | Nullish): boolean {
 	if (isNullish(channel)) return false;
@@ -259,7 +260,7 @@ export function isNsfwChannel(channel: ChannelTypes | Nullish): boolean {
 /**
  * Checks whether a given message is an instance of {@link Message}, and not {@link APIMessage}
  *
- * @param message The message to check
+ * @param message - The message to check
  * @returns `true` if the message is an instance of `Message`, false otherwise.
  */
 export function isMessageInstance(message: APIMessage | Message): message is Message {
@@ -285,7 +286,7 @@ export function isMessageInstance(message: APIMessage | Message): message is Mes
  * - {@link UserContextMenuCommandInteraction}
  * - {@link UserSelectMenuInteraction}
  *
- * @param messageOrInteraction The message or interaction that should be checked.
+ * @param messageOrInteraction - The message or interaction that should be checked.
  * @returns `true` if the `messageOrInteraction` is an instanceof {@link BaseInteraction}, `false` if it is not.
  */
 export function isAnyInteraction(messageOrInteraction: APIMessage | BaseInteraction | Message): messageOrInteraction is BaseInteraction {
@@ -312,9 +313,9 @@ export function isAnyInteraction(messageOrInteraction: APIMessage | BaseInteract
  * - {@link UserContextMenuCommandInteraction}
  * - {@link UserSelectMenuInteraction}
  *
- * @param messageOrInteraction The message or interaction that should be checked.
+ * @param messageOrInteraction - The message or interaction that should be checked.
  * @returns `true` if the `messageOrInteraction` is an instanceof {@link BaseInteraction} and does **NOT** pass
- * {@link Interaction.isAutocomplete()}, `false` otherwise.
+ * `Interaction.isAutocomplete()`, `false` otherwise.
  */
 export function isAnyInteractableInteraction(
 	messageOrInteraction: APIMessage | BaseInteraction | Message
@@ -329,7 +330,7 @@ export function isAnyInteractableInteraction(
 /**
  * Checks whether a given member is an instance of {@link GuildMember}, and not {@link APIInteractionGuildMember}, {@link APIGuildMember}, or {@link Nullish}
  *
- * @param member The member to check
+ * @param member - The member to check
  * @returns `true` if the member is an instance of `GuildMember`, false otherwise.
  */
 export function isGuildMember(
@@ -347,7 +348,6 @@ export function isGuildMember(
  *
  * @param attachment - The attachment to check
  * @returns Whether the attachment is a media attachment
- * @since 7.3.0
  */
 export function isMediaAttachment(attachment: Attachment): boolean {
 	if (isNullishOrEmpty(attachment.contentType)) return false;
@@ -368,7 +368,6 @@ export function isMediaAttachment(attachment: Attachment): boolean {
  *
  * @param attachment - The attachment to check
  * @returns Whether the attachment is an image attachment
- * @since 7.3.0
  */
 export function isImageAttachment(attachment: Attachment): boolean {
 	return (

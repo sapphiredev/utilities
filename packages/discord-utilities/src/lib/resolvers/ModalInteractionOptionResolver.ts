@@ -13,7 +13,7 @@ import type { ModalComponentType, TypeToModalComponentMap } from './util';
 
 /**
  * Utility class for resolving (modal) interaction options while working with the raw API.
- * Based on {@linkplain https://github.com/discordjs/discord.js/blob/main/packages/discord.js/src/structures/CommandInteractionOptionResolver.js}
+ * Based on {@link https://github.com/discordjs/discord.js/blob/main/packages/discord.js/src/structures/CommandInteractionOptionResolver.js}
  */
 export class ModalInteractionOptionResolver {
 	/**
@@ -48,7 +48,7 @@ export class ModalInteractionOptionResolver {
 	/**
 	 * Gets a component.
 	 *
-	 * @param customId The custom ID of the component to get.
+	 * @param customId - The custom ID of the component to get.
 	 */
 	public get(customId: string): ModalSubmitComponent {
 		const component = this.hoistedComponents.find((candidate) => candidate.custom_id === customId);
@@ -62,7 +62,7 @@ export class ModalInteractionOptionResolver {
 	/**
 	 * Gets a text input component.
 	 *
-	 * @param customId The custom ID of the text input component to get.
+	 * @param customId - The custom ID of the text input component to get.
 	 */
 	public getTextInput(customId: string): string {
 		return this.getTyped(customId, ComponentType.TextInput).value;
@@ -71,7 +71,7 @@ export class ModalInteractionOptionResolver {
 	/**
 	 * Gets a string select component.
 	 *
-	 * @param customId The custom ID of the string select component to get.
+	 * @param customId - The custom ID of the string select component to get.
 	 */
 	public getSelectedStrings(customId: string): string[] {
 		return this.getTyped(customId, ComponentType.StringSelect).values;
@@ -80,7 +80,7 @@ export class ModalInteractionOptionResolver {
 	/**
 	 * Gets selected users.
 	 *
-	 * @param customId The custom ID of the user select component to get.
+	 * @param customId - The custom ID of the user select component to get.
 	 */
 	public getSelectedUsers(customId: string): APIUser[] {
 		const component = this.getTyped(customId, ComponentType.UserSelect);
@@ -90,7 +90,7 @@ export class ModalInteractionOptionResolver {
 	/**
 	 * Gets selected roles.
 	 *
-	 * @param customId The custom ID of the role select component to get.
+	 * @param customId - The custom ID of the role select component to get.
 	 */
 	public getSelectedRoles(customId: string): APIRole[] {
 		const component = this.getTyped(customId, ComponentType.RoleSelect);
@@ -100,7 +100,7 @@ export class ModalInteractionOptionResolver {
 	/**
 	 * Gets selected channels.
 	 *
-	 * @param customId The custom ID of the channel select component to get.
+	 * @param customId - The custom ID of the channel select component to get.
 	 */
 	public getSelectedChannels(customId: string): APIInteractionDataResolvedChannel[] {
 		const component = this.getTyped(customId, ComponentType.ChannelSelect);
@@ -110,7 +110,7 @@ export class ModalInteractionOptionResolver {
 	/**
 	 * Gets selected members.
 	 *
-	 * @param customId The custom ID of the member select component to get.
+	 * @param customId - The custom ID of the member select component to get.
 	 */
 	public getSelectedMembers(customId: string): APIInteractionDataResolvedGuildMember[] {
 		const component = this.getTyped(customId, ComponentType.UserSelect);
@@ -120,7 +120,7 @@ export class ModalInteractionOptionResolver {
 	/**
 	 * Gets selected mentionables.
 	 *
-	 * @param customId The custom ID of the mentionable select component to get.
+	 * @param customId - The custom ID of the mentionable select component to get.
 	 */
 	public getSelectedMentionables(customId: string): (APIRole | APIUser)[] {
 		const component = this.getTyped(customId, ComponentType.MentionableSelect);
@@ -136,7 +136,7 @@ export class ModalInteractionOptionResolver {
 	/**
 	 * Gets attachments.
 	 *
-	 * @param customId The custom ID of the file upload component to get.
+	 * @param customId - The custom ID of the file upload component to get.
 	 */
 	public getAttachments(customId: string): APIAttachment[] {
 		const component = this.getTyped(customId, ComponentType.FileUpload);

@@ -7,7 +7,7 @@ export class AsyncQueue {
 	/**
 	 * The amount of entries in the queue, including the head.
 	 *
-	 * @seealso {@link queued} for the queued count.
+	 * @see {@link queued} for the queued count.
 	 */
 	public get remaining(): number {
 		return this.promises.length;
@@ -16,7 +16,7 @@ export class AsyncQueue {
 	/**
 	 * The amount of queued entries.
 	 *
-	 * @seealso {@link remaining} for the count with the head.
+	 * @see {@link remaining} for the count with the head.
 	 */
 	public get queued(): number {
 		return this.remaining === 0 ? 0 : this.remaining - 1;
@@ -82,7 +82,7 @@ export class AsyncQueue {
 	/**
 	 * Aborts all the pending promises.
 	 *
-	 * @note To avoid race conditions, this does **not** unlock the head lock.
+	 * To avoid race conditions, this does **not** unlock the head lock.
 	 */
 	public abortAll(): void {
 		// If there are no queued entries, skip early.

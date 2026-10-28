@@ -11,7 +11,7 @@ import type { RequiredIf } from './util';
 
 /**
  * Utility class for resolving (autocomplete) interaction options while working with the raw API.
- * Based on {@linkplain https://github.com/discordjs/discord.js/blob/main/packages/discord.js/src/structures/CommandInteractionOptionResolver.js}
+ * Based on {@link https://github.com/discordjs/discord.js/blob/main/packages/discord.js/src/structures/CommandInteractionOptionResolver.js}
  */
 export class AutocompleteInteractionOptionResolver {
 	private readonly interaction: APIApplicationCommandAutocompleteInteraction;
@@ -60,7 +60,7 @@ export class AutocompleteInteractionOptionResolver {
 	/**
 	 * Gets the selected subcommand
 	 *
-	 * @param required Whether to throw an error if there is no subcommand
+	 * @param required - Whether to throw an error if there is no subcommand
 	 */
 	public getSubcommand<Required extends boolean = false>(required?: Required): RequiredIf<Required, string>;
 	public getSubcommand(required = true): string | null {
@@ -74,7 +74,7 @@ export class AutocompleteInteractionOptionResolver {
 	/**
 	 * Gets the selected subcommand group
 	 *
-	 * @param required Whether to throw an error if there is no subcommand group
+	 * @param required - Whether to throw an error if there is no subcommand group
 	 */
 	public getSubcommandGroup<Required extends boolean = false>(required?: Required): RequiredIf<Required, string>;
 	public getSubcommandGroup(required = true): string | null {

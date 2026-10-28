@@ -4,7 +4,7 @@ import { toIterableIterator } from './toIterableIterator';
 /**
  * Creates an iterable that yields the elements of each iterable in the input iterable.
  *
- * @param iterables An iterator to map.
+ * @param iterables - An iterator to map.
  * @returns An iterator that yields the entries of each iterator.
  * @example
  * ```typescript

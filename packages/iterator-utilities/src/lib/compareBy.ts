@@ -3,10 +3,10 @@ import { compareIteratorElements, orderingIsEqual, orderingIsLess, type CompareB
 import { toIterableIterator } from './toIterableIterator';
 
 /**
- * {@link LexicographicComparison Lexicographically} compares the elements of both iterators are equal. That is:
+ * {@link LexicographicComparison | Lexicographically} compares the elements of both iterators are equal. That is:
  *
- * @param iterable The iterator to compare.
- * @param other The iterator to compare against.
+ * @param iterable - The iterator to compare.
+ * @param other - The iterator to compare against.
  * @returns Whether the two iterators are equal.
  * @example
  * ```typescript

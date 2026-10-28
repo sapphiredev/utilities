@@ -5,8 +5,8 @@ import { toNumberOrThrow } from './shared/_toNumberOrThrow';
 /**
  * Creates an iterable that repeats the input iterable `count` times.
  *
- * @param value The value to be repeated.
- * @param count The number of times to repeat the value.
+ * @param value - The value to be repeated.
+ * @param count - The number of times to repeat the value.
  * @example
  * ```typescript
  * import { repeat } from '@sapphire/iterator-utilities';

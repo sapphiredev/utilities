@@ -6,8 +6,8 @@ import { toIterableIterator } from './toIterableIterator';
 /**
  * Chunks the iterable into arrays of at most `size` elements.
  *
- * @param iterable The iterator whose elements to chunk.
- * @param size The maximum size of each chunk.
+ * @param iterable - The iterator whose elements to chunk.
+ * @param size - The maximum size of each chunk.
  * @example
  * ```typescript
  * import { chunk } from '@sapphire/iterator-utilities';

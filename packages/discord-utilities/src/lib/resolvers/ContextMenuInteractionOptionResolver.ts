@@ -11,7 +11,7 @@ import type { RequiredIf } from './util';
 
 /**
  * Utility class for resolving (context menu) interaction options while working with the raw API.
- * Based on {@linkplain https://github.com/discordjs/discord.js/blob/main/packages/discord.js/src/structures/CommandInteractionOptionResolver.js}
+ * Based on {@link https://github.com/discordjs/discord.js/blob/main/packages/discord.js/src/structures/CommandInteractionOptionResolver.js}
  */
 export class ContextMenuInteractionOptionResolver {
 	private readonly interaction: APIContextMenuInteraction;
@@ -41,7 +41,7 @@ export class ContextMenuInteractionOptionResolver {
 	/**
 	 * Gets the target member for a context menu interaction
 	 *
-	 * @param required Whether to throw an error if the member data is not present
+	 * @param required - Whether to throw an error if the member data is not present
 	 */
 	public getTargetMember<Required extends boolean = false>(required?: Required): RequiredIf<Required, APIInteractionDataResolvedGuildMember>;
 	public getTargetMember(required = false): APIInteractionDataResolvedGuildMember | null {

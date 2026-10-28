@@ -8,7 +8,7 @@ export interface SyncPollOptions extends Omit<PollOptions, 'signal'> {
 	/**
 	 * The amount of milliseconds before throwing an AbortError.
 	 *
-	 * @default Infinite
+	 * @defaultValue Infinite
 	 */
 	timeout?: number | null | undefined;
 }
@@ -24,9 +24,9 @@ const DOMException: typeof globalThis.DOMException =
  *
  * For an asynchronous variant, see [poll](./poll.d.ts).
  *
- * @param cb The function that should be executed.
- * @param cbCondition A function that when given the result of `fn` should return `true` if the polling should stop and should return `false` if the polling should continue.
- * @param options Options to provide further modifying behaviour.
+ * @param cb - The function that should be executed.
+ * @param cbCondition - A function that when given the result of `fn` should return `true` if the polling should stop and should return `false` if the polling should continue.
+ * @param options - Options to provide further modifying behaviour.
  * @returns The result of {@link cb} as soon as {@link cbCondition} returns `true`, or an error if {@link timeout} is reached.
  * @throws If {@link timeout} is reached.
  */

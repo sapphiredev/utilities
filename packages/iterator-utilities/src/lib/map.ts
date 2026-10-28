@@ -5,8 +5,8 @@ import { toIterableIterator } from './toIterableIterator';
 /**
  * Creates an iterable with the results of calling a provided function on each element.
  *
- * @param iterable An iterator to map over.
- * @param callbackFn A function to execute for each element produced by the iterator. Its return value is yielded by the iterator helper.
+ * @param iterable - An iterator to map over.
+ * @param callbackFn - A function to execute for each element produced by the iterator. Its return value is yielded by the iterator helper.
  * @example
  * ```typescript
  * import { map } from '@sapphire/iterator-utilities';

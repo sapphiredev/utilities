@@ -3,8 +3,8 @@ import type { Parameter } from '../lexer/streams/ParameterStream';
 /**
  * Joins the parameters by their `leading` value, using the `value` property.
  *
- * @seealso {@link joinRaw} for the version using `raw` instead of `value`.
- * @param parameters The parameters to join.
+ * @see {@link joinRaw} for the version using `raw` instead of `value`.
+ * @param parameters - The parameters to join.
  * @returns The result of joining the parameters.
  */
 export function join(parameters: readonly Parameter[]) {
@@ -23,8 +23,8 @@ export function join(parameters: readonly Parameter[]) {
 /**
  * Joins the parameters by their `leading` value, using the `raw` property.
  *
- * @seealso {@link join} for the version using `value` instead of `raw`.
- * @param parameters The parameters to join.
+ * @see {@link join} for the version using `value` instead of `raw`.
+ * @param parameters - The parameters to join.
  * @returns The result of joining the parameters.
  */
 export function joinRaw(parameters: readonly Parameter[]) {

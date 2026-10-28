@@ -5,8 +5,8 @@ import { toIterableIterator } from './toIterableIterator';
 /**
  * Executes a provided function once for each iterable element.
  *
- * @param iterable An iterator to iterate over.
- * @param callbackFn A function to execute for each element produced by the iterator. Its return value is discarded.
+ * @param iterable - An iterator to iterate over.
+ * @param callbackFn - A function to execute for each element produced by the iterator. Its return value is discarded.
  * @example
  * ```typescript
  * import { forEach } from '@sapphire/iterator-utilities';

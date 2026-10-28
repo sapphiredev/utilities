@@ -1,8 +1,8 @@
 /**
  * Splits up an array into chunks
  *
- * @param array The array to chunk up
- * @param chunkSize The size of each individual chunk
+ * @param array - The array to chunk up
+ * @param chunkSize - The size of each individual chunk
  */
 export function chunk<T>(array: readonly T[], chunkSize: number): T[][] {
 	if (!Array.isArray(array)) throw new TypeError('entries must be an array.');

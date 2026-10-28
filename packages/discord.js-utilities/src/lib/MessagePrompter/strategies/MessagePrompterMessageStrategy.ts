@@ -11,8 +11,8 @@ export class MessagePrompterMessageStrategy extends MessagePrompterBaseStrategy 
 	/**
 	 * Constructor for the {@link MessagePrompterBaseStrategy} class
 	 *
-	 * @param message The message instance for this {@link MessagePrompter}.
-	 * @param options Overrideable options if needed.
+	 * @param message - The message instance for this {@link MessagePrompter}.
+	 * @param options - Overrideable options if needed.
 	 */
 	public constructor(message: MessagePrompterMessage, options: IMessagePrompterStrategyOptions) {
 		super('message', message, options);
@@ -22,8 +22,8 @@ export class MessagePrompterMessageStrategy extends MessagePrompterBaseStrategy 
 	 * This executes the {@link MessagePrompter} and sends the message if its `type` option equals `message`.
 	 * The handler will wait for one (1) message.
 	 *
-	 * @param channel The channel to use.
-	 * @param authorOrFilter An author object to validate or a {@linkplain https://discord.js.org/docs/packages/discord.js/main/CollectorFilter:TypeAlias CollectorFilter} predicate callback.
+	 * @param channel - The channel to use.
+	 * @param authorOrFilter - An author object to validate or a {@link https://discord.js.org/docs/packages/discord.js/main/CollectorFilter:TypeAlias | CollectorFilter} predicate callback.
 	 * @returns A promise that resolves to the message object received.
 	 */
 	public override async run(
@@ -65,7 +65,7 @@ export class MessagePrompterMessageStrategy extends MessagePrompterBaseStrategy 
 	/**
 	 * Creates a filter for the collector to filter on
 	 *
-	 * @return The filter for awaitMessages function
+	 * @returns The filter for awaitMessages function
 	 */
 	private createMessagePromptFilter(authorOrFilter: CollectorFilter<[Message]> | User): CollectorOptions<[Message]> {
 		return {

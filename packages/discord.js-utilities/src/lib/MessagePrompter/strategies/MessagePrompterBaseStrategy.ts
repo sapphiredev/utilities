@@ -112,7 +112,7 @@ export abstract class MessagePrompterBaseStrategy {
 	/**
 	 * Creates a filter for the collector to filter on
 	 *
-	 * @return The filter for awaitReactions function
+	 * @returns The filter for awaitReactions function
 	 */
 	protected createReactionPromptFilter(
 		reactions: EmojiIdentifierResolvable[] | string[],

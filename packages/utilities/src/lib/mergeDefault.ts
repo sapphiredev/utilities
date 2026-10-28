@@ -5,11 +5,12 @@ import type { DeepRequired } from './types';
 /**
  * Deep merges 2 objects. Properties from the second parameter are applied to the first.
  *
- * @remark `overwrites` is also mutated!
- * @remark If the value of a key in `overwrites` is `undefined` then the value of that same key in `base` is used instead!
- * @remark This is essentially `{ ...base, ...overwrites }` but recursively
- * @param base Base object
- * @param overwrites Overwrites to apply
+ * `overwrites` is also mutated!
+ * If the value of a key in `overwrites` is `undefined` then the value of that same key in `base` is used instead!
+ * This is essentially `{ ...base, ...overwrites }` but recursively
+ *
+ * @param base - Base object
+ * @param overwrites - Overwrites to apply
  * @example
  * ```typescript
  * const base = { a: 0, b: 1 };

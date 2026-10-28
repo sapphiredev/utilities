@@ -5,8 +5,8 @@ import { toIterableIterator } from './toIterableIterator';
 /**
  * Tests whether all elements in the iterable pass the test implemented by the provided function.
  *
- * @param iterable The iterator to check.
- * @param callbackFn A function to execute for each element produced by the iterator. It should return a truthy value to indicate the element passes the test, and a falsy value otherwise.
+ * @param iterable - The iterator to check.
+ * @param callbackFn - A function to execute for each element produced by the iterator. It should return a truthy value to indicate the element passes the test, and a falsy value otherwise.
  * @returns `true` if callbackFn returns a truthy value for every element. Otherwise, `false`.
  * @example
  * ```typescript

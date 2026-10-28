@@ -3,9 +3,9 @@ import { toIterableIterator } from './toIterableIterator';
 import type { zip } from './zip';
 
 /**
- * Creates an array for each element of the input iterable, transposing the input iterable. The opposite of {@linkcode zip}.
+ * Creates an array for each element of the input iterable, transposing the input iterable. The opposite of {@link zip}.
  *
- * @param iterable An iterable to unzip.
+ * @param iterable - An iterable to unzip.
  * @returns An array of iterables that yield the values of the original iterable.
  * @example
  * ```typescript

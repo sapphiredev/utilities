@@ -3,9 +3,9 @@ import { toNumberOrThrow } from './shared/_toNumberOrThrow';
 /**
  * Creates an iterable with the numbers from `start` to `stop` (exclusive) with an optional step.
  *
- * @param start The value of the first number in the range.
- * @param end The end value of the range.
- * @param step The amount to increment the range by.
+ * @param start - The value of the first number in the range.
+ * @param end - The end value of the range.
+ * @param step - The amount to increment the range by.
  * @example
  * ```typescript
  * import { range } from '@sapphire/iterator-utilities';

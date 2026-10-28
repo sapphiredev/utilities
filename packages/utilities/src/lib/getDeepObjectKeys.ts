@@ -3,11 +3,12 @@ import { isNullOrUndefinedOrEmpty } from './isNullOrUndefinedOrEmpty';
 /**
  * Flattens an object to a list of its keys, traversing deeply into nested objects and arrays of objects.
  *
- * @note By default Nested array values are flattened to `arrayKey.${index}.subKey`.
+ * By default Nested array values are flattened to `arrayKey.${index}.subKey`.
  * This can be changed to `arrayKey[${index}].subKey` by setting `options.arrayKeysIndexStyle` to `'braces-with-dot'`.
  * Or it can also be changed to `arrayKey[${index}]subKey` by setting `options.arrayKeysIndexStyle` to `'braces'`.
- * @param obj The object of which to deeply retrieve its keys
- * @param options The options with which to customize the output of this function
+ *
+ * @param obj - The object of which to deeply retrieve its keys
+ * @param options - The options with which to customize the output of this function
  * @returns An array of strings holding the keys of the object
  */
 export function getDeepObjectKeys(obj: object, options?: GetDeepObjectKeysOptions): string[] {
@@ -68,7 +69,7 @@ export interface GetDeepObjectKeysOptions {
 	/**
 	 * Whether to use `.${index}.` (`'dotted'`), `[${index}].`, (`'braces-with-dot'`) or `[${index}]` (`'braces'`) to separate array keys
 	 *
-	 * @default 'dotted'
+	 * @defaultValue 'dotted'
 	 */
 	arrayKeysIndexStyle?: 'braces-with-dot' | 'braces' | 'dotted';
 }

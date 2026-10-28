@@ -38,9 +38,9 @@ export interface PollOptions {
  *
  * For a synchronous variant, see [pollSync](./pollSync.d.ts).
  *
- * @param cb The function that should be executed.
- * @param cbCondition A function that when given the result of `cb` should return `true` if the polling should stop and should return `false` if the polling should continue.
- * @param options Options to provide further modifying behaviour.
+ * @param cb - The function that should be executed.
+ * @param cbCondition - A function that when given the result of `cb` should return `true` if the polling should stop and should return `false` if the polling should continue.
+ * @param options - Options to provide further modifying behaviour.
  * @returns The result of {@link cb} as soon as {@link cbCondition} returns `true`, or an error if `timeout` is reached.
  * @throws If `timeout` is reached.
  */

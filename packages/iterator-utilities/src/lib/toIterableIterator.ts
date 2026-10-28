@@ -4,7 +4,7 @@ import { makeIterableIterator } from './shared/_makeIterableIterator';
 /**
  * Creates an iterable iterator from an iterable or iterator-like object.
  *
- * @param iterable The iterable or iterable-like object to convert.
+ * @param iterable - The iterable or iterable-like object to convert.
  * @returns An iterable iterator.
  * @example
  * ```typescript

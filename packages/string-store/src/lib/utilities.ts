@@ -14,7 +14,7 @@ export type TypedArray =
 /**
  * Converts a {@link TypedArray} to a string.
  *
- * @param buffer The buffer to convert
+ * @param buffer - The buffer to convert
  * @returns The generated UTF16 string
  */
 export function toUTF16(buffer: TypedArray) {
@@ -29,7 +29,7 @@ export function toUTF16(buffer: TypedArray) {
 /**
  * Converts a string to a {@link Uint16Array}.
  *
- * @param buffer The string to convert
+ * @param buffer - The string to convert
  * @returns The generated {@link Uint16Array}
  */
 export function fromUTF16(buffer: string): Uint16Array {

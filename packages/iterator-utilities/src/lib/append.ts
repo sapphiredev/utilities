@@ -4,8 +4,8 @@ import type { IterableResolvable } from './from';
 /**
  * Appends iterables to the end of the first iterable, returning a new iterable combining all of them. It's similar to concatenating arrays or doing `[...a, ...b, ...c]`.
  *
- * @param iterable The iterator to append values to.
- * @param iterables The iterables to append to the iterator.
+ * @param iterable - The iterator to append values to.
+ * @param iterables - The iterables to append to the iterator.
  * @returns An iterator that yields the values of the provided iterator followed by the values of the provided iterables.
  * @example
  * ```typescript

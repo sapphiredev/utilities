@@ -5,8 +5,8 @@ import { toIterableIterator } from './toIterableIterator';
 /**
  * Creates an iterable with the elements that pass the test implemented by the provided function.
  *
- * @param iterable The iterator to filter.
- * @param callbackFn A function to execute for each element produced by the iterator. It should return a truthy value to make the element yielded by the iterator helper, and a falsy value otherwise.
+ * @param iterable - The iterator to filter.
+ * @param callbackFn - A function to execute for each element produced by the iterator. It should return a truthy value to make the element yielded by the iterator helper, and a falsy value otherwise.
  * @returns An iterator that produces elements from the given iterator that satisfy the specified test.
  * @example
  * ```typescript

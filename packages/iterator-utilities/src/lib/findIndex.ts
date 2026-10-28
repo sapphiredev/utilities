@@ -5,8 +5,8 @@ import { toIterableIterator } from './toIterableIterator';
 /**
  * Advances the iterable until it finds the element, returning its index if it's found and `-1` otherwise.
  *
- * @param iterable An iterator to search for an element in.
- * @param callbackFn A function that determines if an element is the one being searched for.
+ * @param iterable - An iterator to search for an element in.
+ * @param callbackFn - A function that determines if an element is the one being searched for.
  * @returns The index of the first element that satisfies the predicate, or `-1` if no elements satisfy the predicate.
  * @example
  * ```typescript

@@ -65,14 +65,15 @@ import {
  * This is a {@link PaginatedMessage}, a utility to paginate messages (usually embeds).
  * You must either use this class directly or extend it.
  *
- * @remark Please note that for {@link PaginatedMessage} to work in DMs to your client, you need to add the `'CHANNEL'` partial to your `client.options.partials`.
+ * Please note that for {@link PaginatedMessage} to work in DMs to your client, you need to add the `'CHANNEL'` partial to your `client.options.partials`.
  * Message based commands can always be used in DMs, whereas Chat Input interactions can only be used in DMs when they are registered globally.
  *
- * {@link PaginatedMessage} uses {@linkplain https://discord.js.org/docs/packages/discord.js/main/MessageComponent:TypeAlias MessageComponent} buttons that perform the specified action when clicked.
+ * {@link PaginatedMessage} uses {@link https://discord.js.org/docs/packages/discord.js/main/MessageComponent:TypeAlias | MessageComponent} buttons that perform the specified action when clicked.
  * You can either use your own actions or the {@link PaginatedMessage.defaultActions}.
  * {@link PaginatedMessage.defaultActions} is also static so you can modify these directly.
  *
- * {@link PaginatedMessage} also uses pages via {@linkplain https://discord.js.org/docs/packages/discord.js/main/Message:Class Messages}.
+ * {@link PaginatedMessage} also uses pages via {@link https://discord.js.org/docs/packages/discord.js/main/Message:Class | Messages}.
+ *
  * @example
  * ```typescript
  * const myPaginatedMessage = new PaginatedMessage();
@@ -101,7 +102,7 @@ import {
  *
  * myPaginatedMessage.run(message)
  * ```
- * @remark You can also provide a EmbedBuilder template. This will be applied to every page.
+ * You can also provide a EmbedBuilder template. This will be applied to every page.
  * If a page itself has an embed then the two will be merged, with the content of
  * the page's embed taking priority over the template.
  *
@@ -114,7 +115,7 @@ import {
  * 	template: new EmbedBuilder().setColor('#FF0000').setFooter('- Powered by Sapphire framework')
  * });
  * ```
- * @remark To utilize actions you can implement IPaginatedMessageAction into a class.
+ * To utilize actions you can implement IPaginatedMessageAction into a class.
  * @example
  * ```typescript
  * class ForwardAction implements IPaginatedMessageAction {
@@ -201,9 +202,10 @@ export class PaginatedMessage {
 	/**
 	 * Whether to emit the warning about running a {@link PaginatedMessage} in a DM channel without the client the `'CHANNEL'` partial.
 	 *
-	 * @remark When using message based commands (as opposed to Application Commands) then you will also need to specify the `DIRECT_MESSAGE` intent for {@link PaginatedMessage} to work.
-	 * @remark To overwrite this property change it somewhere in a "setup" file, i.e. where you also call `client.login()` for your client.
+	 * When using message based commands (as opposed to Application Commands) then you will also need to specify the `DIRECT_MESSAGE` intent for {@link PaginatedMessage} to work.
+	 * To overwrite this property change it somewhere in a "setup" file, i.e. where you also call `client.login()` for your client.
 	 * Alternatively, you can also customize it on a per-PaginatedMessage basis by using `paginatedMessageInstance.setEmitPartialDMChannelWarning(newBoolean)`
+	 *
 	 * @defaultValue true
 	 */
 	public static emitPartialDMChannelWarning = true;
@@ -211,8 +213,8 @@ export class PaginatedMessage {
 	/**
 	 * A list of `customId` that are bound to actions that will stop the {@link PaginatedMessage}
 	 *
-	 * @defaultValue ['@sapphire/paginated-messages.stop']
-	 * @remark To overwrite this property change it somewhere in a "setup" file, i.e. where you also call `client.login()` for your client.
+	 * @defaultValue `['@sapphire/paginated-messages.stop']`
+	 * To overwrite this property change it somewhere in a "setup" file, i.e. where you also call `client.login()` for your client.
 	 * Alternatively, you can also customize it on a per-PaginatedMessage basis by using `paginatedMessageInstance.setStopPaginatedMessageCustomIds(customIds)`
 	 * @example
 	 * ```typescript
@@ -224,7 +226,7 @@ export class PaginatedMessage {
 	public static stopPaginatedMessageCustomIds = ['@sapphire/paginated-messages.stop'];
 
 	/**
-	 * The reasons sent by {@linkplain https://discord.js.org/docs/packages/discord.js/main/InteractionCollector:Class#end InteractionCollector#end}
+	 * The reasons sent by {@link https://discord.js.org/docs/packages/discord.js/main/InteractionCollector:Class#end | InteractionCollector#end}
 	 * event when the message (or its owner) has been deleted.
 	 */
 	public static deletionStopReasons = ['messageDelete', 'channelDelete', 'guildDelete'];
@@ -234,7 +236,7 @@ export class PaginatedMessage {
 	 * PaginatedMessage will automatically add a space (` `) after the given text. You do not have to add it yourself.
 	 *
 	 * @defaultValue ""
-	 * @remark To overwrite this property change it somewhere in a "setup" file, i.e. where you also call `client.login()` for your client.
+	 * To overwrite this property change it somewhere in a "setup" file, i.e. where you also call `client.login()` for your client.
 	 * @example
 	 * ```typescript
 	 * import { PaginatedMessage } from '@sapphire/discord.js-utilities';
@@ -249,7 +251,7 @@ export class PaginatedMessage {
 	 * Custom separator for the page index in the embed footer.
 	 *
 	 * @defaultValue "•"
-	 * @remark To overwrite this property change it somewhere in a "setup" file, i.e. where you also call `client.login()` for your client.
+	 * To overwrite this property change it somewhere in a "setup" file, i.e. where you also call `client.login()` for your client.
 	 * Alternatively, you can also customize it on a per-PaginatedMessage basis by passing `embedFooterSeparator` in the options of the constructor.
 	 * @example
 	 * ```typescript
@@ -284,7 +286,7 @@ export class PaginatedMessage {
 	 * We do not allow overwriting the `MessageSelectOption#value` property with this, as it is vital to how we handle
 	 * select menu interactions.
 	 *
-	 * @param pageIndex The index of the page to add to the {@link StringSelectMenuBuilder}. We will add 1 to this number because our pages are 0 based,
+	 * @param pageIndex - The index of the page to add to the {@link StringSelectMenuBuilder}. We will add 1 to this number because our pages are 0 based,
 	 * so this will represent the pages as seen by the user.
 	 * @defaultValue
 	 * ```ts
@@ -292,7 +294,7 @@ export class PaginatedMessage {
 	 * 	label: `Page ${pageIndex}`
 	 * }
 	 * ```
-	 * @remark To overwrite this property change it in a "setup" file prior to calling `client.login()` for your client.
+	 * To overwrite this property change it in a "setup" file prior to calling `client.login()` for your client.
 	 * @example
 	 * ```typescript
 	 * import { PaginatedMessage } from '@sapphire/discord.js-utilities';
@@ -312,7 +314,7 @@ export class PaginatedMessage {
 	 *
 	 * When setting just a string, we will add `{ flags: MessageFlags.Ephemeral, allowedMentions: { users: [], roles: [] } }` for you.
 	 *
-	 * @param targetUser The {@link User} this {@link PaginatedMessage} was intended for.
+	 * @param targetUser - The {@link User} this {@link PaginatedMessage} was intended for.
 	 * @defaultValue
 	 * ```ts
 	 * import { userMention } from 'discord.js';
@@ -323,7 +325,7 @@ export class PaginatedMessage {
 	 * 	allowedMentions: { users: [], roles: [] }
 	 * }
 	 * ```
-	 * @remark To overwrite this property change it in a "setup" file prior to calling `client.login()` for your client.
+	 * To overwrite this property change it in a "setup" file prior to calling `client.login()` for your client.
 	 * @example
 	 * ```typescript
 	 * import { PaginatedMessage } from '@sapphire/discord.js-utilities';
@@ -414,7 +416,7 @@ export class PaginatedMessage {
 	 * The amount of milliseconds to idle before the paginator is closed.
 	 *
 	 * @defaultValue 14.5 minutes
-	 * @remark This is to ensure it is a bit before interactions expire.
+	 * This is to ensure it is a bit before interactions expire.
 	 */
 	public idle = Time.Minute * 14.5;
 
@@ -428,7 +430,7 @@ export class PaginatedMessage {
 	 * Custom text to show in front of the page index in the embed footer.
 	 * PaginatedMessage will automatically add a space (` `) after the given text. You do not have to add it yourself.
 	 *
-	 * @defaultValue ```PaginatedMessage.pageIndexPrefix``` (static property)
+	 * @defaultValue {@link PaginatedMessage.pageIndexPrefix} (static property)
 	 */
 	public pageIndexPrefix = PaginatedMessage.pageIndexPrefix;
 
@@ -436,22 +438,23 @@ export class PaginatedMessage {
 	 * Custom separator to show after the page index in the embed footer.
 	 * PaginatedMessage will automatically add a space (` `) after the given text. You do not have to add it yourself.
 	 *
-	 * @defaultValue ```PaginatedMessage.embedFooterSeparator``` (static property)
+	 * @defaultValue {@link PaginatedMessage.embedFooterSeparator} (static property)
 	 */
 	public embedFooterSeparator = PaginatedMessage.embedFooterSeparator;
 
 	/**
 	 * A list of `customId` that are bound to actions that will stop the {@link PaginatedMessage}
 	 *
-	 * @defaultValue ```PaginatedMessage.stopPaginatedMessageCustomIds``` (static property)
+	 * @defaultValue {@link PaginatedMessage.stopPaginatedMessageCustomIds} (static property)
 	 */
 	public stopPaginatedMessageCustomIds = PaginatedMessage.stopPaginatedMessageCustomIds;
 
 	/**
 	 * Whether to emit the warning about running a {@link PaginatedMessage} in a DM channel without the client having the `'CHANNEL'` partial.
 	 *
-	 * @remark When using message based commands (as opposed to Application Commands) then you will also need to specify the `DIRECT_MESSAGE` intent for {@link PaginatedMessage} to work.
-	 * @defaultValue ```PaginatedMessage.emitPartialDMChannelWarning``` (static property)
+	 * When using message based commands (as opposed to Application Commands) then you will also need to specify the `DIRECT_MESSAGE` intent for {@link PaginatedMessage} to work.
+	 *
+	 * @defaultValue {@link PaginatedMessage.emitPartialDMChannelWarning} (static property)
 	 */
 	public emitPartialDMChannelWarning = PaginatedMessage.emitPartialDMChannelWarning;
 	// #endregion
@@ -480,7 +483,8 @@ export class PaginatedMessage {
 	 * concerning the {@link PaginatedMessage} being called in a `DMChannel`
 	 * without the client having the `'Channel'` partial.
 	 *
-	 * @remark When using message based commands (as opposed to Application Commands) then you will also need to specify the `DIRECT_MESSAGE` intent for {@link PaginatedMessage} to work.
+	 * When using message based commands (as opposed to Application Commands) then you will also need to specify the `DIRECT_MESSAGE` intent for {@link PaginatedMessage} to work.
+	 *
 	 * @defaultValue false
 	 */
 	protected hasEmittedPartialDMChannelWarning = false;
@@ -498,7 +502,7 @@ export class PaginatedMessage {
 	/**
 	 * Function that returns the select menu options for the paginated message.
 	 *
-	 * @param message The paginated message.
+	 * @param message - The paginated message.
 	 * @returns The select menu options.
 	 */
 	protected selectMenuOptions: PaginatedMessageSelectMenuOptionsFunction = PaginatedMessage.selectMenuOptions;
@@ -542,7 +546,7 @@ export class PaginatedMessage {
 	 * Sets the {@link PaginatedMessage.selectMenuOptions} for this instance of {@link PaginatedMessage}.
 	 * This will only apply to this one instance and no others.
 	 *
-	 * @param newOptions The new options generator to set
+	 * @param newOptions - The new options generator to set
 	 * @returns The current instance of {@link PaginatedMessage}
 	 */
 	public setSelectMenuOptions(newOptions: PaginatedMessageSelectMenuOptionsFunction): this {
@@ -558,7 +562,7 @@ export class PaginatedMessage {
 	 *
 	 * This will only apply to this one instance and no others.
 	 *
-	 * @param placeholder The new placeholder to set
+	 * @param placeholder - The new placeholder to set
 	 * @returns The current instance of {@link PaginatedMessage}
 	 */
 	public setSelectMenuPlaceholder(placeholder: string | undefined): this {
@@ -570,7 +574,7 @@ export class PaginatedMessage {
 	 * Sets the {@link PaginatedMessage.wrongUserInteractionReply} for this instance of {@link PaginatedMessage}.
 	 * This will only apply to this one instance and no others.
 	 *
-	 * @param wrongUserInteractionReply The new `wrongUserInteractionReply` to set
+	 * @param wrongUserInteractionReply - The new `wrongUserInteractionReply` to set
 	 * @returns The current instance of {@link PaginatedMessage}
 	 */
 	public setWrongUserInteractionReply(wrongUserInteractionReply: PaginatedMessageWrongUserInteractionReplyFunction): this {
@@ -582,7 +586,7 @@ export class PaginatedMessage {
 	 * Sets the {@link PaginatedMessage.stopPaginatedMessageCustomIds} for this instance of {@link PaginatedMessage}.
 	 * This will only apply to this one instance and no others.
 	 *
-	 * @param stopPaginatedMessageCustomIds The new `stopPaginatedMessageCustomIds` to set
+	 * @param stopPaginatedMessageCustomIds - The new `stopPaginatedMessageCustomIds` to set
 	 * @returns The current instance of {@link PaginatedMessage}
 	 */
 	public setStopPaginatedMessageCustomIds(stopPaginatedMessageCustomIds: string[]): this {
@@ -594,7 +598,7 @@ export class PaginatedMessage {
 	 * Sets the {@link PaginatedMessage.emitPartialDMChannelWarning} for this instance of {@link PaginatedMessage}.
 	 * This will only apply to this one instance and no others.
 	 *
-	 * @param emitPartialDMChannelWarning The new `emitPartialDMChannelWarning` to set
+	 * @param emitPartialDMChannelWarning - The new `emitPartialDMChannelWarning` to set
 	 * @returns The current instance of {@link PaginatedMessage}
 	 */
 	public setEmitPartialDMChannelWarning(emitPartialDMChannelWarning: boolean): this {
@@ -605,7 +609,7 @@ export class PaginatedMessage {
 	/**
 	 * Sets the handler's current page/message index.
 	 *
-	 * @param index The number to set the index to.
+	 * @param index - The number to set the index to.
 	 */
 	public setIndex(index: number): this {
 		this.index = index;
@@ -615,7 +619,7 @@ export class PaginatedMessage {
 	/**
 	 * Sets the amount of time to idle before the paginator is closed.
 	 *
-	 * @param idle The number to set the idle to.
+	 * @param idle - The number to set the idle to.
 	 */
 	public setIdle(idle: number): this {
 		this.idle = idle;
@@ -638,11 +642,11 @@ export class PaginatedMessage {
 	/**
 	 * Clears all current actions and sets them. The order given is the order they will be used.
 	 *
-	 * @param actions The actions to set. This can be either a Button, Link Button, or Select Menu.
-	 * @param includeDefaultActions Whether to merge in the {@link PaginatedMessage.defaultActions} when setting the actions.
+	 * @param actions - The actions to set. This can be either a Button, Link Button, or Select Menu.
+	 * @param includeDefaultActions - Whether to merge in the {@link PaginatedMessage.defaultActions} when setting the actions.
 	 * If you set this to true then you do not need to manually add `...PaginatedMessage.defaultActions` as seen in the first example.
 	 * The default value is `false` for backwards compatibility within the current major version.
-	 * @remark You can retrieve the default actions for the regular pagination
+	 * You can retrieve the default actions for the regular pagination
 	 * @example
 	 * ```typescript
 	 * const display = new PaginatedMessage();
@@ -651,7 +655,7 @@ export class PaginatedMessage {
 	 *   ...PaginatedMessage.defaultActions,
 	 * ])
 	 * ```
-	 * @remark You can add custom Message Buttons by providing `style`, `customId`, `type`, `run` and at least one of `label` or `emoji`.
+	 * You can add custom Message Buttons by providing `style`, `customId`, `type`, `run` and at least one of `label` or `emoji`.
 	 * @example
 	 * ```typescript
 	 * const display = new PaginatedMessage();
@@ -666,7 +670,7 @@ export class PaginatedMessage {
 	 *   }
 	 * ], true);
 	 * ```
-	 * @remark You can add custom Message **Link** Buttons by providing `style`, `url`, `type`, and at least one of `label` or `emoji`.
+	 * You can add custom Message **Link** Buttons by providing `style`, `url`, `type`, and at least one of `label` or `emoji`.
 	 * @example
 	 * ```typescript
 	 * const display = new PaginatedMessage();
@@ -681,7 +685,7 @@ export class PaginatedMessage {
 	 *   }
 	 * ], true);
 	 * ```
-	 * @remark You can add custom Select Menus by providing `customId`, `type`, and `run`.
+	 * You can add custom Select Menus by providing `customId`, `type`, and `run`.
 	 * @example
 	 * ```typescript
 	 * const display = new PaginatedMessage();
@@ -703,7 +707,7 @@ export class PaginatedMessage {
 	/**
 	 * Adds actions to the existing ones. The order given is the order they will be used.
 	 *
-	 * @param actions The actions to add.
+	 * @param actions - The actions to add.
 	 * @see {@link PaginatedMessage.setActions} for examples on how to structure the actions.
 	 */
 	public addActions(actions: PaginatedMessageAction[]): this {
@@ -714,7 +718,7 @@ export class PaginatedMessage {
 	/**
 	 * Adds an action to the existing ones. This will be added as the last action.
 	 *
-	 * @param action The action to add.
+	 * @param action - The action to add.
 	 * @see {@link PaginatedMessage.setActions} for examples on how to structure the action.
 	 */
 	public addAction(action: PaginatedMessageAction): this {
@@ -732,7 +736,7 @@ export class PaginatedMessage {
 	/**
 	 * Checks whether or not the handler has a specific page.
 	 *
-	 * @param index The index to check.
+	 * @param index - The index to check.
 	 */
 	public hasPage(index: number): boolean {
 		return index >= 0 && index < this.pages.length;
@@ -741,7 +745,7 @@ export class PaginatedMessage {
 	/**
 	 * Clears all current pages and messages and sets them. The order given is the order they will be used.
 	 *
-	 * @param pages The pages to set.
+	 * @param pages - The pages to set.
 	 */
 	public setPages(pages: PaginatedMessagePage[]) {
 		this.pages = [];
@@ -753,12 +757,13 @@ export class PaginatedMessage {
 	/**
 	 * Adds a page to the existing ones. This will be added as the last page.
 	 *
-	 * @remark While you can use this method you should first check out
+	 * While you can use this method you should first check out
 	 * {@link PaginatedMessage.addPageBuilder},
 	 * {@link PaginatedMessage.addPageContent} and
 	 * {@link PaginatedMessage.addPageEmbed} as
 	 * these are easier functional methods of adding pages and will likely already suffice for your needs.
-	 * @param page The page to add.
+	 *
+	 * @param page - The page to add.
 	 */
 	public addPage(page: PaginatedMessagePage): this {
 		// Do not allow more than 25 pages, and send a warning when people try to do so.
@@ -786,8 +791,8 @@ export class PaginatedMessage {
 	/**
 	 * Update the current page.
 	 *
-	 * @param page The content to update the page with.
-	 * @remark This method can only be used after {@link PaginatedMessage.run} has been used.
+	 * @param page - The content to update the page with.
+	 * This method can only be used after {@link PaginatedMessage.run} has been used.
 	 */
 	public async updateCurrentPage(page: PaginatedMessagePage): Promise<this> {
 		const interaction = this.response;
@@ -810,7 +815,7 @@ export class PaginatedMessage {
 	/**
 	 * Adds a page to the existing ones using a {@link MessageBuilder}. This will be added as the last page.
 	 *
-	 * @param builder Either a callback whose first parameter is `new MessageBuilder()`, or an already constructed {@link MessageBuilder}
+	 * @param builder - Either a callback whose first parameter is `new MessageBuilder()`, or an already constructed {@link MessageBuilder}
 	 * @example
 	 * ```typescript
 	 * import { PaginatedMessage } from '@sapphire/discord.js-utilities';
@@ -851,7 +856,7 @@ export class PaginatedMessage {
 	/**
 	 * Adds a page to the existing ones asynchronously using a {@link MessageBuilder}. This wil be added as the last page.
 	 *
-	 * @param builder Either a callback whose first parameter is `new MessageBuilder()`, or an already constructed {@link MessageBuilder}
+	 * @param builder - Either a callback whose first parameter is `new MessageBuilder()`, or an already constructed {@link MessageBuilder}
 	 * @example
 	 * ```typescript
 	 * import { PaginatedMessage } from '@sapphire/discord.js-utilities';
@@ -878,7 +883,7 @@ export class PaginatedMessage {
 	/**
 	 * Adds a page to the existing ones using simple message content. This will be added as the last page.
 	 *
-	 * @param content The content to set.
+	 * @param content - The content to set.
 	 * @example
 	 * ```typescript
 	 * import { PaginatedMessage } from '@sapphire/discord.js-utilities';
@@ -894,7 +899,7 @@ export class PaginatedMessage {
 	/**
 	 * Adds a page to the existing ones using a {@link EmbedBuilder}. This wil be added as the last page.
 	 *
-	 * @param embed Either a callback whose first parameter is `new EmbedBuilder()`, or an already constructed {@link EmbedBuilder}
+	 * @param embed - Either a callback whose first parameter is `new EmbedBuilder()`, or an already constructed {@link EmbedBuilder}
 	 * @example
 	 * ```typescript
 	 * import { PaginatedMessage } from '@sapphire/discord.js-utilities';
@@ -927,7 +932,7 @@ export class PaginatedMessage {
 	/**
 	 * Adds a page to the existing ones asynchronously using a {@link EmbedBuilder}. This wil be added as the last page.
 	 *
-	 * @param embed Either a callback whose first parameter is `new EmbedBuilder()`, or an already constructed {@link EmbedBuilder}
+	 * @param embed - Either a callback whose first parameter is `new EmbedBuilder()`, or an already constructed {@link EmbedBuilder}
 	 * @example
 	 * ```typescript
 	 * import { PaginatedMessage } from '@sapphire/discord.js-utilities';
@@ -951,10 +956,11 @@ export class PaginatedMessage {
 	/**
 	 * Adds a page to the existing ones asynchronously using multiple {@link EmbedBuilder}'s. This wil be added as the last page.
 	 *
-	 * @remark When using this with a callback this will construct 10 {@link EmbedBuilder}'s in the callback parameters, regardless of how many are actually used.
+	 * When using this with a callback this will construct 10 {@link EmbedBuilder}'s in the callback parameters, regardless of how many are actually used.
 	 * If this a performance impact you do not want to cope with then it is recommended to use {@link PaginatedMessage.addPageBuilder} instead, which will let you add
 	 * as many embeds as you want, albeit manually
-	 * @param embeds Either a callback which receives 10 parameters of `new EmbedBuilder()`, or an array of already constructed {@link EmbedBuilder}'s
+	 *
+	 * @param embeds - Either a callback which receives 10 parameters of `new EmbedBuilder()`, or an array of already constructed {@link EmbedBuilder}'s
 	 * @example
 	 * ```typescript
 	 * import { PaginatedMessage } from '@sapphire/discord.js-utilities';
@@ -1037,10 +1043,11 @@ export class PaginatedMessage {
 	/**
 	 * Adds a page to the existing ones using multiple {@link EmbedBuilder}'s. This wil be added as the last page.
 	 *
-	 * @remark When using this with a callback this will construct 10 {@link EmbedBuilder}'s in the callback parameters, regardless of how many are actually used.
+	 * When using this with a callback this will construct 10 {@link EmbedBuilder}'s in the callback parameters, regardless of how many are actually used.
 	 * If this a performance impact you do not want to cope with then it is recommended to use {@link PaginatedMessage.addPageBuilder} instead, which will let you add
 	 * as many embeds as you want, albeit manually
-	 * @param embeds Either a callback which receives 10 parameters of `new EmbedBuilder()`, or an array of already constructed {@link EmbedBuilder}'s
+	 *
+	 * @param embeds - Either a callback which receives 10 parameters of `new EmbedBuilder()`, or an array of already constructed {@link EmbedBuilder}'s
 	 * @example
 	 * ```typescript
 	 * import { PaginatedMessage } from '@sapphire/discord.js-utilities';
@@ -1131,7 +1138,7 @@ export class PaginatedMessage {
 	/**
 	 * Add pages to the existing ones. The order given is the order they will be used.
 	 *
-	 * @param pages The pages to add.
+	 * @param pages - The pages to add.
 	 */
 	public addPages(pages: PaginatedMessagePage[]): this {
 		for (const page of pages) this.addPage(page);
@@ -1141,9 +1148,9 @@ export class PaginatedMessage {
 	/**
 	 * Clear all actions for a page and set the new ones.
 	 *
-	 * @param actions The actions to set.
-	 * @param index The index of the page to set the actions to. **This is 0-based**.
-	 * @remark Internally we check if the provided index exists.
+	 * @param actions - The actions to set.
+	 * @param index - The index of the page to set the actions to. **This is 0-based**.
+	 * Internally we check if the provided index exists.
 	 * This means that calling this function _before_ calling any of the methods below this will not work as the amount of pages will always be 0,
 	 * thus the index will always be out of bounds. That said, make sure you first define your pages and _then_ define your actions for those pages.
 	 * - {@link PaginatedMessage.addAsyncPageEmbed}
@@ -1153,7 +1160,7 @@ export class PaginatedMessage {
 	 * - {@link PaginatedMessage.addPageEmbeds}
 	 * - {@link PaginatedMessage.addPages}
 	 * - {@link PaginatedMessage.setPages}
-	 * @remark Add a select menu to the first page, while preserving all default actions:
+	 * Add a select menu to the first page, while preserving all default actions:
 	 * @example
 	 * ```typescript
 	 * const display = new PaginatedMessage();
@@ -1179,10 +1186,10 @@ export class PaginatedMessage {
 	/**
 	 * Add the provided actions to a page.
 	 *
-	 * @param actions The actions to add.
-	 * @param index The index of the page to add the actions to.
+	 * @param actions - The actions to add.
+	 * @param index - The index of the page to add the actions to.
 	 * @see {@link PaginatedMessage.setActions} for examples on how to structure the actions.
-	 * @remark Internally we check if the provided index exists.
+	 * Internally we check if the provided index exists.
 	 * This means that calling this function _before_ calling any of the methods below this will not work as the amount of pages will always be 0,
 	 * thus the index will always be out of bounds. That said, make sure you first define your pages and _then_ define your actions for those pages.
 	 * - {@link PaginatedMessage.addAsyncPageEmbed}
@@ -1206,10 +1213,10 @@ export class PaginatedMessage {
 	/**
 	 * Add the provided action to a page.
 	 *
-	 * @param action The action to add.
-	 * @param index The index of the page to add the action to.
+	 * @param action - The action to add.
+	 * @param index - The index of the page to add the action to.
 	 * @see {@link PaginatedMessage.setActions} for examples on how to structure the action.
-	 * @remark Internally we check if the provided index exists.
+	 * Internally we check if the provided index exists.
 	 * This means that calling this function _before_ calling any of the methods below this will not work as the amount of pages will always be 0,
 	 * thus the index will always be out of bounds. That said, make sure you first define your pages and _then_ define your actions for those pages.
 	 * - {@link PaginatedMessage.addAsyncPageEmbed}
@@ -1241,15 +1248,16 @@ export class PaginatedMessage {
 	 * Executes the {@link PaginatedMessage} and sends the pages corresponding with {@link PaginatedMessage.index}.
 	 * The handler will start collecting message component interactions.
 	 *
-	 * @remark Please note that for {@link PaginatedMessage} to work in DMs to your client, you need to add the `'CHANNEL'` partial to your `client.options.partials`.
+	 * Please note that for {@link PaginatedMessage} to work in DMs to your client, you need to add the `'CHANNEL'` partial to your `client.options.partials`.
 	 * Message based commands can always be used in DMs, whereas Chat Input interactions can only be used in DMs when they are registered globally.
-	 * @param messageOrInteraction The message or interaction that triggered this {@link PaginatedMessage}.
+	 *
+	 * @param messageOrInteraction - The message or interaction that triggered this {@link PaginatedMessage}.
 	 * Generally this will be the command message or an interaction
 	 * (either a {@link CommandInteraction}, {@link ContextMenuInteraction}, or an interaction from {@link PaginatedMessageInteractionUnion}),
 	 * but it can also be another message from your client, i.e. to indicate a loading state.
-	 * @param target The user who will be able to interact with the buttons of this {@link PaginatedMessage}.
-	 * If `messageOrInteraction` is an instance of {@link Message} then this defaults to {@link Message.author messageOrInteraction.author},
-	 * and if it is an instance of {@link CommandInteraction} then it defaults to {@link CommandInteraction.user messageOrInteraction.user}.
+	 * @param target - The user who will be able to interact with the buttons of this {@link PaginatedMessage}.
+	 * If `messageOrInteraction` is an instance of {@link Message} then this defaults to {@link Message.author | messageOrInteraction.author},
+	 * and if it is an instance of {@link CommandInteraction} then it defaults to {@link CommandInteraction.user | messageOrInteraction.user}.
 	 */
 	public async run(messageOrInteraction: AnyInteractableInteraction | Message, target?: User): Promise<this> {
 		// If there is no channel then exit early and potentially emit a warning
@@ -1370,9 +1378,9 @@ export class PaginatedMessage {
 	/**
 	 * Executed whenever an action is triggered and resolved.
 	 *
-	 * @param messageOrInteraction The message or interaction that triggered this {@link PaginatedMessage}.
-	 * @param target The user who will be able to interact with the buttons of this {@link PaginatedMessage}.
-	 * @param index The index to resolve.
+	 * @param messageOrInteraction - The message or interaction that triggered this {@link PaginatedMessage}.
+	 * @param target - The user who will be able to interact with the buttons of this {@link PaginatedMessage}.
+	 * @param index - The index to resolve.
 	 */
 	public async resolvePage(
 		messageOrInteraction: AnyInteractableInteraction | Message,
@@ -1429,7 +1437,7 @@ export class PaginatedMessage {
 	/**
 	 * Get the options of a page.
 	 *
-	 * @param index The index of the page.
+	 * @param index - The index of the page.
 	 */
 	public async getPageOptions(index: number): Promise<PaginatedMessageMessageOptionsUnion | undefined> {
 		const page = this.pages.at(index);
@@ -1439,7 +1447,7 @@ export class PaginatedMessage {
 	/**
 	 * Sets up the message.
 	 *
-	 * @param messageOrInteraction The message or interaction that triggered this {@link PaginatedMessage}.
+	 * @param messageOrInteraction - The message or interaction that triggered this {@link PaginatedMessage}.
 	 * Generally this will be the command message or an interaction
 	 * (either a {@link CommandInteraction}, {@link ContextMenuInteraction}, or an interaction from {@link PaginatedMessageInteractionUnion}),
 	 * but it can also be another message from your client, i.e. to indicate a loading state.
@@ -1481,8 +1489,8 @@ export class PaginatedMessage {
 	/**
 	 * Sets up the message's collector.
 	 *
-	 * @param messageOrInteraction The message or interaction that triggered this {@link PaginatedMessage}.
-	 * @param targetUser The user the handler is for.
+	 * @param messageOrInteraction - The message or interaction that triggered this {@link PaginatedMessage}.
+	 * @param targetUser - The user the handler is for.
 	 */
 	protected setUpCollector(messageOrInteraction: AnyInteractableInteraction | Message<boolean>, targetUser: User): void {
 		if (this.pages.length > 1) {
@@ -1524,8 +1532,8 @@ export class PaginatedMessage {
 	/**
 	 * Handles the load of a page.
 	 *
-	 * @param page The page to be loaded.
-	 * @param index The index of the current page.
+	 * @param page - The page to be loaded.
+	 * @param index - The index of the current page.
 	 */
 	protected async handlePageLoad(page: PaginatedMessagePage, index: number): Promise<PaginatedMessageMessageOptionsUnion> {
 		// Resolve the options from a function or an object
@@ -1544,9 +1552,9 @@ export class PaginatedMessage {
 	/**
 	 * Handles the loading of actions.
 	 *
-	 * @param actions The actions to be loaded.
-	 * @param messageOrInteraction The message or interaction that triggered this {@link PaginatedMessage}.
-	 * @param targetUser The user the handler is for.
+	 * @param actions - The actions to be loaded.
+	 * @param messageOrInteraction - The message or interaction that triggered this {@link PaginatedMessage}.
+	 * @param targetUser - The user the handler is for.
 	 */
 	protected async handleActionLoad(
 		actions: PaginatedMessageAction[],
@@ -1605,9 +1613,9 @@ export class PaginatedMessage {
 	/**
 	 * Handles the `collect` event from the collector.
 	 *
-	 * @param targetUser The user the handler is for.
-	 * @param channel The channel the handler is running at.
-	 * @param interaction The button interaction that was received.
+	 * @param targetUser - The user the handler is for.
+	 * @param channel - The channel the handler is running at.
+	 * @param interaction - The button interaction that was received.
 	 */
 	protected async handleCollect(targetUser: User, channel: Message['channel'], interaction: PaginatedMessageInteractionUnion): Promise<void> {
 		if (interaction.user.id === targetUser.id) {
@@ -1694,8 +1702,8 @@ export class PaginatedMessage {
 	/**
 	 * Applies footer to the last embed of the page
 	 *
-	 * @param message The message options
-	 * @param index The current index
+	 * @param message - The message options
+	 * @param index - The current index
 	 * @returns The message options with the footer applied
 	 */
 	protected applyFooter(message: PaginatedMessageMessageOptionsUnion, index: number): PaginatedMessageMessageOptionsUnion {
@@ -1731,8 +1739,8 @@ export class PaginatedMessage {
 	/**
 	 * Constructs a {@link PaginatedMessageInternationalizationContext}
 	 *
-	 * @param messageOrInteraction The message or interaction for which the {@link PaginatedMessageInternationalizationContext} should be resolved.
-	 * @param targetUser The target user for whom this interaction is
+	 * @param messageOrInteraction - The message or interaction for which the {@link PaginatedMessageInternationalizationContext} should be resolved.
+	 * @param targetUser - The target user for whom this interaction is
 	 * @returns A constructed {@link PaginatedMessageInternationalizationContext}
 	 */
 	protected resolvePaginatedMessageInternationalizationContext(
@@ -1833,10 +1841,10 @@ export class PaginatedMessage {
 	/**
 	 * Merges two arrays together.
 	 *
-	 * @template T - The type of elements in the arrays.
-	 * @param {T[]} template - The first array to merge.
-	 * @param {T[]} array - The second array to merge.
-	 * @returns {undefined | T[]} - The merged array or undefined if both arrays are nullish.
+	 * @typeParam T - The type of elements in the arrays.
+	 * @param template - - The first array to merge.
+	 * @param array - - The second array to merge.
+	 * @returns The merged array or undefined if both arrays are nullish.
 	 */
 	private mergeArrays<T>(template?: T[], array?: T[]): T[] | undefined {
 		if (isNullish(array)) {
