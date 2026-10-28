@@ -1,3 +1,4 @@
+/* eslint-disable promise/prefer-await-to-callbacks */
 import { setTimeout as sleep } from 'node:timers/promises';
 import { err, none, ok, Option, Result, ResultError, some, type Err, type None, type Ok, type Some } from '../src/index';
 import { error, makeThrow } from './shared';
@@ -1137,7 +1138,7 @@ describe('Result', () => {
 
 function expectResultError<E>(message: string, value: E, cb: () => any) {
 	try {
-		// eslint-disable-next-line promise/prefer-await-to-callbacks, n/callback-return
+		// eslint-disable-next-line n/callback-return
 		cb();
 
 		throw new Error('cb should have thrown');

@@ -177,13 +177,13 @@ export class PaginatedFieldMessageEmbed<T> extends PaginatedMessage {
 	 */
 	private generatePages() {
 		const template = this.embedTemplate;
-		for (let i = 0; i < this.totalPages; i++) {
+		for (let pageIndex = 0; pageIndex < this.totalPages; pageIndex++) {
 			const clonedTemplate = new EmbedBuilder(template);
 			const fieldsClone = isNullishOrEmpty(template.fields) ? [] : [...template.fields];
 			if (fieldsClone.length > 0) clonedTemplate.setFields();
 			if (isNullish(template.color)) clonedTemplate.setColor('Random');
 
-			const data = this.paginateArray(this.items, i, this.itemsPerPage);
+			const data = this.paginateArray(this.items, pageIndex, this.itemsPerPage);
 			this.addPage({
 				embeds: [clonedTemplate.addFields({ name: this.fieldTitle, value: data.join('\n'), inline: false }, ...fieldsClone)]
 			});
@@ -211,7 +211,7 @@ export class PaginatedFieldMessageEmbed<T> extends PaginatedMessage {
 	 * @returns The resolved APIEmbed object.
 	 */
 	private resolveTemplate(template: EmbedData | EmbedResolvable | ((embed: EmbedBuilder) => EmbedResolvable)): APIEmbed {
-		if (isFunction(template)) template = template(new EmbedBuilder());
-		return (isJSONEncodable(template) ? template : new EmbedBuilder(template)).toJSON();
+		const resolvedTemplate = isFunction(template) ? template(new EmbedBuilder()) : template;
+		return (isJSONEncodable(resolvedTemplate) ? resolvedTemplate : new EmbedBuilder(resolvedTemplate)).toJSON();
 	}
 }

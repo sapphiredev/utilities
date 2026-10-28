@@ -73,14 +73,16 @@ export class Cron {
 	private static normalize(cron: string): string {
 		if (Reflect.has(predefined, cron)) return Reflect.get(predefined, cron);
 		const now = new Date();
-		cron = cron
+		const normalizedCron = cron
 			.split(' ')
-			.map((val, i) =>
+			.map((val, fieldIndex) =>
 				val.replace(wildcardRegex, (match) => {
-					if (match === 'h') return (Math.floor(Math.random() * allowedNum[i][1]) + allowedNum[i][0]).toString();
+					if (match === 'h') {
+						return (Math.floor(Math.random() * allowedNum[fieldIndex][1]) + allowedNum[fieldIndex][0]).toString();
+					}
 
 					if (match === '?') {
-						switch (i) {
+						switch (fieldIndex) {
 							case 0:
 								return now.getUTCMinutes().toString();
 							case 1:
@@ -98,7 +100,7 @@ export class Cron {
 				})
 			)
 			.join(' ');
-		return cron.replace(tokensRegex, (match) => String(Reflect.get(cronTokens, match)));
+		return normalizedCron.replace(tokensRegex, (match) => String(Reflect.get(cronTokens, match)));
 	}
 
 	/**
@@ -109,7 +111,7 @@ export class Cron {
 	private static parseString(cron: string): number[][] {
 		const parts = cron.split(' ');
 		if (parts.length !== 5) throw new Error('Invalid Cron Provided');
-		return parts.map((part, i) => Cron.parsePart(part, i));
+		return parts.map((part, fieldIndex) => Cron.parsePart(part, fieldIndex));
 	}
 
 	/**

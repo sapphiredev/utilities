@@ -25,17 +25,17 @@ import { toIterableIterator } from './toIterableIterator';
  * This function consumes the entire iterator.
  */
 export function takeLast<const ElementType>(iterable: IterableResolvable<ElementType>, count: number): IterableIterator<ElementType> {
-	count = assertNotNegative(toIntegerOrInfinityOrThrow(count), count);
-	if (count === 0) return empty();
-	if (count === Number.POSITIVE_INFINITY) return toIterableIterator(iterable);
+	const normalizedCount = assertNotNegative(toIntegerOrInfinityOrThrow(count), count);
+	if (normalizedCount === 0) return empty();
+	if (normalizedCount === Number.POSITIVE_INFINITY) return toIterableIterator(iterable);
 
 	const array = toArray(iterable);
-	let i = Math.max(0, array.length - count);
+	let index = Math.max(0, array.length - normalizedCount);
 	return makeIterableIterator<ElementType>(() => {
-		if (i >= array.length) {
+		if (index >= array.length) {
 			return { done: true, value: undefined };
 		}
 
-		return { done: false, value: array[i++] };
+		return { done: false, value: array[index++] };
 	});
 }

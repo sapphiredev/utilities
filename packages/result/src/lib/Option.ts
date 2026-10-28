@@ -1,3 +1,4 @@
+/* eslint-disable promise/prefer-await-to-callbacks */
 /* eslint-disable @typescript-eslint/no-use-before-define, jsdoc/no-undefined-types */
 import { isFunction, returnThis, type Awaitable, type If } from './common/utils';
 import { OptionError } from './OptionError';
@@ -340,7 +341,7 @@ export class Option<T, Exists extends boolean = boolean> {
 	 * @see {@link https://doc.rust-lang.org/std/option/enum.Option.html#method.inspect}
 	 */
 	public inspect(cb: (value: T) => void): this {
-		// eslint-disable-next-line promise/prefer-await-to-callbacks, n/callback-return
+		// eslint-disable-next-line n/callback-return
 		if (this.isSome()) cb(this[ValueProperty]);
 		return this;
 	}
@@ -363,7 +364,7 @@ export class Option<T, Exists extends boolean = boolean> {
 	 * @note This is an extension not supported in Rust
 	 */
 	public async inspectAsync(cb: (value: T) => Awaitable<unknown>): Promise<this> {
-		// eslint-disable-next-line promise/prefer-await-to-callbacks, n/callback-return
+		// eslint-disable-next-line n/callback-return
 		if (this.isSome()) await cb(this[ValueProperty]);
 		return this;
 	}

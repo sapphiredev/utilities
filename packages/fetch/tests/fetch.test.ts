@@ -95,8 +95,8 @@ describe('fetch', () => {
 			expect(response).toStrictEqual(JSON.stringify({ test: true }));
 		});
 
-		test('GIVEN fetch w/ Browser URL class THEN returns result', async () => {
-			const url = new URL('http://localhost/simpleget');
+		test('GIVEN fetch w/ URL class THEN returns result', async () => {
+			const url = new NodeUrl('http://localhost/simpleget');
 			const response = await fetch(url, FetchResultTypes.Text);
 
 			expect(response).toStrictEqual(JSON.stringify({ test: true }));
@@ -161,7 +161,7 @@ describe('fetch', () => {
 		});
 
 		test('GIVEN fetch w/ unknown path AND URL object THEN returns FetchError', async () => {
-			const url = new URL('http://localhost/404');
+			const url = new NodeUrl('http://localhost/404');
 			const fetchResult = fetch(url, FetchResultTypes.JSON);
 
 			await expect(fetchResult).rejects.toThrow(`Failed to request '${url}' with code 404.`);

@@ -103,11 +103,7 @@ export class MessageBuilder implements MessageCreateOptions {
 	 */
 	public setEmbeds(embeds?: MessageCreateOptions['embeds']): this {
 		// Ensure no more than 10 embeds are ever set
-		if (embeds && embeds.length > 10) {
-			embeds = embeds.slice(0, 10);
-		}
-
-		this.embeds = embeds;
+		this.embeds = embeds && embeds.length > 10 ? embeds.slice(0, 10) : embeds;
 		return this;
 	}
 

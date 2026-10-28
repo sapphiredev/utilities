@@ -8,11 +8,13 @@
  */
 export function retrySync<T>(cb: () => T, retries: number): T {
 	if (retries < 0) throw new RangeError('Expected retries to be a number >= 0');
+	// eslint-disable-next-line promise/prefer-await-to-callbacks
 	if (retries === 0) return cb();
 
 	let lastError: unknown;
 	for (let idx = 0; idx < retries; ++idx) {
 		try {
+			// eslint-disable-next-line promise/prefer-await-to-callbacks
 			return cb();
 		} catch (error) {
 			lastError = error;

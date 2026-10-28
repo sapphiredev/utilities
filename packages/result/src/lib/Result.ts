@@ -1,3 +1,4 @@
+/* eslint-disable promise/prefer-await-to-callbacks */
 /* eslint-disable @typescript-eslint/no-use-before-define, jsdoc/no-undefined-types */
 import { isFunction, returnThis, type Awaitable, type If } from './common/utils';
 import { none, some, type None, type Option, type Some } from './Option';
@@ -347,7 +348,7 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * @see {@link https://doc.rust-lang.org/std/result/enum.Result.html#method.inspect}
 	 */
 	public inspect(cb: (value: T) => unknown): this {
-		// eslint-disable-next-line promise/prefer-await-to-callbacks, n/callback-return
+		// eslint-disable-next-line n/callback-return
 		if (this.isOk()) cb(this[ValueProperty]);
 		return this;
 	}
@@ -370,7 +371,7 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * @note This is an extension not supported in Rust
 	 */
 	public async inspectAsync(cb: (value: T) => Awaitable<unknown>): Promise<this> {
-		// eslint-disable-next-line promise/prefer-await-to-callbacks, n/callback-return
+		// eslint-disable-next-line n/callback-return
 		if (this.isOk()) await cb(this[ValueProperty]);
 		return this;
 	}
@@ -393,7 +394,7 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * @see {@link https://doc.rust-lang.org/std/result/enum.Result.html#method.inspect_err}
 	 */
 	public inspectErr(cb: (error: E) => unknown): this {
-		// eslint-disable-next-line promise/prefer-await-to-callbacks, n/callback-return
+		// eslint-disable-next-line n/callback-return
 		if (this.isErr()) cb(this[ValueProperty]);
 		return this;
 	}
@@ -416,7 +417,7 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * @note This is an extension not supported in Rust
 	 */
 	public async inspectErrAsync(cb: (error: E) => Awaitable<unknown>): Promise<this> {
-		// eslint-disable-next-line promise/prefer-await-to-callbacks, n/callback-return
+		// eslint-disable-next-line n/callback-return
 		if (this.isErr()) await cb(this[ValueProperty]);
 		return this;
 	}

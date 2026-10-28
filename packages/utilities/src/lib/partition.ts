@@ -17,8 +17,8 @@ export function partition<T>(array: T[], predicate: (value: T, index: number) =>
 	const partitionOne: T[] = [];
 	const partitionTwo: T[] = [];
 
-	for (const [i, element] of array.entries()) {
-		if (predicate(element, i)) {
+	for (const [index, element] of array.entries()) {
+		if (predicate(element, index)) {
 			partitionOne.push(element);
 		} else {
 			partitionTwo.push(element);

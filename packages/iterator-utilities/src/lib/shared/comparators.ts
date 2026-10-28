@@ -1,7 +1,9 @@
 import type { CompareByComparator, LexicographicComparison } from './_compare';
 import type { compareBy } from '../compareBy';
 
+// eslint-disable-next-line promise/prefer-await-to-callbacks
 function swap<const ElementType>(cb: CompareByComparator<ElementType>): CompareByComparator<ElementType> {
+	// eslint-disable-next-line promise/prefer-await-to-callbacks
 	return (x, y) => (0 - cb(x, y)) as LexicographicComparison;
 }
 

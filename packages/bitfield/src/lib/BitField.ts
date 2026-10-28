@@ -36,6 +36,7 @@ export class BitField<Flags extends Record<string, bigint> | Record<string, numb
 			let mask = 0;
 			for (const [key, value] of entries) {
 				if (typeof value !== 'number') throw new TypeError(`The property "${key}" does not resolve to a number`);
+				// eslint-disable-next-line unicorn/prefer-math-trunc
 				if (value !== (value | 0)) throw new RangeError(`The property "${key}" does not resolve to a safe bitfield value`);
 				if (value <= 0) throw new RangeError(`The property "${key}" resolves to a non-positive value`);
 				mask |= value;
