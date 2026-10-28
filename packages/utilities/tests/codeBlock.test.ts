@@ -16,17 +16,14 @@ describe('codeBlock', () => {
 	});
 
 	test('GIVEN expression w/ length w/ inner code block THEN returns expressed wrapped in markdown', () => {
-		expect(
-			codeBlock(
-				'md',
-				`
+		const content = `
 			# Header
 			\`\`\`js
 				if (sapphireCommunityIsCool) return 'awesome!';
 			\`\`\`
-		`
-			)
-		).toStrictEqual(
+		`.replace(/[\t ]+$/, '');
+
+		expect(codeBlock('md', content)).toStrictEqual(
 			`\`\`\`md
 
 			# Header
@@ -39,15 +36,12 @@ describe('codeBlock', () => {
 	});
 
 	test('GIVEN expression w/ length w/ inner inline code block THEN returns expressed wrapped in markdown', () => {
-		expect(
-			codeBlock(
-				'md',
-				`
+		const content = `
 			# Header
 			\`const sapphireCommunityIsCool = true\`
-		`
-			)
-		).toStrictEqual(`\`\`\`md
+		`.replace(/[\t ]+$/, '');
+
+		expect(codeBlock('md', content)).toStrictEqual(`\`\`\`md
 
 			# Header
 			\`const sapphireCommunityIsCool = true\`

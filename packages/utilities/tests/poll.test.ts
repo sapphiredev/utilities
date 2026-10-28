@@ -143,16 +143,13 @@ describe('poll', () => {
 				.mockReturnValueOnce(pass);
 			const cbCondition = vi.fn(cbConditionRaw);
 
-			// eslint-disable-next-line promise/prefer-await-to-callbacks
-			const timeout = vi.spyOn(global, 'setTimeout').mockImplementationOnce((cb) => {
-				// eslint-disable-next-line promise/prefer-await-to-callbacks
-				cb();
-				return 0 as any;
-			});
+			vi.useFakeTimers();
+			const start = Date.now();
 			const result = poll(cb, cbCondition, { waitBetweenRetries: 5 });
+			await vi.advanceTimersByTimeAsync(5);
 			await expect(result).resolves.toBe(pass);
-			expect(timeout).toHaveBeenCalledTimes(1);
-			expect(timeout.mock.calls[0][1]).toBe(5);
+			expect(Date.now() - start).toBe(5);
+			vi.useRealTimers();
 		});
 
 		test('GIVEN a poll with a wait of 5ms THEN waits 5ms between retries', async () => {

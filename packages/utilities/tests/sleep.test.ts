@@ -28,26 +28,24 @@ describe('sleep', () => {
 	});
 
 	test('GIVEN an aborted signal THEN the promise rejects without a timeout', async () => {
+		vi.useFakeTimers();
 		const signal = AbortSignal.abort();
-		const setTimeoutSpy = vi.spyOn(globalThis, 'setTimeout');
-		const clearTimeoutSpy = vi.spyOn(globalThis, 'clearTimeout');
 		const promise = sleep(50, undefined, { signal });
 
 		await expect(promise).rejects.toStrictEqual(new DOMException('This operation was aborted', 'AbortError'));
-		expect(setTimeoutSpy).toHaveBeenCalledTimes(0);
-		expect(clearTimeoutSpy).toHaveBeenCalledTimes(0);
+		expect(vi.getTimerCount()).toBe(0);
+		vi.useRealTimers();
 	});
 
 	test('GIVEN an immediately aborted signal THEN the promise rejects', async () => {
+		vi.useFakeTimers();
 		const controller = new AbortController();
-		const setTimeoutSpy = vi.spyOn(globalThis, 'setTimeout');
-		const clearTimeoutSpy = vi.spyOn(globalThis, 'clearTimeout');
 		const promise = sleep(50, undefined, { signal: controller.signal });
 		controller.abort();
 
 		await expect(promise).rejects.toStrictEqual(new DOMException('This operation was aborted', 'AbortError'));
-		expect(setTimeoutSpy).toHaveBeenCalledTimes(1);
-		expect(clearTimeoutSpy).toHaveBeenCalledTimes(1);
+		expect(vi.getTimerCount()).toBe(0);
+		vi.useRealTimers();
 	});
 
 	test('GIVEN an immediately aborted signal with a reason THEN reject the promise with the reason as cause', async () => {
