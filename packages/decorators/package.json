@@ -21,7 +21,7 @@
 		"prepack": "yarn build",
 		"bump": "cliff-jumper",
 		"check-update": "cliff-jumper --dry-run",
-		"gen-index": "unrun ../../scripts/gen-index.ts decorators --write"
+		"gen-index": "node ../../scripts/gen-index.ts decorators --write"
 	},
 	"devDependencies": {
 		"@favware/cliff-jumper": "^6.1.0",
@@ -34,7 +34,6 @@
 		"eslint": "^10.13.0",
 		"tsdown": "^0.23.3",
 		"typescript": "~6.0.3",
-		"unrun": "^0.3.1",
 		"vitest": "^5.0.5"
 	},
 	"peerDependencies": {
