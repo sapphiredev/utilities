@@ -26,8 +26,6 @@
   color: 'fbca04'
 - name: packages:node-utilities
   color: 'fbca04'
-- name: packages:phisherman
-  color: 'fbca04'
 - name: packages:prettier-config
   color: 'fbca04'
 - name: packages:ratelimits
