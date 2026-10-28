@@ -1,6 +1,8 @@
 import { defineConfig } from 'tsdown';
+import { nodeGlobals } from '../../scripts/node-globals.ts';
 
 export default defineConfig({
+	plugins: [nodeGlobals()],
 	entry: 'src/index.ts',
 	format: 'esm',
 	outDir: 'dist',
