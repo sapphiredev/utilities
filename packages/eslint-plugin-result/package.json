@@ -4,6 +4,7 @@
 	"description": "A TypeScript ESLint plugin for @sapphire/result",
 	"author": "@sapphire",
 	"license": "MIT",
+	"type": "module",
 	"main": "dist/index.mjs",
 	"module": "dist/index.mjs",
 	"exports": {
@@ -58,6 +59,5 @@
 		"@typescript-eslint/utils": "^8.72.1",
 		"tsutils": "^3.21.0",
 		"typescript": "~6.0.3"
-	},
-	"type": "module"
+	}
 }

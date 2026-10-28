@@ -8,7 +8,7 @@
 		"clean": "node scripts/clean.mjs",
 		"clean:full": "node scripts/clean-full.mjs",
 		"lint": "eslint packages --fix",
-		"format": "prettier --write \"packages/**/{src,tests,scripts}/**/*.{mjs,ts,js}\"",
+		"format": "prettier --write .",
 		"test": "vitest run",
 		"build": "yarn workspace @sapphire/node-utilities build && yarn workspaces foreach --all --exclude root-utilities run build",
 		"build:check-subpath": "yarn workspaces foreach --all --exclude root-utilities run build:check-subpath",

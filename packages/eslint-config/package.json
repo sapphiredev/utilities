@@ -4,6 +4,7 @@
 	"description": "Standard ESLint config for the Sapphire Community",
 	"author": "@sapphire",
 	"license": "MIT",
+	"type": "module",
 	"main": "dist/index.mjs",
 	"module": "dist/index.mjs",
 	"exports": {
@@ -63,6 +64,5 @@
 		"tsdown": "^0.23.3",
 		"unrun": "^0.3.1",
 		"vitest": "^5.0.5"
-	},
-	"type": "module"
+	}
 }

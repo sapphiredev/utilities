@@ -4,6 +4,7 @@
 	"description": "A time utility library for JavaScript.",
 	"author": "@sapphire",
 	"license": "MIT",
+	"type": "module",
 	"main": "dist/index.mjs",
 	"module": "dist/index.mjs",
 	"types": "dist/index.d.mts",
@@ -60,6 +61,5 @@
 		"tsdown": "^0.23.3",
 		"typescript": "~6.0.3",
 		"unrun": "^0.3.1"
-	},
-	"type": "module"
+	}
 }
