@@ -19,22 +19,21 @@ async function importFileFromWeb({ url, temporaryFileName }: { temporaryFileName
 	return loadedModule;
 }
 
-async function main() {
-	const filePrefix = [
-		'/* eslint-disable prefer-named-capture-group */',
-		'',
-		'/**',
-		' * Regex that can capture a Twemoji (Twitter Emoji)',
-		' *',
-		' * {@link https://github.com/jdecked/twemoji-parser/blob/main/src/lib/regex.js | See official source code}',
-		' */',
-		'export const TwemojiRegex =',
-		'\t'
-	].join('\n');
-	const fileSuffix = [
-		';',
-		'',
-		`/**
+const filePrefix = [
+	'/* eslint-disable prefer-named-capture-group */',
+	'',
+	'/**',
+	' * Regex that can capture a Twemoji (Twitter Emoji)',
+	' *',
+	' * {@link https://github.com/jdecked/twemoji-parser/blob/main/src/lib/regex.js | See official source code}',
+	' */',
+	'export const TwemojiRegex =',
+	'\t'
+].join('\n');
+const fileSuffix = [
+	';',
+	'',
+	`/**
  * Creates a fresh instance of the Twemoji regex, which is useful if you don't want to worry about the effects of a global regex and the lastIndex
  *
  * @returns A clone of the Twemoji regex
@@ -42,19 +41,16 @@ async function main() {
 export function createTwemojiRegex(): RegExp {
 	return new RegExp(TwemojiRegex);
 }`,
-		''
-	].join('\n');
+	''
+].join('\n');
 
-	const twemojiRegexFileUrl = fileURLToPath(new URL('../packages/discord-utilities/src/lib/TwemojiRegex.ts', import.meta.url));
+const twemojiRegexFileUrl = fileURLToPath(new URL('../packages/discord-utilities/src/lib/TwemojiRegex.ts', import.meta.url));
 
-	const { default: regexFromWeb } = await importFileFromWeb({
-		url: 'https://raw.githubusercontent.com/jdecked/twemoji-parser/main/src/lib/regex.js',
-		temporaryFileName: './regex.mjs'
-	});
+const { default: regexFromWeb } = await importFileFromWeb({
+	url: 'https://raw.githubusercontent.com/jdecked/twemoji-parser/main/src/lib/regex.js',
+	temporaryFileName: './regex.mjs'
+});
 
-	await writeFile(twemojiRegexFileUrl, `${filePrefix}${regexFromWeb}${fileSuffix}`);
+await writeFile(twemojiRegexFileUrl, `${filePrefix}${regexFromWeb}${fileSuffix}`);
 
-	console.log(green(`Successfully wrote updated Twemoji Regex to file`));
-}
-
-void main();
+console.log(green(`Successfully wrote updated Twemoji Regex to file`));
