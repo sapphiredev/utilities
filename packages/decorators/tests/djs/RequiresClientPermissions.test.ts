@@ -1,9 +1,9 @@
 import { UserError } from '@sapphire/framework';
 import {
 	ChannelType,
-	Message as DJSMessage,
 	PermissionFlagsBits,
 	PermissionsBitField,
+	type Message as DJSMessage,
 	type PermissionResolvable,
 	type PermissionsString
 } from 'discord.js';
@@ -16,8 +16,8 @@ interface BitField {
 
 interface Message {
 	channel: {
-		type: DJSMessage['channel']['type'];
 		permissionsFor(): BitField;
+		type: DJSMessage['channel']['type'];
 	};
 	guild: {
 		members: any;
@@ -44,8 +44,8 @@ describe('RequiresClientPermissions', () => {
 	describe('WITH DM-compatible permissions', () => {
 		class Test {
 			@RequiresClientPermissions(['SendMessages', 'AttachFiles'])
-			public getValue(_message: Message) {
-				return Promise.resolve('Resolved');
+			public async getValue(_message: Message) {
+				return 'Resolved';
 			}
 		}
 
@@ -101,8 +101,8 @@ describe('RequiresClientPermissions', () => {
 	describe('WITH DM-incompatible permissions', () => {
 		class Test {
 			@RequiresClientPermissions([PermissionFlagsBits.ManageMessages, PermissionFlagsBits.AddReactions, PermissionFlagsBits.EmbedLinks])
-			public getValue(_message: Message) {
-				return Promise.resolve('Resolved');
+			public async getValue(_message: Message) {
+				return 'Resolved';
 			}
 		}
 

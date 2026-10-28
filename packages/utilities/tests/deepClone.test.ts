@@ -1,3 +1,4 @@
+import { Buffer } from 'node:buffer';
 import { deepClone } from '../src';
 
 describe('deepClone', () => {
@@ -35,6 +36,7 @@ describe('deepClone', () => {
 		const source = function () {
 			/* noop */
 		};
+
 		expect(deepClone(source)).toBe(source);
 	});
 
@@ -79,7 +81,7 @@ describe('deepClone', () => {
 
 	test('GIVEN nested array THEN returns new clone', () => {
 		expect.assertions(4);
-		const source: [number, number, number, (number | number[])[]] = [1, 2, 3, [4, 5, [6, 7, 8]]];
+		const source: [number, number, number, (number[] | number)[]] = [1, 2, 3, [4, 5, [6, 7, 8]]];
 		const clone = deepClone(source);
 
 		expect(source).not.toBe(clone);

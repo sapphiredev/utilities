@@ -24,7 +24,7 @@ describe('poll', () => {
 
 	test('GIVEN a function that fails twice then succeeds THEN calls that function thrice', async () => {
 		const cb = vi
-			.fn<[], string>() //
+			.fn<() => string>() //
 			.mockReturnValueOnce(fail)
 			.mockReturnValueOnce(fail)
 			.mockReturnValueOnce(pass);
@@ -76,14 +76,14 @@ describe('poll', () => {
 			await expect(result).rejects.toStrictEqual(new TypeError('Expected maximumRetries to be a number'));
 		});
 
-		test.each([NaN, -NaN, -Infinity, -5])('GIVEN %j THEN throws RangeError', async (maximumRetries) => {
+		test.each([Number.NaN, -Number.NaN, -Infinity, -5])('GIVEN %j THEN throws RangeError', async (maximumRetries) => {
 			const result = poll(cb, cbConditionRaw, { maximumRetries });
 			await expect(result).rejects.toStrictEqual(new RangeError('Expected maximumRetries to be a non-negative number'));
 		});
 
 		test('GIVEN a poll with only one retry and fails both THEN calls that function twice, but condition only once', async () => {
 			const cb = vi
-				.fn<[], string>() //
+				.fn<() => string>() //
 				.mockReturnValueOnce(fail)
 				.mockReturnValueOnce(fail);
 			const cbCondition = vi.fn((result: string) => result === pass);
@@ -126,7 +126,7 @@ describe('poll', () => {
 			expect(cbCondition).toHaveBeenCalledTimes(0);
 		});
 
-		test.each([NaN, -NaN, -Infinity, -5, Infinity, 5.5])('GIVEN %j THEN throws RangeError', async (waitBetweenRetries) => {
+		test.each([Number.NaN, -Number.NaN, -Infinity, -5, Infinity, 5.5])('GIVEN %j THEN throws RangeError', async (waitBetweenRetries) => {
 			const cb = vi.fn(cbRaw);
 			const cbCondition = vi.fn(cbConditionRaw);
 			const result = poll(cb, cbCondition, { waitBetweenRetries });
@@ -138,7 +138,7 @@ describe('poll', () => {
 
 		test('GIVEN a poll with a wait of 5ms THEN waits 5ms between retries', async () => {
 			const cb = vi
-				.fn<[], string>() //
+				.fn<() => string>() //
 				.mockReturnValueOnce(fail)
 				.mockReturnValueOnce(pass);
 			const cbCondition = vi.fn(cbConditionRaw);
@@ -155,7 +155,7 @@ describe('poll', () => {
 
 		test('GIVEN a poll with a wait of 5ms THEN waits 5ms between retries', async () => {
 			const cb = vi
-				.fn<[], string>() //
+				.fn<() => string>() //
 				.mockReturnValueOnce(fail)
 				.mockReturnValueOnce(pass);
 			const cbCondition = vi.fn(cbConditionRaw);
@@ -175,7 +175,7 @@ describe('poll', () => {
 
 	describe('verbose', () => {
 		test('GIVEN verbose but no waitBetweenRetries THEN does not call console.log', async () => {
-			const cb = vi.fn<[], string>().mockReturnValueOnce(fail).mockReturnValueOnce(pass);
+			const cb = vi.fn<() => string>().mockReturnValueOnce(fail).mockReturnValueOnce(pass);
 			const consoleLog = vi.spyOn(console, 'log').mockImplementation(() => undefined);
 			const result = poll(cb, cbConditionRaw, { verbose: true });
 
@@ -184,7 +184,7 @@ describe('poll', () => {
 		});
 
 		test('GIVEN verbose and waitBetweenRetries THEN calls console.log on retry', async () => {
-			const cb = vi.fn<[], string>().mockReturnValueOnce(fail).mockReturnValueOnce(pass);
+			const cb = vi.fn<() => string>().mockReturnValueOnce(fail).mockReturnValueOnce(pass);
 			const consoleLog = vi.spyOn(console, 'log').mockImplementation(() => undefined);
 			const result = poll(cb, cbConditionRaw, { verbose: true, waitBetweenRetries: 5 });
 

@@ -24,25 +24,25 @@ describe('Twitter Snowflakes', () => {
 			const flake = TwitterSnowflake.deconstruct('1823945883910279168');
 
 			expect(flake).toStrictEqual<DeconstructedSnowflake>({
-				id: 1823945883910279168n,
-				timestamp: 1723697560657n,
+				id: 1_823_945_883_910_279_168n,
+				timestamp: 1_723_697_560_657n,
 				workerId: 1n,
 				processId: 1n,
 				increment: 0n,
-				epoch: 1288834974657n
+				epoch: 1_288_834_974_657n
 			});
 		});
 
 		test('GIVEN id as bigint THEN returns data about snowflake', () => {
-			const flake = TwitterSnowflake.deconstruct(1823945883910279168n);
+			const flake = TwitterSnowflake.deconstruct(1_823_945_883_910_279_168n);
 
 			expect(flake).toStrictEqual<DeconstructedSnowflake>({
-				id: 1823945883910279168n,
-				timestamp: 1723697560657n,
+				id: 1_823_945_883_910_279_168n,
+				timestamp: 1_723_697_560_657n,
 				workerId: 1n,
 				processId: 1n,
 				increment: 0n,
-				epoch: 1288834974657n
+				epoch: 1_288_834_974_657n
 			});
 		});
 	});

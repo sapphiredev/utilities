@@ -1,3 +1,4 @@
+/* eslint-disable n/no-sync */
 import { sleepSync } from '../src';
 
 describe('sleepSync', () => {

@@ -47,6 +47,7 @@ export class ModalInteractionOptionResolver {
 
 	/**
 	 * Gets a component.
+	 *
 	 * @param customId The custom ID of the component to get.
 	 */
 	public get(customId: string): ModalSubmitComponent {
@@ -60,6 +61,7 @@ export class ModalInteractionOptionResolver {
 
 	/**
 	 * Gets a text input component.
+	 *
 	 * @param customId The custom ID of the text input component to get.
 	 */
 	public getTextInput(customId: string): string {
@@ -68,6 +70,7 @@ export class ModalInteractionOptionResolver {
 
 	/**
 	 * Gets a string select component.
+	 *
 	 * @param customId The custom ID of the string select component to get.
 	 */
 	public getSelectedStrings(customId: string): string[] {
@@ -76,6 +79,7 @@ export class ModalInteractionOptionResolver {
 
 	/**
 	 * Gets selected users.
+	 *
 	 * @param customId The custom ID of the user select component to get.
 	 */
 	public getSelectedUsers(customId: string): APIUser[] {
@@ -85,6 +89,7 @@ export class ModalInteractionOptionResolver {
 
 	/**
 	 * Gets selected roles.
+	 *
 	 * @param customId The custom ID of the role select component to get.
 	 */
 	public getSelectedRoles(customId: string): APIRole[] {
@@ -94,6 +99,7 @@ export class ModalInteractionOptionResolver {
 
 	/**
 	 * Gets selected channels.
+	 *
 	 * @param customId The custom ID of the channel select component to get.
 	 */
 	public getSelectedChannels(customId: string): APIInteractionDataResolvedChannel[] {
@@ -103,6 +109,7 @@ export class ModalInteractionOptionResolver {
 
 	/**
 	 * Gets selected members.
+	 *
 	 * @param customId The custom ID of the member select component to get.
 	 */
 	public getSelectedMembers(customId: string): APIInteractionDataResolvedGuildMember[] {
@@ -112,9 +119,10 @@ export class ModalInteractionOptionResolver {
 
 	/**
 	 * Gets selected mentionables.
+	 *
 	 * @param customId The custom ID of the mentionable select component to get.
 	 */
-	public getSelectedMentionables(customId: string): (APIUser | APIRole)[] {
+	public getSelectedMentionables(customId: string): (APIRole | APIUser)[] {
 		const component = this.getTyped(customId, ComponentType.MentionableSelect);
 		return component.values.map((id) => {
 			if (this.resolved!.users && id in this.resolved!.users) {
@@ -127,6 +135,7 @@ export class ModalInteractionOptionResolver {
 
 	/**
 	 * Gets attachments.
+	 *
 	 * @param customId The custom ID of the file upload component to get.
 	 */
 	public getAttachments(customId: string): APIAttachment[] {

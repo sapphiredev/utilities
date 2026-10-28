@@ -8,7 +8,6 @@ import { toIterableIterator } from './toIterableIterator';
  * @param iterable The iterator to compare.
  * @param other The iterator to compare against.
  * @returns Whether the two iterators are equal.
- *
  * @example
  * ```typescript
  * import { ascNumber, compareBy } from '@sapphire/iterator-utilities';
@@ -22,7 +21,6 @@ import { toIterableIterator } from './toIterableIterator';
  * console.log(compareBy(x, y, (x, y) => ascNumber(x * 2, y)));
  * // Output: 1
  * ```
- *
  * @remarks
  *
  * This function consumes the entire iterator.

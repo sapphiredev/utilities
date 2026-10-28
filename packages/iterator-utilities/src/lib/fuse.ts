@@ -9,7 +9,6 @@ import { toIterableIterator } from './toIterableIterator';
  * adapts an iterator, ensuring that after a `done` result is given, it will always return a `done` result forever.
  *
  * @param iterable An iterator to fuse.
- *
  * @example
  * ```typescript
  * import { fuse } from '@sapphire/iterator-utilities';

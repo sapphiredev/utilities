@@ -7,7 +7,7 @@ describe('Duration', () => {
 
 		const first = stopwatch.duration;
 
-		await sleep(1000);
+		await sleep(1_000);
 		stopwatch.stop();
 		const second = stopwatch.duration;
 

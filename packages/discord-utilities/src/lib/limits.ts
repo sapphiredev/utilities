@@ -5,7 +5,7 @@ export const ChannelLimits = {
 	/**
 	 * Maximum characters allowed in a channel description.
 	 */
-	MaximumDescriptionLength: 1024,
+	MaximumDescriptionLength: 1_024,
 
 	/**
 	 * Maximum characters allowed in a channel name.
@@ -14,6 +14,7 @@ export const ChannelLimits = {
 
 	/**
 	 * Maximum viewers allowed per screen share.
+	 *
 	 * @deprecated Use `VoiceChannelLimits.MaximumViewersPerScreenShare` instead.
 	 */
 	MaximumViewersPerScreenShare: 50
@@ -81,7 +82,7 @@ export const EmbedLimits = {
 	/**
 	 * Maximum characters allowed in an embed description.
 	 */
-	MaximumDescriptionLength: 4096,
+	MaximumDescriptionLength: 4_096,
 
 	/**
 	 * Maximum characters allowed in the name of a field in an embed.
@@ -96,12 +97,12 @@ export const EmbedLimits = {
 	/**
 	 * Maximum characters allowed in the value of a field in an embed.
 	 */
-	MaximumFieldValueLength: 1024,
+	MaximumFieldValueLength: 1_024,
 
 	/**
 	 * Maximum characters allowed in a footer of an embed.
 	 */
-	MaximumFooterLength: 2048,
+	MaximumFooterLength: 2_048,
 
 	/**
 	 * Maximum characters allowed in the title of an embed.
@@ -111,7 +112,7 @@ export const EmbedLimits = {
 	/**
 	 * Maximum characters allowed in an embed, in total.
 	 */
-	MaximumTotalCharacters: 6000
+	MaximumTotalCharacters: 6_000
 } as const;
 
 /**
@@ -276,7 +277,7 @@ export const GuildMemberLimits = {
 	/**
 	 * Maximum number of members to return from the guild members API.
 	 */
-	MaximumMembersToFetch: 1000
+	MaximumMembersToFetch: 1_000
 } as const;
 
 /**
@@ -291,7 +292,7 @@ export const GuildBansLimits = {
 	/**
 	 * Maximum number of bans to return from the guild bans API.
 	 */
-	MaximumBansToFetch: 1000
+	MaximumBansToFetch: 1_000
 } as const;
 
 /**
@@ -341,7 +342,7 @@ export const ApplicationCommandLimits = {
 	/**
 	 * Maximum combined characters allowed in the name, description, and value properties of an application command, its options (including subcommands and groups), and choices.
 	 */
-	MaximumCombinedCharacters: 4000
+	MaximumCombinedCharacters: 4_000
 } as const;
 
 /**
@@ -366,7 +367,7 @@ export const ApplicationCommandOptionLimits = {
 	/**
 	 * Maximum length of string allowed in the string option of an application command.
 	 */
-	MaximumStringLength: 6000
+	MaximumStringLength: 6_000
 } as const;
 
 /**
@@ -571,12 +572,12 @@ export const MessageLimits = {
 	/**
 	 * Maximum characters allowed in a single message for a user.
 	 */
-	MaximumLength: 2000,
+	MaximumLength: 2_000,
 
 	/**
 	 * Maximum characters allowed in a single message for a nitro user.
 	 */
-	MaximumNitroLength: 4000,
+	MaximumNitroLength: 4_000,
 
 	/**
 	 * Maximum numbers of reactions allowed for a message.
@@ -741,7 +742,7 @@ export const TextInputLimits = {
 	/**
 	 * Maximum characters allowed in a text input value.
 	 */
-	MaximumValueCharacters: 4000
+	MaximumValueCharacters: 4_000
 } as const;
 
 /**
@@ -831,7 +832,7 @@ export const TriggerMetadataLimits = {
 	/**
 	 * Maximum number of substrings which will be searched for in content.
 	 */
-	MaximumKeywordFilters: 1000,
+	MaximumKeywordFilters: 1_000,
 
 	/**
 	 * Maximum number of characters allowed in a keyword filter.
@@ -866,7 +867,7 @@ export const TriggerMetadataLimits = {
 	/**
 	 * Maximum number of substrings which should not trigger the keyword preset rule.
 	 */
-	MaximumKeywordPresetAllowListLength: 1000,
+	MaximumKeywordPresetAllowListLength: 1_000,
 
 	/**
 	 * Maximum number of unique role and user mentions allowed per message.

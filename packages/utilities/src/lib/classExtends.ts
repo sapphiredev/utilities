@@ -2,6 +2,7 @@ import type { Ctor } from './types';
 
 /**
  * Checks whether or not the value class extends the base class.
+ *
  * @param value The constructor to be checked against.
  * @param base The base constructor.
  */

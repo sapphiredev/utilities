@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/dot-notation */
 import { TimerManager } from '../../src';
 
 describe('TimerManager', () => {
@@ -15,10 +16,11 @@ describe('TimerManager', () => {
 
 		expect(TimerManager['storedTimeouts'].size).toBe(0);
 
-		await new Promise<void>((done) =>
+		await new Promise<void>((resolve) =>
+			// eslint-disable-next-line no-promise-executor-return
 			TimerManager.setTimeout(() => {
 				expect(true).toBe(true);
-				done();
+				resolve();
 			}, 20)
 		);
 	});
@@ -45,14 +47,14 @@ describe('TimerManager', () => {
 		expect(TimerManager['storedIntervals'].size).toBe(0);
 
 		let i = 0;
-		await new Promise<void>((done) => {
+		await new Promise<void>((resolve) => {
 			const interval = TimerManager.setInterval(() => {
 				if (++i < 3) {
 					expect(TimerManager['storedIntervals'].size).toBe(1);
 				} else {
 					TimerManager.clearInterval(interval);
 					expect(TimerManager['storedIntervals'].size).toBe(0);
-					done();
+					resolve();
 				}
 			}, 20);
 		});

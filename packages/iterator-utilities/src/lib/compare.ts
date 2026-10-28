@@ -12,7 +12,6 @@ import { defaultCompare } from './shared/comparators';
  * @param iterable The iterator to compare.
  * @param other The iterator to compare against.
  * @returns Whether the two iterators are equal.
- *
  * @example
  * ```typescript
  * import { compare } from '@sapphire/iterator-utilities';
@@ -24,7 +23,6 @@ import { defaultCompare } from './shared/comparators';
  * console.log(compare([1, 2], [1]));
  * // Output: 1
  * ```
- *
  * @remarks
  *
  * This function consumes the entire iterator.

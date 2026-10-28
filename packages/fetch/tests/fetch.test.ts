@@ -1,7 +1,9 @@
 import { HttpResponse, http } from 'msw';
 import { setupServer } from 'msw/node';
+import { Buffer } from 'node:buffer';
 import { URL as NodeUrl } from 'node:url';
-import { FetchMediaContentTypes, FetchMethods, FetchResultTypes, QueryError, fetch } from '../src/index.js';
+import type { QueryError } from '../src/index.js';
+import { FetchMediaContentTypes, FetchMethods, FetchResultTypes, fetch } from '../src/index.js';
 
 describe('fetch', () => {
 	const server = setupServer(
@@ -19,7 +21,7 @@ describe('fetch', () => {
 			try {
 				await request.json();
 				return HttpResponse.json({ message: 'Successfully parsed body as JSON, this is unexpected!!' }, { status: 200 });
-			} catch (error) {
+			} catch {
 				return HttpResponse.json({ message: 'Failed to parse body as JSON, this is expected!!' }, { status: 200 });
 			}
 		})

@@ -6,7 +6,6 @@ import { toNumberOrThrow } from './shared/_toNumberOrThrow';
  * @param start The value of the first number in the range.
  * @param end The end value of the range.
  * @param step The amount to increment the range by.
- *
  * @example
  * ```typescript
  * import { range } from '@sapphire/iterator-utilities';
@@ -15,14 +14,12 @@ import { toNumberOrThrow } from './shared/_toNumberOrThrow';
  * console.log([...iterable]);
  * // Output: [0, 1, 2, 3, 4]
  * ```
- *
  * @example
  * ```typescript
  * const iterable = range(5, 0);
  * console.log([...iterable]);
  * // Output: [5, 4, 3, 2, 1]
  * ```
- *
  * @example
  * ```typescript
  * const iterable = range(0, 5, 2);
@@ -30,13 +27,17 @@ import { toNumberOrThrow } from './shared/_toNumberOrThrow';
  * // Output: [0, 2, 4]
  * ```
  */
-export function* range(start: number, end: number, step?: number | undefined): IterableIterator<number> {
+export function* range(start: number, end: number, step?: number): IterableIterator<number> {
+	// eslint-disable-next-line no-param-reassign
 	start = toNumberOrThrow(start);
+	// eslint-disable-next-line no-param-reassign
 	end = toNumberOrThrow(end);
 
 	if (step === undefined) {
+		// eslint-disable-next-line no-param-reassign
 		step = start < end ? 1 : -1;
 	} else {
+		// eslint-disable-next-line no-param-reassign
 		step = toNumberOrThrow(step);
 
 		// Prevent infinite loops.
@@ -53,12 +54,12 @@ export function* range(start: number, end: number, step?: number | undefined): I
 	}
 
 	if (start < end) {
-		for (let i = start; i < end; i += step) {
-			yield i;
+		for (let idx = start; idx < end; idx += step) {
+			yield idx;
 		}
 	} else {
-		for (let i = start; i > end; i += step) {
-			yield i;
+		for (let idx = start; idx > end; idx += step) {
+			yield idx;
 		}
 	}
 }

@@ -40,6 +40,7 @@ describe('isClass', () => {
 		const value = function value(): void {
 			/* noop */
 		};
+
 		expect(isClass(value)).toBe(true);
 	});
 
@@ -47,6 +48,7 @@ describe('isClass', () => {
 		const value = (): void => {
 			/* noop */
 		};
+
 		expect(isClass(value)).toBe(false);
 	});
 

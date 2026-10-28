@@ -10,9 +10,7 @@ import { toIterableIterator } from './toIterableIterator';
  *
  * @seealso {@link isSorted} for a version that uses the default comparator.
  * @seealso {@link isSortedByKey} for a version that allows custom key extractors.
- *
  * @param iterable The iterator to compare.
- *
  * @example
  * ```typescript
  * import { ascNumber, isSortedBy } from '@sapphire/iterator-utilities';
@@ -26,12 +24,12 @@ import { toIterableIterator } from './toIterableIterator';
  * assert(isSortedBy([], () => true));
  * assert(isSortedBy([], () => false));
  * ```
- *
  * @remarks
  *
  * This function consumes the entire iterator.
  */
 export function isSortedBy<const ElementType>(iterable: IterableResolvable<ElementType>, comparator: CompareByComparator<ElementType>): boolean {
+	// eslint-disable-next-line no-param-reassign
 	comparator = assertFunction(comparator);
 
 	const iterator = toIterableIterator(iterable);

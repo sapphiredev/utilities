@@ -12,7 +12,7 @@
 	"sideEffects": false,
 	"homepage": "https://github.com/sapphiredev/utilities/tree/main/packages/eslint-plugin-result",
 	"scripts": {
-		"lint": "eslint src tests --ext ts --fix -c ../../.eslintrc",
+		"lint": "eslint src --ext ts --fix",
 		"build": "tsdown",
 		"prepack": "yarn build",
 		"bump": "cliff-jumper",
@@ -47,14 +47,15 @@
 	},
 	"devDependencies": {
 		"@favware/cliff-jumper": "^6.1.0",
-		"@typescript-eslint/rule-tester": "^7.18.0",
-		"@typescript-eslint/typescript-estree": "^7.18.0",
+		"@typescript-eslint/rule-tester": "^8.72.1",
+		"@typescript-eslint/typescript-estree": "^8.72.1",
+		"eslint": "^10.13.0",
 		"tsdown": "0.23.1",
 		"unrun": "^0.3.1"
 	},
 	"dependencies": {
 		"@sapphire/result": "workspace:^",
-		"@typescript-eslint/utils": "^7.18.0",
+		"@typescript-eslint/utils": "^8.72.1",
 		"tsutils": "^3.21.0",
 		"typescript": "~6.0.3"
 	},

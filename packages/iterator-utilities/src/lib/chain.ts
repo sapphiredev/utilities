@@ -6,7 +6,6 @@ import { toIterableIterator } from './toIterableIterator';
  *
  * @param iterables The iterators to chain together.
  * @returns An iterator that yields the values of the provided iterators in order.
- *
  * @example
  * ```typescript
  * import { chain } from '@sapphire/iterator-utilities';

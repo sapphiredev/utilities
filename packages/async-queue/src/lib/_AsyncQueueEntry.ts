@@ -5,10 +5,15 @@ import type { AsyncQueue } from './AsyncQueue';
  */
 export class AsyncQueueEntry {
 	public readonly promise: Promise<void>;
+
 	private resolve!: () => void;
+
 	private reject!: (error: Error) => void;
+
 	private readonly queue: AsyncQueue;
+
 	private signal: PolyFillAbortSignal | null = null;
+
 	private signalListener: (() => void) | null = null;
 
 	public constructor(queue: AsyncQueue) {
@@ -24,11 +29,14 @@ export class AsyncQueueEntry {
 
 		this.signal = signal as PolyFillAbortSignal;
 		this.signalListener = () => {
+			// eslint-disable-next-line @typescript-eslint/dot-notation
 			const index = this.queue['promises'].indexOf(this);
+			// eslint-disable-next-line @typescript-eslint/dot-notation
 			if (index !== -1) this.queue['promises'].splice(index, 1);
 
 			this.reject(new Error('Request aborted manually'));
 		};
+
 		this.signal.addEventListener('abort', this.signalListener);
 		return this;
 	}

@@ -1,4 +1,5 @@
 import { RateLimit } from './RateLimit';
+import { setInterval, clearInterval } from 'node:timers';
 
 export class RateLimitManager<K = string> extends Map<K, RateLimit<K>> {
 	/**
@@ -14,7 +15,7 @@ export class RateLimitManager<K = string> extends Map<K, RateLimit<K>> {
 	/**
 	 * The interval to sweep expired {@link RateLimit ratelimits}.
 	 */
-	private sweepInterval!: NodeJS.Timeout | undefined | null;
+	private sweepInterval!: NodeJS.Timeout | null | undefined;
 
 	/**
 	 * @param time The amount of milliseconds for the ratelimits from this manager to expire.
@@ -29,6 +30,7 @@ export class RateLimitManager<K = string> extends Map<K, RateLimit<K>> {
 
 	/**
 	 * Gets a {@link RateLimit} from this manager or creates it if it does not exist.
+	 *
 	 * @param id The id for the {@link RateLimit}
 	 */
 	public acquire(id: K): RateLimit<K> {
@@ -37,6 +39,7 @@ export class RateLimitManager<K = string> extends Map<K, RateLimit<K>> {
 
 	/**
 	 * Creates a {@link RateLimit} for this manager.
+	 *
 	 * @param id The id the {@link RateLimit} belongs to
 	 */
 	public create(id: K): RateLimit<K> {
@@ -47,6 +50,7 @@ export class RateLimitManager<K = string> extends Map<K, RateLimit<K>> {
 
 	/**
 	 * Wraps Collection's set method to set interval to sweep inactive {@link RateLimit}s.
+	 *
 	 * @param id The id the {@link RateLimit} belongs to
 	 * @param value The {@link RateLimit} to set
 	 */

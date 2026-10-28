@@ -6,7 +6,6 @@ import { toIterableIterator } from './toIterableIterator';
  *
  * @param iterable An iterator to enumerate.
  * @returns An iterator that yields the index and value of each element in the source iterator.
- *
  * @example
  * ```typescript
  * import { enumerate } from '@sapphire/iterator-utilities';

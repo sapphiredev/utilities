@@ -1,7 +1,7 @@
-export type Primitive = string | number | boolean | bigint | symbol | undefined | null;
+export type Primitive = bigint | boolean | number | string | symbol | null | undefined;
 
 // eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
-export type Builtin = Primitive | Function | Date | Error | RegExp;
+export type Builtin = Date | Error | Function | Primitive | RegExp;
 
 export type DeepReadonly<T> = T extends Builtin
 	? T
@@ -12,14 +12,14 @@ export type DeepReadonly<T> = T extends Builtin
 			? ReadonlyMap<DeepReadonly<K>, DeepReadonly<V>>
 			: T extends ReadonlySet<infer U>
 				? ReadonlySet<DeepReadonly<U>>
-				: T extends readonly [] | readonly [...never[]]
+				: T extends readonly [...never[]] | readonly []
 					? readonly []
 					: T extends readonly [infer U, ...infer V]
 						? readonly [DeepReadonly<U>, ...DeepReadonly<V>]
 						: T extends readonly [...infer U, infer V]
 							? readonly [...DeepReadonly<U>, DeepReadonly<V>]
-							: T extends ReadonlyArray<infer U>
-								? ReadonlyArray<DeepReadonly<U>>
+							: T extends readonly (infer U)[]
+								? readonly DeepReadonly<U>[]
 								: T extends object
 									? { readonly [K in keyof T]: DeepReadonly<T[K]> }
 									: unknown;
@@ -49,11 +49,7 @@ export type RequiredExcept<T, K extends keyof T> = Partial<Pick<T, K>> & Require
 export type PartialRequired<T, K extends keyof T> = Partial<Omit<T, K>> & Required<Pick<T, K>>;
 
 export type DeepPartial<T> = {
-	[P in keyof T]?: T[P] extends Array<infer U>
-		? Array<DeepPartial<U>>
-		: T[P] extends ReadonlyArray<infer U>
-			? ReadonlyArray<DeepPartial<U>>
-			: DeepPartial<T[P]>;
+	[P in keyof T]?: T[P] extends (infer U)[] ? DeepPartial<U>[] : T[P] extends readonly (infer U)[] ? readonly DeepPartial<U>[] : DeepPartial<T[P]>;
 };
 
 export type ArgumentTypes<F extends (...args: any[]) => unknown> = F extends (...args: infer A) => any ? A : never;
@@ -116,7 +112,7 @@ export type NonNullableProperties<T = unknown> = {
  *
  * @deprecated Use the `object` type instead.
  */
-export type NonNullObject = {} & object;
+export type NonNullObject = object & {};
 
 /**
  * An object that can have any structure, this is an alternative to {@link NonNullObject} for situations where
@@ -159,6 +155,7 @@ export type PrettifyObject<T extends object> = {
 
 /**
  * Gets all the keys (as a string union) from a type `T` that match value `V`
+ *
  * @example
  * ```typescript
  * interface Sample {
@@ -181,6 +178,7 @@ export type PickByValue<T, V> = {
 
 /**
  * Transforms a `readonly` type to be mutable
+ *
  * @example
  * ```typescript
  * interface Sample {
@@ -197,11 +195,12 @@ export type PickByValue<T, V> = {
  * ```
  */
 export type Mutable<T> = {
-	-readonly [P in keyof T]: T[P] extends Array<unknown> | object ? Mutable<T[P]> : T[P];
+	-readonly [P in keyof T]: T[P] extends unknown[] | object ? Mutable<T[P]> : T[P];
 };
 
 /**
  * Transforms every key in an object to be strictly required, essentially removing `undefined` and `null` from the type.
+ *
  * @example
  * ```typescript
  * interface Sample {
@@ -225,6 +224,7 @@ export type StrictRequired<T> = {
 
 /**
  * Gets a union type of all the keys that are in an array.
+ *
  * @example
  * ```typescript
  * const sample = [1, 2, '3', true];
@@ -237,6 +237,7 @@ export type ArrayElementType<T> = T extends (infer K)[] ? K : T extends readonly
 
 /**
  * A type utility that allows branching of types depending on the `Value` parameter.
+ *
  * @example
  * ```typescript
  * declare function get<const GetValues extends boolean = false>(
@@ -258,10 +259,11 @@ export type If<Value extends boolean, TrueResult, FalseResult> = Value extends t
 	? TrueResult
 	: Value extends false
 		? FalseResult
-		: TrueResult | FalseResult;
+		: FalseResult | TrueResult;
 
 /**
  * A type utility that allows branching of an union type on the `Value` parameter.
+ *
  * @example
  * ```typescript
  * declare function get<const Required extends boolean = false>(
@@ -279,4 +281,4 @@ export type If<Value extends boolean, TrueResult, FalseResult> = Value extends t
  * //    ^? string | null
  * ```
  */
-export type RequiredIf<Value extends boolean, ValueType, FallbackType = null> = If<Value, ValueType, ValueType | FallbackType>;
+export type RequiredIf<Value extends boolean, ValueType, FallbackType = null> = If<Value, ValueType, FallbackType | ValueType>;

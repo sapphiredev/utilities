@@ -1,9 +1,10 @@
 import { QuotedParameter } from './parameters/QuotedParameter';
 import { WordParameter } from './parameters/WordParameter';
-import { TokenType, type Token } from './raw/TokenStream';
+import { TokenType, type Token } from './raw/types';
 
 export class ParameterStream {
 	private readonly stream: Iterable<Token>;
+
 	private separators: string[] = [];
 
 	public constructor(stream: Iterable<Token>) {

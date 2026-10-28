@@ -9,10 +9,12 @@ export class MessagePrompterNumberStrategy extends MessagePrompterBaseStrategy i
 	 * The available number emojis
 	 */
 	public numberEmojis: EmojiIdentifierResolvable[];
+
 	/**
 	 * The available number emojis
 	 */
 	public start: number;
+
 	/**
 	 * The available number emojis
 	 */
@@ -20,6 +22,7 @@ export class MessagePrompterNumberStrategy extends MessagePrompterBaseStrategy i
 
 	/**
 	 * Constructor for the {@link MessagePrompterBaseStrategy} class
+	 *
 	 * @param message The message instance for this {@link MessagePrompter}
 	 * @param options Overrideable options if needed.
 	 */
@@ -34,13 +37,14 @@ export class MessagePrompterNumberStrategy extends MessagePrompterBaseStrategy i
 	/**
 	 * This executes the {@link MessagePrompter} and sends the message if {@link IMessagePrompterOptions.type} equals number.
 	 * The handler will wait for one (1) reaction.
+	 *
 	 * @param channel The channel to use.
 	 * @param authorOrFilter An author object to validate or a {@linkplain https://discord.js.org/docs/packages/discord.js/main/CollectorFilter:TypeAlias CollectorFilter} predicate callback.
 	 * @returns A promise that resolves to the selected number within the range.
 	 */
 	public async run(
 		channel: MessagePrompterChannelTypes,
-		authorOrFilter: User | CollectorFilter<[MessageReaction, User]>
+		authorOrFilter: CollectorFilter<[MessageReaction, User]> | User
 	): Promise<IMessagePrompterExplicitNumberReturn | number> {
 		// 0 and 10 are the maximum available emojis as a number
 		if (this.start < 0) throw new TypeError('Starting number cannot be less than 0.');
@@ -50,7 +54,7 @@ export class MessagePrompterNumberStrategy extends MessagePrompterBaseStrategy i
 		const emojis = this.numberEmojis.slice(this.start, this.end);
 		const response = await this.collectReactions(channel, authorOrFilter, emojis);
 
-		const emojiIndex = emojis.findIndex((emoji) => (response?.emoji?.id ?? response?.emoji?.name) === emoji);
+		const emojiIndex = emojis.indexOf(response?.emoji?.id ?? response?.emoji?.name);
 		const number = numbers[emojiIndex];
 
 		// prettier-ignore

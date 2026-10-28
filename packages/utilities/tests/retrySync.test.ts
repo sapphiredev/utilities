@@ -1,3 +1,4 @@
+/* eslint-disable n/no-sync */
 import { retrySync } from '../src';
 
 describe('retry', () => {
@@ -19,6 +20,7 @@ describe('retry', () => {
 
 			return 'success!';
 		};
+
 		const mockFunction = vi.fn(cb);
 
 		const result = retrySync(mockFunction, 3);
@@ -30,6 +32,7 @@ describe('retry', () => {
 
 	test('GIVEN a thrice failing function WHEN retries is lower THEN returns throws the last error', () => {
 		let counter = 0;
+		// eslint-disable-next-line sonarjs/no-identical-functions
 		const cb = () => {
 			if (counter < 2) {
 				++counter;
@@ -38,9 +41,10 @@ describe('retry', () => {
 
 			return 'success!';
 		};
+
 		const mockFunction = vi.fn().mockImplementation(cb);
 
-		expect(() => retrySync(mockFunction, 2)).toThrow(Error('💣💥'));
+		expect(() => retrySync(mockFunction, 2)).toThrow(new Error('💣💥'));
 		expect(counter).toBe(2);
 		expect(mockFunction).toHaveBeenCalledTimes(2);
 	});
@@ -55,7 +59,7 @@ describe('retry', () => {
 
 	test('GIVEN retries below 1 THEN throws', () => {
 		const mockFunction = vi.fn().mockReturnValue('test');
-		expect(() => retrySync(mockFunction, -1)).toThrow(RangeError('Expected retries to be a number >= 0'));
+		expect(() => retrySync(mockFunction, -1)).toThrow(new RangeError('Expected retries to be a number >= 0'));
 		expect(mockFunction).toHaveBeenCalledTimes(0);
 	});
 });

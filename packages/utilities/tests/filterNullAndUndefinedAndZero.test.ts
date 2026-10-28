@@ -72,6 +72,7 @@ describe('filterNullAndUndefinedAndZero', () => {
 		const value = function value(): void {
 			/* noop */
 		};
+
 		expect(filterNullAndUndefinedAndZero(value)).toBe(true);
 	});
 
@@ -79,6 +80,7 @@ describe('filterNullAndUndefinedAndZero', () => {
 		const value = (): void => {
 			/* noop */
 		};
+
 		expect(filterNullAndUndefinedAndZero(value)).toBe(true);
 	});
 

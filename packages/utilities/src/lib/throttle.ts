@@ -1,4 +1,4 @@
-export type ThrottleFn<T extends (...args: any[]) => any> = T & { flush: () => void };
+export type ThrottleFn<T extends (...args: any[]) => any> = T & { flush(): void };
 
 /**
  * Creates a throttled function that only invokes `func` at most once per
@@ -7,7 +7,6 @@ export type ThrottleFn<T extends (...args: any[]) => any> = T & { flush: () => v
  *
  * @param func The function to throttle.
  * @param wait The number of milliseconds to throttle invocations to.
- *
  * @returns Returns the new throttled function.
  */
 export function throttle<T extends (...args: any[]) => any>(func: T, wait: number): ThrottleFn<T> {

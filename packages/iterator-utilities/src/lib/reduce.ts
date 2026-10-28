@@ -15,7 +15,6 @@ import { toIterableIterator } from './toIterableIterator';
  * with the second element as `currentValue`. In this case, if the iterator is empty (so that there's no first value to
  * return as `accumulator`), an error is thrown.
  * @returns
- *
  * @example
  * ```typescript
  * import { reduce } from '@sapphire/iterator-utilities';
@@ -24,7 +23,6 @@ import { toIterableIterator } from './toIterableIterator';
  * console.log(reduce(iterable, (accumulator, currentValue) => accumulator + currentValue));
  * // Output: 15
  * ```
- *
  * @remarks
  *
  * If `initialValue` is not provided, the first element of the iterator is used as the initial value of `accumulator`,
@@ -35,6 +33,7 @@ export function reduce<const ElementType, const MappedType>(
 	callbackFn: (accumulator: MappedType, currentValue: ElementType, currentIndex: number) => MappedType,
 	initialValue?: MappedType
 ): MappedType {
+	// eslint-disable-next-line no-param-reassign
 	callbackFn = assertFunction(callbackFn);
 
 	let index: number;

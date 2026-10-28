@@ -8,7 +8,6 @@ import { toIterableIterator } from './toIterableIterator';
  * @param iterable The iterator to filter.
  * @param callbackFn A function to execute for each element produced by the iterator. It should return a truthy value to make the element yielded by the iterator helper, and a falsy value otherwise.
  * @returns An iterator that produces elements from the given iterator that satisfy the specified test.
- *
  * @example
  * ```typescript
  * import { filter } from '@sapphire/iterator-utilities';
@@ -30,6 +29,7 @@ export function* filter<ElementType>(
 	iterable: IterableResolvable<ElementType>,
 	callbackFn: (element: ElementType, index: number) => boolean
 ): IterableIterator<ElementType> {
+	// eslint-disable-next-line no-param-reassign
 	callbackFn = assertFunction(callbackFn);
 
 	let index = 0;

@@ -7,6 +7,7 @@ const canReadMessagesPermissions = new PermissionsBitField([PermissionFlagsBits.
 
 /**
  * Determines whether or not we can read messages in a given channel.
+ *
  * @param channel The channel to test the permissions from.
  * @returns Whether or not we can read messages in the specified channel.
  */
@@ -21,6 +22,7 @@ const canSendMessagesPermissions = new PermissionsBitField([canReadMessagesPermi
 
 /**
  * Determines whether or not we can send messages in a given channel.
+ *
  * @param channel The channel to test the permissions from.
  * @returns Whether or not we can send messages in the specified channel.
  */
@@ -36,6 +38,7 @@ const canSendEmbedsPermissions = new PermissionsBitField([canSendMessagesPermiss
 
 /**
  * Determines whether or not we can send embeds in a given channel.
+ *
  * @param channel The channel to test the permissions from.
  * @returns Whether or not we can send embeds in the specified channel.
  */
@@ -51,6 +54,7 @@ const canSendAttachmentsPermissions = new PermissionsBitField([canSendMessagesPe
 
 /**
  * Determines whether or not we can send attachments in a given channel.
+ *
  * @param channel The channel to test the permissions from.
  * @returns Whether or not we can send attachments in the specified channel.
  */
@@ -70,6 +74,7 @@ const canReactPermissions = new PermissionsBitField([
 
 /**
  * Determines whether or not we can send react to messages in a given channel.
+ *
  * @param channel The channel to test the permissions from.
  * @returns Whether or not we can react to messages in the specified channel.
  */
@@ -89,6 +94,7 @@ const canRemoveAllReactionsPermissions = new PermissionsBitField([
 
 /**
  * Determines whether or not we can remove reactions from messages in a given channel.
+ *
  * @param channel The channel to test the permissions from.
  * @returns Whether or not we can remove reactions from messages in the specified channel.
  */
@@ -103,10 +109,11 @@ const canJoinVoiceChannelPermissions = new PermissionsBitField([PermissionFlagsB
 
 /**
  * Determines whether the client can join the given voice based channel.
+ *
  * @param channel The channel to test the permissions from.
  * @returns Whether or not the client can join the specified channel.
  */
-export function canJoinVoiceChannel(channel: VoiceBasedChannel | Nullish): boolean {
+export function canJoinVoiceChannel(channel: Nullish | VoiceBasedChannel): boolean {
 	if (isNullish(channel)) return false;
 	if (!isVoiceBasedChannel(channel)) return false;
 	if (channel.userLimit >= channel.members.size) return false;

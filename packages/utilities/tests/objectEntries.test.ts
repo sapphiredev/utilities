@@ -39,7 +39,7 @@ describe('objectEntries', () => {
 			['b', 420]
 		];
 
-		expect<['a' | 'b', string | number][]>(objectEntries(source)).toEqual(expected);
+		expect<['a' | 'b', number | string][]>(objectEntries(source)).toEqual(expected);
 	});
 
 	test('GIVEN deep THEN returns expected', () => {
@@ -50,7 +50,7 @@ describe('objectEntries', () => {
 			['deep', { i: [] }]
 		];
 
-		expect<['a' | 'b' | 'deep', string | number | { i: never[] }][]>(objectEntries(source)).toEqual(expected);
+		expect<['a' | 'b' | 'deep', number | string | { i: never[] }][]>(objectEntries(source)).toEqual(expected);
 	});
 
 	test('GIVEN array THEN returns expected', () => {
@@ -60,6 +60,6 @@ describe('objectEntries', () => {
 			['1', 420]
 		];
 
-		expect<[`${number}`, string | number][]>(objectEntries(source)).toEqual(expected);
+		expect<[`${number}`, number | string][]>(objectEntries(source)).toEqual(expected);
 	});
 });

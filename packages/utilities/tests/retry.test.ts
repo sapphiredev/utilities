@@ -11,7 +11,7 @@ describe('retry', () => {
 
 	test('GIVEN a twice failing function THEN returns the third result', async () => {
 		const mockFunction = vi
-			.fn<[], string>() //
+			.fn<() => string>() //
 			.mockRejectedValueOnce('💣💥')
 			.mockRejectedValueOnce('💣💥')
 			.mockReturnValueOnce('success!');
@@ -24,7 +24,7 @@ describe('retry', () => {
 
 	test('GIVEN a thrice failing function WHEN retries is lower THEN returns throws the last error', async () => {
 		const mockFunction = vi
-			.fn<[], string>() //
+			.fn<() => string>() //
 			.mockRejectedValueOnce('💣💥')
 			.mockRejectedValueOnce('💣💥')
 			.mockRejectedValueOnce('💣💥');
@@ -43,7 +43,7 @@ describe('retry', () => {
 
 	test('GIVEN retries below 1 THEN throws', async () => {
 		const mockFunction = vi.fn().mockReturnValue('test');
-		await expect(retry(mockFunction, -1)).rejects.toThrow(RangeError('Expected retries to be a number >= 0'));
+		await expect(retry(mockFunction, -1)).rejects.toThrow(new RangeError('Expected retries to be a number >= 0'));
 		expect(mockFunction).toHaveBeenCalledTimes(0);
 	});
 });

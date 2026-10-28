@@ -28,7 +28,7 @@
 		"dist/"
 	],
 	"engines": {
-		"node": ">=v14.0.0"
+		"node": ">=v24.0.0"
 	},
 	"keywords": [
 		"@sapphire/utilities",

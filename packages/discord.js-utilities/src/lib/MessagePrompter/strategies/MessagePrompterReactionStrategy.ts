@@ -12,6 +12,7 @@ export class MessagePrompterReactionStrategy extends MessagePrompterBaseStrategy
 
 	/**
 	 * Constructor for the {@link MessagePrompterReactionStrategy} class
+	 *
 	 * @param message The message instance for this {@link MessagePrompter}
 	 * @param options Overrideable options if needed.
 	 */
@@ -24,14 +25,15 @@ export class MessagePrompterReactionStrategy extends MessagePrompterBaseStrategy
 	/**
 	 * This executes the {@link MessagePrompterReactionStrategy} and sends the message.
 	 * The handler will wait for one (1) reaction.
+	 *
 	 * @param channel The channel to use.
 	 * @param authorOrFilter An author object to validate or a {@linkplain https://discord.js.org/docs/packages/discord.js/main/CollectorFilter:TypeAlias CollectorFilter} predicate callback.
 	 * @returns A promise that resolves to the reaction object.
 	 */
 	public async run(
 		channel: MessagePrompterChannelTypes,
-		authorOrFilter: User | CollectorFilter<[MessageReaction, User]>
-	): Promise<IMessagePrompterExplicitReturnBase | string | EmojiResolvable> {
+		authorOrFilter: CollectorFilter<[MessageReaction, User]> | User
+	): Promise<EmojiResolvable | IMessagePrompterExplicitReturnBase | string> {
 		if (!this.reactions?.length) throw new TypeError('There are no reactions provided.');
 
 		const response = await this.collectReactions(channel, authorOrFilter, this.reactions);

@@ -17,7 +17,7 @@ describe('isNumber', () => {
 	});
 
 	test('GIVEN number-nan THEN returns false', () => {
-		const value = NaN;
+		const value = Number.NaN;
 		expect(isNumber(value)).toBe(false);
 	});
 
@@ -55,6 +55,7 @@ describe('isNumber', () => {
 		const value = function value(): void {
 			/* noop */
 		};
+
 		expect(isNumber(value)).toBe(false);
 	});
 
@@ -62,6 +63,7 @@ describe('isNumber', () => {
 		const value = (): void => {
 			/* noop */
 		};
+
 		expect(isNumber(value)).toBe(false);
 	});
 

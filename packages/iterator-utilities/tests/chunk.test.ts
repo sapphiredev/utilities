@@ -40,7 +40,7 @@ describe('chunk', () => {
 
 	test('GIVEN iterable and NaN chunk size THEN throws RangeError', () => {
 		const iterable = [1, 2, 3];
-		const chunkSize = NaN;
+		const chunkSize = Number.NaN;
 		expect(() => [...chunk(iterable, chunkSize)]).toThrow(new RangeError('NaN must be a non-NaN number'));
 	});
 

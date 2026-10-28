@@ -31,23 +31,29 @@ npm install @sapphire/eslint-plugin-result
 
 ## Usage
 
-Somewhere in your ESLint configuration:
+Add the recommended flat config to your `eslint.config.js`:
 
-```json
-{
-	"extends": ["plugin:@sapphire/result/recommended"]
-}
+```js
+import eslintPluginResult from '@sapphire/eslint-plugin-result';
+
+export default [eslintPluginResult.configs.recommended];
 ```
 
-Or
+Or configure the rule directly:
 
-```json
-{
-	"plugins": ["@sapphire/result"],
-	"rules": {
-		"@sapphire/result/no-discard-result": "error"
+```js
+import eslintPluginResult from '@sapphire/eslint-plugin-result';
+
+export default [
+	{
+		plugins: {
+			'@sapphire/result': eslintPluginResult
+		},
+		rules: {
+			'@sapphire/result/no-discard-result': 'error'
+		}
 	}
-}
+];
 ```
 
 ## Buy us some doughnuts

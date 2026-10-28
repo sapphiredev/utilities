@@ -7,7 +7,6 @@ import type { IterableResolvable } from './from';
  * @param iterable The iterator to append values to.
  * @param iterables The iterables to append to the iterator.
  * @returns An iterator that yields the values of the provided iterator followed by the values of the provided iterables.
- *
  * @example
  * ```typescript
  * import { append } from '@sapphire/iterator-utilities';

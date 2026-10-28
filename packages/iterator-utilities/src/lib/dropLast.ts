@@ -11,7 +11,6 @@ import { toArray } from './toArray';
  * @param iterable An iterator to drop values from.
  * @param count The number of values to drop from the end of the iterator.
  * @returns An iterator that contains the elements of the provided iterator, except for the last `count` elements.
- *
  * @example
  * ```typescript
  * import { dropLast } from '@sapphire/iterator-utilities';
@@ -20,12 +19,12 @@ import { toArray } from './toArray';
  * console.log([...iterable]);
  * // Output: [1, 2, 3]
  * ```
- *
  * @remarks
  *
  * This function consumes the entire iterator.
  */
 export function dropLast<const ElementType>(iterable: IterableResolvable<ElementType>, count: number): IterableIterator<ElementType> {
+	// eslint-disable-next-line no-param-reassign
 	count = assertNotNegative(toIntegerOrInfinityOrThrow(count), count);
 	const array = toArray(iterable);
 	if (array.length <= count) return empty();

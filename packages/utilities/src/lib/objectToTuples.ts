@@ -2,6 +2,7 @@ import { isObject } from './isObject';
 
 /**
  * Convert an object to a tuple
+ *
  * @param obj The object to convert
  * @param prefix The prefix for the key
  */

@@ -25,19 +25,19 @@ describe('objectValues', () => {
 		const source = { a: 'Hello', b: 420 };
 		const expected = ['Hello', 420];
 
-		expect<(string | number)[]>(objectValues(source)).toEqual(expected);
+		expect<(number | string)[]>(objectValues(source)).toEqual(expected);
 	});
 
 	test('GIVEN deep THEN returns expected', () => {
 		const source = { a: 'Hello', b: 420, deep: { i: [] } };
 		const expected = ['Hello', 420, { i: [] }];
 
-		expect<(string | number | { i: never[] })[]>(objectValues(source)).toEqual(expected);
+		expect<(number | string | { i: never[] })[]>(objectValues(source)).toEqual(expected);
 	});
 
 	test('GIVEN array THEN returns same', () => {
 		const source = ['Hello', 420];
 
-		expect<(string | number)[]>(objectValues(source)).toEqual(source);
+		expect<(number | string)[]>(objectValues(source)).toEqual(source);
 	});
 });

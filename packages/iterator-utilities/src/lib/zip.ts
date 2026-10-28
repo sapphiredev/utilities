@@ -1,11 +1,11 @@
 import { from, type IterableResolvable } from './from';
+import type { unzip } from './unzip';
 
 /**
  * Creates an iterable with the elements of the input iterables zipped together. The opposite of {@linkcode unzip}.
  *
  * @param iterables The iterables to zip together.
  * @returns A new iterable that yields the next value of each iterable in the list.
- *
  * @example
  * ```typescript
  * import { zip } from '@sapphire/iterator-utilities';

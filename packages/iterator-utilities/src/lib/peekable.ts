@@ -6,7 +6,6 @@ import { from, type IterableResolvable } from './from';
  * @template ElementType The type of elements in the iterable.
  * @param iterable The iterable to create a peekable iterator from.
  * @returns A new peekable iterator.
- *
  * @example
  * ```typescript
  * import { peekable } from '@sapphire/iterator-utilities';

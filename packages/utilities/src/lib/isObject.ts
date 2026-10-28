@@ -2,6 +2,7 @@ import type { Constructor } from './types';
 
 /**
  * Verify if the input is an object literal (or class).
+ *
  * @param input The object to verify
  * @param constructorType The type of the constructor of the object. Use this if you want a `class` of your choosing to pass the check as well.
  */

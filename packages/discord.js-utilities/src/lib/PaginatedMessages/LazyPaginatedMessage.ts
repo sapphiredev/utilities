@@ -1,5 +1,6 @@
 import { isFunction } from '@sapphire/utilities';
-import { EmbedBuilder, Message, User } from 'discord.js';
+import type { Message, User } from 'discord.js';
+import { EmbedBuilder } from 'discord.js';
 import { MessageBuilder } from '../builders/MessageBuilder';
 import type { AnyInteractableInteraction } from '../utility-types';
 import { PaginatedMessage } from './PaginatedMessage';
@@ -12,18 +13,19 @@ export class LazyPaginatedMessage extends PaginatedMessage {
 	/**
 	 * Only resolves the page corresponding with the handler's current index.
 	 */
-	public override async resolvePagesOnRun(messageOrInteraction: Message | AnyInteractableInteraction, target: User): Promise<void> {
+	public override async resolvePagesOnRun(messageOrInteraction: AnyInteractableInteraction | Message, target: User): Promise<void> {
 		await this.resolvePage(messageOrInteraction, target, this.index);
 	}
 
 	/**
 	 * Resolves the page corresponding with the given index. This also resolves the index's before and after the given index.
+	 *
 	 * @param messageOrInteraction The message or interaction that triggered this {@link LazyPaginatedMessage}.
 	 * @param target The user who will be able to interact with the buttons of this {@link LazyPaginatedMessage}.
 	 * @param index The index to resolve. Defaults to handler's current index.
 	 */
 	public override async resolvePage(
-		messageOrInteraction: Message | AnyInteractableInteraction,
+		messageOrInteraction: AnyInteractableInteraction | Message,
 		target: User,
 		index: number
 	): Promise<PaginatedMessageResolvedPage> {

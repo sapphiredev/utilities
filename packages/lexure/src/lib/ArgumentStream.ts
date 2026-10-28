@@ -4,6 +4,7 @@ import type { ParserResult } from './parser/ParserResult';
 
 export class ArgumentStream {
 	public readonly results: ParserResult;
+
 	public state: ArgumentStream.State;
 
 	public constructor(results: ParserResult) {
@@ -58,7 +59,6 @@ export class ArgumentStream {
 	 * console.log(args.single());
 	 * // None
 	 * ```
-	 *
 	 * @returns The value, if any.
 	 */
 	public single(): Option<string> {
@@ -76,7 +76,6 @@ export class ArgumentStream {
 	 * Retrieves the value of the next unused ordered token, but only if it could be transformed.
 	 *
 	 * @note This does not support asynchronous results, refer to {@link singleMapAsync}.
-	 *
 	 * @example
 	 * ```typescript
 	 * const parse = (value) => {
@@ -98,7 +97,6 @@ export class ArgumentStream {
 	 * console.log(args.singleMap(parse));
 	 * // None
 	 * ```
-	 *
 	 * @typeparam T The output type.
 	 * @param predicate The predicate that determines the parameter's mapped value, or nothing if failed.
 	 * @param useAnyways Whether to consider the parameter used even if the mapping failed. Defaults to `false`.
@@ -124,7 +122,6 @@ export class ArgumentStream {
 	 * Retrieves the value of the next unused ordered token, but only if it could be transformed.
 	 *
 	 * @note This is an asynchronous variant of {@link singleMap}.
-	 *
 	 * @typeparam T The output type.
 	 * @param predicate The predicate that determines the parameter's mapped value, or nothing if failed.
 	 * @param useAnyways Whether to consider the parameter used even if the mapping failed. Defaults to `false`.
@@ -151,7 +148,6 @@ export class ArgumentStream {
 	 *
 	 * @note This is a variant of {@link findMap} that returns the errors on failure.
 	 * @note This does not support asynchronous results, refer to {@link singleParseAsync}.
-	 *
 	 * @example
 	 * ```typescript
 	 * const parse = (value) => {
@@ -175,7 +171,6 @@ export class ArgumentStream {
 	 * console.log(args.singleParse(parse));
 	 * // Err { error: null }
 	 * ```
-	 *
 	 * @typeparam T The output type.
 	 * @typeparam E The error type.
 	 * @param predicate The predicate that determines the parameter's transformed value, or nothing if failed.
@@ -202,7 +197,6 @@ export class ArgumentStream {
 	 * Retrieves the value of the next unused ordered token, but only if it could be transformed.
 	 *
 	 * @note This is an asynchronous variant of {@link singleParse}.
-	 *
 	 * @typeparam T The output type.
 	 * @typeparam E The error type.
 	 * @param predicate The predicate that determines the parameter's mapped value, or nothing if failed.
@@ -230,7 +224,6 @@ export class ArgumentStream {
 	 * `Option.none` otherwise.
 	 *
 	 * @note This does not support asynchronous results, refer to {@link findAsync}.
-	 *
 	 * @example
 	 * ```typescript
 	 * // Suppose args are from 'ba aa cc'.
@@ -238,7 +231,6 @@ export class ArgumentStream {
 	 * console.log(args.find((value) => value.startsWith('a')));
 	 * // Some { value: 'aa' }
 	 * ```
-	 *
 	 * @param predicate find calls `predicate` once for each unused ordered parameter, in ascending order, until it
 	 * finds one where `predicate` returns `true`. If such an element is found, find immediately returns a `Option.some`
 	 * with that element value. Otherwise, find returns `Option.none`.
@@ -246,12 +238,12 @@ export class ArgumentStream {
 	 * @returns The found parameter's value.
 	 */
 	public find(predicate: (value: string) => boolean, from = this.state.position): Option<string> {
-		for (let i = from; i < this.length; ++i) {
-			if (this.state.used.has(i)) continue;
+		for (let idx = from; idx < this.length; ++idx) {
+			if (this.state.used.has(idx)) continue;
 
-			const parameter = this.results.ordered[i].value;
+			const parameter = this.results.ordered[idx].value;
 			if (predicate(parameter)) {
-				this.state.used.add(i);
+				this.state.used.add(idx);
 				return Option.some(parameter);
 			}
 		}
@@ -264,7 +256,6 @@ export class ArgumentStream {
 	 * `Option.none` otherwise.
 	 *
 	 * @note This is an asynchronous variant of {@link find}.
-	 *
 	 * @example
 	 * ```typescript
 	 * // Suppose args are from 'ba aa cc'.
@@ -272,7 +263,6 @@ export class ArgumentStream {
 	 * console.log(args.find((value) => value.startsWith('a')));
 	 * // Some { value: 'aa' }
 	 * ```
-	 *
 	 * @param predicate find calls `predicate` once for each unused ordered parameter, in ascending order, until it
 	 * finds one where `predicate` returns `true`. If such an element is found, find immediately returns a `Option.some`
 	 * with that element value. Otherwise, find returns `Option.none`.
@@ -280,12 +270,12 @@ export class ArgumentStream {
 	 * @returns The found parameter's value.
 	 */
 	public async findAsync(predicate: (value: string) => Promise<boolean>, from = this.state.position): Promise<Option<string>> {
-		for (let i = from; i < this.length; ++i) {
-			if (this.state.used.has(i)) continue;
+		for (let idx = from; idx < this.length; ++idx) {
+			if (this.state.used.has(idx)) continue;
 
-			const parameter = this.results.ordered[i].value;
+			const parameter = this.results.ordered[idx].value;
 			if (await predicate(parameter)) {
-				this.state.used.add(i);
+				this.state.used.add(idx);
 				return Option.some(parameter);
 			}
 		}
@@ -298,7 +288,6 @@ export class ArgumentStream {
 	 * `Option.none` otherwise.
 	 *
 	 * @note This does not support asynchronous results, refer to {@link findMapAsync}.
-	 *
 	 * @example
 	 * ```typescript
 	 * // Suppose args are from 'ba aa cc'.
@@ -306,7 +295,6 @@ export class ArgumentStream {
 	 * console.log(args.find((value) => value.startsWith('a')));
 	 * // Some { value: 'aa' }
 	 * ```
-	 *
 	 * @typeparam T The output type.
 	 * @param predicate find calls `predicate` once for each unused ordered parameter, in ascending order, until it
 	 * finds one where `predicate` returns `Some`. If such an element is found, find immediately returns the returned
@@ -315,13 +303,13 @@ export class ArgumentStream {
 	 * @returns The found parameter's value.
 	 */
 	public findMap<T>(predicate: (value: string) => Option<T>, from = this.state.position): Option<T> {
-		for (let i = from; i < this.length; ++i) {
-			if (this.state.used.has(i)) continue;
+		for (let idx = from; idx < this.length; ++idx) {
+			if (this.state.used.has(idx)) continue;
 
-			const parameter = this.results.ordered[i].value;
+			const parameter = this.results.ordered[idx].value;
 			const result = predicate(parameter);
 			if (result.isSome()) {
-				this.state.used.add(i);
+				this.state.used.add(idx);
 				return result;
 			}
 		}
@@ -334,7 +322,6 @@ export class ArgumentStream {
 	 * `Option.none` otherwise.
 	 *
 	 * @note This is an asynchronous variant of {@link findMap}.
-	 *
 	 * @example
 	 * ```typescript
 	 * // Suppose args are from 'ba aa cc'.
@@ -342,7 +329,6 @@ export class ArgumentStream {
 	 * console.log(args.find((value) => value.startsWith('a')));
 	 * // Some { value: 'aa' }
 	 * ```
-	 *
 	 * @typeparam T The output type.
 	 * @param predicate find calls `predicate` once for each unused ordered parameter, in ascending order, until it
 	 * finds one where `predicate` returns `Some`. If such an element is found, find immediately returns the returned
@@ -351,13 +337,13 @@ export class ArgumentStream {
 	 * @returns The found parameter's value.
 	 */
 	public async findMapAsync<T>(predicate: (value: string) => Promise<Option<T>>, from = this.state.position): Promise<Option<T>> {
-		for (let i = from; i < this.length; ++i) {
-			if (this.state.used.has(i)) continue;
+		for (let idx = from; idx < this.length; ++idx) {
+			if (this.state.used.has(idx)) continue;
 
-			const parameter = this.results.ordered[i].value;
+			const parameter = this.results.ordered[idx].value;
 			const result = await predicate(parameter);
 			if (result.isSome()) {
-				this.state.used.add(i);
+				this.state.used.add(idx);
 				return result;
 			}
 		}
@@ -370,7 +356,6 @@ export class ArgumentStream {
 	 *
 	 * @note This is a variant of {@link findMap} that returns the errors on failure.
 	 * @note This does not support asynchronous results, refer to {@link findParseAsync}.
-	 *
 	 * @example
 	 * ```typescript
 	 * const parse = (value) => {
@@ -393,7 +378,6 @@ export class ArgumentStream {
 	 * //   ]
 	 * // }
 	 * ```
-	 *
 	 * @typeparam T The output type.
 	 * @typeparam E The error type.
 	 * @param predicate `findParse` calls `predicate` once for each unused ordered parameter, in ascending order, until
@@ -404,13 +388,13 @@ export class ArgumentStream {
 	 */
 	public findParse<T, E>(predicate: (value: string) => Result<T, E>, from = this.state.position): Result<T, E[]> {
 		const errors: E[] = [];
-		for (let i = from; i < this.length; ++i) {
-			if (this.state.used.has(i)) continue;
+		for (let idx = from; idx < this.length; ++idx) {
+			if (this.state.used.has(idx)) continue;
 
-			const parameter = this.results.ordered[i].value;
+			const parameter = this.results.ordered[idx].value;
 			const result = predicate(parameter);
 			if (result.isOk()) {
-				this.state.used.add(i);
+				this.state.used.add(idx);
 				return result as Result.Ok<T>;
 			}
 
@@ -425,7 +409,6 @@ export class ArgumentStream {
 	 *
 	 * @note This is a variant of {@link findMapAsync} that returns the errors on failure.
 	 * @note This is an asynchronous variant of {@link findParse}.
-	 *
 	 * @typeparam T The output type.
 	 * @typeparam E The error type.
 	 * @param predicate `findParse` calls `predicate` once for each unused ordered parameter, in ascending order, until
@@ -436,13 +419,13 @@ export class ArgumentStream {
 	 */
 	public async findParseAsync<T, E>(predicate: (value: string) => Promise<Result<T, E>>, from = this.state.position): Promise<Result<T, E[]>> {
 		const errors: E[] = [];
-		for (let i = from; i < this.length; ++i) {
-			if (this.state.used.has(i)) continue;
+		for (let idx = from; idx < this.length; ++idx) {
+			if (this.state.used.has(idx)) continue;
 
-			const parameter = this.results.ordered[i].value;
+			const parameter = this.results.ordered[idx].value;
 			const result = await predicate(parameter);
 			if (result.isOk()) {
-				this.state.used.add(i);
+				this.state.used.add(idx);
 				return result as Result.Ok<T>;
 			}
 
@@ -462,7 +445,6 @@ export class ArgumentStream {
 	 * console.log(join(args.many().unwrap()));
 	 * // '1 2 3'
 	 * ```
-	 *
 	 * @example
 	 * ```typescript
 	 * // Assume args are '1 2 3':
@@ -470,7 +452,6 @@ export class ArgumentStream {
 	 * console.log(join(args.many(2).unwrap()));
 	 * // '1 2'
 	 * ```
-	 *
 	 * @param limit The maximum amount of parameters to retrieve, defaults to `Infinity`.
 	 * @param from The position where to start looking for unused parameters, defaults to current position.
 	 * @returns The unused parameters within the range.
@@ -479,13 +460,13 @@ export class ArgumentStream {
 		if (this.finished) return Option.none;
 
 		const parameters: Parameter[] = [];
-		for (let i = from; i < this.length; ++i) {
+		for (let idx = from; idx < this.length; ++idx) {
 			// If the current parameter was already used, skip:
-			if (this.state.used.has(i)) continue;
+			if (this.state.used.has(idx)) continue;
 
 			// Mark current parameter as used, and push it to the resulting array:
-			this.state.used.add(i);
-			parameters.push(this.results.ordered[i]);
+			this.state.used.add(idx);
+			parameters.push(this.results.ordered[idx]);
 
 			// If the parameters reached the limit, break the loop:
 			if (parameters.length >= limit) break;
@@ -498,12 +479,12 @@ export class ArgumentStream {
 		if (this.finished) return Option.none;
 
 		const parameters: string[] = [];
-		for (let i = from; i < this.length; ++i) {
-			if (this.state.used.has(i)) continue;
+		for (let idx = from; idx < this.length; ++idx) {
+			if (this.state.used.has(idx)) continue;
 
-			const parameter = this.results.ordered[i].value;
+			const parameter = this.results.ordered[idx].value;
 			if (predicate(parameter)) {
-				this.state.used.add(i);
+				this.state.used.add(idx);
 				parameters.push(parameter);
 			}
 		}
@@ -515,12 +496,12 @@ export class ArgumentStream {
 		if (this.finished) return Option.none;
 
 		const parameters: string[] = [];
-		for (let i = from; i < this.length; ++i) {
-			if (this.state.used.has(i)) continue;
+		for (let idx = from; idx < this.length; ++idx) {
+			if (this.state.used.has(idx)) continue;
 
-			const parameter = this.results.ordered[i].value;
+			const parameter = this.results.ordered[idx].value;
 			if (await predicate(parameter)) {
-				this.state.used.add(i);
+				this.state.used.add(idx);
 				parameters.push(parameter);
 			}
 		}
@@ -532,13 +513,13 @@ export class ArgumentStream {
 		if (this.finished) return Option.none;
 
 		const parameters: T[] = [];
-		for (let i = from; i < this.length; ++i) {
-			if (this.state.used.has(i)) continue;
+		for (let idx = from; idx < this.length; ++idx) {
+			if (this.state.used.has(idx)) continue;
 
-			const parameter = this.results.ordered[i].value;
+			const parameter = this.results.ordered[idx].value;
 			const result = predicate(parameter);
 			result.inspect((value) => {
-				this.state.used.add(i);
+				this.state.used.add(idx);
 				parameters.push(value);
 			});
 		}
@@ -550,13 +531,13 @@ export class ArgumentStream {
 		if (this.finished) return Option.none;
 
 		const parameters: T[] = [];
-		for (let i = from; i < this.length; ++i) {
-			if (this.state.used.has(i)) continue;
+		for (let idx = from; idx < this.length; ++idx) {
+			if (this.state.used.has(idx)) continue;
 
-			const parameter = this.results.ordered[i].value;
+			const parameter = this.results.ordered[idx].value;
 			const result = await predicate(parameter);
 			result.inspect((value) => {
-				this.state.used.add(i);
+				this.state.used.add(idx);
 				parameters.push(value);
 			});
 		}
@@ -580,7 +561,6 @@ export class ArgumentStream {
 	 * console.log(args.flag('h'));
 	 * // false
 	 * ```
-	 *
 	 * @param keys The names of the flags to check.
 	 * @returns Whether or not any of the flags were given.
 	 */
@@ -603,7 +583,6 @@ export class ArgumentStream {
 	 * console.log(args.option('d'));
 	 * // None {}
 	 * ```
-	 *
 	 * @param keys The names of the options to check.
 	 * @returns The last value of the option, if any.
 	 */
@@ -626,7 +605,6 @@ export class ArgumentStream {
 	 * console.log(args.option('d'));
 	 * // None {}
 	 * ```
-	 *
 	 * @param keys The names of the options to check.
 	 * @returns The values from all the options concatenated, if any.
 	 */
@@ -656,9 +634,10 @@ export class ArgumentStream {
 	}
 }
 
+// eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace ArgumentStream {
 	export interface State {
-		used: Set<number>;
 		position: number;
+		used: Set<number>;
 	}
 }

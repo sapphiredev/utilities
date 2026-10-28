@@ -8,7 +8,6 @@ import { orderingIsLess, type LexicographicComparison } from './shared/_compare'
  *
  * @param iterable The iterator to compare.
  * @param other The iterator to compare against.
- *
  * @example
  * ```typescript
  * import { lessThan } from '@sapphire/iterator-utilities';
@@ -24,7 +23,6 @@ import { orderingIsLess, type LexicographicComparison } from './shared/_compare'
  * console.log(lessThan([1, 2], [1, 2]));
  * // Output: false
  * ```
- *
  * @remarks
  *
  * This function consumes the entire iterator.

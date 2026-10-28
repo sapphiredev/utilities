@@ -38,24 +38,25 @@ export abstract class MessagePrompterBaseStrategy {
 
 	/**
 	 * Constructor for the {@link MessagePrompterBaseStrategy} class
+	 *
 	 * @param type - The type of message prompter strategy
 	 * @param message - The message that this prompt is for
 	 * @param options - Overrideable options if needed.
 	 */
 	public constructor(type: string, message: MessagePrompterMessage, options?: IMessagePrompterStrategyOptions) {
 		this.type = type;
-		this.timeout = options?.timeout ?? MessagePrompterBaseStrategy.defaultStrategyOptions.timeout ?? 10 * 1000;
+		this.timeout = options?.timeout ?? MessagePrompterBaseStrategy.defaultStrategyOptions.timeout ?? 10 * 1_000;
 		this.explicitReturn = options?.explicitReturn ?? MessagePrompterBaseStrategy.defaultStrategyOptions.explicitReturn ?? false;
 		this.editMessage = options?.editMessage ?? MessagePrompterBaseStrategy.defaultStrategyOptions.editMessage ?? undefined;
 		this.message = message;
 	}
 
-	public abstract run(channel: MessagePrompterChannelTypes, authorOrFilter: User | CollectorFilter<unknown[]>): Awaitable<unknown>;
+	public abstract run(channel: MessagePrompterChannelTypes, authorOrFilter: CollectorFilter<unknown[]> | User): Awaitable<unknown>;
 
 	protected async collectReactions(
 		channel: MessagePrompterChannelTypes,
-		authorOrFilter: User | CollectorFilter<[MessageReaction, User]>,
-		reactions: string[] | EmojiIdentifierResolvable[]
+		authorOrFilter: CollectorFilter<[MessageReaction, User]> | User,
+		reactions: EmojiIdentifierResolvable[] | string[]
 	): Promise<IMessagePrompterExplicitReturnBase> {
 		if (isTextBasedChannel(channel) && !isStageChannel(channel)) {
 			if (!isNullish(this.editMessage) && this.editMessage.editable) {
@@ -109,11 +110,12 @@ export abstract class MessagePrompterBaseStrategy {
 
 	/**
 	 * Creates a filter for the collector to filter on
+	 *
 	 * @return The filter for awaitReactions function
 	 */
 	protected createReactionPromptFilter(
-		reactions: string[] | EmojiIdentifierResolvable[],
-		authorOrFilter: User | CollectorFilter<[MessageReaction, User]>
+		reactions: EmojiIdentifierResolvable[] | string[],
+		authorOrFilter: CollectorFilter<[MessageReaction, User]> | User
 	): CollectorOptions<[MessageReaction, User]> {
 		return {
 			filter: async (reaction: MessageReaction, user: User) =>
@@ -127,7 +129,7 @@ export abstract class MessagePrompterBaseStrategy {
 	 * The default strategy options
 	 */
 	public static defaultStrategyOptions: IMessagePrompterStrategyOptions = {
-		timeout: 10 * 1000,
+		timeout: 10 * 1_000,
 		explicitReturn: false,
 		editMessage: undefined
 	};

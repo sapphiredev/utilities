@@ -80,6 +80,7 @@ describe('filterNullAndUndefinedAndEmpty', () => {
 		const value = function value(): void {
 			/* noop */
 		};
+
 		expect(filterNullAndUndefinedAndEmpty(value)).toBe(false);
 	});
 
@@ -87,6 +88,7 @@ describe('filterNullAndUndefinedAndEmpty', () => {
 		const value = (): void => {
 			/* noop */
 		};
+
 		expect(filterNullAndUndefinedAndEmpty(value)).toBe(false);
 	});
 

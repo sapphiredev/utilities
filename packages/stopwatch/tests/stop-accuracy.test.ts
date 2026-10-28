@@ -6,16 +6,16 @@ describe('Stop Accuracy', () => {
 	test('stop-accuracy(1 second)', async () => {
 		const stopwatch = new Stopwatch();
 
-		await sleep(1000);
+		await sleep(1_000);
 		stopwatch.stop();
-		expect(stopwatch.duration >= 990 && stopwatch.duration <= 1200).toBe(true);
+		expect(stopwatch.duration >= 990 && stopwatch.duration <= 1_200).toBe(true);
 	});
 
 	test('stop-accuracy(5 seconds)', async () => {
 		const stopwatch = new Stopwatch();
 
-		await sleep(5000);
+		await sleep(5_000);
 		stopwatch.stop();
-		expect(stopwatch.duration >= 4990 && stopwatch.duration <= 5200).toBe(true);
-	}, 10000);
+		expect(stopwatch.duration >= 4_990 && stopwatch.duration <= 5_200).toBe(true);
+	}, 10_000);
 });

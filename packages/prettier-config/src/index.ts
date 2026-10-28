@@ -2,6 +2,7 @@ import type { Config } from 'prettier';
 
 /**
  * Standard Prettier config for the Sapphire Community
+ *
  * @example
  * ```json
  * {

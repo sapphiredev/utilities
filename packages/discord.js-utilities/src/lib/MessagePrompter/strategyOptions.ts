@@ -1,22 +1,22 @@
 import type { EmojiIdentifierResolvable, Message } from 'discord.js';
 
 export interface IMessagePrompterStrategyOptions {
-	timeout?: number;
-	explicitReturn?: boolean;
 	editMessage?: Message;
+	explicitReturn?: boolean;
+	timeout?: number;
 }
 
 export interface IMessagePrompterConfirmStrategyOptions extends IMessagePrompterStrategyOptions {
-	confirmEmoji?: string | EmojiIdentifierResolvable;
-	cancelEmoji?: string | EmojiIdentifierResolvable;
+	cancelEmoji?: EmojiIdentifierResolvable | string;
+	confirmEmoji?: EmojiIdentifierResolvable | string;
 }
 
 export interface IMessagePrompterNumberStrategyOptions extends IMessagePrompterStrategyOptions {
-	start?: number;
 	end?: number;
-	numberEmojis?: string[] | EmojiIdentifierResolvable[];
+	numberEmojis?: EmojiIdentifierResolvable[] | string[];
+	start?: number;
 }
 
 export interface IMessagePrompterReactionStrategyOptions extends IMessagePrompterStrategyOptions {
-	reactions: string[] | EmojiIdentifierResolvable[];
+	reactions: EmojiIdentifierResolvable[] | string[];
 }
