@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/dot-notation */
 import { TimerManager } from '../../src';
 
 describe('TimerManager', () => {

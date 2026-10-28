@@ -1,7 +1,6 @@
 import { Timestamp, type TimestampTemplateEntry } from '../../src';
 
 function extractParsedTemplate(timestamp: Timestamp): TimestampTemplateEntry[] {
-	// eslint-disable-next-line @typescript-eslint/dot-notation
 	return timestamp['template'];
 }
 

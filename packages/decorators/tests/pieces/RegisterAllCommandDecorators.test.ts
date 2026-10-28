@@ -63,7 +63,6 @@ describe('RegisterALLCommand', () => {
 			{ name: 'test', description: 'test description' }
 		);
 		await instance.registerApplicationCommands!(instance.applicationCommandRegistry);
-		// eslint-disable-next-line @typescript-eslint/dot-notation
 		const apiCalls = instance.applicationCommandRegistry['apiCalls'] as InternalAPICall[];
 		const chatInput = apiCalls[2] as Omit<InternalAPICall, 'builtData'> & { builtData: RESTPostAPIChatInputApplicationCommandsJSONBody };
 		const messageContext = apiCalls[1] as Omit<InternalAPICall, 'builtData'> & { builtData: RESTPostAPIContextMenuApplicationCommandsJSONBody };
@@ -150,7 +149,6 @@ describe('RegisterALLCommand', () => {
 			{ name: 'test-registry', description: 'test description' }
 		);
 		await instance.registerApplicationCommands!(instance.applicationCommandRegistry);
-		// eslint-disable-next-line @typescript-eslint/dot-notation
 		const apiCalls = instance.applicationCommandRegistry['apiCalls'] as InternalAPICall[];
 		const chatInput = apiCalls[2] as Omit<InternalAPICall, 'builtData'> & { builtData: RESTPostAPIChatInputApplicationCommandsJSONBody };
 		const messageContext = apiCalls[1] as Omit<InternalAPICall, 'builtData'> & { builtData: RESTPostAPIContextMenuApplicationCommandsJSONBody };

@@ -24,7 +24,13 @@ export const eslintConfig: TSESLint.FlatConfig.ConfigArray = [
 			'@typescript-eslint/prefer-literal-enum-member': 'off',
 			'import-x/order': 'off',
 			'jsdoc/check-param-names': 'warn',
-			'sonarjs/no-inverted-boolean-check': 'off'
+			'sonarjs/no-inverted-boolean-check': 'off',
+			'@typescript-eslint/dot-notation': [
+				'error',
+				{
+					allowPrivateClassPropertyAccess: true
+				}
+			]
 		}
 	},
 	eslintPluginPrettierRecommended

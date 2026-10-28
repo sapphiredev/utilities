@@ -29,9 +29,7 @@ export class AsyncQueueEntry {
 
 		this.signal = signal as PolyFillAbortSignal;
 		this.signalListener = () => {
-			// eslint-disable-next-line @typescript-eslint/dot-notation
 			const index = this.queue['promises'].indexOf(this);
-			// eslint-disable-next-line @typescript-eslint/dot-notation
 			if (index !== -1) this.queue['promises'].splice(index, 1);
 
 			this.reject(new Error('Request aborted manually'));
