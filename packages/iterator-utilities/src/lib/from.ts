@@ -1,7 +1,7 @@
 /**
  * Resolves an iterable from an iterable or iterator-like object.
  *
- * @param value The value to convert to an iterator.
+ * @param value - The value to convert to an iterator.
  * @example
  * ```typescript
  * import { from } from '@sapphire/iterator-utilities';

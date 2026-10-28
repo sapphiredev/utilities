@@ -7,8 +7,8 @@ import { toIntegerOrInfinityOrThrow } from './shared/_toIntegerOrInfinityOrThrow
 /**
  * Creates an iterable with the first `count` elements.
  *
- * @param iterable The iterator to take values from.
- * @param count The maximum number of values to take from the iterator.
+ * @param iterable - The iterator to take values from.
+ * @param count - The maximum number of values to take from the iterator.
  * @returns An iterator that yields at most `count` values from the provided iterator.
  * @example
  * ```typescript

@@ -54,7 +54,7 @@ export class PaginatedMessageEmbedFields extends PaginatedMessage {
 	/**
 	 * Set the items to paginate.
 	 *
-	 * @param items The pages to set
+	 * @param items - The pages to set
 	 */
 	public setItems(items: EmbedField[]): this {
 		this.items = items;
@@ -64,7 +64,7 @@ export class PaginatedMessageEmbedFields extends PaginatedMessage {
 	/**
 	 * Sets the amount of items that should be shown per page.
 	 *
-	 * @param itemsPerPage The number of items
+	 * @param itemsPerPage - The number of items
 	 */
 	public setItemsPerPage(itemsPerPage: number): this {
 		this.itemsPerPage = itemsPerPage;
@@ -75,7 +75,7 @@ export class PaginatedMessageEmbedFields extends PaginatedMessage {
 	 * Sets the template to be used to display the embed fields as pages. This template can either be set from a template `MessageEmbed` instance or an object with embed options.
 	 * All fields in the given template will be overwritten when calling {@link PaginatedMessageEmbedFields.make}.
 	 *
-	 * @param template MessageEmbed
+	 * @param template - MessageEmbed
 	 * @example
 	 * ```typescript
 	 * import { PaginatedMessageEmbedFields } from '@sapphire/discord.js-utilities';

@@ -129,7 +129,7 @@ export class Duration {
 	/**
 	 * Create a new Duration instance
 	 *
-	 * @param pattern The string to parse
+	 * @param pattern - The string to parse
 	 */
 	public constructor(pattern: string) {
 		let result = 0;
@@ -167,7 +167,7 @@ export class Duration {
 	/**
 	 * Get the date from
 	 *
-	 * @param date The Date instance to get the date from
+	 * @param date - The Date instance to get the date from
 	 */
 	public dateFrom(date: Date): Date {
 		return new Date(date.getTime() + this.offset);

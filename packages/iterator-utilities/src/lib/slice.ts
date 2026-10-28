@@ -9,9 +9,9 @@ import { takeLast } from './takeLast';
 /**
  * Produces an iterable with the elements from the `start` index to the `end` index (exclusive).
  *
- * @param iterable The iterator to slice.
- * @param start The index at which to begin extraction.
- * @param end The index at which to end extraction.
+ * @param iterable - The iterator to slice.
+ * @param start - The index at which to begin extraction.
+ * @param end - The index at which to end extraction.
  * @returns An iterator that contains the elements of the provided iterator from `start` to `end`.
  * @example
  * ```typescript

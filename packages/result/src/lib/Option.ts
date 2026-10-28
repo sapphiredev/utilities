@@ -7,6 +7,11 @@ import { err, type Result, ok, type Err, type Ok } from './Result';
 const ValueProperty = Symbol.for('@sapphire/result:Option.value');
 const ExistsProperty = Symbol.for('@sapphire/result:Option.exists');
 
+type OptionMatchBranches<T, SomeValue, NoneValue> = {
+	none(this: None): NoneValue;
+	some(this: Some<T>, value: T): SomeValue;
+};
+
 export class Option<T, Exists extends boolean = boolean> {
 	/**
 	 * Branded value to ensure `Success` is typed correctly.
@@ -118,7 +123,7 @@ export class Option<T, Exists extends boolean = boolean> {
 	/**
 	 * Returns the contained `Some` value.
 	 *
-	 * @param message The message for the error.
+	 * @param message - The message for the error.
 	 * If the value is an `Err`, it throws an {@link OptionError} with the given message.
 	 * @example
 	 * ```typescript
@@ -146,8 +151,8 @@ export class Option<T, Exists extends boolean = boolean> {
 	 *
 	 * If the value is an `Err`, it throws an {@link OptionError} with the message.
 	 *
-	 * @seealso {@link unwrapOr}
-	 * @seealso {@link unwrapOrElse}
+	 * @see {@link unwrapOr}
+	 * @see {@link unwrapOrElse}
 	 * @example
 	 * ```typescript
 	 * const x: Option<string> = some(2);
@@ -209,7 +214,7 @@ export class Option<T, Exists extends boolean = boolean> {
 	/**
 	 * Maps an `Option<T>` to `Option<U>` by applying a function to a contained value.
 	 *
-	 * @param cb The predicate.
+	 * @param cb - The predicate.
 	 * @example
 	 * ```typescript
 	 * const maybeSomeString = some('Hello, world!');
@@ -228,7 +233,7 @@ export class Option<T, Exists extends boolean = boolean> {
 	 * Maps a `Some<T>` to the returned `Option<U>` by applying a function to a contained value, leaving `None`
 	 * untouched.
 	 *
-	 * @param cb The predicate.
+	 * @param cb - The predicate.
 	 * @example
 	 * ```typescript
 	 * const input: Option<string> = some('Hello, world!');
@@ -243,7 +248,7 @@ export class Option<T, Exists extends boolean = boolean> {
 	 *
 	 * assert.equal(result, none);
 	 * ```
-	 * @note This is an extension not supported in Rust
+	 * This is an extension not supported in Rust
 	 */
 	public mapInto<OutputOption extends AnyOption>(cb: (value: T) => OutputOption): OutputOption {
 		// @ts-expect-error Complex types
@@ -256,8 +261,8 @@ export class Option<T, Exists extends boolean = boolean> {
 	 * Arguments passed to `mapOr` are eagerly evaluated; if you are passing the result of a function call, it is
 	 * recommended to use {@link mapOrElse}, which is lazily evaluated.
 	 *
-	 * @param defaultValue The default value.
-	 * @param cb The predicate.
+	 * @param defaultValue - The default value.
+	 * @param cb - The predicate.
 	 * @example
 	 * ```typescript
 	 * const x: Option<string> = some('hello');
@@ -280,8 +285,8 @@ export class Option<T, Exists extends boolean = boolean> {
 	/**
 	 * Computes a default function result (if none), or applies a different function to the contained value (if any).
 	 *
-	 * @param defaultValue The default value.
-	 * @param cb The predicate.
+	 * @param defaultValue - The default value.
+	 * @param cb - The predicate.
 	 * @example
 	 * ```typescript
 	 * const x: Option<string> = some('hello');
@@ -302,7 +307,7 @@ export class Option<T, Exists extends boolean = boolean> {
 	 * Maps a `None` to the returned `Option<U>` by applying a function to a contained value, leaving `Some<T>`
 	 * untouched.
 	 *
-	 * @param cb The predicate.
+	 * @param cb - The predicate.
 	 * @example
 	 * ```typescript
 	 * const input: Option<string> = some('Hello, world!');
@@ -317,7 +322,7 @@ export class Option<T, Exists extends boolean = boolean> {
 	 *
 	 * assert.equal(result, some(13));
 	 * ```
-	 * @note This is an extension not supported in Rust
+	 * This is an extension not supported in Rust
 	 */
 	public mapNoneInto<OutputOption extends AnyOption>(cb: () => OutputOption): If<Exists, Some<T>, OutputOption> {
 		return this.match({ some: returnThis, none: cb });
@@ -326,8 +331,8 @@ export class Option<T, Exists extends boolean = boolean> {
 	/**
 	 * Calls the provided closure with a reference to the contained value (if `Some`).
 	 *
-	 * @param cb The predicate.
-	 * @seealso {@link inspectAsync} for the awaitable version.
+	 * @param cb - The predicate.
+	 * @see {@link inspectAsync} for the awaitable version.
 	 * @example
 	 * ```typescript
 	 * some(2).inspect(console.log);
@@ -349,8 +354,8 @@ export class Option<T, Exists extends boolean = boolean> {
 	/**
 	 * Calls the provided closure with a reference to the contained value (if `Some`).
 	 *
-	 * @param cb The predicate.
-	 * @seealso {@link inspect} for the sync version.
+	 * @param cb - The predicate.
+	 * @see {@link inspect} for the sync version.
 	 * @example
 	 * ```typescript
 	 * await some(2).inspectAsync(console.log);
@@ -361,7 +366,7 @@ export class Option<T, Exists extends boolean = boolean> {
 	 * await none.inspectAsync(console.log);
 	 * // Doesn't log
 	 * ```
-	 * @note This is an extension not supported in Rust
+	 * This is an extension not supported in Rust
 	 */
 	public async inspectAsync(cb: (value: T) => Awaitable<unknown>): Promise<this> {
 		// eslint-disable-next-line n/callback-return
@@ -375,7 +380,7 @@ export class Option<T, Exists extends boolean = boolean> {
 	 * Arguments passed to `okOr` are eagerly evaluated; if you are passing the result of a function call, it is
 	 * recommended to use {@link okOrElse}, which is lazily evaluated.
 	 *
-	 * @param error The error to be used.
+	 * @param error - The error to be used.
 	 * @example
 	 * ```typescript
 	 * const x: Option<string> = some('hello');
@@ -395,7 +400,7 @@ export class Option<T, Exists extends boolean = boolean> {
 	/**
 	 * Transforms the `Option<T>` into a `Result<T, E>`, mapping `Some(v)` to `Ok(v)` and `None` to `Err(err())`.
 	 *
-	 * @param cb The error to be used.
+	 * @param cb - The error to be used.
 	 * @example
 	 * ```typescript
 	 * const x: Option<string> = some('hello');
@@ -443,7 +448,7 @@ export class Option<T, Exists extends boolean = boolean> {
 	/**
 	 * Returns `None` if the option is `None`, otherwise returns `option`.
 	 *
-	 * @param option The option.
+	 * @param option - The option.
 	 * @example
 	 * ```typescript
 	 * const x: Option<number> = some(2);
@@ -479,7 +484,7 @@ export class Option<T, Exists extends boolean = boolean> {
 	 *
 	 * This function can be used for control flow based on `Result` values.
 	 *
-	 * @param cb The predicate.
+	 * @param cb - The predicate.
 	 * @example
 	 * ```typescript
 	 * function fractionOf4(value: number) {
@@ -500,7 +505,7 @@ export class Option<T, Exists extends boolean = boolean> {
 	/**
 	 * Returns the option if it contains a value, otherwise returns `option`.
 	 *
-	 * @param option The option.
+	 * @param option - The option.
 	 * @example
 	 * ```typescript
 	 * const x: Option<number> = some(2);
@@ -536,7 +541,7 @@ export class Option<T, Exists extends boolean = boolean> {
 	 *
 	 * This function can be used for control flow based on `Result` values.
 	 *
-	 * @param cb The predicate.
+	 * @param cb - The predicate.
 	 * @example
 	 * ```typescript
 	 * const nobody = (): Option<string> => none;
@@ -555,7 +560,7 @@ export class Option<T, Exists extends boolean = boolean> {
 	/**
 	 * Returns `Some` if exactly one of self or `option` is `Some`, otherwise returns `None`.
 	 *
-	 * @param option The option to compare.
+	 * @param option - The option to compare.
 	 * @example
 	 * ```typescript
 	 * const x: Option<number> = some(2);
@@ -599,7 +604,7 @@ export class Option<T, Exists extends boolean = boolean> {
 	 * - `Some(t)` if `predicate` returns `true` (where t is the wrapped value), and
 	 * - `None` if `predicate` returns `false`.
 	 *
-	 * @param predicate The predicate.
+	 * @param predicate - The predicate.
 	 * @example
 	 * ```typescript
 	 * function isEven(value: number) {
@@ -621,7 +626,7 @@ export class Option<T, Exists extends boolean = boolean> {
 	/**
 	 * Returns `true` if the option is a `Some` value containing the given value.
 	 *
-	 * @param value The value to compare.
+	 * @param value - The value to compare.
 	 * @example
 	 * ```typescript
 	 * const x: Option<number> = some(2);
@@ -648,7 +653,7 @@ export class Option<T, Exists extends boolean = boolean> {
 	 *
 	 * If self is `Some(s)` and `other` is `Some(o)`, this method returns `Some([s, o])`. Otherwise, `None` is returned.
 	 *
-	 * @param other The option to zip self with.
+	 * @param other - The option to zip self with.
 	 * @example
 	 * ```typescript
 	 * const x = some(1);
@@ -672,8 +677,8 @@ export class Option<T, Exists extends boolean = boolean> {
 	 *
 	 * If self is `Some(s)` and other is `Some(o)`, this method returns `Some(f(s, o))`. Otherwise, `None` is returned.
 	 *
-	 * @param other The option to zip self with.
-	 * @param func The function that computes the returned value.
+	 * @param other - The option to zip self with.
+	 * @param func - The function that computes the returned value.
 	 * @example
 	 * ```typescript
 	 * class Point {
@@ -783,7 +788,7 @@ export class Option<T, Exists extends boolean = boolean> {
 	 * let x = some(Promise.resolve(3));
 	 * assert.equal(await x.intoPromise(), some(3));
 	 * ```
-	 * @note This is an extension not supported in Rust
+	 * This is an extension not supported in Rust
 	 */
 	public async intoPromise(): Promise<Option<Awaited<T>, Exists>> {
 		// @ts-expect-error Complex types
@@ -796,7 +801,7 @@ export class Option<T, Exists extends boolean = boolean> {
 	/**
 	 * Checks whether or not `other` equals with self.
 	 *
-	 * @param other The other option to compare.
+	 * @param other - The other option to compare.
 	 * @see {@link https://doc.rust-lang.org/std/cmp/trait.PartialEq.html#tymethod.eq}
 	 */
 	public eq<OtherValue extends T, OtherExists extends boolean>(other: Option<OtherValue, OtherExists>): this is Option<OtherValue, OtherExists> {
@@ -807,7 +812,7 @@ export class Option<T, Exists extends boolean = boolean> {
 	/**
 	 * Checks whether or not `other` doesn't equal with self.
 	 *
-	 * @param other The other option to compare.
+	 * @param other - The other option to compare.
 	 * @see {@link https://doc.rust-lang.org/std/cmp/trait.PartialEq.html#method.ne}
 	 */
 	public ne(other: Option<T, boolean>): boolean {
@@ -817,7 +822,7 @@ export class Option<T, Exists extends boolean = boolean> {
 	/**
 	 * Runs `ok` function if self is `Ok`, otherwise runs `err` function.
 	 *
-	 * @param branches - The branches to
+	 * @param branches - The callbacks to run: `none` handles `None`, while `some` handles `Some` and receives its contained value.
 	 * @example
 	 * ```typescript
 	 * const option = some(4).match({
@@ -835,10 +840,7 @@ export class Option<T, Exists extends boolean = boolean> {
 	 * assert.equal(option, 0);
 	 * ```
 	 */
-	public match<SomeValue, NoneValue>(branches: {
-		none(this: None): NoneValue;
-		some(this: Some<T>, value: T): SomeValue;
-	}): If<Exists, SomeValue, NoneValue> {
+	public match<SomeValue, NoneValue>(branches: OptionMatchBranches<T, SomeValue, NoneValue>): If<Exists, SomeValue, NoneValue> {
 		// @ts-expect-error Complex types
 		return this.isSome() ? branches.some.call(this, this[ValueProperty]) : branches.none.call(this);
 	}
@@ -888,7 +890,7 @@ export class Option<T, Exists extends boolean = boolean> {
 	 * exists to interoperate with other versions of this class, such as the one coming from another version of this
 	 * library or from a different build.
 	 *
-	 * @param instance The instance to check.
+	 * @param instance - The instance to check.
 	 * @returns Whether or not the instance is a `Option`.
 	 * @example
 	 * ```typescript
@@ -906,7 +908,7 @@ export class Option<T, Exists extends boolean = boolean> {
 	 * @deprecated Use {@link Option.isOption} instead.
 	 *
 	 * Checks if the `instance` object is an instance of `Option`, or if it is a `Option`-like object.
-	 * @param instance The instance to check.
+	 * @param instance - The instance to check.
 	 * @returns true if the instance is a `Option` or a `Option`-like object, false otherwise.
 	 * @example
 	 * ```typescript
@@ -923,7 +925,7 @@ export class Option<T, Exists extends boolean = boolean> {
 	/**
 	 * Checks if the `instance` object is an instance of `Option`, or if it is a `Option`-like object.
 	 *
-	 * @param instance The instance to check.
+	 * @param instance - The instance to check.
 	 * @returns true if the instance is a `Option` or a `Option`-like object, false otherwise.
 	 * @example
 	 * ```typescript
@@ -940,8 +942,8 @@ export class Option<T, Exists extends boolean = boolean> {
 	/**
 	 * Creates a {@link Result} out of a callback.
 	 *
-	 * @typeparam T The result's type.
-	 * @typeparam E The error's type.
+	 * @typeParam T - The result's type.
+	 * @typeParam E - The error's type.
 	 */
 
 	public static from<T>(this: void, op: OptionResolvable<T> | (() => OptionResolvable<T>)): Option<T> {
@@ -955,8 +957,8 @@ export class Option<T, Exists extends boolean = boolean> {
 	/**
 	 * Creates a {@link Result} out of a promise or async callback.
 	 *
-	 * @typeparam T The result's type.
-	 * @typeparam E The error's type.
+	 * @typeParam T - The result's type.
+	 * @typeParam E - The error's type.
 	 */
 
 	public static async fromAsync<T>(this: void, op: Awaitable<OptionResolvable<T>> | (() => Awaitable<OptionResolvable<T>>)): Promise<Option<T>> {
@@ -971,7 +973,7 @@ export class Option<T, Exists extends boolean = boolean> {
 	 * Creates an {@link Ok} that is the combination of all collected {@link Ok} values as an array, or the first
 	 * {@link Err} encountered.
 	 *
-	 * @param results An array of {@link Result}s.
+	 * @param results - An array of {@link Result}s.
 	 * @returns A new {@link Result}.
 	 */
 
@@ -989,7 +991,7 @@ export class Option<T, Exists extends boolean = boolean> {
 	/**
 	 * Returns the first encountered {@link Some}, or a {@link None} if none was found.
 	 *
-	 * @param options An array of {@link Option}s.
+	 * @param options - An array of {@link Option}s.
 	 * @returns A new {@link Option}.
 	 */
 

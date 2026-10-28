@@ -3,11 +3,11 @@ import type { IterableResolvable } from './from';
 import { orderingIsLess, type LexicographicComparison } from './shared/_compare';
 
 /**
- * Determines if the elements of `iterable` are {@link LexicographicComparison lexicographically} greater or equal than
+ * Determines if the elements of `iterable` are {@link LexicographicComparison | lexicographically} greater or equal than
  * those of another.
  *
- * @param iterable The iterator to compare.
- * @param other The iterator to compare against.
+ * @param iterable - The iterator to compare.
+ * @param other - The iterator to compare against.
  * @example
  * ```typescript
  * import { greaterOrEqualThan } from '@sapphire/iterator-utilities';

@@ -20,9 +20,9 @@ export class LazyPaginatedMessage extends PaginatedMessage {
 	/**
 	 * Resolves the page corresponding with the given index. This also resolves the index's before and after the given index.
 	 *
-	 * @param messageOrInteraction The message or interaction that triggered this {@link LazyPaginatedMessage}.
-	 * @param target The user who will be able to interact with the buttons of this {@link LazyPaginatedMessage}.
-	 * @param index The index to resolve. Defaults to handler's current index.
+	 * @param messageOrInteraction - The message or interaction that triggered this {@link LazyPaginatedMessage}.
+	 * @param target - The user who will be able to interact with the buttons of this {@link LazyPaginatedMessage}.
+	 * @param index - The index to resolve. Defaults to handler's current index.
 	 */
 	public override async resolvePage(
 		messageOrInteraction: AnyInteractableInteraction | Message,

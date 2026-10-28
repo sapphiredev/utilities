@@ -5,14 +5,14 @@ export enum FetchResultTypes {
 	/**
 	 * Returns only the body, as a [`Blob`](https://developer.mozilla.org/en-US/docs/Web/API/Blob).
 	 *
-	 * @remark For NodeJS environment other `FetchResultTypes` are recommended, but you can use a Blob if you want to.
+	 * For NodeJS environment other `FetchResultTypes` are recommended, but you can use a Blob if you want to.
 	 */
 	Blob = 'blob',
 	/**
 	 * Returns only the body, as a [Buffer](https://nodejs.org/api/buffer.html).
 	 *
-	 * @remark Does not work in a Browser environment. For browsers use {@link FetchResultTypes.Blob} instead.
-	 * If you use this type in a Browsers environment a {@link ReferenceError `ReferenceError: Buffer is not defined`} will be thrown!
+	 * Does not work in a Browser environment. For browsers use {@link FetchResultTypes.Blob} instead.
+	 * If you use this type in a Browsers environment a `ReferenceError: Buffer is not defined` will be thrown!
 	 */
 	Buffer = 'buffer',
 	/**
@@ -55,7 +55,7 @@ export enum FetchMethods {
 	 */
 	Get = 'GET',
 	/**
-	 * The `HEAD` method asks for a response identical to that of a {@link FetchMethods.Get `GET`} request, but without the response body.
+	 * The `HEAD` method asks for a response identical to that of a {@link FetchMethods.Get | `GET`} request, but without the response body.
 	 *
 	 * @see [MDN / Web / HTTP / Methods / HEAD](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/HEAD)
 	 */

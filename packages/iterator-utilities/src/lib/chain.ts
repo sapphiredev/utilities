@@ -4,7 +4,7 @@ import { toIterableIterator } from './toIterableIterator';
 /**
  * Similar to `append`, but takes an iterable of iterables and chains them together.
  *
- * @param iterables The iterators to chain together.
+ * @param iterables - The iterators to chain together.
  * @returns An iterator that yields the values of the provided iterators in order.
  * @example
  * ```typescript

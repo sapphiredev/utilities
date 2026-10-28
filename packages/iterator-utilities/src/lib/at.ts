@@ -7,8 +7,8 @@ import { toIntegerOrInfinityOrThrow } from './shared/_toIntegerOrInfinityOrThrow
 /**
  * Advances the iterable to the `n`th element and returns it. If the iterable is exhausted before reaching the `n`th element, it returns `undefined`.
  *
- * @param iterable An iterator to return an element from.
- * @param index The index of the element to retrieve.
+ * @param iterable - An iterator to return an element from.
+ * @param index - The index of the element to retrieve.
  * @returns The element at the specified index, or `undefined` if the index is out of range.
  * @example
  * ```typescript

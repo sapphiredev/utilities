@@ -60,7 +60,7 @@ export interface PaginatedMessageActionRun {
 	/**
 	 * Runs the action with the given context.
 	 *
-	 * @param context The context object containing information about the paginated message.
+	 * @param context - The context object containing information about the paginated message.
 	 * @returns A promise that resolves when the action is complete.
 	 */
 	run?(context: PaginatedMessageActionContext): Awaitable<unknown>;
@@ -221,14 +221,14 @@ export interface PaginatedMessageOptions {
 	/**
 	 * The separator to display between the embed footer and the page index.
 	 *
-	 * @seealso {@link PaginatedMessage.embedFooterSeparator}
+	 * @see {@link PaginatedMessage.embedFooterSeparator}
 	 */
 	embedFooterSeparator?: string;
 
 	/**
 	 * The prefix to display before the page index.
 	 *
-	 * @seealso {@link PaginatedMessage.pageIndexPrefix}
+	 * @see {@link PaginatedMessage.pageIndexPrefix}
 	 */
 	pageIndexPrefix?: string;
 
@@ -241,8 +241,9 @@ export interface PaginatedMessageOptions {
 	 * Additional options that are applied to each message when sending it to Discord.
 	 * Be careful with using this, misusing it can cause issues, such as sending empty messages.
 	 *
-	 * @remark **This is for advanced usages only!**
-	 * @default null
+	 * **This is for advanced usages only!**
+	 *
+	 * @defaultValue null
 	 */
 	paginatedMessageData?: Omit<PaginatedMessageMessageOptionsUnion, 'components'> | null;
 
@@ -264,8 +265,8 @@ export interface PaginatedMessageOptions {
  * works.
  *
  * Ideally, however, you should use the utility functions
- * {@link PaginatedMessage.addPageBuilder `addPageBuilder`}, {@link PaginatedMessage.addPageContent `addPageContent`}, and {@link PaginatedMessage.addPageEmbed `addPageEmbed`}
- * as opposed to manually constructing {@link PaginatedMessagePage `MessagePages`}. This is because a {@link PaginatedMessage} does a lot of post-processing
+ * {@link PaginatedMessage.addPageBuilder | `addPageBuilder`}, {@link PaginatedMessage.addPageContent | `addPageContent`}, and {@link PaginatedMessage.addPageEmbed | `addPageEmbed`}
+ * as opposed to manually constructing {@link PaginatedMessagePage | `MessagePages`}. This is because a {@link PaginatedMessage} does a lot of post-processing
  * on the provided pages and we can only guarantee this will work properly when using the utility methods.
  */
 export type PaginatedMessagePage =
@@ -368,7 +369,7 @@ export interface PaginatedMessageInternationalizationContext {
 /**
  * Represents the parameters for safely replying to an interaction.
  *
- * @template T - The type of message method ('edit', 'reply', or never).
+ * @typeParam T - The type of message method ('edit', 'reply', or never).
  */
 export interface SafeReplyToInteractionParameters<T extends 'edit' | 'reply' = never> {
 	/**

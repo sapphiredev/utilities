@@ -4,8 +4,8 @@ import { toIterableIterator } from './toIterableIterator';
 /**
  * Creates a new iterable of the first iterable based on the truthiness of the corresponding element in the second iterable.
  *
- * @param iterable An iterator that contains elements to be compressed.
- * @param selectors The selectors that determine which elements to include in the result.
+ * @param iterable - An iterator that contains elements to be compressed.
+ * @param selectors - The selectors that determine which elements to include in the result.
  * @returns An iterator that contains only the elements from the input iterator that correspond to `true` values in the
  * selectors iterator.
  * @example

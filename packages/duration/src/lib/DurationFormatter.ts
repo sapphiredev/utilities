@@ -17,8 +17,8 @@ const kTimeDurations: readonly [TimeTypes, number][] = [
 /**
  * Display the duration
  *
- * @param duration The duration in milliseconds to parse and display
- * @param assets The language assets
+ * @param duration - The duration in milliseconds to parse and display
+ * @param assets - The language assets
  */
 export class DurationFormatter {
 	public constructor(public units: DurationFormatAssetsTime = DEFAULT_UNITS) {}
@@ -65,8 +65,8 @@ export class DurationFormatter {
 /**
  * Adds an unit, if non zero
  *
- * @param time The duration of said unit
- * @param unit The unit language assets
+ * @param time - The duration of said unit
+ * @param unit - The unit language assets
  */
 function addUnit(time: number, unit: DurationFormatAssetsUnit, separator: string) {
 	if (Reflect.has(unit, time)) return `${time}${separator}${Reflect.get(unit, time)}`;

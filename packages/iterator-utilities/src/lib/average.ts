@@ -5,7 +5,7 @@ import { toNumberOrThrow, type NumberResolvable } from './shared/_toNumberOrThro
 /**
  * Consumes the iterable and returns the average value of all the elements. If the iterable is empty, it returns `null`.
  *
- * @param iterable The iterator to calculate the average of.
+ * @param iterable - The iterator to calculate the average of.
  * @returns The average of the sequence of numbers, or `null` if the sequence is empty or contains only non-number values.
  * @example
  * ```typescript

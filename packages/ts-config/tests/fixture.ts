@@ -1,8 +1,8 @@
 /**
  * Sample function that's used internally to confirm the tsconfig is valid
  *
- * @param param sample param
- * @private
+ * @param param - sample param
+ * @internal
  */
 export const testBuild = <T>(param?: T): Record<PropertyKey, T> | T | number | [T | undefined] => {
 	if (typeof param === 'string') return param;

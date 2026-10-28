@@ -14,7 +14,7 @@ const TypedArrayPrototype = Object.getPrototypeOf(Uint8Array) as Constructor<Nod
 /**
  * Deep clone an object
  *
- * @param source The object to clone
+ * @param source - The object to clone
  */
 export function deepClone<T>(source: T): T {
 	// Check if it's a primitive (string, number, boolean, bigint)

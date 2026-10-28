@@ -9,9 +9,9 @@ import { defaultCompare } from './shared/comparators';
  * This function uses the default comparator (lexicographically), which means it will compare the elements as strings.
  * If this is undesirable, use {@link maxBy} instead.
  *
- * @seealso {@link maxBy} for a version that allows custom comparators.
- * @seealso {@link maxByKey} for a version that allows custom key extractors.
- * @param iterable An iterator of number values to determine the maximum value of.
+ * @see {@link maxBy} for a version that allows custom comparators.
+ * @see {@link maxByKey} for a version that allows custom key extractors.
+ * @param iterable - An iterator of number values to determine the maximum value of.
  * @returns The maximum value in the input iterator, or `null` if the iterator is empty or contains only non-number values.
  * @example
  * ```typescript

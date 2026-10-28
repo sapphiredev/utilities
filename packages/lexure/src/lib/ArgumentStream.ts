@@ -75,7 +75,8 @@ export class ArgumentStream {
 	/**
 	 * Retrieves the value of the next unused ordered token, but only if it could be transformed.
 	 *
-	 * @note This does not support asynchronous results, refer to {@link singleMapAsync}.
+	 * This does not support asynchronous results, refer to {@link singleMapAsync}.
+	 *
 	 * @example
 	 * ```typescript
 	 * const parse = (value) => {
@@ -97,9 +98,9 @@ export class ArgumentStream {
 	 * console.log(args.singleMap(parse));
 	 * // None
 	 * ```
-	 * @typeparam T The output type.
-	 * @param predicate The predicate that determines the parameter's mapped value, or nothing if failed.
-	 * @param useAnyways Whether to consider the parameter used even if the mapping failed. Defaults to `false`.
+	 * @typeParam T - The output type.
+	 * @param predicate - The predicate that determines the parameter's mapped value, or nothing if failed.
+	 * @param useAnyways - Whether to consider the parameter used even if the mapping failed. Defaults to `false`.
 	 * @returns The mapped value, if any.
 	 */
 	public singleMap<T>(predicate: (value: string) => Option<T>, useAnyways = false): Option<T> {
@@ -121,10 +122,11 @@ export class ArgumentStream {
 	/**
 	 * Retrieves the value of the next unused ordered token, but only if it could be transformed.
 	 *
-	 * @note This is an asynchronous variant of {@link singleMap}.
-	 * @typeparam T The output type.
-	 * @param predicate The predicate that determines the parameter's mapped value, or nothing if failed.
-	 * @param useAnyways Whether to consider the parameter used even if the mapping failed. Defaults to `false`.
+	 * This is an asynchronous variant of {@link singleMap}.
+	 *
+	 * @typeParam T - The output type.
+	 * @param predicate - The predicate that determines the parameter's mapped value, or nothing if failed.
+	 * @param useAnyways - Whether to consider the parameter used even if the mapping failed. Defaults to `false`.
 	 * @returns The mapped value, if any.
 	 */
 	public async singleMapAsync<T>(predicate: (value: string) => Promise<Option<T>>, useAnyways = false): Promise<Option<T>> {
@@ -146,8 +148,9 @@ export class ArgumentStream {
 	/**
 	 * Finds and retrieves the next unused parameter and transforms it.
 	 *
-	 * @note This is a variant of {@link findMap} that returns the errors on failure.
-	 * @note This does not support asynchronous results, refer to {@link singleParseAsync}.
+	 * This is a variant of {@link findMap} that returns the errors on failure.
+	 * This does not support asynchronous results, refer to {@link singleParseAsync}.
+	 *
 	 * @example
 	 * ```typescript
 	 * const parse = (value) => {
@@ -171,10 +174,10 @@ export class ArgumentStream {
 	 * console.log(args.singleParse(parse));
 	 * // Err { error: null }
 	 * ```
-	 * @typeparam T The output type.
-	 * @typeparam E The error type.
-	 * @param predicate The predicate that determines the parameter's transformed value, or nothing if failed.
-	 * @param useAnyways Whether to consider the parameter used even if the transformation failed. Defaults to `false`.
+	 * @typeParam T - The output type.
+	 * @typeParam E - The error type.
+	 * @param predicate - The predicate that determines the parameter's transformed value, or nothing if failed.
+	 * @param useAnyways - Whether to consider the parameter used even if the transformation failed. Defaults to `false`.
 	 * @returns The transformed value, if any.
 	 */
 	public singleParse<T, E>(predicate: (value: string) => Result<T, E>, useAnyways = false): Result<T, E | null> {
@@ -196,11 +199,12 @@ export class ArgumentStream {
 	/**
 	 * Retrieves the value of the next unused ordered token, but only if it could be transformed.
 	 *
-	 * @note This is an asynchronous variant of {@link singleParse}.
-	 * @typeparam T The output type.
-	 * @typeparam E The error type.
-	 * @param predicate The predicate that determines the parameter's mapped value, or nothing if failed.
-	 * @param useAnyways Whether to consider the parameter used even if the mapping failed. Defaults to `false`.
+	 * This is an asynchronous variant of {@link singleParse}.
+	 *
+	 * @typeParam T - The output type.
+	 * @typeParam E - The error type.
+	 * @param predicate - The predicate that determines the parameter's mapped value, or nothing if failed.
+	 * @param useAnyways - Whether to consider the parameter used even if the mapping failed. Defaults to `false`.
 	 * @returns The mapped value, if any.
 	 */
 	public async singleParseAsync<T, E>(predicate: (value: string) => Promise<Result<T, E>>, useAnyways = false): Promise<Result<T, E | null>> {
@@ -223,7 +227,8 @@ export class ArgumentStream {
 	 * Returns the value of the first element in the array within `Option.some` where `predicate` returns `true`, and
 	 * `Option.none` otherwise.
 	 *
-	 * @note This does not support asynchronous results, refer to {@link findAsync}.
+	 * This does not support asynchronous results, refer to {@link findAsync}.
+	 *
 	 * @example
 	 * ```typescript
 	 * // Suppose args are from 'ba aa cc'.
@@ -231,10 +236,10 @@ export class ArgumentStream {
 	 * console.log(args.find((value) => value.startsWith('a')));
 	 * // Some { value: 'aa' }
 	 * ```
-	 * @param predicate find calls `predicate` once for each unused ordered parameter, in ascending order, until it
+	 * @param predicate - find calls `predicate` once for each unused ordered parameter, in ascending order, until it
 	 * finds one where `predicate` returns `true`. If such an element is found, find immediately returns a `Option.some`
 	 * with that element value. Otherwise, find returns `Option.none`.
-	 * @param from The position where to start looking for unused parameters, defaults to current position.
+	 * @param from - The position where to start looking for unused parameters, defaults to current position.
 	 * @returns The found parameter's value.
 	 */
 	public find(predicate: (value: string) => boolean, from = this.state.position): Option<string> {
@@ -255,7 +260,8 @@ export class ArgumentStream {
 	 * Returns the value of the first element in the array within `Option.some` where `predicate` returns `true`, and
 	 * `Option.none` otherwise.
 	 *
-	 * @note This is an asynchronous variant of {@link find}.
+	 * This is an asynchronous variant of {@link find}.
+	 *
 	 * @example
 	 * ```typescript
 	 * // Suppose args are from 'ba aa cc'.
@@ -263,10 +269,10 @@ export class ArgumentStream {
 	 * console.log(args.find((value) => value.startsWith('a')));
 	 * // Some { value: 'aa' }
 	 * ```
-	 * @param predicate find calls `predicate` once for each unused ordered parameter, in ascending order, until it
+	 * @param predicate - find calls `predicate` once for each unused ordered parameter, in ascending order, until it
 	 * finds one where `predicate` returns `true`. If such an element is found, find immediately returns a `Option.some`
 	 * with that element value. Otherwise, find returns `Option.none`.
-	 * @param from The position where to start looking for unused parameters, defaults to current position.
+	 * @param from - The position where to start looking for unused parameters, defaults to current position.
 	 * @returns The found parameter's value.
 	 */
 	public async findAsync(predicate: (value: string) => Promise<boolean>, from = this.state.position): Promise<Option<string>> {
@@ -287,7 +293,8 @@ export class ArgumentStream {
 	 * Returns the value of the first element in the array within `Option.some` where `predicate` returns `Some`, and
 	 * `Option.none` otherwise.
 	 *
-	 * @note This does not support asynchronous results, refer to {@link findMapAsync}.
+	 * This does not support asynchronous results, refer to {@link findMapAsync}.
+	 *
 	 * @example
 	 * ```typescript
 	 * // Suppose args are from 'ba aa cc'.
@@ -295,11 +302,11 @@ export class ArgumentStream {
 	 * console.log(args.find((value) => value.startsWith('a')));
 	 * // Some { value: 'aa' }
 	 * ```
-	 * @typeparam T The output type.
-	 * @param predicate find calls `predicate` once for each unused ordered parameter, in ascending order, until it
+	 * @typeParam T - The output type.
+	 * @param predicate - find calls `predicate` once for each unused ordered parameter, in ascending order, until it
 	 * finds one where `predicate` returns `Some`. If such an element is found, find immediately returns the returned
 	 * value. Otherwise, find returns `Option.none`.
-	 * @param from The position where to start looking for unused parameters, defaults to current position.
+	 * @param from - The position where to start looking for unused parameters, defaults to current position.
 	 * @returns The found parameter's value.
 	 */
 	public findMap<T>(predicate: (value: string) => Option<T>, from = this.state.position): Option<T> {
@@ -321,7 +328,8 @@ export class ArgumentStream {
 	 * Returns the value of the first element in the array within `Option.some` where `predicate` returns `Some`, and
 	 * `Option.none` otherwise.
 	 *
-	 * @note This is an asynchronous variant of {@link findMap}.
+	 * This is an asynchronous variant of {@link findMap}.
+	 *
 	 * @example
 	 * ```typescript
 	 * // Suppose args are from 'ba aa cc'.
@@ -329,11 +337,11 @@ export class ArgumentStream {
 	 * console.log(args.find((value) => value.startsWith('a')));
 	 * // Some { value: 'aa' }
 	 * ```
-	 * @typeparam T The output type.
-	 * @param predicate find calls `predicate` once for each unused ordered parameter, in ascending order, until it
+	 * @typeParam T - The output type.
+	 * @param predicate - find calls `predicate` once for each unused ordered parameter, in ascending order, until it
 	 * finds one where `predicate` returns `Some`. If such an element is found, find immediately returns the returned
 	 * value. Otherwise, find returns `Option.none`.
-	 * @param from The position where to start looking for unused parameters, defaults to current position.
+	 * @param from - The position where to start looking for unused parameters, defaults to current position.
 	 * @returns The found parameter's value.
 	 */
 	public async findMapAsync<T>(predicate: (value: string) => Promise<Option<T>>, from = this.state.position): Promise<Option<T>> {
@@ -354,8 +362,9 @@ export class ArgumentStream {
 	/**
 	 * Finds and retrieves the first unused parameter that could be transformed.
 	 *
-	 * @note This is a variant of {@link findMap} that returns the errors on failure.
-	 * @note This does not support asynchronous results, refer to {@link findParseAsync}.
+	 * This is a variant of {@link findMap} that returns the errors on failure.
+	 * This does not support asynchronous results, refer to {@link findParseAsync}.
+	 *
 	 * @example
 	 * ```typescript
 	 * const parse = (value) => {
@@ -378,12 +387,12 @@ export class ArgumentStream {
 	 * //   ]
 	 * // }
 	 * ```
-	 * @typeparam T The output type.
-	 * @typeparam E The error type.
-	 * @param predicate `findParse` calls `predicate` once for each unused ordered parameter, in ascending order, until
+	 * @typeParam T - The output type.
+	 * @typeParam E - The error type.
+	 * @param predicate - `findParse` calls `predicate` once for each unused ordered parameter, in ascending order, until
 	 * it finds one where `predicate` returns `Ok`. If such an element is found, `findParse` immediately returns the
 	 * returned value. Otherwise, `findParse` returns `Result.Err` with all the returned errors.
-	 * @param from The position where to start looking for unused parameters, defaults to current position.
+	 * @param from - The position where to start looking for unused parameters, defaults to current position.
 	 * @returns The found parameter's value.
 	 */
 	public findParse<T, E>(predicate: (value: string) => Result<T, E>, from = this.state.position): Result<T, E[]> {
@@ -407,14 +416,15 @@ export class ArgumentStream {
 	/**
 	 * Finds and retrieves the first unused parameter that could be transformed.
 	 *
-	 * @note This is a variant of {@link findMapAsync} that returns the errors on failure.
-	 * @note This is an asynchronous variant of {@link findParse}.
-	 * @typeparam T The output type.
-	 * @typeparam E The error type.
-	 * @param predicate `findParse` calls `predicate` once for each unused ordered parameter, in ascending order, until
+	 * This is a variant of {@link findMapAsync} that returns the errors on failure.
+	 * This is an asynchronous variant of {@link findParse}.
+	 *
+	 * @typeParam T - The output type.
+	 * @typeParam E - The error type.
+	 * @param predicate - `findParse` calls `predicate` once for each unused ordered parameter, in ascending order, until
 	 * it finds one where `predicate` returns `Ok`. If such an element is found, `findParse` immediately returns the
 	 * returned value. Otherwise, `findParse` returns `Result.Err` with all the returned errors.
-	 * @param from The position where to start looking for unused parameters, defaults to current position.
+	 * @param from - The position where to start looking for unused parameters, defaults to current position.
 	 * @returns The found parameter's value.
 	 */
 	public async findParseAsync<T, E>(predicate: (value: string) => Promise<Result<T, E>>, from = this.state.position): Promise<Result<T, E[]>> {
@@ -452,8 +462,8 @@ export class ArgumentStream {
 	 * console.log(join(args.many(2).unwrap()));
 	 * // '1 2'
 	 * ```
-	 * @param limit The maximum amount of parameters to retrieve, defaults to `Infinity`.
-	 * @param from The position where to start looking for unused parameters, defaults to current position.
+	 * @param limit - The maximum amount of parameters to retrieve, defaults to `Infinity`.
+	 * @param from - The position where to start looking for unused parameters, defaults to current position.
 	 * @returns The unused parameters within the range.
 	 */
 	public many(limit = Infinity, from = this.state.position): Option<Parameter[]> {
@@ -561,7 +571,7 @@ export class ArgumentStream {
 	 * console.log(args.flag('h'));
 	 * // false
 	 * ```
-	 * @param keys The names of the flags to check.
+	 * @param keys - The names of the flags to check.
 	 * @returns Whether or not any of the flags were given.
 	 */
 	public flag(...keys: readonly string[]): boolean {
@@ -583,7 +593,7 @@ export class ArgumentStream {
 	 * console.log(args.option('d'));
 	 * // None {}
 	 * ```
-	 * @param keys The names of the options to check.
+	 * @param keys - The names of the options to check.
 	 * @returns The last value of the option, if any.
 	 */
 	public option(...keys: readonly string[]): Option<string> {
@@ -605,7 +615,7 @@ export class ArgumentStream {
 	 * console.log(args.option('d'));
 	 * // None {}
 	 * ```
-	 * @param keys The names of the options to check.
+	 * @param keys - The names of the options to check.
 	 * @returns The values from all the options concatenated, if any.
 	 */
 	public options(...keys: readonly string[]): Option<readonly string[]> {

@@ -1,9 +1,9 @@
 /**
  * Turn a dotted path into a json object.
  *
- * @param path The dotted path
- * @param value The value
- * @param obj The object to edit. Defaults to a null prototype object.
+ * @param path - The dotted path
+ * @param value - The value
+ * @param obj - The object to edit. Defaults to a null prototype object.
  * @returns The object with the value set at the path.
  * @throws If the path contains a segment that can mutate an object's prototype.
  */

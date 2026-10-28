@@ -8,8 +8,8 @@ import { toArray } from './toArray';
 /**
  * Creates `count` independent iterators from the input iterable.
  *
- * @param iterable An iterator to tee.
- * @param count The number of iterators to create.
+ * @param iterable - An iterator to tee.
+ * @param count - The number of iterators to create.
  * @returns An array of `count` iterators that each yield the same values as the input iterator.
  * @example
  * ```typescript

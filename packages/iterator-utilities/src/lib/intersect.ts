@@ -5,8 +5,8 @@ import { toIterableIterator } from './toIterableIterator';
 /**
  * Creates an iterable with the elements that are in both input iterables.
  *
- * @param first An iterator to return elements from.
- * @param second An iterator that contains elements to include in the result.
+ * @param first - An iterator to return elements from.
+ * @param second - An iterator that contains elements to include in the result.
  * @example
  * ```typescript
  * import { intersect } from '@sapphire/iterator-utilities';
@@ -18,7 +18,7 @@ import { toIterableIterator } from './toIterableIterator';
  * @remarks
  *
  * This function consumes the entire `second` iterator to build the set of elements to intersect with `first`.
- * @seealso {@link difference} for the opposite behavior.
+ * @see `difference` for the opposite behavior.
  */
 export function intersect<const ElementType>(
 	first: IterableResolvable<ElementType>,

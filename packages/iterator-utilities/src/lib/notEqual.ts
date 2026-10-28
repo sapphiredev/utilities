@@ -4,8 +4,8 @@ import type { IterableResolvable } from './from';
 /**
  * Determines if the elements of both iterators are not equal.
  *
- * @param iterable The iterator to compare.
- * @param other The iterator to compare against.
+ * @param iterable - The iterator to compare.
+ * @param other - The iterator to compare against.
  * @returns Whether the two iterators are not equal.
  * @example
  * ```typescript

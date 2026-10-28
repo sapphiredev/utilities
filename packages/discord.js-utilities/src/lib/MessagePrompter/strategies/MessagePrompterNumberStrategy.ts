@@ -24,8 +24,8 @@ export class MessagePrompterNumberStrategy extends MessagePrompterBaseStrategy i
 	/**
 	 * Constructor for the {@link MessagePrompterBaseStrategy} class
 	 *
-	 * @param message The message instance for this {@link MessagePrompter}.
-	 * @param options Overrideable options if needed.
+	 * @param message - The message instance for this {@link MessagePrompter}.
+	 * @param options - Overrideable options if needed.
 	 */
 	public constructor(message: MessagePrompterMessage, options: IMessagePrompterNumberStrategyOptions) {
 		super('number', message, options);
@@ -39,8 +39,8 @@ export class MessagePrompterNumberStrategy extends MessagePrompterBaseStrategy i
 	 * This executes the message prompter and sends the message if its `type` option equals `number`.
 	 * The handler will wait for one (1) reaction.
 	 *
-	 * @param channel The channel to use.
-	 * @param authorOrFilter An author object to validate or a {@linkplain https://discord.js.org/docs/packages/discord.js/main/CollectorFilter:TypeAlias CollectorFilter} predicate callback.
+	 * @param channel - The channel to use.
+	 * @param authorOrFilter - An author object to validate or a {@link https://discord.js.org/docs/packages/discord.js/main/CollectorFilter:TypeAlias | CollectorFilter} predicate callback.
 	 * @returns A promise that resolves to the selected number within the range.
 	 */
 	public async run(

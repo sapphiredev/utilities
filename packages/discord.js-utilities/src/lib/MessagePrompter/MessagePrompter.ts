@@ -101,9 +101,9 @@ export class MessagePrompter<S extends keyof StrategyReturns = 'confirm'> {
 	/**
 	 * Constructor for the {@link MessagePrompter} class
 	 *
-	 * @param message The message to send.
-	 * @param strategy The strategy name or Instance to use
-	 * @param strategyOptions The options that are passed to the strategy
+	 * @param message - The message to send.
+	 * @param strategy - The strategy name or Instance to use
+	 * @param strategyOptions - The options that are passed to the strategy
 	 */
 	public constructor(
 		message: MessagePrompterBaseStrategy | MessagePrompterMessage,
@@ -130,8 +130,8 @@ export class MessagePrompter<S extends keyof StrategyReturns = 'confirm'> {
 	/**
 	 * This executes the {@link MessagePrompter} and sends the message.
 	 *
-	 * @param channel The channel to use.
-	 * @param authorOrFilter An author object to validate or a {@linkplain https://discord.js.org/docs/packages/discord.js/main/CollectorFilter:TypeAlias CollectorFilter} predicate callback.
+	 * @param channel - The channel to use.
+	 * @param authorOrFilter - An author object to validate or a {@link https://discord.js.org/docs/packages/discord.js/main/CollectorFilter:TypeAlias | CollectorFilter} predicate callback.
 	 */
 	public run<Filter extends (S extends keyof StrategyFilters ? StrategyFilters[S] : unknown[])>(
 		channel: MessagePrompterChannelTypes,

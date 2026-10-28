@@ -23,13 +23,14 @@ export const toTitleCaseDiscordJsVariants: Record<string, string> = {
 /**
  * Converts a string to Title Case
  *
- * @description This is designed to also ensure common Discord PascalCased strings
+ * This is designed to also ensure common Discord PascalCased strings
  * are put in their TitleCase {@link toTitleCaseDiscordJsVariants}.
  *
  * You can also provide your own variants to merge with the {@link toTitleCaseDiscordJsVariants} for
  * your own functionality use.
- * @param str The string to title case
- * @param options The options to use when converting the string
+ *
+ * @param str - The string to title case
+ * @param options - The options to use when converting the string
  */
 export function toTitleCase(str: string, options: ToTitleCaseOptions = {}): string {
 	const { additionalVariants = {}, caseSensitive } = options;

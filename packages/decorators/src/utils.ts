@@ -28,7 +28,7 @@ export type FunctionFallback = (...args: any[]) => unknown;
  *	}
  * ```
  *
- * @param fn The method to decorate
+ * @param fn - The method to decorate
  */
 export function createMethodDecorator(fn: MethodDecorator): MethodDecorator {
 	return fn;
@@ -37,7 +37,7 @@ export function createMethodDecorator(fn: MethodDecorator): MethodDecorator {
 /**
  * Utility to make a class decorator with lighter syntax and inferred types.
  *
- * @param fn The class to decorate
+ * @param fn - The class to decorate
  * @see {@link ApplyOptions}
  */
 export function createClassDecorator<TFunction extends (...args: any[]) => void>(fn: TFunction): ClassDecorator {
@@ -67,9 +67,8 @@ export function createClassDecorator<TFunction extends (...args: any[]) => void>
  * }
  * ```
  *
- * @since 1.0.0
- * @param precondition The function that defines whether or not the function should be run, returning the returned value from fallback
- * @param fallback The fallback value that defines what the method should return in case the precondition fails
+ * @param precondition - The function that defines whether or not the function should be run, returning the returned value from fallback
+ * @param fallback - The fallback value that defines what the method should return in case the precondition fails
  */
 export function createFunctionPrecondition(precondition: FunctionPrecondition, fallback: FunctionFallback = (): void => undefined): MethodDecorator {
 	return createMethodDecorator((_target, _propertyKey, descriptor) => {
@@ -87,9 +86,9 @@ export function createFunctionPrecondition(precondition: FunctionPrecondition, f
 /**
  * Creates a new proxy to efficiently add properties to class without creating subclasses
  *
- * @param target The constructor of the class to modify
- * @param handler The handler function to modify the constructor behavior for the target
- * @hidden
+ * @param target - The constructor of the class to modify
+ * @param handler - The handler function to modify the constructor behavior for the target
+ * @internal
  */
 export function createProxy<T extends object>(target: T, handler: Omit<ProxyHandler<T>, 'get'>): T {
 	return new Proxy(target, {

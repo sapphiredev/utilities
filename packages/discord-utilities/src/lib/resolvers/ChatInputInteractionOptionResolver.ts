@@ -13,7 +13,7 @@ import type { BasicApplicationCommandOptionType, RequiredIf, TypeToOptionMap } f
 
 /**
  * Utility class for resolving (application command) interaction options while working with the raw API.
- * Based on {@linkplain https://github.com/discordjs/discord.js/blob/main/packages/discord.js/src/structures/CommandInteractionOptionResolver.js}
+ * Based on {@link https://github.com/discordjs/discord.js/blob/main/packages/discord.js/src/structures/CommandInteractionOptionResolver.js}
  */
 export class ChatInputInteractionOptionResolver {
 	/**
@@ -65,8 +65,8 @@ export class ChatInputInteractionOptionResolver {
 	/**
 	 * Gets an option by its name
 	 *
-	 * @param name The name of the option
-	 * @param required Whether to throw an error if the option is not found
+	 * @param name - The name of the option
+	 * @param required - Whether to throw an error if the option is not found
 	 */
 	public get<Required extends boolean = false>(name: string, required?: Required): RequiredIf<Required, APIApplicationCommandInteractionDataOption>;
 	public get(name: string, required = false): APIApplicationCommandInteractionDataOption | null {
@@ -85,7 +85,7 @@ export class ChatInputInteractionOptionResolver {
 	/**
 	 * Gets the selected subcommand
 	 *
-	 * @param required Whether to throw an error if there is no subcommand
+	 * @param required - Whether to throw an error if there is no subcommand
 	 */
 	public getSubcommand<Required extends boolean = false>(required?: Required): RequiredIf<Required, string>;
 	public getSubcommand(required = true): string | null {
@@ -99,7 +99,7 @@ export class ChatInputInteractionOptionResolver {
 	/**
 	 * Gets the selected subcommand group
 	 *
-	 * @param required Whether to throw an error if there is no subcommand group
+	 * @param required - Whether to throw an error if there is no subcommand group
 	 */
 	public getSubcommandGroup<Required extends boolean = false>(required?: Required): RequiredIf<Required, string>;
 	public getSubcommandGroup(required = true): string | null {
@@ -113,8 +113,8 @@ export class ChatInputInteractionOptionResolver {
 	/**
 	 * Gets a boolean option
 	 *
-	 * @param name The name of the option
-	 * @param required Whether to throw an error if the option is not found
+	 * @param name - The name of the option
+	 * @param required - Whether to throw an error if the option is not found
 	 */
 	public getBoolean<Required extends boolean = false>(name: string, required?: Required): RequiredIf<Required, boolean>;
 	public getBoolean(name: string, required = false): boolean | null {
@@ -125,8 +125,8 @@ export class ChatInputInteractionOptionResolver {
 	/**
 	 * Gets a channel option
 	 *
-	 * @param name The name of the option
-	 * @param required Whether to throw an error if the option is not found
+	 * @param name - The name of the option
+	 * @param required - Whether to throw an error if the option is not found
 	 */
 	public getChannel<Required extends boolean = false>(name: string, required?: Required): RequiredIf<Required, APIInteractionDataResolvedChannel>;
 	public getChannel(name: string, required = false): APIInteractionDataResolvedChannel | null {
@@ -137,8 +137,8 @@ export class ChatInputInteractionOptionResolver {
 	/**
 	 * Gets a string option
 	 *
-	 * @param name The name of the option
-	 * @param required Whether to throw an error if the option is not found
+	 * @param name - The name of the option
+	 * @param required - Whether to throw an error if the option is not found
 	 */
 	public getString<Required extends boolean = false>(name: string, required?: Required): RequiredIf<Required, string>;
 	public getString(name: string, required = false): string | null {
@@ -149,8 +149,8 @@ export class ChatInputInteractionOptionResolver {
 	/**
 	 * Gets an integer option
 	 *
-	 * @param name The name of the option
-	 * @param required Whether to throw an error if the option is not found
+	 * @param name - The name of the option
+	 * @param required - Whether to throw an error if the option is not found
 	 */
 	public getInteger<Required extends boolean = false>(name: string, required?: Required): RequiredIf<Required, number>;
 	public getInteger(name: string, required = false): number | null {
@@ -161,8 +161,8 @@ export class ChatInputInteractionOptionResolver {
 	/**
 	 * Gets a number option
 	 *
-	 * @param name The name of the option
-	 * @param required Whether to throw an error if the option is not found
+	 * @param name - The name of the option
+	 * @param required - Whether to throw an error if the option is not found
 	 */
 	public getNumber<Required extends boolean = false>(name: string, required?: Required): RequiredIf<Required, number>;
 	public getNumber(name: string, required = false): number | null {
@@ -173,8 +173,8 @@ export class ChatInputInteractionOptionResolver {
 	/**
 	 * Gets a user option
 	 *
-	 * @param name The name of the option
-	 * @param required Whether to throw an error if the option is not found
+	 * @param name - The name of the option
+	 * @param required - Whether to throw an error if the option is not found
 	 */
 	public getUser<Required extends boolean = false>(name: string, required?: Required): RequiredIf<Required, APIUser>;
 	public getUser(name: string, required = false): APIUser | null {
@@ -185,8 +185,8 @@ export class ChatInputInteractionOptionResolver {
 	/**
 	 * Gets a member option
 	 *
-	 * @param name The name of the option
-	 * @param required Whether to throw an error if the option is not found
+	 * @param name - The name of the option
+	 * @param required - Whether to throw an error if the option is not found
 	 */
 	public getMember<Required extends boolean = false>(
 		name: string,
@@ -201,8 +201,8 @@ export class ChatInputInteractionOptionResolver {
 	/**
 	 * Gets a role option
 	 *
-	 * @param name The name of the option
-	 * @param required Whether to throw an error if the option is not found
+	 * @param name - The name of the option
+	 * @param required - Whether to throw an error if the option is not found
 	 */
 	public getRole<Required extends boolean = false>(name: string, required?: Required): RequiredIf<Required, APIRole>;
 	public getRole(name: string, required = false): APIRole | null {
@@ -213,8 +213,8 @@ export class ChatInputInteractionOptionResolver {
 	/**
 	 * Gets an attachment option
 	 *
-	 * @param name The name of the option
-	 * @param required Whether to throw an error if the option is not found
+	 * @param name - The name of the option
+	 * @param required - Whether to throw an error if the option is not found
 	 */
 	public getAttachment<Required extends boolean = false>(name: string, required?: Required): RequiredIf<Required, APIAttachment>;
 	public getAttachment(name: string, required = false): APIAttachment | null {
@@ -225,8 +225,8 @@ export class ChatInputInteractionOptionResolver {
 	/**
 	 * Gets a mentionable option
 	 *
-	 * @param name The name of the option
-	 * @param required Whether to throw an error if the option is not found
+	 * @param name - The name of the option
+	 * @param required - Whether to throw an error if the option is not found
 	 */
 	public getMentionable<Required extends boolean = false>(
 		name: string,

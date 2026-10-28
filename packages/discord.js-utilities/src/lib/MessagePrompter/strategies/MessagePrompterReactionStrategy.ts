@@ -14,8 +14,8 @@ export class MessagePrompterReactionStrategy extends MessagePrompterBaseStrategy
 	/**
 	 * Constructor for the {@link MessagePrompterReactionStrategy} class
 	 *
-	 * @param message The message instance for this {@link MessagePrompter}
-	 * @param options Overrideable options if needed.
+	 * @param message - The message instance for this {@link MessagePrompter}
+	 * @param options - Overrideable options if needed.
 	 */
 	public constructor(message: MessagePrompterMessage, options: IMessagePrompterReactionStrategyOptions) {
 		super('reactions', message, options);
@@ -27,8 +27,8 @@ export class MessagePrompterReactionStrategy extends MessagePrompterBaseStrategy
 	 * This executes the {@link MessagePrompterReactionStrategy} and sends the message.
 	 * The handler will wait for one (1) reaction.
 	 *
-	 * @param channel The channel to use.
-	 * @param authorOrFilter An author object to validate or a {@linkplain https://discord.js.org/docs/packages/discord.js/main/CollectorFilter:TypeAlias CollectorFilter} predicate callback.
+	 * @param channel - The channel to use.
+	 * @param authorOrFilter - An author object to validate or a {@link https://discord.js.org/docs/packages/discord.js/main/CollectorFilter:TypeAlias | CollectorFilter} predicate callback.
 	 * @returns A promise that resolves to the reaction object.
 	 */
 	public async run(

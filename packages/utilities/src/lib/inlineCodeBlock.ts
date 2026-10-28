@@ -3,7 +3,7 @@ const zws = String.fromCodePoint(8_203);
 /**
  * Wraps text in a markdown inline codeblock
  *
- * @param content The expression to be wrapped in the codeblock
+ * @param content - The expression to be wrapped in the codeblock
  */
 export function inlineCodeBlock<C extends string>(content: C): `\`${C}\`` {
 	// Replace spaces with non-breaking spaces

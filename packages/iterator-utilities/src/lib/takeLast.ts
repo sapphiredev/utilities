@@ -9,8 +9,8 @@ import { toIterableIterator } from './toIterableIterator';
 /**
  * Consumes the iterable and returns a new iterable with the last `count` elements.
  *
- * @param iterable An iterator to take values from.
- * @param count The number of values to take from the end of the iterator.
+ * @param iterable - An iterator to take values from.
+ * @param count - The number of values to take from the end of the iterator.
  * @returns An iterator that contains the last `count` elements of the provided iterator.
  * @example
  * ```typescript

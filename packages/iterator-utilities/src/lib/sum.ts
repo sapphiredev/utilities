@@ -5,7 +5,7 @@ import { toNumberOrThrow, type NumberResolvable } from './shared/_toNumberOrThro
 /**
  * Consumes the iterable and returns the sum of all the elements.
  *
- * @param iterable An iterator of numbers to calculate the sum of.
+ * @param iterable - An iterator of numbers to calculate the sum of.
  * @returns The sum of the numbers in the input iterator.
  * @example
  * ```typescript

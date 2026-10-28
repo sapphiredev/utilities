@@ -8,8 +8,8 @@ import type { sleep } from './sleep';
  *
  * For an asynchronous variant, see [sleep](./sleep.d.ts).
  *
- * @param ms The number of milliseconds to sleep.
- * @param value A value to return.
+ * @param ms - The number of milliseconds to sleep.
+ * @param value - A value to return.
  * @see {@link sleep} for an asynchronous version.
  */
 export function sleepSync<T = undefined>(ms: number, value?: T): T {

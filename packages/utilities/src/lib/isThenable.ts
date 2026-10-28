@@ -17,7 +17,7 @@ function hasCatch(input: { catch?: Function }): boolean {
 /**
  * Verify if an object is a promise.
  *
- * @param input The promise to verify
+ * @param input - The promise to verify
  */
 export function isThenable(input: unknown): input is Thenable {
 	if (typeof input !== 'object' || input === null) return false;

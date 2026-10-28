@@ -2,9 +2,9 @@ import type { IterableResolvable } from './from';
 import { union } from './union';
 
 /**
- * Creates an iterable with the unique elements of the input iterable. Under the hood, it calls {@linkcode union} with the iterable itself.
+ * Creates an iterable with the unique elements of the input iterable. Under the hood, it calls {@link union} with the iterable itself.
  *
- * @param iterable An iterator to remove duplicates from.
+ * @param iterable - An iterator to remove duplicates from.
  * @returns An iterator that yields the values of the provided iterator with duplicates removed.
  * @example
  * ```typescript

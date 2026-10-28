@@ -5,8 +5,8 @@ import { isFunction } from './isFunction';
  * where one array contains all elements that satisfies `predicate`,
  * and the other contains all elements that do not satisfy `predicate`.
  *
- * @param array The array to partition. This array is not mutated.
- * @param predicate The predicate function to determine in which partition the item should be placed.
+ * @param array - The array to partition. This array is not mutated.
+ * @param predicate - The predicate function to determine in which partition the item should be placed.
  * The function should return true for items that should be placed in the first partition, and false for those that should be placed in the second partition.
  * @returns A tuple of two arrays.
  */

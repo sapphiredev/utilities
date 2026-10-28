@@ -3,8 +3,8 @@ import { isObject } from './isObject';
 /**
  * Convert an object to a tuple
  *
- * @param obj The object to convert
- * @param prefix The prefix for the key
+ * @param obj - The object to convert
+ * @param prefix - The prefix for the key
  */
 export function objectToTuples<T extends object>(obj: T, prefix = ''): [keyof T, T[keyof T]][] {
 	const entries: [keyof T, T[keyof T]][] = [];

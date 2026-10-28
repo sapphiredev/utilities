@@ -5,7 +5,7 @@ import type { Nullish } from './types';
  * Checks whether a value is not `null` nor `undefined` nor `0`.
  * This can be used in {@link Array.filter} to remove `null`, `undefined` from the array type
  *
- * @param value The value to verify that is neither `null`, `undefined` nor `0`
+ * @param value - The value to verify that is neither `null`, `undefined` nor `0`
  * @returns A boolean that is `true` if the value is neither `null`, `undefined` nor `0`, false otherwise.
  * @example
  * ```typescript

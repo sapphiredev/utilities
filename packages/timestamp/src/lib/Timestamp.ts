@@ -122,21 +122,18 @@ export interface TimestampTemplateEntry {
 export class Timestamp {
 	/**
 	 * The raw pattern
-	 *
-	 * @since 1.0.0
 	 */
 	public pattern: string;
 
 	/**
-	 * @since 1.0.0
+	 * The parsed pattern tokens.
 	 */
 	private template: TimestampTemplateEntry[];
 
 	/**
 	 * Starts a new Timestamp and parses the pattern.
 	 *
-	 * @since 1.0.0
-	 * @param pattern The pattern to parse
+	 * @param pattern - The pattern to parse
 	 */
 	public constructor(pattern: string) {
 		this.pattern = pattern;
@@ -146,8 +143,7 @@ export class Timestamp {
 	/**
 	 * Display the current date with the current pattern.
 	 *
-	 * @since 1.0.0
-	 * @param time The time to display
+	 * @param time - The time to display
 	 */
 	public display(time: TimeResolvable = new Date()): string {
 		return Timestamp.display(this.template, time);
@@ -156,8 +152,7 @@ export class Timestamp {
 	/**
 	 * Display the current date utc with the current pattern.
 	 *
-	 * @since 1.0.0
-	 * @param time The time to display in utc
+	 * @param time - The time to display in utc
 	 */
 	public displayUTC(time?: TimeResolvable): string {
 		return Timestamp.display(this.template, Timestamp.utc(time));
@@ -166,9 +161,7 @@ export class Timestamp {
 	/**
 	 * Edits the current pattern.
 	 *
-	 * @since 1.0.0
-	 * @param pattern The new pattern for this instance
-	 * @chainable
+	 * @param pattern - The new pattern for this instance
 	 */
 	public edit(pattern: string): this {
 		this.pattern = pattern;
@@ -186,9 +179,8 @@ export class Timestamp {
 	/**
 	 * Display the current date with the current pattern.
 	 *
-	 * @since 1.0.0
-	 * @param pattern The pattern to parse
-	 * @param time The time to display
+	 * @param pattern - The pattern to parse
+	 * @param time - The time to display
 	 */
 	public static displayArbitrary(pattern: string, time: TimeResolvable = new Date()): string {
 		return Timestamp.display(Timestamp.parse(pattern), time);
@@ -197,9 +189,8 @@ export class Timestamp {
 	/**
 	 * Display the current date utc with the current pattern.
 	 *
-	 * @since 1.0.0
-	 * @param pattern The pattern to parse
-	 * @param time The time to display
+	 * @param pattern - The pattern to parse
+	 * @param time - The time to display
 	 */
 	public static displayUTCArbitrary(pattern: string, time: TimeResolvable = new Date()): string {
 		return Timestamp.display(Timestamp.parse(pattern), Timestamp.utc(time));
@@ -208,8 +199,7 @@ export class Timestamp {
 	/**
 	 * Creates a UTC Date object to work with.
 	 *
-	 * @since 1.0.0
-	 * @param time The date to convert to utc
+	 * @param time - The date to convert to utc
 	 */
 	public static utc(time: Date | number | string = new Date()): Date {
 		// eslint-disable-next-line no-param-reassign
@@ -220,9 +210,8 @@ export class Timestamp {
 	/**
 	 * Display the current date with the current pattern.
 	 *
-	 * @since 1.0.0
-	 * @param template The pattern to parse
-	 * @param time The time to display
+	 * @param template - The pattern to parse
+	 * @param time - The time to display
 	 */
 	private static display(template: TimestampTemplateEntry[], time: Date | number | string): string {
 		let output = '';
@@ -235,8 +224,7 @@ export class Timestamp {
 	/**
 	 * Parses the pattern.
 	 *
-	 * @since 1.0.0
-	 * @param pattern The pattern to parse
+	 * @param pattern - The pattern to parse
 	 */
 	private static parse(pattern: string): TimestampTemplateEntry[] {
 		const template: TimestampTemplateEntry[] = [];
@@ -265,8 +253,7 @@ export class Timestamp {
 	/**
 	 * Resolves a date.
 	 *
-	 * @since 1.0.0
-	 * @param time The time to parse
+	 * @param time - The time to parse
 	 */
 	private static resolveDate(time: TimeResolvable): Date {
 		return time instanceof Date ? time : new Date(time);

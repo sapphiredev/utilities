@@ -81,9 +81,9 @@ export class EventIterator<V extends unknown[]> implements AsyncIterableIterator
 	readonly #push: (this: EventIterator<V>, ...value: V) => void;
 
 	/**
-	 * @param emitter The event emitter to listen to.
-	 * @param event The event we're listening for to receives values from.
-	 * @param options Any extra options.
+	 * @param emitter - The event emitter to listen to.
+	 * @param event - The event we're listening for to receives values from.
+	 * @param options - Any extra options.
 	 */
 	public constructor(emitter: EventEmitter, event: string, options: EventIteratorOptions<V> = {}) {
 		this.emitter = emitter;

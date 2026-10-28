@@ -5,8 +5,8 @@ import type { IterableResolvable } from './from';
 /**
  * Advances the iterable until it finds the element, returning it if it's found and `undefined` otherwise.
  *
- * @param iterable An iterator to search for a value in.
- * @param callbackFn A function that determines if a value is the one being searched for.
+ * @param iterable - An iterator to search for a value in.
+ * @param callbackFn - A function that determines if a value is the one being searched for.
  * @returns
  * @example
  * ```typescript

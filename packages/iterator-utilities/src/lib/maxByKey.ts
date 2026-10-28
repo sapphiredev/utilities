@@ -11,11 +11,11 @@ import { toIterableIterator } from './toIterableIterator';
  *
  * If several elements are equally maximum, the last element is returned. If the iterator is empty, `null` is returned.
  *
- * @seealso {@link max} for a version that uses the default comparator.
- * @seealso {@link maxBy} for a version that allows custom comparators.
- * @param iterable An iterator of number values to determine the maximum value of.
- * @param callbackFn A function to execute for each element produced by the iterator, producing a key to compare with.
- * @param comparator A function to execute for each element produced by the iterator. It should return a number value.
+ * @see {@link max} for a version that uses the default comparator.
+ * @see {@link maxBy} for a version that allows custom comparators.
+ * @param iterable - An iterator of number values to determine the maximum value of.
+ * @param callbackFn - A function to execute for each element produced by the iterator, producing a key to compare with.
+ * @param comparator - A function to execute for each element produced by the iterator. It should return a number value.
  * @returns The element that gives the maximum value from the specified function, or `null` if the iterator is empty.
  * @example
  * ```typescript

@@ -6,8 +6,8 @@ import { toIterableIterator } from './toIterableIterator';
 /**
  * Creates an iterable with the results of calling a provided function on each element of the input iterables as the function's parameters.
  *
- * @param iterable The iterable to map over.
- * @param callbackFn The callback function to apply to each element.
+ * @param iterable - The iterable to map over.
+ * @param callbackFn - The callback function to apply to each element.
  * @returns An iterable iterator that yields the mapped elements.
  * @example
  * ```typescript

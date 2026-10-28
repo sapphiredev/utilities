@@ -18,7 +18,7 @@ export async function fetch<R>(url: URL | string, type?: FetchResultTypes.JSON):
  *
  * @param url - The URL to send the request to. Can be either a `string` or an `URL` object.
  * `url` should be an absolute url, such as `https://example.com/`. A path-relative URL (`/file/under/root`) or protocol-relative URL (`//can-be-http-or-https.com/`) will result in a rejected `Promise`.
- * @param options - The {@linkplain https://developer.mozilla.org/en-US/docs/Web/API/Request `Request`} ({@link RequestOptions} for TypeScript)
+ * @param options - The {@link https://developer.mozilla.org/en-US/docs/Web/API/Request | `Request`} ({@link RequestOptions} for TypeScript)
  * @param type - The {@link FetchResultTypes}
  * @returns A JSON of the response body. Defaults to `unknown`, with the type set by passing the generic type of this function, or casting the result.
  */
@@ -29,7 +29,7 @@ export async function fetch<R>(url: URL | string, options: RequestOptions, type?
  * @param url - The URL to send the request to. Can be either a `string` or an `URL` object.
  * `url` should be an absolute url, such as `https://example.com/`. A path-relative URL (`/file/under/root`) or protocol-relative URL (`//can-be-http-or-https.com/`) will result in a rejected `Promise`.
  * @param type - The {@link FetchResultTypes}
- * @returns A {@linkplain https://nodejs.org/api/buffer.html `Buffer`} of the response body
+ * @returns A {@link https://nodejs.org/api/buffer.html | `Buffer`} of the response body
  */
 export async function fetch(url: URL | string, type: FetchResultTypes.Buffer): Promise<Buffer>;
 /**
@@ -37,9 +37,9 @@ export async function fetch(url: URL | string, type: FetchResultTypes.Buffer): P
  *
  * @param url - The URL to send the request to. Can be either a `string` or an `URL` object.
  * `url` should be an absolute url, such as `https://example.com/`. A path-relative URL (`/file/under/root`) or protocol-relative URL (`//can-be-http-or-https.com/`) will result in a rejected `Promise`.
- * @param options - The {@linkplain https://developer.mozilla.org/en-US/docs/Web/API/Request `Request`} ({@link RequestOptions} for TypeScript)
+ * @param options - The {@link https://developer.mozilla.org/en-US/docs/Web/API/Request | `Request`} ({@link RequestOptions} for TypeScript)
  * @param type - The {@link FetchResultTypes}
- * @returns A {@linkplain https://nodejs.org/api/buffer.html `Buffer`} of the response body
+ * @returns A {@link https://nodejs.org/api/buffer.html | `Buffer`} of the response body
  */
 export async function fetch(url: URL | string, options: RequestOptions, type: FetchResultTypes.Buffer): Promise<Buffer>;
 /**
@@ -48,7 +48,7 @@ export async function fetch(url: URL | string, options: RequestOptions, type: Fe
  * @param url - The URL to send the request to. Can be either a `string` or an `URL` object.
  * `url` should be an absolute url, such as `https://example.com/`. A path-relative URL (`/file/under/root`) or protocol-relative URL (`//can-be-http-or-https.com/`) will result in a rejected `Promise`.
  * @param type - The {@link FetchResultTypes}
- * @returns A {@linkplain https://developer.mozilla.org/en-US/docs/Web/API/Blob `Blob`} of the response body
+ * @returns A {@link https://developer.mozilla.org/en-US/docs/Web/API/Blob | `Blob`} of the response body
  */
 export async function fetch(url: URL | string, type: FetchResultTypes.Blob): Promise<Blob>;
 /**
@@ -56,9 +56,9 @@ export async function fetch(url: URL | string, type: FetchResultTypes.Blob): Pro
  *
  * @param url - The URL to send the request to. Can be either a `string` or an `URL` object.
  * `url` should be an absolute url, such as `https://example.com/`. A path-relative URL (`/file/under/root`) or protocol-relative URL (`//can-be-http-or-https.com/`) will result in a rejected `Promise`.
- * @param options - The {@linkplain https://developer.mozilla.org/en-US/docs/Web/API/Request `Request`} ({@link RequestOptions} for TypeScript)
+ * @param options - The {@link https://developer.mozilla.org/en-US/docs/Web/API/Request | `Request`} ({@link RequestOptions} for TypeScript)
  * @param type - The {@link FetchResultTypes}
- * @returns A {@linkplain https://developer.mozilla.org/en-US/docs/Web/API/Blob `Blob`} of the response body
+ * @returns A {@link https://developer.mozilla.org/en-US/docs/Web/API/Blob | `Blob`} of the response body
  */
 export async function fetch(url: URL | string, options: RequestOptions, type: FetchResultTypes.Blob): Promise<Blob>;
 /**
@@ -75,7 +75,7 @@ export async function fetch(url: URL | string, type: FetchResultTypes.Text): Pro
  *
  * @param url - The URL to send the request to. Can be either a `string` or an `URL` object.
  * `url` should be an absolute url, such as `https://example.com/`. A path-relative URL (`/file/under/root`) or protocol-relative URL (`//can-be-http-or-https.com/`) will result in a rejected `Promise`.
- * @param options - The {@linkplain https://developer.mozilla.org/en-US/docs/Web/API/Request `Request`} ({@link RequestOptions} for TypeScript)
+ * @param options - The {@link https://developer.mozilla.org/en-US/docs/Web/API/Request | `Request`} ({@link RequestOptions} for TypeScript)
  * @param type - The {@link FetchResultTypes}
  * @returns The response body as a raw `string`.
  */
@@ -86,7 +86,7 @@ export async function fetch(url: URL | string, options: RequestOptions, type: Fe
  * @param url - The URL to send the request to. Can be either a `string` or an `URL` object.
  * `url` should be an absolute url, such as `https://example.com/`. A path-relative URL (`/file/under/root`) or protocol-relative URL (`//can-be-http-or-https.com/`) will result in a rejected `Promise`.
  * @param type - The {@link FetchResultTypes}
- * @returns The raw {@linkplain https://developer.mozilla.org/en-US/docs/Web/API/Response `Response`} ({@link Response} in typescript).
+ * @returns The raw {@link https://developer.mozilla.org/en-US/docs/Web/API/Response | `Response`} ({@link Response} in typescript).
  */
 export async function fetch(url: URL | string, type: FetchResultTypes.Result): Promise<Response>;
 /**
@@ -94,9 +94,9 @@ export async function fetch(url: URL | string, type: FetchResultTypes.Result): P
  *
  * @param url - The URL to send the request to. Can be either a `string` or an `URL` object.
  * `url` should be an absolute url, such as `https://example.com/`. A path-relative URL (`/file/under/root`) or protocol-relative URL (`//can-be-http-or-https.com/`) will result in a rejected `Promise`.
- * @param options - The {@linkplain https://developer.mozilla.org/en-US/docs/Web/API/Request `Request`} ({@link RequestOptions} for TypeScript)
+ * @param options - The {@link https://developer.mozilla.org/en-US/docs/Web/API/Request | `Request`} ({@link RequestOptions} for TypeScript)
  * @param type - The {@link FetchResultTypes}
- * @returns The raw {@linkplain https://developer.mozilla.org/en-US/docs/Web/API/Response `Response`} ({@link Response} in typescript).
+ * @returns The raw {@link https://developer.mozilla.org/en-US/docs/Web/API/Response | `Response`} ({@link Response} in typescript).
  */
 export async function fetch(url: URL | string, options: RequestOptions, type: FetchResultTypes.Result): Promise<Response>;
 /**
@@ -104,14 +104,14 @@ export async function fetch(url: URL | string, options: RequestOptions, type: Fe
  *
  * @param url - The URL to send the request to. Can be either a `string` or an `URL` object.
  * `url` should be an absolute url, such as `https://example.com/`. A path-relative URL (`/file/under/root`) or protocol-relative URL (`//can-be-http-or-https.com/`) will result in a rejected `Promise`.
- * @param options - The {@linkplain https://developer.mozilla.org/en-US/docs/Web/API/Request `Request`} ({@link RequestOptions} for TypeScript)
+ * @param options - The {@link https://developer.mozilla.org/en-US/docs/Web/API/Request | `Request`} ({@link RequestOptions} for TypeScript)
  * @param type - The {@link FetchResultTypes}
  * @returns The return type is determined by the provided `type`.
  * - When using `FetchResultTypes.JSON` then the return type is `unknown` by default. The type should be specified by filling in the generic type of the function, or casting the result.
- * - When using `FetchResultTypes.Buffer` the return type will be {@linkplain https://nodejs.org/api/buffer.html `Buffer`}.
- * - When using `FetchResultTypes.Blob` the return type will be a {@linkplain https://developer.mozilla.org/en-US/docs/Web/API/Blob `Blob`}.
+ * - When using `FetchResultTypes.Buffer` the return type will be {@link https://nodejs.org/api/buffer.html | `Buffer`}.
+ * - When using `FetchResultTypes.Blob` the return type will be a {@link https://developer.mozilla.org/en-US/docs/Web/API/Blob | `Blob`}.
  * - When using `FetchResultTypes.Text` the return type will be a `string`
- * - When using `FetchResultTypes.Result` the return type will be a {@linkplain https://developer.mozilla.org/en-US/docs/Web/API/Response `Response`} ({@link Response} in typescript)
+ * - When using `FetchResultTypes.Result` the return type will be a {@link https://developer.mozilla.org/en-US/docs/Web/API/Response | `Response`} ({@link Response} in typescript)
  */
 export async function fetch<R>(url: URL | string, options: RequestOptions, type: FetchResultTypes): Promise<Blob | Buffer | R | Response | string>;
 /**
@@ -119,14 +119,14 @@ export async function fetch<R>(url: URL | string, options: RequestOptions, type:
  *
  * @param url - The URL to send the request to. Can be either a `string` or an `URL` object.
  * `url` should be an absolute url, such as `https://example.com/`. A path-relative URL (`/file/under/root`) or protocol-relative URL (`//can-be-http-or-https.com/`) will result in a rejected `Promise`.
- * @param options - The {@linkplain https://developer.mozilla.org/en-US/docs/Web/API/Request `Request`} ({@link RequestOptions} for TypeScript)
+ * @param options - The {@link https://developer.mozilla.org/en-US/docs/Web/API/Request | `Request`} ({@link RequestOptions} for TypeScript)
  * @param type - The {@link FetchResultTypes}
  * @returns The return type is determined by the provided `type`.
  * - When using `FetchResultTypes.JSON` then the return type is `unknown` by default. The type should be specified by filling in the generic type of the function, or casting the result.
- * - When using `FetchResultTypes.Buffer` the return type will be {@linkplain https://nodejs.org/api/buffer.html `Buffer`}.
- * - When using `FetchResultTypes.Blob` the return type will be a {@linkplain https://developer.mozilla.org/en-US/docs/Web/API/Blob `Blob`}.
+ * - When using `FetchResultTypes.Buffer` the return type will be {@link https://nodejs.org/api/buffer.html | `Buffer`}.
+ * - When using `FetchResultTypes.Blob` the return type will be a {@link https://developer.mozilla.org/en-US/docs/Web/API/Blob | `Blob`}.
  * - When using `FetchResultTypes.Text` the return type will be a `string`
- * - When using `FetchResultTypes.Result` the return type will be a {@linkplain https://developer.mozilla.org/en-US/docs/Web/API/Response `Response`} ({@link Response} in typescript)
+ * - When using `FetchResultTypes.Result` the return type will be a {@link https://developer.mozilla.org/en-US/docs/Web/API/Response | `Response`} ({@link Response} in typescript)
  */
 export async function fetch(url: URL | string, options?: FetchResultTypes | RequestOptions, type?: FetchResultTypes) {
 	if (typeof options === 'undefined') {

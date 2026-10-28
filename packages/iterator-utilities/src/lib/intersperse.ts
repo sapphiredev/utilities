@@ -4,8 +4,8 @@ import { makeIterableIterator } from './shared/_makeIterableIterator';
 /**
  * Creates a new iterator which places `separator` between adjacent items of the original iterator.
  *
- * @param iterable An iterator to map over.
- * @param separator The separator to place between adjacent items.
+ * @param iterable - An iterator to map over.
+ * @param separator - The separator to place between adjacent items.
  * @example
  * ```typescript
  * import { intersperse } from '@sapphire/iterator-utilities';

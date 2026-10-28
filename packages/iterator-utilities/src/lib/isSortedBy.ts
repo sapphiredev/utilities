@@ -8,9 +8,9 @@ import { toIterableIterator } from './toIterableIterator';
 /**
  * Checks if the elements of this iterator are sorted using the given comparator function.
  *
- * @seealso {@link isSorted} for a version that uses the default comparator.
- * @seealso {@link isSortedByKey} for a version that allows custom key extractors.
- * @param iterable The iterator to compare.
+ * @see {@link isSorted} for a version that uses the default comparator.
+ * @see {@link isSortedByKey} for a version that allows custom key extractors.
+ * @param iterable - The iterator to compare.
  * @example
  * ```typescript
  * import { ascNumber, isSortedBy } from '@sapphire/iterator-utilities';

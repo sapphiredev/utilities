@@ -33,7 +33,7 @@ import type {
 /**
  * Checks if a PaginatedMessageAction is a button or menu.
  *
- * @param action The PaginatedMessageAction to check.
+ * @param action - The PaginatedMessageAction to check.
  * @returns `true` if the action is a button or menu, `false` otherwise.
  */
 export function actionIsButtonOrMenu(action: PaginatedMessageAction): action is Exclude<PaginatedMessageAction, PaginatedMessageActionLink> {
@@ -48,10 +48,10 @@ export function actionIsButtonOrMenu(action: PaginatedMessageAction): action is 
 }
 
 /**
- * Checks if a PaginatedMessageAction is a button with {@link ButtonStyle.Link style `link`}.
+ * Checks if a PaginatedMessageAction is a button with {@link ButtonStyle.Link | style `link`}.
  *
- * @param action The PaginatedMessageAction to check.
- * @returns `true` if the action is a button with {@link ButtonStyle.Link style `link`}, `false` otherwise.
+ * @param action - The PaginatedMessageAction to check.
+ * @returns `true` if the action is a button with {@link ButtonStyle.Link | style `link`}, `false` otherwise.
  */
 export function actionIsLinkButton(action: PaginatedMessageAction): action is PaginatedMessageActionLink {
 	return action.type === ComponentType.Button && action.style === ButtonStyle.Link;
@@ -200,7 +200,7 @@ export function isActionChannelMenu(action: PaginatedMessageAction): action is P
 /**
  * Creates partitioned message rows based on the provided components.
  *
- * @param components The array of MessageActionRowComponentBuilder objects.
+ * @param components - The array of MessageActionRowComponentBuilder objects.
  * @returns An array of `APIActionRowComponent<APIComponentInMessageActionRow>` objects.
  */
 export function createPartitionedMessageRow(components: MessageActionRowComponentBuilder[]): PaginatedMessageComponentUnion[] {
@@ -240,7 +240,7 @@ export function createPartitionedMessageRow(components: MessageActionRowComponen
 /**
  * Safely replies to a message or interaction. This is primarily to save duplicated code in the main `PaginatedMessage` class
  *
- * @param parameters The parameters to create a safe reply to interaction parameters
+ * @param parameters - The parameters to create a safe reply to interaction parameters
  */
 export async function safelyReplyToInteraction<T extends 'edit' | 'reply'>(parameters: SafeReplyToInteractionParameters<T>) {
 	if (isAnyInteractableInteraction(parameters.messageOrInteraction)) {

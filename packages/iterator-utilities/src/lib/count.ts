@@ -3,7 +3,7 @@ import { from, type IterableResolvable } from './from';
 /**
  * Consumes the iterable and returns the number of elements.
  *
- * @param iterable An iterator that contains elements to be counted.
+ * @param iterable - An iterator that contains elements to be counted.
  * @returns The number of elements in the input iterator.
  * @example
  * ```typescript

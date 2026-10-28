@@ -4,7 +4,7 @@ import type { IterableResolvable } from './from';
 /**
  * Creates a new iterable that yields all the non-nullish values (`null` and `undefined`) from the iterable.
  *
- * @param iterable An iterator that contains elements to be compacted.
+ * @param iterable - An iterator that contains elements to be compacted.
  * @example
  * ```typescript
  * import { compact } from '@sapphire/iterator-utilities';

@@ -4,13 +4,13 @@ import type { LexicographicComparison } from './shared/_compare';
 import { defaultCompare } from './shared/comparators';
 
 /**
- * {@link LexicographicComparison Lexicographically} compares the elements of both iterators are equal.
+ * {@link LexicographicComparison | Lexicographically} compares the elements of both iterators are equal.
  *
  * This function uses the default comparator (lexicographically), which means it will compare the elements as strings.
  * If this is undesirable, use {@link compareBy} instead.
  *
- * @param iterable The iterator to compare.
- * @param other The iterator to compare against.
+ * @param iterable - The iterator to compare.
+ * @param other - The iterator to compare against.
  * @returns Whether the two iterators are equal.
  * @example
  * ```typescript

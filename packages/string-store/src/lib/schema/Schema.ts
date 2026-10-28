@@ -14,7 +14,7 @@ export class Schema<Id extends number = number, Entries extends object = object>
 	/**
 	 * Creates a new schema.
 	 *
-	 * @param id The id of the schema
+	 * @param id - The id of the schema
 	 */
 	public constructor(id: Id) {
 		this.#id = id;
@@ -54,7 +54,7 @@ export class Schema<Id extends number = number, Entries extends object = object>
 	/**
 	 * Get a property from the schema.
 	 *
-	 * @param name The name of the property
+	 * @param name - The name of the property
 	 * @returns The specified property
 	 * @remarks
 	 *
@@ -69,10 +69,10 @@ export class Schema<Id extends number = number, Entries extends object = object>
 	/**
 	 * Create a buffer and serialize a value into it, then convert it to a string
 	 *
-	 * @param value The value to serialize into the buffer
-	 * @param defaultMaximumArrayLength The default maximum array length, if any
+	 * @param value - The value to serialize into the buffer
+	 * @param defaultMaximumArrayLength - The default maximum array length, if any
 	 * @returns The newly created string.
-	 * @seealso This method calls {@link Schema.serializeRaw} before calling `toString()` to its result.
+	 * @see This method calls {@link Schema.serializeRaw} before calling `toString()` to its result.
 	 */
 	public serialize(value: Readonly<SerializeValueEntries<Entries>>, defaultMaximumArrayLength = 100): string {
 		return this.serializeRaw(value, defaultMaximumArrayLength).toString();
@@ -81,8 +81,8 @@ export class Schema<Id extends number = number, Entries extends object = object>
 	/**
 	 * Create a buffer and serialize a value into it.
 	 *
-	 * @param value The value to serialize into the buffer
-	 * @param defaultMaximumArrayLength The default maximum array length, if any
+	 * @param value - The value to serialize into the buffer
+	 * @param defaultMaximumArrayLength - The default maximum array length, if any
 	 * @returns The newly created buffer.
 	 */
 	public serializeRaw(value: Readonly<SerializeValueEntries<Entries>>, defaultMaximumArrayLength = 100): DuplexBuffer {
@@ -94,8 +94,8 @@ export class Schema<Id extends number = number, Entries extends object = object>
 	/**
 	 * Serialize a value into a buffer.
 	 *
-	 * @param buffer The buffer to serialize
-	 * @param value The value to serialize into the buffer
+	 * @param buffer - The buffer to serialize
+	 * @param value - The value to serialize into the buffer
 	 * @remarks
 	 *
 	 * The schema's ID is written to the buffer first, followed by each property
@@ -111,8 +111,8 @@ export class Schema<Id extends number = number, Entries extends object = object>
 	/**
 	 * Deserialize a value from a buffer.
 	 *
-	 * @param buffer The buffer to deserialize
-	 * @param pointer The pointer to where the buffer should be read from
+	 * @param buffer - The buffer to deserialize
+	 * @param pointer - The pointer to where the buffer should be read from
 	 * @returns The deserialized value
 	 * @remarks
 	 *
@@ -136,9 +136,9 @@ export class Schema<Id extends number = number, Entries extends object = object>
 	/**
 	 * Adds an array property to the schema.
 	 *
-	 * @seealso {@link Schema.fixedLengthArray} for a fixed length array
-	 * @param name The name of the property
-	 * @param type The type of the entry in the array
+	 * @see {@link Schema.fixedLengthArray} for a fixed length array
+	 * @param name - The name of the property
+	 * @param type - The type of the entry in the array
 	 * @returns The modified schema
 	 */
 	public array<const Name extends string, const ValueType, const ValueBitSize extends number | null>(
@@ -151,10 +151,10 @@ export class Schema<Id extends number = number, Entries extends object = object>
 	/**
 	 * Adds a fixed length array property to the schema.
 	 *
-	 * @seealso {@link Schema.array} for a dynamic length array
-	 * @param name The name of the property
-	 * @param type The type of the entry in the array
-	 * @param length The length of the array
+	 * @see {@link Schema.array} for a dynamic length array
+	 * @param name - The name of the property
+	 * @param type - The type of the entry in the array
+	 * @param length - The length of the array
 	 * @returns The modified schema
 	 */
 	public fixedLengthArray<const Name extends string, const ValueType, const ValueBitSize extends number | null>(
@@ -168,7 +168,7 @@ export class Schema<Id extends number = number, Entries extends object = object>
 	/**
 	 * Adds a string property to the schema.
 	 *
-	 * @param name The name of the property
+	 * @param name - The name of the property
 	 * @returns The modified schema
 	 */
 	public string<const Name extends string>(name: Name) {
@@ -178,7 +178,7 @@ export class Schema<Id extends number = number, Entries extends object = object>
 	/**
 	 * Adds a boolean property to the schema.
 	 *
-	 * @param name The name of the property
+	 * @param name - The name of the property
 	 * @returns The modified schema
 	 */
 	public boolean<const Name extends string>(name: Name) {
@@ -188,7 +188,7 @@ export class Schema<Id extends number = number, Entries extends object = object>
 	/**
 	 * Adds a bit property to the schema.
 	 *
-	 * @param name The name of the property
+	 * @param name - The name of the property
 	 * @returns The modified schema
 	 */
 	public bit<const Name extends string>(name: Name) {
@@ -201,7 +201,7 @@ export class Schema<Id extends number = number, Entries extends object = object>
 	 * @remarks
 	 *
 	 * The range of values is from -2 to 1, inclusive.
-	 * @param name The name of the property
+	 * @param name - The name of the property
 	 * @returns The modified schema
 	 */
 	public int2<const Name extends string>(name: Name) {
@@ -214,7 +214,7 @@ export class Schema<Id extends number = number, Entries extends object = object>
 	 * @remarks
 	 *
 	 * The range of values is from 0 to 3, inclusive.
-	 * @param name The name of the property
+	 * @param name - The name of the property
 	 * @returns The modified schema
 	 */
 	public uint2<const Name extends string>(name: Name) {
@@ -227,7 +227,7 @@ export class Schema<Id extends number = number, Entries extends object = object>
 	 * @remarks
 	 *
 	 * The range of values is from -8 to 7, inclusive.
-	 * @param name The name of the property
+	 * @param name - The name of the property
 	 * @returns The modified schema
 	 */
 	public int4<const Name extends string>(name: Name) {
@@ -240,7 +240,7 @@ export class Schema<Id extends number = number, Entries extends object = object>
 	 * @remarks
 	 *
 	 * The range of values is from 0 to 15, inclusive.
-	 * @param name The name of the property
+	 * @param name - The name of the property
 	 * @returns The modified schema
 	 */
 	public uint4<const Name extends string>(name: Name) {
@@ -253,7 +253,7 @@ export class Schema<Id extends number = number, Entries extends object = object>
 	 * @remarks
 	 *
 	 * The range of values is from -128 to 127, inclusive.
-	 * @param name The name of the property
+	 * @param name - The name of the property
 	 * @returns The modified schema
 	 */
 	public int8<const Name extends string>(name: Name) {
@@ -266,7 +266,7 @@ export class Schema<Id extends number = number, Entries extends object = object>
 	 * @remarks
 	 *
 	 * The range of values is from 0 to 255, inclusive.
-	 * @param name The name of the property
+	 * @param name - The name of the property
 	 * @returns The modified schema
 	 */
 	public uint8<const Name extends string>(name: Name) {
@@ -279,7 +279,7 @@ export class Schema<Id extends number = number, Entries extends object = object>
 	 * @remarks
 	 *
 	 * The range of values is from -32768 to 32767, inclusive.
-	 * @param name The name of the property
+	 * @param name - The name of the property
 	 * @returns The modified schema
 	 */
 	public int16<const Name extends string>(name: Name) {
@@ -292,7 +292,7 @@ export class Schema<Id extends number = number, Entries extends object = object>
 	 * @remarks
 	 *
 	 * The range of values is from 0 to 65535, inclusive.
-	 * @param name The name of the property
+	 * @param name - The name of the property
 	 * @returns The modified schema
 	 */
 	public uint16<const Name extends string>(name: Name) {
@@ -305,7 +305,7 @@ export class Schema<Id extends number = number, Entries extends object = object>
 	 * @remarks
 	 *
 	 * The range of values is from -2_147_483_648 to 2_147_483_647, inclusive.
-	 * @param name The name of the property
+	 * @param name - The name of the property
 	 * @returns The modified schema
 	 */
 	public int32<const Name extends string>(name: Name) {
@@ -318,7 +318,7 @@ export class Schema<Id extends number = number, Entries extends object = object>
 	 * @remarks
 	 *
 	 * The range of values is from 0 to 4_294_967_295, inclusive.
-	 * @param name The name of the property
+	 * @param name - The name of the property
 	 * @returns The modified schema
 	 */
 	public uint32<const Name extends string>(name: Name) {
@@ -333,7 +333,7 @@ export class Schema<Id extends number = number, Entries extends object = object>
 	 * The range of values is from -9_223_372_036_854_775_808 to 9_223_372_036_854_775_807, inclusive.
 	 *
 	 * However, it may run into precision issues past the range of `-9_007_199_254_740_991` to `9_007_199_254_740_991`
-	 * @param name The name of the property
+	 * @param name - The name of the property
 	 * @returns The modified schema
 	 */
 	public int64<const Name extends string>(name: Name) {
@@ -348,7 +348,7 @@ export class Schema<Id extends number = number, Entries extends object = object>
 	 * The range of values is from 0 to 18_446_744_073_709_551_615, inclusive.
 	 *
 	 * However, it may run into precision issues past `9_007_199_254_740_991`
-	 * @param name The name of the property
+	 * @param name - The name of the property
 	 * @returns The modified schema
 	 */
 	public uint64<const Name extends string>(name: Name) {
@@ -361,7 +361,7 @@ export class Schema<Id extends number = number, Entries extends object = object>
 	 * @remarks
 	 *
 	 * The range of values is from -2_147_483_648n to 2_147_483_647n, inclusive.
-	 * @param name The name of the property
+	 * @param name - The name of the property
 	 * @returns The modified schema
 	 */
 	public bigInt32<const Name extends string>(name: Name) {
@@ -374,7 +374,7 @@ export class Schema<Id extends number = number, Entries extends object = object>
 	 * @remarks
 	 *
 	 * The range of values is from 0n to 4_294_967_295n, inclusive.
-	 * @param name The name of the property
+	 * @param name - The name of the property
 	 * @returns The modified schema
 	 */
 	public bigUint32<const Name extends string>(name: Name) {
@@ -387,7 +387,7 @@ export class Schema<Id extends number = number, Entries extends object = object>
 	 * @remarks
 	 *
 	 * The range of values is from -9_223_372_036_854_775_808n to 9_223_372_036_854_775_807n, inclusive.
-	 * @param name The name of the property
+	 * @param name - The name of the property
 	 * @returns The modified schema
 	 */
 	public bigInt64<const Name extends string>(name: Name) {
@@ -400,7 +400,7 @@ export class Schema<Id extends number = number, Entries extends object = object>
 	 * @remarks
 	 *
 	 * The range of values is from 0n to 18_446_744_073_709_551_615n, inclusive.
-	 * @param name The name of the property
+	 * @param name - The name of the property
 	 * @returns The modified schema
 	 */
 	public bigUint64<const Name extends string>(name: Name) {
@@ -413,7 +413,7 @@ export class Schema<Id extends number = number, Entries extends object = object>
 	 * @remarks
 	 *
 	 * The range of values is from -3.4028234663852886e+38 to 3.4028234663852886e+38, inclusive.
-	 * @param name The name of the property
+	 * @param name - The name of the property
 	 * @returns The modified schema
 	 */
 	public float32<const Name extends string>(name: Name) {
@@ -426,7 +426,7 @@ export class Schema<Id extends number = number, Entries extends object = object>
 	 * @remarks
 	 *
 	 * The range of values is from -1.7976931348623157e+308 to 1.7976931348623157e+308, inclusive.
-	 * @param name The name of the property
+	 * @param name - The name of the property
 	 * @returns The modified schema
 	 */
 	public float64<const Name extends string>(name: Name) {
@@ -436,8 +436,8 @@ export class Schema<Id extends number = number, Entries extends object = object>
 	/**
 	 * Adds a nullable property to the schema.
 	 *
-	 * @param name The name of the property
-	 * @param type The type of the underlying value
+	 * @param name - The name of the property
+	 * @param type - The type of the underlying value
 	 * @returns The modified schema
 	 */
 	public nullable<const Name extends string, const ValueType, const ValueBitSize extends number | null>(
@@ -453,7 +453,7 @@ export class Schema<Id extends number = number, Entries extends object = object>
 	 * @remarks
 	 *
 	 * The range of values is from 0n to 18_446_744_073_709_551_615n, inclusive.
-	 * @param name The name of the property
+	 * @param name - The name of the property
 	 * @returns The modified schema
 	 */
 	public snowflake<const Name extends string>(name: Name) {
@@ -464,8 +464,8 @@ export class Schema<Id extends number = number, Entries extends object = object>
 	 * Adds a constant value in the schema, this will **not** be serialized and
 	 * can be used to add extra data without making the payload bigger.
 	 *
-	 * @param name The name of the property
-	 * @param constantValue The value to add to the schema
+	 * @param name - The name of the property
+	 * @param constantValue - The value to add to the schema
 	 * @returns The modified schema
 	 */
 	public constant<const Name extends string, const ValueType>(name: Name, constantValue: ValueType) {

@@ -5,8 +5,8 @@ import { toIterableIterator } from './toIterableIterator';
 /**
  * Determines if the elements of both iterators are equal with respect to the specified equality function.
  *
- * @param iterable The iterator to compare.
- * @param other The iterator to compare against.
+ * @param iterable - The iterator to compare.
+ * @param other - The iterator to compare against.
  * @returns Whether the two iterators are equal with respect to the specified equality function.
  * @example
  * ```typescript
