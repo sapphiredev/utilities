@@ -21,10 +21,9 @@
 
 ## Features
 
-- Written in TypeScript
-- Published as ESM for Node.js and modern bundlers
-- Publishes ESM-only output
-- Fully tested
+- Parses five-field cron expressions with lists, ranges, and step values
+- Supports named months and weekdays, plus common schedule aliases
+- Calculates the next matching date in UTC
 
 ## Installation
 

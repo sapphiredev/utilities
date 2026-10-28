@@ -26,10 +26,9 @@
 
 ## Features
 
-- Written in TypeScript
-- Published as ESM for Node.js and modern bundlers
-- Publishes ESM-only output
-- Fully tested
+- Parses duration strings and serializes durations into human-readable forms
+- Formats durations with configurable units and localization support
+- Provides named constants for common time intervals
 
 ## Installation
 

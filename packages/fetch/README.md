@@ -30,12 +30,11 @@ Node has a great global `fetch` (powered by [undici]) for making API calls, but 
 
 ## Features
 
-- Written in TypeScript
-- Fully tested
+- Wraps global `fetch` with helpers for JSON, text, and binary response data
 - Exported `enum` for the common return data types
-- Throws distinctive errors when the API returns a "not ok" status code to make them easier to understand
-- Enforces casting the return type when requesting JSON data, to ensure your return data is strictly typed
-- Uses global `fetch`, which for NodeJS is [undici] and for browsers is the [Fetch API][fetch-mdn]
+- Provides typed JSON responses and serializes plain-object request bodies
+- Throws a descriptive error when a response has a non-success status
+- Uses the platform's global Fetch API implementation
 
 ## Installation
 

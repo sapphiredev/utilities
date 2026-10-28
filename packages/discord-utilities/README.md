@@ -20,11 +20,9 @@ When developing Discord bots or frameworks for Discord bots we often run into ce
 
 ## Features
 
-- Written in TypeScript
-- Published as ESM for Node.js and modern bundlers
-- Publishes ESM-only output
-- Fully tested
-- Discord library agnostic
+- Provides Discord API helpers without depending on a specific Discord library
+- Includes interaction option resolvers and API limits
+- Includes common Discord regular expressions and a Twemoji-compatible regex
 
 ## Installation
 

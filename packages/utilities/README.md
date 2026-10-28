@@ -97,10 +97,9 @@ We often have a need for a function or type augmentation and having to include i
 
 ## Features
 
-- Written in TypeScript
-- Published as ESM for Node.js and modern bundlers
-- Publishes ESM-only output
-- Fully tested
+- Provides reusable array, object, string, and type-checking helpers
+- Includes timing, retry, polling, and asynchronous control-flow utilities
+- Offers small formatting and data-conversion functions for everyday JavaScript
 
 ## Installation
 

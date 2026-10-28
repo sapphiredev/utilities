@@ -35,11 +35,9 @@ There is often a need to get a unique ID for entities, be that for Discord messa
 
 ## Features
 
-- Written in TypeScript
-- Published as ESM for Node.js and modern bundlers
-- Publishes ESM-only output
-- Offers predefined epochs for Discord and Twitter
-- Fully tested
+- Generates and deconstructs 64-bit snowflake IDs using `bigint`
+- Supports custom epochs and predefined Discord and Twitter epochs
+- Extracts timestamps from snowflake IDs
 
 ## Installation
 

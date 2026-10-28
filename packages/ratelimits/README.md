@@ -29,10 +29,9 @@ There is often a need to apply ratelimits to protect a network from excessive tr
 
 ## Features
 
-- Written in TypeScript
-- Published as ESM for Node.js and modern bundlers
-- Publishes ESM-only output
-- Fully tested
+- Implements token-bucket and leaky-bucket rate-limiting strategies
+- Maintains independent rate-limit buckets by caller-provided key
+- Exposes whether a bucket is limited and when it can be used again
 
 ## Installation
 

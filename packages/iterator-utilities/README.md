@@ -77,10 +77,9 @@
 
 ## Features
 
-- Written in TypeScript
-- Published as ESM for Node.js and modern bundlers
-- Publishes ESM-only output
-- Fully tested
+- Provides utilities for transforming, filtering, combining, and inspecting iterables
+- Includes collection, search, aggregation, and numeric sequence helpers
+- Supports composing iterator operations without first materializing the full sequence
 
 ## Installation
 

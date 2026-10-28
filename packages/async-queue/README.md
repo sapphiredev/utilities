@@ -22,10 +22,9 @@
 
 ## Features
 
-- Written in TypeScript
-- Published as ESM for Node.js and modern bundlers
-- Publishes ESM-only output
-- Fully tested
+- Queues asynchronous work so only one operation holds the lock at a time
+- Preserves request order while each operation waits for its turn
+- Provides explicit wait and release methods for wrapping async operations
 
 ## Installation
 

@@ -12,6 +12,11 @@
 
 </div>
 
+## Features
+
+- Shareable Prettier configuration for Sapphire Community projects
+- Reuse consistent formatting defaults without maintaining a local config
+
 ## Installation
 
 You can use the following command to install this package, or replace `npm install` with your package manager of choice.
