@@ -23,9 +23,8 @@
 
 ## Features
 
-- Written in TypeScript
-- Publishes ESM-only output
-- Fully tested
+- Recursively finds files beneath a directory as an async iterable
+- Filters results by filename prefix, suffix, or included text
 
 ## Installation
 

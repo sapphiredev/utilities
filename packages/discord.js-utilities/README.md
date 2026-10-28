@@ -18,9 +18,9 @@ There many functions that are always extremely useful to have when developing bo
 
 ## Features
 
-- Written in TypeScript.
-- Bundled with esbuild to provide size-optimal bundles.
-- Publishes ESM-only output
+- Adds Discord.js-specific helpers on top of `@sapphire/discord-utilities`
+- Builds paginated messages and collects user responses with message prompts
+- Includes message builders, type guards, and utility functions
 
 ## Installation
 

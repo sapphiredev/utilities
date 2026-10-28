@@ -18,11 +18,9 @@ When having many `try-catch` blocks after one another, or multiple `try-catch` b
 
 ## Features
 
-- Written in TypeScript
-- Published as ESM for Node.js and modern bundlers
-- Publishes ESM-only output
-- Full feature parity with Nightly Rust's `Result<T, E>` and `Option<T>`
-- Fully tested
+- Models success and failure with `Result<T, E>` and optional values with `Option<T>`
+- Converts synchronous throws and asynchronous rejections into result values
+- Provides methods to inspect, transform, chain, and unwrap contained values
 
 ## Installation
 

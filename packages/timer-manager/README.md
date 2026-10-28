@@ -23,10 +23,9 @@
 
 ## Features
 
-- Written in TypeScript
-- Published as ESM for Node.js and modern bundlers
-- Publishes ESM-only output
-- Fully tested
+- Tracks timeouts and intervals created through `TimerManager`
+- Clears individual timers or all managed timers during shutdown
+- Passes callback arguments through to the scheduled function
 
 ## Installation
 

@@ -19,10 +19,9 @@ locations such as Discord's `custom_id` field in message components.
 
 ## Features
 
-- Written in TypeScript
-- Published as ESM for Node.js and modern bundlers
-- Publishes ESM-only output
-- Fully tested
+- Serializes schema-defined data into compact UTF-16 strings
+- Supports numeric, boolean, string, nullable, and array fields
+- Reads and writes typed values through reusable schemas and stores
 
 ## Installation
 

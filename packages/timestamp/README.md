@@ -24,10 +24,9 @@
 
 ## Features
 
-- Written in TypeScript
-- Published as ESM for Node.js and modern bundlers
-- Publishes ESM-only output
-- Fully tested
+- Formats dates with tokens for calendar and clock values
+- Supports escaping literal text within a format string
+- Provides named constants for common time intervals
 
 ## Installation
 

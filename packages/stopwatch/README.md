@@ -28,9 +28,9 @@ Provides a set of methods and properties that you can use to accurately measure 
 
 ## Features
 
-- Written in TypeScript
-- Publishes ESM-only output
-- Fully tested
+- Measures elapsed time using the high-resolution performance clock
+- Supports stopping, resuming, restarting, and resetting measurements
+- Formats elapsed time as microseconds, milliseconds, or seconds
 
 ## Installation
 

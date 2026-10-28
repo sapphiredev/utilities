@@ -18,8 +18,9 @@ There's some best practices for using `@sapphire/result` - such as never discard
 
 ## Features
 
-- Written in TypeScript
-- Fully tested
+- Provides the `no-discard-result` rule to flag ignored `Result` values
+- Includes a recommended ESLint flat configuration
+- Helps enforce safe handling of `@sapphire/result` results
 
 ## Installation
 

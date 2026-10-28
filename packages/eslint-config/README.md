@@ -12,6 +12,12 @@
 
 </div>
 
+## Features
+
+- Shareable flat ESLint configuration for Sapphire Community projects
+- Ready to import directly from `eslint.config.mjs`
+- Includes TypeScript-aware linting configuration
+
 ## Installation
 
 You can use the following command to install this package, or replace `npm install` with your package manager of choice.

@@ -28,10 +28,8 @@ Note that this package only re-exports everything from the four packages [`@sapp
 
 ## Features
 
-- Written in TypeScript
-- Published as ESM for Node.js and modern bundlers
-- Publishes ESM-only output
-- Fully tested
+- Re-exports cron, duration, timer-manager, and timestamp utilities
+- Offers a single entry point when a project uses multiple time packages
 
 ## Installation
 

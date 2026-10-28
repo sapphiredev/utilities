@@ -28,10 +28,9 @@ There is often a need to have async iterators with fine control, timeouts, limit
 
 ## Features
 
-- Written in TypeScript
-- Published as ESM for Node.js and modern bundlers
-- Publishes ESM-only output
-- Fully tested
+- Converts Node.js `EventEmitter` events into an async iterator for `for await...of`
+- Supports filtering events and limiting the number of yielded values
+- Can end iteration after a configurable idle timeout and cleans up its listener
 
 ## Installation
 

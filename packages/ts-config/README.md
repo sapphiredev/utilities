@@ -14,6 +14,7 @@
 
 **Table of Contents**
 
+- [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
     - [Base](#base)
@@ -23,6 +24,12 @@
     - [Bundler](#bundler)
 - [Buy us some doughnuts](#buy-us-some-doughnuts)
 - [Contributors](#contributors)
+
+## Features
+
+- Provides reusable base and extra-strict TypeScript configurations
+- Includes presets for decorators, verbatim module syntax, and bundler resolution
+- Compose presets through TypeScript's `extends` configuration
 
 ## Installation
 

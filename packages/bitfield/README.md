@@ -30,10 +30,10 @@
 
 ## Features
 
-- Written in TypeScript
-- Published as ESM for Node.js and modern bundlers
-- Publishes ESM-only output
-- Fully tested
+- Works with both `number` and `bigint` flag values
+- Resolves flags from names, values, or arrays of either
+- Supports common bitwise operations, including union, intersection, and symmetric difference
+- Formats bitfields as their matching flag names
 
 ## Installation
 

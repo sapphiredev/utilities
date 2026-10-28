@@ -20,15 +20,9 @@ The code in this package has been greatly inspired by [lexure] from [1Computer1]
 
 ## Features
 
-- Written in TypeScript
-- Published as ESM for Node.js and modern bundlers
-- Publishes ESM-only output
-- Fully tested
-- Parses quoted input with multiple quote styles
-- Parses flags and options with a customizable strategy system
-- Keeps leading whitespace
-- Includes a convenient wrapper to retrieve the parsed arguments
-- Includes custom argument delimiter
+- Tokenizes input with configurable pairs of quote characters
+- Parses flags and options with configurable prefixes, delimiters, and strategies
+- Preserves input whitespace and exposes parsed values through argument streams
 
 ## Installation
 
