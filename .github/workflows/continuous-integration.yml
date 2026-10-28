@@ -51,12 +51,6 @@ jobs:
     with:
       script-name: build:check-subpath -- --check
 
-  check-dynamic-side-effects:
-    name: Check Dynamic Side Effects
-    uses: sapphiredev/.github/.github/workflows/reusable-yarn-job.yml@main
-    with:
-      script-name: build:dynamic-side-effects -- --check
-
   check-package-index-files:
     name: Check Package Index Files
     uses: sapphiredev/.github/.github/workflows/reusable-yarn-job.yml@main
