@@ -8,6 +8,6 @@ const packagePaths = await Promise.all([
 	Array.fromAsync(glob('packages/*/node_modules', { cwd: rootDir })),
 	Array.fromAsync(glob('packages/*/dist', { cwd: rootDir }))
 ]);
-const paths = [new URL('node_modules/', rootDir), ...packagePaths.flat().map((path) => new URL(path, rootDir))];
+const paths = [new URL('node_modules/', rootDir), ...packagePaths.flatMap((path) => new URL(path, rootDir))];
 
 await Promise.all(paths.map(async (path) => rm(path, options)));
