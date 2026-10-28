@@ -10,11 +10,11 @@
 		"lint": "eslint packages --fix",
 		"format": "prettier --write .",
 		"test": "vitest run",
-		"build": "yarn workspace @sapphire/node-utilities build && yarn workspaces foreach --all --exclude root-utilities run build",
-		"build:check-subpath": "yarn workspaces foreach --all --exclude root-utilities run build:check-subpath",
+		"build": "yarn workspace @sapphire/node-utilities build && yarn workspaces foreach --all --exclude root-utilities --topological run build",
+		"build:check-subpath": "yarn workspaces foreach --all --exclude root-utilities --topological run build:check-subpath",
 		"update": "yarn upgrade-interactive",
-		"check-update": "yarn workspaces foreach --all --exclude root-utilities run check-update",
-		"gen-index": "yarn workspaces foreach --all --exclude root-utilities run gen-index",
+		"check-update": "yarn workspaces foreach --all --exclude root-utilities --topological run check-update",
+		"gen-index": "yarn workspaces foreach --all --exclude root-utilities --topological run gen-index",
 		"au:twemojis": "node ./scripts/twemoji-regex-updater.ts"
 	},
 	"devDependencies": {
