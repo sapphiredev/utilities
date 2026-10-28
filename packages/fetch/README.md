@@ -58,18 +58,6 @@ When using `@sapphire/fetch` with TypeScript, include `dom` in the `lib` option 
 
 ## Usage
 
-> [!NOTE]
->
-> ```ts
-> import { fetch } from '@sapphire/fetch';
-> ```
->
-> is the same as
->
-> ```ts
-> import { fetch } from '@sapphire/fetch';
-> ```
-
 > [!IMPORTANT]
 > When providing a serializable object to the `body` option, `@sapphire/fetch` will automatically call `JSON.stringify` on the object. This means you can pass an object directly to the `body` option without having to call `JSON.stringify` yourself.
 > If the body is _not_ serializable (such as a `File`, `Buffer`, or `Blob`), the body will be sent as-is.
