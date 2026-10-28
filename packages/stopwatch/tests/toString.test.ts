@@ -1,11 +1,11 @@
-import { sleep } from './shared';
+import { setTimeout } from 'node:timers/promises';
 import { Stopwatch } from '../src';
 
 describe('To String', () => {
 	test('toString(1 second)', async () => {
 		const stopwatch = new Stopwatch();
 
-		await sleep(1_010);
+		await setTimeout(1_010);
 		const str = stopwatch.stop().toString();
 		// Should only be one second.
 		expect(str.startsWith('1') && str.endsWith('s')).toBe(true);
@@ -21,7 +21,7 @@ describe('To String', () => {
 	test('toString(less than a second)', async () => {
 		const stopwatch = new Stopwatch();
 
-		await sleep(100);
+		await setTimeout(100);
 		const str = stopwatch.stop().toString();
 		expect(str.endsWith('ms')).toBe(true);
 	});
