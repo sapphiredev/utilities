@@ -1,4 +1,6 @@
 const zws = String.fromCodePoint(8_203);
+const escapedCodeBlockFence = `\`${zws}\`\``;
+const escapedTrailingBacktick = `\`${zws}`;
 
 /**
  * Wraps the content inside a codeblock with no language
@@ -26,5 +28,5 @@ export function codeBlock<C extends string>(content: C): `\`\`\`\n${C}\n\`\`\``;
 export function codeBlock<L extends string, C extends string>(language: L, content: C): `\`\`\`${L}\n${C}\n\`\`\``;
 export function codeBlock(...args: [string, string?]): string {
 	const [language, content] = args.length === 1 ? ['', args[0]] : args;
-	return `\`\`\`${language}\n${String(content).replace(/```/, `\`${zws}\`\``).replaceAll(/`$/g, `\`${zws}`)}\n\`\`\``;
+	return `\`\`\`${language}\n${String(content).replace(/```/, escapedCodeBlockFence).replaceAll(/`$/g, escapedTrailingBacktick)}\n\`\`\``;
 }
