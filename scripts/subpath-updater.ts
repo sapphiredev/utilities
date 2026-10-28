@@ -1,18 +1,19 @@
 import { bold, green, red } from 'colorette';
 import { readdir, readFile, writeFile } from 'node:fs/promises';
 import { basename, resolve } from 'node:path';
+import process from 'node:process';
 
 interface ExportEntry {
-	types: string;
 	default: string;
+	types: string;
 }
 
-const aliasStores: Record<string, Map<string, string | string[]>> = {
-	'iterator-utilities': new Map<string, string | string[]>([
+const aliasStores: Record<string, Map<string, string[] | string>> = {
+	'iterator-utilities': new Map<string, string[] | string>([
 		['append', 'concat'],
 		['difference', ['except', 'omit']]
 	]),
-	utilities: new Map<string, string | string[]>([
+	utilities: new Map<string, string[] | string>([
 		['filterNullAndUndefined', 'filterNullish'],
 		['filterNullAndUndefinedAndEmpty', ['filterNullishAndEmpty', 'filterNullishOrEmpty']],
 		['filterNullAndUndefinedAndZero', ['filterNullishAndZero', 'filterNullishOrZero']],

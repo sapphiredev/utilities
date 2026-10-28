@@ -1,6 +1,7 @@
 import { parse as parseTypescript } from '@babel/parser';
 import { readdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, join, parse as parsePath, relative, resolve, sep } from 'node:path';
+import process from 'node:process';
 import { fileURLToPath } from 'node:url';
 
 const WRITE_MODE = process.argv.includes('--write');
