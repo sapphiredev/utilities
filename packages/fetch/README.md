@@ -45,6 +45,18 @@ You can use the following command to install this package, or replace `npm insta
 npm install @sapphire/fetch
 ```
 
+## TypeScript configuration
+
+When using `@sapphire/fetch` with TypeScript, include `dom` in the `lib` option of your `tsconfig.json`. The package uses Fetch API types such as `RequestInit` and `Response`.
+
+```json
+{
+	"compilerOptions": {
+		"lib": ["ES2022", "dom"]
+	}
+}
+```
+
 ## Usage
 
 > [!NOTE]
