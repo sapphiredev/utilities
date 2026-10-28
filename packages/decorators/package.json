@@ -4,6 +4,7 @@
 	"description": "Useful TypeScript decorators for Sapphire Framework Discord bots",
 	"author": "@sapphire",
 	"license": "MIT",
+	"type": "module",
 	"main": "dist/index.mjs",
 	"module": "dist/index.mjs",
 	"types": "dist/index.d.mts",
@@ -68,6 +69,5 @@
 	},
 	"publishConfig": {
 		"access": "public"
-	},
-	"type": "module"
+	}
 }

@@ -4,6 +4,7 @@
 	"description": "An iterator utility library for JavaScript.",
 	"author": "@sapphire",
 	"license": "MIT",
+	"type": "module",
 	"main": "dist/index.mjs",
 	"module": "dist/index.mjs",
 	"types": "dist/index.d.mts",
@@ -417,6 +418,5 @@
 			"default": "./dist/lib/zip.mjs"
 		}
 	},
-	"sideEffects": false,
-	"type": "module"
+	"sideEffects": false
 }

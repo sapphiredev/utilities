@@ -4,6 +4,7 @@
 	"description": "Discord specific utilities for your JavaScript/TypeScript bots",
 	"author": "@sapphire",
 	"license": "MIT",
+	"type": "module",
 	"main": "dist/index.mjs",
 	"module": "dist/index.mjs",
 	"types": "dist/index.d.mts",
@@ -61,6 +62,5 @@
 		"typescript": "~6.0.3",
 		"unrun": "^0.3.1",
 		"vitest": "^5.0.5"
-	},
-	"type": "module"
+	}
 }

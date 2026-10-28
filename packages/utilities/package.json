@@ -4,6 +4,7 @@
 	"description": "Common JavaScript utilities for the Sapphire Community",
 	"author": "@sapphire",
 	"license": "MIT",
+	"type": "module",
 	"main": "dist/index.mjs",
 	"module": "dist/index.mjs",
 	"types": "dist/index.d.mts",
@@ -319,6 +320,5 @@
 			"default": "./dist/lib/types.mjs"
 		}
 	},
-	"sideEffects": false,
-	"type": "module"
+	"sideEffects": false
 }
