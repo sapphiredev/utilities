@@ -12,11 +12,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Project
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
       - name: Install dependencies
         uses: sapphiredev/.github/actions/install-yarn-dependencies@main
         with:
-          node-version: 20
+          node-version: 24
       - name: Build ESLint, Prettier and Utilities
         run: |
           yarn workspaces foreach \
