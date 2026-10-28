@@ -7,7 +7,6 @@ import { toNumberOrThrow, type NumberResolvable } from './shared/_toNumberOrThro
  *
  * @param iterable The iterator to calculate the average of.
  * @returns The average of the sequence of numbers, or `null` if the sequence is empty or contains only non-number values.
- *
  * @example
  * ```typescript
  * import { average } from '@sapphire/iterator-utilities';
@@ -16,7 +15,6 @@ import { toNumberOrThrow, type NumberResolvable } from './shared/_toNumberOrThro
  * console.log(average(iterable));
  * // Output: 3
  * ```
- *
  * @remarks
  *
  * This function consumes the entire iterator.

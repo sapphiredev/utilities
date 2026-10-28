@@ -3,15 +3,22 @@ import { allowedNum, cronTokens, partRegex, predefined, Time, tokensRegex, wildc
 
 /**
  * Handles Cron strings and generates dates based on the cron string provided.
+ *
  * @see https://en.wikipedia.org/wiki/Cron
  */
 export class Cron {
 	public cron: string;
+
 	public normalized: string;
+
 	public minutes: number[];
+
 	public hours: number[];
+
 	public days: number[];
+
 	public months: number[];
+
 	public dows: number[];
 
 	/**
@@ -25,6 +32,7 @@ export class Cron {
 
 	/**
 	 * Get the next date that matches with the current pattern
+	 *
 	 * @param outset The Date instance to compare with
 	 * @param origin Whether this next call is origin
 	 */
@@ -32,9 +40,10 @@ export class Cron {
 		if (!this.days.includes(outset.getUTCDate()) || !this.months.includes(outset.getUTCMonth() + 1) || !this.dows.includes(outset.getUTCDay())) {
 			return this.next(new Date(outset.getTime() + Time.Day), false);
 		}
+
 		if (!origin) return new Date(Date.UTC(outset.getUTCFullYear(), outset.getUTCMonth(), outset.getUTCDate(), this.hours[0], this.minutes[0]));
 
-		const now = new Date(outset.getTime() + 60000);
+		const now = new Date(outset.getTime() + 60_000);
 
 		for (const hour of this.hours) {
 			if (hour < now.getUTCHours()) continue;
@@ -58,6 +67,7 @@ export class Cron {
 
 	/**
 	 * Normalize the pattern
+	 *
 	 * @param cron The pattern to normalize
 	 */
 	private static normalize(cron: string): string {
@@ -93,9 +103,10 @@ export class Cron {
 
 	/**
 	 * Parse the pattern
+	 *
 	 * @param cron The pattern to parse
 	 */
-	private static parseString(cron: string): Array<number[]> {
+	private static parseString(cron: string): number[][] {
 		const parts = cron.split(' ');
 		if (parts.length !== 5) throw new Error('Invalid Cron Provided');
 		return parts.map((part, i) => Cron.parsePart(part, i));
@@ -103,6 +114,7 @@ export class Cron {
 
 	/**
 	 * Parse the current part
+	 *
 	 * @param cronPart The part of the pattern to parse
 	 * @param id The id that identifies the current part
 	 */
@@ -114,7 +126,7 @@ export class Cron {
 		}
 
 		const [, wild, minStr, maxStr, step] = partRegex.exec(cronPart)!;
-		let [min, max] = [parseInt(minStr, 10), parseInt(maxStr, 10)];
+		let [min, max] = [Number.parseInt(minStr, 10), Number.parseInt(maxStr, 10)];
 
 		// If '*', set min and max as the minimum and maximum allowed numbers:
 		if (wild) [min, max] = allowedNum[id];
@@ -131,6 +143,6 @@ export class Cron {
 		[min, max] = [min, max || allowedNum[id][1]].sort((a, b) => a - b);
 
 		// Generate a range
-		return range(min, max, parseInt(step, 10) || 1);
+		return range(min, max, Number.parseInt(step, 10) || 1);
 	}
 }

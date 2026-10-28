@@ -64,6 +64,7 @@ export class ChatInputInteractionOptionResolver {
 
 	/**
 	 * Gets an option by its name
+	 *
 	 * @param name The name of the option
 	 * @param required Whether to throw an error if the option is not found
 	 */
@@ -83,6 +84,7 @@ export class ChatInputInteractionOptionResolver {
 
 	/**
 	 * Gets the selected subcommand
+	 *
 	 * @param required Whether to throw an error if there is no subcommand
 	 */
 	public getSubcommand<Required extends boolean = false>(required?: Required): RequiredIf<Required, string>;
@@ -96,6 +98,7 @@ export class ChatInputInteractionOptionResolver {
 
 	/**
 	 * Gets the selected subcommand group
+	 *
 	 * @param required Whether to throw an error if there is no subcommand group
 	 */
 	public getSubcommandGroup<Required extends boolean = false>(required?: Required): RequiredIf<Required, string>;
@@ -109,6 +112,7 @@ export class ChatInputInteractionOptionResolver {
 
 	/**
 	 * Gets a boolean option
+	 *
 	 * @param name The name of the option
 	 * @param required Whether to throw an error if the option is not found
 	 */
@@ -120,6 +124,7 @@ export class ChatInputInteractionOptionResolver {
 
 	/**
 	 * Gets a channel option
+	 *
 	 * @param name The name of the option
 	 * @param required Whether to throw an error if the option is not found
 	 */
@@ -131,6 +136,7 @@ export class ChatInputInteractionOptionResolver {
 
 	/**
 	 * Gets a string option
+	 *
 	 * @param name The name of the option
 	 * @param required Whether to throw an error if the option is not found
 	 */
@@ -142,6 +148,7 @@ export class ChatInputInteractionOptionResolver {
 
 	/**
 	 * Gets an integer option
+	 *
 	 * @param name The name of the option
 	 * @param required Whether to throw an error if the option is not found
 	 */
@@ -153,6 +160,7 @@ export class ChatInputInteractionOptionResolver {
 
 	/**
 	 * Gets a number option
+	 *
 	 * @param name The name of the option
 	 * @param required Whether to throw an error if the option is not found
 	 */
@@ -164,6 +172,7 @@ export class ChatInputInteractionOptionResolver {
 
 	/**
 	 * Gets a user option
+	 *
 	 * @param name The name of the option
 	 * @param required Whether to throw an error if the option is not found
 	 */
@@ -175,6 +184,7 @@ export class ChatInputInteractionOptionResolver {
 
 	/**
 	 * Gets a member option
+	 *
 	 * @param name The name of the option
 	 * @param required Whether to throw an error if the option is not found
 	 */
@@ -190,6 +200,7 @@ export class ChatInputInteractionOptionResolver {
 
 	/**
 	 * Gets a role option
+	 *
 	 * @param name The name of the option
 	 * @param required Whether to throw an error if the option is not found
 	 */
@@ -201,6 +212,7 @@ export class ChatInputInteractionOptionResolver {
 
 	/**
 	 * Gets an attachment option
+	 *
 	 * @param name The name of the option
 	 * @param required Whether to throw an error if the option is not found
 	 */
@@ -212,15 +224,16 @@ export class ChatInputInteractionOptionResolver {
 
 	/**
 	 * Gets a mentionable option
+	 *
 	 * @param name The name of the option
 	 * @param required Whether to throw an error if the option is not found
 	 */
 	public getMentionable<Required extends boolean = false>(
 		name: string,
 		required?: Required
-	): RequiredIf<Required, APIUser | APIInteractionDataResolvedGuildMember | APIRole>;
+	): RequiredIf<Required, APIInteractionDataResolvedGuildMember | APIRole | APIUser>;
 
-	public getMentionable(name: string, required = false): APIUser | APIInteractionDataResolvedGuildMember | APIRole | null {
+	public getMentionable(name: string, required = false): APIInteractionDataResolvedGuildMember | APIRole | APIUser | null {
 		const option = this.getTypedOption(name, ApplicationCommandOptionType.Mentionable, required);
 
 		if (!option || !this.resolved) {

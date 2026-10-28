@@ -1,4 +1,4 @@
-import { Float64Type, Schema, SchemaStore, UnalignedUint16Array, type DuplexBuffer } from '../../src';
+import { Schema, SchemaStore, UnalignedUint16Array, type DuplexBuffer, type Float64Type } from '../../src';
 
 describe('SchemaStore', () => {
 	test('GIVEN an empty SchemaStore THEN it should be empty', () => {
@@ -30,7 +30,7 @@ describe('SchemaStore', () => {
 
 			const buffer = store.serializeRaw(2, { name: 'Mario', height: 1.8 });
 			const deserialized = store.deserialize(buffer);
-			expect<{ id: 2; data: { height: number } }>(deserialized).toEqual({ id: 2, data: { name: 'Mario', height: 1.8 } });
+			expect<{ data: { height: number }; id: 2 }>(deserialized).toEqual({ id: 2, data: { name: 'Mario', height: 1.8 } });
 
 			expect<2>(store.getIdentifier(buffer)).toBe(2);
 			expect<2>(store.getIdentifier(buffer.toString())).toBe(2);
@@ -43,7 +43,7 @@ describe('SchemaStore', () => {
 
 			const buffer = store.serialize(2, { name: 'Mario', height: 1.8 });
 			const deserialized = store.deserialize(buffer);
-			expect<{ id: 2; data: { height: number } }>(deserialized).toEqual({ id: 2, data: { name: 'Mario', height: 1.8 } });
+			expect<{ data: { height: number }; id: 2 }>(deserialized).toEqual({ id: 2, data: { name: 'Mario', height: 1.8 } });
 
 			expect<2>(store.getIdentifier(buffer)).toBe(2);
 
@@ -55,7 +55,7 @@ describe('SchemaStore', () => {
 
 			const buffer = store.serialize(2, {});
 			const deserialized = store.deserialize(buffer);
-			expect<{ id: 2; data: { runner: 'vitest' } }>(deserialized).toEqual({ id: 2, data: { runner: 'vitest' } });
+			expect<{ data: { runner: 'vitest' }; id: 2 }>(deserialized).toEqual({ id: 2, data: { runner: 'vitest' } });
 
 			expect<2>(store.getIdentifier(buffer)).toBe(2);
 			expect<2>(store.getIdentifier(buffer.toString())).toBe(2);

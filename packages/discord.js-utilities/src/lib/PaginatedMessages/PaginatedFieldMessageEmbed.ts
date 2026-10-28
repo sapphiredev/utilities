@@ -62,6 +62,7 @@ export class PaginatedFieldMessageEmbed<T> extends PaginatedMessage {
 
 	/**
 	 * Set the items to paginate.
+	 *
 	 * @param items The pages to set
 	 */
 	public setItems(items: T[]) {
@@ -71,6 +72,7 @@ export class PaginatedFieldMessageEmbed<T> extends PaginatedMessage {
 
 	/**
 	 * Set the title of the embed field that will be used to paginate the items.
+	 *
 	 * @param title The field title
 	 */
 	public setTitleField(title: string) {
@@ -80,6 +82,7 @@ export class PaginatedFieldMessageEmbed<T> extends PaginatedMessage {
 
 	/**
 	 * Sets the amount of items that should be shown per page.
+	 *
 	 * @param itemsPerPage The number of items
 	 */
 	public setItemsPerPage(itemsPerPage: number) {
@@ -91,7 +94,6 @@ export class PaginatedFieldMessageEmbed<T> extends PaginatedMessage {
 	 * Sets the template to be used to display the embed fields as pages. This template can either be set from a template {@link EmbedBuilder} instance or an object with embed options.
 	 *
 	 * @param template EmbedBuilder
-	 *
 	 * @example
 	 * ```typescript
 	 * import { PaginatedFieldMessageEmbed } from '@sapphire/discord.js-utilities';
@@ -99,7 +101,6 @@ export class PaginatedFieldMessageEmbed<T> extends PaginatedMessage {
 	 *
 	 * new PaginatedFieldMessageEmbed().setTemplate(new EmbedBuilder().setTitle('Test pager embed')).make().run(message);
 	 * ```
-	 *
 	 * @example
 	 * ```typescript
 	 * import { PaginatedFieldMessageEmbed } from '@sapphire/discord.js-utilities';
@@ -209,7 +210,7 @@ export class PaginatedFieldMessageEmbed<T> extends PaginatedMessage {
 	 * @param template - The template for the embed. It can be an EmbedResolvable, EmbedData, or a function that takes an EmbedBuilder and returns an EmbedResolvable.
 	 * @returns The resolved APIEmbed object.
 	 */
-	private resolveTemplate(template: EmbedResolvable | EmbedData | ((embed: EmbedBuilder) => EmbedResolvable)): APIEmbed {
+	private resolveTemplate(template: EmbedData | EmbedResolvable | ((embed: EmbedBuilder) => EmbedResolvable)): APIEmbed {
 		if (isFunction(template)) template = template(new EmbedBuilder());
 		return (isJSONEncodable(template) ? template : new EmbedBuilder(template)).toJSON();
 	}

@@ -11,7 +11,6 @@ import { toArray } from './toArray';
  * @param iterable An iterator to tee.
  * @param count The number of iterators to create.
  * @returns An array of `count` iterators that each yield the same values as the input iterator.
- *
  * @example
  * ```typescript
  * import { tee } from '@sapphire/iterator-utilities';
@@ -26,6 +25,7 @@ import { toArray } from './toArray';
  * ```
  */
 export function tee<const ElementType>(iterable: IterableResolvable<ElementType>, count: number): IterableIterator<ElementType>[] {
+	// eslint-disable-next-line no-param-reassign
 	count = assertNotNegative(toIntegerOrThrow(count), count);
 	if (count === 0) return [];
 
@@ -34,9 +34,9 @@ export function tee<const ElementType>(iterable: IterableResolvable<ElementType>
 	const resolvedIterable = from(iterable);
 
 	const iterables = [] as IterableIterator<ElementType>[];
-	for (let i = 0; i < count; i++) {
+	for (let idx = 0; idx < count; idx++) {
 		const iterable = makeIterableIterator<ElementType>(() => {
-			if (indexes[i] >= entries.length) {
+			if (indexes[idx] >= entries.length) {
 				const result = resolvedIterable.next();
 				if (result.done) {
 					return { done: true, value: undefined };
@@ -45,7 +45,7 @@ export function tee<const ElementType>(iterable: IterableResolvable<ElementType>
 				entries.push(result.value);
 			}
 
-			return { done: false, value: entries[indexes[i]++] };
+			return { done: false, value: entries[indexes[idx]++] };
 		});
 
 		iterables.push(iterable);

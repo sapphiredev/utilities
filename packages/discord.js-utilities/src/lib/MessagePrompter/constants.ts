@@ -7,4 +7,4 @@ import type { ChannelTypes, VoiceBasedChannelTypes } from '../utility-types';
  */
 export type MessagePrompterMessage = ArgumentTypes<PartialTextBasedChannelFields['send']>[0];
 
-export type MessagePrompterChannelTypes = Exclude<ChannelTypes, VoiceBasedChannelTypes | CategoryChannel>;
+export type MessagePrompterChannelTypes = Exclude<ChannelTypes, CategoryChannel | VoiceBasedChannelTypes>;

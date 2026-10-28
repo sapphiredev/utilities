@@ -40,6 +40,7 @@ describe('isFunction', () => {
 		const value = function value(): void {
 			/* noop */
 		};
+
 		expect(isFunction(value)).toBe(true);
 	});
 
@@ -47,6 +48,7 @@ describe('isFunction', () => {
 		const value = (): void => {
 			/* noop */
 		};
+
 		expect(isFunction(value)).toBe(true);
 	});
 

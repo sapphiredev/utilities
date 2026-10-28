@@ -7,7 +7,6 @@ import { toIterableIterator } from './toIterableIterator';
  *
  * @param iterable An iterator to map over.
  * @param callbackFn A function to execute for each element produced by the iterator. Its return value is yielded by the iterator helper.
- *
  * @example
  * ```typescript
  * import { map } from '@sapphire/iterator-utilities';
@@ -21,6 +20,7 @@ export function* map<const ElementType, const MappedType>(
 	iterable: IterableResolvable<ElementType>,
 	callbackFn: (element: ElementType, index: number) => MappedType
 ): IterableIterator<MappedType> {
+	// eslint-disable-next-line no-param-reassign
 	callbackFn = assertFunction(callbackFn);
 
 	let index = 0;

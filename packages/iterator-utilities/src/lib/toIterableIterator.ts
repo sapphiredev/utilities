@@ -6,7 +6,6 @@ import { makeIterableIterator } from './shared/_makeIterableIterator';
  *
  * @param iterable The iterable or iterable-like object to convert.
  * @returns An iterable iterator.
- *
  * @example
  * ```typescript
  * import { toIterableIterator } from '@sapphire/iterator-utilities';

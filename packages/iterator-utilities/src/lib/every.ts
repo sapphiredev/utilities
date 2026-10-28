@@ -8,7 +8,6 @@ import { toIterableIterator } from './toIterableIterator';
  * @param iterable The iterator to check.
  * @param callbackFn A function to execute for each element produced by the iterator. It should return a truthy value to indicate the element passes the test, and a falsy value otherwise.
  * @returns `true` if callbackFn returns a truthy value for every element. Otherwise, `false`.
- *
  * @example
  * ```typescript
  * import { every } from '@sapphire/iterator-utilities';
@@ -20,7 +19,6 @@ import { toIterableIterator } from './toIterableIterator';
  * console.log(every(iterable, (value) => value < 3));
  * // Output: false
  * ```
- *
  * @remarks
  *
  * This function consumes the entire iterator.
@@ -34,6 +32,7 @@ export function every<const ElementType>(
 	callbackFn: (element: ElementType, index: number) => boolean
 ): boolean;
 export function every<const ElementType>(iterable: IterableResolvable<ElementType>, callbackFn: (element: ElementType, index: number) => boolean) {
+	// eslint-disable-next-line no-param-reassign
 	callbackFn = assertFunction(callbackFn);
 
 	let index = 0;

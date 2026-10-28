@@ -70,7 +70,7 @@ describe('BitField', () => {
 				expect(given).toThrow(expected);
 			});
 
-			test.each([1.2, 4294967296])('GIVEN an empty object THEN throws TypeError', (value) => {
+			test.each([1.2, 4_294_967_296])('GIVEN an empty object THEN throws TypeError', (value) => {
 				const given = () => new BitField({ Read: value });
 				const expected = 'The property "Read" does not resolve to a safe bitfield value';
 

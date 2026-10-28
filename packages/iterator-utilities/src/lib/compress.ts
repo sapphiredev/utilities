@@ -8,7 +8,6 @@ import { toIterableIterator } from './toIterableIterator';
  * @param selectors The selectors that determine which elements to include in the result.
  * @returns An iterator that contains only the elements from the input iterator that correspond to `true` values in the
  * selectors iterator.
- *
  * @example
  * ```typescript
  * import { compress } from '@sapphire/iterator-utilities';
@@ -17,7 +16,6 @@ import { toIterableIterator } from './toIterableIterator';
  * console.log([...iterable]);
  * // Output: [1, 3, 5]
  * ```
- *
  * @remarks
  *
  * This function consumes both input iterators until either is exhausted.

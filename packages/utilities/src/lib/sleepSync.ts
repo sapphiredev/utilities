@@ -1,3 +1,5 @@
+import type { sleep } from './sleep';
+
 /**
  * Sleeps for the specified number of milliseconds synchronously.
  * We should probably note that unlike {@link sleep} (which uses CPU tick times),
@@ -5,6 +7,7 @@
  * That, and that synchronous means that nothing else in the thread will run for the length of the timer.
  *
  * For an asynchronous variant, see [sleep](./sleep.d.ts).
+ *
  * @param ms The number of milliseconds to sleep.
  * @param value A value to return.
  * @see {@link sleep} for an asynchronous version.

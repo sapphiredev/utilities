@@ -15,8 +15,11 @@ const ConverterDouble = new Float64Array(ConverterUint8.buffer);
 
 export class UnalignedUint16Array implements DuplexBuffer {
 	#buffer: Uint16Array;
+
 	#bitLength = 0;
+
 	#wordIndex = 0;
+
 	#wordLength = 0;
 
 	public constructor(maxLength: number) {
@@ -204,8 +207,8 @@ export class UnalignedUint16Array implements DuplexBuffer {
 	public toString() {
 		let result = '';
 
-		for (let i = 0; i < this.length; i++) {
-			result += String.fromCodePoint(this.#uint16ToCodepoint(this.#buffer[i]));
+		for (let idx = 0; idx < this.length; idx++) {
+			result += String.fromCodePoint(this.#uint16ToCodepoint(this.#buffer[idx]));
 		}
 
 		return result;
@@ -303,6 +306,7 @@ export class UnalignedUint16Array implements DuplexBuffer {
 		if (bitIndex === 0) {
 			this.#buffer[wordIndex] = value;
 		} else {
+			// eslint-disable-next-line no-param-reassign
 			value &= 0xffff;
 			this.#buffer[wordIndex] |= value << bitIndex;
 			this.#buffer[wordIndex + 1] = value >> (16 - bitIndex);
@@ -313,15 +317,15 @@ export class UnalignedUint16Array implements DuplexBuffer {
 		this.#wordLength++;
 	}
 
-	public static from(value: string | DuplexBuffer): DuplexBuffer {
+	public static from(value: DuplexBuffer | string): DuplexBuffer {
 		if (typeof value !== 'string') return value;
 
 		const codepoints = Array.from(value, (char) => char.codePointAt(0)!);
 		const buffer = new UnalignedUint16Array(value.length);
 
-		for (let i = 0; i < codepoints.length; i++) {
-			const index = UnalignedUint16Array.#codepointToUint16(codepoints[i]);
-			buffer.#buffer[i] = index;
+		for (const [idx, codepoint] of codepoints.entries()) {
+			const index = UnalignedUint16Array.#codepointToUint16(codepoint);
+			buffer.#buffer[idx] = index;
 		}
 
 		buffer.#bitLength = value.length << 4;

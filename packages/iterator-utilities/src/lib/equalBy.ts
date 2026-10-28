@@ -8,7 +8,6 @@ import { toIterableIterator } from './toIterableIterator';
  * @param iterable The iterator to compare.
  * @param other The iterator to compare against.
  * @returns Whether the two iterators are equal with respect to the specified equality function.
- *
  * @example
  * ```typescript
  * import { equalBy } from '@sapphire/iterator-utilities';
@@ -19,7 +18,6 @@ import { toIterableIterator } from './toIterableIterator';
  * console.log(equalBy(x, y, (a, b) => a * a === b));
  * // Output: true
  * ```
- *
  * @remarks
  *
  * This function consumes the entire iterator.
@@ -29,6 +27,7 @@ export function equalBy<const ElementType>(
 	other: IterableResolvable<ElementType>,
 	callbackFn: (x: ElementType, y: ElementType) => boolean
 ): boolean {
+	// eslint-disable-next-line no-param-reassign
 	callbackFn = assertFunction(callbackFn);
 
 	const iterator1 = from(other);

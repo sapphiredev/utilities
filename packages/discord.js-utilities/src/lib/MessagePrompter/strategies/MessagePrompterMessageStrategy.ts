@@ -9,6 +9,7 @@ import { MessagePrompterBaseStrategy } from './MessagePrompterBaseStrategy';
 export class MessagePrompterMessageStrategy extends MessagePrompterBaseStrategy implements IMessagePrompterStrategyOptions {
 	/**
 	 * Constructor for the {@link MessagePrompterBaseStrategy} class
+	 *
 	 * @param message The message instance for this {@link MessagePrompter}
 	 * @param options Overrideable options if needed.
 	 */
@@ -19,13 +20,14 @@ export class MessagePrompterMessageStrategy extends MessagePrompterBaseStrategy 
 	/**
 	 * This executes the {@link MessagePrompter} and sends the message if {@link IMessagePrompterOptions.type} equals message.
 	 * The handler will wait for one (1) message.
+	 *
 	 * @param channel The channel to use.
 	 * @param authorOrFilter An author object to validate or a {@linkplain https://discord.js.org/docs/packages/discord.js/main/CollectorFilter:TypeAlias CollectorFilter} predicate callback.
 	 * @returns A promise that resolves to the message object received.
 	 */
 	public override async run(
 		channel: MessagePrompterChannelTypes,
-		authorOrFilter: User | CollectorFilter<[Message]>
+		authorOrFilter: CollectorFilter<[Message]> | User
 	): Promise<IMessagePrompterExplicitMessageReturn | Message> {
 		if (isTextBasedChannel(channel) && !isStageChannel(channel)) {
 			if (!isNullish(this.editMessage) && this.editMessage.editable) {
@@ -61,9 +63,10 @@ export class MessagePrompterMessageStrategy extends MessagePrompterBaseStrategy 
 
 	/**
 	 * Creates a filter for the collector to filter on
+	 *
 	 * @return The filter for awaitMessages function
 	 */
-	private createMessagePromptFilter(authorOrFilter: User | CollectorFilter<[Message]>): CollectorOptions<[Message]> {
+	private createMessagePromptFilter(authorOrFilter: CollectorFilter<[Message]> | User): CollectorOptions<[Message]> {
 		return {
 			filter: async (message: Message) =>
 				(typeof authorOrFilter === 'function' ? await authorOrFilter(message) : message.author.id === authorOrFilter.id) &&

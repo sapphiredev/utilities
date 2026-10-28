@@ -3,7 +3,8 @@
 	"compilerOptions": {
 		"rootDir": "./",
 		"outDir": "../dist",
-		"incremental": false
+		"incremental": false,
+		"lib": ["dom", "esnext"]
 	},
 	"include": ["."]
 }

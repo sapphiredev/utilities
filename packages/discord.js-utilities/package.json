@@ -30,7 +30,7 @@
 		"dist/"
 	],
 	"engines": {
-		"node": ">=16.6.0",
+		"node": ">=24.0.0",
 		"npm": ">=12.0.0"
 	},
 	"keywords": [
@@ -54,6 +54,9 @@
 		"@sapphire/discord-utilities": "workspace:^",
 		"@sapphire/duration": "workspace:^",
 		"@sapphire/utilities": "workspace:^"
+	},
+	"peerDependencies": {
+		"discord.js": "*"
 	},
 	"devDependencies": {
 		"@favware/cliff-jumper": "^6.1.0",

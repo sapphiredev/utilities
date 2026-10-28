@@ -3,6 +3,7 @@ import type { IUnorderedStrategy } from './IUnorderedStrategy';
 
 export class PrefixedStrategy implements IUnorderedStrategy {
 	public readonly prefixes: readonly string[];
+
 	public readonly separators: readonly string[];
 
 	public constructor(prefixes: readonly string[], separators: readonly string[]) {

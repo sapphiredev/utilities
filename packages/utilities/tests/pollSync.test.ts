@@ -1,3 +1,4 @@
+/* eslint-disable n/no-sync */
 import { pollSync } from '../src';
 
 const DOMException: typeof globalThis.DOMException =
@@ -49,7 +50,7 @@ describe('pollSync', () => {
 			expect(callback).toThrow(new TypeError('Expected maximumRetries to be a number'));
 		});
 
-		test.each([NaN, -NaN, -Infinity, -5])('GIVEN %j THEN throws RangeError', (maximumRetries) => {
+		test.each([Number.NaN, -Number.NaN, -Infinity, -5])('GIVEN %j THEN throws RangeError', (maximumRetries) => {
 			const callback = () => pollSync(cb, cbConditionRaw, { maximumRetries });
 			expect(callback).toThrow(new RangeError('Expected maximumRetries to be a non-negative number'));
 		});
@@ -99,7 +100,7 @@ describe('pollSync', () => {
 			expect(cbCondition).toHaveBeenCalledTimes(0);
 		});
 
-		test.each([NaN, -NaN, -Infinity, -5, Infinity, 5.5])('GIVEN %j THEN throws RangeError', (waitBetweenRetries) => {
+		test.each([Number.NaN, -Number.NaN, -Infinity, -5, Infinity, 5.5])('GIVEN %j THEN throws RangeError', (waitBetweenRetries) => {
 			const cb = vi.fn(cbRaw);
 			const cbCondition = vi.fn(cbConditionRaw);
 			const callback = () => pollSync(cb, cbCondition, { waitBetweenRetries });
@@ -143,7 +144,7 @@ describe('pollSync', () => {
 			expect(callback).toThrow(new TypeError('Expected timeout to be a number'));
 		});
 
-		test.each([NaN, -NaN, -Infinity, -5])('GIVEN %j THEN throws RangeError', (timeout) => {
+		test.each([Number.NaN, -Number.NaN, -Infinity, -5])('GIVEN %j THEN throws RangeError', (timeout) => {
 			const callback = () => pollSync(cb, cbConditionRaw, { timeout });
 			expect(callback).toThrow(new RangeError('Expected timeout to be a non-negative number'));
 		});

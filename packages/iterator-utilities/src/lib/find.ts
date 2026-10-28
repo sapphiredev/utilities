@@ -8,7 +8,6 @@ import type { IterableResolvable } from './from';
  * @param iterable An iterator to search for a value in.
  * @param callbackFn A function that determines if a value is the one being searched for.
  * @returns
- *
  * @example
  * ```typescript
  * import { find } from '@sapphire/iterator-utilities';
@@ -17,7 +16,6 @@ import type { IterableResolvable } from './from';
  * console.log(find(iterable, (value) => value % 2 === 0));
  * // Output: 2
  * ```
- *
  * @remarks
  *
  * This function consumes the iterator until the value is found or the iterator is exhausted.

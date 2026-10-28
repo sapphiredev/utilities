@@ -6,6 +6,7 @@ import { AsyncQueueEntry } from './_AsyncQueueEntry';
 export class AsyncQueue {
 	/**
 	 * The amount of entries in the queue, including the head.
+	 *
 	 * @seealso {@link queued} for the queued count.
 	 */
 	public get remaining(): number {
@@ -14,6 +15,7 @@ export class AsyncQueue {
 
 	/**
 	 * The amount of queued entries.
+	 *
 	 * @seealso {@link remaining} for the count with the head.
 	 */
 	public get queued(): number {
@@ -27,6 +29,7 @@ export class AsyncQueue {
 
 	/**
 	 * Waits for last promise and queues a new one
+	 *
 	 * @example
 	 * ```typescript
 	 * const queue = new AsyncQueue();
@@ -46,12 +49,12 @@ export class AsyncQueue {
 	 * request(someUrl3, someOptions3); // Will call fetch() after the second finished
 	 * ```
 	 */
-	public wait(options?: Readonly<AsyncQueueWaitOptions>): Promise<void> {
+	public async wait(options?: Readonly<AsyncQueueWaitOptions>): Promise<void> {
 		const entry = new AsyncQueueEntry(this);
 
 		if (this.promises.length === 0) {
 			this.promises.push(entry);
-			return Promise.resolve();
+			return;
 		}
 
 		this.promises.push(entry);
@@ -78,6 +81,7 @@ export class AsyncQueue {
 
 	/**
 	 * Aborts all the pending promises.
+	 *
 	 * @note To avoid race conditions, this does **not** unlock the head lock.
 	 */
 	public abortAll(): void {
@@ -95,5 +99,5 @@ export class AsyncQueue {
 }
 
 export interface AsyncQueueWaitOptions {
-	signal?: AbortSignal | undefined | null;
+	signal?: AbortSignal | null | undefined;
 }

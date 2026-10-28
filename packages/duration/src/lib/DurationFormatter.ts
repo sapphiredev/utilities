@@ -4,18 +4,19 @@ import { DEFAULT_SEPARATORS, DEFAULT_UNITS, TimeTypes } from './constants';
  * The duration of each time type in milliseconds
  */
 const kTimeDurations: readonly [TimeTypes, number][] = [
-	[TimeTypes.Year, 31536000000],
+	[TimeTypes.Year, 31_536_000_000],
 	// 29.53059 days is the official duration of a month: https://en.wikipedia.org/wiki/Month
-	[TimeTypes.Month, 2628000000],
-	[TimeTypes.Week, 1000 * 60 * 60 * 24 * 7],
-	[TimeTypes.Day, 1000 * 60 * 60 * 24],
-	[TimeTypes.Hour, 1000 * 60 * 60],
-	[TimeTypes.Minute, 1000 * 60],
-	[TimeTypes.Second, 1000]
+	[TimeTypes.Month, 2_628_000_000],
+	[TimeTypes.Week, 1_000 * 60 * 60 * 24 * 7],
+	[TimeTypes.Day, 1_000 * 60 * 60 * 24],
+	[TimeTypes.Hour, 1_000 * 60 * 60],
+	[TimeTypes.Minute, 1_000 * 60],
+	[TimeTypes.Second, 1_000]
 ];
 
 /**
  * Display the duration
+ *
  * @param duration The duration in milliseconds to parse and display
  * @param assets The language assets
  */
@@ -33,6 +34,7 @@ export class DurationFormatter {
 	) {
 		const output: string[] = [];
 		const negative = duration < 0;
+		// eslint-disable-next-line no-param-reassign
 		if (negative) duration *= -1;
 
 		for (const [type, timeDuration] of kTimeDurations) {
@@ -40,6 +42,7 @@ export class DurationFormatter {
 			if (division < 1) continue;
 
 			const floored = Math.floor(division);
+			// eslint-disable-next-line no-param-reassign
 			duration -= floored * timeDuration;
 			output.push(addUnit(floored, this.units[type], leftSeparator!));
 
@@ -61,6 +64,7 @@ export class DurationFormatter {
 
 /**
  * Adds an unit, if non zero
+ *
  * @param time The duration of said unit
  * @param unit The unit language assets
  */
@@ -70,9 +74,9 @@ function addUnit(time: number, unit: DurationFormatAssetsUnit, separator: string
 }
 
 export interface DurationFormatSeparators {
+	final?: string;
 	left?: string;
 	right?: string;
-	final?: string;
 }
 
 export interface DurationFormatAssetsUnit extends Record<number, string> {

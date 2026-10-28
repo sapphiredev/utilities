@@ -1,6 +1,6 @@
 import { codeBlock } from '../src';
 
-const zeroWidthSpace = String.fromCharCode(8203);
+const zeroWidthSpace = String.fromCodePoint(8_203);
 
 describe('codeBlock', () => {
 	test('GIVEN expression w/o length THEN returns wrapped ZeroWidthSpace', () => {
@@ -33,7 +33,7 @@ describe('codeBlock', () => {
 			\`${zeroWidthSpace}\`\`js
 				if (sapphireCommunityIsCool) return 'awesome!';
 			\`\`\`
-		
+
 \`\`\``
 		);
 	});
@@ -51,13 +51,13 @@ describe('codeBlock', () => {
 
 			# Header
 			\`const sapphireCommunityIsCool = true\`
-		
+
 \`\`\``);
 	});
 
 	test('GIVEN expression of non-string type THEN returns wrapped expression', () => {
 		// @ts-expect-error Checking for invalid input
-		expect(codeBlock('md', 123456789)).toStrictEqual(`\`\`\`md
+		expect(codeBlock('md', 123_456_789)).toStrictEqual(`\`\`\`md
 123456789
 \`\`\``);
 	});

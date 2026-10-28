@@ -1,5 +1,6 @@
 /**
  * Converts a TypeScript enum to a 1-way object, stripping out the number keys.
+ *
  * @param enumObject The enum to convert
  * @example
  * ```typescript

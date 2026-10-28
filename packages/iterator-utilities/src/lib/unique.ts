@@ -6,7 +6,6 @@ import { union } from './union';
  *
  * @param iterable An iterator to remove duplicates from.
  * @returns An iterator that yields the values of the provided iterator with duplicates removed.
- *
  * @example
  * ```typescript
  * import { unique } from '@sapphire/iterator-utilities';

@@ -327,13 +327,13 @@ describe('Cron', () => {
 	});
 
 	// Saturday 9th March 2019, at 16:20:35:500
-	const tDate = new Date(2019, 2, 9, 16, 20, 35, 500);
+	const tDate = new Date(2_019, 2, 9, 16, 20, 35, 500);
 
 	test('next minute', () => {
 		const specimen = new Cron('* * * * *');
 		const next = specimen.next(tDate);
 
-		expect(next.getTime()).toBe(new Date(2019, 2, 9, 16, 21, 0, 0).getTime());
+		expect(next.getTime()).toBe(new Date(2_019, 2, 9, 16, 21, 0, 0).getTime());
 	});
 
 	test('bad cron', () => {

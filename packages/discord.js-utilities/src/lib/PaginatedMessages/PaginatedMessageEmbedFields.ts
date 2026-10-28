@@ -53,6 +53,7 @@ export class PaginatedMessageEmbedFields extends PaginatedMessage {
 
 	/**
 	 * Set the items to paginate.
+	 *
 	 * @param items The pages to set
 	 */
 	public setItems(items: EmbedField[]): this {
@@ -62,6 +63,7 @@ export class PaginatedMessageEmbedFields extends PaginatedMessage {
 
 	/**
 	 * Sets the amount of items that should be shown per page.
+	 *
 	 * @param itemsPerPage The number of items
 	 */
 	public setItemsPerPage(itemsPerPage: number): this {
@@ -70,11 +72,10 @@ export class PaginatedMessageEmbedFields extends PaginatedMessage {
 	}
 
 	/**
-	 * Sets the template to be used to display the embed fields as pages. This template can either be set from a template {@link MessageEmbed} instance or an object with embed options.
+	 * Sets the template to be used to display the embed fields as pages. This template can either be set from a template `MessageEmbed` instance or an object with embed options.
 	 * All fields in the given template will be overwritten when calling {@link PaginatedMessageEmbedFields.make}.
 	 *
 	 * @param template MessageEmbed
-	 *
 	 * @example
 	 * ```typescript
 	 * import { PaginatedMessageEmbedFields } from '@sapphire/discord.js-utilities';
@@ -86,7 +87,6 @@ export class PaginatedMessageEmbedFields extends PaginatedMessage {
 	 * 	.make()
 	 * 	.run(message);
 	 * ```
-	 *
 	 * @example
 	 * ```typescript
 	 * import { PaginatedMessageEmbedFields } from '@sapphire/discord.js-utilities';
@@ -138,14 +138,14 @@ export class PaginatedMessageEmbedFields extends PaginatedMessage {
 	 */
 	private generatePages(): void {
 		const template = this.embedTemplate;
-		for (let i = 0; i < this.totalPages; i++) {
+		for (let idx = 0; idx < this.totalPages; idx++) {
 			const clonedTemplate = new EmbedBuilder(template);
 			const fieldsClone = isNullishOrEmpty(template.fields) ? [] : [...template.fields];
 			if (fieldsClone.length > 0) clonedTemplate.setFields();
 
 			if (!clonedTemplate.data.color) clonedTemplate.setColor('Random');
 
-			const data = this.paginateArray(this.items, i, this.itemsPerPage - fieldsClone.length);
+			const data = this.paginateArray(this.items, idx, this.itemsPerPage - fieldsClone.length);
 			this.addPage({
 				embeds: [clonedTemplate.addFields(...data, ...fieldsClone)]
 			});
@@ -171,7 +171,8 @@ export class PaginatedMessageEmbedFields extends PaginatedMessage {
 	 * @param template - The template to resolve. It can be an EmbedResolvable, EmbedData, or a function that takes an EmbedBuilder and returns an EmbedResolvable.
 	 * @returns The resolved APIEmbed object.
 	 */
-	private resolveTemplate(template: EmbedResolvable | EmbedData | ((embed: EmbedBuilder) => EmbedResolvable)): APIEmbed {
+	private resolveTemplate(template: EmbedData | EmbedResolvable | ((embed: EmbedBuilder) => EmbedResolvable)): APIEmbed {
+		// eslint-disable-next-line no-param-reassign
 		if (isFunction(template)) template = template(new EmbedBuilder());
 		return (isJSONEncodable(template) ? template : new EmbedBuilder(template)).toJSON();
 	}

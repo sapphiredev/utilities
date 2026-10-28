@@ -1,3 +1,5 @@
+import { setTimeout, clearTimeout } from 'node:timers';
+
 /**
  * lodash (Custom Build) https://lodash.com/
  * Build: `lodash modularize exports="npm" -o ./`
@@ -9,16 +11,18 @@
 
 export interface DebounceSettings {
 	/**
-	 * The number of milliseconds to delay.
-	 * @default 0
-	 */
-	wait?: number;
-
-	/**
 	 * The maximum time `func` is allowed to be delayed before it's invoked
+	 *
 	 * @default null
 	 */
 	maxWait?: number | null;
+
+	/**
+	 * The number of milliseconds to delay.
+	 *
+	 * @default 0
+	 */
+	wait?: number;
 }
 
 export interface DebouncedFunc<FnArgumentsType extends any[], FnReturnType> {
@@ -124,6 +128,7 @@ export function debounce<FnArgumentsType extends any[], FnReturnType>(
 			trailingEdge(time);
 			return;
 		}
+
 		// Restart the timer.
 		timerId = setTimeout(timerExpired, remainingWait(time));
 	}
@@ -159,6 +164,7 @@ export function debounce<FnArgumentsType extends any[], FnReturnType>(
 			if (timerId === undefined) {
 				return leadingEdge(lastCallTime);
 			}
+
 			if (maxWait !== null) {
 				// Handle invocations in a tight loop.
 				timerId = setTimeout(timerExpired, wait);
@@ -166,9 +172,7 @@ export function debounce<FnArgumentsType extends any[], FnReturnType>(
 			}
 		}
 
-		if (timerId === undefined) {
-			timerId = setTimeout(timerExpired, wait);
-		}
+		timerId ??= setTimeout(timerExpired, wait);
 
 		return result;
 	}

@@ -1,9 +1,13 @@
 import type { Lexer } from '../../Lexer';
+import { TokenType, type QuotedToken, type SeparatorToken, type Token, type WordToken } from './types';
 
 export class TokenStream implements Iterable<Token> {
 	private readonly input: string;
+
 	private readonly quotes: readonly [string, string][];
+
 	private readonly separator: string;
+
 	private position = 0;
 
 	public constructor(lexer: Lexer, input: string) {
@@ -53,29 +57,4 @@ export class TokenStream implements Iterable<Token> {
 		this.position += value.length;
 		return { type: TokenType.Parameter, value };
 	}
-}
-
-export enum TokenType {
-	Parameter,
-	Quoted,
-	Separator
-}
-
-export type Token = WordToken | QuotedToken | SeparatorToken;
-
-export interface WordToken {
-	readonly type: TokenType.Parameter;
-	readonly value: string;
-}
-
-export interface QuotedToken {
-	readonly type: TokenType.Quoted;
-	readonly value: string;
-	readonly open: string;
-	readonly close: string;
-}
-
-export interface SeparatorToken {
-	readonly type: TokenType.Separator;
-	readonly value: string;
 }

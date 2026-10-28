@@ -7,7 +7,6 @@ import { toNumberOrThrow } from './shared/_toNumberOrThrow';
  *
  * @param iterable An iterator to calculate the product of.
  * @returns The product of the elements in the input iterator.
- *
  * @example
  * ```typescript
  * import { product } from '@sapphire/iterator-utilities';

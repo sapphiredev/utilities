@@ -1,8 +1,8 @@
 import { chunk, partition } from '@sapphire/utilities';
 import {
 	ActionRowBuilder,
-	ButtonBuilder,
 	ButtonStyle,
+	type ButtonBuilder,
 	ComponentType,
 	type APIActionRowComponent,
 	type APIComponentInMessageActionRow,
@@ -32,6 +32,7 @@ import type {
 
 /**
  * Checks if a PaginatedMessageAction is a button or menu.
+ *
  * @param action The PaginatedMessageAction to check.
  * @returns `true` if the action is a button or menu, `false` otherwise.
  */
@@ -48,6 +49,7 @@ export function actionIsButtonOrMenu(action: PaginatedMessageAction): action is 
 
 /**
  * Checks if a PaginatedMessageAction is a button with {@link ButtonStyle.Link style `link`}.
+ *
  * @param action The PaginatedMessageAction to check.
  * @returns `true` if the action is a button with {@link ButtonStyle.Link style `link`}, `false` otherwise.
  */
@@ -57,6 +59,7 @@ export function actionIsLinkButton(action: PaginatedMessageAction): action is Pa
 
 /**
  * Checks if the given interaction is a button interaction.
+ *
  * @param interaction - The interaction to check.
  * @returns True if the interaction is a button interaction, false otherwise.
  */
@@ -66,6 +69,7 @@ export function isMessageButtonInteractionData(interaction: ActionRowComponentOp
 
 /**
  * Checks if the given interaction is a string select interaction.
+ *
  * @param interaction - The interaction to check.
  * @returns True if the interaction is a string select interaction, false otherwise.
  */
@@ -75,6 +79,7 @@ export function isMessageStringSelectInteractionData(interaction: ActionRowCompo
 
 /**
  * Checks if the given interaction is a user select interaction.
+ *
  * @param interaction - The interaction to check.
  * @returns True if the interaction is a user select interaction, false otherwise.
  */
@@ -84,6 +89,7 @@ export function isMessageUserSelectInteractionData(interaction: ActionRowCompone
 
 /**
  * Checks if the given interaction is a role select interaction.
+ *
  * @param interaction - The interaction to check.
  * @returns True if the interaction is a role select interaction, false otherwise.
  */
@@ -93,6 +99,7 @@ export function isMessageRoleSelectInteractionData(interaction: ActionRowCompone
 
 /**
  * Checks if the given interaction is a mentionable select interaction.
+ *
  * @param interaction - The interaction to check.
  * @returns True if the interaction is a mentionable select interaction, false otherwise.
  */
@@ -102,6 +109,7 @@ export function isMessageMentionableSelectInteractionData(interaction: ActionRow
 
 /**
  * Checks if the given interaction is a channel select interaction.
+ *
  * @param interaction - The interaction to check.
  * @returns True if the interaction is a channel select interaction, false otherwise.
  */
@@ -111,6 +119,7 @@ export function isMessageChannelSelectInteractionData(interaction: ActionRowComp
 
 /**
  * Checks if the given component is a button builder.
+ *
  * @param component - The component to check.
  * @returns True if the component is a button builder, false otherwise.
  */
@@ -120,6 +129,7 @@ export function isButtonComponentBuilder(component: MessageActionRowComponentBui
 
 /**
  * Checks if the given action is a paginated message action button.
+ *
  * @param action - The action to check.
  * @returns True if the action is a paginated message action button, false otherwise.
  */
@@ -129,6 +139,7 @@ export function isActionButton(action: PaginatedMessageAction): action is Pagina
 
 /**
  * Checks if the given action is a paginated message action link.
+ *
  * @param action - The action to check.
  * @returns True if the action is a paginated message action link, false otherwise.
  */
@@ -138,6 +149,7 @@ export function isActionLink(action: PaginatedMessageAction): action is Paginate
 
 /**
  * Checks if the given action is a paginated message action string menu.
+ *
  * @param action - The action to check.
  * @returns True if the action is a paginated message action string menu, false otherwise.
  */
@@ -147,6 +159,7 @@ export function isActionStringMenu(action: PaginatedMessageAction): action is Pa
 
 /**
  * Checks if the given action is a paginated message action user menu.
+ *
  * @param action - The action to check.
  * @returns True if the action is a paginated message action user menu, false otherwise.
  */
@@ -156,6 +169,7 @@ export function isActionUserMenu(action: PaginatedMessageAction): action is Pagi
 
 /**
  * Checks if the given action is a paginated message action role menu.
+ *
  * @param action - The action to check.
  * @returns True if the action is a paginated message action role menu, false otherwise.
  */
@@ -165,6 +179,7 @@ export function isActionRoleMenu(action: PaginatedMessageAction): action is Pagi
 
 /**
  * Checks if the given action is a paginated message action mentionable menu.
+ *
  * @param action - The action to check.
  * @returns True if the action is a paginated message action mentionable menu, false otherwise.
  */
@@ -174,6 +189,7 @@ export function isActionMentionableMenu(action: PaginatedMessageAction): action 
 
 /**
  * Checks if the given action is a paginated message action channel menu.
+ *
  * @param action - The action to check.
  * @returns True if the action is a paginated message action channel menu, false otherwise.
  */
@@ -183,6 +199,7 @@ export function isActionChannelMenu(action: PaginatedMessageAction): action is P
 
 /**
  * Creates partitioned message rows based on the provided components.
+ *
  * @param components The array of MessageActionRowComponentBuilder objects.
  * @returns An array of `APIActionRowComponent<APIComponentInMessageActionRow>` objects.
  */
@@ -222,6 +239,7 @@ export function createPartitionedMessageRow(components: MessageActionRowComponen
 
 /**
  * Safely replies to a message or interaction. This is primarily to save duplicated code in the main `PaginatedMessage` class
+ *
  * @param parameters The parameters to create a safe reply to interaction parameters
  */
 export async function safelyReplyToInteraction<T extends 'edit' | 'reply'>(parameters: SafeReplyToInteractionParameters<T>) {

@@ -26,7 +26,9 @@ describe('omitKeysFromObject', () => {
 			two: new Set(),
 			three: new Date(),
 			four: new Uint8Array(),
+			// eslint-disable-next-line unicorn/error-message
 			five: new Error(),
+			// eslint-disable-next-line prefer-regex-literals
 			six: new RegExp(''),
 			seven: []
 		};
@@ -36,8 +38,7 @@ describe('omitKeysFromObject', () => {
 
 	test('GIVEN keys as array THEN removes keys', () => {
 		const source = { name: 'John', age: 30, city: 'New York' };
-		// @ts-expect-error spreading Arrays gives "string" instead of "keyof T"
-		const result = omitKeysFromObject(source, ...['age', 'city']);
+		const result = omitKeysFromObject(source, 'age', 'city');
 		expect(result).toEqual({ name: 'John' });
 	});
 

@@ -16,6 +16,7 @@ const originalApplicationCommandToProxy = new WeakMap<CommandTarget<any>, Comman
 
 /**
  * Decorator function that applies given options to any Sapphire piece
+ *
  * @param optionsOrFn The options or function that returns options to pass to the piece constructor
  * @example
  * ```typescript
@@ -74,6 +75,7 @@ export function ApplyOptions<T extends Piece.Options>(optionsOrFn: T | ((paramet
 
 /**
  * Decorator for registering chat input command.
+ *
  * @param optionsFn The function that returns options to pass to the registry.
  * @example
  * ```typescript
@@ -156,6 +158,7 @@ export function RegisterChatInputCommand<CMD extends Command = Command>(
 
 /**
  * Decorator for registering message context menu command.
+ *
  * @param optionsFn The function that returns options to pass to the registry.
  * @example
  * ```typescript
@@ -261,6 +264,7 @@ export function RegisterMessageContextMenuCommand<CMD extends Command = Command>
 
 /**
  * Decorator for registering user context menu command.
+ *
  * @param optionsFn The function that returns options to pass to the registry.
  * @example
  * ```typescript
@@ -408,21 +412,21 @@ export interface ApplyOptionsCallbackParameters {
 }
 
 interface ChatInputCommandDecoratorsMap<CMD extends Command> {
-	type: 'RegisterChatInputCommand';
-	optionsFn: (
+	optionsFn(
 		builder: SlashCommandBuilder,
-		command: ThisType<CMD> & CMD
-	) => SlashCommandBuilder | SlashCommandSubcommandsOnlyBuilder | SlashCommandOptionsOnlyBuilder;
+		command: CMD & ThisType<CMD>
+	): SlashCommandBuilder | SlashCommandOptionsOnlyBuilder | SlashCommandSubcommandsOnlyBuilder;
 	registryOptions?: ApplicationCommandRegistryRegisterOptions;
+	type: 'RegisterChatInputCommand';
 }
 
 interface ContextMenuCommandDecoratorsMap<CMD extends Command> {
-	type: 'RegisterMessageContextMenuCommand' | 'RegisterUserContextMenuCommand';
-	optionsFn: (
+	optionsFn(
 		builder: ContextMenuCommandBuilder, //
-		command: ThisType<CMD> & CMD
-	) => ContextMenuCommandBuilder;
+		command: CMD & ThisType<CMD>
+	): ContextMenuCommandBuilder;
 	registryOptions?: ApplicationCommandRegistryRegisterOptions;
+	type: 'RegisterMessageContextMenuCommand' | 'RegisterUserContextMenuCommand';
 }
 
 type CommandTarget<CMD extends Command> = Ctor<ConstructorParameters<typeof Command>, CMD>;

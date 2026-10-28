@@ -41,4 +41,4 @@ export class Pointer {
 	}
 }
 
-export type PointerLike = Pointer | { valueOf(): number } | { [Symbol.toPrimitive](hint: 'number'): number };
+export type PointerLike = Pointer | { [Symbol.toPrimitive](hint: 'number'): number } | { valueOf(): number };

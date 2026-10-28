@@ -9,7 +9,6 @@ import { toIntegerOrInfinityOrThrow } from './shared/_toIntegerOrInfinityOrThrow
  * @param iterable The iterator to take values from.
  * @param count The maximum number of values in the window.
  * @returns An iterator that yields windows with `count` values from the provided iterator.
- *
  * @example
  * ```typescript
  * import { windows } from '@sapphire/iterator-utilities';
@@ -20,6 +19,7 @@ import { toIntegerOrInfinityOrThrow } from './shared/_toIntegerOrInfinityOrThrow
  * ```
  */
 export function windows<const ElementType>(iterable: IterableResolvable<ElementType>, count: number): IterableIterator<ElementType[]> {
+	// eslint-disable-next-line no-param-reassign
 	count = assertPositive(toIntegerOrInfinityOrThrow(count), count);
 
 	const buffer = [] as ElementType[];

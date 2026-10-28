@@ -1,8 +1,8 @@
 export enum Time {
 	Nanosecond = 1 / 1_000_000,
-	Microsecond = 1 / 1000,
+	Microsecond = 1 / 1_000,
 	Millisecond = 1,
-	Second = 1000,
+	Second = 1_000,
 	Minute = Second * 60,
 	Hour = Minute * 60,
 	Day = Hour * 24,

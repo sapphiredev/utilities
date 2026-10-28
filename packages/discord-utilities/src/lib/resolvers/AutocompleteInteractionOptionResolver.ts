@@ -59,6 +59,7 @@ export class AutocompleteInteractionOptionResolver {
 
 	/**
 	 * Gets the selected subcommand
+	 *
 	 * @param required Whether to throw an error if there is no subcommand
 	 */
 	public getSubcommand<Required extends boolean = false>(required?: Required): RequiredIf<Required, string>;
@@ -72,6 +73,7 @@ export class AutocompleteInteractionOptionResolver {
 
 	/**
 	 * Gets the selected subcommand group
+	 *
 	 * @param required Whether to throw an error if there is no subcommand group
 	 */
 	public getSubcommandGroup<Required extends boolean = false>(required?: Required): RequiredIf<Required, string>;
@@ -92,9 +94,9 @@ export class AutocompleteInteractionOptionResolver {
 		}
 
 		const focusedOption = this.hoistedOptions?.find((option) => 'focused' in option && option.focused) as
-			| APIApplicationCommandInteractionDataStringOption
 			| APIApplicationCommandInteractionDataIntegerOption
 			| APIApplicationCommandInteractionDataNumberOption
+			| APIApplicationCommandInteractionDataStringOption
 			| undefined;
 
 		// Considering the earlier check, this should be impossible, but it's here for good measure

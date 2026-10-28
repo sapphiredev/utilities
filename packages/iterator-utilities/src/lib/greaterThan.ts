@@ -8,7 +8,6 @@ import { orderingIsGreater, type LexicographicComparison } from './shared/_compa
  *
  * @param iterable The iterator to compare.
  * @param other The iterator to compare against.
- *
  * @example
  * ```typescript
  * import { greaterThan } from '@sapphire/iterator-utilities';
@@ -24,7 +23,6 @@ import { orderingIsGreater, type LexicographicComparison } from './shared/_compa
  * console.log(greaterThan([1, 2], [1, 2]));
  * // Output: false
  * ```
- *
  * @remarks
  *
  * This function consumes the entire iterator.

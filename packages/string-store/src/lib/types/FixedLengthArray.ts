@@ -11,15 +11,16 @@ export function FixedLengthArrayType<ValueType, ValueBitSize extends number | nu
 				throw new TypeError(`Expected array of length ${length}, got ${values.length}`);
 			}
 
-			for (let i = 0; i < length; i++) {
-				type.serialize(buffer, values[i]);
+			for (let idx = 0; idx < length; idx++) {
+				type.serialize(buffer, values[idx]);
 			}
 		},
 		deserialize(buffer, pointer) {
 			const value = [];
-			for (let i = 0; i < length; i++) {
+			for (let idx = 0; idx < length; idx++) {
 				value.push(type.deserialize(buffer, pointer));
 			}
+
 			return value;
 		},
 		BIT_SIZE: (typeof type.BIT_SIZE === 'number' ? type.BIT_SIZE * length : null) as ValueBitSize extends null ? null : number

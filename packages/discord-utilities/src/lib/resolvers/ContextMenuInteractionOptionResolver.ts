@@ -40,6 +40,7 @@ export class ContextMenuInteractionOptionResolver {
 
 	/**
 	 * Gets the target member for a context menu interaction
+	 *
 	 * @param required Whether to throw an error if the member data is not present
 	 */
 	public getTargetMember<Required extends boolean = false>(required?: Required): RequiredIf<Required, APIInteractionDataResolvedGuildMember>;

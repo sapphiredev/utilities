@@ -17,7 +17,10 @@ export default [
 	{
 		files: ['**/*.test.ts'],
 		rules: {
-			'@typescript-eslint/no-extraneous-class': 'off'
+			'@typescript-eslint/no-extraneous-class': 'off',
+			'id-length': 'off',
+			'unicorn/consistent-function-scoping': 'off',
+			'func-style': 'off'
 		}
 	},
 	{

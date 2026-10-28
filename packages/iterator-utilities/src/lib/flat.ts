@@ -6,7 +6,6 @@ import { toIterableIterator } from './toIterableIterator';
  *
  * @param iterables An iterator to map.
  * @returns An iterator that yields the entries of each iterator.
- *
  * @example
  * ```typescript
  * import { flat } from '@sapphire/iterator-utilities';

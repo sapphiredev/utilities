@@ -5,7 +5,6 @@ import { toIterableIterator } from './toIterableIterator';
  * Creates an infinite iterable by cycling through the elements of the input iterable.
  *
  * @param iterable An iterator to cycle over.
- *
  * @example
  * ```typescript
  * import { cycle } from '@sapphire/iterator-utilities';

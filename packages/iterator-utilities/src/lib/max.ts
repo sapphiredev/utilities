@@ -11,10 +11,8 @@ import { defaultCompare } from './shared/comparators';
  *
  * @seealso {@link maxBy} for a version that allows custom comparators.
  * @seealso {@link maxByKey} for a version that allows custom key extractors.
- *
  * @param iterable An iterator of number values to determine the maximum value of.
  * @returns The maximum value in the input iterator, or `null` if the iterator is empty or contains only non-number values.
- *
  * @example
  * ```typescript
  * import { max } from '@sapphire/iterator-utilities';
@@ -23,7 +21,6 @@ import { defaultCompare } from './shared/comparators';
  * console.log(max(iterable));
  * // Output: 5
  * ```
- *
  * @remarks
  *
  * This function consumes the entire iterator.

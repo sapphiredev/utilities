@@ -12,7 +12,6 @@ import { toIterableIterator } from './toIterableIterator';
  * @param iterable An iterator to take values from.
  * @param count The number of values to take from the end of the iterator.
  * @returns An iterator that contains the last `count` elements of the provided iterator.
- *
  * @example
  * ```typescript
  * import { takeLast } from '@sapphire/iterator-utilities';
@@ -21,7 +20,6 @@ import { toIterableIterator } from './toIterableIterator';
  * console.log([...takeLast(iterable, 2)]);
  * // Output: [4, 5]
  * ```
- *
  * @remarks
  *
  * This function consumes the entire iterator.

@@ -2,10 +2,13 @@ import type { DuplexBuffer } from '../buffer/DuplexBuffer';
 import { UnalignedUint16Array } from '../buffer/UnalignedUint16Array';
 import { Pointer, type PointerLike } from '../shared/Pointer';
 import { t, type IType } from '../types/index';
+import type { SchemaStore } from './SchemaStore';
 
 export class Schema<Id extends number = number, Entries extends object = object> {
 	readonly #id: Id;
+
 	readonly #types = new Map<string, IType<any, number | null>>();
+
 	#bitSize: number | null = 0;
 
 	/**
@@ -53,12 +56,11 @@ export class Schema<Id extends number = number, Entries extends object = object>
 	 *
 	 * @param name The name of the property
 	 * @returns The specified property
-	 *
 	 * @remarks
 	 *
 	 * If the property does not exist, an error will be thrown.
 	 */
-	public get<const Name extends keyof Entries & string>(name: Name): Entries[Name] {
+	public get<const Name extends string & keyof Entries>(name: Name): Entries[Name] {
 		const type = this.#types.get(name) as Entries[Name];
 		if (!type) throw new Error(`Schema with id ${this.#id} does not have a property with name "${name}"`);
 		return type;
@@ -70,7 +72,6 @@ export class Schema<Id extends number = number, Entries extends object = object>
 	 * @param value The value to serialize into the buffer
 	 * @param defaultMaximumArrayLength The default maximum array length, if any
 	 * @returns The newly created string.
-	 *
 	 * @seealso This method calls {@link Schema.serializeRaw} before calling `toString()` to its result.
 	 */
 	public serialize(value: Readonly<SerializeValueEntries<Entries>>, defaultMaximumArrayLength = 100): string {
@@ -95,7 +96,6 @@ export class Schema<Id extends number = number, Entries extends object = object>
 	 *
 	 * @param buffer The buffer to serialize
 	 * @param value The value to serialize into the buffer
-	 *
 	 * @remarks
 	 *
 	 * The schema's ID is written to the buffer first, followed by each property
@@ -114,20 +114,22 @@ export class Schema<Id extends number = number, Entries extends object = object>
 	 * @param buffer The buffer to deserialize
 	 * @param pointer The pointer to where the buffer should be read from
 	 * @returns The deserialized value
-	 *
 	 * @remarks
 	 *
 	 * Unlike {@link Schema.serializeInto}, this method does not read the schema's ID
 	 * from the buffer, that is reserved for the {@link SchemaStore}.
 	 */
 	public deserialize(buffer: DuplexBuffer | string, pointer: PointerLike): UnwrapSchemaEntries<Entries> {
+		// eslint-disable-next-line no-param-reassign
 		buffer = UnalignedUint16Array.from(buffer);
+		// eslint-disable-next-line no-param-reassign
 		pointer = Pointer.from(pointer);
 		const result = Object.create(null) as UnwrapSchemaEntries<Entries>;
 		for (const [name, type] of this) {
 			// @ts-expect-error Complex types
 			result[name] = type.deserialize(buffer, pointer);
 		}
+
 		return result;
 	}
 
@@ -135,7 +137,6 @@ export class Schema<Id extends number = number, Entries extends object = object>
 	 * Adds an array property to the schema.
 	 *
 	 * @seealso {@link Schema.fixedLengthArray} for a fixed length array
-	 *
 	 * @param name The name of the property
 	 * @param type The type of the entry in the array
 	 * @returns The modified schema
@@ -151,7 +152,6 @@ export class Schema<Id extends number = number, Entries extends object = object>
 	 * Adds a fixed length array property to the schema.
 	 *
 	 * @seealso {@link Schema.array} for a dynamic length array
-	 *
 	 * @param name The name of the property
 	 * @param type The type of the entry in the array
 	 * @param length The length of the array
@@ -201,7 +201,6 @@ export class Schema<Id extends number = number, Entries extends object = object>
 	 * @remarks
 	 *
 	 * The range of values is from -2 to 1, inclusive.
-	 *
 	 * @param name The name of the property
 	 * @returns The modified schema
 	 */
@@ -215,7 +214,6 @@ export class Schema<Id extends number = number, Entries extends object = object>
 	 * @remarks
 	 *
 	 * The range of values is from 0 to 3, inclusive.
-	 *
 	 * @param name The name of the property
 	 * @returns The modified schema
 	 */
@@ -229,7 +227,6 @@ export class Schema<Id extends number = number, Entries extends object = object>
 	 * @remarks
 	 *
 	 * The range of values is from -8 to 7, inclusive.
-	 *
 	 * @param name The name of the property
 	 * @returns The modified schema
 	 */
@@ -243,7 +240,6 @@ export class Schema<Id extends number = number, Entries extends object = object>
 	 * @remarks
 	 *
 	 * The range of values is from 0 to 15, inclusive.
-	 *
 	 * @param name The name of the property
 	 * @returns The modified schema
 	 */
@@ -257,7 +253,6 @@ export class Schema<Id extends number = number, Entries extends object = object>
 	 * @remarks
 	 *
 	 * The range of values is from -128 to 127, inclusive.
-	 *
 	 * @param name The name of the property
 	 * @returns The modified schema
 	 */
@@ -271,7 +266,6 @@ export class Schema<Id extends number = number, Entries extends object = object>
 	 * @remarks
 	 *
 	 * The range of values is from 0 to 255, inclusive.
-	 *
 	 * @param name The name of the property
 	 * @returns The modified schema
 	 */
@@ -285,7 +279,6 @@ export class Schema<Id extends number = number, Entries extends object = object>
 	 * @remarks
 	 *
 	 * The range of values is from -32768 to 32767, inclusive.
-	 *
 	 * @param name The name of the property
 	 * @returns The modified schema
 	 */
@@ -299,7 +292,6 @@ export class Schema<Id extends number = number, Entries extends object = object>
 	 * @remarks
 	 *
 	 * The range of values is from 0 to 65535, inclusive.
-	 *
 	 * @param name The name of the property
 	 * @returns The modified schema
 	 */
@@ -313,7 +305,6 @@ export class Schema<Id extends number = number, Entries extends object = object>
 	 * @remarks
 	 *
 	 * The range of values is from -2_147_483_648 to 2_147_483_647, inclusive.
-	 *
 	 * @param name The name of the property
 	 * @returns The modified schema
 	 */
@@ -327,7 +318,6 @@ export class Schema<Id extends number = number, Entries extends object = object>
 	 * @remarks
 	 *
 	 * The range of values is from 0 to 4_294_967_295, inclusive.
-	 *
 	 * @param name The name of the property
 	 * @returns The modified schema
 	 */
@@ -343,7 +333,6 @@ export class Schema<Id extends number = number, Entries extends object = object>
 	 * The range of values is from -9_223_372_036_854_775_808 to 9_223_372_036_854_775_807, inclusive.
 	 *
 	 * However, it may run into precision issues past the range of `-9_007_199_254_740_991` to `9_007_199_254_740_991`
-	 *
 	 * @param name The name of the property
 	 * @returns The modified schema
 	 */
@@ -359,7 +348,6 @@ export class Schema<Id extends number = number, Entries extends object = object>
 	 * The range of values is from 0 to 18_446_744_073_709_551_615, inclusive.
 	 *
 	 * However, it may run into precision issues past `9_007_199_254_740_991`
-	 *
 	 * @param name The name of the property
 	 * @returns The modified schema
 	 */
@@ -373,7 +361,6 @@ export class Schema<Id extends number = number, Entries extends object = object>
 	 * @remarks
 	 *
 	 * The range of values is from -2_147_483_648n to 2_147_483_647n, inclusive.
-	 *
 	 * @param name The name of the property
 	 * @returns The modified schema
 	 */
@@ -387,7 +374,6 @@ export class Schema<Id extends number = number, Entries extends object = object>
 	 * @remarks
 	 *
 	 * The range of values is from 0n to 4_294_967_295n, inclusive.
-	 *
 	 * @param name The name of the property
 	 * @returns The modified schema
 	 */
@@ -401,7 +387,6 @@ export class Schema<Id extends number = number, Entries extends object = object>
 	 * @remarks
 	 *
 	 * The range of values is from -9_223_372_036_854_775_808n to 9_223_372_036_854_775_807n, inclusive.
-	 *
 	 * @param name The name of the property
 	 * @returns The modified schema
 	 */
@@ -415,7 +400,6 @@ export class Schema<Id extends number = number, Entries extends object = object>
 	 * @remarks
 	 *
 	 * The range of values is from 0n to 18_446_744_073_709_551_615n, inclusive.
-	 *
 	 * @param name The name of the property
 	 * @returns The modified schema
 	 */
@@ -429,7 +413,6 @@ export class Schema<Id extends number = number, Entries extends object = object>
 	 * @remarks
 	 *
 	 * The range of values is from -3.4028234663852886e+38 to 3.4028234663852886e+38, inclusive.
-	 *
 	 * @param name The name of the property
 	 * @returns The modified schema
 	 */
@@ -443,7 +426,6 @@ export class Schema<Id extends number = number, Entries extends object = object>
 	 * @remarks
 	 *
 	 * The range of values is from -1.7976931348623157e+308 to 1.7976931348623157e+308, inclusive.
-	 *
 	 * @param name The name of the property
 	 * @returns The modified schema
 	 */
@@ -471,7 +453,6 @@ export class Schema<Id extends number = number, Entries extends object = object>
 	 * @remarks
 	 *
 	 * The range of values is from 0n to 18_446_744_073_709_551_615n, inclusive.
-	 *
 	 * @param name The name of the property
 	 * @returns The modified schema
 	 */
@@ -554,14 +535,14 @@ type Merge<
 	EntryType extends IType<any, number | null>
 > = EntryName extends keyof Entries ? never : Schema<Id, { [K in EntryName | keyof Entries]: K extends keyof Entries ? Entries[K] : EntryType }>;
 
-export type KeyOfSchema<SchemaValue extends object> = SchemaValue extends Schema<infer _, infer Type> ? keyof Type & string : never;
+export type KeyOfSchema<SchemaValue extends object> = SchemaValue extends Schema<infer _, infer Type> ? string & keyof Type : never;
 export type ValueOfSchema<SchemaValue extends object> =
 	SchemaValue extends Schema<infer _, infer Type> ? { [K in keyof Type]: Type[K] }[keyof Type] : never;
 export type EntryOfSchema<SchemaValue extends object> =
 	SchemaValue extends Schema<infer _, infer Type> ? { [K in keyof Type]: readonly [K, Type[K]] }[keyof Type] : never;
 
 export type UnwrapSchemaType<Type extends object> = Type extends IType<infer ValueType, infer _BitSize, infer _InputType> ? ValueType : never;
-export type UnwrapSchemaEntries<Entries extends object> = { [K in keyof Entries]: UnwrapSchemaType<Entries[K] & object> } & object;
+export type UnwrapSchemaEntries<Entries extends object> = object & { [K in keyof Entries]: UnwrapSchemaType<Entries[K] & object> };
 export type UnwrapSchema<SchemaValue extends object> = SchemaValue extends Schema<infer _Id, infer Type> ? UnwrapSchemaEntries<Type> : never;
 
 type OmitNever<T> = { [K in keyof T as T[K] extends never ? never : K]: T[K] };

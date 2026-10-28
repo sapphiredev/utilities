@@ -6,7 +6,6 @@ import { toIterableIterator } from './toIterableIterator';
  *
  * @param iterables The iterators to combine.
  * @returns An iterator that yields the union of the provided iterators.
- *
  * @example
  * ```typescript
  * import { union } from '@sapphire/iterator-utilities';

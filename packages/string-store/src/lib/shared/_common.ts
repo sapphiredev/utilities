@@ -20,5 +20,5 @@ function hasLength(item: object): item is { length: number } {
 }
 
 export function isValidLength(length: number) {
-	return Number.isSafeInteger(length) && length >= 0 && length < 2147483648;
+	return Number.isSafeInteger(length) && length >= 0 && length < 2_147_483_648;
 }

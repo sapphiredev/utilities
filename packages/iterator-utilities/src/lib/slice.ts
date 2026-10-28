@@ -13,7 +13,6 @@ import { takeLast } from './takeLast';
  * @param start The index at which to begin extraction.
  * @param end The index at which to end extraction.
  * @returns An iterator that contains the elements of the provided iterator from `start` to `end`.
- *
  * @example
  * ```typescript
  * import { slice } from '@sapphire/iterator-utilities';
@@ -22,42 +21,36 @@ import { takeLast } from './takeLast';
  * console.log([...slice(, 1, 3)]);
  * // Output: [2, 3]
  * ```
- *
  * @example
  * ```typescript
  * const iterable = [1, 2, 3, 4, 5];
  * console.log([...slice(iterable, -2)]);
  * // Output: [4, 5]
  * ```
- *
  * @example
  * ```typescript
  * const iterable = [1, 2, 3, 4, 5];
  * console.log([...slice(iterable, 2)]);
  * // Output: [3, 4, 5]
  * ```
- *
  * @example
  * ```typescript
  * const iterable = [1, 2, 3, 4, 5];
  * console.log([...slice(iterable, 2, -1)]);
  * // Output: [3, 4]
  * ```
- *
  * @example
  * ```typescript
  * const iterable = [1, 2, 3, 4, 5];
  * console.log([...slice(iterable, -2, -1)]);
  * // Output: [4]
  * ```
- *
  * @example
  * ```typescript
  * const iterable = [1, 2, 3, 4, 5];
  * console.log([...slice(iterable, 2, 1)]);
  * // Output: []
  * ```
- *
  * @remarks
  *
  * This function consumes the input iterator based on the `start` and `end` values, therefore, you should not use the
@@ -65,8 +58,10 @@ import { takeLast } from './takeLast';
  */
 export function slice<const ElementType>(iterable: IterableResolvable<ElementType>, start?: number, end?: number): IterableIterator<ElementType> {
 	// https://tc39.es/ecma262/#sec-array.prototype.slice
+	// eslint-disable-next-line no-param-reassign
 	start = toIntegerOrInfinityOrThrow(start ?? 0);
 	if (start === Number.NEGATIVE_INFINITY) {
+		// eslint-disable-next-line no-param-reassign
 		start = 0;
 	}
 
@@ -78,6 +73,7 @@ export function slice<const ElementType>(iterable: IterableResolvable<ElementTyp
 			: takeLast(iterable, -start);
 	}
 
+	// eslint-disable-next-line no-param-reassign
 	end = toIntegerOrInfinityOrThrow(end);
 	// 2. If end is negative:
 	if (end < 0) {

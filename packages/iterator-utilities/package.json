@@ -28,8 +28,8 @@
 		"dist/"
 	],
 	"engines": {
-		"node": ">=v18",
-		"npm": ">=9"
+		"node": ">=v24.0.0",
+		"npm": ">=12.0.0"
 	},
 	"keywords": [
 		"@sapphire/iterator-utilities",

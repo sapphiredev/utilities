@@ -12,11 +12,9 @@ import { toIterableIterator } from './toIterableIterator';
  *
  * @seealso {@link min} for a version that uses the default comparator.
  * @seealso {@link minByKey} for a version that allows custom key extractors.
- *
- * @param iterable An iterator of number values to determine the minimum value of.
- * @param callbackFn A function to execute for each element produced by the iterator. It should return a number value.
+ * @param iterable An iterator of values to determine the minimum value of.
+ * @param comparator A function to execute for each element produced by the iterator. It should return a number value.
  * @returns The element that gives the minimum value from the specified function, or `null` if the iterator is empty.
- *
  * @example
  * ```typescript
  * import { ascNumber, minBy } from '@sapphire/iterator-utilities';
@@ -25,7 +23,6 @@ import { toIterableIterator } from './toIterableIterator';
  * console.log(minBy(iterable, ascNumber));
  * // Output: -10
  * ```
- *
  * @remarks
  *
  * This function consumes the entire iterator.
@@ -34,6 +31,7 @@ export function minBy<const ElementType>(
 	iterable: IterableResolvable<ElementType>,
 	comparator: CompareByComparator<ElementType>
 ): ElementType | null {
+	// eslint-disable-next-line no-param-reassign
 	comparator = assertFunction(comparator);
 
 	const iterator = toIterableIterator(iterable);

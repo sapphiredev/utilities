@@ -1,8 +1,6 @@
 import { days, months, Time, tokens } from './constants';
 
-interface TokenResolver {
-	(time: Date): string;
-}
+type TokenResolver = (time: Date) => string;
 
 const tokenResolvers = new Map<string, TokenResolver>([
 	// Dates
@@ -114,8 +112,8 @@ const tokenResolvers = new Map<string, TokenResolver>([
 export type TimeResolvable = Date | number | string;
 
 export interface TimestampTemplateEntry {
-	type: string;
 	content: string | null;
+	type: string;
 }
 
 /**
@@ -124,6 +122,7 @@ export interface TimestampTemplateEntry {
 export class Timestamp {
 	/**
 	 * The raw pattern
+	 *
 	 * @since 1.0.0
 	 */
 	public pattern: string;
@@ -135,6 +134,7 @@ export class Timestamp {
 
 	/**
 	 * Starts a new Timestamp and parses the pattern.
+	 *
 	 * @since 1.0.0
 	 * @param pattern The pattern to parse
 	 */
@@ -145,6 +145,7 @@ export class Timestamp {
 
 	/**
 	 * Display the current date with the current pattern.
+	 *
 	 * @since 1.0.0
 	 * @param time The time to display
 	 */
@@ -154,6 +155,7 @@ export class Timestamp {
 
 	/**
 	 * Display the current date utc with the current pattern.
+	 *
 	 * @since 1.0.0
 	 * @param time The time to display in utc
 	 */
@@ -163,6 +165,7 @@ export class Timestamp {
 
 	/**
 	 * Edits the current pattern.
+	 *
 	 * @since 1.0.0
 	 * @param pattern The new pattern for this instance
 	 * @chainable
@@ -182,6 +185,7 @@ export class Timestamp {
 
 	/**
 	 * Display the current date with the current pattern.
+	 *
 	 * @since 1.0.0
 	 * @param pattern The pattern to parse
 	 * @param time The time to display
@@ -192,6 +196,7 @@ export class Timestamp {
 
 	/**
 	 * Display the current date utc with the current pattern.
+	 *
 	 * @since 1.0.0
 	 * @param pattern The pattern to parse
 	 * @param time The time to display
@@ -202,16 +207,19 @@ export class Timestamp {
 
 	/**
 	 * Creates a UTC Date object to work with.
+	 *
 	 * @since 1.0.0
 	 * @param time The date to convert to utc
 	 */
 	public static utc(time: Date | number | string = new Date()): Date {
+		// eslint-disable-next-line no-param-reassign
 		time = Timestamp.resolveDate(time);
-		return new Date(time.valueOf() + time.getTimezoneOffset() * 60000);
+		return new Date(time.valueOf() + time.getTimezoneOffset() * 60_000);
 	}
 
 	/**
 	 * Display the current date with the current pattern.
+	 *
 	 * @since 1.0.0
 	 * @param template The pattern to parse
 	 * @param time The time to display
@@ -219,32 +227,34 @@ export class Timestamp {
 	private static display(template: TimestampTemplateEntry[], time: Date | number | string): string {
 		let output = '';
 		const parsedTime = Timestamp.resolveDate(time);
+		// eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
 		for (const { content, type } of template) output += content || tokenResolvers.get(type)!(parsedTime);
 		return output;
 	}
 
 	/**
 	 * Parses the pattern.
+	 *
 	 * @since 1.0.0
 	 * @param pattern The pattern to parse
 	 */
 	private static parse(pattern: string): TimestampTemplateEntry[] {
 		const template: TimestampTemplateEntry[] = [];
-		for (let i = 0; i < pattern.length; i++) {
+		for (let idx = 0; idx < pattern.length; idx++) {
 			let current = '';
-			const currentChar = pattern[i];
+			const currentChar = pattern[idx];
 			const tokenMax = tokens.get(currentChar);
 			if (typeof tokenMax === 'number') {
 				current += currentChar;
-				while (pattern[i + 1] === currentChar && current.length < tokenMax) current += pattern[++i];
+				while (pattern[idx + 1] === currentChar && current.length < tokenMax) current += pattern[++idx];
 				template.push({ type: current, content: null });
 			} else if (currentChar === '[') {
-				while (i + 1 < pattern.length && pattern[i + 1] !== ']') current += pattern[++i];
-				i++;
+				while (idx + 1 < pattern.length && pattern[idx + 1] !== ']') current += pattern[++idx];
+				idx++;
 				template.push({ type: 'literal', content: current || '[' });
 			} else {
 				current += currentChar;
-				while (i + 1 < pattern.length && !tokens.has(pattern[i + 1]) && pattern[i + 1] !== '[') current += pattern[++i];
+				while (idx + 1 < pattern.length && !tokens.has(pattern[idx + 1]) && pattern[idx + 1] !== '[') current += pattern[++idx];
 				template.push({ type: 'literal', content: current });
 			}
 		}
@@ -254,6 +264,7 @@ export class Timestamp {
 
 	/**
 	 * Resolves a date.
+	 *
 	 * @since 1.0.0
 	 * @param time The time to parse
 	 */

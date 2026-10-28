@@ -10,7 +10,6 @@ import { toIterableIterator } from './toIterableIterator';
  * This is useful when you already have a collection and want to add the iterator items to it.
  *
  * @param iterable An iterator to fuse.
- *
  * @example
  * ```typescript
  * import { collectInto, map } from '@sapphire/iterator-utilities';

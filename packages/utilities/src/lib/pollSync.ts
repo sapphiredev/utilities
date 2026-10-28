@@ -1,10 +1,13 @@
 import type { PollOptions } from './poll';
 import { sleepSync } from './sleepSync';
 
-/** The options for the {@link pollSync} function */
+/**
+ * The options for the {@link pollSync} function
+ */
 export interface SyncPollOptions extends Omit<PollOptions, 'signal'> {
 	/**
 	 * The amount of milliseconds before throwing an AbortError.
+	 *
 	 * @default Infinite
 	 */
 	timeout?: number | null | undefined;
@@ -20,6 +23,7 @@ const DOMException: typeof globalThis.DOMException =
  * and repeats this until {@link cbCondition} returns `true` or the {@link timeout} is reached.
  *
  * For an asynchronous variant, see [poll](./poll.d.ts).
+ *
  * @param cb The function that should be executed.
  * @param cbCondition A function that when given the result of `fn` should return `true` if the polling should stop and should return `false` if the polling should continue.
  * @param options Options to provide further modifying behaviour.
@@ -42,14 +46,17 @@ export function pollSync<T>(cb: () => T, cbCondition: (value: T) => boolean, opt
 	}
 
 	const end = Date.now() + timeout;
+	// eslint-disable-next-line promise/prefer-await-to-callbacks, n/callback-return
 	let result = cb();
 	for (let retries = 0; retries < maximumRetries && !cbCondition(result); retries++) {
 		if (Date.now() + waitBetweenRetries > end) throw new DOMException('This operation was aborted', 'AbortError');
 		if (waitBetweenRetries > 0) {
 			if (options.verbose) console.log(`Waiting ${waitBetweenRetries}ms before polling again...`);
+			// eslint-disable-next-line n/no-sync
 			sleepSync(waitBetweenRetries);
 		}
 
+		// eslint-disable-next-line promise/prefer-await-to-callbacks, n/callback-return
 		result = cb();
 	}
 

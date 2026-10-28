@@ -2,6 +2,7 @@ import { isObject } from './isObject';
 
 /**
  * Merges two objects
+ *
  * @param objTarget The object to be merged
  * @param objSource The object to merge
  */

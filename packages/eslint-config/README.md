@@ -24,39 +24,12 @@ npm install --save-dev @sapphire/eslint-config
 
 ## Usage
 
-Add the ESLint config to your `package.json`:
+Add the shared flat config to `eslint.config.mjs`:
 
-```json
-{
-	"name": "my-project",
-	"eslintConfig": {
-		"extends": "@sapphire"
-	}
-}
-```
-
-Or to `eslintrc.js` / `.eslintrc.json`:
-
-```json
-{
-	"extends": "@sapphire"
-}
-```
-
-Or to `eslint.config.mjs`:
-
-```
-import { FlatCompat } from '@eslint/eslintrc';
+```js
 import sapphireEslintConfig from '@sapphire/eslint-config';
 
-const compat = new FlatCompat();
-
-export default [
-	...compat.config(sapphireEslintConfig),
-	{
-		// other configs
-	}
-]
+export default sapphireEslintConfig;
 ```
 
 Create `tsconfig.eslint.json` next to the eslint config file, for example with content:

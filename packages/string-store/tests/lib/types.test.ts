@@ -144,7 +144,7 @@ describe('types', () => {
 			expect(type.BIT_SIZE).toBe(16);
 		});
 
-		test.each([-32768, -100, 10, 32767])('GIVEN a buffer THEN it serializes and deserializes correctly', (value) => {
+		test.each([-32_768, -100, 10, 32_767])('GIVEN a buffer THEN it serializes and deserializes correctly', (value) => {
 			const buffer = new UnalignedUint16Array(10);
 
 			type.serialize(buffer, value);
@@ -161,7 +161,7 @@ describe('types', () => {
 			expect(type.BIT_SIZE).toBe(16);
 		});
 
-		test.each([0, 2500, 30000, 65535])('GIVEN a buffer THEN it serializes and deserializes correctly', (value) => {
+		test.each([0, 2_500, 30_000, 65_535])('GIVEN a buffer THEN it serializes and deserializes correctly', (value) => {
 			const buffer = new UnalignedUint16Array(10);
 
 			type.serialize(buffer, value);
@@ -178,7 +178,7 @@ describe('types', () => {
 			expect(type.BIT_SIZE).toBe(32);
 		});
 
-		test.each([-2_147_483_648, -52100, 420, 2_147_483_647])('GIVEN a buffer THEN it serializes and deserializes correctly', (value) => {
+		test.each([-2_147_483_648, -52_100, 420, 2_147_483_647])('GIVEN a buffer THEN it serializes and deserializes correctly', (value) => {
 			const buffer = new UnalignedUint16Array(10);
 
 			type.serialize(buffer, value);
@@ -249,7 +249,7 @@ describe('types', () => {
 			expect(type.BIT_SIZE).toBe(32);
 		});
 
-		test.each([-2_147_483_648n, -52100n, 420n, 2_147_483_647n])('GIVEN a buffer THEN it serializes and deserializes correctly', (value) => {
+		test.each([-2_147_483_648n, -52_100n, 420n, 2_147_483_647n])('GIVEN a buffer THEN it serializes and deserializes correctly', (value) => {
 			const buffer = new UnalignedUint16Array(10);
 
 			type.serialize(buffer, value);
@@ -467,13 +467,13 @@ describe('types', () => {
 			expect(type.BIT_SIZE).toBe(64);
 		});
 
-		test.each([737141877803057244n, '737141877803057244'])('GIVEN a buffer THEN it serializes and deserializes correctly', (value) => {
+		test.each([737_141_877_803_057_244n, '737141877803057244'])('GIVEN a buffer THEN it serializes and deserializes correctly', (value) => {
 			const buffer = new UnalignedUint16Array(10);
 
 			type.serialize(buffer, value);
 
 			const deserialized = type.deserialize(buffer, new Pointer());
-			expect(deserialized).toEqual(737141877803057244n);
+			expect(deserialized).toEqual(737_141_877_803_057_244n);
 		});
 	});
 });

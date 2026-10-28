@@ -14,7 +14,7 @@ export class RateLimit<K = string> {
 	/**
 	 * The {@link RateLimitManager} this entry is for.
 	 */
-	private manager: RateLimitManager<K>;
+	private readonly manager: RateLimitManager<K>;
 
 	/**
 	 * @param manager The manager for this entry.

@@ -6,7 +6,6 @@ import { makeIterableIterator } from './shared/_makeIterableIterator';
  *
  * @param iterable An iterator to map over.
  * @param separator The separator to place between adjacent items.
- *
  * @example
  * ```typescript
  * import { intersperse } from '@sapphire/iterator-utilities';
@@ -15,7 +14,6 @@ import { makeIterableIterator } from './shared/_makeIterableIterator';
  * console.log([...intersperse(iterable, 100)]);
  * // Output: [0, 100, 1, 100, 2]
  * ```
- *
  * @example
  * `intersperse` can be very useful to join an iterator's items using a common element:
  * ```typescript

@@ -8,7 +8,6 @@ import { toIterableIterator } from './toIterableIterator';
  *
  * @param iterable The iterator whose elements to chunk.
  * @param size The maximum size of each chunk.
- *
  * @example
  * ```typescript
  * import { chunk } from '@sapphire/iterator-utilities';
@@ -19,6 +18,7 @@ import { toIterableIterator } from './toIterableIterator';
  * ```
  */
 export function* chunk<const ElementType>(iterable: IterableResolvable<ElementType>, size: number): IterableIterator<ElementType[]> {
+	// eslint-disable-next-line no-param-reassign
 	size = assertPositive(toIntegerOrThrow(size), size);
 
 	let buffer: ElementType[] = [];

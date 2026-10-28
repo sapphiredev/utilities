@@ -1,10 +1,16 @@
-// @ts-expect-error TS considers the src to not be a module because it uses module.exports but vitest transpiles it just fine for this
 import eslintConfig from '../src';
 
 describe('ESLint Config', () => {
-	test('should export rules', () => {
-		expect(eslintConfig.root).toBe(true);
-		expect(eslintConfig.parser).toBe('@typescript-eslint/parser');
-		expect(eslintConfig).toMatchSnapshot();
+	test('should export a flat config array', () => {
+		expect(Array.isArray(eslintConfig)).toBe(true);
+		expect(eslintConfig).toEqual(
+			expect.arrayContaining([
+				expect.objectContaining({
+					rules: expect.objectContaining({
+						'@typescript-eslint/consistent-type-definitions': 'error'
+					})
+				})
+			])
+		);
 	});
 });

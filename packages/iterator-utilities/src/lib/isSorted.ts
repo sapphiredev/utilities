@@ -14,9 +14,7 @@ import { defaultCompare } from './shared/comparators';
  *
  * @seealso {@link isSortedBy} for a version that allows custom comparators.
  * @seealso {@link isSortedByKey} for a version that allows custom key extractors.
- *
  * @param iterable The iterator to compare.
- *
  * @example
  * ```typescript
  * import { isSorted } from '@sapphire/iterator-utilities';
@@ -28,7 +26,6 @@ import { defaultCompare } from './shared/comparators';
  * assert(isSorted([]);
  * assert(isSorted([0, 1, NaN]);
  * ```
- *
  * @remarks
  *
  * This function consumes the entire iterator.

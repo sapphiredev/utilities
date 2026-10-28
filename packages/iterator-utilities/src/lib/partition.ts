@@ -9,7 +9,6 @@ import { toIterableIterator } from './toIterableIterator';
  * @param predicate A function that determines which partition an element belongs to.
  * @returns An array containing two iterators. The first iterator contains elements that satisfy the predicate, and the
  * second iterator contains elements that do not.
- *
  * @example
  * ```typescript
  * import { partition } from '@sapphire/iterator-utilities';
@@ -23,7 +22,6 @@ import { toIterableIterator } from './toIterableIterator';
  * console.log(odd);
  * // Output: [1, 3, 5]
  * ```
- *
  * @remarks
  *
  * This function collects all elements of the provided iterator into two arrays based on the predicate before returning
@@ -42,6 +40,7 @@ export function partition<const ElementType>(
 	iterable: IterableResolvable<ElementType>,
 	predicate: (value: ElementType, index: number) => boolean
 ): [ElementType[], ElementType[]] {
+	// eslint-disable-next-line no-param-reassign
 	predicate = assertFunction(predicate);
 
 	const bufferLeft: ElementType[] = [];
