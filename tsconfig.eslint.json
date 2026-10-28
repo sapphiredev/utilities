@@ -1,4 +1,4 @@
 {
 	"extends": "./tsconfig.base.json",
-	"include": ["vitest.config.ts", "eslint.config.mjs", "packages/", "scripts/"]
+	"include": ["vitest.config.ts", "eslint.config.mjs", ".prettierrc.mjs", "packages/", "scripts/"]
 }

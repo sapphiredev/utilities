@@ -34,5 +34,12 @@ export default [
 		rules: {
 			'@typescript-eslint/no-restricted-types': 'off'
 		}
+	},
+	{
+		files: ['packages/discord-utilities/src/lib/TwemojiRegex.ts'],
+		rules: {
+			'unicorn/better-regex': 'off',
+			'unicorn/escape-case': 'off'
+		}
 	}
 ];
