@@ -1,4 +1,5 @@
-import { rm } from 'fs/promises';
+import { rm } from 'node:fs/promises';
+import { URL } from 'node:url';
 
 const rootDir = new URL('../', import.meta.url);
 const packagesDir = new URL('packages/', rootDir);
@@ -19,7 +20,6 @@ const paths = [
 	new URL('iterator-utilities/dist/', packagesDir),
 	new URL('lexure/dist/', packagesDir),
 	new URL('node-utilities/dist/', packagesDir),
-	new URL('phisherman/dist/', packagesDir),
 	new URL('prettier-config/dist/', packagesDir),
 	new URL('ratelimits/dist/', packagesDir),
 	new URL('result/dist/', packagesDir),
@@ -32,4 +32,4 @@ const paths = [
 	new URL('utilities/dist/', packagesDir)
 ];
 
-await Promise.all(paths.map((path) => rm(path, options)));
+await Promise.all(paths.map(async (path) => rm(path, options)));

@@ -14,7 +14,6 @@
 /packages/iterator-utilities/**/*.ts @kyranet
 /packages/lexure/**/*.ts @kyranet @favna @vladfrangu
 /packages/node-utilities/**/*.ts @kyranet @favna @vladfrangu
-/packages/phisherman/**/*.ts @undiedgamer @favna @vladfrangu
 /packages/prettier-config/**/*.ts @favna
 /packages/ratelimits/**/*.ts @kyranet @vladfrangu @favna
 /packages/result/**/*.ts @kyranet @vladfrangu @favna
