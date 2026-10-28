@@ -5,8 +5,8 @@
 		"packages/*"
 	],
 	"scripts": {
-		"clean": "node scripts/clean.mjs",
-		"clean:full": "node scripts/clean-full.mjs",
+		"clean": "node scripts/clean.ts",
+		"clean:full": "node scripts/clean-full.ts",
 		"lint": "eslint packages --fix",
 		"format": "prettier --write .",
 		"test": "vitest run",
