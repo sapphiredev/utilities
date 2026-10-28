@@ -35,7 +35,8 @@ export function toUTF16(buffer: TypedArray) {
 export function fromUTF16(buffer: string): Uint16Array {
 	const result = new Uint16Array(buffer.length);
 	for (let idx = 0; idx < buffer.length; idx++) {
-		result[idx] = buffer.codePointAt(idx)!;
+		// eslint-disable-next-line unicorn/prefer-code-point -- Preserve individual UTF-16 code units, including surrogate pairs.
+		result[idx] = buffer.charCodeAt(idx);
 	}
 
 	return result;
