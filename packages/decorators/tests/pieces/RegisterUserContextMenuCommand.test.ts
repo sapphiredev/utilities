@@ -39,7 +39,6 @@ describe('RegisterUserContextMenuCommand', () => {
 		);
 
 		await instance.registerApplicationCommands!(instance.applicationCommandRegistry);
-		// eslint-disable-next-line @typescript-eslint/dot-notation
 		const apiCalls = instance.applicationCommandRegistry['apiCalls'] as InternalAPICall[];
 		const apiCall = apiCalls[0];
 
@@ -76,7 +75,6 @@ describe('RegisterUserContextMenuCommand', () => {
 		);
 
 		await instance.registerApplicationCommands!(instance.applicationCommandRegistry);
-		// eslint-disable-next-line @typescript-eslint/dot-notation
 		const apiCalls = instance.applicationCommandRegistry['apiCalls'] as InternalAPICall[];
 		const apiCall = apiCalls[0];
 

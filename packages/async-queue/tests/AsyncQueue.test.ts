@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/dot-notation */
 import { AsyncQueue, type AsyncQueueWaitOptions } from '../src';
 
 function genNumbers(queue: AsyncQueue) {

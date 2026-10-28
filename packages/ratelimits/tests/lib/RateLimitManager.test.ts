@@ -47,7 +47,6 @@ describe('RateLimitManager', () => {
 		manager.sweep();
 
 		expect(manager.has('one')).toBe(false);
-		// eslint-disable-next-line @typescript-eslint/dot-notation
 		expect(manager['sweepInterval']).toBeNull();
 	});
 
@@ -63,7 +62,6 @@ describe('RateLimitManager', () => {
 
 		expect(manager.has('one')).toBe(false);
 		expect(manager.has('two')).toBe(true);
-		// eslint-disable-next-line @typescript-eslint/dot-notation
 		expect(manager['sweepInterval']).not.toBeNull();
 	});
 });
