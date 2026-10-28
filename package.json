@@ -7,7 +7,7 @@
 	"scripts": {
 		"clean": "node scripts/clean.mjs",
 		"clean:full": "node scripts/clean-full.mjs",
-		"lint": "eslint packages --ext mjs,js,ts,tsx --fix",
+		"lint": "eslint packages --fix",
 		"format": "prettier --write \"packages/**/{src,tests,scripts}/**/*.{mjs,ts,js}\"",
 		"test": "vitest run",
 		"build": "yarn workspace @sapphire/node-utilities build && yarn workspaces foreach --all --exclude root-utilities run build",
