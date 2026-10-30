@@ -17,6 +17,7 @@ export default defineConfig({
 			'./packages/discord-utilities/vitest.config.ts',
 			'./packages/duration/vitest.config.ts',
 			'./packages/eslint-config/vitest.config.ts',
+			'./packages/eslint-plugin-result/vitest.config.ts',
 			'./packages/event-iterator/vitest.config.ts',
 			'./packages/fetch/vitest.config.ts',
 			'./packages/iterator-utilities/vitest.config.ts',

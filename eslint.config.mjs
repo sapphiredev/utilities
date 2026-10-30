@@ -3,17 +3,10 @@ import eslintPluginResult from './packages/eslint-plugin-result/dist/index.mjs';
 
 export default [
 	{
-		ignores: ['**/node_modules/**', '**/dist/**', '**/docs/**', '**/*.d.ts', '**/coverage/**']
+		ignores: ['**/node_modules/**', '**/dist/**', '**/*.d.ts', '**/coverage/**']
 	},
 	...eslintConfig,
-	{
-		plugins: {
-			'@sapphire/result': eslintPluginResult
-		},
-		rules: {
-			'@sapphire/result/no-discard-result': 'error'
-		}
-	},
+	eslintPluginResult.configs.recommended,
 	{
 		files: ['**/*.test.ts'],
 		rules: {

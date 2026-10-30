@@ -19,6 +19,7 @@ There's some best practices for using `@sapphire/result` - such as never discard
 ## Features
 
 - Provides the `no-discard-result` rule to flag ignored `Result` values
+- Recognizes the `@sapphire/result` class, including type aliases and inferred `Ok`/`Err` return types
 - Includes a recommended ESLint flat configuration
 - Helps enforce safe handling of `@sapphire/result` results
 
