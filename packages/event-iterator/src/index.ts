@@ -1,5 +1,5 @@
+/* eslint-disable no-restricted-globals */
 import type { EventEmitter } from 'node:events';
-import { setTimeout, clearTimeout } from 'node:timers';
 
 /**
  * A filter for an EventIterator.

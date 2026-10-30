@@ -1,5 +1,5 @@
+/* eslint-disable no-restricted-globals */
 import type { sleepSync } from './sleepSync';
-import { setTimeout, clearTimeout } from 'node:timers';
 
 export interface SleepOptions {
 	/**

@@ -1,5 +1,5 @@
+/* eslint-disable no-restricted-globals */
 import { RateLimit } from './RateLimit';
-import { setInterval, clearInterval } from 'node:timers';
 
 export class RateLimitManager<K = string> extends Map<K, RateLimit<K>> {
 	/**

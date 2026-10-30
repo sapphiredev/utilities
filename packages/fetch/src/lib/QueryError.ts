@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/triple-slash-reference */
+/// <reference lib="dom" />
+
 /**
  * The QueryError class which is thrown by the `fetch` method
  */

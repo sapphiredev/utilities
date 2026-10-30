@@ -1,5 +1,5 @@
 /* eslint-disable promise/prefer-await-to-callbacks */
-import { setTimeout as sleep } from 'node:timers/promises';
+import { setTimeout } from 'node:timers/promises';
 import { err, none, ok, Option, Result, ResultError, some, type Err, type None, type Ok, type Some } from '../src/index';
 import { error, makeThrow } from './shared';
 
@@ -296,7 +296,7 @@ describe('Result', () => {
 				const x = ok(2);
 				let finished = false;
 				// eslint-disable-next-line promise/prefer-await-to-then
-				const cb = vi.fn(async () => sleep(5).then(() => (finished = true)));
+				const cb = vi.fn(async () => setTimeout(5).then(() => (finished = true)));
 
 				await expect<Promise<typeof x>>(x.inspectAsync(cb)).resolves.toBe(x);
 				expect(cb).toHaveBeenCalledTimes(1);
@@ -345,7 +345,7 @@ describe('Result', () => {
 				const x = err('Some error message');
 				let finished = false;
 				// eslint-disable-next-line promise/prefer-await-to-then
-				const cb = vi.fn(async () => sleep(5).then(() => (finished = true)));
+				const cb = vi.fn(async () => setTimeout(5).then(() => (finished = true)));
 
 				await expect<Promise<typeof x>>(x.inspectErrAsync(cb)).resolves.toBe(x);
 				expect(cb).toHaveBeenCalledTimes(1);

@@ -1,4 +1,4 @@
-import { setTimeout as sleep } from 'node:timers/promises';
+import { setTimeout } from 'node:timers/promises';
 import { EventIterator } from '../src';
 import { people, PeopleEmitter } from './lib/MockEmitter';
 import type { Person } from './lib/Person';
@@ -190,7 +190,7 @@ describe('EventIterator', () => {
 		const iter = emitter.createPeopleIterator();
 		expect(iter.ended).toBe(false);
 
-		await sleep(3_000);
+		await setTimeout(3_000);
 		await iter.throw();
 		expect(iter.ended).toBe(true);
 
@@ -207,7 +207,7 @@ describe('EventIterator', () => {
 		const iter = emitter.createPeopleIterator();
 		expect(iter.ended).toBe(false);
 
-		await sleep(3_000);
+		await setTimeout(3_000);
 		// eslint-disable-next-line no-unreachable-loop, no-empty-pattern
 		for await (const {} of iter) break;
 		expect(iter.ended).toBe(true);

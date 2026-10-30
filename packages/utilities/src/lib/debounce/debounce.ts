@@ -1,4 +1,4 @@
-import { setTimeout, clearTimeout } from 'node:timers';
+/* eslint-disable no-restricted-globals */
 
 /**
  * lodash (Custom Build) https://lodash.com/
