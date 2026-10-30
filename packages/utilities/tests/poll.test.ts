@@ -106,6 +106,14 @@ describe('poll', () => {
 	});
 
 	describe('waitBetweenRetries', () => {
+		beforeEach(() => {
+			vi.useFakeTimers();
+		});
+
+		afterEach(() => {
+			vi.useRealTimers();
+		});
+
 		test.each([undefined, null, 0, 5])('GIVEN %j THEN passes validation', async (waitBetweenRetries) => {
 			const cb = vi.fn(cbRaw);
 			const cbCondition = vi.fn(cbConditionRaw);
@@ -140,31 +148,56 @@ describe('poll', () => {
 			const cb = vi
 				.fn<() => string>() //
 				.mockReturnValueOnce(fail)
+				.mockReturnValueOnce(fail)
 				.mockReturnValueOnce(pass);
 			const cbCondition = vi.fn(cbConditionRaw);
 
-			vi.useFakeTimers();
-			const start = Date.now();
 			const result = poll(cb, cbCondition, { waitBetweenRetries: 5 });
-			await vi.advanceTimersByTimeAsync(5);
+			await vi.advanceTimersByTimeAsync(0);
+			expect(cb).toHaveBeenCalledTimes(1);
+			expect(cbCondition).toHaveBeenCalledTimes(1);
+			expect(vi.getTimerCount()).toBe(1);
+
+			await vi.advanceTimersByTimeAsync(4);
+			expect(cb).toHaveBeenCalledTimes(1);
+			expect(cbCondition).toHaveBeenCalledTimes(1);
+
+			await vi.advanceTimersByTimeAsync(1);
+			expect(cb).toHaveBeenCalledTimes(2);
+			expect(cbCondition).toHaveBeenCalledTimes(2);
+			expect(vi.getTimerCount()).toBe(1);
+
+			await vi.advanceTimersByTimeAsync(4);
+			expect(cb).toHaveBeenCalledTimes(2);
+			expect(cbCondition).toHaveBeenCalledTimes(2);
+
+			await vi.advanceTimersByTimeAsync(1);
 			await expect(result).resolves.toBe(pass);
-			expect(Date.now() - start).toBe(5);
-			vi.useRealTimers();
+			expect(cb).toHaveBeenCalledTimes(3);
+			expect(cbCondition).toHaveBeenCalledTimes(3);
+			expect(vi.getTimerCount()).toBe(0);
 		});
 
-		test('GIVEN a poll with a wait of 5ms THEN waits 5ms between retries', async () => {
+		test('GIVEN a signal aborted during the retry delay THEN rejects without retrying', async () => {
 			const cb = vi
 				.fn<() => string>() //
 				.mockReturnValueOnce(fail)
 				.mockReturnValueOnce(pass);
 			const cbCondition = vi.fn(cbConditionRaw);
 
-			vi.useFakeTimers({ shouldAdvanceTime: true, advanceTimeDelta: 5 });
-			const signal = AbortSignal.timeout(5);
+			const controller = new AbortController();
+			const { signal } = controller;
 			const result = poll(cb, cbCondition, { signal, waitBetweenRetries: 10 });
-			vi.useRealTimers();
+			const rejection = expect(result).rejects.toStrictEqual(new DOMException('This operation was aborted', 'AbortError'));
+			await vi.advanceTimersByTimeAsync(0);
+			expect(vi.getTimerCount()).toBe(1);
 
-			await expect(result).rejects.toStrictEqual(new DOMException('The operation was aborted due to timeout', 'TimeoutError'));
+			await vi.advanceTimersByTimeAsync(5);
+			controller.abort();
+
+			await rejection;
+			expect(vi.getTimerCount()).toBe(0);
+			await vi.advanceTimersByTimeAsync(5);
 			expect(cb).toHaveBeenCalledTimes(1);
 			expect(cb).toHaveBeenCalledWith(signal);
 			expect(cbCondition).toHaveBeenCalledTimes(1);
