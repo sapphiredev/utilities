@@ -1,4 +1,3 @@
-/* eslint-disable n/prefer-global/text-encoder, n/prefer-global/text-decoder */
 import type { IType } from './base/IType';
 
 const encoder = new TextEncoder();

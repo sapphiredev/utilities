@@ -1,5 +1,3 @@
-/* eslint-disable n/prefer-global/url */
-
 /**
  * Tries parse a string to a {@link URL} object
  *

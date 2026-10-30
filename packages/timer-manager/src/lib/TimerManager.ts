@@ -1,5 +1,3 @@
-/* eslint-disable no-restricted-globals */
-
 /**
  * Manages timers so that this application can be cleanly exited
  */
