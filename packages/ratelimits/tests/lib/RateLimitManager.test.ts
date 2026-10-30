@@ -1,5 +1,5 @@
 import { TimerManager } from '@sapphire/timer-manager';
-import { setTimeout as sleep } from 'node:timers/promises';
+import { setTimeout } from 'node:timers/promises';
 import { RateLimitManager } from '../../src';
 
 describe('RateLimitManager', () => {
@@ -31,7 +31,7 @@ describe('RateLimitManager', () => {
 		expect(ratelimit.limited).toBe(true);
 
 		// Sleep for 1.2 seconds because of how timers work.
-		await sleep(1_200);
+		await setTimeout(1_200);
 
 		expect(ratelimit.limited).toBe(false);
 		expect(() => ratelimit.consume()).not.toThrow();
@@ -43,7 +43,7 @@ describe('RateLimitManager', () => {
 		manager.acquire('one').consume();
 
 		// Sleep for 1.2 seconds because of how timers work.
-		await sleep(1_200);
+		await setTimeout(1_200);
 		manager.sweep();
 
 		expect(manager.has('one')).toBe(false);
@@ -56,7 +56,7 @@ describe('RateLimitManager', () => {
 		manager.acquire('one').consume();
 
 		// Sleep for 1.2 seconds because of how timers work.
-		await sleep(1_200);
+		await setTimeout(1_200);
 		manager.acquire('two').consume();
 		manager.sweep();
 

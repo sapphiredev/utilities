@@ -1,4 +1,4 @@
-import { setTimeout as sleep } from 'node:timers/promises';
+import { setTimeout } from 'node:timers/promises';
 import { err, none, ok, Option, OptionError, some, type Err, type None, type Ok, type Some } from '../src/index';
 import { error, makeThrow } from './shared';
 
@@ -294,7 +294,7 @@ describe('Option', () => {
 				const x = some(2);
 				let finished = false;
 				// eslint-disable-next-line promise/prefer-await-to-then
-				const cb = vi.fn(async () => sleep(5).then(() => (finished = true)));
+				const cb = vi.fn(async () => setTimeout(5).then(() => (finished = true)));
 
 				await expect<Promise<typeof x>>(x.inspectAsync(cb)).resolves.toBe(x);
 				expect(cb).toHaveBeenCalledTimes(1);

@@ -10,7 +10,6 @@ export default defineConfig({
 			exclude: [...defaultExclude, '**/dist/**', 'packages/utilities/src/lib/debounce/debounce.ts']
 		},
 		projects: [
-			'./scripts/vitest.config.ts',
 			'./packages/async-queue/vitest.config.ts',
 			'./packages/bitfield/vitest.config.ts',
 			'./packages/cron/vitest.config.ts',

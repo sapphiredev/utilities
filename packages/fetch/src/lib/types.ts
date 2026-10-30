@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/triple-slash-reference */
+/// <reference lib="dom" />
+
 /**
  * The supported return types for the `fetch` method
  */
