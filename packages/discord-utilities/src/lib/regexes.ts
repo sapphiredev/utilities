@@ -124,7 +124,7 @@ export const SnowflakeRegex = /^(?<id>\d{17,20})$/;
 /**
  * Regex that can capture a Discord Token
  *
- * `/(?<mfaToken>mfa\.[a-z0-9_-]{20,})|(?<basicToken>[a-z0-9_-]{23,28}\.[a-z0-9_-]{6,7}\.[a-z0-9_-]{27})/i`
+ * `/(?<mfaToken>mfa\.[\w-]{20,})|(?<basicToken>[\w-]{23,28}\.[\w-]{6,7}\.[\w-]{27})/i`
  * Capture group 1 can be used to retrieve a token for a User that has Multi-Factor Authentication enabled. It is named `mfaToken`.
  * Capture group 2 can be used to retrieve a token for a User that doesn't have Multi-Factor Authentication enabled, or a Bot application. It is named `basicToken`.
  * For a valid token, either Capture group 1 or Capture group 2 will always be undefined, whereas the other group will then be defined and
