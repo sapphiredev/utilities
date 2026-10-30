@@ -9,12 +9,10 @@ import { defaultCompare } from './shared/comparators';
  * This function uses the default comparator (lexicographically), which means it will compare the elements as strings.
  * If this is undesirable, use {@link minBy} instead.
  *
- * @seealso {@link minBy} for a version that allows custom comparators.
- * @seealso {@link minByKey} for a version that allows custom key extractors.
- *
- * @param iterable An iterator of number values to determine the minimum value of.
+ * @see {@link minBy} for a version that allows custom comparators.
+ * @see {@link minByKey} for a version that allows custom key extractors.
+ * @param iterable - An iterator of number values to determine the minimum value of.
  * @returns The minimum value in the input iterator, or `null` if the iterator is empty or contains only non-number values.
- *
  * @example
  * ```typescript
  * import { min } from '@sapphire/iterator-utilities';
@@ -23,7 +21,6 @@ import { defaultCompare } from './shared/comparators';
  * console.log(min(iterable));
  * // Output: 1
  * ```
- *
  * @remarks
  *
  * This function consumes the entire iterator.

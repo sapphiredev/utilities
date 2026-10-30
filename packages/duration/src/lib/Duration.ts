@@ -128,7 +128,8 @@ export class Duration {
 
 	/**
 	 * Create a new Duration instance
-	 * @param pattern The string to parse
+	 *
+	 * @param pattern - The string to parse
 	 */
 	public constructor(pattern: string) {
 		let result = 0;
@@ -141,18 +142,19 @@ export class Duration {
 			// a / an = 1
 			.replace(Duration.aAndAnRegex, '1')
 			// do math
-			.replace(Duration.patternRegex, (_, i, units) => {
+			.replace(Duration.patternRegex, (_, idx, units) => {
 				const token = tokens.get(units);
 				if (token !== undefined) {
-					const n = Number(i);
-					result += n * token;
-					this[mappings.get(token)!] += n;
+					const num = Number(idx);
+					result += num * token;
+					this[mappings.get(token)!] += num;
 					valid = true;
 				}
+
 				return '';
 			});
 
-		this.offset = valid ? result : NaN;
+		this.offset = valid ? result : Number.NaN;
 	}
 
 	/**
@@ -164,7 +166,8 @@ export class Duration {
 
 	/**
 	 * Get the date from
-	 * @param date The Date instance to get the date from
+	 *
+	 * @param date - The Date instance to get the date from
 	 */
 	public dateFrom(date: Date): Date {
 		return new Date(date.getTime() + this.offset);
@@ -173,7 +176,7 @@ export class Duration {
 	/**
 	 * The RegExp used for the pattern parsing
 	 */
-	private static readonly patternRegex = /(-?\d*\.?\d+(?:e[-+]?\d+)?)\s*([a-zμ]*)/gi;
+	private static readonly patternRegex = /(?<pattern>-?\d*\.?\d+(?:e[+-]?\d+)?)\s*(?<pattern2>[a-zμ]*)/gi;
 
 	/**
 	 * The RegExp used for removing commas

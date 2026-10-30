@@ -49,6 +49,7 @@ describe('RegisterALLCommand', () => {
 		)
 		class TestPiece extends Command {
 			public readonly maxInteger = 10;
+
 			public readonly minInteger = 1;
 		}
 
@@ -134,6 +135,7 @@ describe('RegisterALLCommand', () => {
 		)
 		class TestPiece extends Command {
 			public readonly maxInteger = 10;
+
 			public readonly minInteger = 1;
 		}
 

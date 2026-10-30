@@ -26,7 +26,7 @@ describe('makeObject', () => {
 		(path) => {
 			const object = {};
 
-			expect(() => makeObject(path, true, object)).toThrowError(new TypeError('path cannot contain __proto__, constructor, or prototype'));
+			expect(() => makeObject(path, true, object)).toThrow(new TypeError('path cannot contain __proto__, constructor, or prototype'));
 			expect(Object.prototype).not.toHaveProperty('polluted');
 			expect(object).toEqual({});
 		}

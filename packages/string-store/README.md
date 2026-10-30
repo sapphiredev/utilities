@@ -19,10 +19,9 @@ locations such as Discord's `custom_id` field in message components.
 
 ## Features
 
--   Written in TypeScript
--   Bundled with esbuild so it can be used in NodeJS and browsers
--   Offers CommonJS, ESM, and UMD bundles
--   Fully tested
+- Serializes schema-defined data into compact UTF-16 strings
+- Supports numeric, boolean, string, nullable, and array fields
+- Reads and writes typed values through reusable schemas and stores
 
 ## Installation
 
@@ -34,11 +33,9 @@ npm install @sapphire/string-store
 
 ## Usage
 
-**Note**: While this section uses `require`, the imports match 1:1 with ESM imports. For example, `const { SchemaStore } = require('@sapphire/string-store')` is equivalent to `import { SchemaStore } from '@sapphire/string-store'`.
-
 ```ts
 // Require the store classes
-const { SchemaStore, Schema, t } = require('@sapphire/string-store');
+import { SchemaStore, Schema, t } from '@sapphire/string-store';
 
 // Define the enum with the IDs and export it
 export const Id = Object.freeze({
@@ -66,21 +63,21 @@ const buffer = store.serialize(Id.AgeUpdate, { age: 20 }).toString();
 > [!Important]
 > The IDs passed in the `Schema` constant need to be known at compile time, this can be done in the following ways:
 >
-> -   (TS) An `enum` object, which has all of its members strictly typed.
-> -   (TS) An object with `as const`, which makes the values known at compile time.
-> -   An object with `Object.freeze` as shown in the example, which is equivalent as the previous.
-> -   An object with a JSDoc defining the types as the specific values.
-> -   Multiple `const`ants for each value, or
->     -   (TS) Class fields marked as `readonly`.
+> - (TS) An `enum` object, which has all of its members strictly typed.
+> - (TS) An object with `as const`, which makes the values known at compile time.
+> - An object with `Object.freeze` as shown in the example, which is equivalent as the previous.
+> - An object with a JSDoc defining the types as the specific values.
+> - Multiple `const`ants for each value, or
+>     - (TS) Class fields marked as `readonly`.
 
 > [!Tip]
 > The serialized string is encoded in UTF-16, meaning it can store 16 bits per character. Each type stores a different number of bits, for example, a single character can store:
 >
-> -   16 booleans
-> -   8 2-bit unsigned integers (0-3)
-> -   4 4-bit unsigned integers (0-15)
-> -   2 8-bit unsigned integers (0-255)
-> -   1 16-bit integer (0-65535)
+> - 16 booleans
+> - 8 2-bit unsigned integers (0-3)
+> - 4 4-bit unsigned integers (0-15)
+> - 2 8-bit unsigned integers (0-255)
+> - 1 16-bit integer (0-65535)
 >
 > As a use-case, Discord's `custom_id` field in message components can store up to **100** UTF-16 characters, which means it has a storage of **1600 bits**, below you can see the supported types and their storage in bits. Keep in mind that the schema ID is stored as a [16-bit](#int16) integer, and that the property names are **not** stored.
 

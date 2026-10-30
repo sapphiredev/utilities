@@ -4,9 +4,8 @@ import { toIterableIterator } from './toIterableIterator';
 /**
  * Consumes the iterable until it's exhausted, returning the last element.
  *
- * @param iterable An iterator to return the last value of.
+ * @param iterable - An iterator to return the last value of.
  * @returns The value at the last position in the source iterator, or `undefined` if the iterator is empty.
- *
  * @example
  * ```typescript
  * import { last } from '@sapphire/iterator-utilities';
@@ -15,7 +14,6 @@ import { toIterableIterator } from './toIterableIterator';
  * console.log(last(iterable));
  * // Output: 5
  * ```
- *
  * @remarks
  *
  * This function consumes the entire iterator to find the last value.

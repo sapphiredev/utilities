@@ -11,7 +11,7 @@ describe('at', () => {
 	test('GIVEN iterable and negative index THEN throws RangeError', () => {
 		const iterable = [1, 2, 3, 4, 5];
 		const index = -1;
-		expect(() => at(iterable, index)).toThrowError(new RangeError('-1 must be a non-negative number'));
+		expect(() => at(iterable, index)).toThrow(new RangeError('-1 must be a non-negative number'));
 	});
 
 	test('GIVEN empty iterable THEN returns undefined', () => {
@@ -37,6 +37,6 @@ describe('at', () => {
 	test('GIVEN iterable and -Infinite index THEN throws RangeError', () => {
 		const iterable = [1, 2, 3, 4, 5];
 		const index = -Infinity;
-		expect(() => at(iterable, index)).toThrowError(new RangeError('-Infinity must be a non-negative number'));
+		expect(() => at(iterable, index)).toThrow(new RangeError('-Infinity must be a non-negative number'));
 	});
 });

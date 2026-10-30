@@ -4,7 +4,7 @@ export type If<Value extends boolean, TrueResult, FalseResult> = Value extends t
 	? TrueResult
 	: Value extends false
 		? FalseResult
-		: TrueResult | FalseResult;
+		: FalseResult | TrueResult;
 
 export function isFunction<A extends readonly any[], R>(cb: (...args: A) => R): true;
 export function isFunction(input: any): input is (...args: readonly any[]) => any;

@@ -4,8 +4,11 @@ import type { IUnorderedStrategy } from './strategies/IUnorderedStrategy';
 
 export class ParserResult {
 	public readonly ordered: Parameter[] = [];
+
 	public readonly flags = new Set<string>();
+
 	public readonly options = new Map<string, string[]>();
+
 	private readonly strategy: IUnorderedStrategy;
 
 	public constructor(parser: Parser) {
@@ -14,6 +17,7 @@ export class ParserResult {
 
 	public parse(parameters: Iterable<Parameter>) {
 		for (const parameter of parameters) {
+			// eslint-disable-next-line @typescript-eslint/no-unused-expressions
 			this.parsePossibleFlag(parameter) || this.parsePossibleOptions(parameter) || this.parseOrdered(parameter);
 		}
 

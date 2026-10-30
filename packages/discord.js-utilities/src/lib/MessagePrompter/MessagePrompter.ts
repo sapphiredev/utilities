@@ -23,7 +23,7 @@ export interface StrategyReturns {
 	confirm: IMessagePrompterExplicitConfirmReturn | boolean;
 	message: IMessagePrompterExplicitMessageReturn | Message;
 	number: IMessagePrompterExplicitNumberReturn | number;
-	reaction: IMessagePrompterExplicitReturnBase | string | EmojiResolvable;
+	reaction: EmojiResolvable | IMessagePrompterExplicitReturnBase | string;
 }
 
 export interface StrategyOptions {
@@ -60,15 +60,14 @@ export interface StrategyFilters {
  *
  * @example
  * ```typescript
- * const { MessagePrompter } = require('@sapphire/discord.js-utilities');
+ * import { MessagePrompter } from '@sapphire/discord.js-utilities';
  *
  * const handler = new MessagePrompter('Are you sure you want to continue?');
  * const result = await handler.run(channel, author);
  * ```
- *
  * @example
  * ```typescript
- * const { MessagePrompter } = require('@sapphire/discord.js-utilities');
+ * import { MessagePrompter } from '@sapphire/discord.js-utilities';
  *
  * const handler = new MessagePrompter('Choose a number between 5 and 10?', 'number', {
  * 		start: 5,
@@ -76,20 +75,18 @@ export interface StrategyFilters {
  * });
  * const result = await handler.run(channel, author);
  * ```
- *
  * @example
  * ```typescript
- * const { MessagePrompter } = require('@sapphire/discord.js-utilities');
+ * import { MessagePrompter } from '@sapphire/discord.js-utilities';
  *
  * const handler = new MessagePrompter('Are you happy or sad?', 'reaction', {
  * 		reactions: ['🙂', '🙁']
  * });
  * const result = await handler.run(channel, author);
  * ```
- *
  * @example
  * ```typescript
- * const { MessagePrompter } = require('@sapphire/discord.js-utilities');
+ * import { MessagePrompter } from '@sapphire/discord.js-utilities';
  *
  * const handler = new MessagePrompter('Do you love me?', 'message');
  * const result = await handler.run(channel, author);
@@ -103,12 +100,13 @@ export class MessagePrompter<S extends keyof StrategyReturns = 'confirm'> {
 
 	/**
 	 * Constructor for the {@link MessagePrompter} class
-	 * @param message The message to send.
-	 * @param strategy The strategy name or Instance to use
-	 * @param strategyOptions The options that are passed to the strategy
+	 *
+	 * @param message - The message to send.
+	 * @param strategy - The strategy name or Instance to use
+	 * @param strategyOptions - The options that are passed to the strategy
 	 */
 	public constructor(
-		message: MessagePrompterMessage | MessagePrompterBaseStrategy,
+		message: MessagePrompterBaseStrategy | MessagePrompterMessage,
 		strategy?: S,
 		strategyOptions?: S extends keyof StrategyOptions ? StrategyOptions[S] : never
 	) {
@@ -131,14 +129,15 @@ export class MessagePrompter<S extends keyof StrategyReturns = 'confirm'> {
 
 	/**
 	 * This executes the {@link MessagePrompter} and sends the message.
-	 * @param channel The channel to use.
-	 * @param authorOrFilter An author object to validate or a {@linkplain https://discord.js.org/docs/packages/discord.js/main/CollectorFilter:TypeAlias CollectorFilter} predicate callback.
+	 *
+	 * @param channel - The channel to use.
+	 * @param authorOrFilter - An author object to validate or a {@link https://discord.js.org/docs/packages/discord.js/main/CollectorFilter:TypeAlias | CollectorFilter} predicate callback.
 	 */
-	public run<Filter extends S extends keyof StrategyFilters ? StrategyFilters[S] : unknown[]>(
+	public run<Filter extends (S extends keyof StrategyFilters ? StrategyFilters[S] : unknown[])>(
 		channel: MessagePrompterChannelTypes,
-		authorOrFilter: User | CollectorFilter<Filter>
+		authorOrFilter: CollectorFilter<Filter> | User
 	): S extends keyof StrategyReturns ? Promise<StrategyReturns[S]> : never {
-		return this.strategy.run(channel, authorOrFilter as User | CollectorFilter<unknown[]>) as S extends keyof StrategyReturns
+		return this.strategy.run(channel, authorOrFilter as CollectorFilter<unknown[]> | User) as S extends keyof StrategyReturns
 			? Promise<StrategyReturns[S]>
 			: never;
 	}
@@ -150,10 +149,10 @@ export class MessagePrompter<S extends keyof StrategyReturns = 'confirm'> {
 		keyof StrategyReturns,
 		Ctor<
 			| ConstructorParameters<typeof MessagePrompterConfirmStrategy>
+			| ConstructorParameters<typeof MessagePrompterMessageStrategy>
 			| ConstructorParameters<typeof MessagePrompterNumberStrategy>
-			| ConstructorParameters<typeof MessagePrompterReactionStrategy>
-			| ConstructorParameters<typeof MessagePrompterMessageStrategy>,
-			MessagePrompterConfirmStrategy | MessagePrompterNumberStrategy | MessagePrompterReactionStrategy | MessagePrompterMessageStrategy
+			| ConstructorParameters<typeof MessagePrompterReactionStrategy>,
+			MessagePrompterConfirmStrategy | MessagePrompterMessageStrategy | MessagePrompterNumberStrategy | MessagePrompterReactionStrategy
 		>
 		// @ts-expect-error 2322
 	> = new Map([

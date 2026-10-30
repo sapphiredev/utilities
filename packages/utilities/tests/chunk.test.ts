@@ -16,7 +16,7 @@ describe('chunk', () => {
 	});
 
 	test('GIVEN chunks is a whole number THEN throws TypeError', () => {
-		const thrownCall = () => chunk(['one', 'two', 'three'], 5.654635412545);
+		const thrownCall = () => chunk(['one', 'two', 'three'], 5.654_635_412_545);
 		expect(thrownCall).toThrow(TypeError);
 		expect(thrownCall).toThrow('chunkSize must be an integer.');
 	});

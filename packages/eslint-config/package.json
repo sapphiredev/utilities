@@ -4,34 +4,31 @@
 	"description": "Standard ESLint config for the Sapphire Community",
 	"author": "@sapphire",
 	"license": "MIT",
-	"main": "dist/cjs/index.cjs",
-	"module": "dist/esm/index.mjs",
+	"type": "module",
+	"main": "dist/index.mjs",
+	"module": "dist/index.mjs",
 	"exports": {
-		"import": {
-			"default": "./dist/esm/index.mjs"
-		},
-		"require": {
-			"default": "./dist/cjs/index.cjs"
-		}
+		"default": "./dist/index.mjs"
 	},
 	"sideEffects": false,
 	"homepage": "https://github.com/sapphiredev/utilities/tree/main/packages/eslint-config",
 	"scripts": {
 		"test": "vitest run",
 		"prelint": "yarn test && yarn build",
-		"build": "tsup",
+		"build": "tsdown",
 		"prepack": "yarn build",
 		"bump": "cliff-jumper",
 		"check-update": "cliff-jumper --dry-run"
 	},
 	"dependencies": {
-		"@typescript-eslint/eslint-plugin": "^7.18.0",
-		"@typescript-eslint/parser": "^7.18.0",
-		"eslint": "^8.57.1",
+		"@typescript-eslint/eslint-plugin": "^8.72.1",
+		"@typescript-eslint/parser": "^8.72.1",
+		"eslint": "^10.13.0",
+		"eslint-config-neon": "^0.5.4",
 		"eslint-config-prettier": "^10.1.8",
-		"eslint-plugin-prettier": "^5.5.5",
-		"prettier": "^3.8.3",
-		"typescript": "~5.4.5"
+		"eslint-plugin-prettier": "^5.5.7",
+		"prettier": "^3.9.10",
+		"typescript": "~6.0.3"
 	},
 	"repository": {
 		"type": "git",
@@ -42,8 +39,8 @@
 		"dist/"
 	],
 	"engines": {
-		"node": ">=v14.0.0",
-		"npm": ">=7.0.0"
+		"node": ">=v24.0.0",
+		"npm": ">=12.0.0"
 	},
 	"keywords": [
 		"sapphiredev",
@@ -63,9 +60,8 @@
 	},
 	"devDependencies": {
 		"@favware/cliff-jumper": "^6.1.0",
-		"@vitest/coverage-v8": "^4.1.5",
-		"tsup": "^8.5.1",
-		"typedoc-json-parser": "^10.2.0",
-		"vitest": "^4.1.5"
+		"@vitest/coverage-v8": "^5.0.5",
+		"tsdown": "^0.23.3",
+		"vitest": "^5.0.5"
 	}
 }

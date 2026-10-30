@@ -1,12 +1,12 @@
 import type { IterableResolvable } from './from';
 import { toIterableIterator } from './toIterableIterator';
+import type { zip } from './zip';
 
 /**
- * Creates an array for each element of the input iterable, transposing the input iterable. The opposite of {@linkcode zip}.
+ * Creates an array for each element of the input iterable, transposing the input iterable. The opposite of {@link zip}.
  *
- * @param iterable An iterable to unzip.
+ * @param iterable - An iterable to unzip.
  * @returns An array of iterables that yield the values of the original iterable.
- *
  * @example
  * ```typescript
  * import { unzip } from '@sapphire/iterator-utilities';
@@ -20,7 +20,6 @@ import { toIterableIterator } from './toIterableIterator';
  * console.log(letters);
  * // Output: ['a', 'b', 'c']
  * ```
- *
  * @remarks
  *
  * This function consumes the entire iterable.
@@ -33,23 +32,23 @@ export function unzip<const ElementType extends readonly any[]>(iterable: Iterab
 	}
 
 	if (!Array.isArray(firstResult.value)) {
-		throw new Error('Cannot unzip an iterable that does not yield an array');
+		throw new TypeError('Cannot unzip an iterable that does not yield an array');
 	}
 
 	const size = firstResult.value.length;
 	const results = [] as ElementType[][];
-	for (let i = 0; i < size; i++) results.push([firstResult.value[i]]);
+	for (let idx = 0; idx < size; idx++) results.push([firstResult.value[idx]]);
 	for (const entries of resolvedIterable) {
 		if (!Array.isArray(entries)) {
-			throw new Error('Cannot unzip an iterable that does not yield an array');
+			throw new TypeError('Cannot unzip an iterable that does not yield an array');
 		}
 
 		if (entries.length !== size) {
 			throw new Error('Cannot unzip an iterable that yields arrays of different sizes');
 		}
 
-		for (let i = 0; i < size; i++) {
-			results[i].push(entries[i]);
+		for (let idx = 0; idx < size; idx++) {
+			results[idx].push(entries[idx]);
 		}
 	}
 

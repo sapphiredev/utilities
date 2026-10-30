@@ -1,3 +1,13 @@
-import { createVitestConfig } from '../../scripts/vitest.config';
+import { defineConfig } from 'vitest/config';
 
-export default createVitestConfig();
+export default defineConfig({
+	test: {
+		globals: true,
+		coverage: {
+			provider: 'v8',
+			enabled: true,
+			reporter: ['text', 'lcov']
+		},
+		setupFiles: ['./tests/vitest.setup.ts']
+	}
+});

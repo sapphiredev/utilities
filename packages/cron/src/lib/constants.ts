@@ -1,8 +1,8 @@
 export enum Time {
 	Nanosecond = 1 / 1_000_000,
-	Microsecond = 1 / 1000,
+	Microsecond = 1 / 1_000,
 	Millisecond = 1,
-	Second = 1000,
+	Second = 1_000,
 	Minute = Second * 60,
 	Hour = Minute * 60,
 	Day = Hour * 24,
@@ -11,7 +11,7 @@ export enum Time {
 	Year = Day * 365
 }
 
-export const partRegex = /^(?:(\*)|(\d+)(?:-(\d+))?)(?:\/(\d+))?$/;
+export const partRegex = /^(?:(?<part1>\*)|(?<part2>\d+)(?:-(?<part3>\d+))?)(?:\/(?<part4>\d+))?$/;
 
 export const wildcardRegex = /\bh\b|\B\?\B/g;
 

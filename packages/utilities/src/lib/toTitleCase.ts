@@ -23,14 +23,14 @@ export const toTitleCaseDiscordJsVariants: Record<string, string> = {
 /**
  * Converts a string to Title Case
  *
- * @description This is designed to also ensure common Discord PascalCased strings
+ * This is designed to also ensure common Discord PascalCased strings
  * are put in their TitleCase {@link toTitleCaseDiscordJsVariants}.
  *
  * You can also provide your own variants to merge with the {@link toTitleCaseDiscordJsVariants} for
  * your own functionality use.
  *
- * @param str The string to title case
- * @param options The options to use when converting the string
+ * @param str - The string to title case
+ * @param options - The options to use when converting the string
  */
 export function toTitleCase(str: string, options: ToTitleCaseOptions = {}): string {
 	const { additionalVariants = {}, caseSensitive } = options;
@@ -38,15 +38,16 @@ export function toTitleCase(str: string, options: ToTitleCaseOptions = {}): stri
 		...toTitleCaseDiscordJsVariants,
 		...(caseSensitive
 			? additionalVariants
-			: Object.entries(additionalVariants).reduce<Record<string, string>>(
+			: // eslint-disable-next-line unicorn/prefer-object-from-entries
+				Object.entries(additionalVariants).reduce<Record<string, string>>(
 					(variants, [key, variant]) => ({ ...variants, [key.toLowerCase()]: variant }),
 					{}
 				))
 	};
 
-	return str.replace(
+	return str.replaceAll(
 		TO_TITLE_CASE,
-		(txt) => titleCaseVariants[caseSensitive ? txt : txt.toLowerCase()] ?? txt.charAt(0).toUpperCase() + txt.substring(1).toLowerCase()
+		(txt) => titleCaseVariants[caseSensitive ? txt : txt.toLowerCase()] ?? txt.charAt(0).toUpperCase() + txt.slice(1).toLowerCase()
 	);
 }
 

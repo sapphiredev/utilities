@@ -37,6 +37,7 @@ describe('isThenable', () => {
 	});
 
 	test('GIVEN promise-constructor THEN returns true', () => {
+		// eslint-disable-next-line no-promise-executor-return
 		const value = new Promise((resolve): void => resolve(true));
 		expect(isThenable(value)).toBe(true);
 	});
@@ -48,6 +49,7 @@ describe('isThenable', () => {
 
 	test('GIVEN promise-like THEN returns true', () => {
 		const value = {
+			// eslint-disable-next-line unicorn/no-thenable
 			then(): boolean {
 				return true;
 			},
@@ -62,6 +64,7 @@ describe('isThenable', () => {
 		const value = function value(): void {
 			/* noop */
 		};
+
 		expect(isThenable(value)).toBe(false);
 	});
 
@@ -69,6 +72,7 @@ describe('isThenable', () => {
 		const value = (): void => {
 			/* noop */
 		};
+
 		expect(isThenable(value)).toBe(false);
 	});
 

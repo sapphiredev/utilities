@@ -33,6 +33,7 @@ describe('isNullOrUndefined', () => {
 		const value = function value(): void {
 			/* noop */
 		};
+
 		expect(isNullOrUndefined(value)).toBe(false);
 	});
 
@@ -40,6 +41,7 @@ describe('isNullOrUndefined', () => {
 		const value = (): void => {
 			/* noop */
 		};
+
 		expect(isNullOrUndefined(value)).toBe(false);
 	});
 

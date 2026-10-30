@@ -5,62 +5,55 @@
 		"packages/*"
 	],
 	"scripts": {
-		"clean": "node scripts/clean.mjs",
-		"clean:full": "node scripts/clean-full.mjs",
-		"lint": "eslint packages --ext mjs,js,ts,tsx --fix",
-		"format": "prettier --ignore-path=.prettierignore --write \"packages/**/{src,tests,scripts}/**/*.{mjs,ts,js}\"",
+		"clean": "node scripts/clean.ts",
+		"clean:full": "node scripts/clean-full.ts",
+		"lint": "eslint packages --fix",
+		"format": "prettier --write .",
 		"test": "vitest run",
-		"build": "yarn workspace @sapphire/node-utilities build && turbo run build",
-		"build:check-subpath": "turbo run build:check-subpath",
-		"build:dynamic-side-effects": "turbo run build:dynamic-side-effects",
-		"docs": "turbo run docs",
+		"build": "yarn workspaces foreach -Atpi --exclude root-utilities run build",
+		"build:check-subpath": "yarn workspaces foreach -Atpi --exclude root-utilities run build:check-subpath",
 		"update": "yarn upgrade-interactive",
-		"check-update": "turbo run check-update",
-		"gen-index": "turbo run gen-index",
-		"au:twemojis": "tsx --tsconfig ./scripts/tsconfig.json ./scripts/twemoji-regex-updater.mts"
+		"check-update": "yarn workspaces foreach -A --exclude root-utilities run check-update",
+		"gen-index": "yarn workspaces foreach -Atpi --exclude root-utilities run gen-index",
+		"au:twemojis": "node ./scripts/twemoji-regex-updater.ts"
 	},
 	"devDependencies": {
-		"@commitlint/cli": "^20.5.3",
-		"@commitlint/config-conventional": "^20.5.3",
+		"@babel/parser": "^8.0.8",
+		"@commitlint/cli": "^21.2.4",
+		"@commitlint/config-conventional": "^21.2.4",
 		"@favware/cliff-jumper": "^6.1.0",
 		"@favware/npm-deprecate": "^2.0.0",
-		"@favware/rollup-type-bundler": "^4.0.0",
-		"@sapphire/framework": "^5.5.0",
-		"@types/lodash": "^4.17.24",
-		"@types/node": "^24.12.3",
-		"@types/ws": "^8.18.1",
-		"@typescript-eslint/eslint-plugin": "^7.18.0",
-		"@typescript-eslint/parser": "^7.18.0",
-		"@vitest/coverage-v8": "^4.1.5",
-		"concurrently": "^9.2.1",
+		"@sapphire/framework": "^5.5.1",
+		"@types/lodash": "^4.17.27",
+		"@types/node": "^24.19.2",
+		"@types/ws": "^8.18.2",
+		"@typescript-eslint/eslint-plugin": "^8.72.1",
+		"@typescript-eslint/parser": "^8.72.1",
+		"@vitest/coverage-v8": "^5.0.5",
+		"colorette": "^2.0.20",
 		"cz-conventional-changelog": "^3.3.0",
-		"discord.js": "^14.26.4",
-		"eslint": "^8.57.1",
+		"discord.js": "^14.27.0",
+		"eslint": "^10.13.0",
 		"eslint-config-prettier": "^10.1.8",
-		"eslint-plugin-prettier": "^5.5.5",
-		"lint-staged": "^16.4.0",
+		"eslint-plugin-prettier": "^5.5.7",
+		"lint-staged": "^17.6.0",
 		"lodash": "^4.18.1",
-		"msw": "^2.14.5",
-		"npm-run-all2": "^8.0.4",
-		"prettier": "^3.8.3",
+		"msw": "^3.0.3",
+		"prettier": "^3.9.10",
 		"rimraf": "^6.1.3",
-		"tslib": "^2.8.1",
-		"tsup": "^8.5.1",
-		"tsx": "^4.21.0",
-		"turbo": "^2.9.12",
-		"typedoc": "^0.26.11",
-		"typedoc-json-parser": "^10.2.0",
-		"typescript": "~5.4.5",
-		"vite": "^7.3.3",
-		"vitest": "^4.1.5"
+		"tsdown": "^0.23.3",
+		"typescript": "~6.0.3",
+		"undici": "^8.12.3",
+		"vite": "^8.3.5",
+		"vitest": "^5.0.5"
 	},
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/sapphiredev/utilities.git"
 	},
 	"engines": {
-		"node": ">=v14.0.0",
-		"npm": ">=7.0.0"
+		"node": ">=v24.0.0",
+		"npm": ">=12.0.0"
 	},
 	"commitlint": {
 		"extends": [
@@ -71,9 +64,6 @@
 		"*": "prettier --ignore-unknown --write",
 		"*.{mjs,js,ts}": "eslint --fix --ext mjs,js,ts"
 	},
-	"resolutions": {
-		"ansi-regex": "^5.0.1",
-		"minimist": "^1.2.8"
-	},
-	"packageManager": "yarn@4.14.1"
+	"packageManager": "yarn@4.18.1",
+	"type": "module"
 }

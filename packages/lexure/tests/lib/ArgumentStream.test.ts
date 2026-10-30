@@ -54,6 +54,7 @@ describe('ArgumentStream', () => {
 			const number = Number(value);
 			return Number.isNaN(number) ? Option.none : Option.some(number);
 		};
+
 		type ReturnType = Option<number>;
 
 		test('GIVEN no parameters THEN returns none', () => {
@@ -94,10 +95,11 @@ describe('ArgumentStream', () => {
 	});
 
 	describe('singleMapAsync', () => {
-		const parse = (value: string) => {
+		const parse = async (value: string) => {
 			const number = Number(value);
-			return Promise.resolve(Number.isNaN(number) ? Option.none : Option.some(number));
+			return Number.isNaN(number) ? Option.none : Option.some(number);
 		};
+
 		type ReturnType = Promise<Option<number>>;
 
 		test('GIVEN no parameters THEN returns none', async () => {
@@ -142,6 +144,7 @@ describe('ArgumentStream', () => {
 			const number = Number(value);
 			return Number.isNaN(number) ? Result.err(`Could not parse ${value} to a number`) : Result.ok(number);
 		};
+
 		type ReturnType = Result<number, string | null>;
 
 		test('GIVEN no parameters THEN returns none', () => {
@@ -182,10 +185,11 @@ describe('ArgumentStream', () => {
 	});
 
 	describe('singleParseAsync', () => {
-		const parse = (value: string) => {
+		const parse = async (value: string) => {
 			const number = Number(value);
-			return Promise.resolve(Number.isNaN(number) ? Result.err(`Could not parse ${value} to a number`) : Result.ok(number));
+			return Number.isNaN(number) ? Result.err(`Could not parse ${value} to a number`) : Result.ok(number);
 		};
+
 		type ReturnType = Promise<Result<number, string | null>>;
 
 		test('GIVEN no parameters THEN returns none', async () => {
@@ -279,7 +283,7 @@ describe('ArgumentStream', () => {
 	});
 
 	describe('findAsync', () => {
-		const predicate = (value: string) => Promise.resolve(value.startsWith('a'));
+		const predicate = async (value: string) => value.startsWith('a');
 		type ReturnType = Promise<Option<string>>;
 
 		test('GIVEN no parameters THEN returns none', async () => {
@@ -385,7 +389,7 @@ describe('ArgumentStream', () => {
 	});
 
 	describe('findMapAsync', () => {
-		const predicate = (value: string) => Promise.resolve(value.startsWith('a') ? Option.some(value.repeat(2)) : Option.none);
+		const predicate = async (value: string) => (value.startsWith('a') ? Option.some(value.repeat(2)) : Option.none);
 		type ReturnType = Promise<Option<string>>;
 
 		test('GIVEN no parameters THEN returns none', async () => {
@@ -442,6 +446,7 @@ describe('ArgumentStream', () => {
 			const number = Number(value);
 			return Number.isNaN(number) ? Result.err(`Could not parse ${value} to a number`) : Result.ok(number);
 		};
+
 		type ReturnType = Result<number, string[]>;
 
 		test('GIVEN no parameters THEN returns none', () => {
@@ -502,10 +507,11 @@ describe('ArgumentStream', () => {
 	});
 
 	describe('findParseAsync', () => {
-		const predicate = (value: string) => {
+		const predicate = async (value: string) => {
 			const number = Number(value);
-			return Promise.resolve(Number.isNaN(number) ? Result.err(`Could not parse ${value} to a number`) : Result.ok(number));
+			return Number.isNaN(number) ? Result.err(`Could not parse ${value} to a number`) : Result.ok(number);
 		};
+
 		type ReturnType = Promise<Result<number, string[]>>;
 
 		test('GIVEN no parameters THEN returns none', async () => {
@@ -633,7 +639,7 @@ describe('ArgumentStream', () => {
 	});
 
 	describe('filterAsync', () => {
-		const predicate = (value: string) => Promise.resolve(value.startsWith('a'));
+		const predicate = async (value: string) => value.startsWith('a');
 		type ReturnType = Promise<Option<string[]>>;
 
 		test('GIVEN no parameters THEN returns none', async () => {
@@ -731,7 +737,7 @@ describe('ArgumentStream', () => {
 	});
 
 	describe('filterMapAsync', () => {
-		const predicate = (value: string) => Promise.resolve(value.startsWith('a') ? Option.some(value.repeat(2)) : Option.none);
+		const predicate = async (value: string) => (value.startsWith('a') ? Option.some(value.repeat(2)) : Option.none);
 		type ReturnType = Promise<Option<string[]>>;
 
 		test('GIVEN no parameters THEN returns none', async () => {

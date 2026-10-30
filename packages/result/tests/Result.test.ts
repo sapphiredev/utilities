@@ -1,4 +1,5 @@
-import { setTimeout as sleep } from 'node:timers/promises';
+/* eslint-disable promise/prefer-await-to-callbacks */
+import { setTimeout } from 'node:timers/promises';
 import { err, none, ok, Option, Result, ResultError, some, type Err, type None, type Ok, type Some } from '../src/index';
 import { error, makeThrow } from './shared';
 
@@ -294,7 +295,8 @@ describe('Result', () => {
 			test('GIVEN ok THEN calls callback and returns self', async () => {
 				const x = ok(2);
 				let finished = false;
-				const cb = vi.fn(() => sleep(5).then(() => (finished = true)));
+				// eslint-disable-next-line promise/prefer-await-to-then
+				const cb = vi.fn(async () => setTimeout(5).then(() => (finished = true)));
 
 				await expect<Promise<typeof x>>(x.inspectAsync(cb)).resolves.toBe(x);
 				expect(cb).toHaveBeenCalledTimes(1);
@@ -342,7 +344,8 @@ describe('Result', () => {
 			test('GIVEN err THEN returns self', async () => {
 				const x = err('Some error message');
 				let finished = false;
-				const cb = vi.fn(() => sleep(5).then(() => (finished = true)));
+				// eslint-disable-next-line promise/prefer-await-to-then
+				const cb = vi.fn(async () => setTimeout(5).then(() => (finished = true)));
 
 				await expect<Promise<typeof x>>(x.inspectErrAsync(cb)).resolves.toBe(x);
 				expect(cb).toHaveBeenCalledTimes(1);
@@ -472,7 +475,7 @@ describe('Result', () => {
 				const error = new Error('Some error message');
 				const x = err(error);
 
-				expect(() => x.unwrapRaw()).toThrowError(error);
+				expect(() => x.unwrapRaw()).toThrow(error);
 			});
 		});
 
@@ -540,7 +543,7 @@ describe('Result', () => {
 			test('GIVEN ok THEN chain andThen and map THEN returns Ok<number, string>', () => {
 				const x = Result.from<number, Error>(1);
 				const cb = vi.fn((value: number) => ok(`${value}`));
-				const mapChain = x.andThen(cb).map((value) => Number(value));
+				const mapChain = x.andThen(cb).map(Number);
 
 				expectTypeOf(mapChain).toMatchTypeOf<Result<number, string>>();
 				expect<Result<number, string>>(mapChain).toEqual(ok(1));
@@ -882,6 +885,7 @@ describe('Result', () => {
 		});
 
 		test('GIVEN err with an argument THEN returns Err<T>', () => {
+			// eslint-disable-next-line unicorn/error-message
 			const x = err(new Error());
 
 			expectTypeOf(x).toMatchTypeOf<Err<Error>>();
@@ -925,9 +929,9 @@ describe('Result', () => {
 			['Ok(T)', ok(42)],
 			['Promise.resolve(Ok(T))', Promise.resolve(ok(42))],
 			['() => T', () => 42],
-			['() => Promise.resolve(T)', () => Promise.resolve(42)],
+			['() => Promise.resolve(T)', async () => 42],
 			['() => Ok(T)', () => ok(42)],
-			['() => Promise.resolve(Ok(T))', () => Promise.resolve(ok(42))]
+			['() => Promise.resolve(Ok(T))', async () => ok(42)]
 		])('GIVEN fromAsync(%s) THEN returns Ok(T)', async (_, cb) => {
 			const x = await fromAsync(cb);
 
@@ -937,9 +941,20 @@ describe('Result', () => {
 		test.each([
 			['Err(E)', err(error)],
 			['() => throw E', makeThrow],
-			['() => Promise.reject(E)', () => Promise.reject(error)],
+			[
+				'() => Promise.reject(E)',
+				async () => {
+					throw error;
+				}
+			],
 			['() => Err(E)', () => err(error)],
-			['() => Promise.reject(Err(E))', () => Promise.reject(err(error))] // NOSONAR
+			[
+				'() => Promise.reject(Err(E))',
+				async () => {
+					// eslint-disable-next-line @typescript-eslint/only-throw-error
+					throw err(error);
+				}
+			] // NOSONAR
 		])('GIVEN fromAsync(%s) THEN returns Err(E)', async (_, resolvable) => {
 			let x = await fromAsync(resolvable);
 
@@ -964,7 +979,7 @@ describe('Result', () => {
 
 		test('GIVEN a async successful result THEN return Ok', async () => {
 			const result = await Result.safeTry(async function* () {
-				return Result.fromAsync(() => Promise.resolve(42));
+				return Result.fromAsync(async () => 42);
 			});
 
 			expect(result).toEqual(ok(42));
@@ -980,7 +995,9 @@ describe('Result', () => {
 
 		test('GIVEN a async unsuccessful result THEN return Err', async () => {
 			const result = await Result.safeTry(async function* () {
-				return Result.fromAsync(() => Promise.reject(new Error('Error!')));
+				return Result.fromAsync(async () => {
+					throw new Error('Error!');
+				});
 			});
 
 			expect(result).toEqual(err(new Error('Error!')));
@@ -997,9 +1014,10 @@ describe('Result', () => {
 		});
 
 		test('GIVEN a mixed async successful results THEN should return the last OK', async () => {
+			// eslint-disable-next-line @typescript-eslint/unbound-method
 			const result = await Result.safeTry(async function* ({ $, $async }) {
 				const first = yield* ok(1)[$];
-				const second = yield* $async(Result.fromAsync(() => Promise.resolve(2)));
+				const second = yield* $async(Result.fromAsync(async () => 2));
 				return ok(first + second);
 			});
 
@@ -1029,11 +1047,12 @@ describe('Result', () => {
 		test('GIVEN a mixed async results THEN should stop and return first Err', async () => {
 			const values: number[] = [];
 
+			// eslint-disable-next-line @typescript-eslint/unbound-method
 			const result = await Result.safeTry(async function* ({ $, $async }) {
 				const first = yield* ok(1)[$];
 				values.push(first);
 
-				const second = yield* $async(Result.fromAsync(() => Promise.resolve(2)));
+				const second = yield* $async(Result.fromAsync(async () => 2));
 				values.push(second);
 
 				yield* err('Error!')[$];
@@ -1077,7 +1096,7 @@ describe('Result', () => {
 			expect<Result<never, []>>(Result.any([])).toEqual(err([]));
 		});
 
-		type Expected = Result<number | boolean | bigint, [string, string, string]>;
+		type Expected = Result<bigint | boolean | number, [string, string, string]>;
 
 		test('GIVEN array with at least one Ok THEN returns first Ok', () => {
 			const a: Result<number, string> = ok(5);
@@ -1119,11 +1138,12 @@ describe('Result', () => {
 
 function expectResultError<E>(message: string, value: E, cb: () => any) {
 	try {
+		// eslint-disable-next-line n/callback-return
 		cb();
 
 		throw new Error('cb should have thrown');
-	} catch (raw) {
-		const error = raw as ResultError<E>;
+	} catch (error_) {
+		const error = error_ as ResultError<E>;
 
 		expect(error).toBeInstanceOf(ResultError);
 		expect<string>(error.name).toBe('ResultError');

@@ -1,14 +1,14 @@
 import { type IterableResolvable } from './from';
+import type { map } from './map';
 import { assertFunction } from './shared/_assertFunction';
 import { toIterableIterator } from './toIterableIterator';
 
 /**
  * Creates an iterable with the results of calling a provided function on each element of the input iterables as the function's parameters.
  *
- * @param iterable The iterable to map over.
- * @param callbackFn The callback function to apply to each element.
+ * @param iterable - The iterable to map over.
+ * @param callbackFn - The callback function to apply to each element.
  * @returns An iterable iterator that yields the mapped elements.
- *
  * @example
  * ```typescript
  * import { starMap } from '@sapphire/iterator-utilities';
@@ -17,7 +17,6 @@ import { toIterableIterator } from './toIterableIterator';
  * console.log([...starMap(iterable, (a, b) => a + b)]);
  * // Output: [3, 7, 11]
  * ```
- *
  * @remarks
  *
  * While very similar to {@link map}, `starMap` takes an iterable of iterables (which can be an array of tuples) and
@@ -28,6 +27,7 @@ export function* starMap<const ElementType extends IterableResolvable<any>, cons
 	iterable: IterableResolvable<ElementType>,
 	callbackFn: (...args: StarMapParameters<ElementType>) => MappedType
 ): IterableIterator<MappedType> {
+	// eslint-disable-next-line no-param-reassign
 	callbackFn = assertFunction(callbackFn);
 
 	for (const value of toIterableIterator(iterable)) {

@@ -4,9 +4,9 @@ export type If<Value extends boolean, TrueResult, FalseResult> = Value extends t
 	? TrueResult
 	: Value extends false
 		? FalseResult
-		: TrueResult | FalseResult;
+		: FalseResult | TrueResult;
 
-export type RequiredIf<Value extends boolean, ValueType, FallbackType = null> = If<Value, ValueType, ValueType | FallbackType>;
+export type RequiredIf<Value extends boolean, ValueType, FallbackType = null> = If<Value, ValueType, FallbackType | ValueType>;
 
 export type BasicApplicationCommandOptionType = APIApplicationCommandInteractionDataBasicOption['type'];
 

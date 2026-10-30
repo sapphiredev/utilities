@@ -6,9 +6,8 @@ import { toIntegerOrInfinityOrThrow } from './shared/_toIntegerOrInfinityOrThrow
 /**
  * Creates an iterator starting at the same point, but stepping by the given amount at each iteration.
  *
- * @param iterable An iterator to map over.
- * @param step A positive integer representing the step to take at each iteration.
- *
+ * @param iterable - An iterator to map over.
+ * @param step - A positive integer representing the step to take at each iteration.
  * @example
  * ```typescript
  * import { stepBy } from '@sapphire/iterator-utilities';
@@ -17,12 +16,12 @@ import { toIntegerOrInfinityOrThrow } from './shared/_toIntegerOrInfinityOrThrow
  * console.log([...stepBy(iterable, 2)]);
  * // Output: [0, 2, 4]
  * ```
- *
  * @remarks
  *
  * The first element of the iterator will always be returned, regardless of the step given.
  */
 export function stepBy<const ElementType>(iterable: IterableResolvable<ElementType>, step: number): IterableIterator<ElementType> {
+	// eslint-disable-next-line no-param-reassign
 	step = assertPositive(toIntegerOrInfinityOrThrow(step), step);
 
 	const iterator = from(iterable);
@@ -32,7 +31,7 @@ export function stepBy<const ElementType>(iterable: IterableResolvable<ElementTy
 			return { done: true, value: undefined };
 		}
 
-		for (let i = 0; i < step - 1; i++) {
+		for (let idx = 0; idx < step - 1; idx++) {
 			const result = iterator.next();
 			if (result.done) break;
 		}

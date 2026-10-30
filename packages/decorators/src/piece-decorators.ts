@@ -16,14 +16,15 @@ const originalApplicationCommandToProxy = new WeakMap<CommandTarget<any>, Comman
 
 /**
  * Decorator function that applies given options to any Sapphire piece
- * @param optionsOrFn The options or function that returns options to pass to the piece constructor
+ *
+ * @param optionsOrFn - The options or function that returns options to pass to the piece constructor
  * @example
  * ```typescript
  * import { ApplyOptions } from '@sapphire/decorators';
  * import { Command } from '@sapphire/framework';
  * import type { Message } from 'discord.js';
  *
- * @ApplyOptions<Command.Options>({
+ * (at)ApplyOptions<Command.Options>({
  *   description: 'ping pong',
  *   enabled: true
  * })
@@ -43,7 +44,7 @@ const originalApplicationCommandToProxy = new WeakMap<CommandTarget<any>, Comman
  * import { Listener } from '@sapphire/framework';
  * import { GatewayDispatchEvents, GatewayMessageDeleteDispatch } from 'discord.js';
  *
- * @ApplyOptions<Listener.Options>(({ container }) => ({
+ * (at)ApplyOptions<Listener.Options>(({ container }) => ({
  *   description: 'Handle Raw Message Delete events',
  *   emitter: container.client.ws,
  *   event: GatewayDispatchEvents.MessageDelete
@@ -74,7 +75,8 @@ export function ApplyOptions<T extends Piece.Options>(optionsOrFn: T | ((paramet
 
 /**
  * Decorator for registering chat input command.
- * @param optionsFn The function that returns options to pass to the registry.
+ *
+ * @param optionsFn - The function that returns options to pass to the registry.
  * @example
  * ```typescript
  * import { RegisterChatInputCommand } from '@sapphire/decorators';
@@ -156,7 +158,8 @@ export function RegisterChatInputCommand<CMD extends Command = Command>(
 
 /**
  * Decorator for registering message context menu command.
- * @param optionsFn The function that returns options to pass to the registry.
+ *
+ * @param optionsFn - The function that returns options to pass to the registry.
  * @example
  * ```typescript
  * import { RegisterMessageContextMenuCommand } from '@sapphire/decorators';
@@ -261,7 +264,8 @@ export function RegisterMessageContextMenuCommand<CMD extends Command = Command>
 
 /**
  * Decorator for registering user context menu command.
- * @param optionsFn The function that returns options to pass to the registry.
+ *
+ * @param optionsFn - The function that returns options to pass to the registry.
  * @example
  * ```typescript
  * import { RegisterUserContextMenuCommand } from '@sapphire/decorators';
@@ -278,7 +282,6 @@ export function RegisterMessageContextMenuCommand<CMD extends Command = Command>
  * 		return interaction.reply({ content: 'HI!' })
  * 	}
  * }
- * ```
  * ```
  * @example
  * ```typescript
@@ -408,21 +411,21 @@ export interface ApplyOptionsCallbackParameters {
 }
 
 interface ChatInputCommandDecoratorsMap<CMD extends Command> {
-	type: 'RegisterChatInputCommand';
-	optionsFn: (
+	optionsFn(
 		builder: SlashCommandBuilder,
-		command: ThisType<CMD> & CMD
-	) => SlashCommandBuilder | SlashCommandSubcommandsOnlyBuilder | SlashCommandOptionsOnlyBuilder;
+		command: CMD & ThisType<CMD>
+	): SlashCommandBuilder | SlashCommandOptionsOnlyBuilder | SlashCommandSubcommandsOnlyBuilder;
 	registryOptions?: ApplicationCommandRegistryRegisterOptions;
+	type: 'RegisterChatInputCommand';
 }
 
 interface ContextMenuCommandDecoratorsMap<CMD extends Command> {
-	type: 'RegisterMessageContextMenuCommand' | 'RegisterUserContextMenuCommand';
-	optionsFn: (
+	optionsFn(
 		builder: ContextMenuCommandBuilder, //
-		command: ThisType<CMD> & CMD
-	) => ContextMenuCommandBuilder;
+		command: CMD & ThisType<CMD>
+	): ContextMenuCommandBuilder;
 	registryOptions?: ApplicationCommandRegistryRegisterOptions;
+	type: 'RegisterMessageContextMenuCommand' | 'RegisterUserContextMenuCommand';
 }
 
 type CommandTarget<CMD extends Command> = Ctor<ConstructorParameters<typeof Command>, CMD>;

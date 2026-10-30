@@ -16,7 +16,7 @@ describe('FriendlyDuration', () => {
 	});
 
 	test('GIVEN 1000 millisecond w/ precision THEN shows 1 second', () => {
-		expect(durationImpl(1000, 5)).toEqual('1 second');
+		expect(durationImpl(1_000, 5)).toEqual('1 second');
 	});
 
 	test('GIVEN 1 day, 3 hours and 2 minutes w/o precision THEN shows 1 day 3 hours and 2 minutes', () => {

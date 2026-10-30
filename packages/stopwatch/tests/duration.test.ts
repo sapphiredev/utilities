@@ -1,4 +1,4 @@
-import { sleep } from './shared';
+import { setTimeout } from 'node:timers/promises';
 import { Stopwatch } from '../src';
 
 describe('Duration', () => {
@@ -7,7 +7,7 @@ describe('Duration', () => {
 
 		const first = stopwatch.duration;
 
-		await sleep(1000);
+		await setTimeout(1_000);
 		stopwatch.stop();
 		const second = stopwatch.duration;
 

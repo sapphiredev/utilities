@@ -18,8 +18,10 @@ There's some best practices for using `@sapphire/result` - such as never discard
 
 ## Features
 
--   Written in TypeScript
--   Fully tested
+- Provides the `no-discard-result` rule to flag ignored `Result` values
+- Recognizes the `@sapphire/result` class, including type aliases and inferred `Ok`/`Err` return types
+- Includes a recommended ESLint flat configuration
+- Helps enforce safe handling of `@sapphire/result` results
 
 ## Installation
 
@@ -31,23 +33,29 @@ npm install @sapphire/eslint-plugin-result
 
 ## Usage
 
-Somewhere in your ESLint configuration:
+Add the recommended flat config to your `eslint.config.js`:
 
-```json
-{
-	"extends": ["plugin:@sapphire/result/recommended"]
-}
+```js
+import eslintPluginResult from '@sapphire/eslint-plugin-result';
+
+export default [eslintPluginResult.configs.recommended];
 ```
 
-Or
+Or configure the rule directly:
 
-```json
-{
-	"plugins": ["@sapphire/result"],
-	"rules": {
-		"@sapphire/result/no-discard-result": "error"
+```js
+import eslintPluginResult from '@sapphire/eslint-plugin-result';
+
+export default [
+	{
+		plugins: {
+			'@sapphire/result': eslintPluginResult
+		},
+		rules: {
+			'@sapphire/result/no-discard-result': 'error'
+		}
 	}
-}
+];
 ```
 
 ## Buy us some doughnuts

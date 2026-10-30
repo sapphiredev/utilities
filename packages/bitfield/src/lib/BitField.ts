@@ -1,10 +1,14 @@
 const FlagEntriesSymbol = Symbol('@sapphire/bitfield.flags.entries');
 
-export class BitField<Flags extends Record<string, number> | Record<string, bigint>> {
+export class BitField<Flags extends Record<string, bigint> | Record<string, number>> {
 	public readonly type: Flags[keyof Flags] extends number ? 'number' : 'bigint';
+
 	public readonly zero: Flags[keyof Flags] extends number ? 0 : 0n;
+
 	public readonly mask: ValueType<this>;
+
 	public readonly flags: Flags;
+
 	private readonly [FlagEntriesSymbol]: readonly [string, Flags[keyof Flags]][];
 
 	public constructor(flags: Readonly<Flags>) {
@@ -32,6 +36,7 @@ export class BitField<Flags extends Record<string, number> | Record<string, bigi
 			let mask = 0;
 			for (const [key, value] of entries) {
 				if (typeof value !== 'number') throw new TypeError(`The property "${key}" does not resolve to a number`);
+				// eslint-disable-next-line unicorn/prefer-math-trunc
 				if (value !== (value | 0)) throw new RangeError(`The property "${key}" does not resolve to a safe bitfield value`);
 				if (value <= 0) throw new RangeError(`The property "${key}" resolves to a non-positive value`);
 				mask |= value;
@@ -58,10 +63,12 @@ export class BitField<Flags extends Record<string, number> | Record<string, bigi
 	 * - `number`: If the BitField processes `number` primitives.
 	 * - `bigint`: If the BitField processes `bigint` primitives.
 	 * - `Array`: Resolves recursively.
-	 * @param resolvable The value to resolve.
+	 *
+	 * @param resolvable - The value to resolve.
 	 * @returns The resolved value.
 	 */
 	public resolve(resolvable: ValueResolvable<this>): ValueType<this> {
+		// eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check
 		switch (typeof resolvable) {
 			case 'string':
 				if ((resolvable as string) in this.flags) return this.flags[resolvable as keyof Flags] as any;
@@ -78,8 +85,9 @@ export class BitField<Flags extends Record<string, number> | Record<string, bigi
 
 	/**
 	 * Checks whether or not `field` contains any of the bits from `bits`.
-	 * @param field The bits to compare the bits from.
-	 * @param bits The bits to compare with.
+	 *
+	 * @param field - The bits to compare the bits from.
+	 * @param bits - The bits to compare with.
 	 * @returns Whether or not `field` has any of `bits`'s bits, also denoted as `A ∩ B ≠ ∅`.
 	 */
 	public any(field: ValueResolvable<this>, bits: ValueResolvable<this>): boolean {
@@ -88,8 +96,9 @@ export class BitField<Flags extends Record<string, number> | Record<string, bigi
 
 	/**
 	 * Checks whether or not `field` is a superset of or equal to `bits`.
-	 * @param field The bits to compare the bits from.
-	 * @param bits The bits to compare with.
+	 *
+	 * @param field - The bits to compare the bits from.
+	 * @param bits - The bits to compare with.
 	 * @returns Whether or not `field` is a superset of or equal to `bits`, also denoted as `A ⊇ B`.
 	 */
 	public has(field: ValueResolvable<this>, bits: ValueResolvable<this>): boolean {
@@ -100,7 +109,8 @@ export class BitField<Flags extends Record<string, number> | Record<string, bigi
 	/**
 	 * Makes the complement of `field`, which is a field of all bits (of `U` or the union of all {@link Flags} bits)
 	 * that do not belong to `A`. It is the result of `U ∖ A`, or `difference(U, field)`.
-	 * @param field The bits to get the complement of.
+	 *
+	 * @param field - The bits to get the complement of.
 	 * @returns The complement of `field`, also denoted `Aᶜ` or `A'`.
 	 * @example
 	 * ```typescript
@@ -121,7 +131,8 @@ export class BitField<Flags extends Record<string, number> | Record<string, bigi
 
 	/**
 	 * Makes a union of all the bits.
-	 * @param fields The bits to create a union of.
+	 *
+	 * @param fields - The bits to create a union of.
 	 * @returns The result of combining all bits together, also denoted as `∅ ⋃ fields`.
 	 * @example
 	 * ```typescript
@@ -131,7 +142,7 @@ export class BitField<Flags extends Record<string, number> | Record<string, bigi
 	 * bitfield.union(0b1100, 0b0001, 0b0010);
 	 * // 0b1111
 	 * ```
-	 * @seealso {@link https://en.wikipedia.org/wiki/Union_(set_theory)}
+	 * @see {@link https://en.wikipedia.org/wiki/Union_(set_theory)}
 	 */
 	public union(...fields: readonly ValueResolvable<this>[]): ValueType<this> {
 		let field = this.zero as ValueType<this>;
@@ -144,8 +155,9 @@ export class BitField<Flags extends Record<string, number> | Record<string, bigi
 
 	/**
 	 * Makes an intersection of all the bits.
-	 * @param bitfield The first field.
-	 * @param fields The bits to intersect with `bitfield`.
+	 *
+	 * @param bitfield - The first field.
+	 * @param fields - The bits to intersect with `bitfield`.
 	 * @returns The result of intersecting `bitfield` with all of the `fields`, also denoted as `A ⋂ fields`.
 	 * @example
 	 * ```typescript
@@ -158,7 +170,7 @@ export class BitField<Flags extends Record<string, number> | Record<string, bigi
 	 * bitfield.intersection(0b1101, 0b0101, 0b1100);
 	 * // 0b0100
 	 * ```
-	 * @seealso {@link https://en.wikipedia.org/wiki/Intersection_(set_theory)}
+	 * @see {@link https://en.wikipedia.org/wiki/Intersection_(set_theory)}
 	 */
 	public intersection(bitfield: ValueResolvable<this>, ...fields: readonly ValueResolvable<this>[]): ValueType<this> {
 		let field = this.resolve(bitfield);
@@ -171,8 +183,9 @@ export class BitField<Flags extends Record<string, number> | Record<string, bigi
 
 	/**
 	 * Removes from `a` the bits that exist in `b`.
-	 * @param a The first field.
-	 * @param b The bits to remove from `a`.
+	 *
+	 * @param a - The first field.
+	 * @param b - The bits to remove from `a`.
 	 * @returns The result of `a ∖ b`.
 	 * @example
 	 * ```typescript
@@ -182,7 +195,7 @@ export class BitField<Flags extends Record<string, number> | Record<string, bigi
 	 * bitfield.difference(0b1111, 0b0110);
 	 * // 0b1001
 	 * ```
-	 * @seealso {@link https://en.wikipedia.org/wiki/Difference_(set_theory)}
+	 * @see {@link https://en.wikipedia.org/wiki/Difference_(set_theory)}
 	 */
 	public difference(a: ValueResolvable<this>, b: ValueResolvable<this>): ValueType<this> {
 		return (this.resolve(a) & ~this.resolve(b)) as ValueType<this>;
@@ -192,9 +205,10 @@ export class BitField<Flags extends Record<string, number> | Record<string, bigi
 	 * Computes the symmetric difference, denoted as `A ⊖ B` or `A Δ B`, which is the disjunctive union, or the set of
 	 * elements which are in either of the sets, but not in their intersection. As such, this is the result of
 	 * `(A ∖ B) ∪ (B ∖ A)`, `union(difference(a, b), difference(b, a))`, or `a ⊕ b`.
+	 *
 	 * @remarks The empty set (`∅`) is neutral, as such, `A Δ ∅ = A` and `A Δ A = ∅`
-	 * @param a The first field.
-	 * @param b The second field.
+	 * @param a - The first field.
+	 * @param b - The second field.
 	 * @returns The result of computing `a Δ b`.
 	 * @example
 	 * ```typescript
@@ -204,7 +218,7 @@ export class BitField<Flags extends Record<string, number> | Record<string, bigi
 	 * bitfield.symmetricDifference(0b1101, 0b1011);
 	 * // 0b0110
 	 * ```
-	 * @seealso {@link https://en.wikipedia.org/wiki/Symmetric_difference}
+	 * @see {@link https://en.wikipedia.org/wiki/Symmetric_difference}
 	 */
 	public symmetricDifference(a: ValueResolvable<this>, b: ValueResolvable<this>): ValueType<this> {
 		return (this.resolve(a) ^ this.resolve(b)) as ValueType<this>;
@@ -212,7 +226,8 @@ export class BitField<Flags extends Record<string, number> | Record<string, bigi
 
 	/**
 	 * Retrieves an array of the properties from {@link Flags} whose values are contained in `field`.
-	 * @param field The field to convert to an array.
+	 *
+	 * @param field - The field to convert to an array.
 	 * @returns The names of the {@link BitField}'s flag properties whose value are contained in `field`.
 	 * @example
 	 * ```typescript
@@ -233,7 +248,8 @@ export class BitField<Flags extends Record<string, number> | Record<string, bigi
 
 	/**
 	 * Retrieves an iterator of the properties from {@link Flags} whose values are contained in `field`.
-	 * @param field The field to convert to an iterator.
+	 *
+	 * @param field - The field to convert to an iterator.
 	 * @returns An iterator with the keys of the {@link BitField}'s flag properties whose value are contained in `field`.
 	 * @example
 	 * ```typescript
@@ -258,7 +274,8 @@ export class BitField<Flags extends Record<string, number> | Record<string, bigi
 
 	/**
 	 * Retrieves an iterator of the values from {@link Flags} whose values are contained in `field`.
-	 * @param field The field to convert to an iterator.
+	 *
+	 * @param field - The field to convert to an iterator.
 	 * @returns An iterator with the values of the {@link BitField}'s flag properties whose value are contained in `field`.
 	 * @example
 	 * ```typescript
@@ -283,7 +300,8 @@ export class BitField<Flags extends Record<string, number> | Record<string, bigi
 
 	/**
 	 * Retrieves an iterator of the entries from {@link Flags} whose values are contained in `field`.
-	 * @param field The field to convert to an iterator.
+	 *
+	 * @param field - The field to convert to an iterator.
 	 * @returns An iterator with the entries of the {@link BitField}'s flag properties whose value are contained in `field`.
 	 * @example
 	 * ```typescript
@@ -309,7 +327,8 @@ export class BitField<Flags extends Record<string, number> | Record<string, bigi
 	/**
 	 * Retrieves an object with the properties from {@link Flags} whose values are boolean denoting whether or not the
 	 * flag's bit is contained in `field`.
-	 * @param field The field to convert to an object.
+	 *
+	 * @param field - The field to convert to an object.
 	 * @returns An object with the properties of {@link Flags} which values are boolean.
 	 * @example
 	 * ```typescript
@@ -341,12 +360,14 @@ export type MaybeArray<T> = T | readonly T[];
 
 /**
  * Resolves the type of the values the specified {@link BitField} takes.
- * @typeparam A {@link BitField} instance type.
+ *
+ * @typeParam T - A {@link BitField} instance type.
  */
 export type ValueType<T> = T extends BitField<infer Flags> ? PrimitiveType<Flags[keyof Flags]> : never;
 
 /**
  * Resolves the possible types accepted by the specified {@link BitField}.
- * @typeparam A {@link BitField} instance type.
+ *
+ * @typeParam T - A {@link BitField} instance type.
  */
-export type ValueResolvable<T> = T extends BitField<infer Flags> ? MaybeArray<keyof Flags | PrimitiveType<Flags[keyof Flags]>> : never;
+export type ValueResolvable<T> = T extends BitField<infer Flags> ? MaybeArray<PrimitiveType<Flags[keyof Flags]> | keyof Flags> : never;

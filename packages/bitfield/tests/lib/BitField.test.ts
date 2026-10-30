@@ -38,28 +38,28 @@ describe('BitField', () => {
 			const given = () => new BitField(value as any);
 			const expected = 'flags must be a non-null object';
 
-			expect(given).toThrowError(expected);
+			expect(given).toThrow(expected);
 		});
 
 		test('GIVEN a null object THEN throws TypeError', () => {
 			const given = () => new BitField(null as any);
 			const expected = 'flags must be a non-null object';
 
-			expect(given).toThrowError(expected);
+			expect(given).toThrow(expected);
 		});
 
 		test('GIVEN an empty object THEN throws TypeError', () => {
 			const given = () => new BitField({});
 			const expected = 'flags must be a non-empty object';
 
-			expect(given).toThrowError(expected);
+			expect(given).toThrow(expected);
 		});
 
 		test.each([true, {}, undefined, null, 'foo'])('GIVEN a null object THEN throws TypeError', (value) => {
 			const given = () => new BitField({ Read: value } as any);
 			const expected = 'A bitfield can only use numbers or bigints for its values';
 
-			expect(given).toThrowError(expected);
+			expect(given).toThrow(expected);
 		});
 
 		describe('number', () => {
@@ -67,21 +67,21 @@ describe('BitField', () => {
 				const given = () => new BitField({ Read: 1, Write: value } as any);
 				const expected = 'The property "Write" does not resolve to a number';
 
-				expect(given).toThrowError(expected);
+				expect(given).toThrow(expected);
 			});
 
-			test.each([1.2, 4294967296])('GIVEN an empty object THEN throws TypeError', (value) => {
+			test.each([1.2, 4_294_967_296])('GIVEN an empty object THEN throws TypeError', (value) => {
 				const given = () => new BitField({ Read: value });
 				const expected = 'The property "Read" does not resolve to a safe bitfield value';
 
-				expect(given).toThrowError(expected);
+				expect(given).toThrow(expected);
 			});
 
 			test.each([0, -8])('GIVEN an empty object THEN throws TypeError', (value) => {
 				const given = () => new BitField({ Read: value });
 				const expected = 'The property "Read" resolves to a non-positive value';
 
-				expect(given).toThrowError(expected);
+				expect(given).toThrow(expected);
 			});
 		});
 
@@ -90,14 +90,14 @@ describe('BitField', () => {
 				const given = () => new BitField({ Read: 1n, Write: value } as any);
 				const expected = 'The property "Write" does not resolve to a bigint';
 
-				expect(given).toThrowError(expected);
+				expect(given).toThrow(expected);
 			});
 
 			test.each([0n, -8n])('GIVEN an empty object THEN throws TypeError', (value) => {
 				const given = () => new BitField({ Read: value });
 				const expected = 'The property "Read" resolves to a non-positive value';
 
-				expect(given).toThrowError(expected);
+				expect(given).toThrow(expected);
 			});
 		});
 	});
@@ -145,21 +145,21 @@ describe('BitField', () => {
 				const given = () => bitfield.resolve(value as any);
 				const expected = 'Received a value that is not either type "string", type "number", or an Array';
 
-				expect(given).toThrowError(expected);
+				expect(given).toThrow(expected);
 			});
 
 			test.each(['Execute', 'Foo'])('GIVEN %s THEN throws RangeError', (value) => {
 				const given = () => bitfield.resolve(value as any);
 				const expected = 'Received a name that could not be resolved to a property of flags';
 
-				expect(given).toThrowError(expected);
+				expect(given).toThrow(expected);
 			});
 
 			test.each([null, {}])('GIVEN non-Array object THEN throws TypeError', (value) => {
 				const given = () => bitfield.resolve(value as any);
 				const expected = 'Received an object value that is not an Array';
 
-				expect(given).toThrowError(expected);
+				expect(given).toThrow(expected);
 			});
 		});
 

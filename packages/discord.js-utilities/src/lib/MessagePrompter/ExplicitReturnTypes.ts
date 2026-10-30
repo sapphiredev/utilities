@@ -3,11 +3,11 @@ import type { MessagePrompterMessage } from './constants';
 import type { MessagePrompterBaseStrategy } from './strategies/MessagePrompterBaseStrategy';
 
 export interface IMessagePrompterExplicitReturnBase {
-	emoji?: GuildEmoji | ReactionEmoji | ApplicationEmoji;
-	reaction?: string | EmojiIdentifierResolvable;
-	strategy: MessagePrompterBaseStrategy;
 	appliedMessage: Message;
+	emoji?: ApplicationEmoji | GuildEmoji | ReactionEmoji;
 	message: MessagePrompterMessage;
+	reaction?: EmojiIdentifierResolvable | string;
+	strategy: MessagePrompterBaseStrategy;
 }
 
 export interface IMessagePrompterExplicitConfirmReturn extends IMessagePrompterExplicitReturnBase {

@@ -4,32 +4,23 @@
 	"description": "Discord.js specific utilities for your JavaScript/TypeScript bots",
 	"author": "@sapphire",
 	"license": "MIT",
-	"main": "dist/cjs/index.cjs",
-	"module": "dist/esm/index.mjs",
-	"types": "dist/cjs/index.d.cts",
+	"type": "module",
+	"main": "dist/index.mjs",
+	"module": "dist/index.mjs",
+	"types": "dist/index.d.mts",
 	"exports": {
-		"import": {
-			"types": "./dist/esm/index.d.mts",
-			"default": "./dist/esm/index.mjs"
-		},
-		"require": {
-			"types": "./dist/cjs/index.d.cts",
-			"default": "./dist/cjs/index.cjs"
-		}
+		"types": "./dist/index.d.mts",
+		"default": "./dist/index.mjs"
 	},
 	"sideEffects": false,
 	"homepage": "https://github.com/sapphiredev/utilities/tree/main/packages/discord.js-utilities",
 	"scripts": {
-		"lint": "eslint src --ext ts --fix -c ../../.eslintrc",
-		"build": "yarn gen-index && tsup && yarn build:types",
-		"build:types": "concurrently \"yarn:build:types:*\"",
-		"build:types:cjs": "rollup-type-bundler -d dist/cjs --output-typings-file-extension .cts",
-		"build:types:esm": "rollup-type-bundler -d dist/esm -t .mts",
-		"docs": "typedoc-json-parser",
+		"lint": "eslint src --ext ts --fix",
+		"build": "yarn gen-index && tsdown",
 		"prepack": "yarn build",
 		"bump": "cliff-jumper",
 		"check-update": "cliff-jumper --dry-run",
-		"gen-index": "tsx ../../scripts/gen-index.cts discord.js-utilities --write"
+		"gen-index": "node ../../scripts/gen-index.ts discord.js-utilities --write"
 	},
 	"repository": {
 		"type": "git",
@@ -40,8 +31,8 @@
 		"dist/"
 	],
 	"engines": {
-		"node": ">=16.6.0",
-		"npm": ">=7.0.0"
+		"node": ">=24.0.0",
+		"npm": ">=12.0.0"
 	},
 	"keywords": [
 		"@sapphire/discord.js-utilities",
@@ -63,17 +54,15 @@
 	"dependencies": {
 		"@sapphire/discord-utilities": "workspace:^",
 		"@sapphire/duration": "workspace:^",
-		"@sapphire/utilities": "workspace:^",
-		"tslib": "^2.8.1"
+		"@sapphire/utilities": "workspace:^"
+	},
+	"peerDependencies": {
+		"discord.js": "*"
 	},
 	"devDependencies": {
 		"@favware/cliff-jumper": "^6.1.0",
-		"@favware/rollup-type-bundler": "^4.0.0",
-		"concurrently": "^9.2.1",
-		"tsup": "^8.5.1",
-		"tsx": "^4.21.0",
-		"typedoc": "^0.26.11",
-		"typedoc-json-parser": "^10.2.0",
-		"typescript": "~5.4.5"
+		"eslint": "^10.13.0",
+		"tsdown": "^0.23.3",
+		"typescript": "~6.0.3"
 	}
 }

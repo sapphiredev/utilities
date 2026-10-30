@@ -83,8 +83,8 @@ export class Stopwatch {
 	 */
 	public toString(): string {
 		const time = this.duration;
-		if (time >= 1000) return `${(time / 1000).toFixed(this.digits)}s`;
+		if (time >= 1_000) return `${(time / 1_000).toFixed(this.digits)}s`;
 		if (time >= 1) return `${time.toFixed(this.digits)}ms`;
-		return `${(time * 1000).toFixed(this.digits)}μs`;
+		return `${(time * 1_000).toFixed(this.digits)}μs`;
 	}
 }

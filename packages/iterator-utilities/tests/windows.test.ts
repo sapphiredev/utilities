@@ -35,12 +35,12 @@ describe('windows', () => {
 	test('GIVEN iterable and limit equal to 0 THEN throws RangeError', () => {
 		const iterable = [1, 2, 3];
 		const limit = 0;
-		expect(() => windows(iterable, limit)).toThrowError(new RangeError('0 must be a positive number'));
+		expect(() => windows(iterable, limit)).toThrow(new RangeError('0 must be a positive number'));
 	});
 
 	test('GIVEN iterable and limit less than 0 THEN throws RangeError', () => {
 		const iterable = [1, 2, 3];
 		const limit = -1;
-		expect(() => windows(iterable, limit)).toThrowError(new RangeError('-1 must be a positive number'));
+		expect(() => windows(iterable, limit)).toThrow(new RangeError('-1 must be a positive number'));
 	});
 });

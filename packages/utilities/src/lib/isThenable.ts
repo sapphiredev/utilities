@@ -1,9 +1,9 @@
-/* eslint-disable @typescript-eslint/ban-types */
+/* eslint-disable @typescript-eslint/no-unsafe-function-type */
 import { isFunction } from './isFunction';
 
 export interface Thenable {
-	then: Function;
 	catch: Function;
+	then: Function;
 }
 
 function hasThen(input: { then?: Function }): boolean {
@@ -16,7 +16,8 @@ function hasCatch(input: { catch?: Function }): boolean {
 
 /**
  * Verify if an object is a promise.
- * @param input The promise to verify
+ *
+ * @param input - The promise to verify
  */
 export function isThenable(input: unknown): input is Thenable {
 	if (typeof input !== 'object' || input === null) return false;

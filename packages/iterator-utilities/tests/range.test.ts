@@ -62,7 +62,7 @@ describe('range', () => {
 	test('GIVEN start, end, and NaN step THEN throws RangeError', () => {
 		const start = 1;
 		const end = 5;
-		const step = NaN;
+		const step = Number.NaN;
 		expect(() => [...range(start, end, step)]).toThrow(new RangeError('NaN must be a non-NaN number'));
 	});
 });

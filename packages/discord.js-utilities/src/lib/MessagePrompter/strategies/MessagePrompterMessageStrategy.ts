@@ -2,6 +2,7 @@ import { isNullish, type ArgumentTypes } from '@sapphire/utilities';
 import type { CollectorFilter, CollectorOptions, Message, User } from 'discord.js';
 import { isStageChannel, isTextBasedChannel } from '../../type-guards';
 import type { IMessagePrompterExplicitMessageReturn } from '../ExplicitReturnTypes';
+import type { MessagePrompter } from '../MessagePrompter';
 import type { MessagePrompterChannelTypes, MessagePrompterMessage } from '../constants';
 import type { IMessagePrompterStrategyOptions } from '../strategyOptions';
 import { MessagePrompterBaseStrategy } from './MessagePrompterBaseStrategy';
@@ -9,23 +10,25 @@ import { MessagePrompterBaseStrategy } from './MessagePrompterBaseStrategy';
 export class MessagePrompterMessageStrategy extends MessagePrompterBaseStrategy implements IMessagePrompterStrategyOptions {
 	/**
 	 * Constructor for the {@link MessagePrompterBaseStrategy} class
-	 * @param message The message instance for this {@link MessagePrompter}
-	 * @param options Overrideable options if needed.
+	 *
+	 * @param message - The message instance for this {@link MessagePrompter}.
+	 * @param options - Overrideable options if needed.
 	 */
 	public constructor(message: MessagePrompterMessage, options: IMessagePrompterStrategyOptions) {
 		super('message', message, options);
 	}
 
 	/**
-	 * This executes the {@link MessagePrompter} and sends the message if {@link IMessagePrompterOptions.type} equals message.
+	 * This executes the {@link MessagePrompter} and sends the message if its `type` option equals `message`.
 	 * The handler will wait for one (1) message.
-	 * @param channel The channel to use.
-	 * @param authorOrFilter An author object to validate or a {@linkplain https://discord.js.org/docs/packages/discord.js/main/CollectorFilter:TypeAlias CollectorFilter} predicate callback.
+	 *
+	 * @param channel - The channel to use.
+	 * @param authorOrFilter - An author object to validate or a {@link https://discord.js.org/docs/packages/discord.js/main/CollectorFilter:TypeAlias | CollectorFilter} predicate callback.
 	 * @returns A promise that resolves to the message object received.
 	 */
 	public override async run(
 		channel: MessagePrompterChannelTypes,
-		authorOrFilter: User | CollectorFilter<[Message]>
+		authorOrFilter: CollectorFilter<[Message]> | User
 	): Promise<IMessagePrompterExplicitMessageReturn | Message> {
 		if (isTextBasedChannel(channel) && !isStageChannel(channel)) {
 			if (!isNullish(this.editMessage) && this.editMessage.editable) {
@@ -61,9 +64,10 @@ export class MessagePrompterMessageStrategy extends MessagePrompterBaseStrategy 
 
 	/**
 	 * Creates a filter for the collector to filter on
-	 * @return The filter for awaitMessages function
+	 *
+	 * @returns The filter for awaitMessages function
 	 */
-	private createMessagePromptFilter(authorOrFilter: User | CollectorFilter<[Message]>): CollectorOptions<[Message]> {
+	private createMessagePromptFilter(authorOrFilter: CollectorFilter<[Message]> | User): CollectorOptions<[Message]> {
 		return {
 			filter: async (message: Message) =>
 				(typeof authorOrFilter === 'function' ? await authorOrFilter(message) : message.author.id === authorOrFilter.id) &&

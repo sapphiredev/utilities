@@ -1,4 +1,5 @@
 export function toNumberOrThrow(value: NumberResolvable): number {
+	// eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check
 	switch (typeof value) {
 		case 'bigint':
 			throw new TypeError('Cannot convert a BigInt value to a number');
@@ -15,7 +16,7 @@ export function toNumberOrThrow(value: NumberResolvable): number {
 	}
 }
 
-export type NumberResolvable = number | boolean | null | { valueOf(): number | boolean | null } | { [Symbol.toPrimitive](): number | boolean | null };
+export type NumberResolvable = boolean | number | { [Symbol.toPrimitive](): boolean | number | null } | { valueOf(): boolean | number | null } | null;
 
 function assertNumber(value: number, original: unknown): number {
 	if (Number.isNaN(value)) {

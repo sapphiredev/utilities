@@ -1,10 +1,11 @@
 import type { ArgumentTypes } from '@sapphire/utilities';
 import type { CategoryChannel, PartialTextBasedChannelFields } from 'discord.js';
 import type { ChannelTypes, VoiceBasedChannelTypes } from '../utility-types';
+import type { MessagePrompter } from './MessagePrompter';
 
 /**
  * A type to extend multiple discord types and simplify usage in {@link MessagePrompter}
  */
 export type MessagePrompterMessage = ArgumentTypes<PartialTextBasedChannelFields['send']>[0];
 
-export type MessagePrompterChannelTypes = Exclude<ChannelTypes, VoiceBasedChannelTypes | CategoryChannel>;
+export type MessagePrompterChannelTypes = Exclude<ChannelTypes, CategoryChannel | VoiceBasedChannelTypes>;

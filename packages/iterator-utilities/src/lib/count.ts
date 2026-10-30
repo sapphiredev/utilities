@@ -3,9 +3,8 @@ import { from, type IterableResolvable } from './from';
 /**
  * Consumes the iterable and returns the number of elements.
  *
- * @param iterable An iterator that contains elements to be counted.
+ * @param iterable - An iterator that contains elements to be counted.
  * @returns The number of elements in the input iterator.
- *
  * @example
  * ```typescript
  * import { count } from '@sapphire/iterator-utilities';
@@ -14,7 +13,6 @@ import { from, type IterableResolvable } from './from';
  * console.log(count(iterable));
  * // Output: 5
  * ```
- *
  * @remarks
  *
  * This function consumes the entire iterator.

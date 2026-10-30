@@ -1,9 +1,9 @@
 import { UserError } from '@sapphire/framework';
 import {
 	ChannelType,
-	Message as DJSMessage,
 	PermissionFlagsBits,
 	PermissionsBitField,
+	type Message as DJSMessage,
 	type PermissionResolvable,
 	type PermissionsString
 } from 'discord.js';
@@ -16,8 +16,8 @@ interface BitField {
 
 interface Message {
 	channel: {
-		type: DJSMessage['channel']['type'];
 		permissionsFor(): BitField;
+		type: DJSMessage['channel']['type'];
 	};
 	guild: {
 		members: any;
@@ -44,8 +44,8 @@ describe('RequiresUserPermissions', () => {
 	describe('WITH DM-compatible permissions', () => {
 		class Test {
 			@RequiresUserPermissions([PermissionFlagsBits.SendMessages, PermissionFlagsBits.AttachFiles])
-			public getValue(_message: Message) {
-				return Promise.resolve('Resolved');
+			public async getValue(_message: Message) {
+				return 'Resolved';
 			}
 		}
 
@@ -63,7 +63,7 @@ describe('RequiresUserPermissions', () => {
 			test('GIVEN lacking 1 permission THEN throws UserError', async () => {
 				const result = instance.getValue(buildMessage(ChannelType.GuildText, PermissionFlagsBits.SendMessages));
 
-				await expect(result).rejects.toThrowError(
+				await expect(result).rejects.toThrow(
 					new UserError({
 						identifier: DecoratorIdentifiers.RequiresUserPermissionsMissingPermissions,
 						message: 'Sorry, but you are not allowed to do that. You are missing the permissions: AttachFiles',
@@ -77,7 +77,7 @@ describe('RequiresUserPermissions', () => {
 			test('GIVEN lacking 2 permissions THEN throws UserError', async () => {
 				const result = instance.getValue(buildMessage(ChannelType.GuildText));
 
-				await expect(result).rejects.toThrowError(
+				await expect(result).rejects.toThrow(
 					new UserError({
 						identifier: DecoratorIdentifiers.RequiresUserPermissionsMissingPermissions,
 						message: 'Sorry, but you are not allowed to do that. You are missing the permissions: SendMessages,AttachFiles',
@@ -101,8 +101,8 @@ describe('RequiresUserPermissions', () => {
 	describe('WITH DM-incompatible permissions', () => {
 		class Test {
 			@RequiresUserPermissions([PermissionFlagsBits.ManageMessages, PermissionFlagsBits.AddReactions, PermissionFlagsBits.AddReactions])
-			public getValue(_message: Message) {
-				return Promise.resolve('Resolved');
+			public async getValue(_message: Message) {
+				return 'Resolved';
 			}
 		}
 
@@ -112,7 +112,7 @@ describe('RequiresUserPermissions', () => {
 			test('GIVEN no additional permissions THEN resolves', async () => {
 				const result = instance.getValue(buildMessage(ChannelType.DM));
 
-				await expect(result).rejects.toThrowError(
+				await expect(result).rejects.toThrow(
 					new UserError({
 						identifier: DecoratorIdentifiers.RequiresUserPermissionsGuildOnly,
 						message: 'Sorry, but that command can only be used in a server because you do not have sufficient permissions in DMs'

@@ -1,3 +1,4 @@
+/* eslint-disable n/no-sync */
 import { retrySync } from '../src';
 
 describe('retry', () => {
@@ -6,7 +7,7 @@ describe('retry', () => {
 		const result = retrySync(mockFunction, 3);
 
 		expect(result).toBe('test');
-		expect(mockFunction).toBeCalledTimes(1);
+		expect(mockFunction).toHaveBeenCalledTimes(1);
 	});
 
 	test('GIVEN a twice failing function THEN returns the third result', () => {
@@ -19,17 +20,19 @@ describe('retry', () => {
 
 			return 'success!';
 		};
+
 		const mockFunction = vi.fn(cb);
 
 		const result = retrySync(mockFunction, 3);
 
 		expect(result).toBe('success!');
 		expect(counter).toBe(2);
-		expect(mockFunction).toBeCalledTimes(3);
+		expect(mockFunction).toHaveBeenCalledTimes(3);
 	});
 
 	test('GIVEN a thrice failing function WHEN retries is lower THEN returns throws the last error', () => {
 		let counter = 0;
+		// eslint-disable-next-line sonarjs/no-identical-functions
 		const cb = () => {
 			if (counter < 2) {
 				++counter;
@@ -38,11 +41,12 @@ describe('retry', () => {
 
 			return 'success!';
 		};
+
 		const mockFunction = vi.fn().mockImplementation(cb);
 
-		expect(() => retrySync(mockFunction, 2)).toThrowError(Error('💣💥'));
+		expect(() => retrySync(mockFunction, 2)).toThrow(new Error('💣💥'));
 		expect(counter).toBe(2);
-		expect(mockFunction).toBeCalledTimes(2);
+		expect(mockFunction).toHaveBeenCalledTimes(2);
 	});
 
 	test('GIVEN 0 retries THEN returns result', () => {
@@ -50,12 +54,12 @@ describe('retry', () => {
 		const result = retrySync(mockFunction, 0);
 
 		expect(result).toBe('test');
-		expect(mockFunction).toBeCalledTimes(1);
+		expect(mockFunction).toHaveBeenCalledTimes(1);
 	});
 
 	test('GIVEN retries below 1 THEN throws', () => {
 		const mockFunction = vi.fn().mockReturnValue('test');
-		expect(() => retrySync(mockFunction, -1)).toThrowError(RangeError('Expected retries to be a number >= 0'));
-		expect(mockFunction).toBeCalledTimes(0);
+		expect(() => retrySync(mockFunction, -1)).toThrow(new RangeError('Expected retries to be a number >= 0'));
+		expect(mockFunction).toHaveBeenCalledTimes(0);
 	});
 });

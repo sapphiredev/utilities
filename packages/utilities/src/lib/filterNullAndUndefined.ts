@@ -4,7 +4,8 @@ import type { Nullish } from './types';
 /**
  * Checks whether a value is not `null` nor `undefined`.
  * This can be used in {@link Array.filter} to remove `null` and `undefined` from the array type
- * @param value The value to verify that is neither `null` nor `undefined`
+ *
+ * @param value - The value to verify that is neither `null` nor `undefined`
  * @returns A boolean that is `true` if the value is neither `null` nor `undefined`, false otherwise.
  * @example
  * ```typescript
@@ -16,7 +17,7 @@ import type { Nullish } from './types';
  * // Result: ['one', 'two', 'five']
  * ```
  */
-export function filterNullAndUndefined<TValue>(value: TValue | Nullish): value is TValue {
+export function filterNullAndUndefined<TValue>(value: Nullish | TValue): value is TValue {
 	return !isNullish(value);
 }
 

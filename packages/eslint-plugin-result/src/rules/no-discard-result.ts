@@ -1,5 +1,5 @@
-import { AST_NODE_TYPES, ESLintUtils, TSESTree, type ParserServices } from '@typescript-eslint/utils';
-import type { RuleListener, RuleModule } from '@typescript-eslint/utils/ts-eslint';
+import { AST_NODE_TYPES, ESLintUtils, type ParserServices, type TSESTree } from '@typescript-eslint/utils';
+import { createRequire } from 'node:module';
 import { isThenableType, isUnionType } from 'tsutils';
 import ts from 'typescript';
 
@@ -11,11 +11,16 @@ const messages = {
 
 type Messages = keyof typeof messages;
 
-const resultPath = require.resolve('@sapphire/result').split('/').slice(0, -1).concat('index.d.ts').join('/');
+const resultPath = createRequire(import.meta.url)
+	.resolve('@sapphire/result')
+	.split('/')
+	.slice(0, -1)
+	.concat('index.d.mts')
+	.join('/');
 
 function getSapphireResultType(service: ParserServices, checker: ts.TypeChecker): ts.Type | null {
 	const file = service.program?.getSourceFile(resultPath);
-	const resultNode = file?.statements.find((node) => ts.isTypeAliasDeclaration(node) && node.name.getText() === 'Result');
+	const resultNode = file?.statements.find((node) => ts.isClassDeclaration(node) && node.name?.text === 'Result');
 	if (resultNode) {
 		return checker.getTypeAtLocation(resultNode);
 	}
@@ -29,7 +34,7 @@ function unwrapPotentialPromiseType(checker: ts.TypeChecker, node: ts.CallExpres
 		const { ...copy } = type;
 
 		// We can end up with null-ish values in the union type, so we filter them out
-		copy.types = type.types.filter((subtype) => Boolean(subtype));
+		copy.types = type.types.filter(Boolean);
 
 		// There's some odd cases where the union type is just a single type that is sort of itself, so we unwrap that
 		if (copy.types.length === 1) {
@@ -55,13 +60,10 @@ function functionHasResultLikeReturnType(service: ParserServices, checker: ts.Ty
 
 	const returnType = unwrapPotentialPromiseType(checker, node);
 	const resultType = getSapphireResultType(service, checker);
+	const resultSymbol = resultType?.getSymbol?.();
+	const returnSymbol = returnType?.getSymbol?.();
 
-	if (!returnType || !returnType.aliasSymbol || !resultType?.aliasSymbol) {
-		return false;
-	}
-
-	// Bit hacky until we have https://github.com/microsoft/TypeScript/issues/9879
-	return Reflect.get(returnType.aliasSymbol, 'id') === Reflect.get(resultType.aliasSymbol, 'id');
+	return resultSymbol !== undefined && returnSymbol !== undefined && returnSymbol === resultSymbol;
 }
 
 function isDiscardedResult(callExpressionNode: TSESTree.Node): boolean {
@@ -82,6 +84,13 @@ function isDiscardedResult(callExpressionNode: TSESTree.Node): boolean {
 
 	// check for foo(functionReturningResult())
 	if (callExpressionNode.parent?.type === AST_NODE_TYPES.CallExpression) {
+		return false;
+	}
+
+	if (
+		callExpressionNode.parent?.type === AST_NODE_TYPES.ReturnStatement ||
+		callExpressionNode.parent?.type === AST_NODE_TYPES.ArrowFunctionExpression
+	) {
 		return false;
 	}
 
@@ -108,11 +117,19 @@ function isDiscardedResult(callExpressionNode: TSESTree.Node): boolean {
 	return true;
 }
 
-export const noDiscardResult: RuleModule<'discardedResult', [], RuleListener> = ESLintUtils.RuleCreator.withoutDocs<Options, Messages>({
+export const noDiscardResult = ESLintUtils.RuleCreator(
+	(ruleName) => `https://github.com/sapphiredev/utilities/blob/main/packages/eslint-plugin-result/src/rules/${ruleName}.ts`
+)<Options, Messages>({
+	name: 'no-discard-result',
 	meta: {
 		messages,
 		type: 'problem',
-		schema: []
+		schema: [],
+		docs: {
+			description: 'Disallow discarding the result of functions returning a Result-like type',
+			dialects: ['javascript', 'typescript'],
+			frozen: true
+		}
 	},
 	defaultOptions: [],
 	create: (context) => {

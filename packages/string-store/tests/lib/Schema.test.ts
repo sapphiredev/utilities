@@ -410,7 +410,7 @@ describe('Schema', () => {
 	describe('serialization', () => {
 		test('GIVEN a schema with a boolean property THEN it serializes correctly (serializeRaw)', () => {
 			const schema = new Schema(4).boolean('a').int16('b');
-			const buffer = schema.serialize({ a: true, b: 15234 }, 3);
+			const buffer = schema.serialize({ a: true, b: 15_234 }, 3);
 
 			// The buffer has 3 values:
 			// - 4     (schema:id) & 0xffff (mask)
@@ -419,15 +419,15 @@ describe('Schema', () => {
 			// | 15234 (prop:b)    & 0xffff (mask) << 1 (offset)
 			//
 			// - 15234 (prop:b)    & 0xffff (mask) >> 15 (shift)
-			expect(buffer).toBe('\u4e04\u{20d0f}\u4e00');
+			expect(buffer).toBe('\u4E04\u{20D0F}\u4E00');
 
 			const value = schema.deserialize(buffer, 16);
-			expect<{ a: boolean }>(value).toEqual({ a: true, b: 15234 });
+			expect<{ a: boolean }>(value).toEqual({ a: true, b: 15_234 });
 		});
 
 		test('GIVEN a schema with a boolean property THEN it serializes correctly (serializeRaw)', () => {
 			const schema = new Schema(4).boolean('a').int16('b');
-			const buffer = schema.serializeRaw({ a: true, b: 15234 }, 3);
+			const buffer = schema.serializeRaw({ a: true, b: 15_234 }, 3);
 
 			// The buffer has 3 values:
 			// - 4     (schema:id) & 0xffff (mask)
@@ -436,17 +436,17 @@ describe('Schema', () => {
 			// | 15234 (prop:b)    & 0xffff (mask) << 1 (offset)
 			//
 			// - 15234 (prop:b)    & 0xffff (mask) >> 15 (shift)
-			expect(buffer.toArray()).toEqual(new Uint16Array([4, 30469, 0]));
+			expect(buffer.toArray()).toEqual(new Uint16Array([4, 30_469, 0]));
 
 			const value = schema.deserialize(buffer, 16);
-			expect<{ a: boolean }>(value).toEqual({ a: true, b: 15234 });
+			expect<{ a: boolean }>(value).toEqual({ a: true, b: 15_234 });
 		});
 
 		test('GIVEN a schema with a boolean property THEN it serializes correctly (serializeInto)', () => {
 			const buffer = new UnalignedUint16Array(3);
 			const schema = new Schema(4).boolean('a').int16('b');
 
-			schema.serializeInto(buffer, { a: true, b: 15234 });
+			schema.serializeInto(buffer, { a: true, b: 15_234 });
 			// The buffer has 3 values:
 			// - 4     (schema:id) & 0xffff (mask)
 			//
@@ -454,23 +454,23 @@ describe('Schema', () => {
 			// | 15234 (prop:b)    & 0xffff (mask) << 1 (offset)
 			//
 			// - 15234 (prop:b)    & 0xffff (mask) >> 15 (shift)
-			expect(buffer.toArray()).toEqual(new Uint16Array([4, 30469, 0]));
+			expect(buffer.toArray()).toEqual(new Uint16Array([4, 30_469, 0]));
 
 			const value = schema.deserialize(buffer, 16);
-			expect<{ a: boolean }>(value).toEqual({ a: true, b: 15234 });
+			expect<{ a: boolean }>(value).toEqual({ a: true, b: 15_234 });
 		});
 	});
 
 	describe('exceptions', () => {
 		test('GIVEN a schema with a duplicate property THEN it throws', () => {
 			const schema = new Schema(1).boolean('a');
-			expect(() => schema.boolean('a')).toThrowError('Schema with id 1 already has a property with name "a"');
+			expect(() => schema.boolean('a')).toThrow('Schema with id 1 already has a property with name "a"');
 		});
 
 		test('GIVEN a schema with a non-existent property name THEN it throws', () => {
 			const schema = new Schema(1).boolean('a');
 			// @ts-expect-error Testing invalid input
-			expect(() => schema.get('b')).toThrowError('Schema with id 1 does not have a property with name "b"');
+			expect(() => schema.get('b')).toThrow('Schema with id 1 does not have a property with name "b"');
 		});
 	});
 });

@@ -1,4 +1,4 @@
-import { setTimeout as sleep } from 'node:timers/promises';
+import { setTimeout } from 'node:timers/promises';
 import { err, none, ok, Option, OptionError, some, type Err, type None, type Ok, type Some } from '../src/index';
 import { error, makeThrow } from './shared';
 
@@ -293,7 +293,8 @@ describe('Option', () => {
 			test('GIVEN some THEN calls callback and returns self', async () => {
 				const x = some(2);
 				let finished = false;
-				const cb = vi.fn(() => sleep(5).then(() => (finished = true)));
+				// eslint-disable-next-line promise/prefer-await-to-then
+				const cb = vi.fn(async () => setTimeout(5).then(() => (finished = true)));
 
 				await expect<Promise<typeof x>>(x.inspectAsync(cb)).resolves.toBe(x);
 				expect(cb).toHaveBeenCalledTimes(1);
@@ -422,7 +423,7 @@ describe('Option', () => {
 			test('GIVEN option THEN andThen and chain map THEN Return Option<number>', () => {
 				const x = Option.from(5);
 				const cb = vi.fn((value: number) => some(`${value}`));
-				const mapChain = x.andThen(cb).map((value) => Number(value));
+				const mapChain = x.andThen(cb).map(Number);
 
 				expectTypeOf(mapChain).toMatchTypeOf<Option<number>>();
 				expect<Option<number>>(mapChain).toEqual(some(5));
@@ -850,6 +851,7 @@ describe('Option', () => {
 			['Some(T)', some(42)],
 			['() => T', () => 42],
 			['() => Some(T)', () => some(42)]
+			// eslint-disable-next-line promise/prefer-await-to-callbacks
 		])('GIVEN from(%s) THEN returns Some(T)', (_, cb) => {
 			const x = from(cb);
 
@@ -879,8 +881,9 @@ describe('Option', () => {
 			['Promise.resolve(Some(T))', Promise.resolve(some(42))],
 			['() => T', () => 42],
 			['() => Some(T)', () => some(42)],
-			['() => Promise.resolve(T)', () => Promise.resolve(42)],
-			['() => Promise.resolve(Some(T))', () => Promise.resolve(some(42))]
+			['() => Promise.resolve(T)', async () => 42],
+			['() => Promise.resolve(Some(T))', async () => some(42)]
+			// eslint-disable-next-line promise/prefer-await-to-callbacks
 		])('GIVEN fromAsync(%s) THEN returns Some(T)', async (_, cb) => {
 			const x = await fromAsync(cb);
 
@@ -891,11 +894,16 @@ describe('Option', () => {
 			['null', null],
 			['None', none],
 			['() => null', () => null],
-			['() => Promise.resolve(null)', () => Promise.resolve(null)],
+			['() => Promise.resolve(null)', async () => null],
 			['() => None', () => none],
-			['() => Promise.resolve(None)', () => Promise.resolve(none)],
+			['() => Promise.resolve(None)', async () => none],
 			['() => throw', makeThrow],
-			['() => Promise.reject(error)', () => Promise.reject(error)]
+			[
+				'() => Promise.reject(error)',
+				async () => {
+					throw error;
+				}
+			]
 		])('GIVEN fromAsync(%s) THEN returns None', async (_, resolvable) => {
 			const x = await fromAsync(resolvable);
 
@@ -932,7 +940,7 @@ describe('Option', () => {
 			expect<Option<never>>(Option.any([])).toBe(none);
 		});
 
-		type Expected = Option<number | boolean | bigint>;
+		type Expected = Option<bigint | boolean | number>;
 
 		test('GIVEN array with at least one Some THEN returns first Some', () => {
 			const a: Option<number> = some(5);
@@ -972,13 +980,15 @@ describe('Option', () => {
 	});
 });
 
+// eslint-disable-next-line promise/prefer-await-to-callbacks
 function expectOptionError(message: string, cb: () => any) {
 	try {
+		// eslint-disable-next-line promise/prefer-await-to-callbacks, n/callback-return
 		cb();
 
 		throw new Error('cb should have thrown');
-	} catch (raw) {
-		const error = raw as OptionError;
+	} catch (error_) {
+		const error = error_ as OptionError;
 
 		expect(error).toBeInstanceOf(OptionError);
 		expect<string>(error.name).toBe('OptionError');

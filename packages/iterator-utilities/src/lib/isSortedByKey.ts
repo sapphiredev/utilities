@@ -12,12 +12,10 @@ import { toIterableIterator } from './toIterableIterator';
  * Instead of comparing the iterator's elements directly, this function compares the keys of the elements, as determined
  * by `callbackFn`. Apart from that, it's equivalent to {@link isSorted}; see its documentation for more information.
  *
- * @seealso {@link isSorted} for a version that uses the default comparator.
- * @seealso {@link isSortedBy} for a version that allows custom comparators.
- *
- * @param iterable The iterator to compare.
- * @param callbackFn The function to extract the key from an element.
- *
+ * @see {@link isSorted} for a version that uses the default comparator.
+ * @see {@link isSortedBy} for a version that allows custom comparators.
+ * @param iterable - The iterator to compare.
+ * @param callbackFn - The function to extract the key from an element.
  * @example
  * ```typescript
  * import { isSortedByKey } from '@sapphire/iterator-utilities';
@@ -25,7 +23,6 @@ import { toIterableIterator } from './toIterableIterator';
  * assert(isSortedByKey(['c', 'bb', 'aaa'], (s) => s.length));
  * assert(!isSortedBy([-2, -1, 0, 3], (n) => Math.abs(n)));
  * ```
- *
  * @remarks
  *
  * This function consumes the entire iterator.
@@ -35,6 +32,7 @@ export function isSortedByKey<const ElementType, const MappedType>(
 	callbackFn: (a: ElementType, index: number) => MappedType,
 	comparator: CompareByComparator<MappedType> = defaultCompare
 ): boolean {
+	// eslint-disable-next-line no-param-reassign
 	callbackFn = assertFunction(callbackFn);
 
 	const iterator = toIterableIterator(iterable);

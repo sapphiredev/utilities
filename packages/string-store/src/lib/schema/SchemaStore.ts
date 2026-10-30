@@ -1,7 +1,7 @@
 import type { DuplexBuffer } from '../buffer/DuplexBuffer';
 import { UnalignedUint16Array } from '../buffer/UnalignedUint16Array';
 import { Pointer } from '../shared/Pointer';
-import { Schema, type SerializeValue, type UnwrapSchema } from './Schema';
+import type { Schema, SerializeValue, UnwrapSchema } from './Schema';
 
 export class SchemaStore<Entries extends object = object> {
 	/**
@@ -14,7 +14,7 @@ export class SchemaStore<Entries extends object = object> {
 	/**
 	 * Creates a new schema store
 	 *
-	 * @param defaultMaximumArrayLength The default maximum array length for schemas
+	 * @param defaultMaximumArrayLength - The default maximum array length for schemas
 	 */
 	public constructor(defaultMaximumArrayLength = 100) {
 		this.defaultMaximumArrayLength = defaultMaximumArrayLength;
@@ -23,9 +23,8 @@ export class SchemaStore<Entries extends object = object> {
 	/**
 	 * Adds a schema to the store
 	 *
-	 * @param schema The schema to add to the store
+	 * @param schema - The schema to add to the store
 	 * @returns The modified store
-	 *
 	 * @remarks
 	 *
 	 * An error will be thrown if a schema with the same id already exists in the store.
@@ -42,9 +41,8 @@ export class SchemaStore<Entries extends object = object> {
 	/**
 	 * Gets a schema from the store
 	 *
-	 * @param id The id of the schema to get
+	 * @param id - The id of the schema to get
 	 * @returns The schema with the given id
-	 *
 	 * @remarks
 	 *
 	 * An error will be thrown if a schema with the given id does not exist in the store.
@@ -58,8 +56,8 @@ export class SchemaStore<Entries extends object = object> {
 	/**
 	 * Serializes a value using the schema with the given id
 	 *
-	 * @param id The id of the schema to use for serialization
-	 * @param value The value to serialize
+	 * @param id - The id of the schema to use for serialization
+	 * @param value - The value to serialize
 	 * @returns The serialized string
 	 */
 	public serialize<const Id extends KeyOfStore<this>>(id: Id, value: SerializeValue<Entries[Id] & object>): string {
@@ -69,8 +67,8 @@ export class SchemaStore<Entries extends object = object> {
 	/**
 	 * Serializes a value using the schema with the given id
 	 *
-	 * @param id The id of the schema to use for serialization
-	 * @param value The value to serialize
+	 * @param id - The id of the schema to use for serialization
+	 * @param value - The value to serialize
 	 * @returns The serialized buffer
 	 */
 	public serializeRaw<const Id extends KeyOfStore<this>>(id: Id, value: SerializeValue<Entries[Id] & object>): DuplexBuffer {
@@ -81,10 +79,11 @@ export class SchemaStore<Entries extends object = object> {
 	/**
 	 * Deserializes a buffer
 	 *
-	 * @param buffer The buffer to deserialize
+	 * @param buffer - The buffer to deserialize
 	 * @returns The resolved value, including the id of the schema used for deserialization
 	 */
-	public deserialize(buffer: string | DuplexBuffer): DeserializationResult<Entries> {
+	public deserialize(buffer: DuplexBuffer | string): DeserializationResult<Entries> {
+		// eslint-disable-next-line no-param-reassign
 		buffer = UnalignedUint16Array.from(buffer);
 		const pointer = new Pointer();
 		const id = buffer.readInt16(pointer) as KeyOfStore<this>;
@@ -95,20 +94,20 @@ export class SchemaStore<Entries extends object = object> {
 	/**
 	 * Gets the serialized ID from a buffer
 	 *
-	 * @param buffer The buffer to read the ID from
+	 * @param buffer - The buffer to read the ID from
 	 * @returns The deserialized ID
-	 *
 	 * @remarks
 	 *
-	 * If an empty value is passed, a {@linkcode RangeError} will be thrown.
+	 * If an empty value is passed, a {@link RangeError} will be thrown.
 	 */
-	public getIdentifier(buffer: string | DuplexBuffer): KeyOfStore<this> {
+	public getIdentifier(buffer: DuplexBuffer | string): KeyOfStore<this> {
 		if (buffer.length === 0) {
 			throw new RangeError('Expected a non-empty value');
 		}
 
 		if (typeof buffer === 'string') {
 			// We only need to read the first character:
+			// eslint-disable-next-line no-param-reassign
 			buffer = UnalignedUint16Array.from(buffer[0]);
 		}
 
@@ -156,12 +155,12 @@ type Merge<Entries extends object, Id extends number, Type extends object> = Id 
 	? never
 	: SchemaStore<{ [K in Id | keyof Entries]: K extends keyof Entries ? Entries[K] : Type }>;
 
-export type KeyOfStore<SchemaStoreValue extends object> = SchemaStoreValue extends SchemaStore<infer Schemas> ? keyof Schemas & number : never;
+export type KeyOfStore<SchemaStoreValue extends object> = SchemaStoreValue extends SchemaStore<infer Schemas> ? number & keyof Schemas : never;
 export type ValueOfStore<SchemaStoreValue extends object> =
-	SchemaStoreValue extends SchemaStore<infer Schemas> ? Schemas[keyof Schemas & number] : never;
+	SchemaStoreValue extends SchemaStore<infer Schemas> ? Schemas[number & keyof Schemas] : never;
 export type EntryOfStore<SchemaStoreValue extends object> =
 	SchemaStoreValue extends SchemaStore<infer Schemas> ? { [K in keyof Schemas]: readonly [K & number, Schemas[K]] }[keyof Schemas] : never;
 
 export type DeserializationResult<SchemaStoreEntries extends object> = {
-	[K in keyof SchemaStoreEntries]: { id: K; data: UnwrapSchema<SchemaStoreEntries[K] & object> };
+	[K in keyof SchemaStoreEntries]: { data: UnwrapSchema<SchemaStoreEntries[K] & object>; id: K };
 }[keyof SchemaStoreEntries];
