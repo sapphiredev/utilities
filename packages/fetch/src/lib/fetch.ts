@@ -1,4 +1,4 @@
-/* eslint-disable no-restricted-globals, n/prefer-global/buffer, no-param-reassign, @typescript-eslint/triple-slash-reference */
+/* eslint-disable no-param-reassign, @typescript-eslint/triple-slash-reference */
 /// <reference lib="dom" />
 import type { URL } from 'node:url';
 import { QueryError } from './QueryError';

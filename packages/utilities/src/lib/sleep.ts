@@ -1,4 +1,3 @@
-/* eslint-disable no-restricted-globals */
 import type { sleepSync } from './sleepSync';
 
 export interface SleepOptions {

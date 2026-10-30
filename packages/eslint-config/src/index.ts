@@ -30,7 +30,15 @@ export const eslintConfig: TSESLint.FlatConfig.ConfigArray = [
 				{
 					allowPrivateClassPropertyAccess: true
 				}
-			]
+			],
+			'no-restricted-globals': 'off',
+			'n/prefer-global/buffer': 'off',
+			'n/prefer-global/console': 'off',
+			'n/prefer-global/process': 'off',
+			'n/prefer-global/text-decoder': 'off',
+			'n/prefer-global/text-encoder': 'off',
+			'n/prefer-global/url': 'off',
+			'n/prefer-global/url-search-params': 'off'
 		}
 	},
 	eslintPluginPrettierRecommended

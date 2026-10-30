@@ -1,5 +1,5 @@
-/* eslint-disable no-restricted-globals */
 import { EventEmitter } from 'node:events';
+import { clearInterval, clearTimeout, setInterval } from 'node:timers';
 import { EventIterator, type EventIteratorOptions } from '../../src';
 import { Person } from './Person';
 

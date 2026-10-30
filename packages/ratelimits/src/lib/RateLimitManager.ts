@@ -1,4 +1,3 @@
-/* eslint-disable no-restricted-globals */
 import { RateLimit } from './RateLimit';
 
 export class RateLimitManager<K = string> extends Map<K, RateLimit<K>> {

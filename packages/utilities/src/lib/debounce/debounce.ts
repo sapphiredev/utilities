@@ -1,5 +1,3 @@
-/* eslint-disable no-restricted-globals */
-
 /**
  * lodash (Custom Build) https://lodash.com/
  * Build: `lodash modularize exports="npm" -o ./`
