@@ -1,3 +1,4 @@
+import type { TSESLint } from '@typescript-eslint/utils';
 import { recommendedConfig } from './configs/recommended';
 import { noDiscardResult } from './rules/no-discard-result';
 
@@ -17,19 +18,15 @@ import { noDiscardResult } from './rules/no-discard-result';
  * }];
  * ```
  */
-const eslintPluginResult: {
-	configs: Record<string, object>;
-	meta: { name: string };
-	rules: { 'no-discard-result': typeof noDiscardResult };
-} = {
-	meta: { name: '@sapphire/eslint-plugin-result' },
+const eslintPluginResult: TSESLint.FlatConfig.Plugin = {
+	meta: { name: '@sapphire/eslint-plugin-result', version: '[VI]{{inject}}[/VI]' },
 	rules: {
 		'no-discard-result': noDiscardResult
 	},
 	configs: {}
 };
 
-eslintPluginResult.configs.recommended = {
+eslintPluginResult.configs!.recommended = {
 	plugins: {
 		'@sapphire/result': eslintPluginResult
 	},
