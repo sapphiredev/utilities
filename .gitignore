@@ -31,10 +31,6 @@ test_out/
 *.heapsnapshot
 *.log
 coverage/
-docs/
 
 # Ignore package locks
 package-lock.json
-
-# Ignore Turbo caching
-.turbo
