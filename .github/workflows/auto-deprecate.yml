@@ -14,7 +14,7 @@ jobs:
       - name: Install dependencies
         uses: sapphiredev/.github/actions/install-yarn-dependencies@main
         with:
-          node-version: 20
+          node-version: 24
       - name: Build Dependencies
         run: yarn workspaces foreach --all --parallel --include @sapphire/fetch --include @sapphire/utilities run build
       - name: Deprecate versions

@@ -16,7 +16,7 @@ jobs:
       - name: Install dependencies
         uses: sapphiredev/.github/actions/install-yarn-dependencies@main
         with:
-          node-version: 20
+          node-version: 24
       - name: Build prettier config
         run: yarn workspace @sapphire/prettier-config build
       - name: Run updater
