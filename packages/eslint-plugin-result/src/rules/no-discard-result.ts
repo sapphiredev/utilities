@@ -28,28 +28,17 @@ function getSapphireResultType(service: ParserServices, checker: ts.TypeChecker)
 	return null;
 }
 
-function unwrapPotentialPromiseType(checker: ts.TypeChecker, node: ts.CallExpression, type = checker.getTypeAtLocation(node)): ts.Type {
+function typeHasResultSymbol(checker: ts.TypeChecker, node: ts.CallExpression, type: ts.Type, resultSymbol: ts.Symbol): boolean {
 	if (isUnionType(type)) {
-		// Don't want to actually mutate, it can cause issues for other callers
-		const { ...copy } = type;
-
-		// We can end up with null-ish values in the union type, so we filter them out
-		copy.types = type.types.filter(Boolean);
-
-		// There's some odd cases where the union type is just a single type that is sort of itself, so we unwrap that
-		if (copy.types.length === 1) {
-			return unwrapPotentialPromiseType(checker, node, copy.types[0]);
-		}
-
-		copy.types = copy.types.map((subtype) => unwrapPotentialPromiseType(checker, node, subtype));
-		return copy;
+		return type.types.some((subtype) => typeHasResultSymbol(checker, node, subtype, resultSymbol));
 	}
 
-	if (isThenableType(checker, node)) {
-		return checker.getTypeArguments(type as ts.TypeReference)[0]!;
+	if (isThenableType(checker, node, type)) {
+		const promisedType = checker.getTypeArguments(type as ts.TypeReference)[0];
+		return promisedType !== undefined && typeHasResultSymbol(checker, node, promisedType, resultSymbol);
 	}
 
-	return type;
+	return type.getSymbol() === resultSymbol;
 }
 
 function functionHasResultLikeReturnType(service: ParserServices, checker: ts.TypeChecker, node: ts.CallExpression): boolean {
@@ -58,12 +47,11 @@ function functionHasResultLikeReturnType(service: ParserServices, checker: ts.Ty
 		return false;
 	}
 
-	const returnType = unwrapPotentialPromiseType(checker, node);
+	const returnType = checker.getTypeAtLocation(node);
 	const resultType = getSapphireResultType(service, checker);
 	const resultSymbol = resultType?.getSymbol?.();
-	const returnSymbol = returnType?.getSymbol?.();
 
-	return resultSymbol !== undefined && returnSymbol !== undefined && returnSymbol === resultSymbol;
+	return resultSymbol !== undefined && typeHasResultSymbol(checker, node, returnType, resultSymbol);
 }
 
 function isDiscardedResult(callExpressionNode: TSESTree.Node): boolean {
