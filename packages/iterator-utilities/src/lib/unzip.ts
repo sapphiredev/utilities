@@ -28,7 +28,7 @@ export function unzip<const ElementType extends readonly any[]>(iterable: Iterab
 	const resolvedIterable = toIterableIterator(iterable);
 	const firstResult = resolvedIterable.next();
 	if (firstResult.done) {
-		throw new Error('Cannot unzip an empty iterable');
+		throw new RangeError('Cannot unzip an empty iterable');
 	}
 
 	if (!Array.isArray(firstResult.value)) {
@@ -44,7 +44,7 @@ export function unzip<const ElementType extends readonly any[]>(iterable: Iterab
 		}
 
 		if (entries.length !== size) {
-			throw new Error('Cannot unzip an iterable that yields arrays of different sizes');
+			throw new RangeError('Cannot unzip an iterable that yields arrays of different sizes');
 		}
 
 		for (let idx = 0; idx < size; idx++) {
