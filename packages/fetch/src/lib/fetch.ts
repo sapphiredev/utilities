@@ -1,6 +1,5 @@
 /* eslint-disable no-param-reassign, @typescript-eslint/triple-slash-reference */
 /// <reference lib="dom" />
-import type { URL } from 'node:url';
 import { QueryError } from './QueryError';
 import { FetchResultTypes, type RequestOptions } from './types';
 
