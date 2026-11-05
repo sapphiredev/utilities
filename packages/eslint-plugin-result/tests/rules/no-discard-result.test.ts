@@ -15,6 +15,20 @@ const ruleTester = new RuleTester({
 ruleTester.run('no-discard-result', noDiscardResult, {
 	valid: [
 		{
+			code: `import { Result, Option } from '@sapphire/result';
+					declare function unrelated(): string | undefined;
+					declare function optional(): Option<string> | undefined;
+					declare function promised(): Promise<string | undefined> | number;
+					declare function foo(): Promise<Result<string, string>> | Result<number, Error> | undefined;
+					unrelated();
+					optional();
+					promised();
+					const result = foo();
+					void foo();
+					function returned() { return foo(); }`,
+			name: 'unrelated unions and handled Result unions are allowed'
+		},
+		{
 			code: `import { Result } from '@sapphire/result';
 					function foo() { return Result.ok('value'); }
 					const bar = () => Result.err('error');
@@ -60,6 +74,27 @@ ruleTester.run('no-discard-result', noDiscardResult, {
 		}
 	],
 	invalid: [
+		{
+			code: `import { Result } from '@sapphire/result';
+					declare function nullable(): Result<string, string> | undefined;
+					declare function variants(): Result<string, string> | Result<number, Error>;
+					declare function mixed(): Promise<Result<string, string>> | Result<number, Error>;
+					declare function promised(): Promise<Result<string, string> | undefined>;
+					declare function optionalPromise(): Promise<Result<string, string>> | undefined;
+					nullable();
+					variants();
+					mixed();
+					promised();
+					optionalPromise();`,
+			name: 'discarded Results in unions and promises of unions',
+			errors: [
+				{ messageId: 'discardedResult', line: 7 },
+				{ messageId: 'discardedResult', line: 8 },
+				{ messageId: 'discardedResult', line: 9 },
+				{ messageId: 'discardedResult', line: 10 },
+				{ messageId: 'discardedResult', line: 11 }
+			]
+		},
 		{
 			code: `import { Result as SapphireResult } from '@sapphire/result';
 					type AliasedResult = SapphireResult<string, string>;
