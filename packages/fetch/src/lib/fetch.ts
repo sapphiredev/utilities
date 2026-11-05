@@ -180,7 +180,7 @@ function shouldJsonStringify(value: unknown): boolean {
 	// If the value is not an object, it should not be stringified
 	if (typeof value !== 'object') return false;
 	// Buffers should not be stringified
-	if (Buffer?.isBuffer(value)) return false;
+	if (typeof Buffer !== 'undefined' && Buffer.isBuffer(value)) return false;
 
 	// null object
 	if (value === null) return true;
