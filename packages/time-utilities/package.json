@@ -31,7 +31,7 @@
 	],
 	"engines": {
 		"node": ">=v24.0.0",
-		"npm": ">=12.0.0"
+		"npm": ">=11.0.0"
 	},
 	"keywords": [
 		"@sapphire/time-utilities",
