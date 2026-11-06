@@ -4,10 +4,9 @@ import type { IterableResolvable } from './from';
 /**
  * Determines if the elements of both iterators are equal.
  *
- * @param iterable The iterator to compare.
- * @param other The iterator to compare against.
+ * @param iterable - The iterator to compare.
+ * @param other - The iterator to compare against.
  * @returns Whether the two iterators are equal.
- *
  * @example
  * ```typescript
  * import { equal } from '@sapphire/iterator-utilities';
@@ -17,7 +16,6 @@ import type { IterableResolvable } from './from';
  * console.log(equal([1], [1, 2]));
  * // Output: false
  * ```
- *
  * @remarks
  *
  * This function consumes the entire iterator.

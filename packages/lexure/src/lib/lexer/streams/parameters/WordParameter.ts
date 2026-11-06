@@ -1,4 +1,4 @@
-import type { WordToken } from '../raw/TokenStream';
+import type { WordToken } from '../raw/types';
 import { BaseParameter } from './BaseParameter';
 
 export class WordParameter extends BaseParameter {

@@ -3,6 +3,7 @@ import { TokenStream } from './streams/raw/TokenStream';
 
 export class Lexer {
 	public readonly quotes: readonly [open: string, close: string][];
+
 	public readonly separator: string;
 
 	public constructor(options: Lexer.Options = {}) {
@@ -19,9 +20,10 @@ export class Lexer {
 	}
 }
 
+// eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace Lexer {
 	export interface Options {
-		separator?: string;
 		quotes?: readonly [open: string, close: string][];
+		separator?: string;
 	}
 }

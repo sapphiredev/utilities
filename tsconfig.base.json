@@ -6,6 +6,7 @@
 		"./packages/ts-config/src/verbatim.json"
 	],
 	"compilerOptions": {
+		"allowImportingTsExtensions": true,
 		"incremental": false,
 		"noEmit": true
 	}

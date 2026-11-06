@@ -11,8 +11,7 @@ import { makeIterableIterator } from './shared/_makeIterableIterator';
  * It's more common for this function to be used as a debugging tool than to exist in your final code, but applications
  * may find it useful in certain situations when errors need to be logged before being discarded.
  *
- * @param iterable An iterator to inspect.
- *
+ * @param iterable - An iterator to inspect.
  * @example
  * ```typescript
  * import { inspect } from '@sapphire/iterator-utilities';
@@ -40,6 +39,7 @@ export function inspect<const ElementType>(
 	iterable: IterableResolvable<ElementType>,
 	callbackFn: (element: ElementType, index: number) => void
 ): IterableIterator<ElementType> {
+	// eslint-disable-next-line no-param-reassign
 	callbackFn = assertFunction(callbackFn);
 
 	let index = 0;

@@ -14,7 +14,6 @@ package:
   - '@sapphire/fetch'
   - '@sapphire/iterator-utilities'
   - '@sapphire/node-utilities'
-  - '@sapphire/phisherman'
   - '@sapphire/prettier-config'
   - '@sapphire/ratelimits'
   - '@sapphire/result'

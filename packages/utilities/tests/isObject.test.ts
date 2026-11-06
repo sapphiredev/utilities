@@ -50,6 +50,7 @@ describe('isObject', () => {
 		const value = function value(): void {
 			/* noop */
 		};
+
 		expect(isObject(value)).toBe(false);
 	});
 
@@ -57,6 +58,7 @@ describe('isObject', () => {
 		const value = (): void => {
 			/* noop */
 		};
+
 		expect(isObject(value)).toBe(false);
 	});
 

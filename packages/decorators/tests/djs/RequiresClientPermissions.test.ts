@@ -1,9 +1,9 @@
 import { UserError } from '@sapphire/framework';
 import {
 	ChannelType,
-	Message as DJSMessage,
 	PermissionFlagsBits,
 	PermissionsBitField,
+	type Message as DJSMessage,
 	type PermissionResolvable,
 	type PermissionsString
 } from 'discord.js';
@@ -16,8 +16,8 @@ interface BitField {
 
 interface Message {
 	channel: {
-		type: DJSMessage['channel']['type'];
 		permissionsFor(): BitField;
+		type: DJSMessage['channel']['type'];
 	};
 	guild: {
 		members: any;
@@ -44,8 +44,8 @@ describe('RequiresClientPermissions', () => {
 	describe('WITH DM-compatible permissions', () => {
 		class Test {
 			@RequiresClientPermissions(['SendMessages', 'AttachFiles'])
-			public getValue(_message: Message) {
-				return Promise.resolve('Resolved');
+			public async getValue(_message: Message) {
+				return 'Resolved';
 			}
 		}
 
@@ -63,7 +63,7 @@ describe('RequiresClientPermissions', () => {
 			test('GIVEN lacking 1 permission THEN throws UserError', async () => {
 				const result = instance.getValue(buildMessage(ChannelType.GuildText, PermissionFlagsBits.SendMessages));
 
-				await expect(result).rejects.toThrowError(
+				await expect(result).rejects.toThrow(
 					new UserError({
 						identifier: DecoratorIdentifiers.RequiresClientPermissionsMissingPermissions,
 						message: `Sorry, but I am not allowed to do that. I am missing the permissions: AttachFiles`,
@@ -77,7 +77,7 @@ describe('RequiresClientPermissions', () => {
 			test('GIVEN lacking 2 permissions THEN throws UserError', async () => {
 				const result = instance.getValue(buildMessage(ChannelType.GuildText));
 
-				await expect(result).rejects.toThrowError(
+				await expect(result).rejects.toThrow(
 					new UserError({
 						identifier: DecoratorIdentifiers.RequiresClientPermissionsMissingPermissions,
 						message: `Sorry, but I am not allowed to do that. I am missing the permissions: SendMessages,AttachFiles`,
@@ -101,8 +101,8 @@ describe('RequiresClientPermissions', () => {
 	describe('WITH DM-incompatible permissions', () => {
 		class Test {
 			@RequiresClientPermissions([PermissionFlagsBits.ManageMessages, PermissionFlagsBits.AddReactions, PermissionFlagsBits.EmbedLinks])
-			public getValue(_message: Message) {
-				return Promise.resolve('Resolved');
+			public async getValue(_message: Message) {
+				return 'Resolved';
 			}
 		}
 
@@ -112,7 +112,7 @@ describe('RequiresClientPermissions', () => {
 			test('GIVEN no additional permissions THEN resolves', async () => {
 				const result = instance.getValue(buildMessage(ChannelType.DM));
 
-				await expect(result).rejects.toThrowError(
+				await expect(result).rejects.toThrow(
 					new UserError({
 						identifier: DecoratorIdentifiers.RequiresClientPermissionsGuildOnly,
 						message: 'Sorry, but that command can only be used in a server because I do not have sufficient permissions in DMs'

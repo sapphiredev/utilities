@@ -3,10 +3,9 @@ import { from, type IterableResolvable } from './from';
 /**
  * Creates an iterator that allows you to peek at the next element without advancing the iterator.
  *
- * @template ElementType The type of elements in the iterable.
- * @param iterable The iterable to create a peekable iterator from.
+ * @typeParam ElementType - The type of elements in the iterable.
+ * @param iterable - The iterable to create a peekable iterator from.
  * @returns A new peekable iterator.
- *
  * @example
  * ```typescript
  * import { peekable } from '@sapphire/iterator-utilities';

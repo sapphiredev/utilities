@@ -4,9 +4,8 @@ import { toIterableIterator } from './toIterableIterator';
 /**
  * Consumes the iterable and returns an array with all the elements.
  *
- * @param iterable The iterator to convert to an array.
+ * @param iterable - The iterator to convert to an array.
  * @returns An array containing the values of the provided iterator.
- *
  * @example
  * ```typescript
  * import { toArray } from '@sapphire/iterator-utilities';
@@ -27,7 +26,6 @@ import { toIterableIterator } from './toIterableIterator';
  * console.log(toArray(string));
  * // Output: ['h', 'e', 'l', 'l', 'o']
  * ```
- *
  * @remarks
  *
  * This function consumes the entire iterator.

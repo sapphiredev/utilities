@@ -51,7 +51,7 @@ describe('mergeDefault', () => {
 
 	test('GIVEN partial-null overwrites THEN returns null plus base keys', () => {
 		interface Sample {
-			a: null | number;
+			a: number | null;
 			b: number;
 		}
 
@@ -74,7 +74,7 @@ describe('mergeDefault', () => {
 
 	test('GIVEN partial-null base and provided overwrites THEN returns overwrites values', () => {
 		interface Sample {
-			a: null | { b: number };
+			a: { b: number } | null;
 		}
 
 		const base: Sample = { a: null };

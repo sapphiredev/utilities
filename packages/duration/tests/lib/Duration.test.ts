@@ -84,7 +84,7 @@ describe('Duration', () => {
 
 	test('GIVEN invalid duration THEN show NaN', () => {
 		const duration = new Duration('foo');
-		expect(duration.offset).toEqual(NaN);
+		expect(duration.offset).toEqual(Number.NaN);
 	});
 
 	test('GIVEN duration with offset, THEN dateFrom is valid', () => {

@@ -11,14 +11,12 @@ import { toIterableIterator } from './toIterableIterator';
  *
  * If several elements are equally maximum, the last element is returned. If the iterator is empty, `null` is returned.
  *
- * @seealso {@link max} for a version that uses the default comparator.
- * @seealso {@link maxBy} for a version that allows custom comparators.
- *
- * @param iterable An iterator of number values to determine the maximum value of.
- * @param callbackFn A function to execute for each element produced by the iterator, producing a key to compare with.
- * @param comparator A function to execute for each element produced by the iterator. It should return a number value.
+ * @see {@link max} for a version that uses the default comparator.
+ * @see {@link maxBy} for a version that allows custom comparators.
+ * @param iterable - An iterator of number values to determine the maximum value of.
+ * @param callbackFn - A function to execute for each element produced by the iterator, producing a key to compare with.
+ * @param comparator - A function to execute for each element produced by the iterator. It should return a number value.
  * @returns The element that gives the maximum value from the specified function, or `null` if the iterator is empty.
- *
  * @example
  * ```typescript
  * import { maxByKey } from '@sapphire/iterator-utilities';
@@ -27,7 +25,6 @@ import { toIterableIterator } from './toIterableIterator';
  * console.log(maxByKey(iterable, (value) => Math.abs(value)));
  * // Output: -10
  * ```
- *
  * @remarks
  *
  * This function consumes the entire iterator.
@@ -37,6 +34,7 @@ export function maxByKey<const ElementType, const MappedType>(
 	callbackFn: (element: ElementType, index: number) => MappedType,
 	comparator: CompareByComparator<MappedType> = defaultCompare
 ): ElementType | null {
+	// eslint-disable-next-line no-param-reassign
 	callbackFn = assertFunction(callbackFn);
 
 	const iterator = toIterableIterator(iterable);

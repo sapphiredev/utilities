@@ -4,7 +4,6 @@ import { makeIterableIterator } from './shared/_makeIterableIterator';
  * Creates an empty iterator.
  *
  * @returns An empty iterator.
- *
  * @example
  * ```typescript
  * import { empty } from '@sapphire/iterator-utilities';

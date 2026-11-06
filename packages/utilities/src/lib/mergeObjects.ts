@@ -2,8 +2,9 @@ import { isObject } from './isObject';
 
 /**
  * Merges two objects
- * @param objTarget The object to be merged
- * @param objSource The object to merge
+ *
+ * @param objTarget - The object to be merged
+ * @param objSource - The object to merge
  */
 export function mergeObjects<A extends object, B extends object>(objTarget: A, objSource: Readonly<B>): A & B {
 	for (const [key, value] of Object.entries(objSource)) {

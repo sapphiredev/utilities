@@ -32,7 +32,10 @@ describe('isValidLength', () => {
 		expect(isValidLength(value)).toBe(false);
 	});
 
-	test.each([-1, 2147483648, Number.MAX_SAFE_INTEGER, Infinity, -Infinity, NaN])('GIVEN an out-of-range length THEN it returns false', (value) => {
-		expect(isValidLength(value)).toBe(false);
-	});
+	test.each([-1, 2_147_483_648, Number.MAX_SAFE_INTEGER, Infinity, -Infinity, Number.NaN])(
+		'GIVEN an out-of-range length THEN it returns false',
+		(value) => {
+			expect(isValidLength(value)).toBe(false);
+		}
+	);
 });

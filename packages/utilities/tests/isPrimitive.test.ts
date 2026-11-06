@@ -40,6 +40,7 @@ describe('isPrimitive', () => {
 		const value = function value(): void {
 			/* noop */
 		};
+
 		expect(isPrimitive(value)).toBe(false);
 	});
 
@@ -47,6 +48,7 @@ describe('isPrimitive', () => {
 		const value = (): void => {
 			/* noop */
 		};
+
 		expect(isPrimitive(value)).toBe(false);
 	});
 

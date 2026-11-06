@@ -1,4 +1,4 @@
-import prettierConfig from '../src/index.mjs';
+import prettierConfig from '../src/index.ts';
 
 describe('Prettier Config', () => {
 	test('should export rules', () => {

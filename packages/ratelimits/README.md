@@ -14,14 +14,14 @@
 
 **Table of Contents**
 
--   [Description](#description)
--   [Features](#features)
--   [Installation](#installation)
--   [Usage](#usage)
-    -   [Token RateLimitManager](#token-ratelimitmanager)
-    -   [Leaky RateLimitManager](#leaky-ratelimitmanager)
--   [Buy us some doughnuts](#buy-us-some-doughnuts)
--   [Contributors](#contributors)
+- [Description](#description)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+    - [Token RateLimitManager](#token-ratelimitmanager)
+    - [Leaky RateLimitManager](#leaky-ratelimitmanager)
+- [Buy us some doughnuts](#buy-us-some-doughnuts)
+- [Contributors](#contributors)
 
 ## Description
 
@@ -29,10 +29,9 @@ There is often a need to apply ratelimits to protect a network from excessive tr
 
 ## Features
 
--   Written in TypeScript
--   Bundled with esbuild so it can be used in NodeJS and browsers
--   Offers CommonJS, ESM and UMD bundles
--   Fully tested
+- Implements token-bucket and leaky-bucket rate-limiting strategies
+- Maintains independent rate-limit buckets by caller-provided key
+- Exposes whether a bucket is limited and when it can be used again
 
 ## Installation
 
@@ -44,13 +43,11 @@ npm install @sapphire/ratelimits
 
 ## Usage
 
-**Note:** While this section uses `require`, the imports match 1:1 with ESM imports. For example `const { RateLimitManager } = require('@sapphire/ratelimits')` equals `import { RateLimitManager } from '@sapphire/ratelimits'`.
-
 ### Token RateLimitManager
 
 ```typescript
 // Import the Bucket class
-const { RateLimitManager } = require('@sapphire/ratelimits');
+import { RateLimitManager } from '@sapphire/ratelimits';
 
 // Define a bucket with 1 usage every 5 seconds
 const rateLimitManager = new RateLimitManager(5000);
@@ -73,7 +70,7 @@ ratelimit.consume();
 
 ```typescript
 // Import the Bucket class
-const { RateLimitManager } = require('@sapphire/ratelimits');
+import { RateLimitManager } from '@sapphire/ratelimits';
 
 // Define a bucket with 2 usages every 5 seconds
 const rateLimitManager = new RateLimitManager(5000, 2);

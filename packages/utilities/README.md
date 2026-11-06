@@ -14,82 +14,82 @@
 
 **Table of Contents**
 
--   [Description](#description)
--   [Features](#features)
--   [Installation](#installation)
--   [Usage](#usage)
-    -   [Javascript Utilities](#javascript-utilities)
-        -   [`arrayStrictEquals`](#arraystrictequals)
-        -   [`chunk`](#chunk)
-        -   [`classExtends`](#classextends)
-        -   [`codeBlock`](#codeblock)
-        -   [`cutText`](#cuttext)
-        -   [`deepClone`](#deepclone)
-        -   [`filterNullAndUndefined`](#filternullandundefined)
-        -   [`filterNullAndUndefinedAndEmpty`](#filternullandundefinedandempty)
-        -   [`filterNullAndUndefinedAndZero`](#filternullandundefinedandzero)
-        -   [`getDeepObjectKeys`](#getdeepobjectkeys)
-        -   [`hasAtLeastOneKeyInMap`](#hasatleastonekeyinmap)
-        -   [`inlineCodeBlock`](#inlinecodeblock)
-        -   [`isClass`](#isclass)
-        -   [`isFunction`](#isfunction)
-        -   [`isNullOrUndefined`](#isnullorundefined)
-        -   [`isNullOrUndefinedOrEmpty`](#isnullorundefinedorempty)
-        -   [`isNullOrUndefinedOrZero`](#isnullorundefinedorzero)
-        -   [`isNumber`](#isnumber)
-        -   [`isObject`](#isobject)
-        -   [`isPrimitive`](#isprimitive)
-        -   [`isThenable`](#isthenable)
-        -   [`lazy`](#lazy)
-        -   [`makeObject`](#makeobject)
-        -   [`mergeDefault`](#mergedefault)
-        -   [`mergeObjects`](#mergeobjects)
-        -   [`noop`](#noop)
-        -   [`objectToTuples`](#objecttotuples)
-        -   [`partition`](#partition)
-        -   [`pickRandom`](#pickrandom)
-        -   [`range`](#range)
-        -   [`regExpEsc`](#regexpesc)
-        -   [`roundNumber`](#roundnumber)
-        -   [`sleep` / `sleepSync`](#sleep--sleepsync)
-        -   [`splitText`](#splittext)
-        -   [`throttle`](#throttle)
-        -   [`toTitleCase`](#totitlecase)
-        -   [`tryParseJSON`](#tryparsejson)
-        -   [`tryParseURL`](#tryparseurl)
-    -   [Typescript Utilities](#typescript-utilities)
-        -   [Functions](#functions)
-            -   [`cast`](#cast)
-            -   [`objectEntries`](#objectentries)
-            -   [`objectKeys`](#objectkeys)
-            -   [`objectValues`](#objectvalues)
-        -   [Types](#types)
-            -   [`Primitive`](#primitive)
-            -   [`Builtin`](#builtin)
-            -   [`DeepReadonly`](#deepreadonly)
-            -   [`DeepRequired`](#deeprequired)
-            -   [`RequiredExcept`](#requiredexcept)
-            -   [`PartialRequired`](#partialrequired)
-            -   [`ArgumentTypes`](#argumenttypes)
-            -   [`Arr`](#arr)
-            -   [`Ctor`](#ctor)
-            -   [`AbstractCtor`](#abstractctor)
-            -   [`Constructor`](#constructor)
-            -   [`AbstractConstructor`](#abstractconstructor)
-            -   [`FirstArgument`](#firstargument)
-            -   [`SecondArgument`](#secondargument)
-            -   [`Awaitable`](#awaitable)
-            -   [`Nullish`](#nullish)
-            -   [`NonNullableProperties`](#nonnullableproperties)
-            -   [`NonNullObject`](#nonnullobject-deprecated)
-            -   [`AnyObject`](#anyobject-deprecated)
-            -   [`PrettifyObject`](#prettifyobject)
-            -   [`PickByValue`](#pickbyvalue)
-            -   [`Mutable`](#mutable)
-            -   [`StrictRequired`](#strictrequired)
-            -   [`ArrayElementType`](#arrayelementtype)
--   [Buy us some doughnuts](#buy-us-some-doughnuts)
--   [Contributors](#contributors)
+- [Description](#description)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+    - [Javascript Utilities](#javascript-utilities)
+        - [`arrayStrictEquals`](#arraystrictequals)
+        - [`chunk`](#chunk)
+        - [`classExtends`](#classextends)
+        - [`codeBlock`](#codeblock)
+        - [`cutText`](#cuttext)
+        - [`deepClone`](#deepclone)
+        - [`filterNullAndUndefined`](#filternullandundefined)
+        - [`filterNullAndUndefinedAndEmpty`](#filternullandundefinedandempty)
+        - [`filterNullAndUndefinedAndZero`](#filternullandundefinedandzero)
+        - [`getDeepObjectKeys`](#getdeepobjectkeys)
+        - [`hasAtLeastOneKeyInMap`](#hasatleastonekeyinmap)
+        - [`inlineCodeBlock`](#inlinecodeblock)
+        - [`isClass`](#isclass)
+        - [`isFunction`](#isfunction)
+        - [`isNullOrUndefined`](#isnullorundefined)
+        - [`isNullOrUndefinedOrEmpty`](#isnullorundefinedorempty)
+        - [`isNullOrUndefinedOrZero`](#isnullorundefinedorzero)
+        - [`isNumber`](#isnumber)
+        - [`isObject`](#isobject)
+        - [`isPrimitive`](#isprimitive)
+        - [`isThenable`](#isthenable)
+        - [`lazy`](#lazy)
+        - [`makeObject`](#makeobject)
+        - [`mergeDefault`](#mergedefault)
+        - [`mergeObjects`](#mergeobjects)
+        - [`noop`](#noop)
+        - [`objectToTuples`](#objecttotuples)
+        - [`partition`](#partition)
+        - [`pickRandom`](#pickrandom)
+        - [`range`](#range)
+        - [`regExpEsc`](#regexpesc)
+        - [`roundNumber`](#roundnumber)
+        - [`sleep` / `sleepSync`](#sleep--sleepsync)
+        - [`splitText`](#splittext)
+        - [`throttle`](#throttle)
+        - [`toTitleCase`](#totitlecase)
+        - [`tryParseJSON`](#tryparsejson)
+        - [`tryParseURL`](#tryparseurl)
+    - [Typescript Utilities](#typescript-utilities)
+        - [Functions](#functions)
+            - [`cast`](#cast)
+            - [`objectEntries`](#objectentries)
+            - [`objectKeys`](#objectkeys)
+            - [`objectValues`](#objectvalues)
+        - [Types](#types)
+            - [`Primitive`](#primitive)
+            - [`Builtin`](#builtin)
+            - [`DeepReadonly`](#deepreadonly)
+            - [`DeepRequired`](#deeprequired)
+            - [`RequiredExcept`](#requiredexcept)
+            - [`PartialRequired`](#partialrequired)
+            - [`ArgumentTypes`](#argumenttypes)
+            - [`Arr`](#arr)
+            - [`Ctor`](#ctor)
+            - [`AbstractCtor`](#abstractctor)
+            - [`Constructor`](#constructor)
+            - [`AbstractConstructor`](#abstractconstructor)
+            - [`FirstArgument`](#firstargument)
+            - [`SecondArgument`](#secondargument)
+            - [`Awaitable`](#awaitable)
+            - [`Nullish`](#nullish)
+            - [`NonNullableProperties`](#nonnullableproperties)
+            - [`NonNullObject`](#nonnullobject-deprecated)
+            - [`AnyObject`](#anyobject-deprecated)
+            - [`PrettifyObject`](#prettifyobject)
+            - [`PickByValue`](#pickbyvalue)
+            - [`Mutable`](#mutable)
+            - [`StrictRequired`](#strictrequired)
+            - [`ArrayElementType`](#arrayelementtype)
+- [Buy us some doughnuts](#buy-us-some-doughnuts)
+- [Contributors](#contributors)
 
 ## Description
 
@@ -97,10 +97,9 @@ We often have a need for a function or type augmentation and having to include i
 
 ## Features
 
--   Written in TypeScript
--   Bundled with esbuild so it can be used in NodeJS and browsers
--   Offers CommonJS, ESM and UMD bundles
--   Fully tested
+- Provides reusable array, object, string, and type-checking helpers
+- Includes timing, retry, polling, and asynchronous control-flow utilities
+- Offers small formatting and data-conversion functions for everyday JavaScript
 
 ## Installation
 
@@ -123,8 +122,6 @@ import { isFunction } from '@sapphire/utilities';
 ```
 
 **Note:** For typescript users, subpath import are only supported in `--moduleResolution node16` and `--moduleResolution nodenext`. More information can be found [in this issue on the microsoft/TypeScript repository](https://github.com/microsoft/TypeScript/issues/50794).
-
-**Note:** While this section uses `require`, the imports match 1:1 with ESM imports. For example `const { arrayStrictEquals } = require('@sapphire/utilities')` equals `import { arrayStrictEquals } from '@sapphire/utilities'`.
 
 ### Javascript Utilities
 
@@ -803,11 +800,11 @@ An utility type that fuses intersections of objects.
 
 ```ts
 type Objects = {
-  foo: string;
-  bar: number;
+	foo: string;
+	bar: number;
 } & {
-  hello: boolean;
-  world: bigint;
+	hello: boolean;
+	world: bigint;
 };
 
 type PrettyObjects = PrettifyObject<Objects>;

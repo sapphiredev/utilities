@@ -1,7 +1,7 @@
 import { Timestamp } from '../../src';
 
 // Saturday 9th March 2019, at 16:20:35:500
-const date = new Date(2019, 2, 9, 16, 20, 35, 1);
+const date = new Date(2_019, 2, 9, 16, 20, 35, 1);
 
 describe('Timestamp - Display UTC', () => {
 	test("GIVEN 'empty' string THEN 'returns empty string'", () => {
@@ -115,7 +115,7 @@ describe('Timestamp - Display UTC', () => {
 	test("GIVEN 'X' THEN returns the amount of seconds since EPOCH", () => {
 		const timestamp = new Timestamp('X');
 		const formatted = timestamp.display(date);
-		expect(formatted).toBe((date.getTime() / 1000).toString());
+		expect(formatted).toBe((date.getTime() / 1_000).toString());
 	});
 
 	test("GIVEN 'x' THEN returns the amount of milliseconds since EPOCH", () => {
@@ -310,55 +310,55 @@ describe('Timestamp - Display UTC', () => {
 
 	test("GIVEN 'd' (day: 01) THEN RETURNS '1st'", () => {
 		const timestamp = new Timestamp('d');
-		const formatted = timestamp.display(new Date(2019, 2, 1, 16, 20, 35, 1));
+		const formatted = timestamp.display(new Date(2_019, 2, 1, 16, 20, 35, 1));
 		expect(formatted).toBe('1st');
 	});
 
 	test("GIVEN 'd' (day: 11) THEN RETURNS '11th'", () => {
 		const timestamp = new Timestamp('d');
-		const formatted = timestamp.display(new Date(2019, 2, 11, 16, 20, 35, 1));
+		const formatted = timestamp.display(new Date(2_019, 2, 11, 16, 20, 35, 1));
 		expect(formatted).toBe('11th');
 	});
 
 	test("GIVEN 'd' (day: 21) THEN RETURNS '21st'", () => {
 		const timestamp = new Timestamp('d');
-		const formatted = timestamp.display(new Date(2019, 2, 21, 16, 20, 35, 1));
+		const formatted = timestamp.display(new Date(2_019, 2, 21, 16, 20, 35, 1));
 		expect(formatted).toBe('21st');
 	});
 
 	test("GIVEN 'd' (day: 02) THEN RETURNS '2nd'", () => {
 		const timestamp = new Timestamp('d');
-		const formatted = timestamp.display(new Date(2019, 2, 2, 16, 20, 35, 1));
+		const formatted = timestamp.display(new Date(2_019, 2, 2, 16, 20, 35, 1));
 		expect(formatted).toBe('2nd');
 	});
 
 	test("GIVEN 'd' (day: 12) THEN RETURNS '12th'", () => {
 		const timestamp = new Timestamp('d');
-		const formatted = timestamp.display(new Date(2019, 2, 12, 16, 20, 35, 1));
+		const formatted = timestamp.display(new Date(2_019, 2, 12, 16, 20, 35, 1));
 		expect(formatted).toBe('12th');
 	});
 
 	test("GIVEN 'd' (day: 22) THEN RETURNS '22nd'", () => {
 		const timestamp = new Timestamp('d');
-		const formatted = timestamp.display(new Date(2019, 2, 22, 16, 20, 35, 1));
+		const formatted = timestamp.display(new Date(2_019, 2, 22, 16, 20, 35, 1));
 		expect(formatted).toBe('22nd');
 	});
 
 	test("GIVEN 'd' (day: 03) THEN RETURNS '3rd'", () => {
 		const timestamp = new Timestamp('d');
-		const formatted = timestamp.display(new Date(2019, 2, 3, 16, 20, 35, 1));
+		const formatted = timestamp.display(new Date(2_019, 2, 3, 16, 20, 35, 1));
 		expect(formatted).toBe('3rd');
 	});
 
 	test("GIVEN 'd' (day: 13) THEN RETURNS '13th'", () => {
 		const timestamp = new Timestamp('d');
-		const formatted = timestamp.display(new Date(2019, 2, 13, 16, 20, 35, 1));
+		const formatted = timestamp.display(new Date(2_019, 2, 13, 16, 20, 35, 1));
 		expect(formatted).toBe('13th');
 	});
 
 	test("GIVEN 'd' (day: 23) THEN RETURNS '23rd'", () => {
 		const timestamp = new Timestamp('d');
-		const formatted = timestamp.display(new Date(2019, 2, 23, 16, 20, 35, 1));
+		const formatted = timestamp.display(new Date(2_019, 2, 23, 16, 20, 35, 1));
 		expect(formatted).toBe('23rd');
 	});
 

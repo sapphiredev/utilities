@@ -1,4 +1,5 @@
 import { EventEmitter } from 'node:events';
+import { clearInterval, clearTimeout, setInterval } from 'node:timers';
 import { EventIterator, type EventIteratorOptions } from '../../src';
 import { Person } from './Person';
 
@@ -25,7 +26,7 @@ export class PeopleEmitter extends EventEmitter {
 			} else {
 				this.emit('testEvent', this.#people[this.#emitted++]);
 			}
-		}, 1000);
+		}, 1_000);
 	}
 
 	public createPeopleIterator(options?: EventIteratorOptions<[Person]>): PeopleIterator {

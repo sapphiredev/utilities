@@ -1,3 +1,5 @@
+/* eslint-disable promise/prefer-await-to-callbacks */
+/* eslint-disable @typescript-eslint/no-use-before-define, jsdoc/no-undefined-types */
 import { isFunction, returnThis, type Awaitable, type If } from './common/utils';
 import { none, some, type None, type Option, type Some } from './Option';
 import { ResultError } from './ResultError';
@@ -6,24 +8,30 @@ const ValueProperty = Symbol.for('@sapphire/result:Result.value');
 const SuccessProperty = Symbol.for('@sapphire/result:Result.success');
 const UnwrapSafeProperty = Symbol.for('@sapphire/result:Result.safeUnwrap');
 
+type ResultMatchBranches<T, E, OkValue, ErrValue, Success extends boolean> = {
+	err(this: Err<E>, error: If<Success, never, E>): ErrValue;
+	ok(this: Ok<T>, value: If<Success, T, never>): OkValue;
+};
+
 /**
  * A type used to express computations that can fail, it can be used for returning and propagating errors. This is a
  * type union with the variants `Ok(T)`, representing success and containing a value, and `Err(E)`, representing error
  * and containing an error value.
  *
- * @typeparam T The result's type.
- * @typeparam E The error's type.
- *
+ * @typeParam T - The result's type.
+ * @typeParam E - The error's type.
  * @see {@link https://doc.rust-lang.org/std/result/index.html}
  */
 export class Result<T, E, const Success extends boolean = boolean> {
 	/**
 	 * Branded value to ensure `Success` is typed correctly.
+	 *
 	 * @internal
 	 */
 	declare protected __STATUS__: Success;
 
 	private readonly [ValueProperty]: If<Success, T, E>;
+
 	private readonly [SuccessProperty]: Success;
 
 	private constructor(value: If<Success, T, E>, success: Success) {
@@ -44,7 +52,6 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * const x = err('Some error message');
 	 * assert.equal(x.isOk(), false);
 	 * ```
-	 *
 	 * @see {@link https://doc.rust-lang.org/std/result/enum.Result.html#method.is_ok}
 	 */
 	public isOk(): this is Ok<T, E> {
@@ -69,7 +76,6 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * const x = err('Some error message');
 	 * assert.equal(x.isOkAnd((value) => value > 1), false);
 	 * ```
-	 *
 	 * @see {@link https://doc.rust-lang.org/std/result/enum.Result.html#method.is_ok_and}
 	 */
 	public isOkAnd<R extends T>(cb: (value: T) => value is R): this is Ok<R, E>;
@@ -91,7 +97,6 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * const x = err('Some error message');
 	 * assert.equal(x.isErr(), true);
 	 * ```
-	 *
 	 * @see {@link https://doc.rust-lang.org/std/result/enum.Result.html#method.is_err}
 	 */
 	public isErr(): this is Err<E, T> {
@@ -100,8 +105,8 @@ export class Result<T, E, const Success extends boolean = boolean> {
 
 	/**
 	 * Returns `true` if the result is `Err` and the value inside of it matches a predicate.
-	 * @param cb The predicate.
 	 *
+	 * @param cb - The predicate.
 	 * @example
 	 * ```typescript
 	 * const x = ok(2);
@@ -117,7 +122,6 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * const x = err(new TypeError('Some error message'));
 	 * assert.equal(x.isErrAnd((error) => error instanceof TypeError), true);
 	 * ```
-	 *
 	 * @see {@link https://doc.rust-lang.org/std/result/enum.Result.html#method.is_err_and}
 	 */
 	public isErrAnd<R extends E>(cb: (error: E) => error is R): this is Err<R, T>;
@@ -141,7 +145,6 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * const x: Result<number, string> = err('Some error message');
 	 * assert.equal(x.ok(), none);
 	 * ```
-	 *
 	 * @see {@link https://doc.rust-lang.org/std/result/enum.Result.html#method.ok}
 	 */
 	public ok(): If<Success, Some<T>, None> {
@@ -163,7 +166,6 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * const x: Result<number, string> = err('Some error message');
 	 * assert.equal(x.err(), 'Some error message');
 	 * ```
-	 *
 	 * @see {@link https://doc.rust-lang.org/std/result/enum.Result.html#method.err}
 	 */
 	public err(): If<Success, None, Some<E>> {
@@ -173,8 +175,8 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	/**
 	 * Maps a `Result<T, E>` to `Result<U, E>` by applying a function to a contained `Ok` value, leaving an `Err` value
 	 * untouched.
-	 * @param cb The predicate.
 	 *
+	 * @param cb - The predicate.
 	 * @example
 	 * ```typescript
 	 * const x: Result<number, string> = ok(2);
@@ -185,7 +187,6 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * const x: Result<number, string> = err('Some error message');
 	 * assert.equal(x.map((value) => value * 2), err('Some error message'));
 	 * ```
-	 *
 	 * @see {@link https://doc.rust-lang.org/std/result/enum.Result.html#method.map}
 	 */
 	public map<OutputValue>(cb: (value: If<Success, T, never>) => OutputValue): Result<OutputValue, E, Success> {
@@ -199,8 +200,8 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 *
 	 * Unlike {@link map}, this method does not wrap the returned value inside `Ok`, but instead, it returns the
 	 * returned value.
-	 * @param cb The predicate.
 	 *
+	 * @param cb - The predicate.
 	 * @example
 	 * ```typescript
 	 * const x: Result<number, string> = ok(2);
@@ -219,8 +220,7 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * const x: Result<number, string> = err('Some error message');
 	 * assert.equal(x.mapInto((value) => ok(4)), err('Some error message'));
 	 * ```
-	 *
-	 * @note This is an extension not supported in Rust
+	 * This is an extension not supported in Rust
 	 */
 	public mapInto<OutputResult extends AnyResult>(cb: (value: If<Success, T, never>) => OutputResult): If<Success, OutputResult, Err<E>> {
 		return this.match({ ok: (value) => cb(value), err: returnThis });
@@ -231,9 +231,9 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 *
 	 * Arguments passed to `mapOr` are eagerly evaluated; if you are passing the result of a function call, it is
 	 * recommended to use `mapOrElse`, which is lazily evaluated.
-	 * @param defaultValue The default value to use.
-	 * @param cb The predicate.
 	 *
+	 * @param defaultValue - The default value to use.
+	 * @param cb - The predicate.
 	 * @example
 	 * ```typescript
 	 * const x = ok('hello');
@@ -244,7 +244,6 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * const x = err('Some error message');
 	 * assert.equal(x.mapOr(42, (value) => value.length), 42);
 	 * ```
-	 *
 	 * @see {@link https://doc.rust-lang.org/std/result/enum.Result.html#method.map_or}
 	 */
 	public mapOr<MappedOutputValue, DefaultOutputValue>(
@@ -259,9 +258,9 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * to a contained `Ok` value.
 	 *
 	 * This function can be used to unpack a successful result while handling an error.
-	 * @param op The predicate that is run on `Err`.
-	 * @param cb The predicate that is run on `Ok`.
 	 *
+	 * @param op - The predicate that is run on `Err`.
+	 * @param cb - The predicate that is run on `Ok`.
 	 * @example
 	 * ```typescript
 	 * const x: Result<string, string> = ok('hello');
@@ -272,7 +271,6 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * const x: Result<string, string> = err('Some error message');
 	 * assert.equal(x.mapOrElse((error) => error.length, (value) => value.length), 18);
 	 * ```
-	 *
 	 * @see {@link https://doc.rust-lang.org/std/result/enum.Result.html#method.map_or_else}
 	 */
 	public mapOrElse<OutputValue, OutputError>(
@@ -287,8 +285,8 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * untouched.
 	 *
 	 * This function can be used to pass through a successful result while handling an error.
-	 * @param cb The predicate.
 	 *
+	 * @param cb - The predicate.
 	 * @example
 	 * ```typescript
 	 * const x: Result<number, Error> = ok(2);
@@ -299,7 +297,6 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * const x: Result<number, Error> = err(new Error('Some error message'));
 	 * assert.equal(x.mapErr((error) => error.message), err('Some error message'));
 	 * ```
-	 *
 	 * @see {@link https://doc.rust-lang.org/std/result/enum.Result.html#method.map_err}
 	 */
 	public mapErr<OutputError>(cb: (error: If<Success, never, E>) => OutputError): Result<T, OutputError, Success> {
@@ -315,8 +312,8 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 *
 	 * Unlike {@link mapErr}, this method does not wrap the returned value inside `Err`, but instead, it returns the
 	 * returned value.
-	 * @param cb The predicate.
 	 *
+	 * @param cb - The predicate.
 	 * @example
 	 * ```typescript
 	 * const x: Result<number, Error> = ok(2);
@@ -332,8 +329,7 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * const x: Result<number, Error> = err(new Error('Some error message'));
 	 * assert.equal(x.mapErrInto((error) => ok(4)), ok(4));
 	 * ```
-	 *
-	 * @note This is an extension not supported in Rust
+	 * This is an extension not supported in Rust
 	 */
 	public mapErrInto<OutputResult extends AnyResult>(cb: (error: If<Success, never, E>) => OutputResult): If<Success, Ok<T>, OutputResult> {
 		return this.match({ ok: returnThis, err: (error) => cb(error) });
@@ -341,9 +337,9 @@ export class Result<T, E, const Success extends boolean = boolean> {
 
 	/**
 	 * Calls the provided closure with a reference to the contained value (if `Ok`).
-	 * @param cb The predicate.
-	 * @seealso {@link inspectAsync} for the awaitable version.
 	 *
+	 * @param cb - The predicate.
+	 * @see {@link inspectAsync} for the awaitable version.
 	 * @example
 	 * ```typescript
 	 * ok(2).inspect(console.log);
@@ -354,19 +350,19 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * err('Some error message').inspect(console.log);
 	 * // Doesn't log
 	 * ```
-	 *
 	 * @see {@link https://doc.rust-lang.org/std/result/enum.Result.html#method.inspect}
 	 */
 	public inspect(cb: (value: T) => unknown): this {
+		// eslint-disable-next-line n/callback-return
 		if (this.isOk()) cb(this[ValueProperty]);
 		return this;
 	}
 
 	/**
 	 * Calls the provided closure with a reference to the contained value (if `Ok`) and awaits it.
-	 * @param cb The predicate.
-	 * @seealso {@link inspect} for the sync version.
 	 *
+	 * @param cb - The predicate.
+	 * @see {@link inspect} for the sync version.
 	 * @example
 	 * ```typescript
 	 * await ok(2).inspectAsync(console.log);
@@ -377,19 +373,19 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * await err('Some error message').inspectAsync(console.log);
 	 * // Doesn't log
 	 * ```
-	 *
-	 * @note This is an extension not supported in Rust
+	 * This is an extension not supported in Rust
 	 */
 	public async inspectAsync(cb: (value: T) => Awaitable<unknown>): Promise<this> {
+		// eslint-disable-next-line n/callback-return
 		if (this.isOk()) await cb(this[ValueProperty]);
 		return this;
 	}
 
 	/**
 	 * Calls the provided closure with a reference to the contained error (if `Err`).
-	 * @param cb The predicate.
-	 * @seealso {@link inspectErrAsync} for the awaitable version.
 	 *
+	 * @param cb - The predicate.
+	 * @see {@link inspectErrAsync} for the awaitable version.
 	 * @example
 	 * ```typescript
 	 * ok(2).inspectErr(console.log);
@@ -400,19 +396,19 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * err('Some error message').inspectErr(console.log);
 	 * // Logs: Some error message
 	 * ```
-	 *
 	 * @see {@link https://doc.rust-lang.org/std/result/enum.Result.html#method.inspect_err}
 	 */
 	public inspectErr(cb: (error: E) => unknown): this {
+		// eslint-disable-next-line n/callback-return
 		if (this.isErr()) cb(this[ValueProperty]);
 		return this;
 	}
 
 	/**
 	 * Calls the provided closure with a reference to the contained error (if `Err`) and awaits it.
-	 * @param cb The predicate.
-	 * @seealso {@link inspectErr} for the sync version.
 	 *
+	 * @param cb - The predicate.
+	 * @see {@link inspectErr} for the sync version.
 	 * @example
 	 * ```typescript
 	 * await ok(2).inspectErrAsync(console.log);
@@ -423,10 +419,10 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * await err('Some error message').inspectErrAsync(console.log);
 	 * // Logs: Some error message
 	 * ```
-	 *
-	 * @note This is an extension not supported in Rust
+	 * This is an extension not supported in Rust
 	 */
 	public async inspectErrAsync(cb: (error: E) => Awaitable<unknown>): Promise<this> {
+		// eslint-disable-next-line n/callback-return
 		if (this.isErr()) await cb(this[ValueProperty]);
 		return this;
 	}
@@ -452,7 +448,6 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * }
 	 * // Doesn't log
 	 * ```
-	 *
 	 * @see {@link https://doc.rust-lang.org/std/result/enum.Result.html#method.iter}
 	 */
 	public *iter(): Generator<T> {
@@ -463,8 +458,8 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * Returns the contained `Ok` value.
 	 *
 	 * If the value is an `Err`, it throws a {@link ResultError} with the given message and the content of the `Err`.
-	 * @param message The message for the error.
 	 *
+	 * @param message - The message for the error.
 	 * @example
 	 * ```typescript
 	 * const x = ok(2);
@@ -479,7 +474,6 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 *   value: 'Emergency failure'
 	 * });
 	 * ```
-	 *
 	 * @see {@link https://doc.rust-lang.org/std/result/enum.Result.html#method.expect}
 	 */
 	public expect(message: string): If<Success, T, never> {
@@ -491,8 +485,8 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * Returns the contained `Err` value.
 	 *
 	 * If the value is an `Ok`, it throws a {@link ResultError} with the given message and the content of the `Ok`.
-	 * @param message The message for the error.
 	 *
+	 * @param message - The message for the error.
 	 * @example
 	 * ```typescript
 	 * const x = ok(2);
@@ -507,7 +501,6 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * const x = err('Emergency failure');
 	 * assert.equal(x.expectErr('Whoops!'), 'Emergency failure');
 	 * ```
-	 *
 	 * @see {@link https://doc.rust-lang.org/std/result/enum.Result.html#method.expect_err}
 	 */
 	public expectErr(message: string): If<Success, never, E> {
@@ -519,12 +512,12 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * Returns the contained `Ok` value.
 	 *
 	 * If the value is an `Err`, it throws a {@link ResultError} with the message, and the content of the `Err`.
-	 * @seealso {@link unwrapOr}
-	 * @seealso {@link unwrapOrElse}
-	 * @seealso {@link unwrapErr}
-	 * @seealso {@link unwrapRaw}
-	 * @seealso {@link unwrapSafe}
 	 *
+	 * @see {@link unwrapOr}
+	 * @see {@link unwrapOrElse}
+	 * @see {@link unwrapErr}
+	 * @see {@link unwrapRaw}
+	 * @see {@link unwrapSafe}
 	 * @example
 	 * ```typescript
 	 * const x = ok(2);
@@ -539,7 +532,6 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 *   value: 'Emergency failure'
 	 * });
 	 * ```
-	 *
 	 * @see {@link https://doc.rust-lang.org/std/result/enum.Result.html#method.unwrap}
 	 */
 	public unwrap(): If<Success, T, never> {
@@ -551,12 +543,12 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * Returns the contained `Err` value.
 	 *
 	 * If the value is an `Ok`, it throws a {@link ResultError} with the message, and the content of the `Ok`.
-	 * @seealso {@link unwrap}
-	 * @seealso {@link unwrapOr}
-	 * @seealso {@link unwrapOrElse}
-	 * @seealso {@link unwrapRaw}
-	 * @seealso {@link unwrapSafe}
 	 *
+	 * @see {@link unwrap}
+	 * @see {@link unwrapOr}
+	 * @see {@link unwrapOrElse}
+	 * @see {@link unwrapRaw}
+	 * @see {@link unwrapSafe}
 	 * @example
 	 * ```typescript
 	 * const x = ok(2);
@@ -571,7 +563,6 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * const x = err('Emergency failure');
 	 * assert.equal(x.unwrapErr(), 'Emergency failure');
 	 * ```
-	 *
 	 * @see {@link https://doc.rust-lang.org/std/result/enum.Result.html#method.unwrap_err}
 	 */
 	public unwrapErr(): If<Success, never, E> {
@@ -584,14 +575,13 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 *
 	 * Arguments passed to `unwrapOr` are eagerly evaluated; if you are passing the result of a function call, it is
 	 * recommended to use {@link unwrapOrElse}, which is lazily evaluated.
-	 * @seealso {@link unwrap}
-	 * @seealso {@link unwrapOrElse}
-	 * @seealso {@link unwrapErr}
-	 * @seealso {@link unwrapRaw}
-	 * @seealso {@link unwrapSafe}
 	 *
-	 * @param defaultValue The default value.
-	 *
+	 * @see {@link unwrap}
+	 * @see {@link unwrapOrElse}
+	 * @see {@link unwrapErr}
+	 * @see {@link unwrapRaw}
+	 * @see {@link unwrapSafe}
+	 * @param defaultValue - The default value.
 	 * @example
 	 * ```typescript
 	 * const x: Result<number, string> = ok(9);
@@ -602,7 +592,6 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * const x: Result<number, string> = err('Error');
 	 * assert.equal(x.unwrapOr(2), 2);
 	 * ```
-	 *
 	 * @see {@link https://doc.rust-lang.org/std/result/enum.Result.html#method.unwrap_or}
 	 */
 	public unwrapOr<OutputValue>(defaultValue: OutputValue): If<Success, T, OutputValue> {
@@ -611,14 +600,13 @@ export class Result<T, E, const Success extends boolean = boolean> {
 
 	/**
 	 * Returns the contained `Ok` value or computes it from a closure.
-	 * @seealso {@link unwrap}
-	 * @seealso {@link unwrapOr}
-	 * @seealso {@link unwrapErr}
-	 * @seealso {@link unwrapRaw}
-	 * @seealso {@link unwrapSafe}
 	 *
-	 * @param op The predicate.
-	 *
+	 * @see {@link unwrap}
+	 * @see {@link unwrapOr}
+	 * @see {@link unwrapErr}
+	 * @see {@link unwrapRaw}
+	 * @see {@link unwrapSafe}
+	 * @param op - The predicate.
 	 * @example
 	 * ```typescript
 	 * const count = (x: string) => x.length;
@@ -626,7 +614,6 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * assert.equal(ok(2).unwrapOrElse(count), 2);
 	 * assert.equal(err('hello').unwrapOrElse(count), 5);
 	 * ```
-	 *
 	 * @see {@link https://doc.rust-lang.org/std/result/enum.Result.html#method.unwrap_or_else}
 	 */
 	public unwrapOrElse<OutputValue>(op: (error: E) => OutputValue): If<Success, T, OutputValue> {
@@ -637,12 +624,12 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * Returns the contained `Ok` value.
 	 *
 	 * If the value is an `Err`, it throws the contained error.
-	 * @seealso {@link unwrap}
-	 * @seealso {@link unwrapOr}
-	 * @seealso {@link unwrapOrElse}
-	 * @seealso {@link unwrapErr}
-	 * @seealso {@link unwrapSafe}
 	 *
+	 * @see {@link unwrap}
+	 * @see {@link unwrapOr}
+	 * @see {@link unwrapOrElse}
+	 * @see {@link unwrapErr}
+	 * @see {@link unwrapSafe}
 	 * @example
 	 * ```typescript
 	 * const x = ok(2);
@@ -659,7 +646,7 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * ```
 	 */
 	public unwrapRaw(): If<Success, T, never> {
-		// eslint-disable-next-line @typescript-eslint/no-throw-literal
+		// eslint-disable-next-line @typescript-eslint/only-throw-error
 		if (this.isErr()) throw this[ValueProperty];
 		// @ts-expect-error Complex types
 		return this[ValueProperty] as T;
@@ -670,12 +657,12 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * Emulates Rust's `?` operator in `safeTry`'s body. See also {@link Result.safeTry}.
 	 *
 	 * If used outside of a `safeTry`'s' body, throws the contained error.
-	 * @seealso {@link unwrap}
-	 * @seealso {@link unwrapOr}
-	 * @seealso {@link unwrapErr}
-	 * @seealso {@link unwrapRaw}
-	 * @seealso {@link unwrapSafe}
 	 *
+	 * @see {@link unwrap}
+	 * @see {@link unwrapOr}
+	 * @see {@link unwrapErr}
+	 * @see {@link unwrapRaw}
+	 * @see {@link unwrapSafe}
 	 * @see {@link https://doc.rust-lang.org/std/result/enum.Result.html#method.unwrap_safe}
 	 */
 	public *unwrapSafe(): Generator<Err<E, T>, T> {
@@ -689,8 +676,8 @@ export class Result<T, E, const Success extends boolean = boolean> {
 
 	/**
 	 * Returns `result` if the result is `Ok`, otherwise returns the `Err` value of itself.
-	 * @param result The result to check.
 	 *
+	 * @param result - The result to check.
 	 * @example
 	 * ```typescript
 	 * const x: Result<number, string> = ok(2);
@@ -709,7 +696,6 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * const y: Result<string, string> = ok('Hello');
 	 * assert.equal(x.and(y), ok('Hello'));
 	 * ```
-	 *
 	 * @see {@link https://doc.rust-lang.org/std/result/enum.Result.html#method.and}
 	 */
 	public and<OutputResult extends AnyResult>(result: OutputResult): If<Success, OutputResult, Err<E>> {
@@ -720,8 +706,8 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * Calls `cb` if the result is `Ok`, otherwise returns the `Err` value of self.
 	 *
 	 * This function can be used for control flow based on `Result` values.
-	 * @param cb The predicate.
 	 *
+	 * @param cb - The predicate.
 	 * @example
 	 * ```typescript
 	 * function fractionOf4(value: number) {
@@ -732,7 +718,6 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * assert.equal(ok(0).andThen(fractionOf4), err('overflowed'));
 	 * assert.equal(err('not a number').andThen(fractionOf4), err('not a number'));
 	 * ```
-	 *
 	 * @see {@link https://doc.rust-lang.org/std/result/enum.Result.html#method.and_then}
 	 */
 	public andThen<OutputResult extends AnyResult>(cb: (value: T) => OutputResult): OutputResult {
@@ -745,8 +730,8 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 *
 	 * Arguments passed to or are eagerly evaluated; if you are passing the result of a function call, it is recommended
 	 * to use {@link orElse}, which is lazily evaluated.
-	 * @param result The result to check.
 	 *
+	 * @param result - The result to check.
 	 * @example
 	 * ```typescript
 	 * const x: Result<number, string> = ok(2);
@@ -771,7 +756,6 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * const y: Result<number, string> = ok(100);
 	 * assert.equal(x.or(y), ok(2));
 	 * ```
-	 *
 	 * @see {@link https://doc.rust-lang.org/std/result/enum.Result.html#method.or}
 	 */
 	public or<OutputResult extends AnyResult>(result: OutputResult): If<Success, Ok<T>, OutputResult> {
@@ -782,8 +766,8 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * Calls `cb` if the result is `Err`, otherwise returns the `Ok` value of self.
 	 *
 	 * This function can be used for control flow based on result values.
-	 * @param cb The predicate.
 	 *
+	 * @param cb - The predicate.
 	 * @example
 	 * ```typescript
 	 * const square = (x: number): Result<number, string> => ok(x * x);
@@ -794,7 +778,6 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * assert.equal(err(3).orElse(square).orElse(wrapErr), ok(9));
 	 * assert.equal(err(3).orElse(wrapErr).orElse(wrapErr), err(3));
 	 * ```
-	 *
 	 * @see {@link https://doc.rust-lang.org/std/result/enum.Result.html#method.or_else}
 	 */
 	public orElse<OutputResult extends AnyResult>(cb: (error: E) => OutputResult): If<Success, Ok<T>, OutputResult> {
@@ -803,8 +786,8 @@ export class Result<T, E, const Success extends boolean = boolean> {
 
 	/**
 	 * Returns `true` if the result is an `Ok` and the given value strict equals it.
-	 * @param value The value to compare.
 	 *
+	 * @param value - The value to compare.
 	 * @example
 	 * ```typescript
 	 * const x: Result<number, string> = ok(2);
@@ -820,7 +803,6 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * const x: Result<number, string> = err('Some error message');
 	 * assert.equal(x.contains(2), false);
 	 * ```
-	 *
 	 * @see {@link https://doc.rust-lang.org/std/result/enum.Result.html#method.contains}
 	 */
 	public contains<const Value extends T>(this: Ok<T>, value: Value): this is Ok<Value>;
@@ -831,8 +813,8 @@ export class Result<T, E, const Success extends boolean = boolean> {
 
 	/**
 	 * Returns `true` if the result is an `Err` and the given error strict equals it.
-	 * @param error The error to compare.
 	 *
+	 * @param error - The error to compare.
 	 * @example
 	 * ```typescript
 	 * const x: Result<number, string> = ok(2);
@@ -848,7 +830,6 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * const x: Result<number, string> = err('Some other error message');
 	 * assert.equal(x.containsErr('Some error message'), false);
 	 * ```
-	 *
 	 * @see {@link https://doc.rust-lang.org/std/result/enum.Result.html#method.contains_err}
 	 */
 	public containsErr(this: Ok<T>, error: E): false;
@@ -868,7 +849,6 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * const y: Option<Result<number, Error>> = some(ok(5));
 	 * assert.equal(x.transpose(), y);
 	 * ```
-	 *
 	 * @see {@link https://doc.rust-lang.org/std/result/enum.Result.html#method.transpose}
 	 */
 	public transpose<InnerValue>(this: Result<Option<InnerValue>, E, Success>): If<Success, Option<Ok<InnerValue>>, Some<Err<E>>> {
@@ -898,7 +878,6 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * const x: Result<Result<string, number>, number> = err(6);
 	 * assert.equal(x.flatten(), err(6));
 	 * ```
-	 *
 	 * @see {@link https://doc.rust-lang.org/std/result/enum.Result.html#method.flatten}
 	 */
 	public flatten<InnerResult extends AnyResult>(this: Result<InnerResult, E, Success>): If<Success, InnerResult, Err<E>> {
@@ -918,7 +897,6 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * let x: Result<number, number> = err(4);
 	 * assert.equal(x.intoOkOrErr(), 4);
 	 * ```
-	 *
 	 * @see {@link https://doc.rust-lang.org/std/result/enum.Result.html#method.into_ok_or_err}
 	 */
 	public intoOkOrErr(): If<Success, T, E> {
@@ -933,23 +911,23 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * let x = ok(Promise.resolve(3));
 	 * assert.equal(await x.intoPromise(), ok(3));
 	 * ```
-	 *
-	 * @note This is an extension not supported in Rust
+	 * This is an extension not supported in Rust
 	 */
-	public intoPromise(): Promise<If<Success, Ok<Awaited<T>>, Err<Awaited<E>>>> {
-		// @ts-expect-error Complex types
+	public async intoPromise(): Promise<If<Success, Ok<Awaited<T>>, Err<Awaited<E>>>> {
 		return this.match<Ok<Awaited<T>>, Err<Awaited<E>>>({
 			// @ts-expect-error Complex types
+			// eslint-disable-next-line @typescript-eslint/await-thenable
 			ok: async (value) => ok(await value), // NOSONAR
 			// @ts-expect-error Complex types
+			// eslint-disable-next-line @typescript-eslint/await-thenable
 			err: async (error) => err(await error) // NOSONAR
 		});
 	}
 
 	/**
 	 * Checks whether or not `other` equals with self.
-	 * @param other The other result to compare.
 	 *
+	 * @param other - The other result to compare.
 	 * @see {@link https://doc.rust-lang.org/std/cmp/trait.PartialEq.html#tymethod.eq}
 	 */
 	public eq<OtherValue extends T, OtherError extends E, OtherSuccess extends boolean>(
@@ -961,8 +939,8 @@ export class Result<T, E, const Success extends boolean = boolean> {
 
 	/**
 	 * Checks whether or not `other` doesn't equal with self.
-	 * @param other The other result to compare.
 	 *
+	 * @param other - The other result to compare.
 	 * @see {@link https://doc.rust-lang.org/std/cmp/trait.PartialEq.html#method.ne}
 	 */
 	public ne(other: Result<T, E>): boolean {
@@ -971,8 +949,8 @@ export class Result<T, E, const Success extends boolean = boolean> {
 
 	/**
 	 * Runs `ok` function if self is `Ok`, otherwise runs `err` function.
-	 * @param branches The branches to match.
 	 *
+	 * @param branches - The callbacks to run: `err` handles `Err` and receives its error value, while `ok` handles `Ok` and receives its success value.
 	 * @example
 	 * ```typescript
 	 * const result = ok(4).match({
@@ -990,10 +968,7 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * assert.equal(result, 0);
 	 * ```
 	 */
-	public match<OkValue, ErrValue>(branches: {
-		ok(this: Ok<T>, value: If<Success, T, never>): OkValue;
-		err(this: Err<E>, error: If<Success, never, E>): ErrValue;
-	}): If<Success, OkValue, ErrValue> {
+	public match<OkValue, ErrValue>(branches: ResultMatchBranches<T, E, OkValue, ErrValue, Success>): If<Success, OkValue, ErrValue> {
 		// @ts-expect-error Complex types
 		return this.isOk() ? branches.ok.call(this, this[ValueProperty]) : branches.err.call(this, this[ValueProperty] as E);
 	}
@@ -1019,7 +994,6 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * }
 	 * // Doesn't log
 	 * ```
-	 *
 	 * @see {@link IResult.iter}
 	 * @see {@link https://doc.rust-lang.org/std/result/enum.Result.html#method.iter}
 	 */
@@ -1042,16 +1016,14 @@ export class Result<T, E, const Success extends boolean = boolean> {
 		return this.unwrapSafe();
 	}
 
-	// eslint-disable-next-line @typescript-eslint/no-invalid-void-type
 	public static ok<T = undefined, E = any>(this: void, value?: T): Ok<T, E>;
-	// eslint-disable-next-line @typescript-eslint/no-invalid-void-type
+
 	public static ok<T, E = any>(this: void, value: T): Ok<T, E> {
 		return new Result<T, E, true>(value, true);
 	}
 
-	// eslint-disable-next-line @typescript-eslint/no-invalid-void-type
 	public static err<E = undefined, T = any>(this: void, value?: E): Err<E, T>;
-	// eslint-disable-next-line @typescript-eslint/no-invalid-void-type
+
 	public static err<E, T = any>(this: void, value: E): Err<E, T> {
 		return new Result<T, E, false>(value, false);
 	}
@@ -1061,13 +1033,12 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * exists to interoperate with other versions of this class, such as the one coming from another version of this
 	 * library or from a different build.
 	 *
-	 * @param instance The instance to check.
+	 * @param instance - The instance to check.
 	 * @returns Whether or not the instance is a `Result`.
-	 *
 	 * @example
 	 * ```typescript
 	 * import { Result } from '@sapphire/result';
-	 * const { ok } = require('@sapphire/result');
+	 * import { ok } from '@sapphire/result';
 	 *
 	 * ok(2) instanceof Result; // true
 	 * ```
@@ -1080,14 +1051,12 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * @deprecated Use {@link Result.isResult} instead.
 	 *
 	 * Checks if the `instance` object is an instance of `Result`, or if it is a `Result`-like object.
-	 *
-	 * @param instance The instance to check.
+	 * @param instance - The instance to check.
 	 * @returns true if the instance is a `Result` or a `Result`-like object, false otherwise.
-	 *
 	 * @example
 	 * ```typescript
 	 * import { Result } from '@sapphire/result';
-	 * const { ok } = require('@sapphire/result');
+	 * import { ok } from '@sapphire/result';
 	 *
 	 * Result.isResult(ok(2)); // true
 	 * ```
@@ -1099,13 +1068,12 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	/**
 	 * Checks if the `instance` object is an instance of `Result`, or if it is a `Result`-like object.
 	 *
-	 * @param instance The instance to check.
+	 * @param instance - The instance to check.
 	 * @returns true if the instance is a `Result` or a `Result`-like object, false otherwise.
-	 *
 	 * @example
 	 * ```typescript
 	 * import { Result } from '@sapphire/result';
-	 * const { ok } = require('@sapphire/result');
+	 * import { ok } from '@sapphire/result';
 	 *
 	 * Result.isResult(ok(2)); // true
 	 * ```
@@ -1117,10 +1085,10 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	/**
 	 * Creates a {@link Result} out of a callback.
 	 *
-	 * @typeparam T The result's type.
-	 * @typeparam E The error's type.
+	 * @typeParam T - The result's type.
+	 * @typeParam E - The error's type.
 	 */
-	// eslint-disable-next-line @typescript-eslint/no-invalid-void-type
+
 	public static from<T, E = unknown>(this: void, op: ResultResolvable<T, E> | (() => ResultResolvable<T, E>)): Result<T, E> {
 		try {
 			return resolve(isFunction(op) ? op() : op);
@@ -1132,11 +1100,10 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	/**
 	 * Creates a {@link Result} out of a promise or async callback.
 	 *
-	 * @typeparam T The result's type.
-	 * @typeparam E The error's type.
+	 * @typeParam T - The result's type.
+	 * @typeParam E - The error's type.
 	 */
 	public static async fromAsync<T, E = unknown>(
-		// eslint-disable-next-line @typescript-eslint/no-invalid-void-type
 		this: void,
 		op: Awaitable<ResultResolvable<T, E>> | (() => Awaitable<ResultResolvable<T, E>>)
 	): Promise<Result<T, E>> {
@@ -1151,11 +1118,10 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 * Creates an {@link Ok} that is the combination of all collected {@link Ok} values as an array, or the first
 	 * {@link Err} encountered.
 	 *
-	 * @param results An array of {@link Result}s.
+	 * @param results - An array of {@link Result}s.
 	 * @returns A new {@link Result}.
 	 */
 	public static all<const Entries extends readonly AnyResult[]>(
-		// eslint-disable-next-line @typescript-eslint/no-invalid-void-type
 		this: void,
 		results: Entries
 	): Result<UnwrapOkArray<Entries>, UnwrapErrArray<Entries>[number]> {
@@ -1172,11 +1138,10 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	/**
 	 * Returns the first encountered {@link Ok}, or an {@link Err} that is the combination of all collected error values.
 	 *
-	 * @param results An array of {@link Result}s.
+	 * @param results - An array of {@link Result}s.
 	 * @returns A new {@link Result}.
 	 */
 	public static any<const Entries extends readonly AnyResult[]>(
-		// eslint-disable-next-line @typescript-eslint/no-invalid-void-type
 		this: void,
 		results: Entries
 	): Result<UnwrapOk<Entries[number]>, UnwrapErrArray<Entries>> {
@@ -1211,7 +1176,6 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 *	  err: (error) => {}
 	 *	});
 	 *```
-	 *
 	 * @example
 	 * ```typescript
 	 *	const resultAsync = Result.safeTry(async function* ({ $async }) {
@@ -1253,7 +1217,6 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 *	  err: (error) => {}
 	 *	});
 	 *```
-	 *
 	 * @example
 	 * ```typescript
 	 *	const resultAsync = Result.safeTry(async function* ({ $async }) {
@@ -1274,22 +1237,24 @@ export class Result<T, E, const Success extends boolean = boolean> {
 	 */
 	public static safeTry<T, E>(body: (options: SafeTryOptions) => AsyncGenerator<Err<E>, Result<T, E>>): Promise<Result<T, E>>;
 	public static safeTry<T, E>(
-		body: ((options: SafeTryOptions) => Generator<Err<E>, Result<T, E>>) | ((options: SafeTryOptions) => AsyncGenerator<Err<E>, Result<T, E>>)
-	): Result<T, E> | Promise<Result<T, E>> {
-		const n = body({ $: UnwrapSafeProperty, $async: unwrapSafeAsync }).next();
-		if (n instanceof Promise) {
-			return n.then((r) => r.value);
+		body: ((options: SafeTryOptions) => AsyncGenerator<Err<E>, Result<T, E>>) | ((options: SafeTryOptions) => Generator<Err<E>, Result<T, E>>)
+	): Promise<Result<T, E>> | Result<T, E> {
+		const safePropertyNext = body({ $: UnwrapSafeProperty, $async: unwrapSafeAsync }).next();
+		if (safePropertyNext instanceof Promise) {
+			// eslint-disable-next-line promise/prefer-await-to-then
+			return safePropertyNext.then((resultValue) => resultValue.value);
 		}
 
-		return n.value;
+		return safePropertyNext.value;
 	}
 }
 
+// eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace Result {
 	export type Ok<T, E = any> = Result<T, E, true>;
 	export type Err<E, T = any> = Result<T, E, false>;
 	export type Any = Result<any, any>;
-	export type Resolvable<T, E = any, Success extends boolean = boolean> = T | Result<T, E, Success>;
+	export type Resolvable<T, E = any, Success extends boolean = boolean> = Result<T, E, Success> | T;
 	export type UnwrapOk<T extends AnyResult> = T extends Ok<infer S> ? S : never;
 	export type UnwrapErr<T extends AnyResult> = T extends Err<infer S> ? S : never;
 
@@ -1326,5 +1291,5 @@ export type UnwrapErrArray<T extends readonly AnyResult[] | []> = Result.UnwrapE
 
 export interface SafeTryOptions {
 	$: typeof UnwrapSafeProperty;
-	$async: <T, E>(result: Promise<Result<T, E>>) => AsyncGenerator<Err<E>, T>;
+	$async<T, E>(result: Promise<Result<T, E>>): AsyncGenerator<Err<E>, T>;
 }

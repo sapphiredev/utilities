@@ -14,15 +14,22 @@
 
 **Table of Contents**
 
--   [Installation](#installation)
--   [Usage](#usage)
-    -   [Base](#base)
-    -   [Extra Strict](#extra-strict)
-    -   [Decorators](#decorators)
-    -   [Verbatim](#verbatim)
-    -   [Bundler](#bundler)
--   [Buy us some doughnuts](#buy-us-some-doughnuts)
--   [Contributors](#contributors)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+    - [Base](#base)
+    - [Extra Strict](#extra-strict)
+    - [Decorators](#decorators)
+    - [Verbatim](#verbatim)
+    - [Bundler](#bundler)
+- [Buy us some doughnuts](#buy-us-some-doughnuts)
+- [Contributors](#contributors)
+
+## Features
+
+- Provides reusable base and extra-strict TypeScript configurations
+- Includes presets for decorators, verbatim module syntax, and bundler resolution
+- Compose presets through TypeScript's `extends` configuration
 
 ## Installation
 
@@ -39,24 +46,24 @@ npm install --save-dev @sapphire/ts-config
 This package ships a couple of different sets of tsconfig, they should be used in an array of
 `extends` in your `tsconfig.json` file. The supported configs are:
 
--   `@sapphire/ts-config/base` -> This is identical to `@sapphire/ts-config`
--   `@sapphire/ts-config/extra-strict`
--   `@sapphire/ts-config/decorators`
--   `@sapphire/ts-config/verbatim`
+- `@sapphire/ts-config/base` -> This is identical to `@sapphire/ts-config`
+- `@sapphire/ts-config/extra-strict`
+- `@sapphire/ts-config/decorators`
+- `@sapphire/ts-config/verbatim`
 
 You should always start with the base config, regardless of what other configs you choose.
 Next you can opt-in to the other configs.
 
 Finally you should configure your package.json properly based on what kind of package you are writing
 
--   For CJS packages you should add `"type": "commonjs"` to your `package.json`
--   For ESM packages you should add `"type": "module"` to your `package.json`
--   For a package that is going to be used by both CJS and ESM then you should not add any `"type"` to your `package.json`
-    -   Note that if you intend to compile for both your best option is to compile
-        for CJS from TypeScript, then use [`gen-esm-wrapper`](https://github.com/addaleax/gen-esm-wrapper) to transform your
-        input file to ESM compatible exports. This is also what we do for our Sapphire packages.
-    -   Note also that in this case you should not enable `@sapphire/ts-config/verbatim`, because it will not work without
-        a `"type"` specified in `package.json`
+- For CJS packages you should add `"type": "commonjs"` to your `package.json`
+- For ESM packages you should add `"type": "module"` to your `package.json`
+- For a package that is going to be used by both CJS and ESM then you should not add any `"type"` to your `package.json`
+    - Note that if you intend to compile for both your best option is to compile
+      for CJS from TypeScript, then use [`gen-esm-wrapper`](https://github.com/addaleax/gen-esm-wrapper) to transform your
+      input file to ESM compatible exports. This is also what we do for our Sapphire packages.
+    - Note also that in this case you should not enable `@sapphire/ts-config/verbatim`, because it will not work without
+      a `"type"` specified in `package.json`
 
 Next we will go over the different configs and what they do.
 
@@ -71,10 +78,10 @@ You can view the content of this tsconfig [here](https://github.com/sapphiredev/
 
 You should include this config if you want to extra strict checking. This configures the following compiler options:
 
--   [`allowUnreachableCode` to `false`](https://www.typescriptlang.org/tsconfig#allowUnreachableCode)
--   [`allowUnusedLabels` to `false`](https://www.typescriptlang.org/tsconfig#allowUnusedLabels)
--   [`exactOptionalPropertyTypes` to `false`](https://www.typescriptlang.org/tsconfig#exactOptionalPropertyTypes)
--   [`noImplicitOverride` to `true`](https://www.typescriptlang.org/tsconfig#noImplicitOverride)
+- [`allowUnreachableCode` to `false`](https://www.typescriptlang.org/tsconfig#allowUnreachableCode)
+- [`allowUnusedLabels` to `false`](https://www.typescriptlang.org/tsconfig#allowUnusedLabels)
+- [`exactOptionalPropertyTypes` to `false`](https://www.typescriptlang.org/tsconfig#exactOptionalPropertyTypes)
+- [`noImplicitOverride` to `true`](https://www.typescriptlang.org/tsconfig#noImplicitOverride)
 
 You can view the content of this tsconfig [here](https://github.com/sapphiredev/utilities/blob/main/packages/ts-config/src/extra-strict.json)
 
@@ -87,8 +94,8 @@ you are using decorators. Packages such as `@sapphire/decorators` rely on this c
 
 This enables the following compiler options:
 
--   [experimentalDecorators](https://www.typescriptlang.org/tsconfig#experimentalDecorators)
--   [emitDecoratorMetadata](https://www.typescriptlang.org/tsconfig#emitDecoratorMetadata)
+- [experimentalDecorators](https://www.typescriptlang.org/tsconfig#experimentalDecorators)
+- [emitDecoratorMetadata](https://www.typescriptlang.org/tsconfig#emitDecoratorMetadata)
 
 You can view the content of this tsconfig [here](https://github.com/sapphiredev/utilities/blob/main/packages/ts-config/src/decorators.json)
 
@@ -101,20 +108,20 @@ See the TypeScript documentation for more information.
 
 This enables the following compiler options:
 
--   [verbatimModuleSyntax](https://www.typescriptlang.org/tsconfig#verbatimModuleSyntax)
+- [verbatimModuleSyntax](https://www.typescriptlang.org/tsconfig#verbatimModuleSyntax)
 
 You can view the content of this tsconfig [here](https://github.com/sapphiredev/utilities/blob/main/packages/ts-config/src/verbatim.json)
 
 ### Bundler
 
-You may include this config if bundle your code with a bundler such as [tsup], [esbuild], [swc] or something else. This
+You may include this config if bundle your code with a bundler such as [tsdown], [esbuild], [swc] or something else. This
 config sets [`moduleResolution` to `Bundler`][moduleResolution] and [`module` to `ES2022`][module]. This will likely also allow you to enable
 [Verbatim](#verbatim).
 
 This configures the following compiler options:
 
--   [`moduleResolution` to `Bundler`][moduleResolution]
--   [`module` to `ES2022`][module]
+- [`moduleResolution` to `Bundler`][moduleResolution]
+- [`module` to `ES2022`][module]
 
 You can view the content of this tsconfig [here](https://github.com/sapphiredev/utilities/blob/main/packages/ts-config/src/bundler.json)
 
@@ -144,6 +151,6 @@ Thank you to all the people who already contributed to Sapphire!
 [contributing]: https://github.com/sapphiredev/.github/blob/main/.github/CONTRIBUTING.md
 [module]: https://www.typescriptlang.org/tsconfig#module
 [moduleResolution]: https://www.typescriptlang.org/tsconfig#moduleResolution
-[tsup]: https://tsup.egoist.dev
+[tsdown]: https://tsdown.dev
 [esbuild]: https://esbuild.github.io
 [swc]: https://swc.rs

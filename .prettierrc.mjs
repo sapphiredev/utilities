@@ -1,3 +1,1 @@
-import prettierConfig from './packages/prettier-config/dist/index.mjs';
-
-export default prettierConfig;
+export { default } from './packages/prettier-config/dist/index.mjs';

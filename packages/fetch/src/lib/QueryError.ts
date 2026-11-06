@@ -1,17 +1,28 @@
-// eslint-disable-next-line spaced-comment
+/* eslint-disable @typescript-eslint/triple-slash-reference */
 /// <reference lib="dom" />
 
 /**
  * The QueryError class which is thrown by the `fetch` method
  */
 export class QueryError extends Error {
-	/** The requested url. */
+	/**
+	 * The requested url.
+	 */
 	public readonly url: string;
-	/** The HTTP status code. */
+
+	/**
+	 * The HTTP status code.
+	 */
 	public readonly code: number;
-	/** The returned response body as a string */
+
+	/**
+	 * The returned response body as a string
+	 */
 	public readonly body: string;
-	/** The original {@link Response} object */
+
+	/**
+	 * The original {@link Response} object
+	 */
 	public readonly response: Response;
 
 	#json: unknown;

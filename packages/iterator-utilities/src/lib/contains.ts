@@ -4,10 +4,9 @@ import { toIterableIterator } from './toIterableIterator';
 /**
  * Advances the iterable until it finds the element, returning `true` if it's found and `false` otherwise.
  *
- * @param iterable The iterator in which to locate a value.
- * @param value The value to locate in the iterator.
+ * @param iterable - The iterator in which to locate a value.
+ * @param value - The value to locate in the iterator.
  * @returns `true` if the value is found in the iterator; otherwise, `false`.
- *
  * @example
  * ```typescript
  * import { contains } from '@sapphire/iterator-utilities';
@@ -16,7 +15,6 @@ import { toIterableIterator } from './toIterableIterator';
  * console.log(contains(iterable, 3));
  * // Output: true
  * ```
- *
  * @remarks
  *
  * This function consumes the iterator until the value is found or the iterator is exhausted.

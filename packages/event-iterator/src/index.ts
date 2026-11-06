@@ -72,7 +72,7 @@ export class EventIterator<V extends unknown[]> implements AsyncIterableIterator
 	/**
 	 * The timer to track when this will idle out.
 	 */
-	readonly #idleTimer: NodeJS.Timeout | undefined | null = null;
+	readonly #idleTimer: NodeJS.Timeout | null | undefined = null;
 
 	/**
 	 * The push handler with context bound to the instance.
@@ -80,9 +80,9 @@ export class EventIterator<V extends unknown[]> implements AsyncIterableIterator
 	readonly #push: (this: EventIterator<V>, ...value: V) => void;
 
 	/**
-	 * @param emitter The event emitter to listen to.
-	 * @param event The event we're listening for to receives values from.
-	 * @param options Any extra options.
+	 * @param emitter - The event emitter to listen to.
+	 * @param event - The event we're listening for to receives values from.
+	 * @param options - Any extra options.
 	 */
 	public constructor(emitter: EventEmitter, event: string, options: EventIteratorOptions<V> = {}) {
 		this.emitter = emitter;
@@ -142,7 +142,7 @@ export class EventIterator<V extends unknown[]> implements AsyncIterableIterator
 
 		// Listen for a new element from the emitter:
 		return new Promise<IteratorResult<V>>((resolve) => {
-			let idleTimer: NodeJS.Timeout | undefined | null = null;
+			let idleTimer: NodeJS.Timeout | null | undefined = null;
 
 			// If there is an idle time set, we will create a temporary timer,
 			// which will cause the iterator to end if no new elements are received:
@@ -165,17 +165,17 @@ export class EventIterator<V extends unknown[]> implements AsyncIterableIterator
 	/**
 	 * Handles what happens when you break or return from a loop.
 	 */
-	public return(): Promise<IteratorResult<V>> {
+	public async return(): Promise<IteratorResult<V>> {
 		this.end();
-		return Promise.resolve({ done: true, value: undefined as never });
+		return { done: true, value: undefined as never };
 	}
 
 	/**
 	 * Handles what happens when you encounter an error in a loop.
 	 */
-	public throw(): Promise<IteratorResult<V>> {
+	public async throw(): Promise<IteratorResult<V>> {
 		this.end();
-		return Promise.resolve({ done: true, value: undefined as never });
+		return { done: true, value: undefined as never };
 	}
 
 	/**

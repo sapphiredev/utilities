@@ -1,8 +1,8 @@
 /**
  * Rounds a number to a specified amount of decimal places.
  *
- * @param input The number to round off
- * @param decimals The amount of decimals to retain
+ * @param input - The number to round off
+ * @param decimals - The amount of decimals to retain
  */
 export function roundNumber(input: number | string, decimals = 0) {
 	const value = Number(input);

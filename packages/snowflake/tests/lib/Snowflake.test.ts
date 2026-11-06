@@ -1,7 +1,7 @@
 import { Snowflake, type DeconstructedSnowflake } from '../../src';
 
 // 2020-01-01
-const sampleEpoch = 1577836800000n;
+const sampleEpoch = 1_577_836_800_000n;
 
 describe('Snowflake', () => {
 	beforeAll(() => {
@@ -25,7 +25,7 @@ describe('Snowflake', () => {
 			expect(snowflake.processId).toBe(15n);
 		});
 
-		test.each([4200, 4200n])('GIVEN out-of-range value (%s) THEN returns masked value as bigint', (value) => {
+		test.each([4_200, 4_200n])('GIVEN out-of-range value (%s) THEN returns masked value as bigint', (value) => {
 			const snowflake = new Snowflake(sampleEpoch);
 			snowflake.processId = value;
 			expect(snowflake.processId).toBe(8n);
@@ -44,7 +44,7 @@ describe('Snowflake', () => {
 			expect(snowflake.workerId).toBe(15n);
 		});
 
-		test.each([4200, 4200n])('GIVEN out-of-range value (%s) THEN returns masked value as bigint', (value) => {
+		test.each([4_200, 4_200n])('GIVEN out-of-range value (%s) THEN returns masked value as bigint', (value) => {
 			const snowflake = new Snowflake(sampleEpoch);
 			snowflake.workerId = value;
 			expect(snowflake.workerId).toBe(8n);
@@ -61,7 +61,7 @@ describe('Snowflake', () => {
 	describe('generate', () => {
 		test('GIVEN timestamp as number THEN returns predefined snowflake', () => {
 			const testId = '3971046231244804096';
-			const testTimestamp = 2524608000000;
+			const testTimestamp = 2_524_608_000_000;
 			const snowflake = new Snowflake(sampleEpoch);
 			const snow = snowflake.generate({ timestamp: testTimestamp });
 
@@ -70,7 +70,7 @@ describe('Snowflake', () => {
 
 		test('GIVEN timestamp as Date THEN returns predefined snowflake', () => {
 			const testId = '3971046231244804096';
-			const testDate = new Date(2524608000000);
+			const testDate = new Date(2_524_608_000_000);
 			const snowflake = new Snowflake(sampleEpoch);
 			const snow = snowflake.generate({ timestamp: testDate });
 
@@ -96,7 +96,8 @@ describe('Snowflake', () => {
 		test('GIVEN timestamp as NaN THEN returns error', () => {
 			const bigIntNaNErrorMessage = (() => {
 				try {
-					BigInt(NaN);
+					BigInt(Number.NaN);
+					// eslint-disable-next-line unicorn/error-message
 					throw new RangeError('');
 				} catch (error) {
 					return (error as RangeError).message;
@@ -104,13 +105,13 @@ describe('Snowflake', () => {
 			})();
 
 			const snowflake = new Snowflake(sampleEpoch);
-			expect(() => snowflake.generate({ timestamp: NaN })).toThrowError(bigIntNaNErrorMessage);
+			expect(() => snowflake.generate({ timestamp: Number.NaN })).toThrow(bigIntNaNErrorMessage);
 		});
 
 		test('GIVEN timestamp as boolean THEN returns error', () => {
 			const snowflake = new Snowflake(sampleEpoch);
 			// @ts-expect-error testing fail case
-			expect(() => snowflake.generate({ timestamp: true })).toThrowError(
+			expect(() => snowflake.generate({ timestamp: true })).toThrow(
 				'"timestamp" argument must be a number, bigint, or Date (received boolean)'
 			);
 		});
@@ -148,7 +149,7 @@ describe('Snowflake', () => {
 		test('GIVEN timestamp as Date and increment higher than 4095n THEN returns predefined snowflake', () => {
 			const testId = '6196';
 			const snowflake = new Snowflake(sampleEpoch);
-			const snow = snowflake.generate({ increment: 2100n });
+			const snow = snowflake.generate({ increment: 2_100n });
 
 			expect(snow.toString()).toBe(testId);
 		});
@@ -156,7 +157,7 @@ describe('Snowflake', () => {
 		test('GIVEN timestamp as Date and increment higher than 4095n THEN returns predefined snowflake', () => {
 			const testId = '5000';
 			const snowflake = new Snowflake(sampleEpoch);
-			const snow = snowflake.generate({ increment: 5000n });
+			const snow = snowflake.generate({ increment: 5_000n });
 
 			expect(snow.toString()).toBe(testId);
 		});
@@ -204,16 +205,16 @@ describe('Snowflake', () => {
 
 			test('GIVEN near-limit THEN it reaches limit', () => {
 				const snowflake = new Snowflake(sampleEpoch);
-				Reflect.set(snowflake, IncrementSymbol, 4094n);
+				Reflect.set(snowflake, IncrementSymbol, 4_094n);
 				const snow = snowflake.generate();
 
 				expect(snow.toString()).toBe('8190');
-				expect(Reflect.get(snowflake, IncrementSymbol)).toBe(4095n);
+				expect(Reflect.get(snowflake, IncrementSymbol)).toBe(4_095n);
 			});
 
 			test('GIVEN limit THEN it cycles to 0', () => {
 				const snowflake = new Snowflake(sampleEpoch);
-				Reflect.set(snowflake, IncrementSymbol, 4095n);
+				Reflect.set(snowflake, IncrementSymbol, 4_095n);
 				const snow = snowflake.generate();
 
 				expect(snow.toString()).toBe('8191');
@@ -222,7 +223,7 @@ describe('Snowflake', () => {
 
 			test('GIVEN over-limit THEN it cycles to 0', () => {
 				const snowflake = new Snowflake(sampleEpoch);
-				Reflect.set(snowflake, IncrementSymbol, 4096n);
+				Reflect.set(snowflake, IncrementSymbol, 4_096n);
 				const snow = snowflake.generate();
 
 				expect(snow.toString()).toBe('4096');
@@ -247,27 +248,27 @@ describe('Snowflake', () => {
 			const flake = snowflake.deconstruct('3971046231244935169');
 
 			expect(flake).toStrictEqual<DeconstructedSnowflake>({
-				id: 3971046231244935169n,
-				timestamp: 2524608000000n,
+				id: 3_971_046_231_244_935_169n,
+				timestamp: 2_524_608_000_000n,
 				workerId: 1n,
 				processId: 1n,
 				increment: 1n,
-				epoch: 1577836800000n
+				epoch: 1_577_836_800_000n
 			});
 		});
 
 		test('GIVEN id as bigint THEN returns data about snowflake', () => {
 			const snowflake = new Snowflake(sampleEpoch);
 
-			const flake = snowflake.deconstruct(3971046231244935168n);
+			const flake = snowflake.deconstruct(3_971_046_231_244_935_168n);
 
 			expect(flake).toStrictEqual<DeconstructedSnowflake>({
-				id: 3971046231244935168n,
-				timestamp: 2524608000000n,
+				id: 3_971_046_231_244_935_168n,
+				timestamp: 2_524_608_000_000n,
 				workerId: 1n,
 				processId: 1n,
 				increment: 0n,
-				epoch: 1577836800000n
+				epoch: 1_577_836_800_000n
 			});
 		});
 	});
@@ -279,27 +280,27 @@ describe('Snowflake', () => {
 			const flake = snowflake.decode('3971046231244935169');
 
 			expect(flake).toStrictEqual<DeconstructedSnowflake>({
-				id: 3971046231244935169n,
-				timestamp: 2524608000000n,
+				id: 3_971_046_231_244_935_169n,
+				timestamp: 2_524_608_000_000n,
 				workerId: 1n,
 				processId: 1n,
 				increment: 1n,
-				epoch: 1577836800000n
+				epoch: 1_577_836_800_000n
 			});
 		});
 
 		test('GIVEN id as bigint THEN returns data about snowflake', () => {
 			const snowflake = new Snowflake(sampleEpoch);
 
-			const flake = snowflake.decode(3971046231244935168n);
+			const flake = snowflake.decode(3_971_046_231_244_935_168n);
 
 			expect(flake).toStrictEqual<DeconstructedSnowflake>({
-				id: 3971046231244935168n,
-				timestamp: 2524608000000n,
+				id: 3_971_046_231_244_935_168n,
+				timestamp: 2_524_608_000_000n,
 				workerId: 1n,
 				processId: 1n,
 				increment: 0n,
-				epoch: 1577836800000n
+				epoch: 1_577_836_800_000n
 			});
 		});
 	});
@@ -309,12 +310,12 @@ describe('Snowflake', () => {
 
 		test('GIVEN id as string THEN returns data about snowflake', () => {
 			const timestamp = snowflake.timestampFrom('3971046231244935169');
-			expect(timestamp).toBe(2524608000000);
+			expect(timestamp).toBe(2_524_608_000_000);
 		});
 
 		test('GIVEN id as bigint THEN returns data about snowflake', () => {
-			const timestamp = snowflake.timestampFrom(3971046231244935168n);
-			expect(timestamp).toBe(2524608000000);
+			const timestamp = snowflake.timestampFrom(3_971_046_231_244_935_168n);
+			expect(timestamp).toBe(2_524_608_000_000);
 		});
 	});
 
@@ -325,11 +326,11 @@ describe('Snowflake', () => {
 		[BigInt, BigInt]
 	])('compare', (ctorA, ctorB) => {
 		test.each([
-			[ctorA(737141877803057244n), ctorB(254360814063058944n), 1],
-			[ctorA(1737141877803057244n), ctorB(254360814063058944n), 1],
-			[ctorA(737141877803057244n), ctorB(737141877803057244n), 0],
-			[ctorA(254360814063058944n), ctorB(737141877803057244n), -1],
-			[ctorA(254360814063058944n), ctorB(1737141877803057244n), -1]
+			[ctorA(737_141_877_803_057_244n), ctorB(254_360_814_063_058_944n), 1],
+			[ctorA(1_737_141_877_803_057_244n), ctorB(254_360_814_063_058_944n), 1],
+			[ctorA(737_141_877_803_057_244n), ctorB(737_141_877_803_057_244n), 0],
+			[ctorA(254_360_814_063_058_944n), ctorB(737_141_877_803_057_244n), -1],
+			[ctorA(254_360_814_063_058_944n), ctorB(1_737_141_877_803_057_244n), -1]
 		])('GIVEN %o and %o THEN returns %d', (a, b, expected) => {
 			expect(Snowflake.compare(a, b)).toBe(expected);
 		});

@@ -13,7 +13,8 @@ const TypedArrayPrototype = Object.getPrototypeOf(Uint8Array) as Constructor<Nod
 
 /**
  * Deep clone an object
- * @param source The object to clone
+ *
+ * @param source - The object to clone
  */
 export function deepClone<T>(source: T): T {
 	// Check if it's a primitive (string, number, boolean, bigint)
@@ -34,17 +35,18 @@ export function deepClone<T>(source: T): T {
 	}
 
 	if (Array.isArray(source)) {
-		const output = new (source.constructor as ArrayConstructor)(source.length) as unknown as T & T extends (infer S)[] ? S[] : never;
+		const output = new (source.constructor as ArrayConstructor)(source.length) as unknown as T extends (infer S)[] ? S[] : never;
 
-		for (let i = 0; i < source.length; i++) {
-			output[i] = deepClone(source[i]);
+		// eslint-disable-next-line unicorn/no-for-loop
+		for (let idx = 0; idx < source.length; idx++) {
+			output[idx] = deepClone(source[idx]);
 		}
 
 		return output as unknown as T;
 	}
 
 	if (source instanceof Map) {
-		const output = new (source.constructor as MapConstructor)() as unknown as T & T extends Map<infer K, infer V> ? Map<K, V> : never;
+		const output = new (source.constructor as MapConstructor)() as unknown as T extends Map<infer K, infer V> ? Map<K, V> : never;
 
 		for (const [key, value] of source.entries()) {
 			output.set(key, deepClone(value));
@@ -54,7 +56,7 @@ export function deepClone<T>(source: T): T {
 	}
 
 	if (source instanceof Set) {
-		const output = new (source.constructor as SetConstructor)() as unknown as T & T extends Set<infer K> ? Set<K> : never;
+		const output = new (source.constructor as SetConstructor)() as unknown as T extends Set<infer K> ? Set<K> : never;
 
 		for (const value of source.values()) {
 			output.add(deepClone(value));
@@ -64,7 +66,7 @@ export function deepClone<T>(source: T): T {
 	}
 
 	if (typeof source === 'object') {
-		const output = new ((source as T & (object | Record<PropertyKey, unknown>)).constructor as ObjectConstructor)() as unknown as Record<
+		const output = new ((source as T & (Record<PropertyKey, unknown> | object)).constructor as ObjectConstructor)() as unknown as Record<
 			PropertyKey,
 			unknown
 		>;

@@ -7,10 +7,9 @@ import { toIntegerOrInfinityOrThrow } from './shared/_toIntegerOrInfinityOrThrow
 /**
  * Creates an iterable with the first `count` elements.
  *
- * @param iterable The iterator to take values from.
- * @param count The maximum number of values to take from the iterator.
+ * @param iterable - The iterator to take values from.
+ * @param count - The maximum number of values to take from the iterator.
  * @returns An iterator that yields at most `count` values from the provided iterator.
- *
  * @example
  * ```typescript
  * import { take } from '@sapphire/iterator-utilities';
@@ -21,14 +20,15 @@ import { toIntegerOrInfinityOrThrow } from './shared/_toIntegerOrInfinityOrThrow
  * ```
  */
 export function take<const ElementType>(iterable: IterableResolvable<ElementType>, count: number): IterableIterator<ElementType> {
+	// eslint-disable-next-line no-param-reassign
 	count = assertNotNegative(toIntegerOrInfinityOrThrow(count), count);
 	if (count === 0) return empty();
 
-	let i = 0;
+	let idx = 0;
 	const resolvedIterable = from(iterable);
 	return makeIterableIterator<ElementType>(() =>
-		i >= count //
+		idx >= count //
 			? { done: true, value: undefined }
-			: (i++, resolvedIterable.next())
+			: (idx++, resolvedIterable.next())
 	);
 }

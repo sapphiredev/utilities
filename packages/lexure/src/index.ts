@@ -5,6 +5,7 @@ export * from './lib/lexer/streams/parameters/QuotedParameter';
 export * from './lib/lexer/streams/parameters/WordParameter';
 export * from './lib/lexer/streams/ParameterStream';
 export * from './lib/lexer/streams/raw/TokenStream';
+export * from './lib/lexer/streams/raw/types';
 export * from './lib/parser/Parser';
 export * from './lib/parser/ParserResult';
 export * from './lib/parser/strategies/EmptyStrategy';

@@ -23,7 +23,6 @@ on:
           - iterator-utilities
           - lexure
           - node-utilities
-          - phisherman
           - prettier-config
           - ratelimits
           - result

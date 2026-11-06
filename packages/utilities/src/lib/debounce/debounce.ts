@@ -9,16 +9,18 @@
 
 export interface DebounceSettings {
 	/**
-	 * The number of milliseconds to delay.
-	 * @default 0
-	 */
-	wait?: number;
-
-	/**
 	 * The maximum time `func` is allowed to be delayed before it's invoked
-	 * @default null
+	 *
+	 * @defaultValue null
 	 */
 	maxWait?: number | null;
+
+	/**
+	 * The number of milliseconds to delay.
+	 *
+	 * @defaultValue 0
+	 */
+	wait?: number;
 }
 
 export interface DebouncedFunc<FnArgumentsType extends any[], FnReturnType> {
@@ -60,9 +62,9 @@ export interface DebouncedFunc<FnArgumentsType extends any[], FnReturnType> {
  *
  * See David Corbacho’s article for details over the differences between _.debounce and _.throttle.
  *
- * @param func The function to debounce.
- * @param options The options object.
- * @return Returns the new debounced function.
+ * @param func - The function to debounce.
+ * @param options - The options object.
+ * @returns Returns the new debounced function.
  */
 export function debounce<FnArgumentsType extends any[], FnReturnType>(
 	func: (...args: FnArgumentsType) => FnReturnType,
@@ -124,6 +126,7 @@ export function debounce<FnArgumentsType extends any[], FnReturnType>(
 			trailingEdge(time);
 			return;
 		}
+
 		// Restart the timer.
 		timerId = setTimeout(timerExpired, remainingWait(time));
 	}
@@ -159,6 +162,7 @@ export function debounce<FnArgumentsType extends any[], FnReturnType>(
 			if (timerId === undefined) {
 				return leadingEdge(lastCallTime);
 			}
+
 			if (maxWait !== null) {
 				// Handle invocations in a tight loop.
 				timerId = setTimeout(timerExpired, wait);
@@ -166,9 +170,7 @@ export function debounce<FnArgumentsType extends any[], FnReturnType>(
 			}
 		}
 
-		if (timerId === undefined) {
-			timerId = setTimeout(timerExpired, wait);
-		}
+		timerId ??= setTimeout(timerExpired, wait);
 
 		return result;
 	}

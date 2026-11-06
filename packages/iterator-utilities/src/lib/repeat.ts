@@ -5,9 +5,8 @@ import { toNumberOrThrow } from './shared/_toNumberOrThrow';
 /**
  * Creates an iterable that repeats the input iterable `count` times.
  *
- * @param value The value to be repeated.
- * @param count The number of times to repeat the value.
- *
+ * @param value - The value to be repeated.
+ * @param count - The number of times to repeat the value.
  * @example
  * ```typescript
  * import { repeat } from '@sapphire/iterator-utilities';
@@ -16,16 +15,16 @@ import { toNumberOrThrow } from './shared/_toNumberOrThrow';
  * console.log([...iterator]);
  * // Output: ['Hello, world!', 'Hello, world!', 'Hello, world!']
  * ```
- *
  * @remarks This function does not clone `value`, it will be repeated as a reference.
  */
 export function repeat<const ElementType>(value: ElementType, count: number): IterableIterator<ElementType> {
+	// eslint-disable-next-line no-param-reassign
 	count = assertNotNegative(toNumberOrThrow(count), count);
 
-	let i = 0;
+	let idx = 0;
 	return makeIterableIterator<ElementType>(() =>
-		i >= count //
+		idx >= count //
 			? { done: true, value: undefined }
-			: (i++, { done: false, value })
+			: (idx++, { done: false, value })
 	);
 }

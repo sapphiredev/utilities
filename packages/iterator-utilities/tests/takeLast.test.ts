@@ -39,6 +39,6 @@ describe('takeLast', () => {
 	test('GIVEN negative limit THEN throws an error', () => {
 		const iterable = [1, 2, 3];
 		const limit = -1;
-		expect(() => takeLast(iterable, limit)).toThrowError('-1 must be a non-negative number');
+		expect(() => takeLast(iterable, limit)).toThrow('-1 must be a non-negative number');
 	});
 });

@@ -17,14 +17,14 @@ describe('poll', () => {
 		const result = poll(cb, cbCondition, { maximumRetries: 0 });
 
 		await expect(result).resolves.toBe(pass);
-		expect(cb).toBeCalledTimes(1);
+		expect(cb).toHaveBeenCalledTimes(1);
 		expect(cb).toHaveBeenCalledWith(undefined);
-		expect(cbCondition).toBeCalledTimes(0);
+		expect(cbCondition).toHaveBeenCalledTimes(0);
 	});
 
 	test('GIVEN a function that fails twice then succeeds THEN calls that function thrice', async () => {
 		const cb = vi
-			.fn<[], string>() //
+			.fn<() => string>() //
 			.mockReturnValueOnce(fail)
 			.mockReturnValueOnce(fail)
 			.mockReturnValueOnce(pass);
@@ -32,8 +32,8 @@ describe('poll', () => {
 		const result = poll(cb, cbCondition);
 
 		await expect(result).resolves.toBe(pass);
-		expect(cb).toBeCalledTimes(3);
-		expect(cbCondition).toBeCalledTimes(3);
+		expect(cb).toHaveBeenCalledTimes(3);
+		expect(cbCondition).toHaveBeenCalledTimes(3);
 	});
 
 	describe('signal', () => {
@@ -43,8 +43,8 @@ describe('poll', () => {
 			const result = poll(cb, cbCondition, { signal: AbortSignal.abort() });
 
 			await expect(result).rejects.toStrictEqual(new DOMException('This operation was aborted', 'AbortError'));
-			expect(cb).toBeCalledTimes(0);
-			expect(cbCondition).toBeCalledTimes(0);
+			expect(cb).toHaveBeenCalledTimes(0);
+			expect(cbCondition).toHaveBeenCalledTimes(0);
 		});
 
 		test('GIVEN an AbortSignal that is aborted in the condition THEN throws without retry', async () => {
@@ -57,8 +57,8 @@ describe('poll', () => {
 			const result = poll(cb, cbCondition, { signal: controller.signal });
 
 			await expect(result).rejects.toStrictEqual(new DOMException('This operation was aborted', 'AbortError'));
-			expect(cb).toBeCalledTimes(1);
-			expect(cbCondition).toBeCalledTimes(1);
+			expect(cb).toHaveBeenCalledTimes(1);
+			expect(cbCondition).toHaveBeenCalledTimes(1);
 		});
 	});
 
@@ -76,22 +76,22 @@ describe('poll', () => {
 			await expect(result).rejects.toStrictEqual(new TypeError('Expected maximumRetries to be a number'));
 		});
 
-		test.each([NaN, -NaN, -Infinity, -5])('GIVEN %j THEN throws RangeError', async (maximumRetries) => {
+		test.each([Number.NaN, -Number.NaN, -Infinity, -5])('GIVEN %j THEN throws RangeError', async (maximumRetries) => {
 			const result = poll(cb, cbConditionRaw, { maximumRetries });
 			await expect(result).rejects.toStrictEqual(new RangeError('Expected maximumRetries to be a non-negative number'));
 		});
 
 		test('GIVEN a poll with only one retry and fails both THEN calls that function twice, but condition only once', async () => {
 			const cb = vi
-				.fn<[], string>() //
+				.fn<() => string>() //
 				.mockReturnValueOnce(fail)
 				.mockReturnValueOnce(fail);
 			const cbCondition = vi.fn((result: string) => result === pass);
 			const result = poll(cb, cbCondition, { maximumRetries: 1 });
 
 			await expect(result).resolves.toBe(fail);
-			expect(cb).toBeCalledTimes(2);
-			expect(cbCondition).toBeCalledTimes(1);
+			expect(cb).toHaveBeenCalledTimes(2);
+			expect(cbCondition).toHaveBeenCalledTimes(1);
 		});
 
 		test('GIVEN a poll with two retries and succeeds first THEN calls that function and condition once', async () => {
@@ -100,20 +100,28 @@ describe('poll', () => {
 			const result = poll(cb, cbCondition, { maximumRetries: 2 });
 
 			await expect(result).resolves.toBe(pass);
-			expect(cb).toBeCalledTimes(1);
-			expect(cbCondition).toBeCalledTimes(1);
+			expect(cb).toHaveBeenCalledTimes(1);
+			expect(cbCondition).toHaveBeenCalledTimes(1);
 		});
 	});
 
 	describe('waitBetweenRetries', () => {
+		beforeEach(() => {
+			vi.useFakeTimers();
+		});
+
+		afterEach(() => {
+			vi.useRealTimers();
+		});
+
 		test.each([undefined, null, 0, 5])('GIVEN %j THEN passes validation', async (waitBetweenRetries) => {
 			const cb = vi.fn(cbRaw);
 			const cbCondition = vi.fn(cbConditionRaw);
 			const result = poll(cb, cbCondition, { waitBetweenRetries });
 
 			await expect(result).resolves.toBe(pass);
-			expect(cb).toBeCalledTimes(1);
-			expect(cbCondition).toBeCalledTimes(1);
+			expect(cb).toHaveBeenCalledTimes(1);
+			expect(cbCondition).toHaveBeenCalledTimes(1);
 		});
 
 		test.each(['foo', true])('GIVEN %j THEN throws TypeError', async (waitBetweenRetries) => {
@@ -122,60 +130,84 @@ describe('poll', () => {
 			const result = poll(cb, cbCondition, { waitBetweenRetries: waitBetweenRetries as any });
 
 			await expect(result).rejects.toStrictEqual(new TypeError('Expected waitBetweenRetries to be a number'));
-			expect(cb).toBeCalledTimes(0);
-			expect(cbCondition).toBeCalledTimes(0);
+			expect(cb).toHaveBeenCalledTimes(0);
+			expect(cbCondition).toHaveBeenCalledTimes(0);
 		});
 
-		test.each([NaN, -NaN, -Infinity, -5, Infinity, 5.5])('GIVEN %j THEN throws RangeError', async (waitBetweenRetries) => {
+		test.each([Number.NaN, -Number.NaN, -Infinity, -5, Infinity, 5.5])('GIVEN %j THEN throws RangeError', async (waitBetweenRetries) => {
 			const cb = vi.fn(cbRaw);
 			const cbCondition = vi.fn(cbConditionRaw);
 			const result = poll(cb, cbCondition, { waitBetweenRetries });
 
 			await expect(result).rejects.toStrictEqual(new RangeError('Expected waitBetweenRetries to be a positive safe integer'));
-			expect(cb).toBeCalledTimes(0);
-			expect(cbCondition).toBeCalledTimes(0);
+			expect(cb).toHaveBeenCalledTimes(0);
+			expect(cbCondition).toHaveBeenCalledTimes(0);
 		});
 
 		test('GIVEN a poll with a wait of 5ms THEN waits 5ms between retries', async () => {
 			const cb = vi
-				.fn<[], string>() //
+				.fn<() => string>() //
+				.mockReturnValueOnce(fail)
 				.mockReturnValueOnce(fail)
 				.mockReturnValueOnce(pass);
 			const cbCondition = vi.fn(cbConditionRaw);
 
-			const timeout = vi.spyOn(global, 'setTimeout').mockImplementationOnce((cb) => {
-				cb();
-				return 0 as any;
-			});
 			const result = poll(cb, cbCondition, { waitBetweenRetries: 5 });
+			await vi.advanceTimersByTimeAsync(0);
+			expect(cb).toHaveBeenCalledTimes(1);
+			expect(cbCondition).toHaveBeenCalledTimes(1);
+			expect(vi.getTimerCount()).toBe(1);
+
+			await vi.advanceTimersByTimeAsync(4);
+			expect(cb).toHaveBeenCalledTimes(1);
+			expect(cbCondition).toHaveBeenCalledTimes(1);
+
+			await vi.advanceTimersByTimeAsync(1);
+			expect(cb).toHaveBeenCalledTimes(2);
+			expect(cbCondition).toHaveBeenCalledTimes(2);
+			expect(vi.getTimerCount()).toBe(1);
+
+			await vi.advanceTimersByTimeAsync(4);
+			expect(cb).toHaveBeenCalledTimes(2);
+			expect(cbCondition).toHaveBeenCalledTimes(2);
+
+			await vi.advanceTimersByTimeAsync(1);
 			await expect(result).resolves.toBe(pass);
-			expect(timeout).toBeCalledTimes(1);
-			expect(timeout.mock.calls[0][1]).toBe(5);
+			expect(cb).toHaveBeenCalledTimes(3);
+			expect(cbCondition).toHaveBeenCalledTimes(3);
+			expect(vi.getTimerCount()).toBe(0);
 		});
 
-		test('GIVEN a poll with a wait of 5ms THEN waits 5ms between retries', async () => {
+		test('GIVEN a signal aborted during the retry delay THEN rejects without retrying', async () => {
 			const cb = vi
-				.fn<[], string>() //
+				.fn<() => string>() //
 				.mockReturnValueOnce(fail)
 				.mockReturnValueOnce(pass);
 			const cbCondition = vi.fn(cbConditionRaw);
 
-			vi.useFakeTimers({ shouldAdvanceTime: true, advanceTimeDelta: 5 });
-			const signal = AbortSignal.timeout(5);
+			const controller = new AbortController();
+			const { signal } = controller;
 			const result = poll(cb, cbCondition, { signal, waitBetweenRetries: 10 });
-			vi.useRealTimers();
+			const rejection = expect(result).rejects.toStrictEqual(new DOMException('This operation was aborted', 'AbortError'));
+			await vi.advanceTimersByTimeAsync(0);
+			expect(vi.getTimerCount()).toBe(1);
 
-			await expect(result).rejects.toStrictEqual(new DOMException('The operation was aborted due to timeout', 'TimeoutError'));
-			expect(cb).toBeCalledTimes(1);
+			await vi.advanceTimersByTimeAsync(5);
+			controller.abort();
+
+			await rejection;
+			expect(vi.getTimerCount()).toBe(0);
+			await vi.advanceTimersByTimeAsync(5);
+			expect(cb).toHaveBeenCalledTimes(1);
 			expect(cb).toHaveBeenCalledWith(signal);
-			expect(cbCondition).toBeCalledTimes(1);
+			expect(cbCondition).toHaveBeenCalledTimes(1);
 			expect(cbCondition).toHaveBeenCalledWith(fail, signal);
 		});
 	});
 
 	describe('verbose', () => {
 		test('GIVEN verbose but no waitBetweenRetries THEN does not call console.log', async () => {
-			const cb = vi.fn<[], string>().mockReturnValueOnce(fail).mockReturnValueOnce(pass);
+			const cb = vi.fn<() => string>().mockReturnValueOnce(fail).mockReturnValueOnce(pass);
 			const consoleLog = vi.spyOn(console, 'log').mockImplementation(() => undefined);
 			const result = poll(cb, cbConditionRaw, { verbose: true });
 
@@ -184,7 +216,7 @@ describe('poll', () => {
 		});
 
 		test('GIVEN verbose and waitBetweenRetries THEN calls console.log on retry', async () => {
-			const cb = vi.fn<[], string>().mockReturnValueOnce(fail).mockReturnValueOnce(pass);
+			const cb = vi.fn<() => string>().mockReturnValueOnce(fail).mockReturnValueOnce(pass);
 			const consoleLog = vi.spyOn(console, 'log').mockImplementation(() => undefined);
 			const result = poll(cb, cbConditionRaw, { verbose: true, waitBetweenRetries: 5 });
 

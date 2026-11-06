@@ -1,4 +1,4 @@
-import { setTimeout as sleep } from 'node:timers/promises';
+import { setTimeout } from 'node:timers/promises';
 import { EventIterator } from '../src';
 import { people, PeopleEmitter } from './lib/MockEmitter';
 import type { Person } from './lib/Person';
@@ -80,6 +80,7 @@ describe('EventIterator', () => {
 
 		const iter = emitter.createPeopleIterator({ idle: 500 });
 
+		// eslint-disable-next-line no-empty-pattern
 		for await (const {} of iter) {
 			// Give always false expectation to make this always throw
 			expect(false).toBe(true);
@@ -93,7 +94,7 @@ describe('EventIterator', () => {
 	test('EventIterator timer properly idles out with iterations', async () => {
 		const emitter = new PeopleEmitter();
 
-		const iter = emitter.createPeopleIterator({ idle: 1200 });
+		const iter = emitter.createPeopleIterator({ idle: 1_200 });
 		let count = 0;
 
 		for await (const value of iter) {
@@ -138,6 +139,7 @@ describe('EventIterator', () => {
 		const iter = emitter.createPeopleIterator();
 		expect(emitter.getMaxListeners()).toBe(2);
 
+		// eslint-disable-next-line no-unreachable-loop, no-empty-pattern
 		for await (const {} of iter) {
 			break;
 		}
@@ -155,6 +157,7 @@ describe('EventIterator', () => {
 		expect(emitter.getMaxListeners()).toBe(2);
 
 		try {
+			// eslint-disable-next-line no-unreachable-loop, no-empty-pattern
 			for await (const {} of iter) {
 				throw new Error('Ahhhhhhhhh');
 			}
@@ -187,7 +190,7 @@ describe('EventIterator', () => {
 		const iter = emitter.createPeopleIterator();
 		expect(iter.ended).toBe(false);
 
-		await sleep(3000);
+		await setTimeout(3_000);
 		await iter.throw();
 		expect(iter.ended).toBe(true);
 
@@ -204,7 +207,8 @@ describe('EventIterator', () => {
 		const iter = emitter.createPeopleIterator();
 		expect(iter.ended).toBe(false);
 
-		await sleep(3000);
+		await setTimeout(3_000);
+		// eslint-disable-next-line no-unreachable-loop, no-empty-pattern
 		for await (const {} of iter) break;
 		expect(iter.ended).toBe(true);
 

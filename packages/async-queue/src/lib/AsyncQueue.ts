@@ -6,7 +6,8 @@ import { AsyncQueueEntry } from './_AsyncQueueEntry';
 export class AsyncQueue {
 	/**
 	 * The amount of entries in the queue, including the head.
-	 * @seealso {@link queued} for the queued count.
+	 *
+	 * @see {@link queued} for the queued count.
 	 */
 	public get remaining(): number {
 		return this.promises.length;
@@ -14,7 +15,8 @@ export class AsyncQueue {
 
 	/**
 	 * The amount of queued entries.
-	 * @seealso {@link remaining} for the count with the head.
+	 *
+	 * @see {@link remaining} for the count with the head.
 	 */
 	public get queued(): number {
 		return this.remaining === 0 ? 0 : this.remaining - 1;
@@ -27,6 +29,7 @@ export class AsyncQueue {
 
 	/**
 	 * Waits for last promise and queues a new one
+	 *
 	 * @example
 	 * ```typescript
 	 * const queue = new AsyncQueue();
@@ -46,12 +49,12 @@ export class AsyncQueue {
 	 * request(someUrl3, someOptions3); // Will call fetch() after the second finished
 	 * ```
 	 */
-	public wait(options?: Readonly<AsyncQueueWaitOptions>): Promise<void> {
+	public async wait(options?: Readonly<AsyncQueueWaitOptions>): Promise<void> {
 		const entry = new AsyncQueueEntry(this);
 
 		if (this.promises.length === 0) {
 			this.promises.push(entry);
-			return Promise.resolve();
+			return;
 		}
 
 		this.promises.push(entry);
@@ -78,7 +81,8 @@ export class AsyncQueue {
 
 	/**
 	 * Aborts all the pending promises.
-	 * @note To avoid race conditions, this does **not** unlock the head lock.
+	 *
+	 * To avoid race conditions, this does **not** unlock the head lock.
 	 */
 	public abortAll(): void {
 		// If there are no queued entries, skip early.
@@ -86,8 +90,8 @@ export class AsyncQueue {
 
 		// Abort all the entries except the head, that is why the loop starts at
 		// 1 and not at 0.
-		for (let i = 1; i < this.promises.length; ++i) {
-			this.promises[i].abort();
+		for (let index = 1; index < this.promises.length; ++index) {
+			this.promises[index].abort();
 		}
 
 		this.promises.length = 1;
@@ -95,5 +99,5 @@ export class AsyncQueue {
 }
 
 export interface AsyncQueueWaitOptions {
-	signal?: AbortSignal | undefined | null;
+	signal?: AbortSignal | null | undefined;
 }

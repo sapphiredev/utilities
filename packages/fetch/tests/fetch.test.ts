@@ -1,7 +1,9 @@
 import { HttpResponse, http } from 'msw';
 import { setupServer } from 'msw/node';
+import { Buffer } from 'node:buffer';
 import { URL as NodeUrl } from 'node:url';
-import { FetchMediaContentTypes, FetchMethods, FetchResultTypes, QueryError, fetch } from '../src/index.js';
+import type { QueryError } from '../src/index.js';
+import { FetchMediaContentTypes, FetchMethods, FetchResultTypes, fetch } from '../src/index.js';
 
 describe('fetch', () => {
 	const server = setupServer(
@@ -19,7 +21,7 @@ describe('fetch', () => {
 			try {
 				await request.json();
 				return HttpResponse.json({ message: 'Successfully parsed body as JSON, this is unexpected!!' }, { status: 200 });
-			} catch (error) {
+			} catch {
 				return HttpResponse.json({ message: 'Failed to parse body as JSON, this is expected!!' }, { status: 200 });
 			}
 		})
@@ -93,8 +95,8 @@ describe('fetch', () => {
 			expect(response).toStrictEqual(JSON.stringify({ test: true }));
 		});
 
-		test('GIVEN fetch w/ Browser URL class THEN returns result', async () => {
-			const url = new URL('http://localhost/simpleget');
+		test('GIVEN fetch w/ URL class THEN returns result', async () => {
+			const url = new NodeUrl('http://localhost/simpleget');
 			const response = await fetch(url, FetchResultTypes.Text);
 
 			expect(response).toStrictEqual(JSON.stringify({ test: true }));
@@ -144,7 +146,7 @@ describe('fetch', () => {
 			const url = 'http://localhost/404';
 			const fetchResult = fetch(url, FetchResultTypes.JSON);
 
-			await expect(fetchResult).rejects.toThrowError(`Failed to request '${url}' with code 404.`);
+			await expect(fetchResult).rejects.toThrow(`Failed to request '${url}' with code 404.`);
 			await expect(fetchResult).rejects.toBeInstanceOf(Error);
 
 			try {
@@ -159,10 +161,10 @@ describe('fetch', () => {
 		});
 
 		test('GIVEN fetch w/ unknown path AND URL object THEN returns FetchError', async () => {
-			const url = new URL('http://localhost/404');
+			const url = new NodeUrl('http://localhost/404');
 			const fetchResult = fetch(url, FetchResultTypes.JSON);
 
-			await expect(fetchResult).rejects.toThrowError(`Failed to request '${url}' with code 404.`);
+			await expect(fetchResult).rejects.toThrow(`Failed to request '${url}' with code 404.`);
 			await expect(fetchResult).rejects.toBeInstanceOf(Error);
 
 			try {
@@ -179,7 +181,7 @@ describe('fetch', () => {
 			const url = 'http://localhost/404';
 			const fetchResult = fetch(url, FetchResultTypes.JSON);
 
-			await expect(fetchResult).rejects.toThrowError(`Failed to request '${url}' with code 404.`);
+			await expect(fetchResult).rejects.toThrow(`Failed to request '${url}' with code 404.`);
 			await expect(fetchResult).rejects.toBeInstanceOf(Error);
 
 			try {
@@ -194,7 +196,7 @@ describe('fetch', () => {
 
 		test('GIVEN fetch w/ invalid type THEN throws', async () => {
 			// @ts-expect-error handling error case
-			await expect(fetch('http://localhost/simpleget', 'type not found')).rejects.toThrowError('Unknown type "type not found"');
+			await expect(fetch('http://localhost/simpleget', 'type not found')).rejects.toThrow('Unknown type "type not found"');
 		});
 	});
 });

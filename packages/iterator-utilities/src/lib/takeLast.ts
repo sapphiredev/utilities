@@ -9,10 +9,9 @@ import { toIterableIterator } from './toIterableIterator';
 /**
  * Consumes the iterable and returns a new iterable with the last `count` elements.
  *
- * @param iterable An iterator to take values from.
- * @param count The number of values to take from the end of the iterator.
+ * @param iterable - An iterator to take values from.
+ * @param count - The number of values to take from the end of the iterator.
  * @returns An iterator that contains the last `count` elements of the provided iterator.
- *
  * @example
  * ```typescript
  * import { takeLast } from '@sapphire/iterator-utilities';
@@ -21,23 +20,22 @@ import { toIterableIterator } from './toIterableIterator';
  * console.log([...takeLast(iterable, 2)]);
  * // Output: [4, 5]
  * ```
- *
  * @remarks
  *
  * This function consumes the entire iterator.
  */
 export function takeLast<const ElementType>(iterable: IterableResolvable<ElementType>, count: number): IterableIterator<ElementType> {
-	count = assertNotNegative(toIntegerOrInfinityOrThrow(count), count);
-	if (count === 0) return empty();
-	if (count === Number.POSITIVE_INFINITY) return toIterableIterator(iterable);
+	const normalizedCount = assertNotNegative(toIntegerOrInfinityOrThrow(count), count);
+	if (normalizedCount === 0) return empty();
+	if (normalizedCount === Number.POSITIVE_INFINITY) return toIterableIterator(iterable);
 
 	const array = toArray(iterable);
-	let i = Math.max(0, array.length - count);
+	let index = Math.max(0, array.length - normalizedCount);
 	return makeIterableIterator<ElementType>(() => {
-		if (i >= array.length) {
+		if (index >= array.length) {
 			return { done: true, value: undefined };
 		}
 
-		return { done: false, value: array[i++] };
+		return { done: false, value: array[index++] };
 	});
 }

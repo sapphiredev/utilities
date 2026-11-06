@@ -12,6 +12,11 @@
 
 </div>
 
+## Features
+
+- Shareable Prettier configuration for Sapphire Community projects
+- Reuse consistent formatting defaults without maintaining a local config
+
 ## Installation
 
 You can use the following command to install this package, or replace `npm install` with your package manager of choice.
@@ -33,12 +38,10 @@ Add the Prettier config to your `package.json`:
 }
 ```
 
-Or to `prettierrc.mjs`:
+Or re-export the config directly from `prettierrc.mjs`:
 
 ```js
-import SapphirePrettierConfig from '@sapphire/prettier-config';
-
-export default SapphirePrettierConfig;
+export { default } from '@sapphire/prettier-config';
 ```
 
 ## Buy us some doughnuts

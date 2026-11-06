@@ -32,7 +32,7 @@ describe('sum', () => {
 	});
 
 	test('GIVEN iterable with NaN THEN throws RangeError', () => {
-		const iterable = [1, 2, 3, NaN, 5];
+		const iterable = [1, 2, 3, Number.NaN, 5];
 		expect(() => sum(iterable)).toThrow(new RangeError('NaN must be a non-NaN number'));
 	});
 

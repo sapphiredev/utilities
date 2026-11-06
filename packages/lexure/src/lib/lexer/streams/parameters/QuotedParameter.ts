@@ -1,9 +1,11 @@
-import type { QuotedToken } from '../raw/TokenStream';
+import type { QuotedToken } from '../raw/types';
 import { BaseParameter } from './BaseParameter';
 
 export class QuotedParameter extends BaseParameter {
 	public readonly value: string;
+
 	public readonly open: string;
+
 	public readonly close: string;
 
 	public constructor(separators: readonly string[], part: Omit<QuotedToken, 'type'>) {

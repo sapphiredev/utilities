@@ -5,10 +5,15 @@ import type { AsyncQueue } from './AsyncQueue';
  */
 export class AsyncQueueEntry {
 	public readonly promise: Promise<void>;
+
 	private resolve!: () => void;
+
 	private reject!: (error: Error) => void;
+
 	private readonly queue: AsyncQueue;
+
 	private signal: PolyFillAbortSignal | null = null;
+
 	private signalListener: (() => void) | null = null;
 
 	public constructor(queue: AsyncQueue) {
@@ -29,6 +34,7 @@ export class AsyncQueueEntry {
 
 			this.reject(new Error('Request aborted manually'));
 		};
+
 		this.signal.addEventListener('abort', this.signalListener);
 		return this;
 	}

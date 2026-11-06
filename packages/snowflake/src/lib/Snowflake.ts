@@ -24,7 +24,7 @@ const TimestampFieldDivisor = 2 ** 22;
 /**
  * A class for generating and deconstructing Twitter snowflakes.
  *
- * A {@link https://developer.twitter.com/en/docs/twitter-ids Twitter snowflake}
+ * A {@link https://developer.twitter.com/en/docs/twitter-ids | Twitter snowflake}
  * is a 64-bit unsigned integer with 4 fields that have a fixed epoch value.
  *
  * If we have a snowflake `266241948824764416` we can represent it as binary:
@@ -36,45 +36,50 @@ const TimestampFieldDivisor = 2 ** 22;
  */
 export class Snowflake {
 	/**
-	 * Alias for {@link deconstruct}
+	 * Alias for {@link Snowflake.deconstruct}
 	 */
 	// eslint-disable-next-line @typescript-eslint/unbound-method
 	public decode = this.deconstruct;
 
 	/**
 	 * Internal reference of the epoch passed in the constructor
+	 *
 	 * @internal
 	 */
 	private readonly [EpochSymbol]: bigint;
 
 	/**
 	 * Internal reference of the epoch passed in the constructor as a number
+	 *
 	 * @internal
 	 */
 	private readonly [EpochNumberSymbol]: number;
 
 	/**
 	 * Internal incrementor for generating snowflakes
+	 *
 	 * @internal
 	 */
 	private [IncrementSymbol] = 0n;
 
 	/**
 	 * The process ID that will be used by default in the generate method
+	 *
 	 * @internal
 	 */
 	private [ProcessIdSymbol] = 1n;
 
 	/**
 	 * The worker ID that will be used by default in the generate method
+	 *
 	 * @internal
 	 */
 	private [WorkerIdSymbol] = 0n;
 
 	/**
-	 * @param epoch the epoch to use
+	 * @param epoch - the epoch to use
 	 */
-	public constructor(epoch: number | bigint | Date) {
+	public constructor(epoch: Date | bigint | number) {
 		this[EpochSymbol] = BigInt(epoch instanceof Date ? epoch.getTime() : epoch);
 		this[EpochNumberSymbol] = Number(this[EpochSymbol]);
 	}
@@ -102,9 +107,10 @@ export class Snowflake {
 
 	/**
 	 * Sets the process ID that will be used by default for the {@link generate} method
-	 * @param value The new value, will be coerced to BigInt and masked with `0b11111n`
+	 *
+	 * @param value - The new value, will be coerced to BigInt and masked with `0b11111n`
 	 */
-	public set processId(value: number | bigint) {
+	public set processId(value: bigint | number) {
 		this[ProcessIdSymbol] = BigInt(value) & MaximumProcessId;
 	}
 
@@ -117,17 +123,19 @@ export class Snowflake {
 
 	/**
 	 * Sets the worker ID that will be used by default for the {@link generate} method
-	 * @param value The new value, will be coerced to BigInt and masked with `0b11111n`
+	 *
+	 * @param value - The new value, will be coerced to BigInt and masked with `0b11111n`
 	 */
-	public set workerId(value: number | bigint) {
+	public set workerId(value: bigint | number) {
 		this[WorkerIdSymbol] = BigInt(value) & MaximumWorkerId;
 	}
 
 	/**
 	 * Generates a snowflake given an epoch and optionally a timestamp
-	 * @param options options to pass into the generator, see {@link SnowflakeGenerateOptions}
 	 *
-	 * **note** when `increment` is not provided it defaults to the private `increment` of the instance
+	 * @param options - Options for generation. `increment`, `timestamp`, `workerId`, and `processId` override their configured defaults.
+	 *
+	 * When `increment` is not provided, it defaults to the instance's private increment.
 	 * @example
 	 * ```typescript
 	 * const epoch = new Date('2000-01-01T00:00:00.000Z');
@@ -135,12 +143,9 @@ export class Snowflake {
 	 * ```
 	 * @returns A unique snowflake
 	 */
-	public generate({
-		increment,
-		timestamp = Date.now(),
-		workerId = this[WorkerIdSymbol],
-		processId = this[ProcessIdSymbol]
-	}: SnowflakeGenerateOptions = {}) {
+	public generate(options: SnowflakeGenerateOptions = {}) {
+		let { increment, timestamp = Date.now() } = options;
+		const { workerId = this[WorkerIdSymbol], processId = this[ProcessIdSymbol] } = options;
 		if (timestamp instanceof Date) timestamp = BigInt(timestamp.getTime());
 		else if (typeof timestamp === 'number') timestamp = BigInt(timestamp);
 		else if (typeof timestamp !== 'bigint') {
@@ -163,7 +168,8 @@ export class Snowflake {
 
 	/**
 	 * Deconstructs a snowflake given a snowflake ID
-	 * @param id the snowflake to deconstruct
+	 *
+	 * @param id - the snowflake to deconstruct
 	 * @returns a deconstructed snowflake
 	 * @example
 	 * ```typescript
@@ -171,7 +177,7 @@ export class Snowflake {
 	 * const snowflake = new Snowflake(epoch).deconstruct('3971046231244935168');
 	 * ```
 	 */
-	public deconstruct(id: string | bigint): DeconstructedSnowflake {
+	public deconstruct(id: bigint | string): DeconstructedSnowflake {
 		const bigIntId = BigInt(id);
 		const epoch = this[EpochSymbol];
 		return {
@@ -186,18 +192,20 @@ export class Snowflake {
 
 	/**
 	 * Retrieves the timestamp field's value from a snowflake.
-	 * @param id The snowflake to get the timestamp value from.
+	 *
+	 * @param id - The snowflake to get the timestamp value from.
 	 * @returns The UNIX timestamp that is stored in `id`.
 	 */
-	public timestampFrom(id: string | bigint): number {
+	public timestampFrom(id: bigint | string): number {
 		return Math.floor(Number(id) / TimestampFieldDivisor) + this[EpochNumberSymbol];
 	}
 
 	/**
 	 * Returns a number indicating whether a reference snowflake comes before, or after, or is same as the given
 	 * snowflake in sort order.
-	 * @param a The first snowflake to compare.
-	 * @param b The second snowflake to compare.
+	 *
+	 * @param a - The first snowflake to compare.
+	 * @param b - The second snowflake to compare.
 	 * @returns `-1` if `a` is older than `b`, `0` if `a` and `b` are equals, `1` if `a` is newer than `b`.
 	 * @example Sort snowflakes in ascending order
 	 * ```typescript
@@ -212,8 +220,9 @@ export class Snowflake {
 	 * // → ['1056191128120082432', '737141877803057244', '254360814063058944'];
 	 * ```
 	 */
-	public static compare(a: string | bigint, b: string | bigint): -1 | 0 | 1 {
+	public static compare(a: bigint | string, b: bigint | string): -1 | 0 | 1 {
 		const typeA = typeof a;
+		// eslint-disable-next-line valid-typeof
 		return typeA === typeof b
 			? typeA === 'string'
 				? cmpString(a as string, b as string)
@@ -222,12 +231,16 @@ export class Snowflake {
 	}
 }
 
-/** @internal */
+/**
+ * @internal
+ */
 function cmpBigInt(a: bigint, b: bigint) {
 	return a === b ? 0 : a < b ? -1 : 1;
 }
 
-/** @internal */
+/**
+ * @internal
+ */
 function cmpString(a: string, b: string) {
 	return a === b ? 0 : a.length < b.length ? -1 : a.length > b.length ? 1 : a < b ? -1 : 1;
 }
@@ -237,29 +250,33 @@ function cmpString(a: string, b: string) {
  */
 export interface SnowflakeGenerateOptions {
 	/**
-	 * Timestamp or date of the snowflake to generate
-	 * @default Date.now()
-	 */
-	timestamp?: number | bigint | Date;
-
-	/**
 	 * The increment to use
-	 * @default 0n
-	 * @remark keep in mind that this bigint is auto-incremented between generate calls
+	 *
+	 * @defaultValue 0n
+	 * keep in mind that this bigint is auto-incremented between generate calls
 	 */
 	increment?: bigint;
 
 	/**
-	 * The worker ID to use, will be truncated to 5 bits (0-31)
-	 * @default 0n
-	 */
-	workerId?: bigint;
-
-	/**
 	 * The process ID to use, will be truncated to 5 bits (0-31)
-	 * @default 1n
+	 *
+	 * @defaultValue 1n
 	 */
 	processId?: bigint;
+
+	/**
+	 * Timestamp or date of the snowflake to generate
+	 *
+	 * @defaultValue Date.now()
+	 */
+	timestamp?: Date | bigint | number;
+
+	/**
+	 * The worker ID to use, will be truncated to 5 bits (0-31)
+	 *
+	 * @defaultValue 0n
+	 */
+	workerId?: bigint;
 }
 
 /**
@@ -267,9 +284,24 @@ export interface SnowflakeGenerateOptions {
  */
 export interface DeconstructedSnowflake {
 	/**
+	 * The epoch to use in the snowflake
+	 */
+	epoch: bigint;
+
+	/**
 	 * The id in BigInt form
 	 */
 	id: bigint;
+
+	/**
+	 * The increment stored in the snowflake
+	 */
+	increment: bigint;
+
+	/**
+	 * The process id stored in the snowflake
+	 */
+	processId: bigint;
 
 	/**
 	 * The timestamp stored in the snowflake
@@ -280,19 +312,4 @@ export interface DeconstructedSnowflake {
 	 * The worker id stored in the snowflake
 	 */
 	workerId: bigint;
-
-	/**
-	 * The process id stored in the snowflake
-	 */
-	processId: bigint;
-
-	/**
-	 * The increment stored in the snowflake
-	 */
-	increment: bigint;
-
-	/**
-	 * The epoch to use in the snowflake
-	 */
-	epoch: bigint;
 }

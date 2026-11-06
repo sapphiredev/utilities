@@ -14,9 +14,10 @@ export class TimerManager extends null {
 
 	/**
 	 * Creates a timeout gets cleared when destroyed
-	 * @param fn callback function
-	 * @param delay amount of time before running the callback
-	 * @param args additional arguments to pass back to the callback
+	 *
+	 * @param fn - callback function
+	 * @param delay - amount of time before running the callback
+	 * @param args - additional arguments to pass back to the callback
 	 */
 	public static setTimeout<A = unknown>(fn: (...args: A[]) => void, delay: number, ...args: A[]): NodeJS.Timeout {
 		const timeout = setTimeout(() => {
@@ -29,7 +30,8 @@ export class TimerManager extends null {
 
 	/**
 	 * Clears a timeout created through this class
-	 * @param timeout The timeout to clear
+	 *
+	 * @param timeout - The timeout to clear
 	 */
 	public static clearTimeout(timeout: NodeJS.Timeout): void {
 		clearTimeout(timeout);
@@ -38,9 +40,10 @@ export class TimerManager extends null {
 
 	/**
 	 * Creates an interval gets cleared when destroyed
-	 * @param fn callback function
-	 * @param delay amount of time before running the callback
-	 * @param args additional arguments to pass back to the callback
+	 *
+	 * @param fn - callback function
+	 * @param delay - amount of time before running the callback
+	 * @param args - additional arguments to pass back to the callback
 	 */
 	public static setInterval<A = unknown>(fn: (...args: A[]) => void, delay: number, ...args: A[]): NodeJS.Timeout {
 		const interval = setInterval(fn, delay, ...args);
@@ -50,7 +53,8 @@ export class TimerManager extends null {
 
 	/**
 	 * Clears an internal created through this class
-	 * @param interval The interval to clear
+	 *
+	 * @param interval - The interval to clear
 	 */
 	public static clearInterval(interval: NodeJS.Timeout): void {
 		clearInterval(interval);
@@ -61,8 +65,8 @@ export class TimerManager extends null {
 	 * Clears running timeouts and intervals created through this class so NodeJS can gracefully exit
 	 */
 	public static destroy(): void {
-		for (const i of this.storedTimeouts) clearTimeout(i);
-		for (const i of this.storedIntervals) clearInterval(i);
+		for (const idx of this.storedTimeouts) clearTimeout(idx);
+		for (const idx of this.storedIntervals) clearInterval(idx);
 		this.storedTimeouts.clear();
 		this.storedIntervals.clear();
 	}

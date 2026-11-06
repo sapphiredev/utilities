@@ -1,5 +1,5 @@
 import { ArrayType } from './Array';
-import type { IType } from './base/IType';
+
 import { BigInt32Type } from './BigInt32';
 import { BigInt64Type } from './BigInt64';
 import { BigUint32Type } from './BigUint32';
@@ -26,6 +26,7 @@ import { Uint4Type } from './Uint4';
 import { Uint64Type } from './Uint64';
 import { Uint8Type } from './Uint8';
 
+// eslint-disable-next-line id-length
 export const t = {
 	array: ArrayType,
 	bigInt32: BigInt32Type,
@@ -55,32 +56,31 @@ export const t = {
 	uint8: Uint8Type
 };
 
-export {
-	ArrayType,
-	BigInt32Type,
-	BigInt64Type,
-	BigUint32Type,
-	BigUint64Type,
-	BitType,
-	BooleanType,
-	ConstantType,
-	FixedLengthArrayType,
-	Float32Type,
-	Float64Type,
-	Int16Type,
-	Int2Type,
-	Int32Type,
-	Int4Type,
-	Int64Type,
-	Int8Type,
-	NullableType,
-	SnowflakeType,
-	StringType,
-	Uint16Type,
-	Uint2Type,
-	Uint32Type,
-	Uint4Type,
-	Uint64Type,
-	Uint8Type,
-	type IType
-};
+export { type IType } from './base/IType';
+export { ArrayType } from './Array';
+export { BigInt64Type } from './BigInt64';
+export { BigInt32Type } from './BigInt32';
+export { BigUint64Type } from './BigUint64';
+export { BigUint32Type } from './BigUint32';
+export { BooleanType } from './Boolean';
+export { BitType } from './Bit';
+export { FixedLengthArrayType } from './FixedLengthArray';
+export { ConstantType } from './Constant';
+export { Float64Type } from './Float64';
+export { Float32Type } from './Float32';
+export { Int2Type } from './Int2';
+export { Int16Type } from './Int16';
+export { Int4Type } from './Int4';
+export { Int32Type } from './Int32';
+
+export { Int64Type } from './Int64';
+export { NullableType } from './Nullable';
+export { Int8Type } from './Int8';
+export { StringType } from './String';
+export { SnowflakeType } from './Snowflake';
+export { Uint2Type } from './Uint2';
+export { Uint16Type } from './Uint16';
+export { Uint4Type } from './Uint4';
+export { Uint32Type } from './Uint32';
+export { Uint8Type } from './Uint8';
+export { Uint64Type } from './Uint64';

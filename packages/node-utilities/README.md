@@ -14,18 +14,17 @@
 
 **Table of Contents**
 
--   [Features](#features)
--   [Installation](#installation)
--   [Usage](#usage)
-    -   [`findFilesRecursively`](#findfilesrecursively)
--   [Buy us some doughnuts](#buy-us-some-doughnuts)
--   [Contributors](#contributors)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+    - [`findFilesRecursively`](#findfilesrecursively)
+- [Buy us some doughnuts](#buy-us-some-doughnuts)
+- [Contributors](#contributors)
 
 ## Features
 
--   Written in TypeScript
--   Offers CommonJS, and ESM bundles
--   Fully tested
+- Recursively finds files beneath a directory as an async iterable
+- Filters results by filename prefix, suffix, or included text
 
 ## Installation
 

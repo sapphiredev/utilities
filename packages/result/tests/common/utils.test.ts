@@ -21,17 +21,17 @@ describe('utils', () => {
 			expect(isPromise(value)).toBe(true);
 		});
 
-		test('GIVEN a rejecting promise THEN returns true', () => {
-			const value = Promise.reject(new Error());
+		test('GIVEN a rejecting promise THEN returns true', async () => {
+			const value = Promise.reject(new Error('Test rejection'));
 
 			expect(isPromise(value)).toBe(true);
 
-			void value.catch(vi.fn());
+			await expect(value).rejects.toThrow('Test rejection');
 		});
 
 		test('GIVEN a promise-like THEN returns true', () => {
 			const cb = vi.fn();
-			const value = { then: cb };
+			const value = new Proxy({}, { get: (_, property) => (property === 'then' ? cb : undefined) });
 
 			expect(isPromise(value)).toBe(true);
 			expect(cb).not.toHaveBeenCalled();

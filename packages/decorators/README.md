@@ -16,14 +16,20 @@
 
 Decorators can add a lot of functionality with very minimal code. This package provides some common decorators that can be used with projects using the [Sapphire Framework][].
 
+## Features
+
+- Decorators for configuring Sapphire framework pieces
+- Helpers for Discord.js-related decorators
+- Decorators for controlling class property and method enumerability
+
 ## Installation
 
 `@sapphire/decorators` depends on the following packages. Be sure to install these along with this package!
 
--   [`@sapphire/discord.js-utilities`](https://www.npmjs.com/package/@sapphire/discord.js-utilities)
--   [`@sapphire/utilities`](https://www.npmjs.com/package/@sapphire/utilities)
--   [`@sapphire/framework`](https://www.npmjs.com/package/@sapphire/framework)
--   [`discord.js`](https://www.npmjs.com/package/discord.js)
+- [`@sapphire/discord.js-utilities`](https://www.npmjs.com/package/@sapphire/discord.js-utilities)
+- [`@sapphire/utilities`](https://www.npmjs.com/package/@sapphire/utilities)
+- [`@sapphire/framework`](https://www.npmjs.com/package/@sapphire/framework)
+- [`discord.js`](https://www.npmjs.com/package/discord.js)
 
 You can use the following command to install this package, or replace `npm install` with your package manager of choice.
 

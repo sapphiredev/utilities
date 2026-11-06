@@ -2,9 +2,9 @@ import type { DurationFormatAssetsTime, DurationFormatSeparators } from './Durat
 
 export enum Time {
 	Nanosecond = 1 / 1_000_000,
-	Microsecond = 1 / 1000,
+	Microsecond = 1 / 1_000,
 	Millisecond = 1,
-	Second = 1000,
+	Second = 1_000,
 	Minute = Second * 60,
 	Hour = Minute * 60,
 	Day = Hour * 24,
@@ -17,12 +17,12 @@ export enum Time {
  * The supported time types
  */
 export enum TimeTypes {
-	Second = 'second',
-	Minute = 'minute',
-	Hour = 'hour',
 	Day = 'day',
-	Week = 'week',
+	Hour = 'hour',
+	Minute = 'minute',
 	Month = 'month',
+	Second = 'second',
+	Week = 'week',
 	Year = 'year'
 }
 

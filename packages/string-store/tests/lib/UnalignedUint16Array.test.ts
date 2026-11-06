@@ -60,62 +60,62 @@ describe('UnalignedUint16Array', () => {
 
 	test('GIVEN an instance with a 16-bit integer written THEN it has the correct properties', () => {
 		const buffer = new UnalignedUint16Array(10);
-		buffer.writeInt16(65535);
+		buffer.writeInt16(65_535);
 		expect(buffer.length).toBe(1);
 		expect(buffer.bitLength).toBe(16);
-		expect(buffer.toArray()).toEqual(new Uint16Array([65535]));
+		expect(buffer.toArray()).toEqual(new Uint16Array([65_535]));
 
 		// Verify that the data can be deserialized correctly
 		expect(buffer.readInt16(0)).toBe(-1);
-		expect(buffer.readUint16(0)).toBe(65535);
+		expect(buffer.readUint16(0)).toBe(65_535);
 	});
 
 	test('GIVEN an instance with a 32-bit integer written THEN it has the correct properties', () => {
 		const buffer = new UnalignedUint16Array(10);
-		buffer.writeInt32(4294967295);
+		buffer.writeInt32(4_294_967_295);
 		expect(buffer.length).toBe(2);
 		expect(buffer.bitLength).toBe(32);
-		expect(buffer.toArray()).toEqual(new Uint16Array([65535, 65535]));
+		expect(buffer.toArray()).toEqual(new Uint16Array([65_535, 65_535]));
 
 		// Verify that the data can be deserialized correctly
 		expect(buffer.readInt32(0)).toBe(-1);
-		expect(buffer.readUint32(0)).toBe(4294967295);
+		expect(buffer.readUint32(0)).toBe(4_294_967_295);
 	});
 
 	test('GIVEN an instance with a 64-bit integer written THEN it has the correct properties', () => {
 		const buffer = new UnalignedUint16Array(10);
-		buffer.writeInt64(3058204829589);
+		buffer.writeInt64(3_058_204_829_589);
 		expect(buffer.length).toBe(4);
 		expect(buffer.bitLength).toBe(64);
-		expect(buffer.toArray()).toEqual(new Uint16Array([26517, 2870, 712, 0]));
+		expect(buffer.toArray()).toEqual(new Uint16Array([26_517, 2_870, 712, 0]));
 
 		// Verify that the data can be deserialized correctly
-		expect(buffer.readInt64(0)).toBe(3058204829589);
-		expect(buffer.readUint64(0)).toBe(3058204829589);
+		expect(buffer.readInt64(0)).toBe(3_058_204_829_589);
+		expect(buffer.readUint64(0)).toBe(3_058_204_829_589);
 	});
 
 	test('GIVEN an instance with a 32-bit big integer written THEN it has the correct properties', () => {
 		const buffer = new UnalignedUint16Array(10);
-		buffer.writeBigInt32(4294967295n);
+		buffer.writeBigInt32(4_294_967_295n);
 		expect(buffer.length).toBe(2);
 		expect(buffer.bitLength).toBe(32);
-		expect(buffer.toArray()).toEqual(new Uint16Array([65535, 65535]));
+		expect(buffer.toArray()).toEqual(new Uint16Array([65_535, 65_535]));
 
 		// Verify that the data can be deserialized correctly
 		expect(buffer.readBigInt32(0)).toBe(-1n);
-		expect(buffer.readBigUint32(0)).toBe(4294967295n);
+		expect(buffer.readBigUint32(0)).toBe(4_294_967_295n);
 	});
 
 	test('GIVEN an instance with a 64-bit big integer written THEN it has the correct properties', () => {
 		const buffer = new UnalignedUint16Array(10);
-		buffer.writeBigInt64(18446744073709551615n);
+		buffer.writeBigInt64(18_446_744_073_709_551_615n);
 		expect(buffer.length).toBe(4);
 		expect(buffer.bitLength).toBe(64);
-		expect(buffer.toArray()).toEqual(new Uint16Array([65535, 65535, 65535, 65535]));
+		expect(buffer.toArray()).toEqual(new Uint16Array([65_535, 65_535, 65_535, 65_535]));
 
 		// Verify that the data can be deserialized correctly
 		expect(buffer.readBigInt64(0)).toBe(-1n);
-		expect(buffer.readBigUint64(0)).toBe(18446744073709551615n);
+		expect(buffer.readBigUint64(0)).toBe(18_446_744_073_709_551_615n);
 	});
 
 	test('GIVEN an instance with a 32-bit float written THEN it has the correct properties', () => {
@@ -123,7 +123,7 @@ describe('UnalignedUint16Array', () => {
 		buffer.writeFloat32(0.5);
 		expect(buffer.length).toBe(2);
 		expect(buffer.bitLength).toBe(32);
-		expect(buffer.toArray()).toEqual(new Uint16Array([0, 16128]));
+		expect(buffer.toArray()).toEqual(new Uint16Array([0, 16_128]));
 
 		// Verify that the data can be deserialized correctly
 		expect(buffer.readFloat32(0)).toBe(0.5);
@@ -134,7 +134,7 @@ describe('UnalignedUint16Array', () => {
 		buffer.writeFloat64(0.5);
 		expect(buffer.length).toBe(4);
 		expect(buffer.bitLength).toBe(64);
-		expect(buffer.toArray()).toEqual(new Uint16Array([0, 0, 0, 16352]));
+		expect(buffer.toArray()).toEqual(new Uint16Array([0, 0, 0, 16_352]));
 
 		// Verify that the data can be deserialized correctly
 		expect(buffer.readFloat64(0)).toBe(0.5);
@@ -143,15 +143,15 @@ describe('UnalignedUint16Array', () => {
 	test('GIVEN an instance with insufficient space (write bit by bit) THEN it throws', () => {
 		const buffer = new UnalignedUint16Array(1);
 		buffer.writeInt16(1);
-		expect(() => buffer.writeBit(1)).toThrowError('The buffer is full');
+		expect(() => buffer.writeBit(1)).toThrow('The buffer is full');
 	});
 
 	test('GIVEN an instance with insufficient space (write word by word) THEN it throws', () => {
 		const buffer = new UnalignedUint16Array(1);
-		expect(() => buffer.writeInt32(1)).toThrowError('The buffer is full');
+		expect(() => buffer.writeInt32(1)).toThrow('The buffer is full');
 	});
 
 	test('GIVEN an instance from invalid codepoints THEN it throws', () => {
-		expect(() => UnalignedUint16Array.from('invalid input')).toThrowError(`Codepoint ${'i'.codePointAt(0)} is out of range`);
+		expect(() => UnalignedUint16Array.from('invalid input')).toThrow(`Codepoint ${'i'.codePointAt(0)} is out of range`);
 	});
 });

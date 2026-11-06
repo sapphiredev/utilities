@@ -14,17 +14,16 @@
 
 **Table of Contents**
 
--   [Features](#features)
--   [Installation](#installation)
--   [Buy us some doughnuts](#buy-us-some-doughnuts)
--   [Contributors](#contributors)
+- [Features](#features)
+- [Installation](#installation)
+- [Buy us some doughnuts](#buy-us-some-doughnuts)
+- [Contributors](#contributors)
 
 ## Features
 
--   Written in TypeScript
--   Bundled with esbuild so it can be used in NodeJS and browsers
--   Offers CommonJS, ESM and UMD bundles
--   Fully tested
+- Parses five-field cron expressions with lists, ranges, and step values
+- Supports named months and weekdays, plus common schedule aliases
+- Calculates the next matching date in UTC
 
 ## Installation
 

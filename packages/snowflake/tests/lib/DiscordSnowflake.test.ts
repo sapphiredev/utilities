@@ -24,25 +24,25 @@ describe('Discord Snowflakes', () => {
 			const flake = DiscordSnowflake.deconstruct('661720242585735168');
 
 			expect(flake).toStrictEqual<DeconstructedSnowflake>({
-				id: 661720242585735168n,
-				timestamp: 1577836800000n,
+				id: 661_720_242_585_735_168n,
+				timestamp: 1_577_836_800_000n,
 				workerId: 1n,
 				processId: 1n,
 				increment: 0n,
-				epoch: 1420070400000n
+				epoch: 1_420_070_400_000n
 			});
 		});
 
 		test('GIVEN id as bigint THEN returns data about snowflake', () => {
-			const flake = DiscordSnowflake.deconstruct(661720242585735168n);
+			const flake = DiscordSnowflake.deconstruct(661_720_242_585_735_168n);
 
 			expect(flake).toStrictEqual<DeconstructedSnowflake>({
-				id: 661720242585735168n,
-				timestamp: 1577836800000n,
+				id: 661_720_242_585_735_168n,
+				timestamp: 1_577_836_800_000n,
 				workerId: 1n,
 				processId: 1n,
 				increment: 0n,
-				epoch: 1420070400000n
+				epoch: 1_420_070_400_000n
 			});
 		});
 	});

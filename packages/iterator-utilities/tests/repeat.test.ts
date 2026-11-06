@@ -18,7 +18,7 @@ describe('repeat', () => {
 	test('GIVEN value and negative count THEN throws RangeError', () => {
 		const value = true;
 		const count = -5;
-		expect(() => repeat(value, count)).toThrowError(new RangeError('-5 must be a non-negative number'));
+		expect(() => repeat(value, count)).toThrow(new RangeError('-5 must be a non-negative number'));
 	});
 
 	test('GIVEN object value and count THEN returns iterable with repeated object references', () => {
