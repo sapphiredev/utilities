@@ -18,7 +18,7 @@ import { noDiscardResult } from './rules/no-discard-result';
  * }];
  * ```
  */
-const eslintPluginResult: TSESLint.FlatConfig.Plugin = {
+const eslintPluginResult: TSESLint.FlatConfig.Plugin & { configs: TSESLint.FlatConfig.SharedConfigs } = {
 	meta: { name: '@sapphire/eslint-plugin-result', version: '[VI]{{inject}}[/VI]' },
 	rules: {
 		'no-discard-result': noDiscardResult
@@ -26,7 +26,7 @@ const eslintPluginResult: TSESLint.FlatConfig.Plugin = {
 	configs: {}
 };
 
-eslintPluginResult.configs!.recommended = {
+eslintPluginResult.configs.recommended = {
 	plugins: {
 		'@sapphire/result': eslintPluginResult
 	},
