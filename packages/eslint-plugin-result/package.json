@@ -53,11 +53,11 @@
 		"@favware/cliff-jumper": "^6.1.0",
 		"@typescript-eslint/rule-tester": "^8.72.1",
 		"@typescript-eslint/typescript-estree": "^8.72.1",
-		"@vitest/coverage-v8": "^5.0.5",
-		"eslint": "^10.13.0",
-		"tsdown": "^0.23.3",
+		"@vitest/coverage-v8": "^5.1.0",
+		"eslint": "^10.15.0",
+		"tsdown": "^0.23.7",
 		"unplugin-replace": "^0.9.1",
-		"vitest": "^5.0.5"
+		"vitest": "^5.1.0"
 	},
 	"dependencies": {
 		"@sapphire/result": "workspace:^",
