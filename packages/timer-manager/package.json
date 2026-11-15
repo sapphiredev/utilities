@@ -1,6 +1,6 @@
 {
 	"name": "@sapphire/timer-manager",
-	"version": "1.0.4",
+	"version": "2.0.0",
 	"description": "A timer manager utility library for JavaScript.",
 	"author": "@sapphire",
 	"license": "MIT",
