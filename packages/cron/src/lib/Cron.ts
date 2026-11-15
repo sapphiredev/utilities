@@ -37,23 +37,23 @@ export class Cron {
 	 * @param origin - Whether this next call is origin
 	 */
 	public next(outset: Date = new Date(), origin = true): Date {
-		if (!this.days.includes(outset.getUTCDate()) || !this.months.includes(outset.getUTCMonth() + 1) || !this.dows.includes(outset.getUTCDay())) {
-			return this.next(new Date(outset.getTime() + Time.Day), false);
+		const now = origin ? new Date(outset.getTime() + 60_000) : outset;
+
+		if (!this.days.includes(now.getUTCDate()) || !this.months.includes(now.getUTCMonth() + 1) || !this.dows.includes(now.getUTCDay())) {
+			return this.next(new Date(now.getTime() + Time.Day), false);
 		}
 
-		if (!origin) return new Date(Date.UTC(outset.getUTCFullYear(), outset.getUTCMonth(), outset.getUTCDate(), this.hours[0], this.minutes[0]));
-
-		const now = new Date(outset.getTime() + 60_000);
+		if (!origin) return new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), this.hours[0], this.minutes[0]));
 
 		for (const hour of this.hours) {
 			if (hour < now.getUTCHours()) continue;
 			for (const minute of this.minutes) {
 				if (hour === now.getUTCHours() && minute < now.getUTCMinutes()) continue;
-				return new Date(Date.UTC(outset.getUTCFullYear(), outset.getUTCMonth(), outset.getUTCDate(), hour, minute));
+				return new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), hour, minute));
 			}
 		}
 
-		return this.next(new Date(outset.getTime() + Time.Day), false);
+		return this.next(new Date(now.getTime() + Time.Day), false);
 	}
 
 	/**

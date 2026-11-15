@@ -336,6 +336,20 @@ describe('Cron', () => {
 		expect(next.getTime()).toBe(new Date(2_019, 2, 9, 16, 21, 0, 0).getTime());
 	});
 
+	test('next day at midnight', () => {
+		const specimen = new Cron('0 0 * * *');
+		const outset = new Date(Date.UTC(2_019, 2, 9, 23, 59));
+
+		expect(specimen.next(outset).getTime()).toBe(Date.UTC(2_019, 2, 10));
+	});
+
+	test('next month at midnight', () => {
+		const specimen = new Cron('0 0 1 * *');
+		const outset = new Date(Date.UTC(2_019, 2, 31, 23, 59));
+
+		expect(specimen.next(outset).getTime()).toBe(Date.UTC(2_019, 3, 1));
+	});
+
 	test('bad cron', () => {
 		expect(() => new Cron('? ?')).toThrow('Invalid Cron Provided');
 	});
