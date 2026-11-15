@@ -2,6 +2,54 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/prettier-config@3.0.0](https://github.com/sapphiredev/utilities/compare/@sapphire/prettier-config@2.0.0...@sapphire/prettier-config@3.0.0) - (2026-11-15)
+
+## 🏠 Refactor
+
+- **prettier-config:** Simplify re-export syntax in README ([77bd18b](https://github.com/sapphiredev/utilities/commit/77bd18be58cebcf5b3f24905f58359bc41ed53cf))
+- Update to ESLint v10 ([991c466](https://github.com/sapphiredev/utilities/commit/991c4665ff10d9efa32d34cab134570fa7d2dd22))
+- Set minimal node version to 24 and npm to 12 ([2e4174b](https://github.com/sapphiredev/utilities/commit/2e4174bd3feb97ab1bbd15fd4735d2528c35cc2b))
+- ***:** All round repository upgrade ([44c5c90](https://github.com/sapphiredev/utilities/commit/44c5c900ecd6f9164e073c09630a7800d69f745a))
+  - 💥 **BREAKING CHANGE:** Build system has been changed from tsup to tsdown. There may be unexpected changes in the build output.
+  - 💥 **BREAKING CHANGE:** CJS support has been entirely dropped, all packages in this repository are now ESM-only.
+  - 💥 **BREAKING CHANGE:** The `tslib` dependency has been removed from all packages.
+  - 💥 **BREAKING CHANGE:** TypeScript has been internally updated to v7.
+- ***:** All round repository upgrade ([a58424e](https://github.com/sapphiredev/utilities/commit/a58424eadcea4990a730b0f89ce2d45f5d896c65))
+  - 💥 **BREAKING CHANGE:** Build system has been changed from tsup to tsdown. There may be unexpected changes in the build output.
+  - 💥 **BREAKING CHANGE:** CJS support has been entirely dropped, all packages in this repository are now ESM-only.
+  - 💥 **BREAKING CHANGE:** The `tslib` dependency has been removed from all packages.
+  - 💥 **BREAKING CHANGE:** TypeScript has been internally updated to v7.
+
+## 🐛 Bug Fixes
+
+- **deps:** Update all non-major dependencies ([09c1811](https://github.com/sapphiredev/utilities/commit/09c1811dae117f501f4e03b2015d8288e28734f8)) ([#982](https://github.com/sapphiredev/utilities/pull/982) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([72499d9](https://github.com/sapphiredev/utilities/commit/72499d99a9feb107fd3dccea601da462f1f725c1)) ([#980](https://github.com/sapphiredev/utilities/pull/980) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([e6d4bac](https://github.com/sapphiredev/utilities/commit/e6d4bac47e65e9e0ec95ebaaa1b679cfc01bd107)) ([#953](https://github.com/sapphiredev/utilities/pull/953) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([3f9fe93](https://github.com/sapphiredev/utilities/commit/3f9fe93b770479fd72b7fd56f476244c040fcb41)) ([#952](https://github.com/sapphiredev/utilities/pull/952) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([841436f](https://github.com/sapphiredev/utilities/commit/841436f1b501f468b002790283a25298561768d6)) ([#946](https://github.com/sapphiredev/utilities/pull/946) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([fff340c](https://github.com/sapphiredev/utilities/commit/fff340ccc9aa7d8c1770cb9159495afa071794f0)) ([#945](https://github.com/sapphiredev/utilities/pull/945) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([b1d26d6](https://github.com/sapphiredev/utilities/commit/b1d26d62fa2cea94f5f1e21655a7190ee270892f)) ([#899](https://github.com/sapphiredev/utilities/pull/899) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([636a5ee](https://github.com/sapphiredev/utilities/commit/636a5eed0939fd96a82213bf8459846aedd54037)) ([#897](https://github.com/sapphiredev/utilities/pull/897) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([4bc5591](https://github.com/sapphiredev/utilities/commit/4bc55911f95456a2caee10a3588c7b5f1542fb00)) ([#879](https://github.com/sapphiredev/utilities/pull/879) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([bc2f01c](https://github.com/sapphiredev/utilities/commit/bc2f01ce7d6932c9a0e02faa7cc081ecbae9640d)) ([#869](https://github.com/sapphiredev/utilities/pull/869) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([083376a](https://github.com/sapphiredev/utilities/commit/083376aac55094dbeddb5194e8a8f0d794b8cceb)) ([#763](https://github.com/sapphiredev/utilities/pull/763) by @renovate[bot])
+- Update transitive dependencies ([8a4927b](https://github.com/sapphiredev/utilities/commit/8a4927ba1aed3dc094393bbea1dd6fa790bece8e))
+- **deps:** Update dependency prettier to ^3.2.2 ([61630cc](https://github.com/sapphiredev/utilities/commit/61630cc5aa43e05d6e3e8881b2883f0ef334f02a)) ([#706](https://github.com/sapphiredev/utilities/pull/706) by @renovate[bot])
+- Bump transitive prettier dependency ([13ec7e9](https://github.com/sapphiredev/utilities/commit/13ec7e95001ebaaea3267ef22dfdededab912528))
+- **prettier-config:** Update transitive dependencies ([5408f85](https://github.com/sapphiredev/utilities/commit/5408f8510b2b42678c66cfbfd13f501ebda30277))
+
+## 📝 Documentation
+
+- **readme:** Update feature descriptions across packages ([302730a](https://github.com/sapphiredev/utilities/commit/302730a5b8eccb763b7b9761c3de1db9d3857394))
+- **prettier-config:** Update readme ([bd487c7](https://github.com/sapphiredev/utilities/commit/bd487c72ecb4259683c628f982f267e22d56f2a2)) ([#642](https://github.com/sapphiredev/utilities/pull/642) by @RealShadowNova)
+
+## 🚀 Features
+
+- Update eslint rules ([901aca9](https://github.com/sapphiredev/utilities/commit/901aca995e28bf5f4b343b441ab658d9c6511195))
+  - 💥 **BREAKING CHANGE:** ESLint has been updated to v10
+  - 💥 **BREAKING CHANGE:** ESLint configuration has been changed to a flat config
+  - 💥 **BREAKING CHANGE:** Our ESLint config is now a small layer on top of [eslint-config-neon](https://www.npmjs.com/package/eslint-config-neon) which brings a LOT more rules and stricter linting.
+
 # [@sapphire/prettier-config@2.0.0](https://github.com/sapphiredev/utilities/compare/@sapphire/prettier-config@1.4.5...@sapphire/prettier-config@2.0.0) - (2023-07-21)
 
 ## 🏃 Performance
