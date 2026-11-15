@@ -2,6 +2,47 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/string-store@4.0.0](https://github.com/sapphiredev/utilities/compare/@sapphire/string-store@3.0.0...@sapphire/string-store@4.0.0) - (2026-11-15)
+
+## 🏠 Refactor
+
+- **eslint:** Allow globals to be used ([3f08d87](https://github.com/sapphiredev/utilities/commit/3f08d87496c885a851cb48ec59a5d8c8822c5284))
+- Revert back to using globals instead of `node:X` imports ([25e18d0](https://github.com/sapphiredev/utilities/commit/25e18d0bf975e311d1baae2e5645355f4ffbdd0d))
+- **tsdown:** Integrate nodeGlobals plugin in configs ([84502f6](https://github.com/sapphiredev/utilities/commit/84502f6bdaf7a031961a969f5602b509862408bf))
+- **fromUTF16:** Replace codePointAt with charCodeAt ([bc0f08e](https://github.com/sapphiredev/utilities/commit/bc0f08e470e6e7702ea348c87730cdd91126b751))
+- Update to ESLint v10 ([991c466](https://github.com/sapphiredev/utilities/commit/991c4665ff10d9efa32d34cab134570fa7d2dd22))
+- ***:** All round repository upgrade ([44c5c90](https://github.com/sapphiredev/utilities/commit/44c5c900ecd6f9164e073c09630a7800d69f745a))
+  - 💥 **BREAKING CHANGE:** Build system has been changed from tsup to tsdown. There may be unexpected changes in the build output.
+  - 💥 **BREAKING CHANGE:** CJS support has been entirely dropped, all packages in this repository are now ESM-only.
+  - 💥 **BREAKING CHANGE:** The `tslib` dependency has been removed from all packages.
+  - 💥 **BREAKING CHANGE:** TypeScript has been internally updated to v7.
+- ***:** All round repository upgrade ([a58424e](https://github.com/sapphiredev/utilities/commit/a58424eadcea4990a730b0f89ce2d45f5d896c65))
+  - 💥 **BREAKING CHANGE:** Build system has been changed from tsup to tsdown. There may be unexpected changes in the build output.
+  - 💥 **BREAKING CHANGE:** CJS support has been entirely dropped, all packages in this repository are now ESM-only.
+  - 💥 **BREAKING CHANGE:** The `tslib` dependency has been removed from all packages.
+  - 💥 **BREAKING CHANGE:** TypeScript has been internally updated to v7.
+
+## 🐛 Bug Fixes
+
+- **deps:** Update all non-major dependencies ([09c1811](https://github.com/sapphiredev/utilities/commit/09c1811dae117f501f4e03b2015d8288e28734f8)) ([#982](https://github.com/sapphiredev/utilities/pull/982) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([72499d9](https://github.com/sapphiredev/utilities/commit/72499d99a9feb107fd3dccea601da462f1f725c1)) ([#980](https://github.com/sapphiredev/utilities/pull/980) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([e6d4bac](https://github.com/sapphiredev/utilities/commit/e6d4bac47e65e9e0ec95ebaaa1b679cfc01bd107)) ([#953](https://github.com/sapphiredev/utilities/pull/953) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([3f9fe93](https://github.com/sapphiredev/utilities/commit/3f9fe93b770479fd72b7fd56f476244c040fcb41)) ([#952](https://github.com/sapphiredev/utilities/pull/952) by @renovate[bot])
+
+## 📝 Documentation
+
+- **readme:** Update feature descriptions across packages ([302730a](https://github.com/sapphiredev/utilities/commit/302730a5b8eccb763b7b9761c3de1db9d3857394))
+- Update typedoc to proper tsdoc ([1d29dd6](https://github.com/sapphiredev/utilities/commit/1d29dd63bc2ffd1ea25093ca2d0a9ab7d6efc9e9))
+
+## 🚀 Features
+
+- Target es2024 when bundling ([293e6b9](https://github.com/sapphiredev/utilities/commit/293e6b9eddbed5db178017d5ddedaaad0cfb3395))
+  - 💥 **BREAKING CHANGE:** if your project is not full ES2024 compatible this new version will not work
+- Update eslint rules ([901aca9](https://github.com/sapphiredev/utilities/commit/901aca995e28bf5f4b343b441ab658d9c6511195))
+  - 💥 **BREAKING CHANGE:** ESLint has been updated to v10
+  - 💥 **BREAKING CHANGE:** ESLint configuration has been changed to a flat config
+  - 💥 **BREAKING CHANGE:** Our ESLint config is now a small layer on top of [eslint-config-neon](https://www.npmjs.com/package/eslint-config-neon) which brings a LOT more rules and stricter linting.
+
 # [@sapphire/string-store@3.0.0](https://github.com/sapphiredev/utilities/compare/@sapphire/string-store@2.0.0...@sapphire/string-store@3.0.0) - (2025-12-14)
 
 ## 🐛 Bug Fixes
