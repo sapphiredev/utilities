@@ -2,6 +2,56 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/discord-utilities@5.0.0](https://github.com/sapphiredev/utilities/compare/@sapphire/discord-utilities@4.0.0...@sapphire/discord-utilities@5.0.0) - (2026-11-15)
+
+## 🏠 Refactor
+
+- Update to ESLint v10 ([991c466](https://github.com/sapphiredev/utilities/commit/991c4665ff10d9efa32d34cab134570fa7d2dd22))
+- Set minimal node version to 24 and npm to 12 ([2e4174b](https://github.com/sapphiredev/utilities/commit/2e4174bd3feb97ab1bbd15fd4735d2528c35cc2b))
+- ***:** All round repository upgrade ([44c5c90](https://github.com/sapphiredev/utilities/commit/44c5c900ecd6f9164e073c09630a7800d69f745a))
+  - 💥 **BREAKING CHANGE:** Build system has been changed from tsup to tsdown. There may be unexpected changes in the build output.
+  - 💥 **BREAKING CHANGE:** CJS support has been entirely dropped, all packages in this repository are now ESM-only.
+  - 💥 **BREAKING CHANGE:** The `tslib` dependency has been removed from all packages.
+  - 💥 **BREAKING CHANGE:** TypeScript has been internally updated to v7.
+- ***:** All round repository upgrade ([a58424e](https://github.com/sapphiredev/utilities/commit/a58424eadcea4990a730b0f89ce2d45f5d896c65))
+  - 💥 **BREAKING CHANGE:** Build system has been changed from tsup to tsdown. There may be unexpected changes in the build output.
+  - 💥 **BREAKING CHANGE:** CJS support has been entirely dropped, all packages in this repository are now ESM-only.
+  - 💥 **BREAKING CHANGE:** The `tslib` dependency has been removed from all packages.
+  - 💥 **BREAKING CHANGE:** TypeScript has been internally updated to v7.
+
+## 🐛 Bug Fixes
+
+- Update discord-api-types ([97f4fe2](https://github.com/sapphiredev/utilities/commit/97f4fe21ec2528949331bb6d843379d9d3c6b584))
+- **deps:** Update all non-major dependencies ([09c1811](https://github.com/sapphiredev/utilities/commit/09c1811dae117f501f4e03b2015d8288e28734f8)) ([#982](https://github.com/sapphiredev/utilities/pull/982) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([72499d9](https://github.com/sapphiredev/utilities/commit/72499d99a9feb107fd3dccea601da462f1f725c1)) ([#980](https://github.com/sapphiredev/utilities/pull/980) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([e6d4bac](https://github.com/sapphiredev/utilities/commit/e6d4bac47e65e9e0ec95ebaaa1b679cfc01bd107)) ([#953](https://github.com/sapphiredev/utilities/pull/953) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([3f9fe93](https://github.com/sapphiredev/utilities/commit/3f9fe93b770479fd72b7fd56f476244c040fcb41)) ([#952](https://github.com/sapphiredev/utilities/pull/952) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([841436f](https://github.com/sapphiredev/utilities/commit/841436f1b501f468b002790283a25298561768d6)) ([#946](https://github.com/sapphiredev/utilities/pull/946) by @renovate[bot])
+
+## 📝 Documentation
+
+- **regexes:** Update token regex to use word characters ([d58f402](https://github.com/sapphiredev/utilities/commit/d58f40280afc64f97bbcb1d444e98dd6b97bd9c4))
+- **readme:** Update feature descriptions across packages ([302730a](https://github.com/sapphiredev/utilities/commit/302730a5b8eccb763b7b9761c3de1db9d3857394))
+- Update typedoc to proper tsdoc ([1d29dd6](https://github.com/sapphiredev/utilities/commit/1d29dd63bc2ffd1ea25093ca2d0a9ab7d6efc9e9))
+
+## 🚀 Features
+
+- Target es2024 when bundling ([293e6b9](https://github.com/sapphiredev/utilities/commit/293e6b9eddbed5db178017d5ddedaaad0cfb3395))
+  - 💥 **BREAKING CHANGE:** if your project is not full ES2024 compatible this new version will not work
+- Update twemoji regex ([6438b15](https://github.com/sapphiredev/utilities/commit/6438b15a5115b3b0568b3f0eae1f5c41a150715f))
+- Update eslint rules ([901aca9](https://github.com/sapphiredev/utilities/commit/901aca995e28bf5f4b343b441ab658d9c6511195))
+  - 💥 **BREAKING CHANGE:** ESLint has been updated to v10
+  - 💥 **BREAKING CHANGE:** ESLint configuration has been changed to a flat config
+  - 💥 **BREAKING CHANGE:** Our ESLint config is now a small layer on top of [eslint-config-neon](https://www.npmjs.com/package/eslint-config-neon) which brings a LOT more rules and stricter linting.
+- Add modal component limits ([5452e88](https://github.com/sapphiredev/utilities/commit/5452e88785f606b2d50da3af00d2eef4040c3373)) ([#959](https://github.com/sapphiredev/utilities/pull/959) by @nonick-mc)
+- Update Twemoji Regex ([24caabf](https://github.com/sapphiredev/utilities/commit/24caabfc17baf24a5d07cc54ed415e4bd7521ee7)) ([#993](https://github.com/sapphiredev/utilities/pull/993) by @github-actions[bot])
+- Update Twemoji Regex ([9943599](https://github.com/sapphiredev/utilities/commit/9943599c27a774450136032a17f23c2732373473)) ([#979](https://github.com/sapphiredev/utilities/pull/979) by @github-actions[bot])
+- Update Twemoji Regex ([a7ae88c](https://github.com/sapphiredev/utilities/commit/a7ae88c3d96027112d896d0e5ec5f75e8e76630d)) ([#939](https://github.com/sapphiredev/utilities/pull/939) by @github-actions[bot])
+
+## 🪞 Styling
+
+- Apply linting rules ([d049345](https://github.com/sapphiredev/utilities/commit/d049345fd19a1bcbf8e466c1f9141ef6ecc32dc4))
+
 # [@sapphire/discord-utilities@4.0.0](https://github.com/sapphiredev/utilities/compare/@sapphire/discord-utilities@3.5.0...@sapphire/discord-utilities@4.0.0) - (2025-11-08)
 
 ## 🏠 Refactor

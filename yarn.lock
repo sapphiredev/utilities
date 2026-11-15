@@ -1753,7 +1753,16 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@sapphire/discord-utilities@npm:^4.0.0, @sapphire/discord-utilities@workspace:^, @sapphire/discord-utilities@workspace:packages/discord-utilities":
+"@sapphire/discord-utilities@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "@sapphire/discord-utilities@npm:4.0.0"
+  dependencies:
+    discord-api-types: "npm:^0.38.30"
+  checksum: 10/d7be32d3759913de54fff3be7bdca7f5ebd61ec39c3aef58c182ceba135ede542e2935db22ff7826d5f3552c5b663f6dc4d040b7b6fb46930618c0f527311900
+  languageName: node
+  linkType: hard
+
+"@sapphire/discord-utilities@workspace:^, @sapphire/discord-utilities@workspace:packages/discord-utilities":
   version: 0.0.0-use.local
   resolution: "@sapphire/discord-utilities@workspace:packages/discord-utilities"
   dependencies:
@@ -4299,7 +4308,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"discord-api-types@npm:^0.38.59":
+"discord-api-types@npm:^0.38.30, discord-api-types@npm:^0.38.59":
   version: 0.38.59
   resolution: "discord-api-types@npm:0.38.59"
   checksum: 10/b2ee225a6f513458a04f5eec74c1648d45db206f8eab001e8692fff24f8791dc7bd80239e8064d10c08284f2fa99687eeeba069dd86069c6237cc9137706b727
