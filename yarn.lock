@@ -1968,7 +1968,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@sapphire/ratelimits@npm:^2.4.11, @sapphire/ratelimits@workspace:^, @sapphire/ratelimits@workspace:packages/ratelimits":
+"@sapphire/ratelimits@npm:^2.4.11":
+  version: 2.4.11
+  resolution: "@sapphire/ratelimits@npm:2.4.11"
+  checksum: 10/cd88badd6fabcfe16632374b882cbf1c81b599ff40395175d03d4602d75c7ae97209e638b61cf6919f2806f7d0906f2a5f45722bc1f4fd42bac1e5a42992d436
+  languageName: node
+  linkType: hard
+
+"@sapphire/ratelimits@workspace:^, @sapphire/ratelimits@workspace:packages/ratelimits":
   version: 0.0.0-use.local
   resolution: "@sapphire/ratelimits@workspace:packages/ratelimits"
   dependencies:
