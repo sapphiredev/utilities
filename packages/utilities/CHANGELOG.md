@@ -2,6 +2,53 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/utilities@4.0.0](https://github.com/sapphiredev/utilities/compare/@sapphire/utilities@3.18.3...@sapphire/utilities@4.0.0) - (2026-11-15)
+
+## 🏠 Refactor
+
+- **eslint:** Allow globals to be used ([3f08d87](https://github.com/sapphiredev/utilities/commit/3f08d87496c885a851cb48ec59a5d8c8822c5284))
+- Revert back to using globals instead of `node:X` imports ([25e18d0](https://github.com/sapphiredev/utilities/commit/25e18d0bf975e311d1baae2e5645355f4ffbdd0d))
+- **tsdown:** Integrate nodeGlobals plugin in configs ([84502f6](https://github.com/sapphiredev/utilities/commit/84502f6bdaf7a031961a969f5602b509862408bf))
+- **codeBlock:** Extract constants for escaped backticks ([89ab655](https://github.com/sapphiredev/utilities/commit/89ab655747114bb14de6e8463f89bb2043be4b6f))
+- Update to ESLint v10 ([991c466](https://github.com/sapphiredev/utilities/commit/991c4665ff10d9efa32d34cab134570fa7d2dd22))
+- ***:** All round repository upgrade ([44c5c90](https://github.com/sapphiredev/utilities/commit/44c5c900ecd6f9164e073c09630a7800d69f745a))
+  - 💥 **BREAKING CHANGE:** Build system has been changed from tsup to tsdown. There may be unexpected changes in the build output.
+  - 💥 **BREAKING CHANGE:** CJS support has been entirely dropped, all packages in this repository are now ESM-only.
+  - 💥 **BREAKING CHANGE:** The `tslib` dependency has been removed from all packages.
+  - 💥 **BREAKING CHANGE:** TypeScript has been internally updated to v7.
+- ***:** All round repository upgrade ([a58424e](https://github.com/sapphiredev/utilities/commit/a58424eadcea4990a730b0f89ce2d45f5d896c65))
+  - 💥 **BREAKING CHANGE:** Build system has been changed from tsup to tsdown. There may be unexpected changes in the build output.
+  - 💥 **BREAKING CHANGE:** CJS support has been entirely dropped, all packages in this repository are now ESM-only.
+  - 💥 **BREAKING CHANGE:** The `tslib` dependency has been removed from all packages.
+  - 💥 **BREAKING CHANGE:** TypeScript has been internally updated to v7.
+
+## 🐛 Bug Fixes
+
+- **utilities:** Revert range behaviour to previous version code ([f23ac42](https://github.com/sapphiredev/utilities/commit/f23ac429a4137f67b83cc00748ac2929884d1f94))
+
+## 📝 Documentation
+
+- **readme:** Update feature descriptions across packages ([302730a](https://github.com/sapphiredev/utilities/commit/302730a5b8eccb763b7b9761c3de1db9d3857394))
+- Update typedoc to proper tsdoc ([1d29dd6](https://github.com/sapphiredev/utilities/commit/1d29dd63bc2ffd1ea25093ca2d0a9ab7d6efc9e9))
+
+## 🚀 Features
+
+- Target es2024 when bundling ([293e6b9](https://github.com/sapphiredev/utilities/commit/293e6b9eddbed5db178017d5ddedaaad0cfb3395))
+  - 💥 **BREAKING CHANGE:** if your project is not full ES2024 compatible this new version will not work
+- Update eslint rules ([901aca9](https://github.com/sapphiredev/utilities/commit/901aca995e28bf5f4b343b441ab658d9c6511195))
+  - 💥 **BREAKING CHANGE:** ESLint has been updated to v10
+  - 💥 **BREAKING CHANGE:** ESLint configuration has been changed to a flat config
+  - 💥 **BREAKING CHANGE:** Our ESLint config is now a small layer on top of [eslint-config-neon](https://www.npmjs.com/package/eslint-config-neon) which brings a LOT more rules and stricter linting.
+
+## 🧪 Testing
+
+- Ensure sleep and poll tests mock and assert correctly ([51c5c77](https://github.com/sapphiredev/utilities/commit/51c5c7756c46edee237e3bf8e607c12150848457))
+- Update test code ([f9d10b2](https://github.com/sapphiredev/utilities/commit/f9d10b29755333d3ca4f96aa018527586ec5bc04))
+
+## 🪞 Styling
+
+- Apply linting rules ([d049345](https://github.com/sapphiredev/utilities/commit/d049345fd19a1bcbf8e466c1f9141ef6ecc32dc4))
+
 # [@sapphire/utilities@3.18.3](https://github.com/sapphiredev/utilities/compare/@sapphire/utilities@3.18.2...@sapphire/utilities@3.18.3) - (2026-08-31)
 
 ## 🏠 Refactor
