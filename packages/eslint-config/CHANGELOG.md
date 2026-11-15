@@ -2,6 +2,57 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@sapphire/eslint-config@6.0.0](https://github.com/sapphiredev/utilities/compare/@sapphire/eslint-config@5.0.6...@sapphire/eslint-config@6.0.0) - (2026-11-15)
+
+## 🏠 Refactor
+
+- **eslint:** Allow globals to be used ([3f08d87](https://github.com/sapphiredev/utilities/commit/3f08d87496c885a851cb48ec59a5d8c8822c5284))
+- Allow private class property access for typescript eslint dot notation ([84bb087](https://github.com/sapphiredev/utilities/commit/84bb087883a7743190e003f6ac50d0f73472c80e))
+- Set minimal node version to 24 and npm to 12 ([2e4174b](https://github.com/sapphiredev/utilities/commit/2e4174bd3feb97ab1bbd15fd4735d2528c35cc2b))
+- ***:** All round repository upgrade ([44c5c90](https://github.com/sapphiredev/utilities/commit/44c5c900ecd6f9164e073c09630a7800d69f745a))
+  - 💥 **BREAKING CHANGE:** Build system has been changed from tsup to tsdown. There may be unexpected changes in the build output.
+  - 💥 **BREAKING CHANGE:** CJS support has been entirely dropped, all packages in this repository are now ESM-only.
+  - 💥 **BREAKING CHANGE:** The `tslib` dependency has been removed from all packages.
+  - 💥 **BREAKING CHANGE:** TypeScript has been internally updated to v7.
+- ***:** All round repository upgrade ([a58424e](https://github.com/sapphiredev/utilities/commit/a58424eadcea4990a730b0f89ce2d45f5d896c65))
+  - 💥 **BREAKING CHANGE:** Build system has been changed from tsup to tsdown. There may be unexpected changes in the build output.
+  - 💥 **BREAKING CHANGE:** CJS support has been entirely dropped, all packages in this repository are now ESM-only.
+  - 💥 **BREAKING CHANGE:** The `tslib` dependency has been removed from all packages.
+  - 💥 **BREAKING CHANGE:** TypeScript has been internally updated to v7.
+
+## 🐛 Bug Fixes
+
+- Update eslint dependencies ([b39c5d1](https://github.com/sapphiredev/utilities/commit/b39c5d18d04acc45ae6e22b3de2ca3c873439f7f))
+- **deps:** Update all non-major dependencies ([09c1811](https://github.com/sapphiredev/utilities/commit/09c1811dae117f501f4e03b2015d8288e28734f8)) ([#982](https://github.com/sapphiredev/utilities/pull/982) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([72499d9](https://github.com/sapphiredev/utilities/commit/72499d99a9feb107fd3dccea601da462f1f725c1)) ([#980](https://github.com/sapphiredev/utilities/pull/980) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([e6d4bac](https://github.com/sapphiredev/utilities/commit/e6d4bac47e65e9e0ec95ebaaa1b679cfc01bd107)) ([#953](https://github.com/sapphiredev/utilities/pull/953) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([3f9fe93](https://github.com/sapphiredev/utilities/commit/3f9fe93b770479fd72b7fd56f476244c040fcb41)) ([#952](https://github.com/sapphiredev/utilities/pull/952) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([841436f](https://github.com/sapphiredev/utilities/commit/841436f1b501f468b002790283a25298561768d6)) ([#946](https://github.com/sapphiredev/utilities/pull/946) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([fff340c](https://github.com/sapphiredev/utilities/commit/fff340ccc9aa7d8c1770cb9159495afa071794f0)) ([#945](https://github.com/sapphiredev/utilities/pull/945) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([fb147ec](https://github.com/sapphiredev/utilities/commit/fb147ec0936fd8ad0f5018f8d61405bf0541ea18)) ([#907](https://github.com/sapphiredev/utilities/pull/907) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([6eea055](https://github.com/sapphiredev/utilities/commit/6eea05519c7aad14437b6f254e3dceea9dcf16cc)) ([#904](https://github.com/sapphiredev/utilities/pull/904) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([b1d26d6](https://github.com/sapphiredev/utilities/commit/b1d26d62fa2cea94f5f1e21655a7190ee270892f)) ([#899](https://github.com/sapphiredev/utilities/pull/899) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([636a5ee](https://github.com/sapphiredev/utilities/commit/636a5eed0939fd96a82213bf8459846aedd54037)) ([#897](https://github.com/sapphiredev/utilities/pull/897) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([da56be5](https://github.com/sapphiredev/utilities/commit/da56be564ed75f128acbff76b8d7df677e3bef5b)) ([#894](https://github.com/sapphiredev/utilities/pull/894) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([bab0bd4](https://github.com/sapphiredev/utilities/commit/bab0bd4580e077d96e31ff0f517053bca21464b3)) ([#890](https://github.com/sapphiredev/utilities/pull/890) by @renovate[bot])
+
+## 📝 Documentation
+
+- **readme:** Update feature descriptions across packages ([302730a](https://github.com/sapphiredev/utilities/commit/302730a5b8eccb763b7b9761c3de1db9d3857394))
+
+## 🚀 Features
+
+- Target es2024 when bundling ([293e6b9](https://github.com/sapphiredev/utilities/commit/293e6b9eddbed5db178017d5ddedaaad0cfb3395))
+  - 💥 **BREAKING CHANGE:** if your project is not full ES2024 compatible this new version will not work
+- Update eslint rules ([901aca9](https://github.com/sapphiredev/utilities/commit/901aca995e28bf5f4b343b441ab658d9c6511195))
+  - 💥 **BREAKING CHANGE:** ESLint has been updated to v10
+  - 💥 **BREAKING CHANGE:** ESLint configuration has been changed to a flat config
+  - 💥 **BREAKING CHANGE:** Our ESLint config is now a small layer on top of [eslint-config-neon](https://www.npmjs.com/package/eslint-config-neon) which brings a LOT more rules and stricter linting.
+
+## 🧪 Testing
+
+- Update test code ([f9d10b2](https://github.com/sapphiredev/utilities/commit/f9d10b29755333d3ca4f96aa018527586ec5bc04))
+
 # [@sapphire/eslint-config@5.0.6](https://github.com/sapphiredev/utilities/compare/@sapphire/eslint-config@5.0.5...@sapphire/eslint-config@5.0.6) - (2025-05-08)
 
 ## 🐛 Bug Fixes
