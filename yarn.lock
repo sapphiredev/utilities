@@ -1684,7 +1684,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/async-queue@npm:^1.5.2, @sapphire/async-queue@npm:^1.5.3, @sapphire/async-queue@workspace:packages/async-queue":
+"@sapphire/async-queue@npm:^1.5.2, @sapphire/async-queue@npm:^1.5.3":
+  version: 1.5.5
+  resolution: "@sapphire/async-queue@npm:1.5.5"
+  checksum: 10/26e6136de6dde4053e69afe7103fc8d71e9b780100a2b00de7d74eb009263cb6b1d06cf92b75a699c4c05804b7c7bc72190814c3709a60cde291ce29be0e0c36
+  languageName: node
+  linkType: hard
+
+"@sapphire/async-queue@workspace:packages/async-queue":
   version: 0.0.0-use.local
   resolution: "@sapphire/async-queue@workspace:packages/async-queue"
   dependencies:
