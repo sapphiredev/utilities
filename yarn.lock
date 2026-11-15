@@ -1856,7 +1856,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@sapphire/fetch@npm:^3.0.3, @sapphire/fetch@workspace:packages/fetch":
+"@sapphire/fetch@npm:^3.0.3":
+  version: 3.0.5
+  resolution: "@sapphire/fetch@npm:3.0.5"
+  checksum: 10/c9fdcf2785dc26216836344967175d3f993fb9b11b225e55ceefec6a77d3747ecf684ed02fd9c8fb4826fbc4fc8edf541309506686c4bbd1569626c389a2541f
+  languageName: node
+  linkType: hard
+
+"@sapphire/fetch@workspace:packages/fetch":
   version: 0.0.0-use.local
   resolution: "@sapphire/fetch@workspace:packages/fetch"
   dependencies:
